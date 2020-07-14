@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "footer": "../../components/footer/index"
+  },
+  "navigationBarTitleText": "优惠商城"
+}

@@ -1,0 +1,3 @@
+<!--pages/shop/index.wxml-->
+
+<footer active="{{active}}"></footer>

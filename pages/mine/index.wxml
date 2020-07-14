@@ -1,0 +1,3 @@
+<!--pages/mine/index.wxml-->
+
+<footer active="{{active}}"></footer>

@@ -1,0 +1,3 @@
+<!--pages/medicalServices/index.wxml-->
+
+<footer active="{{active}}"></footer>
