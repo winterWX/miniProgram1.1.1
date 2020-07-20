@@ -59,7 +59,7 @@
         <view class="title title_ft">身高</view>      
       </view>
     <view class="panel_body">
-      <view class="item">
+      <view class="item itemflex">
         <view class="item_top"><text class="num">185</text><text class="numTxt">厘米</text></view>
          <view class="item_bottom"></view>
       </view>    
@@ -72,7 +72,7 @@
         <view class="title title_ft">体重</view>      
       </view>
     <view class="panel_body">
-      <view class="item">
+      <view class="item itemflex">
         <view class="item_top"><text class="num">53.5</text><text class="numTxt">公斤</text></view>
          <view class="item_bottom"></view>
       </view>    
