@@ -1,0 +1,99 @@
+<!--pages/dailyHealthData/index.wxml-->
+<view class="container">
+  <view class="panel">
+    <view class="panel_header">
+      <view class="icon"><image src="../../images/icon-walking-data@2x.png" mode="aspectFit"/></view>
+      <view class="title title_ft">步行数据</view>      
+    </view>
+    <view class="panel_body">
+      <view class="item">
+        <view class="item_top"><text class="num">4000</text><text class="numTxt">步</text></view>
+         <view class="item_bottom">总步数</view>
+      </view>
+     <view class="item">
+        <view class="item_top"><text class="num">10</text><text class="numTxt">步</text></view>
+         <view class="item_bottom">每分钟步数</view>
+      </view>
+    </view>
+  </view>
+
+   <view class="panel">
+    <view class="panel_header">
+      <view class="icon"><image src="../../images/icon-sport-data@2x.png" mode="aspectFit"/></view>
+      <view class="title title_ft">运动数据</view>      
+    </view>
+    <view class="panel_body">
+      <view class="item">
+        <view class="item_top"><text class="num">74</text><text class="numTxt">分钟</text></view>
+         <view class="item_bottom">运动总时间</view>
+      </view>
+     <view class="item">
+        <view class="item_top"><text class="num">144</text><text class="numTxt">分钟</text></view>
+         <view class="item_bottom">消耗</view>
+      </view>
+      <view class="item">
+        <view class="item_top"><text class="num">14</text><text class="numTxt">公里</text></view>
+         <view class="item_bottom">距离</view>
+      </view>
+    </view>
+  </view>
+
+ <view class="panel">
+    <view class="panel_header">
+      <view class="icon"><image src="../../images/icon-bmi@2x.png" mode="aspectFit"/></view>
+      <view class="title title_ft">质量指数（BMI）</view>      
+    </view>
+    <view class="panel_body">
+      <view class="item itemflex">
+        <view class="item_top"><text class="num">1.61</text><text class="numTxt">公斤/平方</text></view>
+         <view class="item_bottom">建议：体重过轻，不适合减脂，试试增肌吧</view>
+      </view>
+     
+    </view>
+  </view>
+
+  <view class="other">
+    <view class="panel other_item">
+      <view class="panel_header">
+        <view class="icon"><image src="../../images/icon-height@2x.png" mode="aspectFit"/></view>
+        <view class="title title_ft">身高</view>      
+      </view>
+    <view class="panel_body">
+      <view class="item">
+        <view class="item_top"><text class="num">185</text><text class="numTxt">厘米</text></view>
+         <view class="item_bottom"></view>
+      </view>    
+    </view>    
+  </view>
+
+   <view class="panel other_item">
+      <view class="panel_header">
+        <view class="icon"><image src="../../images/icon-weight@2x.png" mode="aspectFit"/></view>
+        <view class="title title_ft">体重</view>      
+      </view>
+    <view class="panel_body">
+      <view class="item">
+        <view class="item_top"><text class="num">53.5</text><text class="numTxt">公斤</text></view>
+         <view class="item_bottom"></view>
+      </view>    
+    </view>    
+  </view> 
+  </view>
+ <view class="panel">
+    <view class="panel_header">
+      <view class="icon"><image src="../../images/icon-heart-rate@2x.png" mode="aspectFit"/></view>
+      <view class="title title_ft">心率</view>      
+    </view>
+    <view class="panel_body">
+      <view class="item itemflex">
+        <view class="item_top"><text class="num">75</text><text class="numTxt">次/分</text></view>
+         <view class="item_bottom">平均心率</view>
+      </view>
+     
+    </view>
+  </view>
+
+<view class="dataOrgin">
+  以上数据来自“华为运动云”。
+</view>
+</view>
