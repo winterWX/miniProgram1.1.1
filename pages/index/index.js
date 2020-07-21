@@ -16,6 +16,11 @@ Page({
       active: 0
     })
   },
+  prograNum:function(){
+    wx.navigateTo({
+      url: '../healthPage/index',
+    })
+  },
   onShareAppMessage: function (options) {
     let shareObj = {
       　　　　title: "",

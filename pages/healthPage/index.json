@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+      "progressView": "../../components/ProgressView/ProgressView",
+      "van-button": "vant-weapp/button/index"
+  },
+  "navigationBarTitleText": "乐健康"
+}
+

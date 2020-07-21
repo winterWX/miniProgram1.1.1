@@ -141,7 +141,7 @@ Component({
       wx.login({
         success: (res) => {
           wx.hideLoading() 
-          console.log(res)
+          console.log("res",res)
           if (res.code) {
             //发起网络请求
             this.setData({
@@ -152,8 +152,8 @@ Component({
             } else if (this.data.isLogin == 1) {
               this.userLogin(data)
             }
-
-
+            //标记登录成功
+            app.globalData.loginSuccess = true;
           }
         },
         fail: function(res) {

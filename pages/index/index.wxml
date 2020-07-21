@@ -1,6 +1,1 @@
-<!--index.wxml-->
-<view class="container">
-  
- 
-</view>
- <footer active="{{active}}"></footer>
+<footer active="{{active}}"></footer>
