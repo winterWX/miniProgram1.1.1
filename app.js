@@ -47,7 +47,7 @@ App({
   globalData: {
     userInfo: null,
     baseUrl:'http://106.54.73.125:8102',
-    token:'',
+    token: '',
     loginSuccess: false
   }
 })

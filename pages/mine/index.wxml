@@ -1,7 +1,7 @@
 <view>
-    <view class="healthBack" bindtap="haalthPage" >
+    <view class="healthBack" bindtap="healthPage" >
        乐健康
-       <!-- <button open-type="getUserInfo" bindgetuserinfo="haalthPage">乐健康</button> -->
+       <!-- <button open-type="getUserInfo" bindgetuserinfo="healthPage">乐健康</button> -->
     </view>
     <footer active="{{active}}"></footer>
 </view>

@@ -1,0 +1,51 @@
+<!--pages/history/index.wxml-->
+<view class="container">  
+<view class="headFix">
+  <view class="header">
+    <view class="header_item">
+      <view class="number">{{detail.standardDays}}</view>
+      <view class="text">达标天数</view>
+    </view>
+    <view class="header_item">
+      <view class="number">{{detail.rewards}}</view>
+      <view class="text">竞走积分</view>
+    </view>
+    <view class="header_item">
+      <view class="number">{{detail.runningDays}}</view>
+      <view class="text">最大连续日</view>
+    </view>
+  </view>
+  <view class="bottom_title">
+    <view class="border"></view>
+    <view class="bottom_txt">达标记录</view>
+  </view>
+  </view>
+  <scroll-view scroll-y="true" style="height:{{scrollH}}px;" bindscrolltolower="brandlowerShow" lower-threshold="100" >
+  <view class="history">
+    <view class="item" wx:for="{{ history }}" wx:key="index">
+      <view class="item_container step">
+        <view class="dt">
+          <text>步数{{item.todaySteps}}</text>
+          <text> 积分+{{item.integral}}</text>
+        </view>
+        <view class="ft {{item.isDone==2?' disable':''}}">
+          {{ item.isDone
+          === 2 ? '未达标': '已达标'}} 
+        </view>
+      </view>
+      <view class="item_container step_detail">
+        <view class="dt time">
+          步数{{item.time}}
+        </view>
+        <view class="ft">
+          {{ item.receiveStatus=== 3?'补领积分':''}}
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{history.length === 0}}">
+      <view class="empty"><image src="../../images/icn-empty-history@2x.png" mode="aspectFit"/></view>
+      <text class="emptyText">暂无数据</text>
+    </block>
+  </view>
+  </scroll-view>
+</view>

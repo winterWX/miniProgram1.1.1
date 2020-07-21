@@ -73,6 +73,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {},
+  healthShow:function(){
+    wx.navigateTo({
+      url: '../../pages/dailyHealthData/index',
+    })
+  },
   todayStepenquiry(){
     var that = this;
     wx.request({
