@@ -1,1 +1,25 @@
-/* pages/mine/index.wxss */
+/* .progress {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.progress canvas {
+  width: 100%;
+  height: 100%;
+} */
+.healthBack{
+   width: 750rpx;
+   height: 400rpx;
+   background-color: #cccccc;
+   color: black;
+   font-size: 40rpx;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

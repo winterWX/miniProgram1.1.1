@@ -15,7 +15,7 @@
       </view>
     </view>
     <view class="steps_list">
-      <view class="step_item"  class="{{item.receiveStatus == 1 ? 'disable step_item' : (item.receiveStatus == 4 ? 'disable step_item' : (item.receiveStatus == 3 ? 'active step_item' : 'step_item'))}}" wx:for="{{ list }}" wx:key="index">
+      <view class="step_item"  class="{{item.receiveStatus == 1 ? 'disable step_item' : (item.receiveStatus == 4 ? 'disable step_item' : (item.receiveStatus == 3 ? 'active step_item' : 'step_item'))}}" wx:for="{{ list }}" wx:key="index" bindtap="receiveIntegral(item)">
         <view class="step_item_top">
           <view class="item_info">{{item.receiveStatus == 1 ? '已领' : (item.receiveStatus == 4 ? '过期' : (item.receiveStatus == 3 ? '补领' : item.reward))}}</view>
           <view class="item_image">

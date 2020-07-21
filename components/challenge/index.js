@@ -102,10 +102,11 @@ Component({
           wx.hideLoading()
         }
       })
-
-
     },
-    receiveIntegral(){//领取积分      
+    receiveIntegral(item){
+      console.log(item)
+    },
+    receiveTodayIntegral(){//领取积分      
         wx.showLoading({
           title: 'loading...',
         })       

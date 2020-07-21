@@ -5,6 +5,7 @@
     "pages/activity/index",
     "pages/shop/index",
     "pages/medicalServices/index",
+    "pages/healthPage/index",
     "pages/mine/index",
     "pages/login/index",
     "pages/history/index",

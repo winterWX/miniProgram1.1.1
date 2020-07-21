@@ -1,3 +1,7 @@
-<!--pages/mine/index.wxml-->
-
-<footer active="{{active}}"></footer>
+<view>
+    <view class="healthBack" bindtap="healthPage" >
+       乐健康
+       <!-- <button open-type="getUserInfo" bindgetuserinfo="healthPage">乐健康</button> -->
+    </view>
+    <footer active="{{active}}"></footer>
+</view>

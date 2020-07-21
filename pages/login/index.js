@@ -87,7 +87,7 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200) {
-          app.globalData.token = res.data.token          
+          app.globalData.token = res.data.data.token         
           wx.redirectTo({
             url: this.data.url,
             complete: () => {
