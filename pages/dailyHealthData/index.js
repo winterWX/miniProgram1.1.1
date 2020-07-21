@@ -1,18 +1,19 @@
 // pages/dailyHealthData/index.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    health:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getHealthData()
   },
 
   /**
@@ -61,6 +62,39 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+  getHealthData() {
+    wx.showLoading({
+      title: 'loading...',
+    })
+    const parms = {
+      date: Date.parse(new Date()) / 1000
+     
+    }
+    wx.request({
+      method: 'post',
+      url: app.globalData.baseUrl + '/remote/health/data/everyday',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      data: parms,
+      success: (res) => {
+        if (res.data.code === 200) {
+         this.setData({
+           health:res.data.data
+         })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            content: res.message,
+            success: (res) => { }
+          })
+        }
+        wx.hideLoading()
+      }
+    })
 
   }
 })

@@ -47,6 +47,6 @@ App({
   globalData: {
     userInfo: null,
     baseUrl:'http://106.54.73.125:8102',
-    token:''
+    token: "eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyUjJU0lFKrShQsjI0tTQ3NjcyMDGrBQAAAP__.41qr90hXJPhcy9-CTqZZxc_zS4AQsVkyMI19iYddeGJ2clgSySxF1Rb6Sw8NOf34m5-H6mDtdsoWE9xkeO3jww"
   }
 })

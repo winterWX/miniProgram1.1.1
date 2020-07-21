@@ -2,7 +2,7 @@
 <view class="challenge">
   <view class="title">
     <view class="title_dt">连续挑战</view>
-    <view class="title_dd title_ft">历史记录</view>    
+    <view class="title_dd title_ft" bindtap="gotoHistory">历史记录</view>    
   </view>
   <view class="steps_tips">已经连续4天</view>
   <view class="steps">

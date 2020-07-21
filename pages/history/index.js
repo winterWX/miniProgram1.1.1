@@ -8,38 +8,70 @@ Page({
     scrollH:300,
     detail: { standardDays: 0, rewards: 0, runningDays:0},
     history:[
-      // {
-      //   todaySteps:10000,
-      //   receiveStatus:3,
-      //   integral:10,
-      //   isDone:1,
-      //   time:1592222222222222
+      {
+        todaySteps:10000,
+        receiveStatus:3,
+        integral:10,
+        isDone:1,
+        time:1592222222222222
 
-      // },
-      // {
-      //   todaySteps: 10000,
-      //   receiveStatus: 1,
-      //   integral: 10,
-      //   isDone: 1,
-      //   time: 1592222222222222
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 10,
+        isDone: 1,
+        time: 1592222222222222
 
-      // },
-      // {
-      //   todaySteps: 10000,
-      //   receiveStatus: 1,
-      //   integral: 0,
-      //   isDone: 2,
-      //   time: 1592222222222222
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 0,
+        isDone: 2,
+        time: 1592222222222222
 
-      // },
-      // {
-      //   todaySteps: 10000,
-      //   receiveStatus: 1,
-      //   integral: 10,
-      //   isDone: 1,
-      //   time: 1592222222222222
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 10,
+        isDone: 1,
+        time: 1592222222222222
 
-      // }
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 0,
+        isDone: 2,
+        time: 1592222222222222
+
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 10,
+        isDone: 1,
+        time: 1592222222222222
+
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 0,
+        isDone: 2,
+        time: 1592222222222222
+
+      },
+      {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        integral: 10,
+        isDone: 1,
+        time: 1592222222222222
+
+      }
     ]
   },
 
