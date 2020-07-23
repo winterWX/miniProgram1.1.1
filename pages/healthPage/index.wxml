@@ -13,7 +13,7 @@
         </view>    
    </view>
    <view class="speedBlock PageBackColor" style="height:auto;">
-      <challenge></challenge>
+      <challenge receiveStatus="{{stepsNum.receiveStatus}}" isDone="{{stepsNum.isDone}}" bindtodayIntegral="todayIntegral"></challenge>
    </view>
    <view class="headLeBlock PageBackColor">
          <view class="headLeBlock-top">
