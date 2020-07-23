@@ -1,5 +1,6 @@
 // components/challenge/index.js
 const app = getApp();
+const token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqViotTi3yS8xNVbJSsjBXqgUAAAD__w.YGUQwlZwBhBUfLUJ05CBn3mpEvU8_eni7iYMHuM_5dqvSJOSXzOwkMfU8ud1H6yvQ2YafIM0teJNcueLWC3K4A'
 Component({
   /**
    * 组件的属性列表
@@ -134,7 +135,7 @@ Component({
         url: app.globalData.baseUrl + '/remote/challenge/currentList',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
+          "token": token
         },
         data: {
           "currentTime":'1595209173' //Date.parse(new Date()) / 1000         
@@ -283,7 +284,7 @@ Component({
           url: app.globalData.baseUrl + '/remote/today/receiveIntegral',
           header: {
             "Content-Type": "application/json;charset=UTF-8",
-            "token": app.globalData.token
+            "token": token
           },        
           success: (res) => {
             if (res.data.code === 200) {
@@ -293,7 +294,7 @@ Component({
              this.setData({
                list:list
              })
-              this.triggerEvent('todayIntegral', { data: res.data.data})
+              this.triggerEvent('todayIntegral')
             } else {
               wx.showModal({
                 showCancel: false,
@@ -320,7 +321,7 @@ Component({
         url: app.globalData.baseUrl + '/remote/challenge/makeup',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
+          "token": token
         },
         data: parms,
         success: (res) => {
@@ -331,6 +332,7 @@ Component({
             this.setData({
               list: list
             })
+            this.triggerEvent('yesterdayIntegral')
           } else {
             wx.showModal({
               showCancel: false,

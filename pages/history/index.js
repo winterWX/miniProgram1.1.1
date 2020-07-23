@@ -1,5 +1,6 @@
 // pages/history/index.js
 const app = getApp();
+const token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqViotTi3yS8xNVbJSsjBXqgUAAAD__w.YGUQwlZwBhBUfLUJ05CBn3mpEvU8_eni7iYMHuM_5dqvSJOSXzOwkMfU8ud1H6yvQ2YafIM0teJNcueLWC3K4A'
 Page({
 
   /**
@@ -12,11 +13,12 @@ Page({
       totalIntegral:0,
       maxContinuousDays:0
     },
-    history:{},
+    history:null,
     year: new Date().getFullYear(),
     num:0,
     yeseterDate: '',
-    isReceive: false
+    isReceive: false,
+    isLoad:true
   },
 
   /**
@@ -91,8 +93,28 @@ Page({
       })
     }).exec()
   },
-  brandlowerShow(){    
+  bindscrolltolower(e){
+    console.log(e)    
    // this.historyList()
+  //  setTimeout(()=>{
+  //    wx.createSelectorQuery().in(this).select('.history').boundingClientRect((rects) => {
+  //      console.log(rects.height)
+  //      if (e.detail.scrollHeight > (rects.height-200) && this.data.isLoad==true) {
+  //        this.setData({
+  //          isLoad:false
+  //        })
+  //        this.historyList()
+  //      }
+
+  //    }).exec()
+  //  },500)
+   
+    if (this.data.isLoad == true){
+             this.setData({
+           isLoad:false
+         })
+         this.historyList()
+   }
   },
   historyList() {//领取积分      
     // wx.showLoading({
@@ -103,7 +125,7 @@ Page({
       url: app.globalData.baseUrl + '/remote/challenge/historyList',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": token
       },
       data: {
         currentTime: Date.parse(new Date()) / 1000,
@@ -120,6 +142,12 @@ Page({
                 maxContinuousDays: res.data.data.maxContinuousDays                
               }
             })
+            if (res.data.data.monthsList.length>0){
+              this.setData({
+                history: {},
+               
+              })
+            }
           }
           const data = res.data.data.monthsList
           for (var i = 0; i < data.length; i++){
@@ -132,7 +160,8 @@ Page({
           history[this.data.year] = data         
           this.setData({
             history: history,
-            year:this.data.year-1
+            year:this.data.year-1,
+            isLoad:true
           })
         } else {
           wx.showModal({
@@ -180,7 +209,7 @@ Page({
       url: app.globalData.baseUrl + '/remote/challenge/makeup',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": token
       },
       data: parms,
       success: (res) => {
