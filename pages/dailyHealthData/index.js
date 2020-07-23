@@ -77,7 +77,7 @@ Page({
       url: app.globalData.baseUrl + '/remote/health/data/everyday',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyUjJU0lFKrShQsjI0tTQ3NjcyMDGrBQAAAP__.41qr90hXJPhcy9-CTqZZxc_zS4AQsVkyMI19iYddeGJ2clgSySxF1Rb6Sw8NOf34m5-H6mDtdsoWE9xkeO3jww'
       },
       data: parms,
       success: (res) => {
