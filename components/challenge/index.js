@@ -294,7 +294,7 @@ Component({
              this.setData({
                list:list
              })
-              this.triggerEvent('todayIntegral', { data: res.data.data})
+              this.triggerEvent('todayIntegral')
             } else {
               wx.showModal({
                 showCancel: false,
@@ -332,6 +332,7 @@ Component({
             this.setData({
               list: list
             })
+            this.triggerEvent('yesterdayIntegral')
           } else {
             wx.showModal({
               showCancel: false,

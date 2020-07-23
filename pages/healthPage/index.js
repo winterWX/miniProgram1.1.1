@@ -120,6 +120,14 @@ Page({
   },
   todayIntegral(data){//组件中领取今天的积分
     console.log(data)
+    this.setData({
+      anBackShow:true
+    })
+  },
+  yesterdayIntegral(){//领取昨天的积分
+    this.setData({
+      anBackShow: true
+    })
   },
   todayStepenquiry(){
     var that = this;
