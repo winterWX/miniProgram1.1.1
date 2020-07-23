@@ -1,12 +1,12 @@
-//import lottie from 'lottie-miniprogram'
 const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+     startStatus:true,
      anBackShow:false,
-     startStep: '还差10000步',
+     startStep: '10000',
      stepsNum:{
         todaySteps: 0,	//今日步数
         targetSteps: 0,	//	目标步数
@@ -16,7 +16,7 @@ Page({
         isDoneName: 0,	//	完成描述
         integral: 0	//	可以领取的积分
      },
-     btnStatus: 0,  // 0 开启 1 领积分 2已领
+     btnStatus: -1,   // 0还差  1领积分  2已领
      distance: '00',
      calories: '00',
      totalTime: '00',
@@ -42,7 +42,6 @@ Page({
               guidance1:true
             })
        }
-      that.todayStepenquiry();
       that.healthEveryday();
       that.selectComponent('#progressView2').drawProgressBar();
   },
@@ -118,10 +117,14 @@ Page({
       url: '../../pages/dailyHealthData/index',
     })
   },
-  todayIntegral(data){//组件中领取今天的积分
-    console.log(data)
+  todayIntegral(data){  //组件中领取今天的积分
+    // console.log(data)
+      let that = this;
+        that.setData({
+          btnStatus: 2  //已领
+        })
   },
-  todayStepenquiry(){
+  settingDataBtn(){
     var that = this;
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
@@ -136,16 +139,23 @@ Page({
             stepsNum: res.data.data
           })
           wx.setStorageSync('stepsNumObject', res.data.data);
-          if(res.data.data !== null && res.data.data.todaySteps > 0 && res.data.data.todaySteps > 0){
-               if(res.data.data.todaySteps === 10000 && res.data.data.targetSteps === 10000){
-                that.setData({
-                    btnStatus: 1
-                  })
+          if(res.data.data !== null){
+               let targetStepsNum = 10000;
+               if(res.data.data.todaySteps && res.data.data.todaySteps < 10000){
+                    that.setData({
+                        startStep : targetStepsNum - res.data.data.todaySteps
+                    })
+                    that.setData({
+                        btnStatus: 0
+                    })
+               }else if(res.data.data.todaySteps === 10000){
+                    that.setData({
+                      btnStatus: 1
+                    })
                }
-          }else{
-                that.setData({
-                  btnStatus:0
-                })
+               that.setData({
+                startStatus:false
+               })
           }
         }
       },
@@ -156,7 +166,7 @@ Page({
   },
   topSettingBtn:function(){
     let that = this;
-    if(that.data.btnStatus !== 2 ){
+    if(that.data.btnStatus === 1 ){
       wx.request({
         url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
         method: "GET",
@@ -169,8 +179,6 @@ Page({
           that.setData({
             anBackShow:true
           })
-          // that.data.anBackShow = true;
-          console.log('that.data.anBackShow000000000000000',that.data.anBackShow);
           that.startAnimation();
           that.setData({
             btnStatus: 2

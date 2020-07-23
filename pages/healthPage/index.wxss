@@ -332,7 +332,7 @@ padding: 30rpx;
 .health-item{
   display: flex;
   align-items: center;
-  width: 220rpx;
+  /* //width: 220rpx; */
 }
 .health-num{
   /* width: 38rpx; */
@@ -358,7 +358,7 @@ padding: 30rpx;
   line-height: normal;
   letter-spacing: normal;
   color: #929292;
-  margin-left: 10rpx;
+  margin-left: 8rpx;
   margin-top: 12rpx;  
 }
 .health-bottom{
@@ -372,10 +372,11 @@ padding: 30rpx;
   letter-spacing: normal;
   color: #333333;
   margin-top:14rpx;
-  padding-left: 15rpx;
+  padding-left: 8rpx;
 }
 .sendBlock-Balck{
     height: 98rpx;
+    width: 220rpx;
 }
 .health-itemOhter{
     width: 180rpx !important;
