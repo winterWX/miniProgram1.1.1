@@ -289,6 +289,7 @@ Component({
             if (res.data.code === 200) {
               var list=this.data.list
               list[i].receiveStatus=1
+              this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
              this.setData({
                list:list
              })
@@ -326,6 +327,7 @@ Component({
           if (res.data.code === 200) {
             var list = this.data.list
             list[i].receiveStatus = 1
+            this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
             this.setData({
               list: list
             })

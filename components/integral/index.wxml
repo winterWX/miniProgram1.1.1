@@ -1,2 +1,4 @@
 <!--components/integral/index.wxml-->
-<text>components/integral/index.wxml</text>
+<view class="animationBox">
+
+</view>
