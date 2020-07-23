@@ -1,11 +1,13 @@
 /* components/challenge/index.wxss */
 .challenge{
-  padding: 30rpx;
+  /* //padding: 30rpx; */
   box-sizing: border-box;
   overflow: hidden;
    border-radius: 2px;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
+  height: 400rpx;
+  margin: 30rpx;
 }
 .title{
   display: flex;
@@ -26,13 +28,13 @@
   text-align: right;
   font-size: 24rpx;
   color: #333333;
-  padding-right: 36rpx;
+  padding-right: 38rpx;
 }
 .title_ft::after{
   content: " ";
     display: inline-block;
-    height: 24rpx;
-    width: 24rpx;
+    height: 20rpx;
+    width: 20rpx;
     border-width: 2rpx 2rpx 0 0;
     border-color: #333;
     border-style: solid;
@@ -41,8 +43,7 @@
     position: absolute;
     top: 50%;
     margin-top: -10rpx;
-    right: 0;
-   
+    right: 10rpx;
 }
 .steps_tips{
   font-size: 24rpx;
@@ -113,7 +114,7 @@
   height: 100%;
 }
 .tips{
-  margin: 30rpx 0;
+  margin-top: 25rpx;
   font-size: 24rpx; 
   color: #929292;
   text-align: center;

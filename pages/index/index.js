@@ -54,3 +54,5 @@ Page({
     　　return shareObj;
   }
 })
+
+

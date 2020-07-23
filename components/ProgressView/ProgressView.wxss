@@ -1,4 +1,3 @@
-/* static/component/ProgressView/ProgressView.wxss */
 .canvasView{
   display: flex;
   align-items: center;

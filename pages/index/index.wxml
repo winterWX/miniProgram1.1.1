@@ -1,8 +1,4 @@
 <!--index.wxml-->
 <view class="container">
-  
- <!-- <view class="challenge_margin">
-    <challenge></challenge>
- </view> -->
 </view>
- <footer active="{{active}}"></footer>
+<footer active="{{active}}"></footer>

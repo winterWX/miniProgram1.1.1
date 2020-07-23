@@ -1,11 +1,39 @@
-<view>
+<view class="pageTopPick-main">
+   <view class="pageTopPick" wx:if="{{firstInitShow}}">
+         <view class='mask' wx:if="{{flag}}"></view>
+         <view class="mask-guidance1"  wx:if='{{guidance1 }}'  >
+            <image src='../../images/pic-guidance.png'></image>
+            <view class="picBottom">
+               <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
+               <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
+            </view>
+         </view>
+         <view class="mask-guidance2"  wx:if='{{guidance2}}'  bindtap="guidanceTwo">
+               <image src='../../images/pic-guidance-2.png'></image>
+               <view class="contutionText">
+                     <view class="picBottomText-main">
+                        <view class="picBottomText">
+                           <view class="picBottomText-top">1. 连续<view class="textShow">7天达标</view>可享<view class="textShow">50积分</view></view>
+                        </view>
+                        <view class="picBottomText">
+                           <view class="picBottomText-top">2. 连续<view class="textShow">28天达标</view>可享<view class="textShow">100积分</view></view>
+                        </view>
+                     </view>
+                  <van-button class="guidanceTwoBtn vanBtn" bindtap="guidanceTwo">开始记录</van-button>
+               </view>
+         </view>
+         <!-- <view><canvas type="2d" id="myCanvas" style="width:800rpx;height:800rpx;position: absolute;"></canvas></view> -->
+   </view>
    <view class="topSetting PageBackColor">
-        <progressView  id="progressView2"  todayStepNum="{{stepsNum.todaySteps}}" />
-        <view class="topSetting-btn">
+         <view class="imageLeft"><image src='../../images/icon-guideline.png'></image></view>
+         <view class="circleRigth" style="left:{{leftDire}}rpx;top:{{topDire}}rpx;">10000</view>
+         <view class="imageRight"><view>排行榜</view><image src='../../images/icon-right-arrow-12-x-12.png'></image></view>
+         <progressView  id="progressView2"  todayStepNum="{{stepsNum.todaySteps}}"/>
+         <view class="topSetting-btn">
             <van-button  wx:if='{{btnStatus === 0}}' class="{{btnStatus=== 0 ? 'topSetting-vanBtn' :''}}" bindtap="topSettingBtn">开启健康数据访问</van-button>
             <van-button  wx:if='{{btnStatus === 1}}' class="{{btnStatus=== 1 ? 'topSetting-vanBtn' :''}}"  bindtap="topSettingBtn">领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{btnStatus === 2}}'>已领取</van-button>
-        </view>   
+        </view>
         <view class="topSetting-text">
             <view class="topSett-disp"  wx:if='{{btnStatus === 0}}'>每日完成10,000步即可领10积分</view>
             <view class="topSett-disp"  wx:if='{{btnStatus === 1}}'>你真棒！今日已达标～</view>
@@ -24,24 +52,23 @@
             <image src='../../images/illustration.png'></image>
          </view>
    </view>
-
    <view class="sendBlock PageBackColor">
          <view class="sendBlockBefore">
                <view class="sendBlock-main">
                   <view class="sendBlock-title">每日健康数据</view>
-                  <view class="back" bindtap="healthShow"><image   src = '../../images/back.png'></image></view>
+                  <view class="sendBlockBack" bindtap="healthShow"></view>
                </view>
                <view  class="sendBlock-bottom">
                   <view class="sendBlock-Balck">
-                      <view class="health-item"><view class="health-num">00</view><view class="health-text">公里</view></view>
+                      <view class="health-item"><view class="health-num">{{distance}}</view><view class="health-text">公里</view></view>
                       <view class="health-bottom">距离</view>
                   </view>
                   <view class="sendBlock-Balck">
-                     <view class="health-item"><view class="health-num">00</view><view class="health-text">千卡</view></view>
+                     <view class="health-item"><view class="health-num">{{calories}}</view><view class="health-text">千卡</view></view>
                      <view class="health-bottom">消耗</view>
                   </view>
                   <view class="sendBlock-Balck">
-                     <view class="health-item health-itemOhter"><view class="health-num">00</view><view class="health-text">分钟</view></view>
+                     <view class="health-item health-itemOhter"><view class="health-num">{{totalTime}}</view><view class="health-text">分钟</view></view>
                      <view class="health-bottom">总运动时间</view>
                   </view>
                </view>

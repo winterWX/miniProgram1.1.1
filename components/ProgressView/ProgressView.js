@@ -37,15 +37,17 @@ Component({
   methods: {
     drawProgressBar() {
       let stepsNumObject = wx.getStorageSync("stepsNumObject");
-      console.log('todayStepNum', typeof stepsNumObject.todaySteps);
+      console.log('stepsNumObject.todayStep11111s',stepsNumObject.todaySteps);
+      this.setData({
+        todayStepNum: stepsNumObject.todaySteps
+      })
+      console.log('this.data.todayStepNum',this.data.todayStepNum);
       //作画
       let bottomColor = this.data.bottomColor //进度条底色
       let lineColor = this.data.lineColor; //线条颜色
       let lineWidth = this.data.lineWidth * xs; //线条宽度
       let widthCir = this.data.width * xs;  //半径不算线的宽度
       let heightCir = this.data.height * xs - lineWidth;
-      var step = 1, startAngle = 1.5 * Math.PI, endAngle = 0;
-      var animation_interval = 1000,  n = 60;
       //获取canvas 的绘图上下文
       let ctx = this.data.ctx
       if (!ctx) {
@@ -69,10 +71,9 @@ Component({
         ctx.fillText('今日步数', 0, -20);
         ctx.font="30rpx Flama";
         ctx.fillStyle='#333333';
-        ctx.fillText(stepsNumObject.todaySteps, 0, 8)
+        ctx.fillText(this.data.todayStepNum, 0, 8)
         ctx.stroke(); //画出当前路径的边框
         ctx.closePath(); //关闭一个路径
-    
         //当前进度的圆弧
         ctx.beginPath();//开始创建一个路径
         ctx.setStrokeStyle(lineColor);//设置描边颜色
@@ -83,20 +84,5 @@ Component({
         ctx.closePath(); //关闭一个路径
         ctx.draw();  //清空上次内容绘制本次内容
     }
-    //   var animation = function () {
-    //     if (step <= n) {
-    //       endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
-    //       drawArc(startAngle, endAngle);
-    //       step++;
-    //     } else {
-    //       clearInterval(varName);
-    //     }
-    //   };
-    //   varName = setInterval(animation, animation_interval);
-    // },
-    // // drawArc:function(){
-
-    // },
-
   }
 })

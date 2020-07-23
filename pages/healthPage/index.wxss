@@ -5,9 +5,110 @@ page{
 .PageBackColor{
   background-color: #ffffff;
 }
+.pageTopPick-main{
+ position: relative;
+}
+.pageTopPick{
+   position: relative;
+}
+.mask{
+  height: 1470rpx;
+  width:100%;
+  position:absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index:9999;
+  top:0;
+  left:0;
+  opacity:0.7;
+}
+.mask-guidance1{
+  z-index: 12000;
+  position: absolute;
+  top: 40rpx;
+  left: 30rpx;
+  
+}
+.mask-guidance2{
+  z-index: 12000;
+  position: absolute;
+  top: 540rpx;
+  left: 30rpx;
+  
+}
+
+.mask-guidance1 image{
+  width: 690rpx;
+  height: 734rpx;
+}
+.mask-guidance2 image{
+    width: 690rpx;
+    height: 596rpx;
+}
+.picBottom{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   top: 660rpx;
+   left: 54rpx;
+}
+.picBottom-top{
+    width: 432rpx;
+    height: 40rpx;
+    font-family: PingFangSC;
+    font-size: 27rpx;
+    font-weight: 500;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.vanBtn .van-button{
+  width: 140rpx;
+  height: 48rpx;
+  border-radius: 4rpx;
+  background-color: #00a865;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: #ffffff;
+}
+.textShow{
+  color: #00a865;
+}
+.contutionText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 495rpx;
+    left: 54rpx;
+}
+.picBottomText-top{
+  width: 432rpx;
+  height: 40rpx;
+  font-family: PingFangSC;
+  font-size: 27rpx;
+  font-weight: 500;
+  color: #333333;
+  display: flex;
+  align-items: center;
+}
+.picBottomText{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 660rpx;
+  left: 54rpx;
+}
+.guidanceTwoBtn .van-button--normal {
+  padding: 0rpx !important;
+}
 .topSetting{
   height: 512rpx;
   width: 750rpx;
+  position: relative;
+  margin-top: 1rpx;
 }
 .topSetting-btn{
   width: 100%;
@@ -16,15 +117,58 @@ page{
 }
 .topSetting-btn .van-button{
   width: 570rpx;
-  height: 90rpx;
   border-radius: 4rpx;
   font-size: 32rpx;
   color: #ffffff;
   background-color: #d9d9d9;
 }
+.imageLeft{
+  position: absolute;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+.imageLeft image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.circleRigth{
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #00a865;
+  font-size: 12rpx;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  line-height: 40rpx;
+  z-index: 1500;
+}
+.imageRight{
+  position: absolute;
+  width: 136rpx;
+  height: 50rpx;
+  border-radius: 32rpx 0rpx 0rpx 32rpx;
+  background-color: rgba(155, 124, 86, 0.1);
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  font-weight: 500;
+  text-align: center;
+  color: #9b7c56;
+  display: flex;
+  align-items: center;
+  align-items: center;
+  left: 630rpx;
+  top: 30rpx;
+  padding-left: 10rpx;
+}
+.imageRight image{
+  width: 20rpx;
+  height: 20rpx;
+  padding-left: 10rpx;
+} 
 .topSetting-btn .topSetting-vanBtn .van-button{
   width: 570rpx;
-  height: 90rpx;
   border-radius: 4rpx;
   background-color: #00a865 !important;
   font-family: PingFangSC;
@@ -122,17 +266,26 @@ padding: 30rpx;
   letter-spacing: normal;
   color: #333333;
 }
-.back{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-left: 402rpx;
+.sendBlockBack{
+  content: " ";
+  display: inline-block;
+  height: 20rpx;
+  width: 20rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #333;
+  border-style: solid;
+  -webkit-transform: matrix(.71,.71,-.71,.71,0,0);
+  transform: matrix(.71,.71,-.71,.71,0,0);
+  margin-left: 415rpx;
 }
-.back image{
+
+
+
+/* .back image{
   width: 36rpx;
   height: 36rpx;
   object-fit: contain;
-}
+} */
 .sendBlock-main{
   display: flex;
   align-items: center;
