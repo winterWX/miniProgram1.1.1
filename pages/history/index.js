@@ -12,8 +12,11 @@ Page({
       totalIntegral:0,
       maxContinuousDays:0
     },
-    history:[],
-    
+    history:{},
+    year: new Date().getFullYear(),
+    num:0,
+    yeseterDate: '',
+    isReceive: false
   },
 
   /**
@@ -21,6 +24,7 @@ Page({
    */
   onLoad: function (options) {
     this.getTopHeight()
+    this.isReceiveFun()
     this.historyList()
   },
 
@@ -75,18 +79,9 @@ Page({
   formatDate(value){
     let date = new Date(value * 1000);
     let y = date.getFullYear();// 年
-    let MM = date.getMonth() + 1;// 月
-    MM = MM < 10 ? ('0' + MM) : MM;
+    let MM = date.getMonth() + 1;// 月   
     let d = date.getDate();// 日
-    d = d < 10 ? ('0' + d) : d;
-    let h = date.getHours();// 时
-    h = h < 10 ? ('0' + h) : h;
-    let m = date.getMinutes();// 分
-    m = m < 10 ? ('0' + m) : m;
-    let s = date.getSeconds();// 秒
-    s = s < 10 ? ('0' + s) : s;
-    //return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-    return y + '/' + MM + '/' + d;
+    return MM+'月'+d+'日'
   },
   getTopHeight(){
     wx.createSelectorQuery().in(this).select('.headFix').boundingClientRect((rects) => {    
@@ -96,13 +91,13 @@ Page({
       })
     }).exec()
   },
-  brandlowerShow(){
-
+  brandlowerShow(){    
+   // this.historyList()
   },
-  historyList(year) {//领取积分      
-    wx.showLoading({
-      title: 'loading...',
-    })
+  historyList() {//领取积分      
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
     wx.request({
       method: 'post',
       url: app.globalData.baseUrl + '/remote/challenge/historyList',
@@ -112,12 +107,12 @@ Page({
       },
       data: {
         currentTime: Date.parse(new Date()) / 1000,
-        year: '2020',
-        // month: "7"
+        year: this.data.year,
+       
       },
       success: (res) => {
-        if (res.data.code === 200) {
-          if (year == new Date().getFullYear()){
+        if (res.data.code === 200) {                 
+          if (this.data.year == new Date().getFullYear()){
             this.setData({
               detail: {
                 continuousComplianceDays: res.data.data.continuousComplianceDays,
@@ -126,8 +121,18 @@ Page({
               }
             })
           }
+          const data = res.data.data.monthsList
+          for (var i = 0; i < data.length; i++){
+            for (var k = 0; k < data[i].historyList.length; k++) {
+              data[i].historyList[k].date = this.formatDate(data[i].historyList[k].createTime)
+            }
+          }
+
+          var history=this.data.history
+          history[this.data.year] = data         
           this.setData({
-            history: [...this.data.history,...res.data.data.detailVoList]
+            history: history,
+            year:this.data.year-1
           })
         } else {
           wx.showModal({
@@ -142,13 +147,33 @@ Page({
 
 
   },
-  yesterdayIntegral(item, i) {//补领积分      
+  isReceiveFun(){
+    //当天凌晨的时间戳
+    var h1 = new Date(new Date().setHours(0, 0, 0, 0)) / 1000
+    //昨天的时间戳
+    var h2=h1 - 24 * 60 * 60
+    console.log(h2)
+    var yeseterDate = this.formatDate(h2)
+    var isReceive=false
+    if (Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60) {
+      isReceive=true
+    }
+    this.setData({
+      yeseterDate: yeseterDate,
+      isReceive: isReceive
+    })
+  },
+  yesterdayIntegral(e) {//补领积分  
+    const key = e.currentTarget.dataset.key 
+    const i = e.currentTarget.dataset.i   
+    const index = e.currentTarget.dataset.index  
+    const item = e.currentTarget.dataset.item  
     wx.showLoading({
       title: 'loading...',
     })
     const parms = {
       challengeId: item.id,
-      receivePoints: item.reward
+      receivePoints: item.integral
     }
     wx.request({
       method: 'post',
@@ -159,20 +184,21 @@ Page({
       },
       data: parms,
       success: (res) => {
+        wx.hideLoading()
         if (res.data.code === 200) {
-          var list = this.data.list
-          list[i].receiveStatus = 1
+          var history = this.data.history
+          history[key][i][index].receiveStatus = 1
           this.setData({
-            list: list
+            history: history
           })
+          
         } else {
           wx.showModal({
             showCancel: false,
             content: res.message,
             success: (res) => { }
           })
-        }
-        wx.hideLoading()
+        }       
       }
     })
 
