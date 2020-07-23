@@ -118,6 +118,9 @@ Page({
       url: '../../pages/dailyHealthData/index',
     })
   },
+  todayIntegral(data){//组件中领取今天的积分
+    console.log(data)
+  },
   todayStepenquiry(){
     var that = this;
     wx.request({

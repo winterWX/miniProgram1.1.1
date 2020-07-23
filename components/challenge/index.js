@@ -5,13 +5,19 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    todaySteps: {
-      type: Number,
-      value: 0
+    receiveStatus: {
+      type: String,
+      value: '2',
+      observer(value) {
+        this.observerList(value, 'receiveStatus')
+      }
     },
-    targetSteps: {
-      type: Number,
-      value: 10000
+    isDone: {
+      type: String,
+      value: '2',
+      observer(value) {              
+        this.observerList(value, 'isdone')
+      }
     }
   },
 
@@ -23,7 +29,8 @@ Component({
     days:{
       days:'',
       integral:''
-    },
+    },  
+    nowDay:-1, 
     list:[
       // {
       //   receiveStatus:1,//已领        
@@ -78,6 +85,38 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    observerList(value,key){     
+      if (this.data.list.length > 0) {
+        if (value == 1 && this.data.list[this.data.nowDay][key] == 2) {
+          this.data.list[this.data.nowDay][key] = value
+          if (key =='receiveStatus'){
+            this.data.list[this.data.nowDay].iconPath = '../../images/icon-got-the-points@2x.png'
+          }
+          this.setData({
+            list: this.data.list
+          })
+        }
+      } else {
+        var timeOut = null
+        var countTime=()=> {
+          if (this.data.list.length > 0) {
+            clearInterval(timeOut)
+            if (value == 1 && this.data.list[this.data.nowDay][key] == 2) {
+              this.data.list[this.data.nowDay][key] = value
+              if (key == 'receiveStatus') {
+                this.data.list[this.data.nowDay].iconPath = '../../images/icon-got-the-points@2x.png'
+              }
+              this.setData({
+                list: this.data.list
+              })
+              console.log(this.data.list)
+            }
+            
+          }
+        }
+        timeOut = setInterval(countTime, 500)
+      }    
+    },
     formateTime(value) {
       //当天凌晨的时间戳
       const h1 = new Date(new Date().setHours(0, 0, 0, 0)) / 1000 
@@ -98,7 +137,7 @@ Component({
           "token": app.globalData.token
         },
         data: {
-          "currentTime": Date.parse(new Date()) / 1000         
+          "currentTime":'1595209173' //Date.parse(new Date()) / 1000         
         },
         success: (res) => {
           if (res.data.code === 200) {
@@ -173,6 +212,9 @@ Component({
                 if (item.receiveStatus == '2'){
                   iconPath = '../../images/icon-' + reward + '-points@2x.png'
                 }
+                this.setData({
+                  nowDay:i
+                })
                  
               } else if ((h1 - 24 * 60 * 60) <= item.createTime && item.createTime <h1) {
                 dayName = "昨天"
@@ -180,7 +222,7 @@ Component({
                   iconPath = '../../images/icon-' + reward + '-points@2x.png'                 
                 } else {
                   iconPath = '../../images/icon-' + reward + '-points-black@2x.png'
-                  //reward = 0
+                  reward = 0
                 }
 
               }else{                
@@ -247,9 +289,11 @@ Component({
             if (res.data.code === 200) {
               var list=this.data.list
               list[i].receiveStatus=1
+              this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
              this.setData({
                list:list
              })
+              this.triggerEvent('todayIntegral', { data: res.data.data})
             } else {
               wx.showModal({
                 showCancel: false,
@@ -283,6 +327,7 @@ Component({
           if (res.data.code === 200) {
             var list = this.data.list
             list[i].receiveStatus = 1
+            this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
             this.setData({
               list: list
             })

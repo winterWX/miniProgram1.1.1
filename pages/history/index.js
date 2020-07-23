@@ -142,4 +142,40 @@ Page({
 
 
   },
+  yesterdayIntegral(item, i) {//补领积分      
+    wx.showLoading({
+      title: 'loading...',
+    })
+    const parms = {
+      challengeId: item.id,
+      receivePoints: item.reward
+    }
+    wx.request({
+      method: 'post',
+      url: app.globalData.baseUrl + '/remote/challenge/makeup',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      data: parms,
+      success: (res) => {
+        if (res.data.code === 200) {
+          var list = this.data.list
+          list[i].receiveStatus = 1
+          this.setData({
+            list: list
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            content: res.message,
+            success: (res) => { }
+          })
+        }
+        wx.hideLoading()
+      }
+    })
+
+
+  },
 })
