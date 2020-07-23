@@ -1,15 +1,4 @@
-<view class="pageTopPick-main">
-   <view class="{{anBackShow ? 'showBlack':'hideBlack'}}" style="z-index:1300">
-         <view class="usermotto" animation="{{ani}}">
-               <view class="user-motto">
-                  <view class="user-mottoImage"><image src='../../images/img_0.png'></image></view>
-                  <view class="user-mottoText">
-                     <view class="userText">积分</view>
-                     <view class="user-mottoNum">+10</view>
-                  </view>
-               </view>
-         </view>
-   </view>
+<view class="pageTopPick-main">  
    <view class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flag}}"></view>
          <view class="mask-guidance1"  wx:if='{{guidance1 }}'  >
@@ -50,7 +39,7 @@
             <view class="topSett-disp"  wx:if='{{btnStatus === 2}}'>积分已入账，明天再接再厉！</view>
         </view>    
    </view>
-   <view class="speedBlock PageBackColor" style="height:auto;">
+   <view class="speedBlock PageBackColor" style="height:auto; box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);">
       <challenge receiveStatus="{{stepsNum.receiveStatus}}" isDone="{{stepsNum.isDone}}" bindtodayIntegral="todayIntegral"></challenge>
    </view>
    <view class="headLeBlock PageBackColor">
@@ -86,3 +75,17 @@
          </view>
       </view>
 </view>
+<view class="mottoBox" wx:if="{{anBackShow}}">
+  <view class="{{anBackShow ? 'showBlack':'hideBlack'}}">
+          <view class="usermotto" animation="{{ani}}">
+                <view class="user-motto">
+                    <view class="user-mottoImage"><image src='../../images/img_0.png'></image></view>
+                    <view class="user-mottoText">
+                      <view class="userText">积分</view>
+                      <view class="user-mottoNum">+10</view>
+                    </view>
+                </view>
+          </view>
+    </view>
+</view>
+ 

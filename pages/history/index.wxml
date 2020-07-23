@@ -46,7 +46,7 @@
         </view>
         </view>
       </view>
-      <block wx:if="{{history.length === 0}}">
+      <block wx:if="{{history == null}}">
         <view class="empty">
           <image src="../../images/icn-empty-history@2x.png" mode="aspectFit" />
         </view>
