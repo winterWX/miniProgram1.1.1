@@ -28,7 +28,7 @@
          <view class="item_bottom">运动总时间</view>
       </view>
      <view class="item">
-        <view class="item_top"><text class="num">{{health.calories}}</text><text class="numTxt">卡路里</text></view>
+        <view class="item_top"><text class="num">{{health.calories}}</text><text class="numTxt">千卡</text></view>
          <view class="item_bottom">消耗</view>
       </view>
       <view class="item">

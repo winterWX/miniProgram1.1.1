@@ -50,7 +50,7 @@ App({
     token: '',
     loginSuccess: false
   },
-  firstInit:{ 
+  firstInit:{
     bootImage: true
   }
 })

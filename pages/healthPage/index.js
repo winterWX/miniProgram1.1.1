@@ -15,7 +15,7 @@ Page({
         isDoneName: 0,	//	完成描述
         integral: 0	//	可以领取的积分
      },
-     btnStatus:0,  // 0 开启 1 领积分 2已领 
+     btnStatus:0,  // 0 开启 1 领积分 2已领
      distance: '00',
      calories: '00',
      totalTime: '00',
@@ -221,9 +221,9 @@ Page({
   //         path: 'http://106.54.73.125:8102/images/score/10/data.json',  //lottie json包的网络链接，可以防止小程序的体积过大
   //         rendererSettings:{
   //           context   //es6语法：等同于context:context（必填）
-  //         }       
+  //         }
   //     })
-        
+
   //     })
   // }
 })

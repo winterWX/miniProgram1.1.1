@@ -1,6 +1,7 @@
 {
   "usingComponents": {    
-    "footer": "../../components/footer/index"
+    "footer": "../../components/footer/index",
+    "challenge": "../../components/challenge/index"
   },
   "navigationBarTitleText": "首页"  
 }
