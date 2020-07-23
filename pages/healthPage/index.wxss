@@ -319,9 +319,6 @@ padding: 30rpx;
   transform: matrix(.71,.71,-.71,.71,0,0);
   margin-left: 415rpx;
 }
-
-
-
 /* .back image{
   width: 36rpx;
   height: 36rpx;

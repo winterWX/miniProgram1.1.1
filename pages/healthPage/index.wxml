@@ -63,7 +63,8 @@
          <view class="sendBlockBefore">
                <view class="sendBlock-main">
                   <view class="sendBlock-title">每日健康数据</view>
-                  <view class="back" bindtap="healthShow"><image   src = '../../images/back.png'></image></view>
+                  <!-- <view class="back" bindtap="healthShow"><image   src = '../../images/back.png'></image></view> -->
+                  <view class="sendBlockBack" bindtap="healthShow"></view>
                </view>
                <view  class="sendBlock-bottom">
                   <view class="sendBlock-Balck">
