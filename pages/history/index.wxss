@@ -74,22 +74,25 @@
   margin: 0 auto;
   
 }
+.hisList{
+  background-color: #fff;
+  min-height: 100rpx;
 
+}
 .item {  
   border-bottom: 1px solid #efefef;
-  padding: 40rpx 0;
-  margin: 0 30rpx;
+  padding: 40rpx 0; 
   box-sizing: border-box;
 }
 
 .item_container {
-  font-size: 32rpx;
-  width: 100%;
+  font-size: 32rpx;  
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-flow: row nowrap;
   height: 40rpx;
+  margin: 0 30rpx;
 }
 
 .step {
@@ -153,4 +156,6 @@ dt:first-child {
   background-color:#f7f7f7;
   color: #333333;
   line-height: 56rpx;
+  font-size: 24rpx;
+   padding: 0 30rpx;
 }
