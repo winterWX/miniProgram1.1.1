@@ -226,5 +226,10 @@ Page({
     this.setData({
       animationShow: false
     })
+  },
+  gotoDailyHeathdata(){
+    wx.navigateTo({
+      url: '../dailyHealthData/index',
+    })
   }
 })

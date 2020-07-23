@@ -16,7 +16,8 @@ Page({
     year: new Date().getFullYear(),
     num:0,
     yeseterDate: '',
-    isReceive: false
+    isReceive: false,
+    isLoad:true
   },
 
   /**
@@ -91,8 +92,28 @@ Page({
       })
     }).exec()
   },
-  brandlowerShow(){    
+  bindscrolltolower(e){
+    console.log(e)    
    // this.historyList()
+  //  setTimeout(()=>{
+  //    wx.createSelectorQuery().in(this).select('.history').boundingClientRect((rects) => {
+  //      console.log(rects.height)
+  //      if (e.detail.scrollHeight > (rects.height-200) && this.data.isLoad==true) {
+  //        this.setData({
+  //          isLoad:false
+  //        })
+  //        this.historyList()
+  //      }
+
+  //    }).exec()
+  //  },500)
+   
+    if (this.data.isLoad == true){
+             this.setData({
+           isLoad:false
+         })
+         this.historyList()
+   }
   },
   historyList() {//领取积分      
     // wx.showLoading({
@@ -132,7 +153,8 @@ Page({
           history[this.data.year] = data         
           this.setData({
             history: history,
-            year:this.data.year-1
+            year:this.data.year-1,
+            isLoad:true
           })
         } else {
           wx.showModal({
