@@ -6,10 +6,53 @@ page{
   background-color: #ffffff;
 }
 .pageTopPick-main{
- position: relative;
+  position: relative;
+ }
+ .pageTopPick{
+    position: relative;
+ }
+ .showBlack{
+   display: block;
+ }
+.hideBlack{
+     display: none;
+  }
+.usermotto{
+  width: 750rpx;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
-.pageTopPick{
-   position: relative;
+.user-motto{
+  width: 256rpx;
+  height: 218rpx;
+  border-radius: 4rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+.user-mottoImage{
+  text-align: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding-top: 30rpx;
+
+}
+.user-motto image{
+  width: 90rpx;
+  height: 90rpx;
+  object-fit: contain;
+}
+.user-mottoText{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15rpx;
+  font-size: 32rpx;
+  color: #ffff;  
+}
+.user-mottoNum{
+  color: #f0ccab;  
 }
 .mask{
   height: 1470rpx;
@@ -33,9 +76,7 @@ page{
   position: absolute;
   top: 540rpx;
   left: 30rpx;
-  
 }
-
 .mask-guidance1 image{
   width: 690rpx;
   height: 734rpx;
@@ -107,7 +148,7 @@ page{
 .topSetting{
   height: 512rpx;
   width: 750rpx;
-  position: relative;
+  /* position: relative; */
   margin-top: 1rpx;
 }
 .topSetting-btn{
@@ -294,11 +335,12 @@ padding: 30rpx;
 .health-item{
   display: flex;
   align-items: center;
-  width: 254rpx;
+  width: 220rpx;
 }
 .health-num{
-  width: 38rpx;
+  /* width: 38rpx; */
   height: 54rpx;
+  padding: 0 5rpx;
   font-family: Flama;
   font-size: 44rpx;
   font-weight: 500;
@@ -319,7 +361,7 @@ padding: 30rpx;
   line-height: normal;
   letter-spacing: normal;
   color: #929292;
-  margin-left: 20rpx;
+  margin-left: 10rpx;
   margin-top: 12rpx;  
 }
 .health-bottom{
@@ -333,12 +375,13 @@ padding: 30rpx;
   letter-spacing: normal;
   color: #333333;
   margin-top:14rpx;
+  padding-left: 15rpx;
 }
 .sendBlock-Balck{
     height: 98rpx;
 }
 .health-itemOhter{
-    width: 153rpx !important;
+    width: 180rpx !important;
 }
 .noshadow{
     hover-class:none;

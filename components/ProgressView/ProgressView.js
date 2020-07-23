@@ -71,7 +71,8 @@ Component({
         ctx.fillText('今日步数', 0, -20);
         ctx.font="30rpx Flama";
         ctx.fillStyle='#333333';
-        ctx.fillText(this.data.todayStepNum, 0, 8)
+        //ctx.fillText(this.data.todayStepNum, 0, 8)
+        ctx.fillText(10000, 0, 8);
         ctx.stroke(); //画出当前路径的边框
         ctx.closePath(); //关闭一个路径
         //当前进度的圆弧

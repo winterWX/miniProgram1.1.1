@@ -1,4 +1,15 @@
 <view class="pageTopPick-main">
+   <view class="{{anBackShow ? 'showBlack':'hideBlack'}}" style="z-index:1300">
+         <view class="usermotto" animation="{{ani}}">
+               <view class="user-motto">
+                  <view class="user-mottoImage"><image src='../../images/img_0.png'></image></view>
+                  <view class="user-mottoText">
+                     <view class="userText">积分</view>
+                     <view class="user-mottoNum">+10</view>
+                  </view>
+               </view>
+         </view>
+   </view>
    <view class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flag}}"></view>
          <view class="mask-guidance1"  wx:if='{{guidance1 }}'  >
@@ -22,7 +33,6 @@
                   <van-button class="guidanceTwoBtn vanBtn" bindtap="guidanceTwo">开始记录</van-button>
                </view>
          </view>
-         <!-- <view><canvas type="2d" id="myCanvas" style="width:800rpx;height:800rpx;position: absolute;"></canvas></view> -->
    </view>
    <view class="topSetting PageBackColor">
          <view class="imageLeft"><image src='../../images/icon-guideline.png'></image></view>

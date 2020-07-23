@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+     anBackShow:false,
      startStep: '还差10000步',
      stepsNum:{
         todaySteps: 0,	//今日步数
@@ -15,7 +16,7 @@ Page({
         isDoneName: 0,	//	完成描述
         integral: 0	//	可以领取的积分
      },
-     btnStatus:0,  // 0 开启 1 领积分 2已领
+     btnStatus: 0,  // 0 开启 1 领积分 2已领
      distance: '00',
      calories: '00',
      totalTime: '00',
@@ -73,7 +74,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**
@@ -162,12 +162,13 @@ Page({
             "token": app.globalData.token
         },
         success: function (res) {
-        // if(res.data.data !== null){
-            //  that.setData({
-            //     goldAnimationShow: true
-            //  })
-            //  that.goldAnimation();
-         //}
+        // if(res.data.data !== null){}
+          that.setData({
+            anBackShow:true
+          })
+          // that.data.anBackShow = true;
+          console.log('that.data.anBackShow000000000000000',that.data.anBackShow);
+          that.startAnimation();
           that.setData({
             btnStatus: 2
           })
@@ -192,9 +193,16 @@ Page({
       },
       success: function (res) {
         if(res.data.data !== null){
-            this.data.distance = res.data.data.distance;
-            this.data.calories = res.data.data.calories;
-            this.data.totalTime = res.data.data.totalTime;
+            that.setData({
+                distance:res.data.data.distance
+            })
+            that.setData({
+              calories:res.data.data.distance
+            })
+            that.setData({
+              totalTime:res.data.data.distance
+            })
+             console.log('111111',that.data.totalTime,that.data.calories,that.data.totalTime);
         }
       },
       fail: function (res) {
@@ -202,28 +210,18 @@ Page({
       }
     })
   },
-  // goldAnimation(){
-  //   const query = wx.createSelectorQuery()
-  //   query.select('#myCanvas')
-  //     .fields({ node: true, size: true })
-  //     .exec((res) => {
-  //       const canvas = res[0].node
-  //       const context = canvas.getContext('2d')
-  //       //canvas.width = wx.getSystemInfoSync().windowWidth;   //设置宽高，也可以放到wxml中的canvas标签的style中
-  //       //canvas.hight =  wx.getSystemInfoSync().windowHeight;
-  //       canvas.width = 375;   //设置宽高，也可以放到wxml中的canvas标签的style中
-  //       canvas.hight =  375;
-  //      // console.log('-----',canvas.width,canvas.hight);
-  //       lottie.setup(canvas)   //要执行动画，必须调用setup,传入canvas对象
-  //       lottie.loadAnimation({    //微信小程序给的接口，调用就完事了，原理不太懂
-  //         loop: false,       //是否循环播放（选填）
-  //         autoplay: true,    //是否自动播放（选填）
-  //         path: 'http://106.54.73.125:8102/images/score/10/data.json',  //lottie json包的网络链接，可以防止小程序的体积过大
-  //         rendererSettings:{
-  //           context   //es6语法：等同于context:context（必填）
-  //         }
-  //     })
-
-  //     })
-  // }
+  startAnimation:function(){
+    var animation = wx.createAnimation({
+        duration: 2000,
+        timingFunction: 'ease',
+        delay: 0
+    });
+    animation.opacity(0.01).translate(0, 250).step()
+    this.setData({
+      ani: animation.export()
+    })
+    this.setData({
+      animationShow: false
+    })
+  }
 })
