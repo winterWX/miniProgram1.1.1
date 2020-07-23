@@ -1,7 +1,7 @@
 /* pages/history/index.wxss */
 
 .container {
-  margin: 30rpx;
+  margin: 30rpx 0;
 }
 
 .header {
@@ -16,6 +16,7 @@
   text-align: center;
   color: #fff;
   font-size: 32rpx;
+  margin: 0 30rpx;
 }
 
 .header_item {
@@ -52,6 +53,7 @@
   flex-flow: row nowrap;
   height: 82rpx;
   margin-top: 30rpx;
+   margin: 30rpx 30rpx 0 30rpx;
 }
 
 .border {
@@ -70,12 +72,14 @@
 .history {
   width: 100%;
   margin: 0 auto;
+  
 }
 
-.item {
-  width: 100%;
+.item {  
   border-bottom: 1px solid #efefef;
   padding: 40rpx 0;
+  margin: 0 30rpx;
+  box-sizing: border-box;
 }
 
 .item_container {
@@ -143,4 +147,10 @@ dt:first-child {
   font-size: 28rpx; 
   color: #333333;
   margin-top: 44rpx;
+}
+.hisory_title{
+  height:56rpx;
+  background-color:#f7f7f7;
+  color: #333333;
+  line-height: 56rpx;
 }

@@ -1,78 +1,19 @@
 // pages/history/index.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    scrollH:300,
-    detail: { standardDays: 0, rewards: 0, runningDays:0},
-    history:[
-      {
-        todaySteps:10000,
-        receiveStatus:3,
-        integral:10,
-        isDone:1,
-        time:1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 10,
-        isDone: 1,
-        time: 1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 0,
-        isDone: 2,
-        time: 1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 10,
-        isDone: 1,
-        time: 1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 0,
-        isDone: 2,
-        time: 1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 10,
-        isDone: 1,
-        time: 1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 0,
-        isDone: 2,
-        time: 1592222222222222
-
-      },
-      {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        integral: 10,
-        isDone: 1,
-        time: 1592222222222222
-
-      }
-    ]
+    scrollH:300,    
+    detail: {
+      continuousComplianceDays: 0,
+      totalIntegral:0,
+      maxContinuousDays:0
+    },
+    history:[],
+    
   },
 
   /**
@@ -80,6 +21,7 @@ Page({
    */
   onLoad: function (options) {
     this.getTopHeight()
+    this.historyList()
   },
 
   /**
@@ -156,5 +98,48 @@ Page({
   },
   brandlowerShow(){
 
-  }
+  },
+  historyList(year) {//领取积分      
+    wx.showLoading({
+      title: 'loading...',
+    })
+    wx.request({
+      method: 'post',
+      url: app.globalData.baseUrl + '/remote/challenge/historyList',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      data: {
+        currentTime: Date.parse(new Date()) / 1000,
+        year: '2020',
+        // month: "7"
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          if (year == new Date().getFullYear()){
+            this.setData({
+              detail: {
+                continuousComplianceDays: res.data.data.continuousComplianceDays,
+                totalIntegral: res.data.data.totalIntegral,
+                maxContinuousDays: res.data.data.maxContinuousDays                
+              }
+            })
+          }
+          this.setData({
+            history: [...this.data.history,...res.data.data.detailVoList]
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            content: res.data.message,
+            success: (res) => { }
+          })
+        }
+        wx.hideLoading()
+      }
+    })
+
+
+  },
 })

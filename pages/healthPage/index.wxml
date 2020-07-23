@@ -12,7 +12,7 @@
             <view class="topSett-disp"  wx:if='{{btnStatus === 2}}'>积分已入账，明天再接再厉！</view>
         </view>    
    </view>
-   <view class="speedBlock PageBackColor">
+   <view class="speedBlock PageBackColor" style="height:auto;">
       <challenge></challenge>
    </view>
    <view class="headLeBlock PageBackColor">

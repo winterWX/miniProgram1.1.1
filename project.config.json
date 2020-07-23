@@ -65,8 +65,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "挑战历史记录",
+					"id": 1,
+					"name": "历史记录",
 					"pathName": "pages/history/index",
 					"query": "",
 					"scene": null
@@ -75,6 +75,14 @@
 					"id": -1,
 					"name": "每日健康数据",
 					"pathName": "pages/dailyHealthData/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "乐健康",
+					"pathName": "pages/healthPage/index",
+					"query": "",
 					"scene": null
 				}
 			]

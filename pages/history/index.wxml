@@ -3,15 +3,15 @@
 <view class="headFix">
   <view class="header">
     <view class="header_item">
-      <view class="number">{{detail.standardDays}}</view>
+      <view class="number">{{detail.continuousComplianceDays}}</view>
       <view class="text">达标天数</view>
     </view>
     <view class="header_item">
-      <view class="number">{{detail.rewards}}</view>
+      <view class="number">{{detail.totalIntegral}}</view>
       <view class="text">竞走积分</view>
     </view>
     <view class="header_item">
-      <view class="number">{{detail.runningDays}}</view>
+      <view class="number">{{detail.maxContinuousDays}}</view>
       <view class="text">最大连续日</view>
     </view>
   </view>
@@ -22,6 +22,7 @@
   </view>
   <scroll-view scroll-y="true" style="height:{{scrollH}}px;" bindscrolltolower="brandlowerShow" lower-threshold="100" >
   <view class="history">
+    <view class="hisory_title"></view>
     <view class="item" wx:for="{{ history }}" wx:key="index">
       <view class="item_container step">
         <view class="dt">
