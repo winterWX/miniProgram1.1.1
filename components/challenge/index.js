@@ -139,7 +139,7 @@ Component({
           "token": app.globalData.token
         },
         data: {
-          "currentTime":'1595209173' //Date.parse(new Date()) / 1000         
+          "currentTime": Date.parse(new Date()) / 1000  //Date.parse(new Date()) / 1000         
         },
         success: (res) => {
           if (res.data.code === 200) {
