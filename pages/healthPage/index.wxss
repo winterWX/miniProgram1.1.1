@@ -1,6 +1,9 @@
 page{
   background-color: #ededed;
   height: 1470rpx;
+  width: 100%;
+  overflow: hidden;
+  
 }
 .PageBackColor{
   background-color: #ffffff;
@@ -146,10 +149,11 @@ page{
   padding: 0rpx !important;
 }
 .topSetting{
-  height: 512rpx;
+  /* height: 512rpx; */
   width: 750rpx;
   /* position: relative; */
   margin-top: 1rpx;
+  padding-bottom: 30rpx;
 }
 .topSetting-btn{
   width: 100%;
