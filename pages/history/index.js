@@ -209,7 +209,7 @@ Page({
       url: app.globalData.baseUrl + '/remote/challenge/makeup',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": token
+        "token": app.globalData.token
       },
       data: parms,
       success: (res) => {

@@ -1,6 +1,9 @@
 page{
   background-color: #ededed;
   height: 1470rpx;
+  width: 100%;
+  overflow: hidden;
+  
 }
 .PageBackColor{
   background-color: #ffffff;

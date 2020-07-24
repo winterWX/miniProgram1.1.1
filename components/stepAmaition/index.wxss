@@ -87,7 +87,7 @@
   position: absolute;
   z-index: 200;
   left: 70.2%; 
-  top: 26rpx;
+  top: 30rpx;
   color: #929292;
 }
 .stepTarget.act{

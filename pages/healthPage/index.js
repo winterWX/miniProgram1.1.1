@@ -121,9 +121,12 @@ Page({
     })
   },
   todayIntegral(data){//组件中领取今天的积分
-    this.setData({
-      anBackShow:true
+    that.setData({
+      btnStatus: 2      
     })
+    that.setData({
+      forceNum: true
+    })      
   },
   yesterdayIntegral(){//领取昨天的积分
     this.setData({
@@ -187,11 +190,16 @@ Page({
           })
           that.startAnimation();
           that.setData({
-              btnStatus: 2
+              btnStatus: 2,
+            stepsNum: {           
+              receiveStatus: 1,	           
+              isDone: 1,	
+              integral: 10	
+            }
           })
           that.setData({
               forceNum: true
-          })
+          })          
         },
         fail: function (res) {
           console.log('.........fail..........');

@@ -136,7 +136,7 @@ Component({
         url: app.globalData.baseUrl + '/remote/challenge/currentList',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": token
+          "token": app.globalData.token
         },
         data: {
           "currentTime":'1595209173' //Date.parse(new Date()) / 1000         
@@ -285,7 +285,7 @@ Component({
           url: app.globalData.baseUrl + '/remote/today/receiveIntegral',
           header: {
             "Content-Type": "application/json;charset=UTF-8",
-            "token": token
+            "token": app.globalData.token
           },        
           success: (res) => {
             if (res.data.code === 200) {
@@ -323,7 +323,7 @@ Component({
         url: app.globalData.baseUrl + '/remote/challenge/makeup',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": token
+          "token": app.globalData.token
         },
         data: parms,
         success: (res) => {
