@@ -42,6 +42,7 @@ Page({
               guidance1:true
             })
        }
+      that.settingDataBtn();
       that.healthEveryday();
       that.selectComponent('#progressView2').drawProgressBar();
   },
@@ -118,7 +119,6 @@ Page({
     })
   },
   todayIntegral(data){//组件中领取今天的积分
-    console.log(data)
     this.setData({
       anBackShow:true
     })
