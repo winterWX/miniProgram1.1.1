@@ -4,7 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rstProdu: true,
+    rstProdu:  'rstProdu',
+    btnHidden: 'btnHidden',
     active: 4
   },
 
@@ -80,21 +81,15 @@ Page({
       let that = this;
       wx.getWeRunData ({
         success: function(res) {
-              console.log('11111111111111',res)
               wx.navigateTo({
                 url: '../../pages/healthPage/index?id='+ that.data.rstProdu
               })
         },
         fail: function () {
-              // wx.showModal({
-              //   title: '提示',
-              //   content: '获取微信步数授权失败,需要重新授权',
-              //   success: function (res) {
-              //     if (res.confirm) {
-              //       that.getWeRunStepsRefs();
-              //     }
-              //   }
-              // })
+            console.log(' that.data.btnHidden', that.data.btnHidden);
+            wx.navigateTo({
+              url: '../../pages/healthPage/index?flg='+ that.data.btnHidden
+            })
         }
     })
     // wx.getSetting({

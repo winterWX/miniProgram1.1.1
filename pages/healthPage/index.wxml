@@ -28,9 +28,9 @@
        <!-- <view class="circleRigth" style="left:{{leftDire}}rpx;top:{{topDire}}rpx;">10000</view> -->
        <view class="imageRight"><view>排行榜</view><image src='../../images/icon-right-arrow-12-x-12.png'></image></view>
         <!-- <progressView  id="progressView2"  todayStepNum="{{stepsNum.todaySteps}}" /> -->
-        <view style="padding-top:30rpx"><stepAmaition stepNum="{{stepsNum.todaySteps}}" /></view>
+        <view style="padding-top:30rpx"><stepAmaition stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" /></view>
         <view class="topSetting-btn">
-            <!-- <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button> -->
+            <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
             <van-button  wx:if='{{btnStatus === 0}}'>还差{{startStep}}步</van-button>
             <van-button  wx:if='{{btnStatus === 1}}' class="{{btnStatus=== 1 ? 'topSetting-vanBtn' :''}}"  bindtap="topSettingBtn">领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{btnStatus === 2}}'>已领取</van-button>

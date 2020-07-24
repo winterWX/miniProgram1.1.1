@@ -5,7 +5,7 @@ Page({
    */
   data: {
      forceNum:false,
-     startStatus:true,
+     startStatus:false,
      anBackShow:false,
      startStep: '10000',
      stepsNum:{
@@ -36,15 +36,20 @@ Page({
    */
   onLoad: function (options) {
        let that = this;
-       if(options.id){
-            that.setData({
-              flag:true
-            })
-            that.setData({
-              guidance1:true
-            })
+       if(options.id === 'rstProdu'){ 
+          that.setData({
+            flag:true
+          })
+          that.setData({
+            guidance1:true
+          })
+          that.settingDataBtn();
+        }
+        if(options.flg === 'btnHidden'){
+          that.setData({
+            startStatus :true
+          })
        }
-      that.settingDataBtn();
       that.healthEveryday();
       //that.selectComponent('#progressView2').drawProgressBar();
   },
