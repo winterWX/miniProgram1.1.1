@@ -83,19 +83,24 @@
 .stepTarget{
   width: 40rpx;
   height: 40rpx;
-  background-color: #00a865;
+  background-color: #ebeeeb;
   border-radius: 50%;
   position: absolute;
   z-index: 200;
   left: 70.2%; 
   top: 23rpx;
+  color: #929292;
+}
+.stepTarget.act{
+background-color: #00a865;
+color:#fff;
 }
 .stepTarget .txt{ 
   font-family: Flama;
   font-size: 16rpx;
   font-weight: 500;
   font-stretch: condensed; 
-  color: #ffffff;
+  
   line-height: 40rpx;
   height: 40rpx;
   text-align: center;

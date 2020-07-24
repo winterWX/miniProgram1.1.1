@@ -1,7 +1,7 @@
 <!--components/stepAmaition/index.wxml-->
 <view class="amaitionBox">
   <view class="stepTxt">今日步数</view>
-  <view class="stepTarget"><view class="txt">10000</view></view>
+  <view class="{{num>0?'stepTarget act':'stepTarget'}}"><view class="txt">10000</view></view>
   <view class="amaition"> 
    <view class="stepNumber">{{num}}</view>   
     <view class="A">     
