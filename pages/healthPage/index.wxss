@@ -382,12 +382,3 @@ padding: 30rpx;
 .noshadow{
     hover-class:none;
 }
-
-.mottoBox{
-  position: fixed;
-  z-index: 999999999999999999999;
-  top:0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}

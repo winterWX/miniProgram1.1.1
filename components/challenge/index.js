@@ -27,6 +27,7 @@ Component({
    */
   data: {
     continuousComplianceDays:0,
+    integral:0,
     days:{
       days:'',
       integral:''
@@ -142,26 +143,23 @@ Component({
         },
         success: (res) => {
           if (res.data.code === 200) {
-            var continuousComplianceDays=0;
             var len = res.data.data.length
-            if (len>1 && res.data.data[len-1].continuousComplianceDays === -1) {              
-              if (res.data.data[len - 2].isdone === "1") {
-                continuousComplianceDays = res.data.data[len - 2].continuousComplianceDays
-              }
+            var continuousComplianceDays = 0;
+            
+            if (len > 1 && res.data.data[len - 1].isdone== 1 && res.data.data[len - 1].receiveStatus == 1) { 
+              continuousComplianceDays = len
             }else{
-              if (res.data.data[len - 1].isdone === "1"){
-                continuousComplianceDays = res.data.data[len - 1].continuousComplianceDays
-              }
+              continuousComplianceDays = len - 1
               
             }
             
             this.setData({
               continuousComplianceDays: continuousComplianceDays
             })
-            
+            console.log(continuousComplianceDays)
             var index = this.data.continuousComplianceDays % 7            
             var list = res.data.data.splice(len-index)
-           
+            console.log(list)
             var lastTime=0
             var newList=[]
             for (var i=0; i<7; i++) {
@@ -220,7 +218,9 @@ Component({
               } else if ((h1 - 24 * 60 * 60) <= item.createTime && item.createTime <h1) {
                 dayName = "昨天"
                 if (Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60) {
-                  iconPath = '../../images/icon-' + reward + '-points@2x.png'                 
+                    if(item.receiveStatus==2){
+                      iconPath = '../../images/icon-' + reward + '-points@2x.png'   
+                    }                 
                 } else {
                   iconPath = '../../images/icon-' + reward + '-points-black@2x.png'
                   reward = 0
@@ -232,6 +232,7 @@ Component({
                   if (item.receiveStatus == '2'){
                     iconPath = '../../images/icon-' + reward + '-points-black@2x.png'
                   }
+                  reward = 0
                 }else{
                   dayName = '第' + (this.data.continuousComplianceDays + i + 1) + '天'
                   if (item.receiveStatus == '2') {
@@ -292,7 +293,8 @@ Component({
               list[i].receiveStatus=1
               this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
              this.setData({
-               list:list
+               list:list,
+               integral: list[i].reward
              })
               this.triggerEvent('todayIntegral')
             } else {
@@ -330,7 +332,8 @@ Component({
             list[i].receiveStatus = 1
             this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
             this.setData({
-              list: list
+              list: list,
+              integral: list[i].reward
             })
             this.triggerEvent('yesterdayIntegral')
           } else {
