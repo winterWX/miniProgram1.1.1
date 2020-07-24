@@ -23,11 +23,12 @@
                </view>
          </view>
    </view>
-   <view class="topSetting PageBackColor">
+   <view class="topSetting PageBackColor" style="padding-top:30rpx;">
        <view class="imageLeft"><image src='../../images/icon-guideline.png'></image></view>
-       <view class="circleRigth" style="left:{{leftDire}}rpx;top:{{topDire}}rpx;">10000</view>
+       <!-- <view class="circleRigth" style="left:{{leftDire}}rpx;top:{{topDire}}rpx;">10000</view> -->
        <view class="imageRight"><view>排行榜</view><image src='../../images/icon-right-arrow-12-x-12.png'></image></view>
-        <progressView  id="progressView2"  todayStepNum="{{stepsNum.todaySteps}}" />
+        <!-- <progressView  id="progressView2"  todayStepNum="{{stepsNum.todaySteps}}" /> -->
+        <view style="padding-top:30rpx"><stepAmaition stepNum="{{stepsNum.todaySteps}}" /></view>
         <view class="topSetting-btn">
             <!-- <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button> -->
             <van-button  wx:if='{{btnStatus === 0}}'>还差{{startStep}}步</van-button>

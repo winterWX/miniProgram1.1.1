@@ -125,7 +125,7 @@ Page({
       url: app.globalData.baseUrl + '/remote/challenge/historyList',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": token
+        "token": app.globalData.token
       },
       data: {
         currentTime: Date.parse(new Date()) / 1000,

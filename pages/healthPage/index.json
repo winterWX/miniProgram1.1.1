@@ -3,7 +3,8 @@
       "progressView": "../../components/ProgressView/ProgressView",
       "challenge": "../../components/challenge/index",
       "van-button": "vant-weapp/button/index",
-      "integralAmation": "../../components/integralAmation/index"
+      "integralAmation": "../../components/integralAmation/index",
+      "stepAmaition": "../../components/stepAmaition/index"
 
   },
   "navigationBarTitleText": "乐健康"

@@ -1,0 +1,103 @@
+/* components/stepAmaition/index.wxss */
+
+.amaitionBox{
+  width: 100%;
+  position: relative;
+  padding-top: 20rpx;
+}
+.stepTxt{
+  text-align: center;  
+  height:40rpx; 
+  font-size: 28rpx; 
+  color: #666666;
+  width: 100%;
+  
+}
+.amaition{
+  width: 100%;
+  height: 183rpx;
+  overflow: hidden; 
+  position: relative;
+}
+.A{
+  width: 320rpx;
+  height: 320rpx; 
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #ffff;
+  border:26rpx solid #ebeeeb;
+ transform: translateY(-50%);
+}
+.B{
+  width: 320rpx;
+  height: 320rpx; 
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #ffff;  
+  position: absolute;
+  z-index: 100;
+  /* transform: translateY(-50%); */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);  
+  transition: transform 800ms ease;
+  border:26rpx solid #00a865;
+  /* clip: rect(0px, 380rpx, 640rpx, -320rpx); */
+  clip: rect(0rpx, 0rpx, 640rpx, -320rpx);
+  
+}
+
+.B.action{
+  border:26rpx solid #00a865;
+}
+.C{
+  width: 320rpx;
+  height: 320rpx; 
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #ffff;  
+  position: absolute;
+  z-index: 99;
+  /* transform: translateY(-50%); */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);  
+  transition: transform 800ms ease;
+  border:26rpx solid #ebeeeb;
+  clip: rect(0px, 320rpx, 320rpx, 160rpx);
+}
+.stepNumber{ 
+  width: 100%;
+  height: 86rpx;
+  font-family: Flama;
+  font-size: 80rpx;
+  font-weight: 500;
+  font-stretch: condensed; 
+  text-align: center;
+  color: #333333;
+  position: absolute;
+  bottom: 50%;
+  z-index: 200;
+  
+}
+.stepTarget{
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #00a865;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 200;
+  left: 70.2%; 
+  top: 23rpx;
+}
+.stepTarget .txt{ 
+  font-family: Flama;
+  font-size: 16rpx;
+  font-weight: 500;
+  font-stretch: condensed; 
+  color: #ffffff;
+  line-height: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  margin: 0 auto;
+}
