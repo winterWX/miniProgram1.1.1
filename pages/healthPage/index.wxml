@@ -77,7 +77,8 @@
          </view>
       </view>
 </view>
-<integralAmation integral="{{stepsNum.integral}}" wx:if="{{stepsNum.integral !=0}}"/>
+<!-- <integralAmation integral="{{stepsNum.integral}}" wx:if="{{stepsNum.integral !=0}}"/> -->
+<integralAmation integral="{{stepsNum.integral}}" wx:if="{{forceNum}}"/>
 <!-- <view class="mottoBox" wx:if="{{anBackShow}}">
   <view class="{{anBackShow ? 'showBlack':'hideBlack'}}">
           <view class="usermotto" animation="{{ani}}">

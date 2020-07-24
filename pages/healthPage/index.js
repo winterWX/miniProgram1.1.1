@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+     forceNum:false,
      startStatus:true,
      anBackShow:false,
      startStep: '10000',
@@ -186,7 +187,10 @@ Page({
           })
           that.startAnimation();
           that.setData({
-            btnStatus: 2
+              btnStatus: 2
+          })
+          that.setData({
+              forceNum: true
           })
         },
         fail: function (res) {
