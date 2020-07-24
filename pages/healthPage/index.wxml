@@ -77,7 +77,7 @@
          </view>
       </view>
 </view>
-<view class="mottoBox" wx:if="{{anBackShow}}">
+<!-- <view class="mottoBox" wx:if="{{anBackShow}}">
   <view class="{{anBackShow ? 'showBlack':'hideBlack'}}">
           <view class="usermotto" animation="{{ani}}">
                 <view class="user-motto">
@@ -89,5 +89,4 @@
                 </view>
           </view>
     </view>
-</view>
- 
+</view> -->

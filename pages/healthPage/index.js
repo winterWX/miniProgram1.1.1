@@ -26,7 +26,8 @@ Page({
      flag:false,
      guidance1:false,
      guidance2:false,
-     firstInitShow: true  //第一次进来显示
+     firstInitShow: true,  //第一次进来显示
+     iconPath: '../../images/icon-10-points@2x.png'
   },
 
   /**
