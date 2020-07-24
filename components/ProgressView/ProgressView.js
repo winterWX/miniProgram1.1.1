@@ -37,7 +37,6 @@ Component({
   methods: {
     drawProgressBar() {
       let stepsNumObject = wx.getStorageSync("stepsNumObject");
-      console.log('stepsNumObject.todayStep11111s',stepsNumObject.todaySteps);
       this.setData({
         todayStepNum: stepsNumObject.todaySteps
       })

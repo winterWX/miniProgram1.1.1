@@ -86,15 +86,15 @@ Page({
               })
         },
         fail: function () {
-              wx.showModal({
-                title: '提示',
-                content: '获取微信步数授权失败,需要重新授权',
-                success: function (res) {
-                  if (res.confirm) {
-                    that.getWeRunStepsRefs();
-                  }
-                }
-              })
+              // wx.showModal({
+              //   title: '提示',
+              //   content: '获取微信步数授权失败,需要重新授权',
+              //   success: function (res) {
+              //     if (res.confirm) {
+              //       that.getWeRunStepsRefs();
+              //     }
+              //   }
+              // })
         }
     })
     // wx.getSetting({

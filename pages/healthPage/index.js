@@ -46,7 +46,7 @@ Page({
        }
       that.settingDataBtn();
       that.healthEveryday();
-      that.selectComponent('#progressView2').drawProgressBar();
+      //that.selectComponent('#progressView2').drawProgressBar();
   },
 
   /**
@@ -222,7 +222,6 @@ Page({
             that.setData({
               totalTime:res.data.data.distance
             })
-             console.log('111111',that.data.totalTime,that.data.calories,that.data.totalTime);
         }
       },
       fail: function (res) {

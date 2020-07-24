@@ -1,5 +1,4 @@
 /* components/stepAmaition/index.wxss */
-
 .amaitionBox{
   width: 100%;
   position: relative;
@@ -88,7 +87,7 @@
   position: absolute;
   z-index: 200;
   left: 70.2%; 
-  top: 23rpx;
+  top: 26rpx;
   color: #929292;
 }
 .stepTarget.act{
