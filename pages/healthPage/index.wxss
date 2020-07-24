@@ -1,8 +1,7 @@
 page{
-  background-color: #ededed;
-  height: 1470rpx;
+  background-color: #ededed;  
   width: 100%;
-  overflow: hidden;
+  
   
 }
 .PageBackColor{
@@ -157,7 +156,7 @@ page{
 }
 .topSetting-btn{
   width: 100%;
-  margin-top: 25rpx;
+  margin-top: 50rpx;
   text-align: center;
 }
 .topSetting-btn .van-button{
@@ -202,7 +201,7 @@ page{
   color: #9b7c56;
   display: flex;
   align-items: center;  
-  left: 630rpx;
+  right: 0rpx;
   top: 30rpx;
   padding-left: 10rpx;
 }

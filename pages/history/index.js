@@ -1,6 +1,6 @@
 // pages/history/index.js
 const app = getApp();
-const token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqViotTi3yS8xNVbJSsjBXqgUAAAD__w.YGUQwlZwBhBUfLUJ05CBn3mpEvU8_eni7iYMHuM_5dqvSJOSXzOwkMfU8ud1H6yvQ2YafIM0teJNcueLWC3K4A'
+
 Page({
 
   /**

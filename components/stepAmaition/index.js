@@ -20,7 +20,8 @@ Component({
    */
   data: {
     num:0,
-    clip:0
+    clip:0,
+    targetSteps:10000
   },
 
   /**
@@ -37,16 +38,10 @@ Component({
         if (num > this.data.stepNum-500) {
           clearInterval(timer)
           this.setData({
-            num: this.data.stepNum,
-            clip:380,
+            num: this.data.stepNum,           
             animateCompelte: true,
           })          
         } else {
-          var clip = 0
-          for (var i = 0; i < num; i++) {
-            clip = clip+ num / this.data.stepNum*370*0.001
-          }
-          console.log(clip)
           this.setData({
             num:num,
             clip: clip
@@ -54,7 +49,19 @@ Component({
         }
 
       }
-      timer = setInterval(counterNumber, 180)
+      var clip = 0
+      if (this.data.stepNum > this.data.targetSteps || this.data.stepNum == this.data.targetSteps) {
+        clip = 380
+      } else {
+        clip = this.data.stepNum / this.data.targetSteps * 380
+        if (clip<30){
+          clip=30
+        }
+      }
+      this.setData({       
+        clip: clip
+      })
+      timer = setInterval(counterNumber, 50)
     },
   }
 })

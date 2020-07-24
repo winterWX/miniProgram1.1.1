@@ -4,7 +4,7 @@
     <view class="title_dt">连续挑战</view>
     <view class="title_dd title_ft" bindtap="gotoHistory">历史记录</view>    
   </view>
-  <view class="steps_tips" wx:if="{{continuousComplianceDays>0}}">已经连续{{continuousComplianceDays}}天</view>
+  <view class="steps_tips">已经连续{{continuousComplianceDays}}天</view>
   <view class="steps">
     <view class="steps_reward" wx:if="{{days.integral!=='' && list[list.length-1].receiveStatus =='2'}}">
       <view class="reward_tips" >
