@@ -1,0 +1,14 @@
+<!--components/stepAmaition/index.wxml-->
+<view class="amaitionBox">
+  <view class="stepTxt">今日步数</view>
+  <view class="stepTarget"><view class="txt">10000</view></view>
+  <view class="amaition"> 
+   <view class="stepNumber">{{num}}</view>   
+    <view class="A">     
+    </view>
+    <view class="{{num>0?'B action':'B'}}" style="clip: rect(0rpx, {{clip}}rpx, 640rpx, -320rpx);"> 
+      
+    </view>
+    <view class="C"></view> 
+  </view>
+</view>
