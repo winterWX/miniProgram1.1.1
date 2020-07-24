@@ -61,7 +61,7 @@
     <view class="panel_body">
       <view class="item itemflex">
         <view class="item_top"><text class="num">{{health.height}}</text><text class="numTxt">厘米</text></view>
-         <view class="item_bottom"></view>
+         
       </view>    
     </view>    
   </view>
@@ -74,7 +74,7 @@
     <view class="panel_body">
       <view class="item itemflex">
         <view class="item_top"><text class="num">{{health.weight}}</text><text class="numTxt">公斤</text></view>
-         <view class="item_bottom"></view>
+         
       </view>    
     </view>    
   </view> 

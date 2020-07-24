@@ -10,7 +10,7 @@ Component({
       observer(value) {
         setTimeout(()=>{
             this.startAmation()
-          },100)
+          },500)
       }
     }
   },

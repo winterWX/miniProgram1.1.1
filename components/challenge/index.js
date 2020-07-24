@@ -93,6 +93,9 @@ Component({
           this.data.list[this.data.nowDay][key] = value
           if (key =='receiveStatus'){
             this.data.list[this.data.nowDay].iconPath = '../../images/icon-got-the-points@2x.png'
+            this.setData({
+              continuousComplianceDays: this.data.continuousComplianceDays+1
+            })
           }
           this.setData({
             list: this.data.list
@@ -131,6 +134,7 @@ Component({
       // wx.showLoading({
       //   title: 'loading...',
       // })
+      //Date.parse(new Date()) / 1000 
       wx.request({
         method: 'post',
         url: app.globalData.baseUrl + '/remote/challenge/currentList',
@@ -139,7 +143,7 @@ Component({
           "token": app.globalData.token
         },
         data: {
-          "currentTime": Date.parse(new Date()) / 1000  //Date.parse(new Date()) / 1000         
+          "currentTime": Date.parse(new Date()) / 1000      
         },
         success: (res) => {
           if (res.data.code === 200) {
@@ -157,7 +161,10 @@ Component({
               continuousComplianceDays: continuousComplianceDays
             })
             console.log(continuousComplianceDays)
-            var index = this.data.continuousComplianceDays % 7            
+            var index = this.data.continuousComplianceDays % 7
+            if (this.data.continuousComplianceDays==0){
+              index=1
+            }                        
             var list = res.data.data.splice(len-index)
             console.log(list)
             var lastTime=0

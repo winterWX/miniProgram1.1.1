@@ -27,7 +27,7 @@ Component({
             this.startAmation()
           }).exec()
 
-        }, 1200)
+        }, 1000)
       }
     }
   },

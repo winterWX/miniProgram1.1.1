@@ -17,6 +17,7 @@ Page({
         isDoneName: 0,	//	完成描述
         integral: 0	//	可以领取的积分
      },
+    isDone:2,
      btnStatus: -1,   // 0还差  1领积分  2已领
      distance: '00',
      calories: '00',
@@ -121,12 +122,23 @@ Page({
     })
   },
   todayIntegral(data){//组件中领取今天的积分
+    var that=this
     that.setData({
-      btnStatus: 2      
+      anBackShow: true
+    })
+    that.startAnimation();
+    that.setData({
+      btnStatus: 2,
+      stepsNum: {
+        todaySteps: 10000,
+        receiveStatus: 1,
+        isDone: 1,
+        integral: 10
+      }
     })
     that.setData({
       forceNum: true
-    })      
+    })       
   },
   yesterdayIntegral(){//领取昨天的积分
     this.setData({
@@ -159,7 +171,9 @@ Page({
                     })
                }else if(res.data.data.todaySteps === 10000){
                     that.setData({
-                      btnStatus: 1
+                      btnStatus: 1,
+                      isDone:1
+
                     })
                }
                that.setData({
