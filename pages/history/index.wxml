@@ -22,7 +22,7 @@
   </view>
   <scroll-view scroll-y="true" style="height:{{scrollH}}px;" bindscrolltolower="bindscrolltolower" lower-threshold="50" >
     <view class="history" wx:for="{{history}}" wx:for-index="key" wx:for-item="value">
-      <view class="historyList" wx:for="{{ value }}" wx:key="i" wx:for-item="history" >
+      <view class="historyList" wx:for="{{ value }}" wx:key="i" wx:for-item="history" wx:if="{{history.historyList.length>0}}">
         <view class="hisory_title">{{key}}年{{history.month+1}}月</view>
         <view class="hisList">
         <view class="item" wx:for="{{ history.historyList }}" wx:key="index" wx:for-item="item">
