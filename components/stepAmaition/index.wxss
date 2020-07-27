@@ -43,7 +43,6 @@
   border:26rpx solid #00a865;
   /* clip: rect(0px, 380rpx, 640rpx, -320rpx); */
   clip: rect(0rpx, 0rpx, 640rpx, -320rpx);
-  
 }
 
 .B.action{
@@ -80,8 +79,8 @@
   
 }
 .stepTarget{
-  width: 40rpx;
-  height: 40rpx;
+  width: 45rpx;
+  height: 45rpx;
   background-color: #ebeeeb;
   border-radius: 50%;
   position: absolute;

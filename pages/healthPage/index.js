@@ -9,16 +9,16 @@ Page({
      anBackShow:false,
      startStep: '10000',
      stepsNum:{
-        todaySteps: 0,	//今日步数
-        targetSteps: 0,	//	目标步数
-        receiveStatus: 0,	//	领取状态(1:已领,2:未领,3:补领)
-        receiveStatusName: 0,	//	领取描述
-        isDone: 0,	//	完成状态(1:完成,2:未完成)
-        isDoneName: 0,	//	完成描述
-        integral: 0	//	可以领取的积分
+        todaySteps: 0,	 //今日步数
+        targetSteps: 0,	 //	目标步数
+        receiveStatus: 0,	 //领取状态(1:已领,2:未领,3:补领)
+        receiveStatusName: 0,	 //	领取描述
+        isDone: 0,	 //	完成状态(1:完成,2:未完成)
+        isDoneName: 0,	 //	完成描述
+        integral: 0	 //	可以领取的积分
      },
-    isDone:2,
-     btnStatus: -1,   // 0还差  1领积分  2已领
+     isDone:2,
+     btnStatus: -1,  // 0还差，1领积分，2已领
      distance: '00',
      calories: '00',
      totalTime: '00',
@@ -39,20 +39,23 @@ Page({
        let that = this;
        if(options.id === 'rstProdu'){ 
           that.setData({
-            flag:true
+            flag: true
           })
           that.setData({
-            guidance1:true
+            guidance1: true
           })
           that.settingDataBtn();
         }
         if(options.flg === 'btnHidden'){
-          that.setData({
-            startStatus :true
-          })
+          if(app.globalData.isWeRunStepsFail){
+            that.settingDataBtn();
+          }else{
+            that.setData({
+              startStatus :true
+            })
+          }
        }
       that.healthEveryday();
-      //that.selectComponent('#progressView2').drawProgressBar();
   },
 
   /**
@@ -126,7 +129,7 @@ Page({
       url: '../../pages/dailyHealthData/index',
     })
   },
-  todayIntegral(data){//组件中领取今天的积分
+  todayIntegral(data){  //组件中领取今天的积分
     var that=this
     that.setData({
       anBackShow: true
@@ -152,6 +155,7 @@ Page({
   },
   settingDataBtn(){
     var that = this;
+    app.globalData.isWeRunStepsFail = true;
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
       method:"GET",
@@ -167,18 +171,18 @@ Page({
           wx.setStorageSync('stepsNumObject', res.data.data);
           if(res.data.data !== null){
                let targetStepsNum = 10000;
-               if(res.data.data.todaySteps && res.data.data.todaySteps < 10000){
+               let todayStepsInit = res.data.data.todaySteps === null ? 0 : res.data.data.todaySteps;
+               if(todayStepsInit < 10000){
                     that.setData({
-                        startStep : targetStepsNum - res.data.data.todaySteps
+                        startStep : targetStepsNum - todayStepsInit
                     })
                     that.setData({
                         btnStatus: 0
                     })
-               }else if(res.data.data.todaySteps === 10000){
+               }else if(todayStepsInit === 10000){
                     that.setData({
                       btnStatus: 1,
                       isDone:1
-
                     })
                }
                that.setData({
@@ -209,7 +213,7 @@ Page({
           })
           that.startAnimation();
           that.setData({
-              btnStatus: 2,
+            btnStatus: 2,
             stepsNum: {           
               receiveStatus: 1,	           
               isDone: 1,	

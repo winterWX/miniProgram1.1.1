@@ -48,7 +48,9 @@ App({
     userInfo: null,
     baseUrl:'http://106.54.73.125:8102',
     token: '',
-    loginSuccess: false
+    loginSuccess: false,
+    isWeRunSteps:false,
+    isWeRunStepsFail:false
   },
   firstInit:{
     bootImage: true

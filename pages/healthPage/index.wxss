@@ -1,9 +1,8 @@
 page{
   background-color: #ededed;
-  height: 1470rpx;
+  height: 1430rpx;
   width: 100%;
-  overflow: hidden;
-  
+  /* overflow: hidden; */
 }
 .PageBackColor{
   background-color: #ffffff;
@@ -157,7 +156,7 @@ page{
 }
 .topSetting-btn{
   width: 100%;
-  margin-top: 25rpx;
+  margin-top: 30rpx;
   text-align: center;
 }
 .topSetting-btn .van-button{
@@ -289,7 +288,7 @@ margin-right: 34rpx;
   margin:  30rpx 30rpx 50rpx 30rpx;
   border-radius: 4rpx;
   box-shadow: 0 2rpx 10rpx 0 rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  /* //background-color: #ffffff; */
 }
 .sendBlockBefore{
 padding: 30rpx;
