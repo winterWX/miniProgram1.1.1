@@ -146,31 +146,42 @@ Component({
           "currentTime": Date.parse(new Date()) / 1000      
         },
         success: (res) => {
-          if (res.data.code === 200) {
+          if (res.data.code === 200) {         
             var len = res.data.data.length
             var continuousComplianceDays = 0;
             
-            if (len > 1 && res.data.data[len - 1].isdone== 1 && res.data.data[len - 1].receiveStatus == 1) { 
+            if (res.data.data[len - 1].isdone == 1){
               continuousComplianceDays = len
             }else{
               continuousComplianceDays = len - 1
-              
             }
             
             this.setData({
               continuousComplianceDays: continuousComplianceDays
             })
-            console.log(continuousComplianceDays)
-            var index = this.data.continuousComplianceDays % 7
-            if (this.data.continuousComplianceDays==0){
-              index=1
-            }                        
-            var list = res.data.data.splice(len-index)
+            
+            //var index = this.data.continuousComplianceDays % 7
+            // if (this.data.continuousComplianceDays==0){
+            //   index=1
+            // }  
+            var index=len%7
+            var k = parseInt(len / 7)*7
+            var list=[]    
+            if(index ==0){
+              list = res.data.data.slice(-7)
+              k=k-7           
+            }else if(index>0){
+              list = res.data.data.slice(-index)
+              k = res.data.data.length - index
+            }
+           
+           // var list = res.data.data.splice(len-index)
             console.log(list)
             var lastTime=0
             var newList=[]
             for (var i=0; i<7; i++) {
               var item={}
+              k=k+1
               if(i < list.length){
                 item = list[i]
                 lastTime=item.createTime
@@ -179,8 +190,7 @@ Component({
                   createTime: lastTime + (24 * 60 * 60) * (i-list.length+1),                 
                   isdone: "2",
                   receiveStatus: "2",
-                  startTime: lastTime + (24 * 60 * 60) * (i - list.length+1), 
-                  uid: 87,
+                  startTime: lastTime + (24 * 60 * 60) * (i - list.length+1),
                   continuousComplianceDays: -1                 
 
                 }
@@ -233,15 +243,16 @@ Component({
                   reward = 0
                 }
 
-              }else{                
+              }else{   
+                dayName = '第' + k + '天'             
                 if(item.isdone =="1"){
-                  dayName = '第' + item.continuousComplianceDays + '天'
+                  //dayName = '第' + k + '天'
                   if (item.receiveStatus == '2'){
                     iconPath = '../../images/icon-' + reward + '-points-black@2x.png'
                   }
                   reward = 0
                 }else{
-                  dayName = '第' + (this.data.continuousComplianceDays + i + 1) + '天'
+                  //dayName = '第' + k + '天'
                   if (item.receiveStatus == '2') {
                     iconPath = '../../images/icon-' + reward + '-points@2x.png'
                   }

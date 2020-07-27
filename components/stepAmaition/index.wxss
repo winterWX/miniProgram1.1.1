@@ -39,7 +39,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);  
-  transition: transform 800ms ease;
+  transition: transform 6s ease;
   border:26rpx solid #00a865;
   /* clip: rect(0px, 380rpx, 640rpx, -320rpx); */
   clip: rect(0rpx, 0rpx, 640rpx, -320rpx);
