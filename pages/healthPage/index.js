@@ -18,7 +18,7 @@ Page({
         integral: 0	 //	可以领取的积分
      },
      isDone:2,
-     btnStatus: -1,  // 0还差，1领积分，2已领
+     btnStatus: -1,  // 0 还差，1领积分，2已领
      distance: '00',
      calories: '00',
      totalTime: '00',
@@ -179,15 +179,27 @@ Page({
                     that.setData({
                         btnStatus: 0
                     })
-               }else if(todayStepsInit === 10000){
+               }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
                     that.setData({
                       btnStatus: 1,
                       isDone:1
+                    })
+               }else if(res.data.data.receiveStatus === 1){
+                    that.setData({
+                      btnStatus: 2   // 已经领取
                     })
                }
                that.setData({
                 startStatus:false
                })
+          }else{
+              // res 返回的是null的时候
+              that.setData({
+                startStep : 10000
+              })
+              that.setData({
+                  btnStatus: 0
+              })
           }
         }
       },
