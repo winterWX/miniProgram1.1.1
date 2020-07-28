@@ -1,12 +1,9 @@
-/* components/challenge/index.wxss */
 .challenge{
-  /* //padding: 30rpx; */
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 2px;
-  /* box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05); */
   background-color: #ffffff;
-  height: 400rpx;
+  height: 396rpx;
   margin: 30rpx;
 }
 .title{
@@ -15,8 +12,8 @@
   align-items: center;
   align-content:center;
   position: relative;
-  height: 96rpx;
-  line-height: 96rpx;  
+  height: 90rpx;
+  line-height: 90rpx;  
 }
 .title_dt{ 
   font-size: 32rpx; 

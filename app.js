@@ -50,7 +50,8 @@ App({
     token: '',
     loginSuccess: false,
     isWeRunSteps:false,
-    isWeRunStepsFail:false
+    isWeRunStepsFail:false,
+    isReceiveStatus:false
   },
   firstInit:{
     bootImage: true

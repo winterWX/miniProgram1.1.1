@@ -55,7 +55,7 @@ Page({
             })
           }
        }
-      that.healthEveryday();
+       that.healthEveryday();
   },
 
   /**
@@ -164,15 +164,18 @@ Page({
           "token": app.globalData.token
       },
       success: function (res) {
-        if(res.data.data !== null){
-          that.setData({
-            stepsNum: res.data.data
-          })
-          wx.setStorageSync('stepsNumObject', res.data.data);
           if(res.data.data !== null){
-               let targetStepsNum = 10000;
-               let todayStepsInit = res.data.data.todaySteps === null ? 0 : res.data.data.todaySteps;
-               if(todayStepsInit < 10000){
+             let targetStepsNum = 10000;
+             let todayStepsInit = 0;
+             if(res.data.data.todaySteps === null){
+                  todayStepsInit = 0;
+             }else{
+                  todayStepsInit = res.data.data.todaySteps
+             }
+              that.setData({
+                stepsNum: res.data.data
+              })
+              if(todayStepsInit < 10000){
                     that.setData({
                         startStep : targetStepsNum - todayStepsInit
                     })
@@ -180,15 +183,32 @@ Page({
                         btnStatus: 0
                     })
                }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
-                    that.setData({
-                      btnStatus: 1,
-                      isDone:1
-                    })
-               }else if(res.data.data.receiveStatus === 1){
-                    that.setData({
-                      btnStatus: 2   // 已经领取
-                    })
+                  if(app.globalData.isReceiveStatus){
+                      //返回乐健康，第二次进来，默认已选的状态
+                      that.setData({
+                        btnStatus: 2,
+                        isDone:1
+                      })
+                      that.setData({
+                        stepsNum: {     
+                          todaySteps:10000,   
+                          receiveStatus: 1,	           
+                          isDone: 1,	
+                          integral: 10	
+                        }
+                      })
+                  }else{
+                      that.setData({
+                        btnStatus: 1,
+                        isDone:1
+                      })
+                  }
                }
+              //  else if(that.data.stepsNum.receiveStatus === 1){
+              //       that.setData({
+              //         btnStatus: 2   // 已经领取
+              //       })
+              //  }
                that.setData({
                 startStatus:false
                })
@@ -201,7 +221,7 @@ Page({
                   btnStatus: 0
               })
           }
-        }
+       // }
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -225,8 +245,12 @@ Page({
           })
           that.startAnimation();
           that.setData({
-            btnStatus: 2,
-            stepsNum: {           
+            btnStatus: 2
+          })
+          app.globalData.isReceiveStatus = true;  // 标记第二次进来
+          that.setData({
+            stepsNum: {
+              todaySteps: 10000,           
               receiveStatus: 1,	           
               isDone: 1,	
               integral: 10	
