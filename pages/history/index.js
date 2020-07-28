@@ -183,8 +183,8 @@ Page({
     var h2=h1 - 24 * 60 * 60
     console.log(h2)
     var yeseterDate = this.formatDate(h2)
-    var isReceive=false
-    if (Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60) {
+    var isReceive=false    
+    if (Date.parse(new Date()) / 1000 < h1 + 24 * 60 * 60) {      
       isReceive=true
     }
     this.setData({
@@ -194,9 +194,10 @@ Page({
   },
   yesterdayIntegral(e) {//补领积分  
     const key = e.currentTarget.dataset.key 
-    const i = e.currentTarget.dataset.i   
+    const i = e.currentTarget.dataset.ind   
     const index = e.currentTarget.dataset.index  
     const item = e.currentTarget.dataset.item  
+    
     wx.showLoading({
       title: 'loading...',
     })
@@ -216,7 +217,7 @@ Page({
         wx.hideLoading()
         if (res.data.code === 200) {
           var history = this.data.history
-          history[key][i][index].receiveStatus = 1
+          history[key][i].historyList[index].receiveStatus = 1
           this.setData({
             history: history
           })
