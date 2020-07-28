@@ -13,7 +13,7 @@ Page({
       totalIntegral:0,
       maxContinuousDays:0
     },
-    history:null,
+    history:{},
     year: new Date().getFullYear(),
     num:0,
     yeseterDate: '',
@@ -142,12 +142,12 @@ Page({
                 maxContinuousDays: res.data.data.maxContinuousDays                
               }
             })
-            if (res.data.data.monthsList.length>0){
-              this.setData({
-                history: {},
+            // if (res.data.data.monthsList.length>0){
+            //   this.setData({
+            //     history: {},
                
-              })
-            }
+            //   })
+            // }
           }
           const data = res.data.data.monthsList
           for (var i = 0; i < data.length; i++){
@@ -155,7 +155,7 @@ Page({
               data[i].historyList[k].date = this.formatDate(data[i].historyList[k].createTime)
             }
           }
-
+          
           var history=this.data.history
           history[this.data.year] = data         
           this.setData({
@@ -163,6 +163,7 @@ Page({
             year:this.data.year-1,
             isLoad:true
           })
+          console.log(this.data.history)
         } else {
           wx.showModal({
             showCancel: false,
@@ -183,7 +184,8 @@ Page({
     var h2=h1 - 24 * 60 * 60
     console.log(h2)
     var yeseterDate = this.formatDate(h2)
-    var isReceive=false    
+    var isReceive=false 
+       
     if (Date.parse(new Date()) / 1000 < h1 + 24 * 60 * 60) {      
       isReceive=true
     }
@@ -203,7 +205,7 @@ Page({
     })
     const parms = {
       challengeId: item.id,
-      receivePoints: item.integral
+      receivePoints:'10'
     }
     wx.request({
       method: 'post',

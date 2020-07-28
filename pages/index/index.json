@@ -1,8 +1,8 @@
 {
   "usingComponents": {    
     "footer": "../../components/footer/index",
-    "challenge": "../../components/challenge/index",
-    "stepAmaition": "../../components/stepAmaition/index"
+    "challenge": "../../components/challenge/index"
+    
   },
   "navigationBarTitleText": "首页"  
 }
