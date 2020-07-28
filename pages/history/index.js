@@ -220,6 +220,7 @@ Page({
         if (res.data.code === 200) {
           var history = this.data.history
           history[key][i].historyList[index].receiveStatus = 1
+          history[key][i].historyList[index].integral = 10
           this.setData({
             history: history
           })
