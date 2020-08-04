@@ -55,5 +55,9 @@ App({
   },
   firstInit:{
     bootImage: true
+  },
+  //健康资讯全局变变量的设置
+  healthInforData:{
+    findMore: true  //发现更多 close按钮的设置
   }
 })

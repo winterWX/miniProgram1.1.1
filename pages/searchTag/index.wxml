@@ -1,0 +1,12 @@
+<view>
+  <view>
+        <van-search
+        value="{{ value }}"
+        placeholder="搜索标题、关键字"
+        show-action
+        shape="round"
+        bind:search="onSearch"
+        bind:cancel="onCancel"
+      />
+  </view>
+</view>

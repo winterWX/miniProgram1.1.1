@@ -1,0 +1,15 @@
+.header-main{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+}
+.header-mainItem{
+   background-color: #cccccc;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 200rpx;
+   width: 33.33%;
+   border: 1rpx solid #424242;
+}
