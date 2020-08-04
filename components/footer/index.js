@@ -62,6 +62,7 @@ Component({
   },
   lifetimes: { // 生命周期
     ready: function() {
+      console.log('34345000000003');
       if (app.globalData.token !== '') {
         this.setData({
           isLogin: 3
@@ -169,7 +170,7 @@ Component({
 
     },
     getUserInfo(e) { //获取用户信息
-      console.log(e)
+      console.log('getUserInfo',e)
       if (e.detail.userInfo) {
         this.onLogin(e.detail)
       } else {
@@ -177,7 +178,6 @@ Component({
           active: this.data.tempActive
         });
       }
-
     },
 
     userLogin(data) {

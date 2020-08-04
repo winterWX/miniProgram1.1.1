@@ -52,5 +52,15 @@ Page({
     　　}
     　　// 返回shareObj
     　　return shareObj;
+  },
+  myfindPage:function(){
+    wx.navigateTo({
+      url: '../../pages/HealthInformation/index',
+    })
+  },
+  challengePage:function(){
+    wx.navigateTo({
+      url: '../../pages/challenge/index',
+    })
   }
 })

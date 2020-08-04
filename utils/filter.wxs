@@ -1,0 +1,44 @@
+var strText = function (contentText) {
+     var startNum = contentText.indexOf('<p>');
+     var endNum = contentText.indexOf('</p>') ;
+     var textShare = contentText.substring(startNum+3,endNum-3);
+     var lenghtText = textShare.substring(0,100);
+     var contentA = lenghtText.indexOf('<a');
+     if(contentA > -1 ){
+         if(lenghtText.substring(0,contentA-2).lenght < 100){
+             return  lenghtText.substring(0,contentA-2) + "..."
+         }
+          return  lenghtText.substring(0,contentA-2) +'...'
+     }
+     return lenghtText
+}
+var tagsFilter = function (tagsText) {
+    var arryData =[];
+    if(tagsText !== null){
+      var arr = tagsText.split("#");
+      for (var index = 0; index < arr.length; index++) {
+        var element = arr[index];
+        if( element !==''){
+            arryData.push(element)
+         }
+      }
+      return arryData
+    }
+}
+var indexBackColor = function (params) {
+    if(params === 0){
+        return 'BackColorBu'
+    }else if(params === 1){ 
+        return 'BackColorOr'
+    }else if(params === 2){
+        return 'BackColorCh'
+    }
+    return 'defualtColor'
+}
+
+
+module.exports = {
+  strText:strText,
+  tagsFilter:tagsFilter,
+  indexBackColor:indexBackColor
+}

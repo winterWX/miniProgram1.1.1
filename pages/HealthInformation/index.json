@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+      "HtmlView":"../../components/htmlView/htmlView",
+      "van-button": "vant-weapp/button/index"
+  },
+  "navigationBarTitleText": "健康资讯",
+  "navigationBarTextStyle": "black"
+}

@@ -9,7 +9,11 @@
     "pages/mine/index",
     "pages/login/index",
     "pages/history/index",
-    "pages/dailyHealthData/index"
+    "pages/dailyHealthData/index",
+    "pages/HealthInformation/index",
+    "pages/HealthInforDetails/index",
+    "pages/searchTag/index",
+    "pages/challenge/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

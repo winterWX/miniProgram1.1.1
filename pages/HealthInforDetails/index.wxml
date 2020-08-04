@@ -1,0 +1,38 @@
+<view class="details-main">
+    <view class="mainContent">
+       <view class="mainContent-title">{{contentAll.title}}</view>
+       <view class="main-gitPic">
+            <view class="gitPic">
+                <image src='../../images/illustration@2x.png'></image>
+            </view>
+            <view class="details-tipContent">
+                <view class="details-tip">
+                        <view class="details-tipTitle">KOL我是健身达人</view>
+                        <view class="details-tipTime">{{contentAll.createTime}}</view>
+                </view>
+                <view class="details-tag">
+                        <view class="details-Btn">{{contentAll.tags}}</view>
+                        <view class="details-RightBtn">
+                        <image class="details-image" src = '../../images/healthInfo/icon-collect@2x.png'></image>
+                        <view class="details-intall">收藏</view>
+                        </view>
+                </view>
+            </view>
+       </view>
+       <view class="artContent">
+          <view class="artContent-image"><image src="{{contentAll.thumbLocation}}"></image></view>
+          <view style="padding-left: 8rpx;"><HtmlView class="htmlViewSty"   detail="{{contentAll.content}}"/></view>
+       </view>
+    </view>
+    <view class="bottomFlaotContent" wx:if="{{bottomFlaotShow}}">
+        <view class="bottomFlaot">
+            <view class="bottom-image"><image src="../../images/healthInfo/icon-chevron-double-down@2x.png"></image></view>
+            <van-button class="bottom-tipBtn"  type="primary" size="large"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录后阅读全文</van-button>
+            <view class="bottom-soce">
+            <image src ='../../images/healthInfo/icon-gift@2x.png'></image>
+            <view class="bottom-soBtn">登录后每天阅读文章，单次可最多获取10积分。</view>
+            </view>
+        </view>
+    </view>
+    <heathInfoLogin  id="isLogin"/>
+</view>

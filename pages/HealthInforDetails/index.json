@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+      "heathInfoLogin":"../../components/heathInfoLogin/index",
+      "HtmlView":"../../components/htmlView/htmlView",
+      "van-button": "vant-weapp/button/index"
+  },
+  "navigationBarTitleText": "详情",
+  "navigationBarTextStyle": "black"
+}
