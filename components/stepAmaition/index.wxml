@@ -1,14 +1,14 @@
 <!--components/stepAmaition/index.wxml-->
-<view class="amaitionBox">
-  <view class="stepTxt">今日步数</view>
-  <view class="{{num>0?'stepTarget act':'stepTarget'}}"><view class="txt">10000</view></view>
-  <view class="amaition"> 
-   <view class="stepNumber">{{num}}</view>   
-    <view class="A">     
+<view class="step_amation">
+
+<view class="wrap">   
+    <view class="box-bottom">
+        <view class="circle-bottom" style=" transform: rotate({{rotateNum}}deg);"></view>
     </view>
-    <view class="{{num>0?'B action':'B'}}" style="clip: rect(0rpx, {{clip}}rpx, 640rpx, -320rpx);"> 
-      
+    <view class="mask">
+      <view class="stepTxt">今日步数</view>
+      <view class="{{num>=targetSteps?'stepTarget act':'stepTarget'}}"><view class="txt">10000</view></view>
+      <view class="stepNumber">{{num}}</view>   
     </view>
-    <view class="C"></view> 
-  </view>
+</view>
 </view>

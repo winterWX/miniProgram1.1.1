@@ -8,9 +8,11 @@ Component({
       type: Number,
       value: 0,
       observer(value) {
-        setTimeout(()=>{
-            this.startAmation()
-          },500)
+        setTimeout(() => {
+          var targert = this.data.stepNum < this.data.targetSteps ? this.data.stepNum : this.data.targetSteps
+          var rate = targert / this.data.targetSteps
+          this.cilcleAmation(0, rate * 100)
+        }, 500)
       }
     }
   },
@@ -19,49 +21,66 @@ Component({
    * 组件的初始数据
    */
   data: {
-    num:0,
-    clip:0,
-    targetSteps:10000
+    num: 0,
+    targetSteps: 10000,
+    rotateNum: 45
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    startAmation() {
-    
+    startNumAmation() {
       var timer = null;
-      var num = 0;
-      var clip = 0
+      let progress = 100
+      const rate = this.data.stepNum / this.data.targetSteps * 100
+      console.log(rate)
       var counterNumber = () => {
-        num = num + 500
-        if (num > this.data.stepNum-500) {
+        if (progress > rate) {
           clearInterval(timer)
-          this.setData({
-            num: this.data.stepNum,           
-            animateCompelte: true,
-          })          
         } else {
+          progress++
+          var num = parseInt(progress / 100 * this.data.targetSteps)
           this.setData({
-            num:num,
-            clip: clip
+            num: num < this.data.stepNum ? num : this.data.stepNum
           })
         }
 
       }
-      var clip = 0
-      if (this.data.stepNum > this.data.targetSteps || this.data.stepNum == this.data.targetSteps) {
-        clip = 380
-      } else {
-        clip = this.data.stepNum / this.data.targetSteps * 380
-        if (clip<30){
-          clip=30
-        }
-      }
-      this.setData({       
-        clip: clip
-      })
+
       timer = setInterval(counterNumber, 50)
+
     },
+    cilcleAmation(start, target) {
+      var timerOut = null;
+      let progress = start;
+      let now = start;
+      let num = 0
+      //用定时器模拟进度增长
+      timerOut = setInterval(() => {
+        if (progress > target) {
+          clearInterval(timerOut)
+          if (this.data.num < this.data.stepNum) {
+            this.startNumAmation()
+          }
+          return;
+        } else {
+          progress++;
+          let deg = progress / 100 * (135 + 45)
+          var rotateNum = (deg - 45) > 135 ? 135 : deg - 45;
+          var num = parseInt(progress / 100 * this.data.targetSteps)
+          this.setData({
+            rotateNum: -rotateNum,
+            num: num > this.data.targetSteps ? this.data.targetSteps : num
+          })
+        }
+
+
+
+      }, 100)
+
+
+    }
+
   }
 })
