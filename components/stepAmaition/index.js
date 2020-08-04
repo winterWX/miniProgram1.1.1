@@ -71,7 +71,7 @@ Component({
           var num = parseInt(progress / 100 * this.data.targetSteps)
           this.setData({
             rotateNum: -rotateNum,
-            num: num > this.data.targetSteps ? this.data.targetSteps : num
+            num: num > this.data.targetSteps ? this.data.targetSteps : (num > this.data.stepNum ? this.data.stepNum : num)
           })
         }
 
