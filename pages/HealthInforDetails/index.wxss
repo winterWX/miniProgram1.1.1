@@ -11,11 +11,13 @@
     letter-spacing: normal;
     color: #333333;
 }
+.gitPic {
+  padding-top: 10rpx;
+}
 .gitPic image{
     width: 50rpx;
     height: 50rpx;
     border-radius: 50%;
-    padding-top: 5rpx;
 }
 .main-gitPic{
   margin-top: 32rpx;
@@ -26,16 +28,25 @@
    align-items: center;
    margin-bottom: 10rpx;
 }
+.contentAllContent{
+   padding-left: 8rpx;
+   font-family: PingFangSC-Light;
+   font-size: 28rpx;
+   color:#5c5c5c;
+}
 .details-tag{
     display: flex;
     align-items: center;
+    width: 605rpx;
 }
 .details-RightBtn{
     display: flex;
     align-items: center;
-    margin-left: 455rpx;
     color: #333333;
     font-size:24rpx; 
+    width: 100rpx;
+    flex:1;           
+    justify-content: flex-end;
 }
 .details-image{
     width: 30rpx;
@@ -46,6 +57,10 @@
 .mainContent{
     width: 100%;
 }
+.mainContentBlock{
+  height: 880rpx;
+  overflow: hidden;
+}
 .details-Btn{
   border-radius: 10rpx;
   border: solid 2rpx #d9d9d9;
@@ -53,6 +68,9 @@
   font-family: PingFangSC;
   font-size: 20rpx;
   color: #5c5c5c;
+  justify-content: flex-start; 
+  display: flex;
+  align-items: center;
 }
 details-intall{
   font-family: PingFangSC;

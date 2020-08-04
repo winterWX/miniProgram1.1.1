@@ -10,7 +10,8 @@ Page({
     collectFlg:false,
     hideModal: true,     //模态框的状态  true-隐藏  false-显示
     animationData: {},
-    myTagData:[],    //我关注的话题
+    sizeData: 4,
+    myTagData: [{ tag: "热面" }, { tag: "方便面" }, { tag: "222"}],    //我关注的话题
     forYouData:[],   //全部话题
     editSwith: true,
     editStute: false,
@@ -203,19 +204,31 @@ Page({
          'token':app.globalData.token
        },
        success: function (res) {
-            let tabListsArray =[];
-            res.data.data.forEach(item=>{
-              tabListsArray.push({
-                  tag : item.topic
+         if (res.data.data !== null){
+            if (Array.isArray(res.data.data) && res.data.data.length > 0){
+                  let tabListsArray = [];
+                  res.data.data.forEach(item => {
+                    tabListsArray.push({
+                      tag: item.topic
+                    })
+                  })
+                  that.setData({
+                    tabLists: tabListsArray
+                  })
+                  that.setData({
+                    myTagData: tabListsArray   //我关注的话题
+                  })
+            }else{
+                let tabListsArray = [];
+                tabListsArray.push({tag:res.data.data.topic});
+                that.setData({
+                  tabLists: tabListsArray
                 })
-            })
-            console.log('res.data.data----tag', res.data.data);
-            that.setData({
-              tabLists: tabListsArray
-            })
-            that.setData({
-              myTagData: tabListsArray   //我关注的话题
-            })
+                that.setData({
+                  myTagData: tabListsArray   //我关注的话题
+                })
+            }
+         }
       },
       fail: function (res) {
         console.log('.........fail..........');

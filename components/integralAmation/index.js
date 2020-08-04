@@ -8,6 +8,7 @@ Component({
       type: Number,
       value: 0,
       observer(value) {
+        console.log('积分', value);
         var result = value / 10 +1
         var numberAarry=[]
         for (var i = 0; i < result; i++){

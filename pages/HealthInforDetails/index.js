@@ -6,7 +6,11 @@ Page({
   data: {
     isLogin: 0, //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
     bottomFlaotShow: true,
-    contentAll:{}
+    contentAll:{},
+    colletArt:false,
+    articleId:-1,
+    integralNum: 0, //积分
+    integraFlg:false
   },
 
   /**
@@ -17,6 +21,9 @@ Page({
      that.tokenOnLoad();
      console.log('options',options)
      that.articleDetail(options.goodsId);
+     that.setData({
+       articleId: options.goodsId
+     })
   },
 
   /**
@@ -78,12 +85,52 @@ Page({
         isLogin: 1
       })
     }
-    if (that.data.isLogin === 3){3
+    if (that.data.isLogin === 3){
       that.setData({
         bottomFlaotShow: false   //是否显示登录按钮  true为显示，false 为不显示
       })
     }
   },
+  touchStart:function(){
+    let that = this;
+    if (that.data.isLogin === 3){  //已经登录，可以领取积分
+          that.setData({
+            integraFlg: true
+          })
+          that.setData({
+            integralNum: 10
+          })
+         console.log('触摸领取积分')
+    }
+  },
+  //收藏接口
+  colletArtDaitle:function(){
+    console.log('//收藏接口');
+    var that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/article/collection/add',
+      method: "POST",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      data:{
+        "uid": 1,
+        "articleId": that.data.articleId
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          that.setData({
+            colletArt: true
+          })
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
+  },
+  //文章详情接口
   articleDetail:function(listNum){
     var that = this;
     wx.request({

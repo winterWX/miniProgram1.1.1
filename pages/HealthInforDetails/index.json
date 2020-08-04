@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-      "heathInfoLogin":"../../components/heathInfoLogin/index",
+      "htmlView": "../../components/htmlView/htmlView",
+      "integralAmation": "../../components/integralAmation/index",
       "HtmlView":"../../components/htmlView/htmlView",
       "van-button": "vant-weapp/button/index"
   },
