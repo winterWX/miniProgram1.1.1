@@ -1,0 +1,104 @@
+.bigbox {
+  background-color: #fff;
+}
+.bigbox .item-wrap {
+  position: relative;
+  padding: 0 40rpx;
+}
+.bigbox .item-wrap .jia {
+  z-index: 99;
+  position: absolute;
+  width: 50rpx;
+  height: 500rpx;
+  left: calc(45vw);
+  top: 15rpx;
+  transform: translateX(-50%);
+}
+.bigbox .item-wrap .jia .jia_item {
+  position: absolute;
+  height: 84rpx;
+  line-height: 84rpx;
+}
+.bigbox .item-wrap .item {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.bigbox .item-wrap .item.itemTransition {
+  transition: transform 0.3s;
+}
+.bigbox .item-wrap .item.zIndex {
+  z-index: 2;
+}
+.bigbox .item-wrap .item.cur {
+  transition: initial;
+}
+.bigbox .item-wrap .item.fixed {
+  z-index: 0 !important;
+}
+.bigbox .item {
+  padding: 20rpx 0;
+}
+.bigbox .info {
+  position: relative;
+  background: #ffffff;
+  height: 60rpx;
+  width: calc(50vw);
+  line-height: 60rpx;
+  font-size: 24rpx;
+  border: 1rpx solid red;
+}
+.bigbox .info .info__item {
+  position: absolute;
+  border: 1rpx solid #ebedf0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.bigbox .cell {
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #ebedf0;
+  background: #ffffff;
+}
+.bigbox .cell__hd .Nickname {
+  margin-left: 100rpx;
+  color: #000;
+  font-size: 28rpx;
+  margin-bottom: 12rpx;
+}
+.bigbox .cell__hd .image {
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #ccc;
+}
+.bigbox .cell__hd .sexIcon {
+  position: absolute;
+  top: 50rpx;
+  left: 50rpx;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+.bigbox .cell__bd {
+  flex: 1;
+}
+.bigbox .cell__bd .des {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+  color: #666666;
+  font-size: 24rpx;
+}

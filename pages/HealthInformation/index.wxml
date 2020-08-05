@@ -46,17 +46,13 @@
                           <view class="myTagList">
                               <view class="myTagList-title">我关注的话题</view>
                                <view class="myTagRight">(拖拽标签可排序)</view>
-                              <!-- <view  wx:if="{{editSwith}}" class="myTagList-btn" bindtap="editActList">编辑</view>
-                               <view wx:else class="myChange-btn">
-                                    <view class="canlenBtn" bindtap="canlenBtn">取消</view>
-                                    <view class="confirmBtn" bindtap="confirmBtn">完成</view>
-                                </view> -->
                             </view>
                            <view class="searchList">
                                 <view class="viewBtnBox" bindtap="myTagItemFun" wx:for="{{myTagData}}" data-index="{{index}}" wx:key="{{index}}">
                                     <view class="viewBtn">{{item.tag}}</view>
                                     <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src='../../images/healthInfo/icon-clear.png'></image>
                                 </view>
+  <!-- <drag id="drag" bind:click="itemClick" columns="{{sizeData}}" list-data="{{myTagData}}"  bind:change="change"></drag> -->
                               </view>
                         </view>
                         <view class="bottomTage">

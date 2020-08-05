@@ -10,7 +10,8 @@ Page({
     collectFlg:false,
     hideModal: true,     //模态框的状态  true-隐藏  false-显示
     animationData: {},
-    myTagData:[],    //我关注的话题
+    sizeData: 4,
+    myTagData: [{ tag: "热面" }, { tag: "方便面" }, { tag: "222"}],    //我关注的话题
     forYouData:[],   //全部话题
     editSwith: true,
     editStute: false,
@@ -203,120 +204,37 @@ Page({
          'token':app.globalData.token
        },
        success: function (res) {
-            let tabListsArray =[];
-            res.data.data.forEach(item=>{
-              tabListsArray.push({
-                  tag : item.topic
+         if (res.data.data !== null){
+            if (Array.isArray(res.data.data) && res.data.data.length > 0){
+                  let tabListsArray = [];
+                  res.data.data.forEach(item => {
+                    tabListsArray.push({
+                      tag: item.topic
+                    })
+                  })
+                  that.setData({
+                    tabLists: tabListsArray
+                  })
+                  that.setData({
+                    myTagData: tabListsArray   //我关注的话题
+                  })
+            }else{
+                let tabListsArray = [];
+                tabListsArray.push({tag:res.data.data.topic});
+                that.setData({
+                  tabLists: tabListsArray
                 })
-            })
-            console.log('res.data.data----tag', res.data.data);
-            that.setData({
-              tabLists: tabListsArray
-            })
-            that.setData({
-              myTagData: tabListsArray   //我关注的话题
-            })
+                that.setData({
+                  myTagData: tabListsArray   //我关注的话题
+                })
+            }
+         }
       },
       fail: function (res) {
         console.log('.........fail..........');
       }
       })
     },
-   // addTags:function (tegNum) {
-    //   var that = this;
-    //   wx.request({
-    //   url:'http://106.54.73.125:8102/remote/mytag/add',
-    //   method:"POST",
-    //   data:{
-    //     tag:tegNum,
-    //     uid:'1' //用户id
-    //   },
-    //   header:{
-    //      'Content-Type':'application/json'
-    //    },
-    //    success: function (res) {
-    //      that.setData({
-    //          editSwith:true
-    //      })
-    //     //  that.tagsShareSearch();
-    //     //  that.forYouSearchTag();  
-    //      console.log('zengjia')
-    //   },
-    //   fail: function (res) {
-    //     console.log('.........fail..........');
-    //   }
-    //   })
-    // },
-    // addListTags:function (listNum) {
-    //   var that = this;
-    //   wx.request({
-    //   url:'http://106.54.73.125:8102/remote/mytag/batchAdd',
-    //   method:"POST",
-    //   data:{
-    //     list: listNum
-    //   },
-    //   header:{
-    //      'Content-Type':'application/json'
-    //    },
-    //    success: function (res) {
-    //     console.log('我是批量++++',res);
-    //     that.setData({
-    //       editSwith:true
-    //     })
-    //     // that.tagsShareSearch();
-    //     // that.forYouSearchTag();
-    //   },
-    //   fail: function (res) {
-    //     console.log('.........fail..........');
-    //   }
-    //   })
-    // },
-    // deteleListTags:function (paraseArray) {
-    //   var that = this;
-    //   wx.request({
-    //   url:'http://106.54.73.125:8102/remote/mytag/batchDelete',
-    //   method:"POST",
-    //   data:{
-    //     list: paraseArray
-    //   },
-    //   header:{
-    //      'Content-Type':'application/json'
-    //    },
-    //    success: function (res) {
-    //     that.setData({
-    //       editSwith:true
-    //     })
-    //     // that.tagsShareSearch();
-    //     // that.forYouSearchTag();
-    //      console.log("我是批量删除");
-    //   },
-    //   fail: function (res) {
-    //     console.log('.........fail..........');
-    //   }
-    //   })
-    // },
-    // deteleTags:function (idNum) {
-    //   var that = this;
-    //   var idNum =idNum;
-    //   wx.request({
-    //   url:`http://106.54.73.125:8102/remote/mytag/delete/${idNum}`,
-    //   method:"GET",
-    //    header:{
-    //      'Content-Type':'application/json'
-    //    },
-    //    success: function (res) {
-    //     that.setData({
-    //       editSwith:true
-    //     })
-    //     // that.tagsShareSearch();
-    //     // that.forYouSearchTag();
-    //     console.log('我是单删除',res);
-    //   },
-    //   fail: function (res) {
-    //     console.log('.........fail..........');
-    //   }
-    //   })
-    // },
   //批量更新tag  
   refreTagList:function(listNum){
             var that = this;
@@ -380,93 +298,93 @@ Page({
             forYouData: addBtnNewArray
       })
     },
-  collectionAdd:function (articleId) {
-      var that = this;
-      wx.request({
-      url:'http://106.54.73.125:8102/remote/article/collection/add',
-      method:"POST",
-      data:{
-        uid :1,
-        articleId : articleId
-       },
-       header:{
-         'Content-Type':'application/json'
-       },
-       success: function (res) {
-         var nodeId = that.data.listData.findIndex(item=>{
-             return item.id === articleId
-         })
-         if(nodeId > -1){
-             that.data.listData[nodeId].isCollect = true;
-             that.data.selectCollData.push({
-                articleId: that.data.listData[nodeId].id,
-                uid:1
-             })
-         }
-         that.setData({
-             listData: that.data.listData
-         })
-       },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-      })
-    },
-    collectionDetele:function (articleId) {
-      var that = this;
-      wx.request({
-      url:'http://106.54.73.125:8102/remote/article/collection/delete',
-      method:"DELETE",
-      data:{
-          uid:'1',
-          articleId: articleId
-       },
-       header:{
-         'Content-Type':'application/json'
-       },
-       success: function (res) {
-          var nodeSele = that.data.listData.findIndex(item=>{
-              return item.id  === articleId
-          })
-          if(nodeSele > -1){
-            console.log('nodeSele',nodeSele)
-             that.data.listData[nodeSele].isCollect = false
-          }
-          that.setData({
-            listData: that.data.listData
-          })
-          console.log('that.data.selectCollData',that.data.selectCollData);
-       },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-      })
-    },
-    collectionQueryCounts:function () {
-      var that = this;
-      var listId=[]
-      var selectCollCount = that.data.selectCollData;
-      console.log('selectCollCount',selectCollCount);
-      listId = selectCollCount.reduce((acc, cur) => {
-        !acc.some(v => v.articleId === cur.articleId) && acc.push(cur);
-        return acc;
-      }, []);
-      console.log('listId',listId);
-      wx.request({
-      url:'http://106.54.73.125:8102/remote/article/collection/queryCountsAndStatus',
-      method:"POST",
-      data:{listId},
-      header:{
-         'Content-Type':'application/json'
-       },
-       success: function (res) {
-        console.log("取消文章收藏");
-       },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-      })
-    },
+  // collectionAdd:function (articleId) {
+  //     var that = this;
+  //     wx.request({
+  //     url:'http://106.54.73.125:8102/remote/article/collection/add',
+  //     method:"POST",
+  //     data:{
+  //       uid :1,
+  //       articleId : articleId
+  //      },
+  //      header:{
+  //        'Content-Type':'application/json'
+  //      },
+  //      success: function (res) {
+  //        var nodeId = that.data.listData.findIndex(item=>{
+  //            return item.id === articleId
+  //        })
+  //        if(nodeId > -1){
+  //            that.data.listData[nodeId].isCollect = true;
+  //            that.data.selectCollData.push({
+  //               articleId: that.data.listData[nodeId].id,
+  //               uid:1
+  //            })
+  //        }
+  //        that.setData({
+  //            listData: that.data.listData
+  //        })
+  //      },
+  //     fail: function (res) {
+  //       console.log('.........fail..........');
+  //     }
+  //     })
+  //   },
+    // collectionDetele:function (articleId) {
+    //   var that = this;
+    //   wx.request({
+    //   url:'http://106.54.73.125:8102/remote/article/collection/delete',
+    //   method:"DELETE",
+    //   data:{
+    //       uid:'1',
+    //       articleId: articleId
+    //    },
+    //    header:{
+    //      'Content-Type':'application/json'
+    //    },
+    //    success: function (res) {
+    //       var nodeSele = that.data.listData.findIndex(item=>{
+    //           return item.id  === articleId
+    //       })
+    //       if(nodeSele > -1){
+    //         console.log('nodeSele',nodeSele)
+    //          that.data.listData[nodeSele].isCollect = false
+    //       }
+    //       that.setData({
+    //         listData: that.data.listData
+    //       })
+    //       console.log('that.data.selectCollData',that.data.selectCollData);
+    //    },
+    //   fail: function (res) {
+    //     console.log('.........fail..........');
+    //   }
+    //   })
+    // },
+    // collectionQueryCounts:function () {
+    //   var that = this;
+    //   var listId=[]
+    //   var selectCollCount = that.data.selectCollData;
+    //   console.log('selectCollCount',selectCollCount);
+    //   listId = selectCollCount.reduce((acc, cur) => {
+    //     !acc.some(v => v.articleId === cur.articleId) && acc.push(cur);
+    //     return acc;
+    //   }, []);
+    //   console.log('listId',listId);
+    //   wx.request({
+    //   url:'http://106.54.73.125:8102/remote/article/collection/queryCountsAndStatus',
+    //   method:"POST",
+    //   data:{listId},
+    //   header:{
+    //      'Content-Type':'application/json'
+    //    },
+    //    success: function (res) {
+    //     console.log("取消文章收藏");
+    //    },
+    //   fail: function (res) {
+    //     console.log('.........fail..........');
+    //   }
+    //   })
+    // },
     // 隐藏遮罩层
     hideModal: function () {
       var that = this;

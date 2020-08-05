@@ -1,27 +1,33 @@
 <view class="details-main">
-    <view class="mainContent">
+    <integralAmation integral="{{integralNum}}" wx:if="{{integraFlg}}" />
+    <view class="mainContent {{bottomFlaotShow === true ? mainContentBlock:''}}">
        <view class="mainContent-title">{{contentAll.title}}</view>
        <view class="main-gitPic">
             <view class="gitPic">
-                <image src='../../images/illustration@2x.png'></image>
+                <image src='{{contentAll.avatar}}'></image>
             </view>
             <view class="details-tipContent">
                 <view class="details-tip">
-                        <view class="details-tipTitle">KOL我是健身达人</view>
+                        <view class="details-tipTitle">{{contentAll.author}}</view>
                         <view class="details-tipTime">{{contentAll.createTime}}</view>
                 </view>
                 <view class="details-tag">
                         <view class="details-Btn">{{contentAll.tags}}</view>
-                        <view class="details-RightBtn">
+                        <view class="details-RightBtn" bindtap="colletArtDaitle" wx:if="{{colletArt === '2' }}">
                         <image class="details-image" src = '../../images/healthInfo/icon-collect@2x.png'></image>
                         <view class="details-intall">收藏</view>
+                        </view>
+                        <view class="details-RightBtn" wx:if="{{colletArt === '1'}}">
+                        <view class="details-intall">已收藏</view>
                         </view>
                 </view>
             </view>
        </view>
        <view class="artContent">
           <view class="artContent-image"><image src="{{contentAll.thumbLocation}}"></image></view>
-          <view style="padding-left: 8rpx;"><HtmlView class="htmlViewSty"   detail="{{contentAll.content}}"/></view>
+          <view class="contentAllContent">
+              <htmlView detail ="{{contentAll.content}}"/>
+          </view>
        </view>
     </view>
     <view class="bottomFlaotContent" wx:if="{{bottomFlaotShow}}">
@@ -34,5 +40,5 @@
             </view>
         </view>
     </view>
-    <heathInfoLogin  id="isLogin"/>
+    <!-- <heathInfoLogin  id="isLogin"/> -->
 </view>

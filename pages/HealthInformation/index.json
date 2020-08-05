@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-      "HtmlView":"../../components/htmlView/htmlView",
-      "van-button": "vant-weapp/button/index"
+      "van-button": "vant-weapp/button/index",
+      "drag":"../../components/drag/index"
   },
   "navigationBarTitleText": "健康资讯",
   "navigationBarTextStyle": "black"

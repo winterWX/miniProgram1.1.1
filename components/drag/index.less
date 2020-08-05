@@ -1,0 +1,126 @@
+.bigbox {
+  background-color: #fff;
+
+  .item-wrap {
+    position: relative;
+    padding: 0 40rpx;
+
+    .jia {
+      z-index: 99;
+      position: absolute;
+      width: 50rpx;
+      height: 500rpx;
+      left: calc(90vw/2);
+      top: 15rpx;
+      transform: translateX(-50%);
+
+      .jia_item {
+        position: absolute;
+        height: 84rpx;
+        line-height: 84rpx;
+      }
+    }
+
+    .item {
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+
+      &.itemTransition {
+        transition: transform 0.3s;
+      }
+
+      &.zIndex {
+        z-index: 2;
+      }
+
+      &.cur {
+        transition: initial;
+      }
+
+      &.fixed {
+        z-index: 0 !important;
+      }
+    }
+  }
+
+  .item {
+    padding: 20rpx 0;
+  }
+
+  .info {
+    position: relative;
+    background: #ffffff;
+    height: 80rpx;
+    width: calc(100vw/2);
+    line-height: 80rpx;
+    font-size: 24rpx;
+
+    .info__item {
+      position: absolute;
+      border: 1rpx solid #ebedf0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  }
+
+
+  .cell {
+    display: flex;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #ebedf0;
+    background: #ffffff;
+  }
+
+  .cell__hd {
+    .Nickname {
+      margin-left: 100rpx;
+      color: #000;
+      font-size: 28rpx;
+      margin-bottom: 12rpx;
+    }
+
+    .image {
+      position: absolute;
+      top: 0rpx;
+      left: 0rpx;
+      display: inline-block;
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .sexIcon {
+      position: absolute;
+      top: 50rpx;
+      left: 50rpx;
+      width: 30rpx;
+      height: 30rpx;
+      margin-right: 20rpx;
+      border-radius: 50%;
+      background-color: #ccc;
+    }
+  }
+
+  .cell__bd {
+    flex: 1;
+
+
+
+    .des {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      word-break: break-all;
+      color: #666666;
+      font-size: 24rpx;
+    }
+  }
+
+}
