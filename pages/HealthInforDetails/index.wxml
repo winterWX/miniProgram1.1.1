@@ -1,6 +1,6 @@
-<view class="details-main">
+<view class="details-main {{isLogin  !== 3 ? 'mainContentBlock' : ''}}">
     <integralAmation integral="{{integralNum}}" wx:if="{{integraFlg}}" />
-    <view class="mainContent {{bottomFlaotShow === true ? mainContentBlock:''}}">
+    <view class="mainContent">
        <view class="mainContent-title">{{contentAll.title}}</view>
        <view class="main-gitPic">
             <view class="gitPic">

@@ -58,7 +58,7 @@
     width: 100%;
 }
 .mainContentBlock{
-  height: 880rpx;
+  height: 980rpx;
   overflow: hidden;
 }
 .details-Btn{

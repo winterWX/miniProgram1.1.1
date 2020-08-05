@@ -13,10 +13,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    this.setData({
-      url:options.url
-    })
+    console.log('options+++', options);
+    if (options.url.indexOf('/#') > -1 ){
+        let baseUrlNum = ''
+      let startStr = options.url.substr(0, options.url.indexOf('/#'));
+      let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length-1);
+        baseUrlNum = startStr + '?goodsId=' + endStr;
+        console.log('baseUrlNum', baseUrlNum)
+        this.setData({
+          url: baseUrlNum
+        })
+    }else{
+      this.setData({
+        url: options.url
+      })
+    }
     console.log(options)
   },
 

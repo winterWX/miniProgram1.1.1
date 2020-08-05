@@ -8,8 +8,6 @@ Page({
   },
   
   onLoad: function () {
-   
-    
   },
   onShow: function () {
     this.setData({

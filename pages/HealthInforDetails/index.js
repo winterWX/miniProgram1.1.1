@@ -24,23 +24,19 @@ Page({
      that.setData({
        articleId: options.goodsId
      })
-    //登录后领取积分
-    if (that.data.isLogin === 3) {  //已经登录，可以领取积分
-          that.setData({
-            integraFlg: true
-          })
-          that.setData({
-            integralNum: 10
-          })
-          console.log('触摸领取积分')
-    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //当页面加载完成后
+    //登录后领取积分
+    let that = this;
+    if (that.data.isLogin === 3) {  //已经登录，可以领取积分
+      that.everyDayIntegral();
+      console.log('触摸领取积分')
+    }
   },
 
   /**
@@ -61,7 +57,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**
@@ -98,6 +93,38 @@ Page({
     if (that.data.isLogin === 3){
       that.setData({
         bottomFlaotShow: false   //是否显示登录按钮  true为显示，false 为不显示
+      })
+    }
+  },
+  //读文章领取积分
+  everyDayIntegral:function(){
+    console.log('//读文章领取积分');
+    let that = this;
+    if (that.data.isLogin === 3) {
+      wx.request({
+        url: app.globalData.baseUrl + '/article/collection/getArticlePoint',
+        method: "POST",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        data: {
+          "points": 10,
+          "articleId": that.data.articleId
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+                that.setData({
+                  integraFlg: true
+                })
+                that.setData({
+                  integralNum: 10
+                })
+          }
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
+        }
       })
     }
   },
@@ -165,34 +192,32 @@ Page({
     }
   })
   },
-checkAuthorization() { //检测是否已经授权      
-    wx.getSetting({
-      success: (setingres) => {
-        wx.hideLoading()
-        if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
-          wx.getUserInfo({
-            success: (res) => {
-              this.userLogin(res)
-            },
-            fail: () => {
-              wx.showModal({
-                showCancel: false,
-                content: '获取用户信息失败,请重新点击底部菜单',
-                success: (res) => {
-                  this.setData({
-                    isLogin: 0
-                  })
-                }
-              })
-            }
-          })
+  //检测是否已经授权  
+  checkAuthorization() {     
+      wx.getSetting({
+        success: (setingres) => {
+          wx.hideLoading()
+          if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
+            wx.getUserInfo({
+              success: (res) => {
+                this.userLogin(res)
+              },
+              fail: () => {
+                wx.showModal({
+                  showCancel: false,
+                  content: '获取用户信息失败,请重新点击底部菜单',
+                  success: (res) => {
+                    this.setData({
+                      isLogin: 0
+                    })
+                  }
+                })
+              }
+            })
+          }
         }
-
-      }
-    })
-
-  },
-
+      })
+    },
   onLogin(data) { //登录
     wx.showLoading({
       title: 'loading...',
@@ -225,7 +250,6 @@ checkAuthorization() { //检测是否已经授权
         })
       }
     })
-
   },
   getUserInfo(e) { //获取用户信息
     console.log(e)
@@ -233,7 +257,6 @@ checkAuthorization() { //检测是否已经授权
       this.onLogin(e.detail)
     }
   },
-
   userLogin(data) {
     wx.showLoading({
       title: 'loading...',
@@ -256,8 +279,9 @@ checkAuthorization() { //检测是否已经授权
           this.setData({
             isLogin: 1
           })
+          let urlBase = '../HealthInforDetails/index/#' + this.data.contentAll.id;
           wx.navigateTo({
-            url: '../login/index?url=' + '../index/index',
+            url: '../login/index?url=' + urlBase,
           })
         } else {
           wx.showModal({
