@@ -7,8 +7,8 @@ Page({
     isLogin: 0, //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
     bottomFlaotShow: true,
     contentAll:{},
-    colletArt:false,
-    articleId:-1,
+    colletArt: '', //收藏状态
+    articleId: -1,
     integralNum: 0, //积分
     integraFlg:false
   },
@@ -24,6 +24,16 @@ Page({
      that.setData({
        articleId: options.goodsId
      })
+    //登录后领取积分
+    if (that.data.isLogin === 3) {  //已经登录，可以领取积分
+          that.setData({
+            integraFlg: true
+          })
+          that.setData({
+            integralNum: 10
+          })
+          console.log('触摸领取积分')
+    }
   },
 
   /**
@@ -91,44 +101,35 @@ Page({
       })
     }
   },
-  touchStart:function(){
-    let that = this;
-    if (that.data.isLogin === 3){  //已经登录，可以领取积分
-          that.setData({
-            integraFlg: true
-          })
-          that.setData({
-            integralNum: 10
-          })
-         console.log('触摸领取积分')
-    }
-  },
   //收藏接口
   colletArtDaitle:function(){
-    console.log('//收藏接口');
-    var that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/article/collection/add',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token
-      },
-      data:{
-        "uid": 1,
-        "articleId": that.data.articleId
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          that.setData({
-            colletArt: true
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+      console.log('//收藏接口');
+      let that = this;
+      if (that.data.isLogin === 3){
+        wx.request({
+          url: app.globalData.baseUrl + '/article/collection/add',
+          method: "POST",
+          header: {
+            'Content-Type': 'application/json',
+            "token": app.globalData.token
+          },
+          data:{
+            // "uid": 1,
+            "articleId": that.data.articleId
+          },
+          success: function (res) {
+            console.log('app.globalData.token', app.globalData.token);
+            if (res.data.code == 200) {
+              that.setData({
+                colletArt: '1'  //表示收藏成功
+              })
+            }
+          },
+          fail: function (res) {
+            console.log('.........fail..........');
+          }
+        })
       }
-    })
   },
   //文章详情接口
   articleDetail:function(listNum){
@@ -152,6 +153,10 @@ Page({
           that.setData({
             contentAll : res.data.data
           })
+          that.setData({
+             colletArt: res.data.data.isCollect   //收藏状态
+          })
+          console.log('res.data.data.isCollect', res.data.data.isCollect )
           console.log('dadtatdadad',that.data.contentAll)
       }
     },
@@ -275,5 +280,37 @@ checkAuthorization() { //检测是否已经授权
     var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
     var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     return Y + M + D + '，' + h + m;
-  }
+  },
+  onShareAppMessage: function (options) {
+    let shareObj = {
+      　　　　title: "",
+      path: '../../ pages/HealthInforDetails/index',
+      imageUrl: '/images/tabBar/timg.jpg',
+      　　　　success: function (res) {
+        　　　　　　// 转发成功之后的回调
+        　　　　　　if (res.errMsg == 'shareAppMessage:ok') {
+        　　　　　　}
+      　　　　},
+      　　　　fail: function () {
+        　　　　　　// 转发失败之后的回调
+        　　　　　　if (res.errMsg == 'shareAppMessage:fail cancel') {
+          　　　　　　　　// 用户取消转发
+        　　　　　　} else if (res.errMsg == 'shareAppMessage:fail') {
+          　　　　　　　　// 转发失败，其中 detail message 为详细失败信息
+        　　　　　　}
+      　　　　}
+      // 　complete:fucntion(){
+      // 　// 转发结束之后的回调（转发成不成功都会执行）
+      // 　}
+    　　}
+    　　// 来自页面内的按钮的转发
+    　　if (options.from == 'button') {
+      let eData = options.target.dataset;
+      　　　　console.log(eData.name);     // shareBtn
+      　　　　// 此处可以修改 shareObj 中的内容
+      　　　　shareObj.path = '/pages/btnname/btnname?btn_name=' + eData.name;
+    　　}
+    　　// 返回shareObj
+    　　return shareObj;
+  },
 })

@@ -1,6 +1,6 @@
 <view class="details-main">
     <integralAmation integral="{{integralNum}}" wx:if="{{integraFlg}}" />
-    <view class="mainContent {{bottomFlaotShow === true ? mainContentBlock:''}}"    bindtouchstart="touchStart">
+    <view class="mainContent {{bottomFlaotShow === true ? mainContentBlock:''}}">
        <view class="mainContent-title">{{contentAll.title}}</view>
        <view class="main-gitPic">
             <view class="gitPic">
@@ -13,11 +13,11 @@
                 </view>
                 <view class="details-tag">
                         <view class="details-Btn">{{contentAll.tags}}</view>
-                        <view class="details-RightBtn" bindtap="colletArtDaitle" wx:if="{{!colletArt}}">
+                        <view class="details-RightBtn" bindtap="colletArtDaitle" wx:if="{{colletArt === '2' }}">
                         <image class="details-image" src = '../../images/healthInfo/icon-collect@2x.png'></image>
                         <view class="details-intall">收藏</view>
                         </view>
-                        <view class="details-RightBtn" wx:if="{{colletArt}}">
+                        <view class="details-RightBtn" wx:if="{{colletArt === '1'}}">
                         <view class="details-intall">已收藏</view>
                         </view>
                 </view>
