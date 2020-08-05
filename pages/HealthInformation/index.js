@@ -176,16 +176,24 @@ Page({
        },
        success: function (res) {
         let searchAllTopicArray =[];
+        let allTopicArray = [];
+        let allTopicLastArray = [];
         if(res.data.data !== null){
           res.data.data.forEach(item =>{
             searchAllTopicArray.push({
               tag: item.name 
             })
           })
-          that.setData({
-            forYouData: searchAllTopicArray
+          searchAllTopicArray.forEach(item =>{
+            if(item.tag === '热门推荐'){
+              allTopicArray.push(item);
+            }else{
+              allTopicLastArray.push(item);
+            }
           })
-          console.log('searchAllTopic', that.data.forYouData);
+          that.setData({
+            forYouData: [...allTopicArray,...allTopicLastArray]
+          })
         }
       },
       fail: function (res) {
@@ -207,16 +215,26 @@ Page({
          if (res.data.data !== null){
             if (Array.isArray(res.data.data) && res.data.data.length > 0){
                   let tabListsArray = [];
+                  let firstSortArray = [];
+                  let lastSortArray = [];
                   res.data.data.forEach(item => {
                     tabListsArray.push({
                       tag: item.topic
                     })
                   })
+                  tabListsArray.forEach(item => {
+                    if(item.tag === '热门推荐'){
+                      firstSortArray.push(item);
+                    }else{
+                      lastSortArray.push(item);
+                    }
+                  })
+
                   that.setData({
-                    tabLists: tabListsArray
+                    tabLists: [...firstSortArray,...lastSortArray]
                   })
                   that.setData({
-                    myTagData: tabListsArray   //我关注的话题
+                    myTagData: [...firstSortArray,...lastSortArray]   //我关注的话题
                   })
             }else{
                 let tabListsArray = [];
@@ -259,7 +277,8 @@ Page({
       let that = this;
       let clickIndex = e.currentTarget.dataset.index;
       let myTagFilter = that.data.myTagData;
-        that.data.deleteTagArray.push(myTagFilter[clickIndex])
+      if(myTagFilter[clickIndex] && myTagFilter[clickIndex].tag !=='热门推荐'){ 
+         that.data.deleteTagArray.push(myTagFilter[clickIndex])
       let conceArray = [...that.data.forYouData,...that.data.deleteTagArray];
       let curArray = conceArray.reduce((acc, cur) => {
           !acc.some(v => v.tag === cur.tag) && acc.push(cur);
@@ -275,13 +294,14 @@ Page({
         that.setData({
           myTagData: myTagFilterNewArray
         })
+      }
     },
   addTagBbtn:function(e){
-    console.log('forYouData +add',this.data.forYouData);
       let that = this;
       let clickIndex = e.currentTarget.dataset.index;
       let addBtn = that.data.forYouData;
-      that.data.addTagArray.push(addBtn[clickIndex])
+      if(addBtn[clickIndex] && addBtn[clickIndex].tag !=='热门推荐'){  
+        that.data.addTagArray.push(addBtn[clickIndex])
       let arrayOld = [...that.data.myTagData,...that.data.addTagArray]
       let ccArray = arrayOld.reduce((acc, cur) => {
         !acc.some(v => v.tag === cur.tag) && acc.push(cur);
@@ -296,7 +316,8 @@ Page({
     let addBtnNewArray = addBtn.filter(item => item.tag !== that.data.forYouData[clickIndex].tag);
         that.setData({
             forYouData: addBtnNewArray
-      })
+        })
+      }
     },
     // 隐藏遮罩层
     hideModal: function () {

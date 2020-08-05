@@ -60,7 +60,7 @@
                            <view class="intringData">
                             <view class="viewBtnBoxint"  bindtap="addTagBbtn"  wx:for="{{forYouData}}" data-index="{{index}}" wx:key="{{index}}">
                                 <view class="viewBtn">{{item.tag}}</view>
-                                <image wx:if="{{editStute}}" src="../../images/healthInfo/icon-add.png"></image>
+                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="../../images/healthInfo/icon-add.png"></image>
                             </view>
                            </view>
                         </view>

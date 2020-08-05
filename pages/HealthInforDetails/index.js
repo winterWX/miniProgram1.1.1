@@ -57,6 +57,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    wx.navigateTo({
+      url: '../../pages/HealthInformation/index',
+    })
   },
 
   /**
@@ -141,7 +144,6 @@ Page({
             "token": app.globalData.token
           },
           data:{
-            // "uid": 1,
             "articleId": that.data.articleId
           },
           success: function (res) {
@@ -183,8 +185,7 @@ Page({
           that.setData({
              colletArt: res.data.data.isCollect   //收藏状态
           })
-          console.log('res.data.data.isCollect', res.data.data.isCollect )
-          console.log('dadtatdadad',that.data.contentAll)
+          console.log('colletArtcolletArtcolletArt',that.data.colletArt)
       }
     },
     fail: function (res) {
