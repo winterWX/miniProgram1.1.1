@@ -11,7 +11,7 @@ Page({
     hideModal: true,     //模态框的状态  true-隐藏  false-显示
     animationData: {},
     sizeData: 4,
-    myTagData: [{ tag: "热面" }, { tag: "方便面" }, { tag: "222"}],    //我关注的话题
+    myTagData: [],    //我关注的话题
     forYouData:[],   //全部话题
     editSwith: true,
     editStute: false,
@@ -35,7 +35,7 @@ Page({
     that.mytagSearch();
     that.searchSend(options.inputVal);
       //查询所有话题
-     that.searchAllTopic();
+    that.searchAllTopic();
   },
   bindKeyInput: function(e){
     var inputNameData = e.detail.value
@@ -53,7 +53,7 @@ Page({
       that.setData({
          researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag
       })
-      //console.log('researchTag', that.data.researchTag);
+      console.log('researchTag', that.data.researchTag);
       that.searchSend(that.data.researchTag);
   },
   listClick(e){
@@ -64,13 +64,14 @@ Page({
   },
   //文章列表接口
   searchSend(parase){
+    console.log('paraseparase', parase)
     var that = this;
     wx.request({
      url: app.globalData.baseUrl + '/remote/article/query/list',
      data:{
       "currentPage": 1,
       "pageSize": 10,
-      "topic": parase
+      "topic": parase !== undefined ? parase : '热门推荐'
     },
     method:"POST",
      header:{
