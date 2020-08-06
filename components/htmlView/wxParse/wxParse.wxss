@@ -24,12 +24,16 @@
     display: inline;
     margin: 0;
     padding: 0;
-     color: #5c5c5c; /*//wx */
-    font-size:28rxp;  /*//wx */
+    color: #5c5c5c !important; /*//wx */
+    font-size:28rxp !important;  /*//wx */
     font-weight: normal !important; /*//wx */
+    line-height: 22px !important;
+    letter-spacing: 1rpx !important;
 }
-.wxParse-p{
-  margin-bottom:10rpx;
+.wxParse-p image{
+  /* margin-bottom:10rpx; */
+  width: 676rpx !important;
+  text-align: center;
 }
 /*//标题 */
 .wxParse-div{margin: 0;padding: 0;}

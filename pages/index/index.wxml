@@ -1,9 +1,8 @@
-<!--index.wxml-->
 <view class="container">
     <view class="header-main">
       <view class="header-mainItem"></view>
-      <view class="header-mainItem" bindtap="challengePage">我要挑战</view>
-      <view class="header-mainItem" bindtap="myfindPage">我的发现</view>
+      <view class="header-mainItem" bindtap="challengePage">我的活动</view>
+      <view class="header-mainItem" bindtap="myfindPage">健康资讯</view>
     </view>
 </view>
 <footer active="{{active}}" ></footer>

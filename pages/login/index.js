@@ -118,7 +118,6 @@ Page({
   },
   getPhoneNumber(e) { //获取电话信息     
     if (e.detail.errMsg === 'getPhoneNumber:ok') {
-     
       this.phoneNumberLogin(e.detail)
     } else {
       wx.redirectTo({

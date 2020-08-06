@@ -19,7 +19,6 @@ Page({
   onLoad: function (options) {
      let that = this;
      that.tokenOnLoad();
-     console.log('options',options)
      that.articleDetail(options.goodsId);
      that.setData({
        articleId: options.goodsId
@@ -43,26 +42,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    let that = this;
-    if (that.data.isLogin === 3){
-          wx.navigateTo({
-            url: '../../pages/HealthInformation/index',
-          })
-    }
   },
 
   /**
@@ -233,6 +224,12 @@ Page({
           }
           deleteString = res.data.data.tags.replaceAll('#', '');
           res.data.data.tags = deleteString;
+
+          var baseUrl = 'http://106.54.73.125:8101/upload';
+          String.prototype.replaceAll = function (FindText, RepText) {
+            return this.replace(new RegExp(FindText, "g"), RepText);
+          }
+          res.data.data.content =  res.data.data.content.replaceAll('../upload', baseUrl);
           that.setData({
             contentAll : res.data.data
           })
@@ -335,7 +332,7 @@ Page({
             isLogin: 1
           })
           let urlBase = '../HealthInforDetails/index/#' + this.data.contentAll.id;
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../login/index?url=' + urlBase,
           })
         } else {

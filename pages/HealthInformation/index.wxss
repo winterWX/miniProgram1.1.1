@@ -375,7 +375,6 @@ page{
 .myTagList{
   display: flex;
   align-items: center;
-  /* padding: 10rpx; */
 }
 .myTagList-title{
   font-family: PingFangSC;
@@ -410,7 +409,7 @@ page{
 }
 .bottomTage{
   padding: 10rpx 0rpx;
-  margin-top: 60rpx;
+  /* margin-top: 60rpx; */
 }
 .bottomTage-title{
   font-family: PingFangSC;
@@ -460,7 +459,7 @@ page{
 }
 .viewBtnBoxint{
   position: relative;
-  padding: 16rpx 8rpx;
+  padding: 12rpx 9.5rpx;
 }
 .viewBtnBoxint image{
   width: 28rpx;
@@ -476,22 +475,10 @@ page{
   align-content:flex-start;
 }
 .intringData .viewBtn{
-  /* width: 145rpx;
-  padding: 0rpx 3rpx;
-  height: 70rpx;
-  color: #BEBDC1;
-  font-size: 30rpx !important;
-  background-color: #EEEEEE;
-  border: 1rpx solid #cccccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10rpx;
-  margin:8rpx; */
   width: 150rpx;
   padding: 0rpx 3rpx;
   height: 67rpx;
-  border: 1rpx solid #cccccc;
+  border: 1rpx solid #d9d9d9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -529,4 +516,33 @@ page{
 .van-button--large {
   height: 90rpx !important;
   line-height: 86rpx !important;
+}
+/* 拖拽代码 */
+.normal_title{
+  font-size:32rpx;
+  margin:10rpx 20rpx;
+  font-weight: bold;
+}
+.item{
+ position: absolute;
+ border: 2rpx solid #d9d9d9;
+ font-size: 26rpx;
+ font-weight: 600;
+ padding: 16rpx 0rpx;
+ text-align: center;
+ border-radius: 10rpx;
+ font-family: OpenSans;
+ font-size: 26rpx;
+ color: #666666;
+}
+.item_container{
+  height:300rpx;
+  position:relative;
+}
+.item_container image{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: -5rpx;
+  left: 133rpx;  
 }
