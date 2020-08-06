@@ -1,5 +1,5 @@
 <view class="details-main {{isLogin  !== 3 ? 'mainContentBlock' : ''}}">
-    <integralAmation integral="{{integralNum}}" wx:if="{{integraFlg}}" />
+   <!-- <integralAmation integral="{{integralNum}}" wx:if="{{integraFlg}}" /> -->
     <view class="mainContent">
        <view class="mainContent-title">{{contentAll.title}}</view>
        <view class="main-gitPic">
@@ -24,7 +24,7 @@
             </view>
        </view>
        <view class="artContent">
-          <view class="artContent-image"><image src="{{contentAll.thumbLocation}}"></image></view>
+          <!-- <view class="artContent-image"><image src="{{contentAll.thumbLocation}}"></image></view> -->
           <view class="contentAllContent">
               <htmlView detail ="{{contentAll.content}}"/>
           </view>
@@ -40,5 +40,4 @@
             </view>
         </view>
     </view>
-    <!-- <heathInfoLogin  id="isLogin"/> -->
 </view>

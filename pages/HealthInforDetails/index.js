@@ -57,9 +57,12 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.navigateTo({
-      url: '../../pages/HealthInformation/index',
-    })
+    let that = this;
+    if (that.data.isLogin === 3){
+          wx.navigateTo({
+            url: '../../pages/HealthInformation/index',
+          })
+    }
   },
 
   /**
