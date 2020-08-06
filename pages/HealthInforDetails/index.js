@@ -120,12 +120,7 @@ Page({
         },
         success: function (res) {
           if (res.data.code == 200) {
-                that.setData({
-                  integraFlg: true
-                })
-                that.setData({
-                  integralNum: 10
-                })
+            that.recordIntegral()
           }
         },
         fail: function (res) {
@@ -133,6 +128,33 @@ Page({
         }
       })
     }
+  },
+  //阅读记录
+  recordIntegral: function () {
+    console.log('//阅读记录');
+    let that = this;
+      wx.request({
+        url: app.globalData.baseUrl + '/remote/article/collection/storageRecord?articleId=' + that.data.articleId,
+        method: "GET",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+              console.log('res.data.data', res.data.data);
+              that.setData({
+                integraFlg: true
+              })
+              that.setData({
+                integralNum: 10
+              })
+          }
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
+        }
+      })
   },
   //收藏接口
   colletArtDaitle:function(){
