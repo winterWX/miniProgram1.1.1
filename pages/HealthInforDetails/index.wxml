@@ -17,7 +17,7 @@
                         <image class="details-image" src = '../../images/healthInfo/icon-collect@2x.png'></image>
                         <view class="details-intall">收藏</view>
                         </view>
-                        <view class="details-RightBtn" wx:if="{{colletArt === '1'}}">
+                        <view class="details-RightBtn"  bindtap="cancelColletArtDaitle"  wx:if="{{colletArt === '1'}}">
                         <view class="details-intall">已收藏</view>
                         </view>
                 </view>

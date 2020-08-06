@@ -64,7 +64,6 @@ Page({
   },
   //文章列表接口
   searchSend(parase){
-    console.log('paraseparase', parase)
     var that = this;
     wx.request({
      url: app.globalData.baseUrl + '/remote/article/query/list',
@@ -79,7 +78,6 @@ Page({
      },
     success: function (res) {
        if(res.data.data !== null){
-        console.log('remote/article/query/list',res);
         //that.collectionQueryCounts();  // 赋值前调用
         res.data.data.forEach((item)=>{
           item.inputtime = that.timestampToTime(item.inputtime)
@@ -87,7 +85,6 @@ Page({
           that.setData({
             listData: res.data.data
           })
-        console.log('listDatalistData',that.data.listData);
        }
     },
     fail: function (res) {

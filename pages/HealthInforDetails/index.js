@@ -108,7 +108,7 @@ Page({
     let that = this;
     if (that.data.isLogin === 3) {
       wx.request({
-        url: app.globalData.baseUrl + '/article/collection/getArticlePoint',
+        url: app.globalData.baseUrl + '/remote/article/collection/getArticlePoint',
         method: "POST",
         header: {
           'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ Page({
       let that = this;
       if (that.data.isLogin === 3){
         wx.request({
-          url: app.globalData.baseUrl + '/article/collection/add',
+          url: app.globalData.baseUrl + '/remote/article/collection/add',
           method: "POST",
           header: {
             'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ Page({
             console.log('app.globalData.token', app.globalData.token);
             if (res.data.code == 200) {
               that.setData({
-                colletArt: '1'  //表示收藏成功
+                colletArt: '1' //表示收藏成功
               })
             }
           },
@@ -162,6 +162,35 @@ Page({
           }
         })
       }
+  },
+  //取消收藏接口
+  cancelColletArtDaitle: function () {
+    console.log('//取消收藏接口');
+    let that = this;
+    if (that.data.isLogin === 3) {
+      wx.request({
+        url: app.globalData.baseUrl + '/remote/article/collection/delete',
+        method: "DELETE",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        data: {
+          "articleId": that.data.articleId
+        },
+        success: function (res) {
+          console.log('app.globalData.token', app.globalData.token);
+          if (res.data.code == 200) {
+            that.setData({
+              colletArt: '2'  //表示取消收藏
+            })
+          }
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
+        }
+      })
+    }
   },
   //文章详情接口
   articleDetail:function(listNum){
