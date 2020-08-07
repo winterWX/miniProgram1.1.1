@@ -141,7 +141,7 @@ Page({
       that.data.myTagData.forEach((item,index)=>{
           listParas.push(
                 {
-                  order: index +'',
+                  order: parseInt(index+1) +'',
                   topic: item.tag
                 }
             )
@@ -436,27 +436,28 @@ Page({
       });
     },
     move: function (e) {
-      console.log('4444',e);
-      var self = this, _x = e.touches[0].clientX, _y = e.touches[0].clientY;
-      x2 = _x - x + x1;
-      y2 = _y - y + y1;
-      var underIndex = this.getCurrnetUnderIndex();
-      if (underIndex != null && underIndex != this.data.current && (Math.sqrt((_x - lastX) * (_x - lastX) + (_y - lastY) * (_y - lastY)) < this.data.speed)) {
-        var arr = [].concat(this.data.myTagData);
-        this.changeArrayData(arr, underIndex, this.data.current);
-  
+      if(e.currentTarget.dataset.index !== 0){
+        var self = this, _x = e.touches[0].clientX, _y = e.touches[0].clientY;
+        x2 = _x - x + x1;
+        y2 = _y - y + y1;
+        var underIndex = this.getCurrnetUnderIndex();
+        if (underIndex != null && underIndex != this.data.current && (Math.sqrt((_x - lastX) * (_x - lastX) + (_y - lastY) * (_y - lastY)) < this.data.speed)) {
+          var arr = [].concat(this.data.myTagData);
+          this.changeArrayData(arr, underIndex, this.data.current);
+    
+          this.setData({
+            myTagData: arr,
+            current: underIndex
+          })
+        }
+    
+        lastX = _x;
+        lastY = _y;
         this.setData({
-          myTagData: arr,
-          current: underIndex
-        })
+          move_x: x2,
+          move_y: y2
+        });
       }
-  
-      lastX = _x;
-      lastY = _y;
-      this.setData({
-        move_x: x2,
-        move_y: y2
-      });
     },
     moveend: function (e) {
       this.setData({

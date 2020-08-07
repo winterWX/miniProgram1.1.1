@@ -62,7 +62,6 @@ Component({
   },
   lifetimes: { // 生命周期
     ready: function() {
-      console.log('34345000000003');
       if (app.globalData.token !== '') {
         this.setData({
           isLogin: 3
