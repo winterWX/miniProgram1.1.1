@@ -73,6 +73,11 @@ Page({
           this.getWeRunStepsData();
       }
   },
+  sendFriend:function(){
+    wx.navigateTo({
+      url: '../../pages/recommend/index'
+    })
+  },
   getWeRunStepsData: function(){
       let that = this;
       wx.getWeRunData ({
