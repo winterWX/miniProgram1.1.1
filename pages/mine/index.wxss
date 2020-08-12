@@ -16,10 +16,11 @@
 .healthBack{
    width: 750rpx;
    height: 400rpx;
-   background-color: #cccccc;
+   background-color: #00a865;
    color: black;
    font-size: 40rpx;
    display: flex;
    align-items: center;
    justify-content: center;
+   border: 1rpx solid;
 }
