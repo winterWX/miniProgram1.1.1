@@ -4,7 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    active:0
+    active:0,
+    successFlg: false
   },
   
   onLoad: function (options) {
@@ -34,7 +35,7 @@ Page({
     let shareObj = {
       　　　　title: "",
       　　　　path: '/pages/index/index?id='+ 12,
-             imageUrl: '/images/tabBar/timg.jpg',
+             imageUrl: '',
       　　　　success: function (res) {
         　　　　　　// 转发成功之后的回调
         　　　　　　if (res.errMsg == 'shareAppMessage:ok') {

@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/recommend/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/activity/index",
@@ -14,7 +13,9 @@
     "pages/HealthInformation/index",
     "pages/HealthInforDetails/index",
     "pages/searchTag/index",
-    "pages/challenge/index"
+    "pages/challenge/index",
+    "pages/sharedPage/index",
+    "pages/recommend/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
