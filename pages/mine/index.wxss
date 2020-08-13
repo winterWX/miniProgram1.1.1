@@ -29,3 +29,105 @@
    justify-content: center;
    border: 1rpx solid #ccc;
 }
+
+.content-box {
+  margin-bottom: 120rpx;
+}
+
+.avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.progress-box {
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx solid #b8b6b6;
+  padding: 0 20rpx 0 30rpx;
+  position: relative;
+}
+
+.press-number-box {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 52rpx;
+  border-radius: 50%;
+  background-color: #09BB07;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 20rpx;
+  left: 10rpx;
+  z-index: 2;
+}
+
+.title {
+  background-color: rgb(237, 237, 237);
+  padding: 0 20rpx 0 20rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+}
+
+.title-tip {
+  font-size: 26rpx;
+  margin-left: 10rpx;
+  color: rgb(131, 123, 123);
+
+}
+
+.press-number {
+  font-size: 24rpx;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 40rpx;
+  width: 90%;
+  right: 20rpx;
+}
+
+.gift {
+  width: 58rpx;
+  height: 50rpx;
+  z-index: 3;
+  position: absolute;
+  top: 18rpx;
+  right: 10rpx;
+}
+
+.userinfo-item-container {
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx solid #b8b6b6;
+  padding: 0 0 0 20rpx;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userinfo-item-label {
+  color: #333;
+  font-size: 28rpx;
+  float: left;
+}
+
+.userinfo-item-value__label {
+  color: #535353;
+  font-size: 28rpx;
+  /* color: #09BB07; */
+}
+
+.userinfo-item-value__icon {
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+
+.mb10 {
+  margin-bottom: 20rpx;
+}
+.pr10 {
+  padding-right: 20rpx;
+}
