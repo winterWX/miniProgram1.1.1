@@ -7,7 +7,18 @@ Page({
     active:0
   },
   
-  onLoad: function () {
+  onLoad: function (options) {
+    wx.showModal({
+      title: '提示',
+      content: options.id,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   onShow: function () {
     this.setData({
@@ -22,8 +33,8 @@ Page({
   onShareAppMessage: function (options) {
     let shareObj = {
       　　　　title: "",
-      　　　　path: '/pages/index/index',
-      imageUrl: '/images/tabBar/timg.jpg',
+      　　　　path: '/pages/index/index?id='+ 12,
+             imageUrl: '/images/tabBar/timg.jpg',
       　　　　success: function (res) {
         　　　　　　// 转发成功之后的回调
         　　　　　　if (res.errMsg == 'shareAppMessage:ok') {

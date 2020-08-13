@@ -1,0 +1,12 @@
+<view class='recommend'>
+    <view class="recommend-image">
+    
+    </view>
+    <view class="bomtton-btn">
+       <van-button type="default" size="normal" class="leftBtn" bindtap="createShareImage">生成海报</van-button>
+       <van-button type="primary" size="normal" class="rightBtn">邀请微信好友</van-button>
+    </view>
+    <share-box isCanDraw="{{isCanDraw}}" bind:initData="createShareImage" />
+</view>
+
+
