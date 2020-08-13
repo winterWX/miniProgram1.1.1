@@ -20,7 +20,7 @@
 }
 .healthBack{
    width: 50%;
-   height: 300rpx;
+   height: 200rpx;
    background-color: #00a865;
    color: black;
    font-size: 40rpx;
