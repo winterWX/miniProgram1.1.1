@@ -1,3 +1,4 @@
+const app = getApp();
 Component({
   properties: {
     //属性值可以在组件使用时指定
@@ -38,72 +39,70 @@ Component({
       this.setData({
         imgDraw: {
           width: '750rpx',
-          height: '1334rpx',
-          background: 'https://qiniu-image.qtshe.com/20190506share-bg.png',
+          height: '1000rpx',
+          background: '../../images/recommend/poster@2x.png',
           views: [
             {
               type: 'image',
-              url: 'https://qiniu-image.qtshe.com/1560248372315_467.jpg',
+              url: '../../images/timg.jpg',
               css: {
-                top: '32rpx',
-                left: '30rpx',
-                right: '32rpx',
-                width: '688rpx',
-                height: '420rpx',
-                borderRadius: '16rpx'
+                top: '60rpx',
+                left: '0rpx',
+                right: '315rpx',
+                width: '102rpx',
+                height: '102rpx',
+                borderRadius: '50rpx'
               },
-            },
-            {
-              type: 'image',
-              url: wx.getStorageSync('avatarUrl') || 'https://qiniu-image.qtshe.com/default-avatar20170707.png',
-              css: {
-                top: '404rpx',
-                left: '328rpx',
-                width: '96rpx',
-                height: '96rpx',
-                borderWidth: '6rpx',
-                borderColor: '#FFF',
-                borderRadius: '96rpx'
-              }
             },
             {
               type: 'text',
               text: wx.getStorageSync('nickName') || '青团子',
               css: {
-                top: '532rpx',
+                top: '200rpx',
                 fontSize: '28rpx',
                 left: '375rpx',
                 align: 'center',
-                color: '#3c3c3c'
+                color: 'rgb(155,124,86)'
               }
             },
             {
               type: 'text',
-              text: `邀请您参与助力活动`,
+              text: `叮铛猫邀你一起赚积分，换豪礼`,
               css: {
-                top: '576rpx',
+                top: '250rpx',
                 left: '375rpx',
                 align: 'center',
                 fontSize: '28rpx',
-                color: '#3c3c3c'
-              }
-            },
-            {
-              type: 'text',
-              text: `宇宙最萌蓝牙耳机测评员`,
-              css: {
-                top: '644rpx',
-                left: '375rpx',
-                maxLines: 1,
-                align: 'center',
-                fontWeight: 'bold',
-                fontSize: '44rpx',
-                color: '#3c3c3c'
+                color: 'rgb(155,124,86)'
               }
             },
             {
               type: 'image',
-              url: 'https://qiniu-image.qtshe.com/20190605index.jpg',
+              url: '../../images/recommend/gift@2x.png',
+              css: {
+                top: '320rpx',
+                left: '375rpx',
+                width: '220rpx',
+                height: '202rpx',
+                align: 'center',
+              }
+            },
+            {
+              type: 'text',
+              text: `叮铛猫在恒生健康用积分兑换了很多豪礼，跟我来一起玩呀！`,
+              css: {
+                top: '480rpx',
+                left: '375rpx',
+                width:'336rpx',
+                align: 'center',
+                color: 'rgb(102,102,102)',
+                fontSize: '18rpx',
+                lineHeight:'25rpx'
+              }
+            },
+            {
+              type: 'image',
+              url: '',
               css: {
                 top: '834rpx',
                 left: '470rpx',

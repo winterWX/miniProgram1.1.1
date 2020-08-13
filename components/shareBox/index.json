@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "painter": "../../components/painter/painter",
-    "dialog-modal": "/components/dialogModal/index"
+    "dialog-modal": "/components/dialogModal/index",
+    "van-button": "vant-weapp/button/index"
   }
 }

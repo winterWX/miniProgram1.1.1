@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isCanDraw: false
+    isCanDraw: false,
+    userInfoData:{},
+    invitData:{},
+    recommendFlg: false
   },
 
   /**
@@ -13,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     let that =this;
+    that.forShareNum();
     that.recommendNum();
   },
 
@@ -61,10 +65,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (options) {
+          this.setData({
+              userInfoData :app.globalData.userInfo
+          })      
+          console.log('app.globalData.userInfo',app.globalData.userInfo)
+          let userInfoData = JSON.stringify(this.data.userInfoData);
+          let shareObj = {
+      　　　　title: "邀请好友注册领好礼",
+      　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
+             imageUrl: '/images/recommend/img@2x.png',
+      　　}
+      　　// 来自页面内的按钮的转发
+      　　if (options.from == 'button') {
+      　　　　 shareObj.path = '/pages/sharedPage/index?userInfoData='+ userInfoData;
+      　　}
+      　　return shareObj;
   },
-  createShareImage() {
+  createShareImage:function() {
     this.setData({
       isCanDraw: !this.data.isCanDraw
     })
@@ -73,15 +91,52 @@ Page({
   recommendNum: function () {
     var that = this;
     wx.request({
-      url: app.globalData.baseUrl + '/remote/myTopic/batchUpdateMyTopic',
-      method: "POST",
-      data: {},
+      url: app.globalData.baseUrl + '/remote/invite/invitationcode',
+      method: "GET",
       header: {
         'Content-Type': 'application/json',
         'token': app.globalData.token
       },
       success: function (res) {
+          if(res.data.data !==null){
+              that.setData({  
+                invitData: res.data.data
+              })
+              if(res.data.data.invitationList && res.data.data.invitationList.lenght > 0){
+                  that.setData({  
+                    recommendFlg: true
+                  })
+              }else{
+                  that.setData({  
+                    recommendFlg: false
+                  })
+              }
+          }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
+  },
+  //小程序码
+  forShareNum: function () {
+    var that = this;
+    wx.request({
+      url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+ app.globalData.token,
+      method: "POST",
+      data:{
+        path: 'pages/sharedPage/index',
+        width: 88
+      },
+      header: {
+        'Content-Type': 'application/json',
+        'token': app.globalData.token
+      },
+      success: function (res) {
+          // if(res.data.data !==null){
 
+          // }
+          console.log('res',res);
       },
       fail: function (res) {
         console.log('.........fail..........');

@@ -1,10 +1,9 @@
 <view class="share-wrap" wx:if="{{visible}}" catchtouchmove="preventDefault">
   <view class="share-back"></view>
   <view class="share-container">
-    <view class="close" bindtap="handleClose" data-ptpid="ebe9-1656-ad6a-462e"></view>
     <image mode="widthFix" src="{{sharePath}}" class="share-image" />
-    <view class="share-tips">保存图片，叫伙伴们来参与吧</view>
-    <view class="save-btn" bindtap="handlePhotoSaved" data-ptpid="4095-16fd-bc97-4868"></view>
+    <van-button class="save-btn" bindtap="handlePhotoSaved" data-ptpid="4095-16fd-bc97-4868" type="primary" size="large">保存图片</van-button>
+    <view class="share-tips" bindtap="handleClose" data-ptpid="ebe9-1656-ad6a-462e">取消</view>
   </view>
 </view>
 <painter style="position: absolute; top: -9999rpx;" palette="{{imgDraw}}" bind:imgOK="onImgOK" />
