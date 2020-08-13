@@ -13,14 +13,116 @@
   width: 100%;
   height: 100%;
 } */
-.healthBack{
-   width: 750rpx;
-   height: 400rpx;
-   background-color: #00a865;
-   color: black;
-   font-size: 40rpx;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border: 1rpx solid;
+.healthBack {
+  width: 750rpx;
+  height: 400rpx;
+  background-color: #cccccc;
+  color: black;
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-box {
+  margin-bottom: 60px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.progress-box {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #b8b6b6;
+  padding: 0 10px 0 15px;
+  position: relative;
+}
+
+.press-number-box {
+  width: 30px;
+  height: 30px;
+  line-height: 26px;
+  border-radius: 50%;
+  background-color: #09BB07;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  left: 5px;
+  z-index: 2;
+}
+
+.title {
+  background-color: rgb(237, 237, 237);
+  padding: 0 10px 0 10px;
+  height: 36px;
+  line-height: 36px;
+}
+
+.title-tip {
+  font-size: 13px;
+  margin-left: 5px;
+  color: rgb(131, 123, 123);
+
+}
+
+.press-number {
+  font-size: 12px;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 20px;
+  width: 90%;
+  right: 10px;
+}
+
+.gift {
+  width: 29px;
+  height: 25px;
+  z-index: 3;
+  position: absolute;
+  top: 9px;
+  right: 5px;
+}
+
+.userinfo-item-container {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #b8b6b6;
+  padding: 0 0 0 10px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userinfo-item-label {
+  color: #333;
+  font-size: 14px;
+  float: left;
+}
+
+.userinfo-item-value__label {
+  color: #535353;
+  font-size: 14px;
+  /* color: #09BB07; */
+}
+
+.userinfo-item-value__icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+.pr10 {
+  padding-right: 10px;
 }

@@ -48,7 +48,7 @@ Component({
         "requiredLogin": true
       },
       {
-        "text": "我的",
+        "text": "个人信息",
         "iconPath": "../../images/tabBar/mine_default.png",
         "activeIconPath": "../../images/tabBar/mine.png",
         "url": "../mine/index",
@@ -198,6 +198,7 @@ Component({
         success: (res) => {
           if (res.data.code === 200) {
             app.globalData.userInfo = res.data.data
+            app.globalData.userInfoDetail = data.userInfo || res.data.data;
             this.setData({
               isLogin: 1
             })

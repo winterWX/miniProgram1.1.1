@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url:''
+    url: ''
   },
 
   /**
@@ -14,16 +14,16 @@ Page({
    */
   onLoad: function (options) {
     console.log('options+++', options);
-    if (options.url.indexOf('/#') > -1 ){
-        let baseUrlNum = ''
+    if (options.url.indexOf('/#') > -1) {
+      let baseUrlNum = ''
       let startStr = options.url.substr(0, options.url.indexOf('/#'));
-      let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length-1);
-        baseUrlNum = startStr + '?goodsId=' + endStr;
-        console.log('baseUrlNum', baseUrlNum)
-        this.setData({
-          url: baseUrlNum
-        })
-    }else{
+      let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length - 1);
+      baseUrlNum = startStr + '?goodsId=' + endStr;
+      console.log('baseUrlNum', baseUrlNum)
+      this.setData({
+        url: baseUrlNum
+      })
+    } else {
       this.setData({
         url: options.url
       })
@@ -79,12 +79,11 @@ Page({
   onShareAppMessage: function () {
 
   },
-  phoneNumberLogin(data) {
+  phoneNumberLogin (data) {
     const parms = {
       encryptedData: data.encryptedData,
       iv: data.iv,
       openId: app.globalData.userInfo.openId,
-
     }
     wx.showLoading({
       title: 'loading...',
@@ -98,7 +97,7 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200) {
-          app.globalData.token = res.data.data.token         
+          app.globalData.token = res.data.data.token
           wx.redirectTo({
             url: this.data.url,
             complete: () => {
@@ -116,7 +115,7 @@ Page({
       }
     })
   },
-  getPhoneNumber(e) { //获取电话信息     
+  getPhoneNumber (e) { //获取电话信息     
     if (e.detail.errMsg === 'getPhoneNumber:ok') {
       this.phoneNumberLogin(e.detail)
     } else {
@@ -129,7 +128,7 @@ Page({
     }
 
   },
-  stopLogin() {
+  stopLogin () {
     wx.redirectTo({
       url: '../index/index'
     })
