@@ -23,7 +23,7 @@ Page({
    */
   onLoad: function (options) {
     console.log('back');
-    const { nickName, gender, birthday = '', avatarUrl } = app.globalData.userInfoDetail;
+    const { nickName, gender, birthday = '', avatarUrl = '' } = app.globalData.userInfoDetail;
     const userInfo = {
       nickName,
       avatarUrl,
@@ -130,7 +130,7 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          const { nickName, gender, avatarUrl } = app.globalData.userInfoDetail;
+          const { nickName, gender, avatarUrl = '' } = app.globalData.userInfoDetail;
           const { data: { data: {birthday, email, mobile, percentage} } } = res;
           let userInfo = {
             nickName: nickName,

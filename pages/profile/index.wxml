@@ -18,7 +18,8 @@
 		<view class="userinfo-item-container">
 			<text class="userinfo-item-label">头像</text>
 			<view class="userinfo-item-value">
-				<image style="vertical-align: middle;" class="avatar" src="{{userInfo.avatarUrl}}"></image>
+				<image wx:if="{{userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="{{userInfo.avatarUrl}}"></image>
+				<image wx:if="{{!userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="../../images/iconDefultTouxiang.png"></image>
 				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
 		</view>
