@@ -48,7 +48,7 @@ Component({
         "requiredLogin": true
       },
       {
-        "text": "个人信息",
+        "text": "我的",
         "iconPath": "../../images/tabBar/mine_default.png",
         "activeIconPath": "../../images/tabBar/mine.png",
         "url": "../mine/index",
