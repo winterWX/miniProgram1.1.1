@@ -15,7 +15,8 @@
     "pages/searchTag/index",
     "pages/challenge/index",
     "pages/sharedPage/index",
-    "pages/recommend/index"
+    "pages/recommend/index",
+    "pages/profile/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
