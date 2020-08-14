@@ -84,6 +84,8 @@ Page({
       encryptedData: data.encryptedData,
       iv: data.iv,
       openId: app.globalData.userInfo.openId,
+      avatarUrl: app.globalData.userInfo.avatarUrl,
+      invitationCode: app.globalData.userInfo.invitationCode
     }
     wx.showLoading({
       title: 'loading...',
@@ -126,7 +128,6 @@ Page({
         }
       })
     }
-
   },
   stopLogin () {
     wx.redirectTo({

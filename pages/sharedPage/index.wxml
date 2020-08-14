@@ -13,7 +13,7 @@
           <!-- <view class="image-text3">Hi 陈大文</view> -->
           <view class="image-text4">{{userInfoData.nickName}}在恒生健康用积分兑换了很多豪礼，跟我来一起玩呀！</view>
           <view class="image-text5">
-             <van-button type="primary" size="normal" class="rightBtn">立即领取50积分</van-button>
+             <van-button type="primary" size="normal" class="rightBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即领取50积分</van-button>
           </view>
        </view>
     </view>

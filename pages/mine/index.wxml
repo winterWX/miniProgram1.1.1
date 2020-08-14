@@ -1,8 +1,8 @@
 
 <view>
  <view class="healthBack-main">
-		<view class="healthBack" bindtap="healthPage" >乐健康</view>
-		<view class="healthBack" bindtap="sendFriend" >推荐好友</view>
+		<view class="healthBack" bindtap="healthPage">乐健康</view>
+		<view class="healthBack" bindtap="sendFriend">推荐好友</view>
 	</view>
 	<view class="title">
 		<text>基本信息</text>

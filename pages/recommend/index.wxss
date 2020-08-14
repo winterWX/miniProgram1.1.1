@@ -69,9 +69,10 @@ page{
     align-items: center;
     justify-content: center;
 }
-
-
-
+.copyNum-btn{
+   border: 1rpx solid #cccccc !important;
+   color: #cccccc !important;
+}
 .recommend1-image{
   /* position: relative;    */
   width: 100%;

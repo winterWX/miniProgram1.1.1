@@ -8,7 +8,8 @@ Page({
     isCanDraw: false,
     userInfoData:{},
     invitData:{},
-    recommendFlg: false
+    recommendFlg: false,
+    copyNum:false
   },
 
   /**
@@ -66,21 +67,29 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-          this.setData({
-              userInfoData :app.globalData.userInfo
-          })      
-          console.log('app.globalData.userInfo',app.globalData.userInfo)
-          let userInfoData = JSON.stringify(this.data.userInfoData);
-          let shareObj = {
-      　　　　title: "邀请好友注册领好礼",
-      　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
-             imageUrl: '/images/recommend/img@2x.png',
-      　　}
-      　　// 来自页面内的按钮的转发
-      　　if (options.from == 'button') {
-      　　　　 shareObj.path = '/pages/sharedPage/index?userInfoData='+ userInfoData;
-      　　}
-      　　return shareObj;
+      this.setData({
+          userInfoData :app.globalData.userInfo
+      })
+      //code 码
+      this.data.userInfoData.invitationCode = this.data.invitData.invitationCode; 
+      console.log('app.globalData.userInfo',app.globalData.userInfo)
+      let userInfoData = JSON.stringify(this.data.userInfoData);
+      let shareObj = {
+  　　　　title: "邀请好友注册领好礼",
+  　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
+          imageUrl: '/images/recommend/img@2x.png',
+  　　}
+  　　// 来自页面内的按钮的转发
+  　　if (options.from == 'button') {
+  　　　　 shareObj.path = '/pages/sharedPage/index?userInfoData='+ userInfoData;
+  　　}
+  　　return shareObj;
+  },
+  copyNumFun:function(){
+    let that = this;
+      that.setData({
+        copyNum: true
+      })
   },
   createShareImage:function() {
     this.setData({
@@ -102,6 +111,8 @@ Page({
               that.setData({  
                 invitData: res.data.data
               })
+              //添加邀请码到 userInfo
+              app.globalData.userInfo.invitationCode = res.data.data.invitationCode;
               if(res.data.data.invitationList && res.data.data.invitationList.lenght > 0){
                   that.setData({  
                     recommendFlg: true
@@ -122,10 +133,10 @@ Page({
   forShareNum: function () {
     var that = this;
     wx.request({
-      url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+ app.globalData.token,
+      url: app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode',
       method: "POST",
       data:{
-        path: 'pages/sharedPage/index',
+        path: '',
         width: 88
       },
       header: {

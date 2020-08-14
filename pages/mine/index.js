@@ -80,7 +80,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {
+    
+  },
   healthPage: function () {
     if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
       let that = this;
@@ -90,6 +92,11 @@ Page({
     } else {
       this.getWeRunStepsData();
     }
+  },
+  sendFriend: function () {
+      wx.navigateTo({
+        url: '../../pages/recommend/index'
+      })
   },
   getWeRunStepsData: function () {
     let that = this;
