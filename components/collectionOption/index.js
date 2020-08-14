@@ -11,7 +11,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-
   },
 
   /**
@@ -19,7 +18,9 @@ Component({
    */
   methods: {
     handleFell(){
-
+      this.triggerEvent('parentReceive', {
+        handleSuccess: true
+      }, {})
     },
     handleMore(){
       

@@ -1,14 +1,18 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
     active:0,
     successFlg: false
   },
-  
   onLoad: function (options) {
+    if (options.goodsId){
+      this.setData({
+        successFlg: true
+      })
+    }
+    console.log('options.goodsId', options.goodsId);
     wx.showModal({
       title: '提示',
       content: options.id,
@@ -62,6 +66,13 @@ Page({
     　　}
     　　// 返回shareObj
     　　return shareObj;
+  },
+  parentCallBack: function (event){
+    if (event.handleSuccess){
+      this.setData({
+        successFlg: false
+      })
+     }
   },
   myfindPage:function(){
     wx.navigateTo({

@@ -1,7 +1,7 @@
 <view class="miain">   
   <view class="miainContent">
         <view class="miainImage">
-            <image src="../../images/recommend/star.png"></image>
+            <image src="../../images/recommend/star@2x.png"></image>
         </view>
         <view class="miainNum">+50积分</view>
         <view class="miainText">恭喜注册领取成功，50积分入账</view>

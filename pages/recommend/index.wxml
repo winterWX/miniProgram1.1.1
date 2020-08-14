@@ -6,7 +6,7 @@
           <view class="image-text2">好友注册成功，双方各得50积分</view>
           <view class="image-text3">我的邀请码</view>
           <view class="image-text4">{{invitData.invitationCode}}</view>
-          <view class="image-text5"><view class="image-btn">复制邀请码</view></view>
+          <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}" bindtap="copyNumFun">复制邀请码</view></view>
        </view>
       <view class="bomtton-btn">
          <van-button type="default" size="normal" class="leftBtn" bindtap="createShareImage">生成海报</van-button>
@@ -19,7 +19,7 @@
             <view class="image-text1">
                <view class="image-text3">我的邀请码</view>
                <view class="image-text4">{{invitData.invitationCode}}</view>
-               <view class="image-text5"><view class="image-btn">复制邀请码</view></view>
+               <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}" bindtap="copyNumFun">复制邀请码</view></view>
             </view>
             <view class="bomtton-btn1">
                <van-button type="primary" size="large" open-type="share">邀请微信好友</van-button>

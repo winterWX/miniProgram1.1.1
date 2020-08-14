@@ -26,6 +26,7 @@ Component({
       })
     },
     drawPic() {
+      console.log('app.globData.userInfo.avatarUrl', app.globalData)
       if (this.data.sharePath) { //如果已经绘制过了本地保存有图片不需要重新绘制
         this.setData({
           visible: true
@@ -44,9 +45,9 @@ Component({
           views: [
             {
               type: 'image',
-              url: '../../images/timg.jpg',
+              url: app.globalData.userInfo.avatarUrl,
               css: {
-                top: '60rpx',
+                top: '55rpx',
                 left: '0rpx',
                 right: '315rpx',
                 width: '102rpx',
@@ -56,9 +57,9 @@ Component({
             },
             {
               type: 'text',
-              text: wx.getStorageSync('nickName') || '青团子',
+              text: app.globalData.userInfo.nickName,
               css: {
-                top: '200rpx',
+                top: '195rpx',
                 fontSize: '28rpx',
                 left: '375rpx',
                 align: 'center',
@@ -67,7 +68,7 @@ Component({
             },
             {
               type: 'text',
-              text: `叮铛猫邀你一起赚积分，换豪礼`,
+              text: `邀你一起赚积分，换豪礼`,
               css: {
                 top: '250rpx',
                 left: '375rpx',
@@ -89,7 +90,7 @@ Component({
             },
             {
               type: 'text',
-              text: `叮铛猫在恒生健康用积分兑换了很多豪礼，跟我来一起玩呀！`,
+              text: `${app.globalData.userInfo.nickName}在恒生健康用积分兑换了很多豪礼，跟我来一起玩呀！`,
               css: {
                 top: '480rpx',
                 left: '375rpx',
@@ -102,14 +103,26 @@ Component({
             },
             {
               type: 'image',
-              url: '',
+              url: '../../images/recommend/shared.jpg',
               css: {
-                top: '834rpx',
-                left: '470rpx',
+                top: '540rpx',
+                left: '0rpx',
+                right: '270rpx',
                 width: '200rpx',
                 height: '200rpx'
               }
-            }
+            },
+            {
+              type: 'text',
+              text: '长按一起来玩吧',
+              css: {
+                top: '740rpx',
+                left: '375rpx',
+                align: 'center',
+                fontSize: '13.4rpx',
+                color: 'rgb(102,102,102)'
+              }
+            },
           ]
         }
       })
