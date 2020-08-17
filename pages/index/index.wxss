@@ -1,8 +1,11 @@
+page{
+   height: 100%;
+}
 .container{
   position: relative;
 }
 .successsSty{
-   height: 1206rpx;
+   height: 100%;
    background-color: rgba(0,0,0, 0.62);
 }
 .header-main{

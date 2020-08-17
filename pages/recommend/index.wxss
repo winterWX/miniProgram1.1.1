@@ -1,34 +1,45 @@
 page{
   background-color: rgb(237,237,237);
+  height: 100%;
+}
+.recommend{
+  height: 100%;
 }
 .bomtton-btn{
   display: flex;
   align-content:center;
   justify-content: center;
-  margin-top:20rpx;
-  padding: 0rpx 32rpx; 
+  /* margin-top: 3%;
+  padding: 0rpx 32rpx; */
+  height: 10%;  
+  /* background-color: rgba(0,0,0,0.1); */
+  box-shadow: 0  0.5rpx 9rpx 0 rgba(0, 0, 0, 0.1);
 }
 .van-button--normal{
     width: 330rpx !important;
 }
 .leftBtn{
   margin-right: 12rpx; 
+  padding-top: 3%;
 } 
 .rightBtn{
- margin-left:12rpx; 
+ margin-left:12rpx;
+ padding-top: 3%;
+ 
 }
 .recommend-image{
   position: relative;   
+  height: 100%;
 }  
 .recommend-image .personImge{
    width: 100%;
-   height: 1076rpx;
+   height: 89%;
 }
 .image-text{
   width: 100%;
   text-align: center;
   position: absolute;
-  top: 404rpx;
+  top: 380rpx;
 }
 .image-text1{
    font-size: 40rpx;
@@ -48,7 +59,7 @@ page{
 .image-text4{
   font-size: 40rpx;
   color: rgb(102,102,102);
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
   font-family: PingFangSC-Medium;
 }
 .image-btn{

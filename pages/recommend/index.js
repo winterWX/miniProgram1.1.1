@@ -107,13 +107,21 @@ Page({
         'token': app.globalData.token
       },
       success: function (res) {
-          if(res.data.data !==null){
-              that.setData({  
-                invitData: res.data.data
-              })
+          that.setData({  
+            invitData: res.data.data
+          })
+          if(res.data.data !== null){
               //添加邀请码到 userInfo
               app.globalData.userInfo.invitationCode = res.data.data.invitationCode;
-              if(res.data.data.invitationList && res.data.data.invitationList.lenght > 0){
+              if(res.data.data.invitationList.lenght > 0){
+                  res.data.data.invitationList.forEach( v => {
+                      let reg = /^(\d{3})\d{4}(\d{4})$/;
+                      v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
+                  })
+                  res.data.data.personNum = res.data.data.invitationList.lenght;
+                  that.setData({  
+                    invitData: res.data.data
+                  })
                   that.setData({  
                     recommendFlg: true
                   })
