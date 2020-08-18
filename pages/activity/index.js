@@ -1,5 +1,3 @@
-// pages/activity/index.js
-import lottie from 'lottie-miniprogram'
 Page({
 
   /**

@@ -16,6 +16,7 @@ Page({
   onLoad: function (options) {
     let userInfoData = JSON.parse(options.userInfoData);
     console.log('来自转发的数据', userInfoData);
+    app.globalData.invitationCode = userInfoData.invitationCode;
     this.setData({
       userInfoData : userInfoData
     })
@@ -129,7 +130,7 @@ Page({
     })
   },
   getUserInfo(e) { //获取用户信息
-    console.log(e)
+    console.log('获取用户信息',  e)
     if (e.detail.userInfo) {
       this.onLogin(e.detail)
     }
