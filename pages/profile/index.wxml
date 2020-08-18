@@ -22,7 +22,7 @@
 				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
 		</view>
-		<navigator url="../modifyNickname/index?id={{userInfo.id}}">
+		<navigator url="../modifyNickname/index?id={{userInfo.id}}&nickName={{userInfo.nickName}}">
 			<view class="userinfo-item-container">
 				<text class="userinfo-item-label">昵称</text>
 				<view>
