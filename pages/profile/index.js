@@ -147,14 +147,15 @@ Page({
         const { nickName, gender, avatarUrl = '', phoneNumber } = app.globalData.userInfoDetail;
         let sex = app.globalData.userInfoDetail.gender === 1 ? '男' : '女';
         let userInfo = {};
+        let selectedAvatarId = '';
         if (res.data.code == 200) {
-          const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id } } } = res;
+          const { data: { data: { avatar, birthday, email, genderName, mobile = '', percentage, nickname, id } } } = res;
           let formateDate = formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-');
-          let sexValue = gender === 1 ? '男' : '女';
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
+          selectedAvatarId = selectedAvatar && selectedAvatar.id  || '';
           userInfo = {
             nickName: nickname || nickName,
-            gender: sexValue || sex,
+            gender: genderName || sex,
             birthday: formateDate || '--',
             avatarUrl: selectedAvatar && selectedAvatar.url || avatarUrl,
             phone: mobile || phoneNumber || '未绑定',
@@ -173,7 +174,8 @@ Page({
         }
         userInfo.percentage = that.getPercentage(userInfo);
         that.setData({
-          userInfo: userInfo
+          userInfo: userInfo,
+          selectedAvatarId
         })
       },
       fail: function (res) {
@@ -230,7 +232,6 @@ Page({
   /* 编辑内容的弹框 */
   // 点击选项
   getOption: function (e) {
-    console.log(e.currentTarget.dataset);
     // 注意： 这里要先发送接口 成功后设置页面数据
     const {nickName, avatarUrl, birthday } = this.data.userInfo;
     let sexValue = e.currentTarget.dataset.value;
@@ -279,7 +280,6 @@ Page({
   },
   // 点击选项
   getAvatarOption: function (e) {
-    console.log(e.currentTarget.dataset);
     // 注意： 这里要先发送接口 成功后设置页面数据
     // const {nickName, avatarUrl, birthday } = this.data.userInfo;
     let id = e.currentTarget.dataset.value;
@@ -335,7 +335,7 @@ Page({
       that.setData({
         hideFlag: false
       })
-    } else {
+    } else if(e.target.dataset.name === 'avatar') {
       that.setData({
         hideAvatarFlag: false
       })
