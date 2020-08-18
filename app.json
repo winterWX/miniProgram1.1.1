@@ -16,7 +16,8 @@
     "pages/challenge/index",
     "pages/sharedPage/index",
     "pages/recommend/index",
-    "pages/profile/index"
+    "pages/profile/index",
+    "pages/modifyNickname/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

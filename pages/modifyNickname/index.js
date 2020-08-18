@@ -20,8 +20,7 @@ Page({
       avatarUrl: '',
       phone: '',
       email: '未绑定',
-      percentage: 0,
-      id:''
+      percentage: 0
     }
   },
 
@@ -29,6 +28,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('back');
+    console.log(formatTime(new Date()));
     const currentDate = formatTime(new Date()).split(' ')[0].split('/').join('-');
     const { nickName, gender, birthday = '', avatarUrl = '' } = app.globalData.userInfoDetail;
     const userInfo = {
@@ -139,16 +140,14 @@ Page({
       success: function (res) {
         if (res.data.code == 200) {
           const { nickName, gender, avatarUrl = '' } = app.globalData.userInfoDetail;
-          const { data: { data: { birthday, email, mobile, percentage, id } } } = res;
-          let formateDate = formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-');
+          const { data: { data: { birthday, email, mobile, percentage } } } = res;
           let userInfo = {
             nickName: nickName,
             gender: gender === 1 ? '男' : '女',
-            birthday: formateDate || '--',
+            birthday: birthday || '--',
             avatarUrl: avatarUrl,
             phone: mobile || '未绑定',
-            email: email || '未绑定',
-            id: id
+            email: email || '未绑定'
           }
           userInfo.percentage = that.getPercentage(userInfo);
           that.setData({
@@ -172,88 +171,34 @@ Page({
         keysWithValue++;
       }
     }
+    console.log(keysWithValue, allKeys)
     return (keysWithValue / allKeys).toFixed(2) * 100;
   },
   /* 编辑生日 */
   bindDateChange: function (e) {
-    let birthday = e.detail.value.split('-').join('/') || '';
-    let birthdayStr = new Date(birthday).getTime() / 1000;
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/myProfile/edit',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token
-      },
-      data:{
-        "birthday": birthdayStr,
-        "id": this.data.userInfo.id
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let userInfo = {
-            ...that.data.userInfo,
-            birthday: e.detail.value
-          };
-          userInfo.percentage = that.getPercentage(userInfo); 
-          that.setData({
-            userInfo
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    let userInfo = {
+      ...this.data.userInfo,
+      birthday: e.detail.value
+    };
+    userInfo.percentage = this.getPercentage(userInfo); 
+    this.setData({
+      userInfo
     })
   },
   /* 编辑内容的弹框 */
   // 点击选项
   getOption: function (e) {
+    this.data.userInfo.gender = e.currentTarget.dataset.value;
     // 注意： 这里要先发送接口 成功后设置页面数据
-    const {nickName, avatarUrl, birthday } = this.data.userInfo;
-    let sexValue = e.currentTarget.dataset.value;
-    let gender = 1;
-    if (sexValue === '男' || sexValue === '女') {
-      gender = sexValue === '男' ? 1 : 0;
-    } else {
-      gender = '';
+    let userInfo = {
+      ...this.data.userInfo,
+      gender: e.currentTarget.dataset.value
     }
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/myProfile/edit',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token
-      },
-      data:{
-        "gender": gender,
-        "id": this.data.userInfo.id
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let userInfo = {
-            ...that.data.userInfo,
-            gender: e.currentTarget.dataset.value
-          }
-          userInfo.percentage = that.getPercentage(userInfo);
-          that.setData({
-            userInfo: userInfo,
-            hideFlag: true
-          })
-        } else {
-          that.setData({
-            hideFlag: true
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-        this.setData({
-          hideFlag: true
-        })
-      }
+    userInfo.percentage = this.getPercentage(userInfo);
+    this.setData({
+      userInfo: userInfo,
+      hideFlag: true
     })
   },
   //取消

@@ -1,8 +1,7 @@
-
 <view>
 	<view class="title">
 		<text class="title-basic">基本信息</text>
-		<text class="title-tip">(完善既得100积分)</text>
+		<text class="title-tip">(完善即得100积分)</text>
 	</view>
 	<view class="content-box">
 		<view class="progress-box">
@@ -23,14 +22,16 @@
 				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
 		</view>
-		<view class="userinfo-item-container">
-			<text class="userinfo-item-label">昵称</text>
-			<view>
-				<text class="userinfo-item-value__label">{{ userInfo.nickName }}</text>
-				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
+		<navigator url="../modifyNickname/index">
+			<view class="userinfo-item-container">
+				<text class="userinfo-item-label">昵称</text>
+				<view>
+					<text class="userinfo-item-value__label">{{ userInfo.nickName }}</text>
+					<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
+				</view>
 			</view>
-		</view>
-		<view class="userinfo-item-container">
+		</navigator>
+		<view class="userinfo-item-container" catchtap="showModal">
 			<text class="userinfo-item-label">性别</text>
 			<view>
 				<text class="userinfo-item-value__label">{{ userInfo.gender }}</text>
@@ -40,8 +41,12 @@
 		<view class="userinfo-item-container">
 			<text class="userinfo-item-label">生日</text>
 			<view class="userinfo-item-value__label">
-				<text>{{ userInfo.birthday }}</text>
-				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
+				<picker mode="date" value="{{date}}" start="1975-01-01" end="{{ currentDate }}" bindchange="bindDateChange">
+					<view class="picker">
+						<text>{{userInfo.birthday}}</text>
+						<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
+					</view>
+				</picker>
 			</view>
 		</view>
 		<view class="userinfo-item-container">
@@ -81,6 +86,25 @@
 			<view>
 				<text class="userinfo-item-value__label disabled-color">未绑定</text>
 			</view>
+		</view>
+	</view>
+
+
+	<!-- gender modal  -->
+	<view class="modal modal-bottom-dialog" hidden="{{hideFlag}}">
+		<view class="modal-cancel" bindtap="hideModal"></view>
+		<view class="bottom-dialog-body" animation="{{animationData}}">
+			<view class='Mcancel' bindtap='mCancel'>
+				<image class="icon-close" src="../../images/icon-close.png"></image>
+				<text class="gender-title">选择性别</text>
+			</view>
+			<view class='Mselect'>
+				<view class="option-label" wx:for="{{optionList}}" wx:key="unique" data-value='{{item}}' bindtap='getOption'>
+					<text>{{item}}</text>
+					<image wx:if="{{ item === userInfo.gender}}" class="select-icon" src="../../images/btn-selection-control-cell-tick.png"></image>
+				</view>
+			</view>
+			<view></view>
 		</view>
 	</view>
 </view>
