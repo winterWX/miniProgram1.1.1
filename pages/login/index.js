@@ -101,7 +101,8 @@ Page({
       success: (res) => {
         if (res.data.code === 200) {
           console.log('注册接口返回的', res)
-          app.globalData.token = res.data.data.token
+          app.globalData.token = res.data.data.token;
+          app.globalData.phoneNumber = res.data.data.phoneNumber;
           wx.redirectTo({
             url: this.data.url,
             complete: () => {
