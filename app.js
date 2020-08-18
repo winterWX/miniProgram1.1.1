@@ -49,6 +49,7 @@ App({
     userInfoDetail: null,
     baseUrl:'http://106.54.73.125:8102',
     token: '',
+    phoneNumber: '',
     loginSuccess: false,
     isWeRunSteps:false,
     isWeRunStepsFail:false,

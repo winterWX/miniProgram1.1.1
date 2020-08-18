@@ -14,7 +14,7 @@
 			<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="../../images/gift_d.png"></image>
 			<image wx:if="{{ userInfo.percentage === 100}}" class="gift" src="../../images/gift.png"></image>
 		</view>
-		<view class="userinfo-item-container">
+		<view class="userinfo-item-container" catchtap="showModal" data-name='avatar'>
 			<text class="userinfo-item-label">头像</text>
 			<view class="userinfo-item-value">
 				<image wx:if="{{userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="{{userInfo.avatarUrl}}"></image>
@@ -22,7 +22,7 @@
 				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
 		</view>
-		<navigator url="../modifyNickname/index">
+		<navigator url="../modifyNickname/index?id={{userInfo.id}}">
 			<view class="userinfo-item-container">
 				<text class="userinfo-item-label">昵称</text>
 				<view>
@@ -31,7 +31,7 @@
 				</view>
 			</view>
 		</navigator>
-		<view class="userinfo-item-container" catchtap="showModal">
+		<view class="userinfo-item-container" catchtap="showModal" data-name='gender'>
 			<text class="userinfo-item-label">性别</text>
 			<view>
 				<text class="userinfo-item-value__label">{{ userInfo.gender }}</text>
@@ -53,7 +53,6 @@
 			<text class="userinfo-item-label">手机号码</text>
 			<view>
 				<text class="userinfo-item-value__label">{{ userInfo.phone }}</text>
-				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
 		</view>
 		<view class="userinfo-item-container" style="border-bottom: none;">
@@ -92,14 +91,14 @@
 
 	<!-- gender modal  -->
 	<view class="modal modal-bottom-dialog" hidden="{{hideFlag}}">
-		<view class="modal-cancel" bindtap="hideModal"></view>
+		<view class="modal-cancel" bindtap="hideModal" data-name='gender'></view>
 		<view class="bottom-dialog-body" animation="{{animationData}}">
-			<view class='Mcancel' bindtap='mCancel'>
-				<image class="icon-close" src="../../images/icon-close.png"></image>
+			<view class='Mcancel' bindtap='mCancel' data-name='gender'>
+				<image class="icon-close" catchtap='mCancel' data-name='gender' src="../../images/icon-close.png"></image>
 				<text class="gender-title">选择性别</text>
 			</view>
 			<view class='Mselect'>
-				<view class="option-label" wx:for="{{optionList}}" wx:key="unique" data-value='{{item}}' bindtap='getOption'>
+				<view class="gender-content" wx:for="{{optionList}}" wx:key="unique" data-value='{{item}}' bindtap='getOption'>
 					<text>{{item}}</text>
 					<image wx:if="{{ item === userInfo.gender}}" class="select-icon" src="../../images/btn-selection-control-cell-tick.png"></image>
 				</view>
@@ -107,4 +106,25 @@
 			<view></view>
 		</view>
 	</view>
+
+	<!-- avatar edit modal  -->
+	<view class="modal modal-bottom-dialog" hidden="{{hideAvatarFlag}}">
+		<view class="modal-cancel" bindtap="hideModal" data-name='avatar'></view>
+		<view class="bottom-dialog-body" animation="{{animationData}}">
+			<view class='Mcancel' bindtap='mCancel' data-name='avatar'>
+				<image class="icon-close" catchtap='mCancel' data-name='avatar' src="../../images/icon-close.png"></image>
+				<text class="gender-title">选择头像</text>
+			</view>
+			<view class='Mselect flex'>
+					<view class="option-label" style="border-bottom: none;" wx:for="{{avatarObjList}}" wx:key="unique" data-value='{{item.id}}' bindtap='getAvatarOption'>
+						<view class="icon-container">
+            <image class="icon-animal" src="{{item.url}}"></image>
+            <image wx:if="{{selectedAvatarId === item.id}}" class="active" src="../../images/green.png"></image>
+            </view>
+				</view>
+			</view>
+			<view></view>
+		</view>
+	</view>
+
 </view>

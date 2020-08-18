@@ -1,23 +1,11 @@
-<!-- <view class="container">
-	<view class="nickcontainer">
-		<view class="nicknameContainer">
-			<view class="nickname">昵称</view>
-			<input class="input-nickname"></input>
-		</view>
-		<view class='tip'>
-			<text>设置昵称后，朋友找您更方便。</text>
-		</view>
-		<button class="btn-finish" catchtap="finishHnadle">完成</button>
-	</view>
-</view> -->
 <view>
 	<view class="nick">
 		<view class="nickname">昵称</view>
-		<input class="input-name"></input>
+		<input class="input-name" value="{{ nickName }}" bindinput="nameChange"></input>
 		<view class="line"></view>
 	</view>
 	<view class='tip'>
 		<text>设置昵称后，朋友找您更方便。</text>
 	</view>
-	<button class="btn-finish" catchtap="finishHnadle">完成</button>
+	<button class="btn-finish" catchtap="submitHnadle">完成</button>
 </view>
