@@ -36,23 +36,11 @@ Page({
   },
   onShareAppMessage: function () {},
   parentCallBack: function (event){
-    let that = this;
+     let that = this;
     if (event.detail.handleSuccess){
-     wx.showModal({
-      title: '提示',
-      content: '请前往APP应用商店下载，立即体验',
-      success(res) {
-        if (res.confirm) {
-          that.setData({
-            successFlg: false
-          })
-        } else if (res.cancel) {
-          that.setData({
-            successFlg: false
-          })
-        }
-      }
-    })
+      that.setData({
+        successFlg: false
+      })
   }
   },
   myfindPage:function(){

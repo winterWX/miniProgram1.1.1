@@ -23,7 +23,7 @@
    height: 200rpx;
    background-color: #00a865;
    color: black;
-   font-size: 40rpx;
+   font-size: 30rpx;
    display: flex;
    align-items: center;
    justify-content: center;

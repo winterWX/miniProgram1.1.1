@@ -52,7 +52,8 @@ App({
     loginSuccess: false,
     isWeRunSteps:false,
     isWeRunStepsFail:false,
-    isReceiveStatus:false
+    isReceiveStatus:false,
+    invitationCode:''  //邀请码
   },
   firstInit:{
     bootImage: true

@@ -85,8 +85,9 @@ Page({
       iv: data.iv,
       openId: app.globalData.userInfo.openId,
       avatarUrl: app.globalData.userInfo.avatarUrl,
-      invitationCode: app.globalData.userInfo.invitationCode
+      invitationCode: app.globalData.invitationCode
     }
+    console.log('好友注册成功 发送过去的参数',parms)
     wx.showLoading({
       title: 'loading...',
     })
@@ -99,6 +100,7 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200) {
+          console.log('注册接口返回的', res)
           app.globalData.token = res.data.data.token
           wx.redirectTo({
             url: this.data.url,

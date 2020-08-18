@@ -6,7 +6,7 @@
           <view class="image-text2">好友注册成功，双方各得50积分</view>
           <view class="image-text3">我的邀请码</view>
           <view class="image-text4">{{invitData.invitationCode}}</view>
-          <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}" bindtap="copyNumFun">复制邀请码</view></view>
+          <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}"  bindtap="copyNumFun">复制邀请码</view></view>
        </view>
       <view class="bomtton-btn">
          <van-button type="default" size="normal" class="leftBtn" bindtap="createShareImage">生成海报</van-button>
@@ -22,7 +22,9 @@
                <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}" bindtap="copyNumFun">复制邀请码</view></view>
             </view>
             <view class="bomtton-btn1">
-               <van-button type="primary" size="large" open-type="share">邀请微信好友</van-button>
+               <!-- <van-button type="primary" size="large" open-type="share">邀请微信好友</van-button> -->
+                <van-button type="default" size="normal" class="leftBtn" bindtap="createShareImage">生成海报</van-button>
+                <van-button type="primary" size="normal" class="rightBtn" open-type="share">邀请微信好友</van-button>
             </view>
             <view class="bottomText">记得喊TA填写邀请码哟～</view>
          </view>
@@ -30,7 +32,7 @@
                <view class="listPerson-title"> 
                     <view class="listPerson-item">
                         <view>累计成功推荐(人)</view>
-                        <view class="numText">{{invitData.invitationList.lenght}}</view>
+                        <view class="numText">{{invitData.personNum}}</view>
                     </view>
                     <view class="listPerson-item">
                         <view>累计获得积分</view>
@@ -43,7 +45,7 @@
                         <view class="numText1">昵称：{{item.nickName}}</view>
                     </view>
                     <view class="listPerson-itemRight">
-                        <view class="textItem">推荐成功</view>
+                        <view class="textItem textItemTy">推荐成功</view>
                         <view class="numText12">+{{50}}</view>
                     </view>
                </view>
