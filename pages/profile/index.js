@@ -145,14 +145,16 @@ Page({
       },
       success: function (res) {
         const { nickName, gender, avatarUrl = '', phoneNumber } = app.globalData.userInfoDetail;
+        let sex = app.globalData.userInfoDetail.gender === 1 ? '男' : '女';
         let userInfo = {};
         if (res.data.code == 200) {
-          const { data: { data: { avatar, birthday, email, mobile = '', percentage, nickname, id } } } = res;
+          const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id } } } = res;
           let formateDate = formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-');
+          let sexValue = gender === 1 ? '男' : '女';
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
           userInfo = {
             nickName: nickname || nickName,
-            gender: gender === 1 ? '男' : '女',
+            gender: sexValue || sex,
             birthday: formateDate || '--',
             avatarUrl: selectedAvatar && selectedAvatar.url || avatarUrl,
             phone: mobile || phoneNumber || '未绑定',
