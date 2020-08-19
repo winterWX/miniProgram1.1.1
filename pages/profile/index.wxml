@@ -16,8 +16,8 @@
 		</view>
 		<view class="userinfo-item-container" catchtap="showModal" data-name='avatar'>
 			<text class="userinfo-item-label">头像</text>
-			<view class="userinfo-item-value">
-				<image wx:if="{{userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="{{userInfo.avatarUrl}}"></image>
+			<view class="userinfo-item-value" bindtap="showModal" data-name='avatar'>
+				<image wx:if="{{userInfo.avatarUrl}}" bindtap="showModal" data-name='avatar' style="vertical-align: middle;" class="avatar" src="{{userInfo.avatarUrl}}"></image>
 				<image wx:if="{{!userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="../../images/iconDefultTouxiang.png"></image>
 				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
@@ -33,7 +33,7 @@
 		</navigator>
 		<view class="userinfo-item-container" catchtap="showModal" data-name='gender'>
 			<text class="userinfo-item-label">性别</text>
-			<view>
+			<view catchtap="showModal" data-name='gender'>
 				<text class="userinfo-item-value__label">{{ userInfo.gender }}</text>
 				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
@@ -98,9 +98,9 @@
 				<text class="gender-title">选择性别</text>
 			</view>
 			<view class='Mselect'>
-				<view class="gender-content" wx:for="{{optionList}}" wx:key="unique" data-value='{{item}}' bindtap='getOption'>
-					<text>{{item}}</text>
-					<image wx:if="{{ item === userInfo.gender}}" class="select-icon" src="../../images/btn-selection-control-cell-tick.png"></image>
+				<view class="gender-content" wx:for="{{optionList}}" wx:key="unique" data-value='{{item.id}}' bindtap='getOption'>
+					<text>{{item.label}}</text>
+					<image wx:if="{{ item.label === userInfo.gender}}" class="select-icon" src="../../images/btn-selection-control-cell-tick.png"></image>
 				</view>
 			</view>
 			<view></view>
@@ -126,5 +126,5 @@
 			<view></view>
 		</view>
 	</view>
-
 </view>
+<integralAmation integral="{{integral}}" wx:if="{{!received && showAnimation}}"/>
