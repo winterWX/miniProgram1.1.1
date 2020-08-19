@@ -1,19 +1,31 @@
 <view class='recommend'>
-    <view class="recommend-image" wx:if="{{!recommendFlg}}">
+    <view class="recommend-image" wx:if="{{recommendFlg}}">
        <image  class="personImge" src='../../images/recommend/background@2x.png'></image>
        <view class="image-text">
           <view class="image-text1">分享好友 一起赚积分</view>
           <view class="image-text2">好友注册成功，双方各得50积分</view>
-          <view class="image-text3">我的邀请码</view>
-          <view class="image-text4">{{invitData.invitationCode}}</view>
-          <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}"  bindtap="copyNumFun">复制邀请码</view></view>
+          <view class="threeText">- 简单三步立享积分 -</view>
+          <view class='blockImge'>
+              <view class='blockImge-item'>
+                  <image src="../../images/recommend/share@3x.png"></image>
+                  <view  class='blockImge-text' style="width:95rpx;">分享给好友</view>
+              </view>
+              <view class='blockImge-item'>
+                  <image  src="../../images/recommend/register-2@3x.png"></image>
+                  <view class='blockImge-text' style="width:70rpx;">好友注册</view>
+              </view>              
+              <view class='blockImge-item'>
+                  <image  src="../../images/recommend/point-2@3x.png"></image>
+                  <view   class='blockImge-text'>双方各得50积分</view>
+              </view>
+          </view>
        </view>
       <view class="bomtton-btn">
          <van-button type="default" size="normal" class="leftBtn" bindtap="createShareImage">生成海报</van-button>
          <van-button type="primary" size="normal" class="rightBtn" open-type="share">邀请微信好友</van-button>
       </view>
     </view>
-    <view class="recommend1-image" wx:if="{{recommendFlg}}">
+    <view class="recommend1-image" wx:if="{{!recommendFlg}}">
       <view class="recommend1-content">
            <view class="personImgeTop">
                 <image  class="personImge1" src='../../images/recommend/banner@2x.png'></image>
@@ -22,17 +34,11 @@
                     <view class="image-text2">好友注册成功，双方各得50积分</view>
                 </view>
             </view>
-            <view class="image-text1 textBlock">
-               <view class="image-text3">我的邀请码</view>
-               <view class="image-text4">{{invitData.invitationCode}}</view>
-               <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}" bindtap="copyNumFun">复制邀请码</view></view>
-            </view>
             <view class="bomtton-btn1">
                <!-- <van-button type="primary" size="large" open-type="share">邀请微信好友</van-button> -->
                 <van-button type="default" size="normal" class="leftBtn" bindtap="createShareImage">生成海报</van-button>
                 <van-button type="primary" size="normal" class="rightBtn" open-type="share">邀请微信好友</van-button>
             </view>
-            <view class="bottomText">记得喊TA填写邀请码哟～</view>
          </view>
          <view class='listPerson'>
                <view class="listPerson-title"> 

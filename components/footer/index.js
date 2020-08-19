@@ -102,9 +102,7 @@ Component({
             complete: function() {}
           })
         }
-
       }
-
     },
     checkAuthorization() { //检测是否已经授权      
       wx.getSetting({
