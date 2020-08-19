@@ -55,6 +55,12 @@ page{
   color: rgb(102,102,102);
   margin-bottom: 20rpx;
 }
+.threeText{
+  font-size: 28rpx;
+  color: rgb(102,102,102);
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+}
 .image-text4{
   font-size: 40rpx;
   color: rgb(102,102,102);
@@ -79,10 +85,6 @@ page{
     align-items: center;
     justify-content: center;
 }
-.copyNum-btn{
-   border: 1rpx solid #cccccc !important;
-   color: #cccccc !important;
-}
 .recommend1-image{
   /* position: relative;    */
   width: 100%;
@@ -97,17 +99,10 @@ page{
   width: 100%;
 }
 .recommend1-content{
-  height: 680rpx;
   background-color: rgba(255,255,255);
 }
 .bomtton-btn1{
-  padding: 0rpx 30rpx; 
-}
-.bottomText{
-  font-size: 24rpx;
-  color: rgba(102,102,102);
-  height: 99rpx;
-  line-height: 99rpx;
+  padding: 20rpx 30rpx; 
 }
 .listPerson{
   background-color: #ffffff;
@@ -172,6 +167,17 @@ page{
   left: 30rpx;
   text-align: left;
 }
-.textBlock{
-  margin-bottom: 40rpx !important;
+.blockImge{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blockImge-text{
+  font-size: 24rpx;
+  color: rgb(146,146,146);
+  width: 124rpx;
+}
+.blockImge-item image{
+  width: 80rpx;
+  height: 80rpx;
 }
