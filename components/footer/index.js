@@ -56,8 +56,8 @@ Component({
       },
       {
         "text": "设置",
-        "iconPath": "../../images/tabBar/mine_default.png",
-        "activeIconPath": "../../images/tabBar/mine.png",
+        "iconPath": "../../images/setting@2x.png",
+        "activeIconPath": "../../images/setting@2x.png",
         "url": "../setting/index",
         "requiredLogin": true
       }
@@ -148,7 +148,6 @@ Component({
       wx.login({
         success: (res) => {
           wx.hideLoading() 
-          console.log('>>>>>>>>>>>>>>>')
           console.log("res",res)
           if (res.code) {
             //发起网络请求
