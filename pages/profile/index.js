@@ -283,7 +283,7 @@ Page({
     // 注意： 这里要先发送接口 成功后设置页面数据
     // const {nickName, avatarUrl, birthday } = this.data.userInfo;
     let id = e.currentTarget.dataset.value;
-    let avatarUrl = this.data.avatarObjList.find(item  => item.id === id);
+    let avatar = this.data.avatarObjList.find(item  => item.id === id);
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
@@ -300,12 +300,13 @@ Page({
         if (res.data.code == 200) {
           let userInfo = {
             ...that.data.userInfo,
-            avatarUrl: avatarUrl.url
+            avatarUrl: avatar.url
           }
           userInfo.percentage = that.getPercentage(userInfo);
           that.setData({
             userInfo: userInfo,
-            hideAvatarFlag: true
+            hideAvatarFlag: true,
+            selectedAvatarId: avatar.id
           })
         } else {
           that.setData({
