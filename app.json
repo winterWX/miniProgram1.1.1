@@ -18,7 +18,8 @@
     "pages/recommend/index",
     "pages/profile/index",
     "pages/modifyNickname/index",
-    "pages/emailEditor/index"
+    "pages/emailEditor/index",
+    "pages/setting/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

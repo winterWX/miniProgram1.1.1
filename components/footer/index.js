@@ -85,6 +85,7 @@ Component({
    */
   methods: {
     onChange(event) {
+      console.log(event);
       this.setData({
         active: event.detail,
         tempActive: this.data.active
@@ -94,10 +95,12 @@ Component({
         this.setData({
           requiredLogin: true
         })
+        console.log(app.globalData.userInfo);
         if (app.globalData.userInfo !== null) {
           this.setData({
             isLogin: 1
           })
+          console.log('../login/index?url=' + this.data.menu[this.data.active].url);
           wx.navigateTo({
             url: '../login/index?url=' + this.data.menu[this.data.active].url,
           })
