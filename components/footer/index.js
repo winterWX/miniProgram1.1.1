@@ -54,6 +54,13 @@ Component({
         "url": "../mine/index",
         "requiredLogin": true
       },
+      {
+        "text": "设置",
+        "iconPath": "../../images/tabBar/mine_default.png",
+        "activeIconPath": "../../images/tabBar/mine.png",
+        "url": "../setting/index",
+        "requiredLogin": true
+      }
     ],
     isLogin: 0, //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
     requiredLogin: false,
@@ -141,6 +148,7 @@ Component({
       wx.login({
         success: (res) => {
           wx.hideLoading() 
+          console.log('>>>>>>>>>>>>>>>')
           console.log("res",res)
           if (res.code) {
             //发起网络请求
