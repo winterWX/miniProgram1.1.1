@@ -66,7 +66,7 @@ Page({
         url: '../../images/iconLong.png',
         id: 5
       }, {
-        url: '../../images/iconLong.png',
+        url: '../../images/icon-she.png',
         id: 6
       }, {
         url: '../../images/iconMa.png',
