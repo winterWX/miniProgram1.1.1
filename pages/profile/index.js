@@ -170,10 +170,12 @@ Page({
         let userInfo = {};
         let selectedAvatarId = '';
         let received = that.data.received;
+        let avatarNum;
         if (res.data.code == 200) {
           const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id, receive } } } = res;
           let formateDate = formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-');
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
+          avatarNum = avatar;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
           userInfo = {
@@ -195,7 +197,7 @@ Page({
             email: '未绑定',
           }
         }
-        userInfo.percentage = that.getPercentage(userInfo);
+        userInfo.percentage = avatarNum === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
         that.setData({
           userInfo: userInfo,
           selectedAvatarId,
@@ -208,14 +210,18 @@ Page({
     })
     // }
   },
-  getPercentage: function (userInfo) {
+  getPercentage: function (userInfo, flag) {
     let keysWithValue = 0;
     delete userInfo.percentage;
     let allKeys = Object.keys(userInfo).length;
     const invalidValue = ['--', '未绑定', '暂不选择', '保密'];
     for (let key in userInfo) {
       if (userInfo[key] && !invalidValue.includes(userInfo[key])) {
-        keysWithValue++;
+        if(flag && key === 'avatarUrl') {
+          continue;
+        } else {
+          keysWithValue++;
+        }
       }
     }
     return (keysWithValue / allKeys).toFixed(2) * 100;
@@ -316,10 +322,12 @@ Page({
   // 点击选项
   getAvatarOption: function (e) {
     // 注意： 这里要先发送接口 成功后设置页面数据
-    // const {nickName, avatarUrl, birthday } = this.data.userInfo;
     let id = e.currentTarget.dataset.value;
     let avatar = this.data.avatarObjList.find(item => item.id === id);
     let that = this;
+    wx.showToast({
+      icon: 'loading'
+    });
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
       method: "POST",
@@ -337,7 +345,7 @@ Page({
             ...that.data.userInfo,
             avatarUrl: avatar.url
           }
-          let percentage = that.getPercentage(userInfo);
+          let percentage = avatar.id === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           let showAnimation = percentage === 100;
           userInfo.percentage = percentage;
           if (!that.data.received && showAnimation) {
@@ -349,6 +357,10 @@ Page({
             selectedAvatarId: avatar.id,
             showAnimation
           })
+          wx.showToast({
+            title: '修改成功',
+            image: '../../images/success.png'
+          });
         } else {
           that.setData({
             hideAvatarFlag: true
