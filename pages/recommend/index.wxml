@@ -1,5 +1,5 @@
 <view class='recommend'>
-    <view class="recommend-image" wx:if="{{recommendFlg}}">
+    <view class="recommend-image" wx:if="{{!recommendFlg}}">
        <image  class="personImge" src='../../images/recommend/background@2x.png'></image>
        <view class="image-text">
           <view class="image-text1">分享好友 一起赚积分</view>
@@ -25,7 +25,7 @@
          <van-button type="primary" size="normal" class="rightBtn" open-type="share">邀请微信好友</van-button>
       </view>
     </view>
-    <view class="recommend1-image" wx:if="{{!recommendFlg}}">
+    <view class="recommend1-image" wx:if="{{recommendFlg}}">
       <view class="recommend1-content">
            <view class="personImgeTop">
                 <image  class="personImge1" src='../../images/recommend/banner@2x.png'></image>
