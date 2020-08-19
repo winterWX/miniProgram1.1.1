@@ -8,10 +8,31 @@ Page({
     rstProdu: 'rstProdu',
     btnHidden: 'btnHidden',
     active: 4,
+    integral: 100,
+    received: false, // 用户是否领取过积分
+    showAnimation: false,
     hideFlag: true,//true-隐藏  false-显示
     hideAvatarFlag: true,//true-隐藏  false-显示
     selectedAvatarId: '',
-    optionList: ['暂不选择', '男', '女', '保密'],
+    optionList: [{
+      label: '暂不选择',
+      id: 4
+    }, {
+      label: '男',
+      id: 1
+    }, {
+      label: '女',
+      id: 2
+    }, {
+      label: '保密',
+      id: 3
+    }],
+    genderMap: {
+      1: '男',
+      2: '女',
+      3: '保密',
+      4: '暂不选择'
+    },
     gender: '暂不选择',
     animationData: {},//
     currentDate: '',
@@ -23,22 +44,22 @@ Page({
       phone: '',
       email: '未绑定',
       percentage: 0,
-      id:''
+      id: ''
     },
     avatarObjList: [
       {
         url: '../../images/iconDefultTouxiang.png',
         id: 13
       }, {
-        url:  '../../images/iconLaoshu.png',
+        url: '../../images/iconLaoshu.png',
         id: 1
       }, {
         url: '../../images/iconNiu.png',
         id: 2
       }, {
-        url: '../../images/iconLaoshu.png',
+        url: '../../images/iconLaohu.png',
         id: 3
-      },{
+      }, {
         url: '../../images/iconTuzi.png',
         id: 4
       }, {
@@ -112,7 +133,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(this.data);
+    
   },
 
   /**
@@ -148,14 +169,16 @@ Page({
         let sex = app.globalData.userInfoDetail.gender === 1 ? '男' : '女';
         let userInfo = {};
         let selectedAvatarId = '';
+        let received = that.data.received;
         if (res.data.code == 200) {
-          const { data: { data: { avatar, birthday, email, genderName, mobile = '', percentage, nickname, id } } } = res;
+          const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id, receive } } } = res;
           let formateDate = formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-');
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
-          selectedAvatarId = selectedAvatar && selectedAvatar.id  || '';
+          selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
+          received = receive;
           userInfo = {
             nickName: nickname || nickName,
-            gender: genderName || sex,
+            gender: that.data.genderMap[gender] || sex,
             birthday: formateDate || '--',
             avatarUrl: selectedAvatar && selectedAvatar.url || avatarUrl,
             phone: mobile || phoneNumber || '未绑定',
@@ -175,7 +198,8 @@ Page({
         userInfo.percentage = that.getPercentage(userInfo);
         that.setData({
           userInfo: userInfo,
-          selectedAvatarId
+          selectedAvatarId,
+          received
         })
       },
       fail: function (res) {
@@ -186,7 +210,7 @@ Page({
   },
   getPercentage: function (userInfo) {
     let keysWithValue = 0;
-    delete userInfo.percentage
+    delete userInfo.percentage;
     let allKeys = Object.keys(userInfo).length;
     const invalidValue = ['--', '未绑定', '暂不选择', '保密'];
     for (let key in userInfo) {
@@ -208,7 +232,7 @@ Page({
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
-      data:{
+      data: {
         "birthday": birthdayStr,
         "id": this.data.userInfo.id
       },
@@ -218,9 +242,15 @@ Page({
             ...that.data.userInfo,
             birthday: e.detail.value
           };
-          userInfo.percentage = that.getPercentage(userInfo); 
+          let percentage = that.getPercentage(userInfo);
+          userInfo.percentage = percentage;
+          let showAnimation = percentage == 100;
+          if (!that.data.received && showAnimation) {
+            that.rewardIntegral();
+          }
           that.setData({
-            userInfo
+            userInfo,
+            showAnimation
           })
         }
       },
@@ -233,14 +263,13 @@ Page({
   // 点击选项
   getOption: function (e) {
     // 注意： 这里要先发送接口 成功后设置页面数据
-    const {nickName, avatarUrl, birthday } = this.data.userInfo;
-    let sexValue = e.currentTarget.dataset.value;
-    let gender = 1;
-    if (sexValue === '男' || sexValue === '女') {
-      gender = sexValue === '男' ? 1 : 0;
-    } else {
-      gender = '';
+    let genderValueMap = {
+      1: 1,
+      2: 2,
+      3: 3,
+      4: null
     }
+    let gender = genderValueMap[e.currentTarget.dataset.value];
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
@@ -249,7 +278,7 @@ Page({
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
-      data:{
+      data: {
         "gender": gender,
         "id": this.data.userInfo.id
       },
@@ -257,12 +286,18 @@ Page({
         if (res.data.code == 200) {
           let userInfo = {
             ...that.data.userInfo,
-            gender: e.currentTarget.dataset.value
+            gender: that.data.genderMap[e.currentTarget.dataset.value]
           }
-          userInfo.percentage = that.getPercentage(userInfo);
+          let percentage = that.getPercentage(userInfo);
+          userInfo.percentage = percentage;
+          let showAnimation = percentage === 100;
+          if (!that.data.received && showAnimation) {
+            that.rewardIntegral();
+          }
           that.setData({
             userInfo: userInfo,
-            hideFlag: true
+            hideFlag: true,
+            showAnimation
           })
         } else {
           that.setData({
@@ -283,7 +318,7 @@ Page({
     // 注意： 这里要先发送接口 成功后设置页面数据
     // const {nickName, avatarUrl, birthday } = this.data.userInfo;
     let id = e.currentTarget.dataset.value;
-    let avatar = this.data.avatarObjList.find(item  => item.id === id);
+    let avatar = this.data.avatarObjList.find(item => item.id === id);
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
@@ -292,7 +327,7 @@ Page({
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
-      data:{
+      data: {
         "avatar": id,
         "id": this.data.userInfo.id
       },
@@ -302,11 +337,17 @@ Page({
             ...that.data.userInfo,
             avatarUrl: avatar.url
           }
-          userInfo.percentage = that.getPercentage(userInfo);
+          let percentage = that.getPercentage(userInfo);
+          let showAnimation = percentage === 100;
+          userInfo.percentage = percentage;
+          if (!that.data.received && showAnimation) {
+            that.rewardIntegral();
+          }
           that.setData({
             userInfo: userInfo,
             hideAvatarFlag: true,
-            selectedAvatarId: avatar.id
+            selectedAvatarId: avatar.id,
+            showAnimation
           })
         } else {
           that.setData({
@@ -336,7 +377,7 @@ Page({
       that.setData({
         hideFlag: false
       })
-    } else if(e.target.dataset.name === 'avatar') {
+    } else if (e.target.dataset.name === 'avatar') {
       that.setData({
         hideAvatarFlag: false
       })
@@ -356,7 +397,6 @@ Page({
 
   // 隐藏遮罩层
   hideModal: function (e) {
-    console.log(e.target.dataset)
     var that = this;
     var animation = wx.createAnimation({
       duration: 400,//动画的持续时间 默认400ms
@@ -374,9 +414,9 @@ Page({
           hideAvatarFlag: true
         })
       }
-     /*  that.setData({
-        hideFlag: true
-      }) */
+      /*  that.setData({
+         hideFlag: true
+       }) */
       clearTimeout(time1);
       time1 = null;
     }, 220)//先执行下滑动画，再隐藏模块
@@ -397,4 +437,26 @@ Page({
       animationData: this.animation.export(),
     })
   },
+  // 领取积分
+  rewardIntegral: function () {
+    let that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/myprofile/homepage/rewardIntegral',
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          that.setData({
+            received: true
+          })
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
+  }
 })

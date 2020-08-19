@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "footer": "../../components/footer/index"
+    "footer": "../../components/footer/index",
+    "integralAmation": "../../components/integralAmation/index"
   },
   "navigationBarTitleText": "个人信息"
 }
