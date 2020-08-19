@@ -1,7 +1,5 @@
 {
-  "usingComponents": {
-    "footer": "../../components/footer/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "昵称",
   "backgroundColor": "black"
 }

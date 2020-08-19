@@ -73,8 +73,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('profileprofileprofile')
     const currentDate = formatTime(new Date()).split(' ')[0].split('/').join('-');
     const { nickName, gender, birthday = '', avatarUrl = '' } = app.globalData.userInfoDetail;
+    console.log('app.globalData.userInfoDetail原始数据', app.globalData.userInfoDetail);
     const userInfo = {
       nickName,
       avatarUrl,
@@ -84,6 +86,7 @@ Page({
       userInfo: Object.assign(this.data.userInfo, userInfo),
       currentDate
     })
+    console.log('userInfo首次', this.data.userInfo);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -177,6 +180,7 @@ Page({
           userInfo: userInfo,
           selectedAvatarId
         })
+        console.log('userInfo接口',that.userInfo);
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -397,4 +401,16 @@ Page({
       animationData: this.animation.export(),
     })
   },
+  nickNameChange:function(){
+    let that = this;
+    wx.navigateTo({
+      url: `/pages/modifyNickname/index?id=${that.data.userInfo.id}&nickName=${that.data.userInfo.nickName}`,
+    })
+  },
+  emaidEdit:function(){
+    let that = this;
+    wx.navigateTo({
+      url: `/pages/emailEditor/index?email=${that.data.userInfo.email}`,
+    })
+  }
 })

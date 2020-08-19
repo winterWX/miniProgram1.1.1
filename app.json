@@ -17,7 +17,8 @@
     "pages/sharedPage/index",
     "pages/recommend/index",
     "pages/profile/index",
-    "pages/modifyNickname/index"
+    "pages/modifyNickname/index",
+    "pages/emailEditor/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

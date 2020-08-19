@@ -153,7 +153,8 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200) {
-          app.globalData.userInfo = res.data.data
+          app.globalData.userInfo = res.data.data;
+          app.globalData.userInfoDetail = data.userInfo || res.data.data;
           this.setData({
             isLogin: 1
           })

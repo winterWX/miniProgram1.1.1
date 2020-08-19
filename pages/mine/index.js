@@ -88,6 +88,11 @@ Page({
         url: '../../pages/recommend/index'
       })
   },
+  profilePage: function () {
+    wx.navigateTo({
+      url: '../../pages/profile/index'
+    })
+},
   getWeRunStepsData: function () {
     let that = this;
     wx.getWeRunData({

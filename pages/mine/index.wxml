@@ -3,9 +3,8 @@
  <view class="healthBack-main">
 		<view class="healthBack" bindtap="healthPage" >乐健康</view>
 		<view class="healthBack" bindtap="sendFriend" >推荐好友</view>
-		<view class="healthBack">
-			 <navigator class="icon" url="../profile/index">个人信息</navigator>
-		</view>
+		<view class="healthBack" bindtap="profilePage">个人信息	</view>
+		<!-- <navigator class="icon" url="../profile/index">个人信息</navigator> -->
 	</view>
 	<footer active="{{active}}"></footer>
 </view>

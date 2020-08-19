@@ -15,8 +15,14 @@
     </view>
     <view class="recommend1-image" wx:if="{{recommendFlg}}">
       <view class="recommend1-content">
-            <image  class="personImge1" src='../../images/recommend/banner@2x.png'></image>
-            <view class="image-text1">
+           <view class="personImgeTop">
+                <image  class="personImge1" src='../../images/recommend/banner@2x.png'></image>
+                <view class="personImgeText">
+                    <view class="image-text1">分享好友 一起赚积分</view>
+                    <view class="image-text2">好友注册成功，双方各得50积分</view>
+                </view>
+            </view>
+            <view class="image-text1 textBlock">
                <view class="image-text3">我的邀请码</view>
                <view class="image-text4">{{invitData.invitationCode}}</view>
                <view class="image-text5"><view class="image-btn {{copyNum ? 'copyNum-btn' : ''}}" bindtap="copyNumFun">复制邀请码</view></view>

@@ -1,12 +1,12 @@
-import { formatNumber, formatTime } from '../../utils/util';
 const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    id: '',
-    nickName: ''
+    email: '',
+    codeNum:'',
+    emailEDit: true
   },
 
   /**
@@ -14,8 +14,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData ({
-      nickName: options.nickName,
-      id: options.id
+      email: options.email
     })
   },
   /**
@@ -28,9 +27,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      active: 4
-    })
   },
 
   /**
@@ -67,23 +63,58 @@ Page({
   onShareAppMessage: function () { },
   nameChange: function(e) {
     this.setData({
-      nickName: e.detail.value
+      email: e.detail.value
     })
   },
-  submitHnadle() {
-    if (!this.data.nickName) {
-      return;
-    }
+  codeNumChange:function(e){
+    this.setData({
+      codeNum: e.detail.value
+    })
+  },
+  //发送邮箱
+  sendEmail() {
+    let that = this;
     wx.request({
-      url: app.globalData.baseUrl + '/remote/myProfile/edit',
+      url: app.globalData.baseUrl + '/remote/email/send',
       method: "POST",
       header: {
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
       data:{
-        "nickname": this.data.nickName,
-        "id": this.data.id
+        "email": this.data.email
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          that.setData({
+            emailEDit:false
+          })
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+        wx.showToast({
+          titel: '服务繁忙， 请稍后重试。',
+          icon: 'loading'
+        })
+      }
+    })
+  },
+  //绑定邮箱
+  bindEmail() {
+    let that = this;
+    if(!that.data.codeNum){
+        return;
+    }
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/email/bind',
+      method: "POST",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      data:{
+        code: that.data.codeNum
       },
       success: function (res) {
         if (res.data.code == 200) {
@@ -113,5 +144,4 @@ Page({
       }
     })
   }
-
 })
