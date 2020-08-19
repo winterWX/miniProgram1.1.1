@@ -8,8 +8,7 @@ Page({
     isCanDraw: false,
     userInfoData:{},
     invitData:{},
-    recommendFlg: false,
-    copyNum:false
+    recommendFlg: false
   },
 
   /**
@@ -61,18 +60,6 @@ Page({
    */
   onReachBottom: function () {
 
-  },
-
-  copyNumFun:function(){
-    let that = this;
-      that.setData({
-        copyNum: true
-      })
-      wx.showToast({
-        title: '复制成功',
-        icon: 'success',
-        duration: 2000
-      })
   },
   createShareImage:function() {
     this.setData({
