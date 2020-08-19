@@ -42,7 +42,7 @@
 		<view class="userinfo-item-container">
 			<text class="userinfo-item-label">生日</text>
 			<view class="userinfo-item-value__label">
-				<picker mode="date" value="{{date}}" start="1975-01-01" end="{{ currentDate }}" bindchange="bindDateChange">
+				<picker mode="date" value="{{date}}" start="1920-01-01" end="{{ currentDate }}" bindchange="bindDateChange">
 					<view class="picker">
 						<text>{{userInfo.birthday}}</text>
 						<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
