@@ -71,7 +71,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   },
   healthPage: function () {
     if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
@@ -84,15 +84,20 @@ Page({
     }
   },
   sendFriend: function () {
-      wx.navigateTo({
-        url: '../../pages/recommend/index'
-      })
+    wx.navigateTo({
+      url: '../../pages/recommend/index'
+    })
   },
   profilePage: function () {
     wx.navigateTo({
       url: '../../pages/profile/index'
     })
-},
+  },
+  settingPage: function () {
+    wx.navigateTo({
+      url: '../../pages/setting/index'
+    })
+  },
   getWeRunStepsData: function () {
     let that = this;
     wx.getWeRunData({
