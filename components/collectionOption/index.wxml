@@ -2,6 +2,7 @@
   <view class="miainContent">
         <view class="miainImage">
             <image src="../../images/recommend/star@2x.png"></image>
+            <!-- <canvas id="canvas" type="2d"></canvas> -->
         </view>
         <view class="miainNum">+50积分</view>
         <view class="miainText">恭喜注册领取成功，50积分入账</view>

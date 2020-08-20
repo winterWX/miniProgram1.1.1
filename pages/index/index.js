@@ -10,6 +10,7 @@ Page({
       this.setData({
         successFlg: true
       })
+      this.selectComponent('#filterCmp').restFilterDatas();
     }
     console.log('options.goodsId', options.goodsId);
     wx.showModal({
