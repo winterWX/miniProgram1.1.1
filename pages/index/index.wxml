@@ -4,6 +4,6 @@
       <view class="header-mainItem" bindtap="challengePage">我的活动</view>
       <view class="header-mainItem" bindtap="myfindPage">健康资讯</view>
     </view>
-    <collectionOption  wx:if="{{successFlg}}"  id='filterCmp'  bind:parentReceive="parentCallBack" />
+    <collectionOption  wx:if="{{successFlg}}"  bind:parentReceive="parentCallBack" />
 </view>
-<footer active="{{active}}" wx:if="{{!successFlg}}" ></footer>
+

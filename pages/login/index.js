@@ -102,14 +102,12 @@ Page({
         if (res.data.code === 200) {
           console.log('注册接口返回的', res)
           const { data: { data: { token, phoneNumber, integral={}}}} = res;
-          // // app.globalData.token = res.data.data.token;
-          // // app.globalData.phoneNumber = res.data.data.phoneNumber;
-          // let newRegister = res.data.data.integral.flag
           console.log('---', token, phoneNumber, integral);
           app.globalData.token = token;
           app.globalData.phoneNumber = phoneNumber;
           console.log('this.data.url', this.data.url);
-          let integralFlg = integral.flag !== undefined ? integral.flag : false
+          let integralFlg = integral.flag !== undefined ? integral.flag : '';
+          console.log('integralFlg新老',integralFlg);
           wx.redirectTo({
             url: this.data.url + '?flag=' + integralFlg,
             complete: () => {

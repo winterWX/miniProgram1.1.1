@@ -1,8 +1,12 @@
 <view class="miain">   
   <view class="miainContent">
         <view class="miainImage">
-            <image src="../../images/recommend/star@2x.png"></image>
-            <!-- <canvas id="canvas" type="2d" style="width: 300px; height: 300px"></canvas> -->
+            <image  class="miainImage0" src="../../images/recommend/img_0.png"></image>
+            <image  class="miainImage1" src="../../images/recommend/img_1.png"></image>
+            <image  animation="{{aniLeft}}" class="miainImage2" src="../../images/recommend/img_2.png"></image>
+            <image  animation="{{ani}}" class="miainImage3" src="../../images/recommend/img_3.png"></image>
+            <image animation="{{aniLe4}}" class="miainImage4" src="../../images/recommend/img_4.png"></image>
+            <image animation="{{aniLe5}}"  class="miainImage4" src="../../images/recommend/img_5.png"></image>
         </view>
         <view class="miainNum">+50积分</view>
         <view class="miainText">恭喜注册领取成功，50积分入账</view>
@@ -12,3 +16,4 @@
         <view class="share-tips" bindtap="handleMore" data-ptpid="ebe9-1656-ad6a-462e">查看更多积分任务</view>
       </view>
 </view>
+

@@ -7,8 +7,9 @@
   right: 0;
   z-index: 999;
 }
-.miainImage image{
-  width: 582rpx;
+.miainImage{
+  position: relative;
+  width: 100%;
   height: 374rpx;
 }
 .share-tips{
@@ -39,4 +40,42 @@
   color: rgb( 255,255,255);
   margin-bottom: 60rpx;
 }
-
+.miainImage0{
+   z-index: 1000;
+   position: absolute;
+   left: 225rpx;
+   top: 120rpx;   
+   width: 200rpx;
+   height: 200rpx;
+}
+.miainImage1{
+  position: absolute;
+  left: 135rpx;
+  width: 374rpx;
+  height: 374rpx;
+  top: 50rpx;  
+}
+.miainImage2{
+  position: absolute;
+  width: 150rpx;
+  height: 150rpx;
+  left: 238rpx;
+  top: 149rpx;  
+}
+.miainImage3{
+  position: absolute;
+  width: 150rpx;
+  height: 150rpx;
+  top: 169rpx;
+  right: 111px;
+}
+.miainImage4{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+}
+.miainImage5{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+}
