@@ -8,11 +8,11 @@
           <view class='blockImge'>
               <view class='blockImge-item'>
                   <image src="../../images/recommend/share@3x.png"></image>
-                  <view  class='blockImge-text' style="width:95rpx;">分享给好友</view>
+                  <view  class='blockImge-text blockImgeFirst'>分享给好友</view>
               </view>
               <view class='blockImge-item'>
                   <image  src="../../images/recommend/register-2@3x.png"></image>
-                  <view class='blockImge-text' style="width:70rpx;">好友注册</view>
+                  <view class='blockImge-text blockImgeTwo'>好友注册</view>
               </view>              
               <view class='blockImge-item'>
                   <image  src="../../images/recommend/point-2@3x.png"></image>
