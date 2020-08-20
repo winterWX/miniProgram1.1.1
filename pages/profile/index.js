@@ -184,10 +184,7 @@ Page({
           if (percentage === '100%' && !receive) {
             that.setData({
               showAnimation: true,
-              received: true
             });
-            received = true;
-            that.rewardIntegral();
           }
           userInfo = {
             nickName: nickname || nickName,
@@ -263,9 +260,9 @@ Page({
           let percentage = that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage == 100;
-          if (!that.data.received && showAnimation) {
+        /*   if (!that.data.received && showAnimation) {
             that.rewardIntegral();
-          }
+          } */
           that.setData({
             userInfo,
             showAnimation
@@ -309,9 +306,9 @@ Page({
           let percentage = that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage === 100;
-          if (!that.data.received && showAnimation) {
+         /*  if (!that.data.received && showAnimation) {
             that.rewardIntegral();
-          }
+          } */
           that.setData({
             userInfo: userInfo,
             hideFlag: true,
@@ -360,9 +357,9 @@ Page({
           let percentage = avatar.id === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           let showAnimation = percentage === 100;
           userInfo.percentage = percentage;
-          if (!that.data.received && showAnimation) {
+         /*  if (!that.data.received && showAnimation) {
             that.rewardIntegral();
-          }
+          } */
           that.setData({
             userInfo: userInfo,
             hideAvatarFlag: true,
@@ -475,6 +472,7 @@ Page({
   },
   // 领取积分
   rewardIntegral: function () {
+    console.log('>>>>>>>>>>>>>>>>>>')
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myprofile/homepage/rewardIntegral',
