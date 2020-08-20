@@ -16,11 +16,16 @@ page {
 .input-name {
   height: 48rpx;
   line-height: 48rpx;
-  margin-bottom: 28rpx;
+  margin-bottom: 9rpx;
+  padding-left:5rpx; 
 }
 .line {
   height: 2rpx;
   background-color: rgb(146, 146, 146);
+}
+.showErroeLine {
+  height: 2rpx;
+  background-color: red;
 }
 .tip {
   font-size: 28rpx;
@@ -30,3 +35,11 @@ page {
 .btnSty{
   padding: 0rpx 30rpx;
 }
+.showErroeSty{
+  font-size: 28rpx;
+  color: red;
+  padding-top: 3rpx;
+  padding-left: 5rpx;
+}
+
+

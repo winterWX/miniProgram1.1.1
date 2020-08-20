@@ -6,7 +6,9 @@ Page({
   data: {
     email: '',
     codeNum:'',
-    emailEDit: true
+    emailEDit: true,
+    showErroe:false,
+    showEmai: false
   },
 
   /**
@@ -62,18 +64,31 @@ Page({
    */
   onShareAppMessage: function () { },
   nameChange: function(e) {
+      this.setData({
+        email: e.detail.value
+      })
     this.setData({
-      email: e.detail.value
+      showEmail: false
     })
   },
   codeNumChange:function(e){
-    this.setData({
-      codeNum: e.detail.value
-    })
+      this.setData({
+        codeNum: e.detail.value
+      })
+      this.setData({
+        showErroe: false
+      })
   },
   //发送邮箱
   sendEmail() {
     let that = this;
+    //邮箱验证
+    if (!(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(that.data.email))){ 
+        this.setData({
+          showEmail: true
+        })
+        return;
+    }
     wx.request({
       url: app.globalData.baseUrl + '/remote/email/send',
       method: "POST",
@@ -133,6 +148,10 @@ Page({
                 })
             }
           });
+        }else{
+          that.setData({
+            showErroe:true
+          })
         }
       },
       fail: function (res) {
