@@ -460,13 +460,13 @@ Page({
   },
   nickNameChange:function(){
     let that = this;
-    wx.navigateTo({
+    wx.redirectTo({
       url: `/pages/modifyNickname/index?id=${that.data.userInfo.id}&nickName=${that.data.userInfo.nickName}`,
     })
   },
   emaidEdit:function(){
     let that = this;
-    wx.navigateTo({
+    wx.redirectTo({
       url: `/pages/emailEditor/index?email=${that.data.userInfo.email}`,
     })
   },
