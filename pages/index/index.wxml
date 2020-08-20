@@ -6,4 +6,5 @@
     </view>
     <collectionOption  wx:if="{{successFlg}}"  bind:parentReceive="parentCallBack" />
 </view>
+<footer active="{{active}}"></footer>
 
