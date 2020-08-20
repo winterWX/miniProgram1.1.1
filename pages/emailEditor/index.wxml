@@ -8,7 +8,7 @@
 			<view class='tip'>
 				<text>你需要通过邮箱获取验证码完成绑定。请输入正确有效的邮箱地址。</text>
 			</view>
-			<view class="btnSty"><van-button type="primary" size="large" bindtap="sendEmail">验证电子邮箱</van-button></view>
+			<view class="btnSty"><van-button disabled="{{email=== '未绑定' || email.length === 0}}" type="primary" size="large" bindtap="sendEmail">验证电子邮箱</van-button></view>
 		</view>
 		<view wx:if="{{!emailEDit}}">
 				<view class="nick">
@@ -19,6 +19,6 @@
 				<view class='tip'>
 					<text>验证码已经通过电子邮件发送至您的电子邮件地址Olivia1234@gmail.com。请及时查看邮箱并输入验证码完成绑定。</text>
 				</view>
-				<view class="btnSty"><van-button type="primary" size="large" bindtap="bindEmail">完成</van-button></view>
+				<view class="btnSty"><van-button disabled="{{codeNum.length === 0}}" type="primary" size="large" bindtap="bindEmail">完成</van-button></view>
 		</view>
 </view>

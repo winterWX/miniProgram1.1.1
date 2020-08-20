@@ -181,6 +181,14 @@ Page({
           avatarNum = avatar;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
+          if (percentage === '100%' && !receive) {
+            that.setData({
+              showAnimation: true,
+              received: true
+            });
+            received = true;
+            that.rewardIntegral();
+          }
           userInfo = {
             nickName: nickname || nickName,
             gender: that.data.genderMap[gender] || sex,

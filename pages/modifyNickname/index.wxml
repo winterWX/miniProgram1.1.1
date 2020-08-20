@@ -7,5 +7,5 @@
 	<view class='tip'>
 		<text>设置昵称后，朋友找您更方便。</text>
 	</view>
-	<button class="btn-finish" catchtap="submitHnadle">完成</button>
+	<button disabled="{{ nickName.length === 0 }}" class="btn-finish" catchtap="submitHnadle">完成</button>
 </view>
