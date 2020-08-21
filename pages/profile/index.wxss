@@ -237,55 +237,11 @@
   bottom: 1rpx;
 }
 
-.up {
+.animation-gift {
   width: 56rpx;
-  height: 24rpx;
+  height: 56rpx;
   position: absolute;
-  right: 38rpx;
-  bottom: 67rpx;
+  right: 30rpx;
+  bottom: 30rpx;
 }
 
-.down {
-  width: 50rpx;
-  height: 33rpx;
-  position: absolute;
-  bottom: 32rpx;
-  right: 42rpx;
-}
-.animate-bounce-down {
-  animation: bounce-down 1.0s linear infinite;
-}
-
-.animate-bounce-up {
-  animation: bounce-up 1.0s linear infinite;
-}
-
-@keyframes bounce-up {
-  25% {
-    transform: translateY(2px);
-  }
-
-  50%,
-  100% {
-    transform: translateY(0);
-  }
-
-  75% {
-    transform: translateY(-2px);
-  }
-}
-
-@keyframes bounce-down {
-  25% {
-    transform: translateY(-2px);
-  }
-
-  50%,
-  100% {
-    transform: translateY(0);
-  }
-
-  75% {
-    transform: translateY(2px);
-  }
-}
