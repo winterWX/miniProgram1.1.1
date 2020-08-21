@@ -7,8 +7,9 @@ Page({
   },
   onLoad: function (options) {
     console.log('options.flag',options.flag)
-    if (options.flag === true){   //是 true
-      console.log('options.flag里面',options.flag)
+    console.log('options.flag', typeof options.flag)
+    if (options.flag === 'true'){   //是 true
+        console.log('options.flag里面',options.flag)
         this.setData({
           successFlg: true
         })
