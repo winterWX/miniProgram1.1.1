@@ -11,6 +11,7 @@ Page({
     integral: 100,
     received: false, // 用户是否领取过积分
     showAnimation: false,
+    isGetReword: false,
     hideFlag: true,//true-隐藏  false-显示
     hideAvatarFlag: true,//true-隐藏  false-显示
     selectedAvatarId: '',
@@ -136,7 +137,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
@@ -181,10 +182,13 @@ Page({
           avatarNum = avatar;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
-          if (percentage === '100%' && !receive) {
-            that.setData({
-              showAnimation: true,
-            });
+          if (percentage === '100%') {
+            if (!receive) {
+              that.setData({
+                showAnimation: true,
+              });
+            }
+
           }
           userInfo = {
             nickName: nickname || nickName,
@@ -211,7 +215,7 @@ Page({
           selectedAvatarId,
           received
         })
-        console.log('userInfo接口',that.userInfo);
+        console.log('userInfo接口', that.userInfo);
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -226,7 +230,7 @@ Page({
     const invalidValue = ['--', '未绑定', '暂不选择', '保密'];
     for (let key in userInfo) {
       if (userInfo[key] && !invalidValue.includes(userInfo[key])) {
-        if(flag && key === 'avatarUrl') {
+        if (flag && key === 'avatarUrl') {
           continue;
         } else {
           keysWithValue++;
@@ -260,9 +264,6 @@ Page({
           let percentage = that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage == 100;
-        /*   if (!that.data.received && showAnimation) {
-            that.rewardIntegral();
-          } */
           that.setData({
             userInfo,
             showAnimation
@@ -306,9 +307,6 @@ Page({
           let percentage = that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage === 100;
-         /*  if (!that.data.received && showAnimation) {
-            that.rewardIntegral();
-          } */
           that.setData({
             userInfo: userInfo,
             hideFlag: true,
@@ -357,9 +355,6 @@ Page({
           let percentage = avatar.id === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           let showAnimation = percentage === 100;
           userInfo.percentage = percentage;
-         /*  if (!that.data.received && showAnimation) {
-            that.rewardIntegral();
-          } */
           that.setData({
             userInfo: userInfo,
             hideAvatarFlag: true,
@@ -458,13 +453,13 @@ Page({
       animationData: this.animation.export(),
     })
   },
-  nickNameChange:function(){
+  nickNameChange: function () {
     let that = this;
     wx.redirectTo({
       url: `/pages/modifyNickname/index?id=${that.data.userInfo.id}&nickName=${that.data.userInfo.nickName}`,
     })
   },
-  emaidEdit:function(){
+  emaidEdit: function () {
     let that = this;
     wx.redirectTo({
       url: `/pages/emailEditor/index?email=${that.data.userInfo.email}`,
@@ -472,7 +467,6 @@ Page({
   },
   // 领取积分
   rewardIntegral: function () {
-    console.log('>>>>>>>>>>>>>>>>>>')
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myprofile/homepage/rewardIntegral',
@@ -484,7 +478,8 @@ Page({
       success: function (res) {
         if (res.data.code == 200) {
           that.setData({
-            received: true
+            received: true,
+            isGetReword: true
           })
         }
       },
