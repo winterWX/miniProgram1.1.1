@@ -101,12 +101,18 @@ Page({
       success: (res) => {
         if (res.data.code === 200) {
           console.log('用户注册接口返回的', res.data.data)
-          const { data: { data: { token, phoneNumber, integral={}}}} = res;
+          const { data: { data: { token, phoneNumber,integral={}}}} = res;
           console.log('---发回值', token, phoneNumber, integral);
           app.globalData.token = token;
           app.globalData.phoneNumber = phoneNumber;
           let integralFlg = integral.flag !== undefined ? integral.flag : '';
           console.log('integralFlg新老',integralFlg);
+          console.log("urlurl",this.data.url + '?flag=' + integralFlg)
+          // if(res.data.data.integral.flag !== undefined){
+          //    integralFlg = res.data.data.integral.flag === 'true' ? 'new': 'old'
+          // }else{
+          //   integralFlg = ''
+          // }
           console.log("urlurl",this.data.url + '?flag=' + integralFlg)
           wx.redirectTo({
             url: this.data.url + '?flag=' + integralFlg,

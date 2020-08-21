@@ -6,5 +6,5 @@
     </view>
     <collectionOption  wx:if="{{successFlg}}" id="filterCmp"  bind:parentReceive="parentCallBack" />
 </view>
-<footer active="{{active}}"></footer>
+<footer active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 
