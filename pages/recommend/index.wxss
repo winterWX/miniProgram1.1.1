@@ -122,14 +122,12 @@ page{
 .numText{
   margin-top: 20rpx;
 }
-
-
-
 .listPerson-title1{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10rpx;
 }
 
 .listPerson-item1{
@@ -189,4 +187,8 @@ page{
 }
 .blockImgeTwo{
   padding: 0rpx 30rpx;
+}
+.van-button--primary {
+  background-color: #00a865 !important;
+  border: 1px solid #00a865 !important;
 }

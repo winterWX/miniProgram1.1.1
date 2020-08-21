@@ -36,7 +36,6 @@ Component({
       this.setData({
         aniLeft:  animation.export()
       })
-    },
-    handleMore() {}
+    }
   }
 })

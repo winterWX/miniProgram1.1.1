@@ -80,11 +80,13 @@ Page({
      data:{
       "currentPage": 1,
       "pageSize": 10,
-      "topic": parase !== undefined ? parase : '热门推荐'
+      //"topic": parase !== undefined ? parase : '热门推荐'
+      "topic": parase !== undefined ? parase : ''
     },
     method:"POST",
      header:{
-       'Content-Type':'application/json'
+       'Content-Type':'application/json',
+       'native-app':'mini'
      },
     success: function (res) {
        if(res.data.data !== null){
