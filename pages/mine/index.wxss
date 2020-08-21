@@ -29,3 +29,10 @@
    justify-content: center;
    border: 1rpx solid #ccc;
 }
+.red {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
+  background-color: red;
+  margin-left: 8rpx;
+}

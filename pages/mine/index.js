@@ -6,6 +6,7 @@ Page({
   data: {
     rstProdu: 'rstProdu',
     btnHidden: 'btnHidden',
+    complete: false,
     active: 4,
     userInfo: {
       nickName: '',
@@ -34,6 +35,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let complete = wx.getStorageSync('compelete');
+    this.setData({
+      complete
+    })
     this.setData({
       active: 4
     })

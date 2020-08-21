@@ -12,6 +12,7 @@ Page({
     received: false, // 用户是否领取过积分
     showAnimation: false,
     isGetReword: false,
+    complete: false, // 完成注册标志
     hideFlag: true,//true-隐藏  false-显示
     hideAvatarFlag: true,//true-隐藏  false-显示
     selectedAvatarId: '',
@@ -121,8 +122,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let complete = wx.getStorageSync('compelete');
     this.setData({
-      active: 4
+      complete
     })
   },
 
@@ -177,7 +179,7 @@ Page({
         let avatarNum;
         if (res.data.code == 200) {
           const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id, receive } } } = res;
-          let formateDate = formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-');
+          let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-') : '--';
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
           avatarNum = avatar;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
@@ -193,7 +195,7 @@ Page({
           userInfo = {
             nickName: nickname || nickName,
             gender: that.data.genderMap[gender] || sex,
-            birthday: formateDate || '--',
+            birthday: formateDate,
             avatarUrl: selectedAvatar && selectedAvatar.url || avatarUrl,
             phone: mobile || phoneNumber || '未绑定',
             email: email || '未绑定',
@@ -221,7 +223,6 @@ Page({
         console.log('.........fail..........');
       }
     })
-    // }
   },
   getPercentage: function (userInfo, flag) {
     let keysWithValue = 0;
@@ -285,7 +286,14 @@ Page({
       3: 3,
       4: null
     }
-    let gender = genderValueMap[e.currentTarget.dataset.value];
+    let propValue = e.currentTarget.dataset.value;
+    let gender = genderValueMap[propValue];
+    if (propValue === 3 || propValue === 4) {
+      wx.setStorageSync('compelete',false);
+      this.setData({
+        complete: false
+      })
+    }
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
@@ -481,6 +489,7 @@ Page({
             received: true,
             isGetReword: true
           })
+          wx.setStorageSync('compelete', true);
         }
       },
       fail: function (res) {
