@@ -131,4 +131,5 @@
 		</view>
 	</view>
 </view>
-<integralAmation integral="{{integral}}" wx:if="{{!received && showAnimation}}"/>
+<integralAmation integral="{{integral}}" wx:if="{{showAnimation && isGetReword}}"/>
+
