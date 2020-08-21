@@ -4,20 +4,22 @@
 		<text class="title-tip">(完善即得100积分)</text>
 	</view>
 	<view class="content-box">
-		<view class="progress-box">
-			<view class="press-number-box">
-				<text class="press-number">{{ userInfo.percentage }}%</text>
+		<block wx:if="{{!complete}}">
+			<view class="progress-box">
+				<view class="press-number-box">
+					<text class="press-number">{{ userInfo.percentage }}%</text>
+				</view>
+				<view class="progress-bar">
+					<progress border-radius="8" percent="{{ userInfo.percentage }}" active-color="#09BB07" active stroke-width="10" />
+				</view>
+				<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="../../images/gift_d.png"></image>
+				<image wx:if="{{ userInfo.percentage === 100 && received }}" class="gift" src="../../images/gift.png"></image>
+				<view wx:if="{{ showAnimation && !received }}" catchtap="rewardIntegral">
+					<image class="up animate-bounce-up" src="../../images/box/giftBoxTop.png"></image>
+					<image class="down animate-bounce-down" src="../../images/box/giftBoxDown.png"></image>
+				</view>
 			</view>
-			<view class="progress-bar">
-				<progress border-radius="8" percent="{{ userInfo.percentage }}" active-color="#09BB07" active stroke-width="10" />
-			</view>
-			<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="../../images/gift_d.png"></image>
-			<image wx:if="{{ userInfo.percentage === 100 && received }}" class="gift" src="../../images/gift.png"></image>
-			<view wx:if="{{ showAnimation && !received }}" catchtap="rewardIntegral">
-				<image class="up animate-bounce-up" src="../../images/box/giftBoxTop.png"></image>
-				<image class="down animate-bounce-down" src="../../images/box/giftBoxDown.png"></image>
-			</view>
-		</view>
+		</block>
 		<view class="userinfo-item-container" catchtap="showModal" data-name='avatar'>
 			<text class="userinfo-item-label">头像</text>
 			<view class="userinfo-item-value" bindtap="showModal" data-name='avatar'>
@@ -27,13 +29,13 @@
 			</view>
 		</view>
 		<!-- <navigator url="../modifyNickname/index?id={{userInfo.id}}&nickName={{userInfo.nickName}}"> -->
-			<view class="userinfo-item-container" bindtap="nickNameChange">
-				<text class="userinfo-item-label">昵称</text>
-				<view>
-					<text class="userinfo-item-value__label">{{ userInfo.nickName }}</text>
-					<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
-				</view>
+		<view class="userinfo-item-container" bindtap="nickNameChange">
+			<text class="userinfo-item-label">昵称</text>
+			<view>
+				<text class="userinfo-item-value__label">{{ userInfo.nickName }}</text>
+				<image class="userinfo-item-value__icon" src="../../images/back@2x.png"></image>
 			</view>
+		</view>
 		<!-- </navigator> -->
 		<view class="userinfo-item-container" catchtap="showModal" data-name='gender'>
 			<text class="userinfo-item-label">性别</text>
@@ -59,7 +61,7 @@
 				<text class="userinfo-item-value__label">{{ userInfo.phone }}</text>
 			</view>
 		</view>
-		<view class="userinfo-item-container" style="border-bottom: none;"  bindtap="emaidEdit">
+		<view class="userinfo-item-container" style="border-bottom: none;" bindtap="emaidEdit">
 			<text class="userinfo-item-label">邮箱地址</text>
 			<view>
 				<text wx:if="{{ userInfo.email !== '未绑定'}}" class="userinfo-item-value__label">{{ userInfo.email }}</text>
@@ -120,16 +122,15 @@
 				<text class="gender-title">选择头像</text>
 			</view>
 			<view class='Mselect flex'>
-					<view class="option-label" style="border-bottom: none;" wx:for="{{avatarObjList}}" wx:key="unique" data-value='{{item.id}}' bindtap='getAvatarOption'>
-						<view class="icon-container">
-            <image class="icon-animal" src="{{item.url}}"></image>
-            <image wx:if="{{selectedAvatarId === item.id}}" class="active" src="../../images/green.png"></image>
-            </view>
+				<view class="option-label" style="border-bottom: none;" wx:for="{{avatarObjList}}" wx:key="unique" data-value='{{item.id}}' bindtap='getAvatarOption'>
+					<view class="icon-container">
+						<image class="icon-animal" src="{{item.url}}"></image>
+						<image wx:if="{{selectedAvatarId === item.id}}" class="active" src="../../images/green.png"></image>
+					</view>
 				</view>
 			</view>
 			<view></view>
 		</view>
 	</view>
 </view>
-<integralAmation integral="{{integral}}" wx:if="{{showAnimation && isGetReword}}"/>
-
+<integralAmation integral="{{integral}}" wx:if="{{showAnimation && isGetReword}}" />
