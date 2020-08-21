@@ -84,7 +84,8 @@ Page({
     },
     method:"POST",
      header:{
-       'Content-Type':'application/json'
+       'Content-Type':'application/json',
+       'native-app':'mini'
      },
     success: function (res) {
        if(res.data.data !== null){
