@@ -1,4 +1,4 @@
-// components/collectionOption/index.js
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -22,8 +22,21 @@ Component({
         handleSuccess: true
       }, {})
     },
-    handleMore(){
-      
-    }
+    restFilterDatas(){
+      var animation = wx.createAnimation({
+        duration: 1000,
+        timingFunction: 'ease',
+        delay: 100
+      });
+      animation.opacity().translate(100, -88).step()
+      this.setData({
+        ani:  animation.export()
+      })
+      animation.opacity().translate(-85, -45).step()
+      this.setData({
+        aniLeft:  animation.export()
+      })
+    },
+    handleMore() {}
   }
 })

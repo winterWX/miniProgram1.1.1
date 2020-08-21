@@ -1,26 +1,6 @@
-/* .progress {
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-.progress canvas {
-  width: 100%;
-  height: 100%;
-} */
-.healthBack-main{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .healthBack{
-   width: 50%;
-   height: 200rpx;
+   width: 100%;
+   height: 100rpx;
    background-color: #00a865;
    color: black;
    font-size: 30rpx;
@@ -35,4 +15,6 @@
   border-radius: 8rpx;
   background-color: red;
   margin-left: 8rpx;
+  position: absolute;
+  right: 30rpx;
 }

@@ -158,8 +158,8 @@ Page({
           this.setData({
             isLogin: 1
           })
-          let successLogin = true;  //新用户注册成功的标志
-          let urlBase = '../index/index/#' + successLogin;
+          //let successLogin = true;  //新用户注册成功的标志
+          let urlBase = '../index/index';
           wx.redirectTo({
             url: '../login/index?url=' + urlBase,
           })

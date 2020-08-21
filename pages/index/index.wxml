@@ -1,9 +1,10 @@
 <view class="container {{successFlg ? 'successsSty':''}}">
-    <view class="header-main">
+    <view class="header-main" wx:if="{{!successFlg}}">
       <view class="header-mainItem"></view>
       <view class="header-mainItem" bindtap="challengePage">我的活动</view>
       <view class="header-mainItem" bindtap="myfindPage">健康资讯</view>
     </view>
     <collectionOption  wx:if="{{successFlg}}"  bind:parentReceive="parentCallBack" />
 </view>
-<footer active="{{active}}" wx:if="{{!successFlg}}" ></footer>
+<footer active="{{active}}"></footer>
+

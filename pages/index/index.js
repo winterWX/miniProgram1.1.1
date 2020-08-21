@@ -6,12 +6,12 @@ Page({
     successFlg: false
   },
   onLoad: function (options) {
-    if (options.goodsId){
-      this.setData({
-        successFlg: true
-      })
+    if (options.flag === true){   //是 true
+        this.setData({
+          successFlg: true
+        })
+      this.selectComponent('#filterCmp').restFilterDatas();
     }
-    console.log('options.goodsId', options.goodsId);
     wx.showModal({
       title: '提示',
       content: options.id,

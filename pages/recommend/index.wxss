@@ -175,9 +175,18 @@ page{
 .blockImge-text{
   font-size: 24rpx;
   color: rgb(146,146,146);
+  padding: 0rpx 6rpx;
+}
+.blockImge-item{
   width: 124rpx;
 }
 .blockImge-item image{
   width: 80rpx;
   height: 80rpx;
+}
+.blockImgeFirst{
+   padding: 0rpx 16rpx;
+}
+.blockImgeTwo{
+  padding: 0rpx 30rpx;
 }

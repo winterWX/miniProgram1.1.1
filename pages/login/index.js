@@ -101,10 +101,15 @@ Page({
       success: (res) => {
         if (res.data.code === 200) {
           console.log('注册接口返回的', res)
-          app.globalData.token = res.data.data.token;
-          app.globalData.phoneNumber = res.data.data.phoneNumber;
+          const { data: { data: { token, phoneNumber, integral={}}}} = res;
+          console.log('---', token, phoneNumber, integral);
+          app.globalData.token = token;
+          app.globalData.phoneNumber = phoneNumber;
+          console.log('this.data.url', this.data.url);
+          let integralFlg = integral.flag !== undefined ? integral.flag : '';
+          console.log('integralFlg新老',integralFlg);
           wx.redirectTo({
-            url: this.data.url,
+            url: this.data.url + '?flag=' + integralFlg,
             complete: () => {
 
             }
