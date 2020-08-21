@@ -15,8 +15,7 @@
 				<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="../../images/gift_d.png"></image>
 				<image wx:if="{{ userInfo.percentage === 100 && received }}" class="gift" src="../../images/gift.png"></image>
 				<view wx:if="{{ showAnimation && !received }}" catchtap="rewardIntegral">
-					<image class="up animate-bounce-up" src="../../images/box/giftBoxTop.png"></image>
-					<image class="down animate-bounce-down" src="../../images/box/giftBoxDown.png"></image>
+					<image class="animation-gift" src="../../images/box/gift.gif"></image>
 				</view>
 			</view>
 		</block>
