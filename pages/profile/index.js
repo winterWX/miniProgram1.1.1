@@ -122,24 +122,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let complete = wx.getStorageSync('compelete');
+    let complete = wx.getStorageSync('complete');
     this.setData({
       complete
     })
+    wx.clearStorageSync('complete');
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let complete = this.data.complete;
+    wx.setStorageSync('complete', complete);
   },
 
   /**
@@ -176,28 +178,31 @@ Page({
         let userInfo = {};
         let selectedAvatarId = '';
         let received = that.data.received;
-        let avatarNum;
         if (res.data.code == 200) {
           const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id, receive } } } = res;
           let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-') : '--';
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
-          avatarNum = avatar;
+          let poneeNumber = mobile || phoneNumber;
+          let [a, b, c, d, e, f, g, h, i, j, k] = poneeNumber;
+          let newMobile = `${a}${b}${c}****${h}${i}${j}${k}`;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
           if (percentage === '100%') {
+            that.setData({
+              compelete: true
+            })
             if (!receive) {
               that.setData({
                 showAnimation: true,
               });
             }
-
           }
           userInfo = {
             nickName: nickname || nickName,
             gender: that.data.genderMap[gender] || sex,
             birthday: formateDate,
             avatarUrl: selectedAvatar && selectedAvatar.url || avatarUrl,
-            phone: mobile || phoneNumber || '未绑定',
+            phone: newMobile || '未绑定',
             email: email || '未绑定',
             id: id
           }
@@ -211,11 +216,13 @@ Page({
             email: '未绑定',
           }
         }
-        userInfo.percentage = avatarNum === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
+        let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
+        userInfo.percentage = percentage;
         that.setData({
           userInfo: userInfo,
           selectedAvatarId,
-          received
+          received,
+          complete: percentage === 100
         })
         console.log('userInfo接口', that.userInfo);
       },
@@ -226,10 +233,12 @@ Page({
   },
   getPercentage: function (userInfo, flag) {
     let keysWithValue = 0;
-    delete userInfo.percentage;
-    let allKeys = Object.keys(userInfo).length;
+    let keys = Object.keys(userInfo).filter(item => {
+      return !['id', 'percentage'].includes(item);
+    });
+    let allKeys = keys.length;
     const invalidValue = ['--', '未绑定', '暂不选择', '保密'];
-    for (let key in userInfo) {
+    for (let key of keys) {
       if (userInfo[key] && !invalidValue.includes(userInfo[key])) {
         if (flag && key === 'avatarUrl') {
           continue;
@@ -238,13 +247,14 @@ Page({
         }
       }
     }
-    return parseInt((keysWithValue / allKeys).toFixed(2) * 100);
+    return keysWithValue <= 0 ? "0" : parseInt((keysWithValue / allKeys).toFixed(2) * 100);
   },
   /* 编辑生日 */
   bindDateChange: function (e) {
     let birthday = e.detail.value.split('-').join('/') || '';
     let birthdayStr = new Date(birthday).getTime() / 1000;
     let that = this;
+    let selectedAvatarId = this.data.selectedAvatarId;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
       method: "POST",
@@ -262,12 +272,13 @@ Page({
             ...that.data.userInfo,
             birthday: e.detail.value
           };
-          let percentage = that.getPercentage(userInfo);
+          let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage == 100;
           that.setData({
             userInfo,
-            showAnimation
+            showAnimation,
+            complete: showAnimation
           })
         }
       },
@@ -277,24 +288,19 @@ Page({
     })
   },
   /* 编辑内容的弹框 */
-  // 点击选项
+  // 编辑性别
   getOption: function (e) {
     // 注意： 这里要先发送接口 成功后设置页面数据
     let genderValueMap = {
       1: 1,
       2: 2,
       3: 3,
-      4: null
+      4: 4
     }
     let propValue = e.currentTarget.dataset.value;
     let gender = genderValueMap[propValue];
-    if (propValue === 3 || propValue === 4) {
-      wx.setStorageSync('compelete',false);
-      this.setData({
-        complete: false
-      })
-    }
     let that = this;
+    let selectedAvatarId = this.data.selectedAvatarId;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
       method: "POST",
@@ -312,13 +318,14 @@ Page({
             ...that.data.userInfo,
             gender: that.data.genderMap[e.currentTarget.dataset.value]
           }
-          let percentage = that.getPercentage(userInfo);
+          let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage === 100;
           that.setData({
             userInfo: userInfo,
             hideFlag: true,
-            showAnimation
+            showAnimation,
+            complete: showAnimation
           })
         } else {
           that.setData({
@@ -367,7 +374,8 @@ Page({
             userInfo: userInfo,
             hideAvatarFlag: true,
             selectedAvatarId: avatar.id,
-            showAnimation
+            showAnimation,
+            complete: showAnimation
           })
           wx.showToast({
             title: '修改成功',
@@ -489,7 +497,6 @@ Page({
             received: true,
             isGetReword: true
           })
-          wx.setStorageSync('compelete', true);
         }
       },
       fail: function (res) {

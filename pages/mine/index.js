@@ -8,7 +8,7 @@ Page({
     btnHidden: 'btnHidden',
     complete: false,
     active: 4,
-    userInfo: {
+    /* userInfo: {
       nickName: '',
       gender: '',
       birthday: '--',
@@ -16,7 +16,7 @@ Page({
       phone: '',
       email: '未绑定',
       percentage: 0
-    }
+    } */
   },
 
   /**
@@ -35,7 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let complete = wx.getStorageSync('compelete');
+    let complete = wx.getStorageSync('complete');
     this.setData({
       complete
     })
