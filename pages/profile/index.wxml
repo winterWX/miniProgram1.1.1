@@ -7,7 +7,8 @@
 		<block wx:if="{{ !complete }}">
 			<view class="progress-box">
 				<view class="press-number-box">
-					<text class="press-number">{{ userInfo.percentage }}%</text>
+					<!-- <text class="press-number">{{ userInfo.percentage }}%</text> -->
+					<text class="press-number">{{inputedInfoNum}}/{{ requiredInput }}</text>
 				</view>
 				<view class="progress-bar">
 					<progress border-radius="8" percent="{{ userInfo.percentage }}" active-color="#09BB07" active active-mode="forwards" stroke-width="10" />
@@ -86,7 +87,10 @@
 			</view>
 		</view>
 		<view class="userinfo-item-container" style="border-bottom: none;">
-			<text class="userinfo-item-label">恒生会员码</text>
+		<view class="userinfo-item-label" style="vertical-align: middle">
+			<text>恒生会员码</text>
+			<image src="../../images/icon-bubble.png" style="vertical-align: middle;width: 36rpx;height: 36rpx;margin-left: 20rpx"></image>
+		</view>
 			<view>
 				<text class="userinfo-item-value__label disabled-color">未绑定</text>
 			</view>
