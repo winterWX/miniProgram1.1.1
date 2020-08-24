@@ -16,6 +16,8 @@ Page({
     hideFlag: true,//true-隐藏  false-显示
     hideAvatarFlag: true,//true-隐藏  false-显示
     selectedAvatarId: '',
+    requiredInput: 6,
+    inputedInfoNum: 2,
     optionList: [{
       label: '暂不选择',
       id: 4
@@ -247,6 +249,10 @@ Page({
         }
       }
     }
+    this.setData({
+      inputedInfoNum: keysWithValue,
+      requiredInput: keys.length
+    })
     return keysWithValue <= 0 ? "0" : parseInt((keysWithValue / allKeys).toFixed(2) * 100);
   },
   /* 编辑生日 */

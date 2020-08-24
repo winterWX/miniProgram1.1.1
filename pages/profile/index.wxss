@@ -1,3 +1,6 @@
+page {
+  background-color: rgb(237, 237, 237);
+}
 .healthBack {
   width: 50%;
   height: 200rpx;
@@ -9,15 +12,13 @@
   justify-content: center;
   border: 1rpx solid #ccc;
 }
-
-.content-box {}
-
 .progress-box {
   height: 106rpx;
   line-height: 106rpx;
   border-bottom: 2rpx solid #b8b6b6;
   padding: 0 38rpx 0 32rpx;
   position: relative;
+  background-color: white;
 }
 
 .press-number-box {
