@@ -238,7 +238,7 @@ Page({
         }
       }
     }
-    return (keysWithValue / allKeys).toFixed(2) * 100;
+    return parseInt((keysWithValue / allKeys).toFixed(2) * 100);
   },
   /* 编辑生日 */
   bindDateChange: function (e) {
