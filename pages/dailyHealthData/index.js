@@ -96,5 +96,10 @@ Page({
       }
     })
 
+  },
+  nagigateStep: function() {
+    wx.navigateTo({
+      url: '../step/index',
+    })
   }
 })
