@@ -19,7 +19,8 @@
     "pages/profile/index",
     "pages/modifyNickname/index",
     "pages/emailEditor/index",
-    "pages/setting/index"
+    "pages/setting/index",
+    "pages/step/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

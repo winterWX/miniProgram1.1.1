@@ -125,8 +125,10 @@ Page({
    */
   onShow: function () {
     let complete = wx.getStorageSync('complete');
+    let received = wx.getStorageSync('received');
     this.setData({
-      complete
+      complete,
+      received
     })
     wx.clearStorageSync('complete');
   },
@@ -143,8 +145,8 @@ Page({
    */
   onUnload: function () {
     wx.clearStorageSync('complete');
-    let complete = this.data.complete;
-    wx.setStorageSync('complete', complete);
+    wx.setStorageSync('complete', this.data.complete);
+    wx.setStorageSync('received', this.data.received);
   },
 
   /**
@@ -190,6 +192,7 @@ Page({
           let newMobile = `${a}${b}${c}****${h}${i}${j}${k}`;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
+          wx.setStorageSync('received', received);
           if (percentage === '100%') {
             that.setData({
               compelete: true
@@ -507,7 +510,8 @@ Page({
           that.setData({
             received: true,
             isGetReword: true
-          })
+          });
+          wx.setStorageSync('received', true)
         }
       },
       fail: function (res) {
