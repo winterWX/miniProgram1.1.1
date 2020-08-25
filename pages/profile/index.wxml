@@ -4,10 +4,9 @@
 		<text class="title-tip">(完善即得100积分)</text>
 	</view>
 	<view class="content-box">
-		<block wx:if="{{ !complete }}">
+		<block wx:if="{{ !received }}">
 			<view class="progress-box">
 				<view class="press-number-box">
-					<!-- <text class="press-number">{{ userInfo.percentage }}%</text> -->
 					<view class="press-number">
 					<text style="font-size:32rpx;">{{inputedInfoNum}}</text>/<text style="font-size:24rpx;">{{ requiredInput }}</text>
 					</view>
@@ -17,7 +16,7 @@
 				</view>
 				<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="../../images/gift_d.png"></image>
 				<image wx:if="{{ userInfo.percentage === 100 && received }}" class="gift" src="../../images/gift.png"></image>
-				<view wx:if="{{ showAnimation && !received }}" catchtap="rewardIntegral">
+				<view wx:if="{{ userInfo.percentage === 100 && !received }}" catchtap="rewardIntegral">
 					<image class="animation-gift" src="../../images/box/gift.gif"></image>
 				</view>
 			</view>

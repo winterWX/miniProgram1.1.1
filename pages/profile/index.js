@@ -142,6 +142,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    wx.clearStorageSync('complete');
     let complete = this.data.complete;
     wx.setStorageSync('complete', complete);
   },
@@ -220,6 +221,7 @@ Page({
         }
         let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
         userInfo.percentage = percentage;
+        wx.setStorageSync('complete', percentage === 100);
         that.setData({
           userInfo: userInfo,
           selectedAvatarId,
@@ -281,6 +283,7 @@ Page({
           let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage == 100;
+          wx.setStorageSync('complete', showAnimation);
           that.setData({
             userInfo,
             showAnimation,
@@ -327,6 +330,7 @@ Page({
           let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           userInfo.percentage = percentage;
           let showAnimation = percentage === 100;
+          wx.setStorageSync('complete', showAnimation);
           that.setData({
             userInfo: userInfo,
             hideFlag: true,
@@ -375,6 +379,7 @@ Page({
           }
           let percentage = avatar.id === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           let showAnimation = percentage === 100;
+          wx.setStorageSync('complete', showAnimation);
           userInfo.percentage = percentage;
           that.setData({
             userInfo: userInfo,

@@ -1,7 +1,7 @@
 <!--pages/dailyHealthData/index.wxml-->
 <view class="container">
   <view class="panel">
-    <view class="panel_header">
+    <view class="panel_header" catchtap="nagigateStep">
       <view class="icon"><image src="../../images/icon-walking-data@2x.png" mode="aspectFit"/></view>
       <view class="title title_ft">步行数据</view>      
     </view>
