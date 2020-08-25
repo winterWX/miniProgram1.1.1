@@ -3,5 +3,5 @@
     "van-button": "vant-weapp/button/index"
   },
   "navigationBarTitleText": "绑定邮箱",
-  "backgroundColor": "black"
+  "navigationBarTextStyle": "black"
 }
