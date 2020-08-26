@@ -1,0 +1,16 @@
+<viwe class="content-main">
+    <viwe class="blackTop">
+        <image src='../../images/healthInfo/close@2x.png'></image>
+        <viwe class="blackText">记录身高</viwe>
+    </viwe>
+    <viwe class="blackInput">
+        <text class="blackInputText">身高（厘米）</text>
+        <viwe class="blackView">
+          <input  value="{{numData}}" />
+        </viwe>
+        <viwe class="lineSty"></viwe>
+    </viwe>
+    <viwe class="bottomBtn">
+       <van-button  type="primary" size="large">保存</van-button>
+    </viwe>
+</viwe>
