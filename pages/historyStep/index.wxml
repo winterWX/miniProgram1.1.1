@@ -1,0 +1,13 @@
+<view class="container">
+	<view wx:if="{{false}}" wx:for="{{steps}}" wx:key="id">
+		<view wx:if="{{ currentMonth !== item.month}}" class="month"> {{item.month}}</view>
+		<view wx:for="{{item.steps}}" wx:for-item="step" class="date">
+			<view class="date-label">{{step.date}}</view>
+			<view class="step-num">{{step.number}}步</view>
+		</view>
+	</view>
+	<view class="empty">
+		<image class="empty-icon" src="../../images/icn-empty-history@2x.png"></image>
+		<text class="no-data">暂无历史数据</text>
+	</view>
+</view>
