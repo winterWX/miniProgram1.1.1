@@ -1,13 +1,7 @@
 <view class="container">
 	<view class="time-dimension">
-		<view class="time-item">
-			<text>日</text>
-		</view>
-		<view class="time-item">
-			<text>周</text>
-		</view>
-		<view class="time-item">
-			<text class="active">月</text>
+		<view class="time-item" wx:for="{{tabs}}" wx:key="{{item.id}}" data-props="id" catchtap="changTab">
+			<text class="{{currentTabId === item.id ? 'active' : ''}}">{{item.name}}</text>
 		</view>
 	</view>
 	<view class="step-echart-box">

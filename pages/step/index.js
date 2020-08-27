@@ -1,4 +1,5 @@
 import * as echarts from '../../components/ec-canvas/echarts';
+const app = getApp();
 function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -73,17 +74,54 @@ function initChart(canvas, width, height) {
 }
 Page({
   data: {
+    currentTabId: 'day',
+    tabs: [
+      {
+        name: '日',
+        id: 'day'
+      }, {
+        name: '周',
+        id: 'week'
+      }, {
+        name: '月',
+        id: 'month'
+      }
+    ],
     ec: {
       onInit: initChart
     }
   },
   onLoad: function () {
-    this.setData({
-    })
+    this.getStepInfo();
   },
   toHistoryStep: function () {
     wx.navigateTo({
       url: '../historyStep/index',
+    })
+  },
+  changTab: function(e) {
+    console.log(e.currentTarget.dataset);
+    this.setData({
+      currentTabId: e.currentTarget.dataset.props
+    })
+  },
+  getStepInfo: function() {
+    wx.request({// /remote/oauth/mini/getEncryptedData
+      url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
     })
   }
 })
