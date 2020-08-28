@@ -1,5 +1,9 @@
+page{
+  background-color: #ffffff;
+}
 .content-main{
-   padding: 30rpx 30rpx 0rpx 30rpx;
+   /* padding: 30rpx; */
+   height: 900rpx;
 }
 .blackTop{
   display: flex;
@@ -19,13 +23,33 @@
 .bottomBtn{
   margin-top: 50rpx;
 }
-.blackInputText{
+.blackInput{
   margin-bottom: 18rpx;
 }
-.blackView input{
-  height: 48rpx;
+.blackInputText{
+  margin-bottom: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  font-size: 32rpx;
 }
-.lineSty{
-  height: 1rpx;
-  background-color: rgb(255,255,255);
+.textCode{
+  color: rgb(146,146,146);
+}
+.blackView-input{
+  height: 48rpx;
+  margin-bottom: 26rpx;
+  color: rgb(51,51,51);
+}
+.lineBottomSty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rpx;
+  background-color: rgba(0,0,0, 0.5);
+  margin-bottom: 60rpx;
+}
+.bottomBtn .van-button--primary {
+  background-color: #00a865 !important;
+  border: 1px solid #00a865 !important;
 }

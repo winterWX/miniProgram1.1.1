@@ -148,7 +148,7 @@ Page({
       forceNum: true
     })       
   },
-  yesterdayIntegral(){//领取昨天的积分
+  yesterdayIntegral(){  //领取昨天的积分
     this.setData({
       anBackShow: true
     })

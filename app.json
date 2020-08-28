@@ -20,7 +20,8 @@
     "pages/modifyNickname/index",
     "pages/emailEditor/index",
     "pages/setting/index",
-    "pages/step/index"
+    "pages/step/index",
+    "pages/healthBMI/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -80,23 +80,22 @@ Page({
      data:{
       "currentPage": 1,
       "pageSize": 10,
-      //"topic": parase !== undefined ? parase : '热门推荐'
       "topic": parase !== undefined ? parase : ''
     },
     method:"POST",
-     header:{
+    header:{
        'Content-Type':'application/json',
        'native-app':'mini'
      },
     success: function (res) {
        if(res.data.data !== null){
         //that.collectionQueryCounts();  // 赋值前调用
-        res.data.data.forEach((item)=>{
-          item.inputtime = that.timestampToTime(item.inputtime)
+         res.data.data.forEach((item)=>{
+            item.inputtime = that.timestampToTime(item.inputtime)
          })
-          that.setData({
+         that.setData({
             listData: res.data.data
-          })
+         })
        }
     },
     fail: function (res) {
