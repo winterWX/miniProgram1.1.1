@@ -1,22 +1,17 @@
 <view class="container">
 	<view class="time-dimension">
-		<view class="time-item">
-			<text>日</text>
-		</view>
-		<view class="time-item">
-			<text>周</text>
-		</view>
-		<view class="time-item">
-			<text class="active">月</text>
+		<view class="time-item" wx:for="{{tabs}}" wx:key="id" data-props="{{item.id}}" catchtap="changTab">
+			<text class="{{currentTabId === item.id ? 'active' : ''}}">{{item.name}}</text>
 		</view>
 	</view>
 	<view class="step-echart-box">
 		<view class="time-slot">
-			<image src="../../images/back2.png"></image>
+			<image src="../../images/back2.png" catchtap="preClick"></image>
 			<view class="time-display">
-				2020年7月26日 - 2020年8月26日
+				<!-- 2020年7月26日 - 2020年8月26日 -->
+				{{ preDisplayDate }} - {{ nextDisplayDate }}
 			</view>
-			<image src="../../images/back3.png"></image>
+			<image wx:if="{{clickNum>0 && clickNum !==1}}" src="../../images/back3.png" catchtap="nextClick"></image>
 		</view>
 		<view class="step-num-box">
 			<view>
