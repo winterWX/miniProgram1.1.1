@@ -78,7 +78,10 @@ Page({
     preDisplayDate: '',
     nextDisplayDate: '',
     currentCalcedDate: '',
+    currentYear: 0,
+    currentMonth: 0,
     clickNum: 0,
+    initDate: '',
     tabs: [
     /*   {
         name: '日',
@@ -97,14 +100,16 @@ Page({
   },
   onLoad: function () {
     this.getStepInfo();
+    let currentMonth = new Date().getMonth() + 1;
     let nextDisplayDate = this.getPreOrNextDate(0);
     let preDisplayDate = this.getPreOrNextDate(7);
     let clickNum = this.data.clickNum + 1;
-    console.log(clickNum)
     this.setData({
       clickNum,
       preDisplayDate,
-      nextDisplayDate
+      nextDisplayDate,
+      currentMonth,
+      initDate: nextDisplayDate
     })
   },
   toHistoryStep: function () {
@@ -113,9 +118,22 @@ Page({
     })
   },
   changTab: function (e) {
-    console.log(e.currentTarget.dataset);
+    let { initDate } = this.data;
+    let currentTabId = e.currentTarget.dataset.props;
+    this.setData({ currentCalcedDate: null })
+    let interval = this.calcMonthInterval();
+    let nextDisplayDate = initDate;
+    let preDisplayDate = '';
+    if (currentTabId === 'week') {
+      preDisplayDate = this.getPreOrNextDate(7);
+    } else if (currentTabId === 'month') {
+      preDisplayDate = this.getPreOrNextDate(interval);
+    }
     this.setData({
-      currentTabId: e.currentTarget.dataset.props
+      currentTabId,
+      clickNum: 1,
+      preDisplayDate,
+      nextDisplayDate
     })
   },
   getStepInfo: function () {
@@ -138,42 +156,68 @@ Page({
     })
   },
   preClick: function () {
+    let { currentTabId } = this.data;
     let clickNum = this.data.clickNum + 1;
-    let nextDisplayDate = this.data.preDisplayDate;
-    let preDisplayDate = this.getPreOrNextDate(7);
-    let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-    let newDate = new Date(Number(tmp[0]), Number(tmp[1])-1, Number(tmp[2]));
-    this.setData({
-      currentCalcedDate: newDate
-    })
+    let newDate = ''
+    let nextDisplayDate = '';
+    let preDisplayDate = '';
+    nextDisplayDate = this.data.preDisplayDate;
+    if (currentTabId === 'week') {
+      preDisplayDate = this.getPreOrNextDate(7);
+      let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+      newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
+      this.setData({ currentCalcedDate: newDate })
+    } else if (currentTabId === 'month') {
+      let interval = this.calcMonthInterval();
+      preDisplayDate = this.getPreOrNextDate(interval);
+    }
     this.setData({
       clickNum,
       preDisplayDate,
       nextDisplayDate
-    }, () => {
-      console.log(this.data.clickNum)
     })
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
+    let { currentTabId } = this.data;
+    let nextDisplayDate = '';
     let preDisplayDate = this.data.nextDisplayDate;
     let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-    let newDate = new Date(Number(tmp[0]), Number(tmp[1])-1, Number(tmp[2]));
+    let newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
     this.setData({
       currentCalcedDate: newDate
     })
-    let nextDisplayDate = this.getPreOrNextDate(7, true);
-    console.log(clickNum)
+    if (currentTabId === 'week') {
+      nextDisplayDate = this.getPreOrNextDate(7, true);
+    } else if (currentTabId === 'month') {
+      this.setData({
+        currentMonth: Number(tmp[1])
+      })
+      let interval = this.calcMonthInterval(true);
+      nextDisplayDate = this.getPreOrNextDate(interval, true);
+    }
     this.setData({
       clickNum,
       preDisplayDate,
       nextDisplayDate
-    }, () =>{
-      console.log(this.data.clickNum)
     })
   },
-  clacMonthInterval: function (month) {
+  calcMonthInterval: function (flag = false) {
     let thirtyOneDayMonth = [1, 3, 5, 7, 8, 10, 12];
+    let interval = 30;
+    let { currentYear, currentMonth } = this.data;
+    let targetMonth = 0;
+    if (!flag) {
+      targetMonth = currentMonth - 1 > 0 ? currentMonth - 1 : 12;
+    } else {
+      targetMonth = currentMonth;
+    }
+    if (thirtyOneDayMonth.includes(targetMonth)) {
+      interval = 31;
+    } else if (targetMonth === 2) {
+      interval = currentYear % 4 === 0 ? 29 : 28;
+    }
+    return interval;
   },
   getPreOrNextDate: function (n, flag = false) {
     var n = n;
@@ -181,23 +225,15 @@ Page({
     var year = d.getFullYear();
     var mon = d.getMonth() + 1;
     var day = d.getDate();
-    /* if (day <= n) {
-      if (mon > 1) {
-        mon = mon - 1;
-      } else {
-        year = year - 1;
-        mon = 12;
-      }
-    } */
     flag ? d.setDate(d.getDate() + n) : d.setDate(d.getDate() - n);
-    if (!flag) {
-      this.setData({
-        currentCalcedDate: d
-      })
-    }
     year = d.getFullYear();
     mon = d.getMonth() + 1;
     day = d.getDate();
+    this.setData({
+      currentCalcedDate: d,
+      currentMonth: mon,
+      currentYear: year
+    })
     let s = year + "年" + (mon < 10 ? ('0' + mon) : mon) + "月" + (day < 10 ? ('0' + day) : day) + '日';
     return s;
   }
