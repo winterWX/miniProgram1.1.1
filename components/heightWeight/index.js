@@ -1,23 +1,87 @@
 // components/heightWeight/index.js
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    blockForData: {
+      type: Object,
+      value: {},
+      observer(value) {
+        console.log('value',value) 
+      }
+    },
+    height: {
+      type: String,
+      value: '',
+      observer(value) {
+        console.log('value',value) 
+      }
+    },    
+    weight: {
+      type: String,
+      value: '',
+      observer(value) {
+        console.log('value',value) 
+      }
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-
+    numData:''
   },
-
+  lifetimes: { // 生命周期
+    ready: function () {
+      let height = this.data.height !== '--' ? this.data.height : '';
+      let weight = this.data.weight  !== '--' ? this.data.weight : '';
+      this.setData({
+        numData: this.data.blockForData.titleTop === '记录身高' ? height : weight
+      })
+    },
+  },
   /**
    * 组件的方法列表
    */
   methods: {
-
+    inputNum(e){
+      this.setData({
+        numData: e.detail.value
+      })
+    },
+    saveNum(){
+      let that = this;
+      let addUrl = app.globalData.baseUrl + '/remote/bodyData/add';
+      let editUrl = app.globalData.baseUrl + '/remote/bodyData/edit';
+      wx.request({
+        method: 'POST',
+        url: that.data.valueData !== true ? editUrl : addUrl,
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "token": app.globalData.token
+        },
+        data:{
+          weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
+          height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
+        },
+        success: (res) => {
+          if (res.data.code === 200) {
+              wx.showToast({
+                title: '保存成功',
+              })
+              that.closeBalck()
+          }
+        }
+      })
+    },
+    closeBalck(){
+      let that = this;
+      that.triggerEvent('closeBalck',{
+         close:false
+      },{})
+    }
   }
 })

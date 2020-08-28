@@ -1,16 +1,14 @@
 <viwe class="content-main">
     <viwe class="blackTop">
-        <image src='../../images/healthInfo/close@2x.png'></image>
-        <viwe class="blackText">记录身高</viwe>
+        <image src='../../images/healthInfo/close@2x.png'  bindtap="closeBalck"></image>
+        <viwe class="blackText">{{blockForData.titleTop}}</viwe>
     </viwe>
     <viwe class="blackInput">
-        <text class="blackInputText">身高（厘米）</text>
-        <viwe class="blackView">
-          <input  value="{{numData}}" />
-        </viwe>
-        <viwe class="lineSty"></viwe>
+        <viwe class="blackInputText">{{blockForData.blockText}}<text class="textCode">{{blockForData.blockTextAfter}}</text></viwe>
+        <input  type="text" value="{{numData}}"  class="blackView-input" bindinput="inputNum" />
     </viwe>
+    <viwe class="lineBottomSty"></viwe>
     <viwe class="bottomBtn">
-       <van-button  type="primary" size="large">保存</van-button>
+       <van-button type="primary" size="large" bindtap="saveNum">保存</van-button>
     </viwe>
 </viwe>

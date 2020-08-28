@@ -21,6 +21,7 @@
     "pages/emailEditor/index",
     "pages/setting/index",
     "pages/step/index",
+    "pages/healthBMI/index",
     "pages/historyStep/index"
   ],
   "window": {

@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util')
 Page({
   /**
    * 页面的初始数据
@@ -8,6 +9,7 @@ Page({
     btnHidden: 'btnHidden',
     complete: false,
     active: 4,
+    runData:[]
     /* userInfo: {
       nickName: '',
       gender: '',
@@ -103,34 +105,91 @@ Page({
       url: '../../pages/setting/index'
     })
   },
+  // getWeRunStepsData: function () {
+  //   let that = this;
+  //   wx.getWeRunData({
+  //     success: function (res) {
+  //       app.globalData.isWeRunSteps = true;
+  //       wx.navigateTo({
+  //         url: '../../pages/healthPage/index?id=' + that.data.rstProdu
+  //       })
+  //     },
+  //     fail: function () {
+  //       wx.navigateTo({
+  //         url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
+  //       })
+  //     }
+  //   })
+  // },
+  getMyprofileInfo: function () {
+  },
   getWeRunStepsData: function () {
     let that = this;
-    wx.getWeRunData({
-      success: function (res) {
-        app.globalData.isWeRunSteps = true;
-        wx.navigateTo({
-          url: '../../pages/healthPage/index?id=' + that.data.rstProdu
-        })
+    wx.login({
+      success: (res) => {
+            console.log('code----',res.code);
+            wx.getWeRunData({
+              success(resRun) {
+                const encryptedData = resRun
+                console.info(resRun);
+                wx.request({
+                  url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
+                  method: 'GET', 
+                  header: {
+                    'Content-Type': 'application/json',
+                    "token": app.globalData.token
+                  },
+                  data: {
+                    encryptedData: resRun.encryptedData,
+                    iv: resRun.iv,
+                    sessionkey : app.globalData.userInfo.session_key
+                  },
+                  success: function (resDecrypt) {
+                    //let runData = resDecrypt.data.data;
+                    let runData = JSON.parse(resDecrypt.data.data); 
+                    if (runData.stepInfoList.length > 0)
+                    {
+                      runData.stepInfoList = runData.stepInfoList.reverse()
+                      for (var i in runData.stepInfoList)
+                      {
+                        runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000))
+                      }
+                      that.setData({ runData: runData.stepInfoList });
+                      console.log('1212121212',that.data.runData);
+                    }
+                    //授权成功跳转
+                    app.globalData.isWeRunSteps = true;
+                    wx.navigateTo({
+                      url: '../../pages/healthPage/index?id=' + that.data.rstProdu
+                    })
+                    //记录领取积分
+                    that.getintegral();  
+                  },
+                  fail: function () {
+                        wx.navigateTo({
+                          url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
+                        })
+                  }
+                });
+              }
+            })
+        }
+    })
+  },
+  getintegral: function () {
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/integral/stepAuth',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
       },
-      fail: function () {
-        wx.navigateTo({
-          url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
-        })
+      success: (res) => {
+        if (res.data.code === 200) {
+            app.healthStep.integralRecord = true  //授权已领
+        }
       }
     })
   },
-  getWeRunStepsRefs: function () {
-    wx.getWeRunData({
-      success: function (res) {
-        wx.navigateTo({
-          url: '../../pages/healthPage/index',
-        })
-      },
-      fail: function () {
-        console.log('---------')
-      }
-    })
-  },
-  getMyprofileInfo: function () {
-  }
+
 })

@@ -1,8 +1,7 @@
 {
   "usingComponents": {    
     "footer": "../../components/footer/index",
-    "collectionOption": "../../components/collectionOption/index",
-    "heightWeight":"../../components/heightWeight"
+    "collectionOption": "../../components/collectionOption/index"
   },
   "navigationBarTitleText": "首页"  
 }

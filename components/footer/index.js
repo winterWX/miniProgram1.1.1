@@ -55,7 +55,7 @@ Component({
         "requiredLogin": true
       }
     ],
-    isLogin: 0, //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
+    isLogin: 0,   //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
     requiredLogin: false,
     code: '',
     tempActive: 0

@@ -32,7 +32,6 @@
   </view>
   <view class="tips">
     连续7天可以领取50积分，连续28天可以领取100积分
-    
   </view>
 </view>
 <integralAmation integral="{{integral}}" wx:if="{{integral !=0}}"/>

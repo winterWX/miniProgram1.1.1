@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "van-cell": "vant-weapp/cell/index",
-    "van-icon": "vant-weapp/icon/index"
+    "van-icon": "vant-weapp/icon/index",
+    "heightWeight":"../../components/heightWeight"
   },
   "navigationBarTitleText": "每日健康数据"
 }
