@@ -80,6 +80,7 @@ Page({
     currentCalcedDate: '',
     currentYear: 0,
     currentMonth: 0,
+    initYearSetting: null,
     clickNum: 0,
     initDate: '',
     tabs: [
@@ -109,7 +110,10 @@ Page({
       preDisplayDate,
       nextDisplayDate,
       currentMonth,
-      initDate: nextDisplayDate
+      initDate: nextDisplayDate,
+      initYearSetting: JSON.parse(JSON.stringify(this.data.currentCalcedDate))
+    }, () => {
+      console.log(this.data.currentCalcedDate)
     })
   },
   toHistoryStep: function () {
@@ -166,7 +170,7 @@ Page({
       preDisplayDate = this.getPreOrNextDate(7);
       let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
       newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
-      this.setData({ currentCalcedDate: newDate })
+      this.setData({ currentCalcedDate: newDate });
     } else if (currentTabId === 'month') {
       let interval = this.calcMonthInterval();
       preDisplayDate = this.getPreOrNextDate(interval);
@@ -200,6 +204,13 @@ Page({
       clickNum,
       preDisplayDate,
       nextDisplayDate
+    }, () => {
+      if (this.data.clickNum === 1) {
+        let preDisplayDate = this.data.preDisplayDate;
+        let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+        let newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
+        this.setData({currentCalcedDate: newDate});
+      }
     })
   },
   calcMonthInterval: function (flag = false) {
