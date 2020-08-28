@@ -74,12 +74,16 @@ function initChart(canvas, width, height) {
 }
 Page({
   data: {
-    currentTabId: 'day',
+    currentTabId: 'week',
+    preDisplayDate: '',
+    nextDisplayDate: '',
+    currentCalcedDate: '',
+    clickNum: 0,
     tabs: [
-      {
+    /*   {
         name: '日',
         id: 'day'
-      }, {
+      }, */ {
         name: '周',
         id: 'week'
       }, {
@@ -93,19 +97,28 @@ Page({
   },
   onLoad: function () {
     this.getStepInfo();
+    let nextDisplayDate = this.getPreOrNextDate(0);
+    let preDisplayDate = this.getPreOrNextDate(7);
+    let clickNum = this.data.clickNum + 1;
+    console.log(clickNum)
+    this.setData({
+      clickNum,
+      preDisplayDate,
+      nextDisplayDate
+    })
   },
   toHistoryStep: function () {
     wx.navigateTo({
       url: '../historyStep/index',
     })
   },
-  changTab: function(e) {
+  changTab: function (e) {
     console.log(e.currentTarget.dataset);
     this.setData({
       currentTabId: e.currentTarget.dataset.props
     })
   },
-  getStepInfo: function() {
+  getStepInfo: function () {
     wx.request({// /remote/oauth/mini/getEncryptedData
       url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
       method: "GET",
@@ -123,5 +136,69 @@ Page({
         console.log('.........fail..........');
       }
     })
+  },
+  preClick: function () {
+    let clickNum = this.data.clickNum + 1;
+    let nextDisplayDate = this.data.preDisplayDate;
+    let preDisplayDate = this.getPreOrNextDate(7);
+    let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let newDate = new Date(Number(tmp[0]), Number(tmp[1])-1, Number(tmp[2]));
+    this.setData({
+      currentCalcedDate: newDate
+    })
+    this.setData({
+      clickNum,
+      preDisplayDate,
+      nextDisplayDate
+    }, () => {
+      console.log(this.data.clickNum)
+    })
+  },
+  nextClick: function () {
+    let clickNum = this.data.clickNum - 1;
+    let preDisplayDate = this.data.nextDisplayDate;
+    let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let newDate = new Date(Number(tmp[0]), Number(tmp[1])-1, Number(tmp[2]));
+    this.setData({
+      currentCalcedDate: newDate
+    })
+    let nextDisplayDate = this.getPreOrNextDate(7, true);
+    console.log(clickNum)
+    this.setData({
+      clickNum,
+      preDisplayDate,
+      nextDisplayDate
+    }, () =>{
+      console.log(this.data.clickNum)
+    })
+  },
+  clacMonthInterval: function (month) {
+    let thirtyOneDayMonth = [1, 3, 5, 7, 8, 10, 12];
+  },
+  getPreOrNextDate: function (n, flag = false) {
+    var n = n;
+    var d = this.data.currentCalcedDate || new Date();
+    var year = d.getFullYear();
+    var mon = d.getMonth() + 1;
+    var day = d.getDate();
+    /* if (day <= n) {
+      if (mon > 1) {
+        mon = mon - 1;
+      } else {
+        year = year - 1;
+        mon = 12;
+      }
+    } */
+    flag ? d.setDate(d.getDate() + n) : d.setDate(d.getDate() - n);
+    if (!flag) {
+      this.setData({
+        currentCalcedDate: d
+      })
+    }
+    year = d.getFullYear();
+    mon = d.getMonth() + 1;
+    day = d.getDate();
+    let s = year + "年" + (mon < 10 ? ('0' + mon) : mon) + "月" + (day < 10 ? ('0' + day) : day) + '日';
+    return s;
   }
 })
