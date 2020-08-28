@@ -186,10 +186,16 @@ Page({
         if (res.data.code == 200) {
           const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id, receive } } } = res;
           let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-') : '--';
+          let displayDate = '--';
+          if (formateDate !== '--') {
+            let [ a, b, c, d, e, f, g,h,i] = formateDate;
+            displayDate = `${a}${b}${c}${d}-${f}${g}-**`
+          }
+          
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
           let poneeNumber = mobile || phoneNumber;
           let [a, b, c, d, e, f, g, h, i, j, k] = poneeNumber;
-          let newMobile = `${a}${b}${c}****${h}${i}${j}${k}`;
+          let newMobile = poneeNumber.length === 11 ? `${a}${b}${c}****${h}${i}${j}${k}` : `${a}${b}****${g}${h}`;
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
           wx.setStorageSync('received', received);
@@ -206,7 +212,7 @@ Page({
           userInfo = {
             nickName: nickname || nickName,
             gender: that.data.genderMap[gender] || sex,
-            birthday: formateDate,
+            birthday: displayDate,
             avatarUrl: selectedAvatar && selectedAvatar.url || avatarUrl,
             phone: newMobile || '未绑定',
             email: email || '未绑定',
@@ -279,9 +285,10 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
+          let [a, b ,c ,d,f,g,h] = e.detail.value;
           let userInfo = {
             ...that.data.userInfo,
-            birthday: e.detail.value
+            birthday: `${a}${b}${c}${d}${f}${g}${h}-**`
           };
           let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
           userInfo.percentage = percentage;
