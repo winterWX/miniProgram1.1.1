@@ -78,9 +78,6 @@ Page({
     preDisplayDate: '',
     nextDisplayDate: '',
     currentCalcedDate: '',
-    currentYear: 0,
-    currentMonth: 0,
-    initYearSetting: null,
     clickNum: 0,
     initDate: '',
     tabs: [
@@ -101,17 +98,18 @@ Page({
   },
   onLoad: function () {
     this.getStepInfo();
-    let currentMonth = new Date().getMonth() + 1;
-    let nextDisplayDate = this.getPreOrNextDate(0);
-    let preDisplayDate = this.getPreOrNextDate(7);
-    let clickNum = this.data.clickNum + 1;
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let initDate =`${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    console.log(initDate);
+    let nextDisplayDate = initDate;
+    let preDisplayDate = this.getWeek(initDate);
     this.setData({
-      clickNum,
       preDisplayDate,
       nextDisplayDate,
-      currentMonth,
-      initDate: nextDisplayDate,
-      initYearSetting: JSON.parse(JSON.stringify(this.data.currentCalcedDate))
+      initDate
     }, () => {
       console.log(this.data.currentCalcedDate)
     })
@@ -128,13 +126,13 @@ Page({
     let nextDisplayDate = initDate;
     let preDisplayDate = '';
     if (currentTabId === 'week') {
-      preDisplayDate = this.getPreOrNextDate(7);
+      preDisplayDate = this.getWeek(initDate);
     } else if (currentTabId === 'month') {
       preDisplayDate = this.getPreMonth(initDate);
     }
     this.setData({
       currentTabId,
-      clickNum: 1,
+      clickNum: 0,
       preDisplayDate,
       nextDisplayDate
     })
@@ -161,15 +159,11 @@ Page({
   preClick: function () {
     let { currentTabId } = this.data;
     let clickNum = this.data.clickNum + 1;
-    let newDate = ''
     let nextDisplayDate = '';
     let preDisplayDate = '';
     nextDisplayDate = this.data.preDisplayDate;
     if (currentTabId === 'week') {
-      preDisplayDate = this.getPreOrNextDate(7);
-      let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-      newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
-      this.setData({ currentCalcedDate: newDate });
+      preDisplayDate = this.getWeek(this.data.preDisplayDate);
     } else if (currentTabId === 'month') {
       preDisplayDate = this.getPreMonth(this.data.preDisplayDate);
     }
@@ -184,13 +178,8 @@ Page({
     let { currentTabId } = this.data;
     let nextDisplayDate = '';
     let preDisplayDate = this.data.nextDisplayDate;
-    let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-    let newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
-    this.setData({
-      currentCalcedDate: newDate
-    })
     if (currentTabId === 'week') {
-      nextDisplayDate = this.getPreOrNextDate(7, true);
+      nextDisplayDate = this.getWeek(preDisplayDate, 'next');
     } else if (currentTabId === 'month') {
       if (clickNum === 1) {
         nextDisplayDate = this.data.initDate;
@@ -216,8 +205,6 @@ Page({
     getPreMonth: function (formateTime) {
       let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
       let [year, month, day] = tmp;
-      let date = new Date(year, month, 0);
-      let days = date.getDate();
       var year2 = year;
       var month2 = parseInt(month) - 1;
       if (month2 == 0) {
@@ -239,8 +226,6 @@ Page({
     getNextMonth: function (formateTime) {
       let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
       let [year, month, day] = tmp;
-      var days = new Date(year, month, 0);
-      days = days.getDate(); //获取当前日期中的月的天数
       var year2 = year;
       var month2 = parseInt(month) + 1;
       if (month2 == 13) {
@@ -258,22 +243,15 @@ Page({
       }
       return `${year2}年${month2}月${day2}日`;
     },
-  getPreOrNextDate: function (n, flag = false) {
-    var n = n;
-    var d = this.data.currentCalcedDate || new Date();
-    var year = d.getFullYear();
-    var mon = d.getMonth() + 1;
-    var day = d.getDate();
-    flag ? d.setDate(d.getDate() + n) : d.setDate(d.getDate() - n);
-    year = d.getFullYear();
-    mon = d.getMonth() + 1;
-    day = d.getDate();
-    this.setData({
-      currentCalcedDate: d,
-      currentMonth: mon,
-      currentYear: year
-    })
-    let s = year + "年" + (mon < 10 ? ('0' + mon) : mon) + "月" + (day < 10 ? ('0' + day) : day) + '日';
+  getWeek: function (formateTime, direction='pre') {
+    let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let [year, month, date] = tmp;
+    let d = new Date(year, month - 1, date)
+    direction === 'pre' ? d.setDate(d.getDate() - 7) : d.setDate(d.getDate() + 7);
+    let year2 = d.getFullYear();
+    let mon2 = d.getMonth() + 1;
+    let day2 = d.getDate();
+    let s = year2 + "年" + (mon2 < 10 ? ('0' + mon2) : mon2) + "月" + (day2 < 10 ? ('0' + day2) : day2) + '日';
     return s;
   }
 })

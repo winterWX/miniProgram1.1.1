@@ -8,10 +8,9 @@
 		<view class="time-slot">
 			<image src="../../images/back2.png" catchtap="preClick"></image>
 			<view class="time-display">
-				<!-- 2020年7月26日 - 2020年8月26日 -->
 				{{ preDisplayDate }} - {{ nextDisplayDate }}
 			</view>
-			<image wx:if="{{clickNum>0 && clickNum !==1}}" src="../../images/back3.png" catchtap="nextClick"></image>
+			<image wx:if="{{clickNum !==0}}" src="../../images/back3.png" catchtap="nextClick"></image>
 		</view>
 		<view class="step-num-box">
 			<view>
