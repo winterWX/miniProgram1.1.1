@@ -80,6 +80,7 @@ Page({
     currentCalcedDate: '',
     currentYear: 0,
     currentMonth: 0,
+    initYearSetting: null,
     clickNum: 0,
     initDate: '',
     tabs: [
@@ -109,7 +110,10 @@ Page({
       preDisplayDate,
       nextDisplayDate,
       currentMonth,
-      initDate: nextDisplayDate
+      initDate: nextDisplayDate,
+      initYearSetting: JSON.parse(JSON.stringify(this.data.currentCalcedDate))
+    }, () => {
+      console.log(this.data.currentCalcedDate)
     })
   },
   toHistoryStep: function () {
@@ -121,13 +125,12 @@ Page({
     let { initDate } = this.data;
     let currentTabId = e.currentTarget.dataset.props;
     this.setData({ currentCalcedDate: null })
-    let interval = this.calcMonthInterval();
     let nextDisplayDate = initDate;
     let preDisplayDate = '';
     if (currentTabId === 'week') {
       preDisplayDate = this.getPreOrNextDate(7);
     } else if (currentTabId === 'month') {
-      preDisplayDate = this.getPreOrNextDate(interval);
+      preDisplayDate = this.getPreMonth(initDate);
     }
     this.setData({
       currentTabId,
@@ -137,7 +140,7 @@ Page({
     })
   },
   getStepInfo: function () {
-    wx.request({// /remote/oauth/mini/getEncryptedData
+    wx.request({
       url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
       method: "GET",
       header: {
@@ -166,10 +169,9 @@ Page({
       preDisplayDate = this.getPreOrNextDate(7);
       let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
       newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
-      this.setData({ currentCalcedDate: newDate })
+      this.setData({ currentCalcedDate: newDate });
     } else if (currentTabId === 'month') {
-      let interval = this.calcMonthInterval();
-      preDisplayDate = this.getPreOrNextDate(interval);
+      preDisplayDate = this.getPreMonth(this.data.preDisplayDate);
     }
     this.setData({
       clickNum,
@@ -190,35 +192,72 @@ Page({
     if (currentTabId === 'week') {
       nextDisplayDate = this.getPreOrNextDate(7, true);
     } else if (currentTabId === 'month') {
-      this.setData({
-        currentMonth: Number(tmp[1])
-      })
-      let interval = this.calcMonthInterval(true);
-      nextDisplayDate = this.getPreOrNextDate(interval, true);
+      if (clickNum === 1) {
+        nextDisplayDate = this.data.initDate;
+        preDisplayDate = this.getPreMonth(this.data.initDate);
+      } else {
+        nextDisplayDate = this.getNextMonth(this.data.nextDisplayDate);
+      }
     }
     this.setData({
       clickNum,
       preDisplayDate,
       nextDisplayDate
+    }, () => {
+      if (this.data.clickNum === 1) {
+        let preDisplayDate = this.data.preDisplayDate;
+        let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+        let newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
+        this.setData({currentCalcedDate: newDate});
+      }
     })
   },
-  calcMonthInterval: function (flag = false) {
-    let thirtyOneDayMonth = [1, 3, 5, 7, 8, 10, 12];
-    let interval = 30;
-    let { currentYear, currentMonth } = this.data;
-    let targetMonth = 0;
-    if (!flag) {
-      targetMonth = currentMonth - 1 > 0 ? currentMonth - 1 : 12;
-    } else {
-      targetMonth = currentMonth;
-    }
-    if (thirtyOneDayMonth.includes(targetMonth)) {
-      interval = 31;
-    } else if (targetMonth === 2) {
-      interval = currentYear % 4 === 0 ? 29 : 28;
-    }
-    return interval;
-  },
+    // 获取前一个月日期
+    getPreMonth: function (formateTime) {
+      let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+      let [year, month, day] = tmp;
+      let date = new Date(year, month, 0);
+      let days = date.getDate();
+      var year2 = year;
+      var month2 = parseInt(month) - 1;
+      if (month2 == 0) {
+        year2 = parseInt(year2) - 1;
+        month2 = 12;
+      }
+      let day2 = day;
+      let days2 = new Date(year2, month2, 0);
+      let daysInMonth = days2.getDate();
+      if (day2 > daysInMonth) {
+        day2 = daysInMonth;
+      }
+      if (month2 < 10) {
+        month2 =  '0' + month2;
+      }
+      return `${year2}年${month2}月${day2}日`;;
+    },
+    // 获取后一个月日期
+    getNextMonth: function (formateTime) {
+      let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+      let [year, month, day] = tmp;
+      var days = new Date(year, month, 0);
+      days = days.getDate(); //获取当前日期中的月的天数
+      var year2 = year;
+      var month2 = parseInt(month) + 1;
+      if (month2 == 13) {
+        year2 = parseInt(year2) + 1;
+        month2 = 1;
+      }
+      var day2 = day;
+      var days2 = new Date(year2, month2, 0);
+      days2 = days2.getDate();
+      if (day2 > days2) {
+        day2 = days2;
+      }
+      if (month2 < 10) {
+        month2 = '0' + month2;
+      }
+      return `${year2}年${month2}月${day2}日`;
+    },
   getPreOrNextDate: function (n, flag = false) {
     var n = n;
     var d = this.data.currentCalcedDate || new Date();
