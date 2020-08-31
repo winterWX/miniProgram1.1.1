@@ -21,7 +21,8 @@
     "pages/emailEditor/index",
     "pages/setting/index",
     "pages/step/index",
-    "pages/healthBMI/index"
+    "pages/healthBMI/index",
+    "pages/movementData/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

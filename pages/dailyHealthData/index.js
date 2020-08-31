@@ -125,6 +125,11 @@ Page({
       url: '../../pages/healthBMI/index',
     })
   },
+  movementData:function(){
+    wx.navigateTo({
+      url: '../../pages/movementData/index',
+    })
+  },
   heightWeightFun:function(e){
     let that = this;
     let flag = e.currentTarget.dataset.id;
