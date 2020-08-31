@@ -108,7 +108,7 @@ Page({
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    let initDate =`${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
     let nextDisplayDate = initDate;
     let preDisplayDate = this.getWeek(initDate);
     let option = this.displayEcharts(stepListWeek[0]);
@@ -120,7 +120,7 @@ Page({
       echartsWeekMonth: stepListMonth
     })
   },
-  formateStepData: function(datas) {
+  formateStepData: function (datas) {
     let stepList = datas.map(item => {
       return {
         date: `${item.date.split('/')[2]}日`,
@@ -129,7 +129,7 @@ Page({
     })
     return stepList
   },
-  displayEcharts: function(data) {
+  displayEcharts: function (data) {
     let arr = data && data.reverse();
     // let option = JSON.parse(JSON.stringify(option))
     let xData = [];
@@ -137,15 +137,15 @@ Page({
     arr.forEach(item => {
       xData.push(item.date);
       yData.push(item.step);
-    }) 
+    })
     option.xAxis.data = xData;
     option.series[0].data = yData;
     return option;
   },
-  splitRunData: function(runDataArr, size) {
+  splitRunData: function (runDataArr, size) {
     let results = [];
-    for(let i=0;i<runDataArr.length;i=i+size) {
-      results.push(runDataArr.slice(i, i+size));
+    for (let i = 0; i < runDataArr.length; i = i + size) {
+      results.push(runDataArr.slice(i, i + size));
     }
     return results;
   },
@@ -191,7 +191,7 @@ Page({
     })
   },
   preClick: function () {
-    let { currentTabId,  echartsWeekList} = this.data;
+    let { currentTabId, echartsWeekList } = this.data;
     let clickNum = this.data.clickNum + 1;
     let nextDisplayDate = '';
     let preDisplayDate = '';
@@ -211,11 +211,13 @@ Page({
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
-    let { currentTabId } = this.data;
+    let { currentTabId, echartsWeekList } = this.data;
     let nextDisplayDate = '';
     let preDisplayDate = this.data.nextDisplayDate;
     if (currentTabId === 'week') {
       nextDisplayDate = this.getWeek(preDisplayDate, 'next');
+      let option = this.displayEcharts(echartsWeekList[clickNum]);
+      chart.setOption(option);
     } else if (currentTabId === 'month') {
       if (clickNum === 0) {
         nextDisplayDate = this.data.initDate;
@@ -230,49 +232,49 @@ Page({
       nextDisplayDate
     })
   },
-    // 获取前一个月日期
-    getPreMonth: function (formateTime) {
-      let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-      let [year, month, day] = tmp;
-      var year2 = year;
-      var month2 = parseInt(month) - 1;
-      if (month2 == 0) {
-        year2 = parseInt(year2) - 1;
-        month2 = 12;
-      }
-      let day2 = day;
-      let days2 = new Date(year2, month2, 0);
-      let daysInMonth = days2.getDate();
-      if (day2 > daysInMonth) {
-        day2 = daysInMonth;
-      }
-      if (month2 < 10) {
-        month2 =  '0' + month2;
-      }
-      return `${year2}年${month2}月${day2}日`;;
-    },
-    // 获取后一个月日期
-    getNextMonth: function (formateTime) {
-      let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-      let [year, month, day] = tmp;
-      var year2 = year;
-      var month2 = parseInt(month) + 1;
-      if (month2 == 13) {
-        year2 = parseInt(year2) + 1;
-        month2 = 1;
-      }
-      var day2 = day;
-      var days2 = new Date(year2, month2, 0);
-      days2 = days2.getDate();
-      if (day2 > days2) {
-        day2 = days2;
-      }
-      if (month2 < 10) {
-        month2 = '0' + month2;
-      }
-      return `${year2}年${month2}月${day2}日`;
-    },
-  getWeek: function (formateTime, direction='pre') {
+  // 获取前一个月日期
+  getPreMonth: function (formateTime) {
+    let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let [year, month, day] = tmp;
+    var year2 = year;
+    var month2 = parseInt(month) - 1;
+    if (month2 == 0) {
+      year2 = parseInt(year2) - 1;
+      month2 = 12;
+    }
+    let day2 = day;
+    let days2 = new Date(year2, month2, 0);
+    let daysInMonth = days2.getDate();
+    if (day2 > daysInMonth) {
+      day2 = daysInMonth;
+    }
+    if (month2 < 10) {
+      month2 = '0' + month2;
+    }
+    return `${year2}年${month2}月${day2}日`;;
+  },
+  // 获取后一个月日期
+  getNextMonth: function (formateTime) {
+    let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let [year, month, day] = tmp;
+    var year2 = year;
+    var month2 = parseInt(month) + 1;
+    if (month2 == 13) {
+      year2 = parseInt(year2) + 1;
+      month2 = 1;
+    }
+    var day2 = day;
+    var days2 = new Date(year2, month2, 0);
+    days2 = days2.getDate();
+    if (day2 > days2) {
+      day2 = days2;
+    }
+    if (month2 < 10) {
+      month2 = '0' + month2;
+    }
+    return `${year2}年${month2}月${day2}日`;
+  },
+  getWeek: function (formateTime, direction = 'pre') {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, date] = tmp;
     let d = new Date(year, month - 1, date)
