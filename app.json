@@ -22,7 +22,8 @@
     "pages/setting/index",
     "pages/step/index",
     "pages/healthBMI/index",
-    "pages/movementData/index"
+    "pages/movementData/index",
+    "pages/historyStep/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
