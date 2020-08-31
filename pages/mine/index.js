@@ -105,22 +105,6 @@ Page({
       url: '../../pages/setting/index'
     })
   },
-  // getWeRunStepsData: function () {
-  //   let that = this;
-  //   wx.getWeRunData({
-  //     success: function (res) {
-  //       app.globalData.isWeRunSteps = true;
-  //       wx.navigateTo({
-  //         url: '../../pages/healthPage/index?id=' + that.data.rstProdu
-  //       })
-  //     },
-  //     fail: function () {
-  //       wx.navigateTo({
-  //         url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
-  //       })
-  //     }
-  //   })
-  // },
   getMyprofileInfo: function () {
   },
   getWeRunStepsData: function () {
