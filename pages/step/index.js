@@ -30,7 +30,7 @@ var option = {
     axisLabel: {
       textStyle: textStyle
     },
-    data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日']
+    data: []
   },
   yAxis: {
     position: 'right',
@@ -78,7 +78,8 @@ Page({
     currentTabId: 'week',
     preDisplayDate: '',
     nextDisplayDate: '',
-    // currentCalcedDate: '',
+    startTime: 0,
+    endTime: '',
     echartsWeekList: [],
     echartsWeekMonth: [],
     clickNum: 0,
@@ -108,9 +109,12 @@ Page({
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
+    let endTime = date.getTime() / 1000;
     let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
     let nextDisplayDate = initDate;
-    let preDisplayDate = this.getWeek(initDate);
+    let timeRes = this.getWeek(initDate, 6);
+    let preDisplayDate = timeRes.date;
+    let startTime = timeRes.time / 1000;
     let option = this.displayEcharts(stepListWeek[0]);
     this.setData({
       preDisplayDate,
@@ -157,10 +161,12 @@ Page({
   changTab: function (e) {
     let { initDate } = this.data;
     let currentTabId = e.currentTarget.dataset.props;
-    this.setData({ currentCalcedDate: null })
     let nextDisplayDate = initDate;
     let preDisplayDate = '';
     if (currentTabId === 'week') {
+      let nextTime = this.getWeek(initDate, 0);
+      let preTime = this.getWeek(initDate, 6, 0);
+      nextDisplayDate = preTime.time;
       preDisplayDate = this.getWeek(initDate);
     } else if (currentTabId === 'month') {
       preDisplayDate = this.getPreMonth(initDate);
@@ -195,12 +201,15 @@ Page({
     let clickNum = this.data.clickNum + 1;
     let nextDisplayDate = '';
     let preDisplayDate = '';
-    nextDisplayDate = this.data.preDisplayDate;
     if (currentTabId === 'week') {
-      preDisplayDate = this.getWeek(this.data.preDisplayDate);
+      let nextTime = this.getWeek(this.data.preDisplayDate, 1);
+      let preTime = this.getWeek(this.data.preDisplayDate, 7);
+      nextDisplayDate = nextTime.date;
+      preDisplayDate = preTime.date;
       let option = this.displayEcharts(echartsWeekList[clickNum]);
       chart.setOption(option);
     } else if (currentTabId === 'month') {
+      nextDisplayDate = this.data.preDisplayDate;
       preDisplayDate = this.getPreMonth(this.data.preDisplayDate);
     }
     this.setData({
@@ -215,10 +224,14 @@ Page({
     let nextDisplayDate = '';
     let preDisplayDate = this.data.nextDisplayDate;
     if (currentTabId === 'week') {
-      nextDisplayDate = this.getWeek(preDisplayDate, 'next');
+      let preTime = this.getWeek(preDisplayDate, 1, 'next');
+      let nextTime = this.getWeek(preDisplayDate, 7, 'next')
+      preDisplayDate = preTime.date;
+      nextDisplayDate = nextTime.date;
       let option = this.displayEcharts(echartsWeekList[clickNum]);
       chart.setOption(option);
     } else if (currentTabId === 'month') {
+      preDisplayDate = this.data.nextDisplayDate;
       if (clickNum === 0) {
         nextDisplayDate = this.data.initDate;
         preDisplayDate = this.getPreMonth(this.data.initDate);
@@ -274,15 +287,19 @@ Page({
     }
     return `${year2}年${month2}月${day2}日`;
   },
-  getWeek: function (formateTime, direction = 'pre') {
+  getWeek: function (formateTime, n, direction = 'pre') {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, date] = tmp;
-    let d = new Date(year, month - 1, date)
-    direction === 'pre' ? d.setDate(d.getDate() - 7) : d.setDate(d.getDate() + 7);
+    let d = new Date(year, month - 1, date);
+    direction === 'pre' ? d.setDate(d.getDate() - n) : d.setDate(d.getDate() + n);
+    let time = d.getTime();
     let year2 = d.getFullYear();
     let mon2 = d.getMonth() + 1;
     let day2 = d.getDate();
     let s = year2 + "年" + (mon2 < 10 ? ('0' + mon2) : mon2) + "月" + (day2 < 10 ? ('0' + day2) : day2) + '日';
-    return s;
+    return {
+      date: s,
+      time: time
+    }
   }
 })
