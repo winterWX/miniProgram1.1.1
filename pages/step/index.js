@@ -103,7 +103,6 @@ Page({
     let month = date.getMonth() + 1;
     let day = date.getDate();
     let initDate =`${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
-    console.log(initDate);
     let nextDisplayDate = initDate;
     let preDisplayDate = this.getWeek(initDate);
     this.setData({
@@ -181,7 +180,7 @@ Page({
     if (currentTabId === 'week') {
       nextDisplayDate = this.getWeek(preDisplayDate, 'next');
     } else if (currentTabId === 'month') {
-      if (clickNum === 1) {
+      if (clickNum === 0) {
         nextDisplayDate = this.data.initDate;
         preDisplayDate = this.getPreMonth(this.data.initDate);
       } else {
@@ -192,13 +191,6 @@ Page({
       clickNum,
       preDisplayDate,
       nextDisplayDate
-    }, () => {
-      if (this.data.clickNum === 1) {
-        let preDisplayDate = this.data.preDisplayDate;
-        let tmp = preDisplayDate.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-        let newDate = new Date(Number(tmp[0]), Number(tmp[1]) - 1, Number(tmp[2]));
-        this.setData({currentCalcedDate: newDate});
-      }
     })
   },
     // 获取前一个月日期
