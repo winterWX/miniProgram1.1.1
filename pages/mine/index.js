@@ -10,15 +10,6 @@ Page({
     complete: false,
     active: 4,
     runData:[]
-    /* userInfo: {
-      nickName: '',
-      gender: '',
-      birthday: '--',
-      avatarUrl: '',
-      phone: '',
-      email: '未绑定',
-      percentage: 0
-    } */
   },
 
   /**
@@ -57,7 +48,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(this.data);
   },
 
   /**
@@ -136,9 +126,10 @@ Page({
                       runData.stepInfoList = runData.stepInfoList.reverse()
                       for (var i in runData.stepInfoList)
                       {
-                        runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000))
+                        runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
                       }
                       that.setData({ runData: runData.stepInfoList });
+                      app.globalData.runData = runData.stepInfoList;
                       console.log('1212121212',that.data.runData);
                     }
                     //授权成功跳转

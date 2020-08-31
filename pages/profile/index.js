@@ -98,7 +98,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('profileprofileprofile')
     const currentDate = formatTime(new Date()).split(' ')[0].split('/').join('-');
     const { nickName, gender, birthday = '', avatarUrl = '' } = app.globalData.userInfoDetail;
     console.log('app.globalData.userInfoDetail原始数据', app.globalData.userInfoDetail);
