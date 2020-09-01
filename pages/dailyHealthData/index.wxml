@@ -3,7 +3,7 @@
       <view class="containerAfter"><image  class="imageIcon" src="../../images/healthInfo/icon@2x.png"/></view>
       <view class="containerText">健康数据无法获取，授权后可为你记录和查看健康情况，授权步数数据更可享100积分。</view>
     </view>
-    <view class="containerBtn" bindtap="containerBtn">立即授权</view>
+    <view class="containerBtn" bindtap="getWeRunStepsData">立即授权</view>
 </view>
 <view class="container">
     <view class="panel">
@@ -106,3 +106,4 @@
   height='{{health.height}}'
   weight='{{health.weight}}'
   bind:closeBalck="closeBalck" />
+  <integralAmation integral="{{integral}}"  if="{{}}" />

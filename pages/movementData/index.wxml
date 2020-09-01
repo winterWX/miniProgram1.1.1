@@ -1,22 +1,16 @@
 <view class="container">
 	<view class="time-dimension">
-		<view class="time-item">
-			<text>日</text>
-		</view>
-		<view class="time-item">
-			<text>周</text>
-		</view>
-		<view class="time-item">
-			<text class="active">月</text>
+		<view class="time-item" wx:for="{{tabs}}" wx:key="id" data-props="{{item.id}}" catchtap="changTab">
+			<text class="{{currentTabId === item.id ? 'active' : ''}}">{{item.name}}</text>
 		</view>
 	</view>
 	<view class="step-echart-box">
 		<view class="time-slot">
-			<image src="../../images/back2.png"></image>
+			<image src="../../images/back2.png" catchtap="preClick"></image>
 			<view class="time-display">
-				2020年7月26日 - 2020年8月26日
+				{{ preDisplayDate }} - {{ nextDisplayDate }}
 			</view>
-			<image src="../../images/back3.png"></image>
+			<image wx:if="{{clickNum !==0}}" src="../../images/back3.png" catchtap="nextClick"></image>
 		</view>
 		<view class="step-num-box">
 			<view>
@@ -25,18 +19,20 @@
 			</view>
 			<view class="step-tip">平均步数</view>
 		</view>
-		<view class="echart-box">
-			这里是echart内容
+		<view class="echart-box" style="position: relative;">
+			<view class="container">
+				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+			</view>
 		</view>
 	</view>
 	<view class="history-step">
 		<text class="label">历史步数</text>
-		<image class="icon" src="../../images/back3.png"></image>
+		<image class="icon" src="../../images/back3.png" catchtap="toHistoryStep"></image>
 	</view>
 	<view class="step-description">
 		<view class="desc-title">关于步行数据</view>
 		<view class="desc-content">
-		步数指您一天中走了多少步。计步器和数字运动追踪器可帮助您确定步数。这类设备会为所有产生步数的活动计算步数，如走路、跑步、上下楼梯、越野楼梯、越野滑雪、甚至做家务等活动。
+			步数指您一天中走了多少步。计步器和数字运动追踪器可帮助您确定步数。这类设备会为所有产生步数的活动计算步数，如走路、跑步、上下楼梯、越野楼梯、越野滑雪、甚至做家务等活动。
 		</view>
 	</view>
 </view>

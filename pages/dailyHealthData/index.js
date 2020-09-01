@@ -1,4 +1,4 @@
-// pages/dailyHealthData/index.js
+const util = require('../../utils/util')
 const app = getApp();
 Page({
 
@@ -23,7 +23,8 @@ Page({
       // titleTop:'',
       // blockText:'',
       // blockTextAfter:''
-    }
+    },
+    integral:100
   },
 
   /**
@@ -95,7 +96,7 @@ Page({
       url: app.globalData.baseUrl + '/remote/health/data/everyday',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyUjJU0lFKrShQsjI0tTQ3NjcyMDGrBQAAAP__.41qr90hXJPhcy9-CTqZZxc_zS4AQsVkyMI19iYddeGJ2clgSySxF1Rb6Sw8NOf34m5-H6mDtdsoWE9xkeO3jww'
+        "token": app.globalData.token
       },
       data: parms,
       success: (res) => {
@@ -121,8 +122,10 @@ Page({
     })
   },
   healthbmi:function(){
+    let that = this;
+    let healthProp = JSON.stringify(that.data.health)
     wx.navigateTo({
-      url: '../../pages/healthBMI/index',
+      url: '../../pages/healthBMI/index?initData='+ healthProp,
     })
   },
   movementData:function(){
@@ -156,12 +159,15 @@ Page({
       },
       success: (res) => {
         if (res.data.data !== null) {
-            let heightWeight ={
-                height: res.data.data.height,
-                weight: res.data.data.weight
-            }
+            // let heightWeight ={
+            //     height: res.data.data.height,
+            //     weight: res.data.data.weight
+            // }
+            // that.setData({
+            //   health: Object.assign(this.data.health,heightWeight)
+            // })
             that.setData({
-              health: Object.assign(this.data.health,heightWeight)
+              health: Object.assign(this.data.health,res.data.data)
             })
         }
       }
@@ -175,5 +181,68 @@ Page({
         })
       this.getHeightWeight(); //身高体重
      }
-  }
+  },
+  getWeRunStepsData: function () {
+    let that = this;
+    wx.login({
+      success: (res) => {
+            console.log('code----',res.code);
+            wx.getWeRunData({
+              success(resRun) {
+                const encryptedData = resRun
+                console.info(resRun);
+                wx.request({
+                  url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
+                  method: 'GET', 
+                  header: {
+                    'Content-Type': 'application/json',
+                    "token": app.globalData.token
+                  },
+                  data: {
+                    encryptedData: resRun.encryptedData,
+                    iv: resRun.iv,
+                    sessionkey : app.globalData.userInfo.session_key
+                  },
+                  success: function (resDecrypt) {
+                    if(resDecrypt.data.data !== null){
+                          let runData = JSON.parse(resDecrypt.data.data); 
+                          if (runData.stepInfoList.length > 0)
+                          {
+                            runData.stepInfoList = runData.stepInfoList.reverse()
+                            for (var i in runData.stepInfoList)
+                            {
+                              runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
+                            }
+                            that.setData({ runData: runData.stepInfoList });
+                            app.globalData.runData = runData.stepInfoList;
+                            console.log('1212121212',that.data.runData);
+                          }
+                          //记录领取积分
+                          that.getintegral(); 
+                     } 
+                  },
+                  fail: function () {
+                      console.log('-----------------')
+                  }
+                });
+              }
+            })
+        }
+    })
+  },
+  getintegral: function () {
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/integral/stepAuth',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+            app.healthStep.integralRecord = true  //授权已领
+        }
+      }
+    })
+  },
 })
