@@ -1,4 +1,3 @@
-<!--pages/history/index.wxml-->
 <view class="container">
   <view class="headFix">
     <view class="header">

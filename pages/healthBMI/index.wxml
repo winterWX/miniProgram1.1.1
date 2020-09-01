@@ -3,17 +3,17 @@
   <view class="main-top">
      <view class="main-topTitle">质量指数(BMI)</view>
      <view class="main-topSecode"> 
-        <view class="mainLeft">15.5</view>
+        <view class="mainLeft">{{BMIData.bmi}}</view>
         <view class="mainRight">公斤/平方</view>
      </view>
       <view class="mainBlock"> 
          <view class="mainInit">
                <view class="mainBlockLeft">
-                  <view class="mainNum">185</view>
+                  <view class="mainNum">{{BMIData.height}}</view>
                   <view class="mainText">身高/厘米</view>
                </view>
                <view class="mainBlockRight">
-                  <view class="mainNum">53.3</view>
+                  <view class="mainNum">{{BMIData.weight}}</view>
                   <view class="mainText">体重/公斤</view>
                </view>
          </view>

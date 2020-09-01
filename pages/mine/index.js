@@ -101,7 +101,6 @@ Page({
     let that = this;
     wx.login({
       success: (res) => {
-            console.log('code----',res.code);
             wx.getWeRunData({
               success(resRun) {
                 const encryptedData = resRun
@@ -141,11 +140,14 @@ Page({
                     that.getintegral();  
                   },
                   fail: function () {
-                        wx.navigateTo({
-                          url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
-                        })
+                    console.log('----------')
                   }
                 });
+              },
+              fail: function () {
+                  wx.navigateTo({
+                    url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
+                  })
               }
             })
         }
@@ -166,5 +168,4 @@ Page({
       }
     })
   },
-
 })
