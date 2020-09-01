@@ -161,8 +161,13 @@ Page({
         if (res.data.code == 200) {
           let { dataList=[], stepData, type } = res.data.data;
           if (dataList.length === 0) {
-            that.setData({stepData: 0});
-          } 
+            that.setData({stepData: 0, noData: !dataList.length});
+            return;
+          };
+          // 返回日期重新排序
+          dataList.sort((a, b) => {
+            return a.dataTime - b.dataTime
+          });
           console.log()
           that.setData({
             stepData,
