@@ -3,7 +3,9 @@
   <view class="{{!animateCompelte?'MtranslateY action':'MtranslateY lostAimation'}}">
     <view class="showAmation">
       <view class="reward">
-        <image src="../../images/img_0.png" mode="aspectFit" />
+        <image  wx:if="{{integral === 10}}"   src="http://106.54.73.125:8102/images/miniprogram/images/img_0.png"   mode="aspectFit" />
+        <image  wx:if="{{integral === 50}}"   src="http://106.54.73.125:8102/images/miniprogram/images/img_50.png"  mode="aspectFit" />
+        <image  wx:if="{{integral === 100}}"  src="http://106.54.73.125:8102/images/miniprogram/images/img_100.png" mode="aspectFit" />
       </view>
       <view class="jifenAmation">
         <view class="rewardText">

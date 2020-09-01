@@ -41,7 +41,7 @@ Component({
         imgDraw: {
           width: '750rpx',
           height: '1000rpx',
-          background: '../../images/recommend/poster@2x.png',
+          background:  app.globalData.imagesUrl + '/images/recommend/poster@2x.png',
           views: [
             {
               type: 'image',
@@ -79,7 +79,7 @@ Component({
             },
             {
               type: 'image',
-              url: '../../images/recommend/gift@2x.png',
+              url: app.globalData.imagesUrl + '/images/recommend/gift@2x.png',
               css: {
                 top: '320rpx',
                 left: '375rpx',
@@ -103,7 +103,7 @@ Component({
             },
             {
               type: 'image',
-              url: '../../images/recommend/shared.jpg',
+              url: app.globalData.imagesUrl + '/images/recommend/shared.jpg',
               css: {
                 top: '540rpx',
                 left: '0rpx',

@@ -136,8 +136,8 @@ Page({
                     wx.navigateTo({
                       url: '../../pages/healthPage/index?id=' + that.data.rstProdu
                     })
-                    //记录领取积分
-                    that.getintegral();  
+                    // //记录领取积分
+                    // that.getintegral();  
                   },
                   fail: function () {
                     console.log('----------')
@@ -153,19 +153,19 @@ Page({
         }
     })
   },
-  getintegral: function () {
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/integral/stepAuth',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-            app.healthStep.integralRecord = true  //授权已领
-        }
-      }
-    })
-  },
+  // getintegral: function () {
+  //   wx.request({
+  //     method: 'GET',
+  //     url: app.globalData.baseUrl + '/remote/integral/stepAuth',
+  //     header: {
+  //       "Content-Type": "application/json;charset=UTF-8",
+  //       "token": app.globalData.token
+  //     },
+  //     success: (res) => {
+  //       if (res.data.code === 200) {
+  //           app.healthStep.integralRecord = true  //授权已领
+  //       }
+  //     }
+  //   })
+  // },
 })

@@ -24,7 +24,8 @@ Page({
       // blockText:'',
       // blockTextAfter:''
     },
-    integral:100
+    integral:100,
+    integralBlock:false
   },
 
   /**
@@ -184,6 +185,7 @@ Page({
   },
   getWeRunStepsData: function () {
     let that = this;
+    that.getQueryintegral();
     wx.login({
       success: (res) => {
             console.log('code----',res.code);
@@ -230,7 +232,28 @@ Page({
         }
     })
   },
+  //查询用户是否已经获取步数积分
+  getQueryintegral: function () {
+    let that= this;
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/integral/queryReceivedStatus',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      success: (res) => {
+        // 100412--已经领取积分  200--未领取积分
+        if (res.data.code === 200) {
+            //app.healthStep.integralRecord = true  //授权已领
+            that.getintegral();
+        }
+      }
+    })
+  },
+  //领取积分
   getintegral: function () {
+    let that= this;
     wx.request({
       method: 'GET',
       url: app.globalData.baseUrl + '/remote/integral/stepAuth',
@@ -240,7 +263,10 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
-            app.healthStep.integralRecord = true  //授权已领
+            //app.healthStep.integralRecord = true  //授权已领
+            that.setData({
+              integralBlock: true
+            })
         }
       }
     })

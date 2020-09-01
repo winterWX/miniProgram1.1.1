@@ -52,43 +52,43 @@ Page({
     },
     avatarObjList: [
       {
-        url: '../../images/iconDefultTouxiang.png',
+        url:  app.globalData.imagesUrl + '/images/iconDefultTouxiang.png',
         id: 13
       }, {
-        url: '../../images/iconLaoshu.png',
+        url:  app.globalData.imagesUrl + '/images/iconLaoshu.png',
         id: 1
       }, {
-        url: '../../images/iconNiu.png',
+        url:  app.globalData.imagesUrl + '/images/iconNiu.png',
         id: 2
       }, {
-        url: '../../images/iconLaohu.png',
+        url:  app.globalData.imagesUrl + '/images/iconLaohu.png',
         id: 3
       }, {
-        url: '../../images/iconTuzi.png',
+        url:  app.globalData.imagesUrl + '/images/iconTuzi.png',
         id: 4
       }, {
-        url: '../../images/iconLong.png',
+        url:  app.globalData.imagesUrl + '/images/iconLong.png',
         id: 5
       }, {
-        url: '../../images/icon-she.png',
+        url:  app.globalData.imagesUrl + '/images/icon-she.png',
         id: 6
       }, {
-        url: '../../images/iconMa.png',
+        url:  app.globalData.imagesUrl + '/images/iconMa.png',
         id: 7
       }, {
-        url: '../../images/iconYang.png',
+        url:  app.globalData.imagesUrl + '/images/iconYang.png',
         id: 8
       }, {
-        url: '../../images/iconHouzi.png',
+        url:  app.globalData.imagesUrl + '/images/iconHouzi.png',
         id: 9
       }, {
-        url: '../../images/iconJi.png',
+        url:  app.globalData.imagesUrl + '/images/iconJi.png',
         id: 10
       }, {
-        url: '../../images/iconGou.png',
+        url:  app.globalData.imagesUrl + '/images/iconGou.png',
         id: 11
       }, {
-        url: '../../images/iconZhu.png',
+        url:  app.globalData.imagesUrl + '/images/iconZhu.png',
         id: 12
       }
     ]
@@ -399,7 +399,7 @@ Page({
           })
           wx.showToast({
             title: '修改成功',
-            image: '../../images/success.png'
+            image:  app.globalData.imagesUrl + '/images/success.png'
           });
         } else {
           that.setData({

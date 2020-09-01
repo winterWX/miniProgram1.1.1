@@ -49,6 +49,7 @@ App({
     userInfoDetail: null,
     runData: null,
     baseUrl:'http://106.54.73.125:8102',
+    imagesUrl: 'http://106.54.73.125:8102/images/miniprogram',
     token: '',
     phoneNumber: '',
     loginSuccess: false,
