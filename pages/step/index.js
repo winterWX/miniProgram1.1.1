@@ -161,9 +161,14 @@ Page({
         if (res.data.code == 200) {
           let { dataList=[], stepData, type } = res.data.data;
           if (dataList.length === 0) {
-            that.setData({noData: true, stepData: 0});
-          }
-          that.setData({stepData, tabs: type === 'MINIP' ? tabs : tabsWithDay})
+            that.setData({stepData: 0});
+          } 
+          console.log()
+          that.setData({
+            stepData,
+            tabs: type === 'MINIP' ? tabs : tabsWithDay,
+            noData: !dataList.length
+          })
           let stepList = dataList.map(item => {
             let date = formatTime(new Date(item.dataTime * 1000))
             return {
