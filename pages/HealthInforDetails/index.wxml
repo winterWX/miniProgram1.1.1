@@ -14,7 +14,7 @@
                 <view class="details-tag">
                         <view class="details-Btn">{{contentAll.tags}}</view>
                         <view class="details-RightBtn" bindtap="colletArtDaitle" wx:if="{{colletArt === '2' }}">
-                        <image class="details-image" src = '../../images/healthInfo/icon-collect@2x.png'></image>
+                        <image class="details-image" src = 'http://106.54.73.125:8102/images/miniprogram/images/healthInfo/icon-collect@2x.png'></image>
                         <view class="details-intall">收藏</view>
                         </view>
                         <view class="details-RightBtn"  bindtap="cancelColletArtDaitle"  wx:if="{{colletArt === '1'}}">
@@ -32,10 +32,10 @@
     </view>
     <view class="bottomFlaotContent" wx:if="{{bottomFlaotShow}}">
         <view class="bottomFlaot">
-            <view class="bottom-image"><image src="../../images/healthInfo/icon-chevron-double-down@2x.png"></image></view>
+            <view class="bottom-image"><image src="http://106.54.73.125:8102/images/miniprogram/images/healthInfo/icon-chevron-double-down@2x.png"></image></view>
             <van-button class="bottom-tipBtn"  type="primary" size="large"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录后阅读全文</van-button>
             <view class="bottom-soce">
-            <image src ='../../images/healthInfo/icon-gift@2x.png'></image>
+            <image src ='http://106.54.73.125:8102/images/miniprogram/images/healthInfo/icon-gift@2x.png'></image>
             <view class="bottom-soBtn">登录后每天阅读文章，单次可最多获取10积分。</view>
             </view>
         </view>

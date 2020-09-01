@@ -1,6 +1,6 @@
 <view class="containerTip">
     <view class="contaBlock">
-      <view class="containerAfter"><image  class="imageIcon" src="../../images/healthInfo/icon@2x.png"/></view>
+      <view class="containerAfter"><image  class="imageIcon" src="http://106.54.73.125:8102/images/miniprogram/images/healthInfo/icon@2x.png"/></view>
       <view class="containerText">健康数据无法获取，授权后可为你记录和查看健康情况，授权步数数据更可享100积分。</view>
     </view>
     <view class="containerBtn" bindtap="getWeRunStepsData">立即授权</view>
@@ -8,7 +8,7 @@
 <view class="container">
     <view class="panel">
       <view class="panel_header" catchtap="nagigateStep">
-        <view class="icon"><image src="../../images/icon-walking-data@2x.png" mode="aspectFit"/></view>
+        <view class="icon"><image src="http://106.54.73.125:8102/images/miniprogram/images/icon-walking-data@2x.png" mode="aspectFit"/></view>
         <view class="title title_ft">步行数据</view>      
       </view>
       <view class="panel_body">
@@ -25,7 +25,7 @@
 
     <view class="panel">
       <view class="panel_header" catchtap="movementData">
-        <view class="icon"><image src="../../images/icon-sport-data@2x.png" mode="aspectFit"/></view>
+        <view class="icon"><image src="http://106.54.73.125:8102/images/miniprogram/images/icon-sport-data@2x.png" mode="aspectFit"/></view>
         <view class="title title_ft">运动数据</view>      
       </view>
       <view class="panel_body">
@@ -46,7 +46,7 @@
 
   <view class="panel">
       <view class="panel_header" bindtap="healthbmi">
-        <view class="icon"><image src="../../images/icon-bmi@2x.png" mode="aspectFit"/></view>
+        <view class="icon"><image src="http://106.54.73.125:8102/images/miniprogram/images/icon-bmi@2x.png" mode="aspectFit"/></view>
         <view class="title title_ft">质量指数（BMI）</view>      
       </view>
       <view class="panel_body">
@@ -61,7 +61,7 @@
     <view class="other">
       <view class="panel other_item">
         <view class="panel_header">
-          <view class="icon"><image src="../../images/icon-height@2x.png" mode="aspectFit"/></view>
+          <view class="icon"><image src="http://106.54.73.125:8102/images/miniprogram/images/icon-height@2x.png" mode="aspectFit"/></view>
           <view class="title title_ft">身高</view>      
         </view>
       <view class="panel_body">
@@ -73,7 +73,7 @@
 
     <view class="panel other_item">
         <view class="panel_header">
-          <view class="icon"><image src="../../images/icon-weight@2x.png" mode="aspectFit"/></view>
+          <view class="icon"><image src="http://106.54.73.125:8102/images/miniprogram/images/icon-weight@2x.png" mode="aspectFit"/></view>
           <view class="title title_ft">体重</view>      
         </view>
       <view class="panel_body">
@@ -86,7 +86,7 @@
     </view>
   <view class="panel">
       <view class="panel_header">
-        <view class="icon"><image src="../../images/icon-heart-rate@2x.png" mode="aspectFit"/></view>
+        <view class="icon"><image src="http://106.54.73.125:8102/images/miniprogram/images/icon-heart-rate@2x.png" mode="aspectFit"/></view>
         <view class="title title_ft">心率</view>      
       </view>
       <view class="panel_body">
@@ -106,4 +106,4 @@
   height='{{health.height}}'
   weight='{{health.weight}}'
   bind:closeBalck="closeBalck" />
-  <integralAmation integral="{{integral}}"  if="{{}}" />
+  <integralAmation integral="{{integral}}"  if="{{integralBlock}}" />

@@ -38,43 +38,43 @@ Component({
       //   receiveStatus:1,//已领        
       //   day:'1',
       //   reward:'+10',
-      //   iconPath:'../../images/icon-got-the-points@2x.png'       
+      //   iconPath:'http://106.54.73.125:8102/images/miniprogram/images/icon-got-the-points@2x.png'       
       // },
       // {
       //   receiveStatus: 4, //过期      
       //   day: '2',
       //   reward: '+10',
-      //   iconPath: '../../images/icon-10-points-black@2x.png'              
+      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points-black@2x.png'              
       // },      
       // {
       //   receiveStatus: 1,//补领       
       //   day: '3',
       //   reward: '+10',
-      //   iconPath: '../../images/icon-10-points@2x.png'         
+      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'         
       // },      
       // {
       //   receiveStatus: 3,//补领       
       //   day: '4',
       //   reward: '+10',
-      //   iconPath: '../../images/icon-10-points@2x.png'           
+      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'           
       // },
       // {
       //   receiveStatus: 2,//还不到时间领      
       //   day: '5',
       //   reward: '+10',
-      //   iconPath: '../../images/icon-10-points@2x.png'              
+      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'              
       // },      
       // {
       //   receiveStatus: 2,//还不到时间领      
       //   reward: '+10',
       //   day: '6',
-      //   iconPath: '../../images/icon-10-points@2x.png'             
+      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'             
       // },
       // {
       //   receiveStatus: 2,//还不到时间领       
       //   day: '7',
       //   reward: '+50',
-      //   iconPath: '../../images/icon-50-points@2x.png'             
+      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-50-points@2x.png'             
       // }
     ]
   },
@@ -92,7 +92,7 @@ Component({
         if (value == 1 && this.data.list[this.data.nowDay][key] == 2) {
           this.data.list[this.data.nowDay][key] = value
           if (key =='receiveStatus'){
-            this.data.list[this.data.nowDay].iconPath = '../../images/icon-got-the-points@2x.png'
+            this.data.list[this.data.nowDay].iconPath = app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
             this.setData({
               continuousComplianceDays: this.data.continuousComplianceDays+1
             })
@@ -109,7 +109,7 @@ Component({
             if (value == 1 && this.data.list[this.data.nowDay][key] == 2) {
               this.data.list[this.data.nowDay][key] = value
               if (key == 'receiveStatus') {
-                this.data.list[this.data.nowDay].iconPath = '../../images/icon-got-the-points@2x.png'
+                this.data.list[this.data.nowDay].iconPath = app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
               }
               this.setData({
                 list: this.data.list
@@ -222,11 +222,11 @@ Component({
                 }
               }
               var dayName =''
-              var iconPath = '../../images/icon-got-the-points@2x.png'
+              var iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
               if (h1 <= item.createTime && item.createTime <= h2){
                 dayName="今日"
                 if (item.receiveStatus == '2'){
-                  iconPath = '../../images/icon-' + reward + '-points@2x.png'
+                  iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points@2x.png'
                 }
                 this.setData({
                   nowDay:i
@@ -236,10 +236,10 @@ Component({
                 dayName = "昨天"
                 if (Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60) {
                     if(item.receiveStatus==2){
-                      iconPath = '../../images/icon-' + reward + '-points@2x.png'   
+                      iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points@2x.png'   
                     }                 
                 } else {
-                  iconPath = '../../images/icon-' + reward + '-points-black@2x.png'
+                  iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points-black@2x.png'
                   reward = 0
                 }
 
@@ -248,13 +248,13 @@ Component({
                 if(item.isdone =="1"){
                   //dayName = '第' + k + '天'
                   if (item.receiveStatus == '2'){
-                    iconPath = '../../images/icon-' + reward + '-points-black@2x.png'
+                    iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points-black@2x.png'
                   }
                   reward = 0
                 }else{
                   //dayName = '第' + k + '天'
                   if (item.receiveStatus == '2') {
-                    iconPath = '../../images/icon-' + reward + '-points@2x.png'
+                    iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points@2x.png'
                   }
                 }
                 
@@ -309,7 +309,7 @@ Component({
             if (res.data.code === 200) {
               var list=this.data.list
               list[i].receiveStatus=1
-              this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
+              this.data.list[i].iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
              this.setData({
                list:list,
                integral: list[i].reward
@@ -348,7 +348,7 @@ Component({
           if (res.data.code === 200) {
             var list = this.data.list
             list[i].receiveStatus = 1
-            this.data.list[i].iconPath = '../../images/icon-got-the-points@2x.png'
+            this.data.list[i].iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
             this.setData({
               list: list,
               integral: list[i].reward

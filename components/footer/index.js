@@ -21,36 +21,36 @@ Component({
   data: {
     menu: [{
         "text": "首页",
-        "iconPath": "../../images/tabBar/index.png",
-        "activeIconPath": "../../images/tabBar/index_on.png",
+        "iconPath": app.globalData.imagesUrl + "/images/tabBar/index.png",
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/index_on.png",
         "url": "../index/index",
         "requiredLogin": false
       },
       {
         "text": "活动",
-        "iconPath": "../../images/tabBar/exercise_default.png",
-        "activeIconPath": "../../images/tabBar/exercise.png",
+        "iconPath": app.globalData.imagesUrl + "/images/tabBar/exercise_default.png",
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/exercise.png",
         "url": "../activity/index",
         "requiredLogin": true
       },
       {
         "text": "优惠商城",
-        "iconPath": "../../images/tabBar/insurance_default.png",
-        "activeIconPath": "../../images/tabBar/insurance.png",
+        "iconPath": app.globalData.imagesUrl + "/images/tabBar/insurance_default.png",
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/insurance.png",
         "url": "../shop/index",
         "requiredLogin": true
       },
       {
         "text": "医疗服务",
-        "iconPath": "../../images/tabBar/inquiry_default.png",
-        "activeIconPath": "../../images/tabBar/inquiry.png",
+        "iconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry_default.png",
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry.png",
         "url": "../medicalServices/index",
         "requiredLogin": true
       },
       {
         "text": "我的",
-        "iconPath": "../../images/tabBar/mine_default.png",
-        "activeIconPath": "../../images/tabBar/mine.png",
+        "iconPath": app.globalData.imagesUrl + "/images/tabBar/mine_default.png",
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/mine.png",
         "url": "../mine/index",
         "requiredLogin": true
       }

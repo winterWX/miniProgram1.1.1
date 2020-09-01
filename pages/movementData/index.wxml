@@ -6,11 +6,11 @@
 	</view>
 	<view class="step-echart-box">
 		<view class="time-slot">
-			<image src="../../images/back2.png" catchtap="preClick"></image>
+			<image src="http://106.54.73.125:8102/images/miniprogram/images/back2.png" catchtap="preClick"></image>
 			<view class="time-display">
 				{{ preDisplayDate }} - {{ nextDisplayDate }}
 			</view>
-			<image wx:if="{{clickNum !==0}}" src="../../images/back3.png" catchtap="nextClick"></image>
+			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
 		<view class="step-num-box">
 			<view>
@@ -27,7 +27,7 @@
 	</view>
 	<view class="history-step">
 		<text class="label">历史步数</text>
-		<image class="icon" src="../../images/back3.png" catchtap="toHistoryStep"></image>
+		<image class="icon" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="toHistoryStep"></image>
 	</view>
 	<view class="step-description">
 		<view class="desc-title">关于步行数据</view>

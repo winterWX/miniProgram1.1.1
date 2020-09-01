@@ -29,7 +29,7 @@ Page({
      guidance1:false,
      guidance2:false,
      firstInitShow: true,  //第一次进来显示
-     iconPath: '../../images/icon-10-points@2x.png'
+     iconPath:  app.globalData.imagesUrl + '/images/icon-10-points@2x.png'
   },
 
   /**
