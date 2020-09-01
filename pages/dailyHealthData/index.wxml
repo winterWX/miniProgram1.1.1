@@ -1,4 +1,4 @@
-<view class="containerTip">
+<view class="containerTip"  wx:if="{{!tipUpdate}}">
     <view class="contaBlock">
       <view class="containerAfter"><image  class="imageIcon" src="http://106.54.73.125:8102/images/miniprogram/images/healthInfo/icon@2x.png"/></view>
       <view class="containerText">健康数据无法获取，授权后可为你记录和查看健康情况，授权步数数据更可享100积分。</view>
@@ -79,7 +79,6 @@
       <view class="panel_body">
         <view class="item itemflex">
           <view class="item_top" bindtap="heightWeightFun" data-id="weight"><text class="num">{{health.weight}}</text><text class="numTxt">公斤</text></view>
-          
         </view>    
       </view>    
     </view> 
@@ -106,4 +105,4 @@
   height='{{health.height}}'
   weight='{{health.weight}}'
   bind:closeBalck="closeBalck" />
-  <integralAmation integral="{{integral}}"  if="{{integralBlock}}" />
+  <integralAmation integral="{{integral}}"  wx:if="{{integralBlock}}" />

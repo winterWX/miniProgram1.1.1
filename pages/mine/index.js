@@ -154,21 +154,6 @@ Page({
         }
     })
   },
-  // getintegral: function () {
-  //   wx.request({
-  //     method: 'GET',
-  //     url: app.globalData.baseUrl + '/remote/integral/stepAuth',
-  //     header: {
-  //       "Content-Type": "application/json;charset=UTF-8",
-  //       "token": app.globalData.token
-  //     },
-  //     success: (res) => {
-  //       if (res.data.code === 200) {
-  //           app.healthStep.integralRecord = true  //授权已领
-  //       }
-  //     }
-  //   })
-  // },
   //最近上传数据时间查询(query- queryLatestime)|移动端
     getQueryLatestime: function (runData) {
       let that = this;

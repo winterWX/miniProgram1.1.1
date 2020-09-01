@@ -66,6 +66,7 @@ App({
     findMore: true    //发现更多 close按钮的设置
   },
   healthStep:{
-    integralRecord:false   //标记是否领取
+    SynchronousData :false,  // 是否已经立即授过权 同步数据
+    integralRecord :false   //标记是否领取
   }
 })

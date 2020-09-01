@@ -18,23 +18,16 @@ Page({
       bpm:'--'
     },
     editBlck: false,
-    blockForData:{
-      // editBlck: false,
-      // titleTop:'',
-      // blockText:'',
-      // blockTextAfter:''
-    },
+    blockForData:{},
     integral:100,
-    integralBlock:false
+    integralBlock : false,
+    tipUpdate: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.getHealthData();
-    this.getHeightWeight(); //身高体重
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -81,8 +74,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function () {},
+  getWeRunStepsData: function () {
+    let that = this;
+    app.healthStep.SynchronousData = true;
+    that.setData({
+      tipUpdate : app.healthStep.SynchronousData
+    })
+    this.getHealthData();
+    this.getHeightWeight();  //身高体重
+    that.getQueryintegral();
   },
   getHealthData() {
     wx.showLoading({
@@ -118,36 +119,52 @@ Page({
 
   },
   nagigateStep: function() {
-    wx.navigateTo({
-      url: '../step/index',
-    })
+    if(!app.healthStep.SynchronousData){
+      return;
+    }else{
+      wx.navigateTo({
+        url: '../step/index',
+      })
+    }
   },
   healthbmi:function(){
     let that = this;
-    let healthProp = JSON.stringify(that.data.health)
-    wx.navigateTo({
-      url: '../../pages/healthBMI/index?initData='+ healthProp,
-    })
+    if(!app.healthStep.SynchronousData){
+        return;
+    }else{
+        let healthProp = JSON.stringify(that.data.health)
+        wx.navigateTo({
+          url: '../../pages/healthBMI/index?initData='+ healthProp,
+        })
+    }
   },
   movementData:function(){
-    wx.navigateTo({
-      url: '../../pages/movementData/index',
-    })
+    if(!app.healthStep.SynchronousData){
+       return;
+    }else{
+      wx.navigateTo({
+        url: '../../pages/movementData/index',
+      })
+    }
   },
   heightWeightFun:function(e){
-    let that = this;
-    let flag = e.currentTarget.dataset.id;
-    that.setData({ 
-      editBlck: true,
-    })
-    let blockForData = {
-      titleTop: flag === 'height' ? '记录身高' : '记录体重',
-      blockText: flag === 'height' ? '身高':'体重',
-      blockTextAfter: flag === 'height' ? '（厘米）': '（公斤）'
-    }
-    that.setData({ 
-      blockForData: JSON.parse(JSON.stringify(blockForData)),
-    })
+      let that = this;
+      if(!app.healthStep.SynchronousData){
+           return;
+      }else{
+          let flag = e.currentTarget.dataset.id;
+          that.setData({ 
+            editBlck: true,
+          })
+          let blockForData = {
+            titleTop: flag === 'height' ? '记录身高' : '记录体重',
+            blockText: flag === 'height' ? '身高':'体重',
+            blockTextAfter: flag === 'height' ? '（厘米）': '（公斤）'
+          }
+          that.setData({ 
+            blockForData: JSON.parse(JSON.stringify(blockForData)),
+          })
+      }
   },
   getHeightWeight:function(){
     let that = this;
@@ -160,13 +177,6 @@ Page({
       },
       success: (res) => {
         if (res.data.data !== null) {
-            // let heightWeight ={
-            //     height: res.data.data.height,
-            //     weight: res.data.data.weight
-            // }
-            // that.setData({
-            //   health: Object.assign(this.data.health,heightWeight)
-            // })
             that.setData({
               health: Object.assign(this.data.health,res.data.data)
             })
@@ -174,7 +184,7 @@ Page({
       }
     })
   },
- closeBalck:function(event){
+  closeBalck:function(event){
   let that = this;
   if (!event.detail.close){
         that.setData({
@@ -182,55 +192,6 @@ Page({
         })
       this.getHeightWeight(); //身高体重
      }
-  },
-  getWeRunStepsData: function () {
-    let that = this;
-    that.getQueryintegral();
-    wx.login({
-      success: (res) => {
-            console.log('code----',res.code);
-            wx.getWeRunData({
-              success(resRun) {
-                const encryptedData = resRun
-                console.info(resRun);
-                wx.request({
-                  url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
-                  method: 'GET', 
-                  header: {
-                    'Content-Type': 'application/json',
-                    "token": app.globalData.token
-                  },
-                  data: {
-                    encryptedData: resRun.encryptedData,
-                    iv: resRun.iv,
-                    sessionkey : app.globalData.userInfo.session_key
-                  },
-                  success: function (resDecrypt) {
-                    if(resDecrypt.data.data !== null){
-                          let runData = JSON.parse(resDecrypt.data.data); 
-                          if (runData.stepInfoList.length > 0)
-                          {
-                            runData.stepInfoList = runData.stepInfoList.reverse()
-                            for (var i in runData.stepInfoList)
-                            {
-                              runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
-                            }
-                            that.setData({ runData: runData.stepInfoList });
-                            app.globalData.runData = runData.stepInfoList;
-                            console.log('1212121212',that.data.runData);
-                          }
-                          //记录领取积分
-                          that.getintegral(); 
-                     } 
-                  },
-                  fail: function () {
-                      console.log('-----------------')
-                  }
-                });
-              }
-            })
-        }
-    })
   },
   //查询用户是否已经获取步数积分
   getQueryintegral: function () {
@@ -245,7 +206,6 @@ Page({
       success: (res) => {
         // 100412--已经领取积分  200--未领取积分
         if (res.data.code === 200) {
-            //app.healthStep.integralRecord = true  //授权已领
             that.getintegral();
         }
       }
@@ -263,9 +223,8 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
-            //app.healthStep.integralRecord = true  //授权已领
             that.setData({
-              integralBlock: true
+              integralBlock: app.healthStep.SynchronousData 
             })
         }
       }
