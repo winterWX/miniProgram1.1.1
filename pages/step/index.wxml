@@ -20,7 +20,7 @@
 			<view class="step-tip">平均步数</view>
 		</view>
 		<view class="echart-box" style="position: relative;">
-			<view wx:if="{{!noData}}" class="container">
+			<view scroll-x wx:if="{{!noData}}" class="container">
 				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
 			</view>
 			<view wx:if="{{noData}}" class="noData">
