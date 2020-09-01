@@ -1,6 +1,12 @@
 import * as echarts from '../../components/ec-canvas/echarts';
 import { formatTime } from '../../utils/util';
 const app = getApp();
+let tabsWithDay =  [
+    { name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
+  ];
+let tabs = [
+  { name: '周', id: 'week' }, { name: '月', id: 'month' }
+];
 var textStyle = {
   color: '#929292',
   fontSize: 12
@@ -78,35 +84,20 @@ Page({
   data: {
     currentTabId: 'week',
     preDisplayDate: '',
+    stepData: 0,
     noData: false,
     nextDisplayDate: '',
     startTime: 0,
     endTime: '',
-    echartsWeekList: [],
     echartsWeekMonth: [],
     clickNum: 0,
     initDate: '',
-    tabs: [
-    /*   {
-        name: '日',
-        id: 'day'
-      }, */ {
-        name: '周',
-        id: 'week'
-      }, {
-        name: '月',
-        id: 'month'
-      }
-    ],
+    tabs: tabsWithDay,
     ec: {
       onInit: initChart
     }
   },
   onLoad: function () {
-    // let stepList = this.formateStepData(app.globalData.runData);
-    // let stepListWeek = this.splitRunData(stepList, 7);
-    let stepListMonth = app.globalData.runData;
-    // this.getStepInfo();
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
@@ -118,43 +109,12 @@ Page({
     let preDisplayDate = timeRes.date;
     let startTime = timeRes.time;
     this.getStepInfo(startTime, endTime, 'week')
-    // let option = this.displayEcharts(stepListWeek[0]);
     this.setData({
       preDisplayDate,
       nextDisplayDate,
-      initDate,
-      // echartsWeekList: stepListWeek,
-      // echartsWeekMonth: stepListMonth
+      initDate
     })
   },
-/*   formateStepData: function (datas) {
-    let stepList = datas.map(item => {
-      return {
-        date: `${item.date.split('/')[2]}日`,
-        step: item.step
-      }
-    })
-    return stepList
-  }, */
-  /* displayEcharts: function (data) {
-    let arr = data && data.reverse();
-    let xData = [];
-    let yData = [];
-    arr.forEach(item => {
-      xData.push(item.date);
-      yData.push(item.step);
-    })
-    option.xAxis.data = xData;
-    option.series[0].data = yData;
-    return option;
-  }, */
-/*   splitRunData: function (runDataArr, size) {
-    let results = [];
-    for (let i = 0; i < runDataArr.length; i = i + size) {
-      results.push(runDataArr.slice(i, i + size));
-    }
-    return results;
-  }, */
   toHistoryStep: function () {
     wx.navigateTo({
       url: '../historyStep/index',
@@ -170,8 +130,10 @@ Page({
       let preTime = this.getWeek(initDate, 6);
       nextDisplayDate = nextTime.date;
       preDisplayDate = preTime.date;
+      this.getStepInfo(preTime.time, nextTime.time, 'week')
     } else if (currentTabId === 'month') {
       preDisplayDate = this.getPreMonth(initDate);
+      // this.getStepInfo(preTime.time, nextTime.time, 'month')
     }
     this.setData({
       currentTabId,
@@ -181,13 +143,13 @@ Page({
     })
   },
   getStepInfo: function (startTime, endTime, demension) {
+    let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
       method: "POST",
       header: {
         'Content-Type': 'application/json',
-        // "token": app.globalData.token
-        "token": 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyUrI0VtJRSq0oULIyNDMwNDAwNDMyqgUAAAD__w.8qczZsmNSaujLW_FZKshX4ywD8RaUpWNW1bIf4rAN-SlZLKxt_T7OYdmP4H6i3LVLVSAMuy8LeaoQT2TC9SDRg'
+        "token": app.globalData.token
       },
       data:{
         startTime,
@@ -196,16 +158,28 @@ Page({
         features: 'steps'
       },
       success: function (res) {
-        console.log(res.data.data.dataList);
         if (res.data.code == 200) {
-          let stepList = res.data.data.dataList.map(item => {
+          let { dataList=[], stepData, type } = res.data.data;
+          if (dataList.length === 0) {
+            that.setData({noData: true, stepData: 0});
+          }
+          that.setData({stepData, tabs: type === 'MINIP' ? tabs : tabsWithDay})
+          let stepList = dataList.map(item => {
             let date = formatTime(new Date(item.dataTime * 1000))
             return {
-              step: item.step,
-              time: date.split(" ")[0]
+              step: item.steps,
+              time: `${date.split(" ")[0].split('/')[2]}日`
             }
           })
-          console.log(stepList)
+          let xData = [];
+          let yData = [];
+          stepList.forEach(item => {
+            xData.push(item.time);
+            yData.push(item.step);
+          });
+          option.xAxis.data = xData;
+          option.series[0].data = yData;
+          chart && chart.setOption(option);
         }
       },
       fail: function (res) {
@@ -214,7 +188,7 @@ Page({
     })
   },
   preClick: function () {
-    let { currentTabId, echartsWeekList } = this.data;
+    let { currentTabId } = this.data;
     let clickNum = this.data.clickNum + 1;
     let nextDisplayDate = '';
     let preDisplayDate = '';
@@ -223,8 +197,7 @@ Page({
       let preTime = this.getWeek(this.data.preDisplayDate, 7);
       nextDisplayDate = nextTime.date;
       preDisplayDate = preTime.date;
-      // let option = this.displayEcharts(echartsWeekList[clickNum]);
-      // chart.setOption(option);
+      this.getStepInfo(preTime.time, nextTime.time, 'week')
     } else if (currentTabId === 'month') {
       nextDisplayDate = this.data.preDisplayDate;
       preDisplayDate = this.getPreMonth(this.data.preDisplayDate);
@@ -237,7 +210,7 @@ Page({
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
-    let { currentTabId, echartsWeekList } = this.data;
+    let { currentTabId } = this.data;
     let nextDisplayDate = '';
     let preDisplayDate = this.data.nextDisplayDate;
     if (currentTabId === 'week') {
@@ -245,8 +218,7 @@ Page({
       let nextTime = this.getWeek(preDisplayDate, 7, 'next')
       preDisplayDate = preTime.date;
       nextDisplayDate = nextTime.date;
-      // let option = this.displayEcharts(echartsWeekList[clickNum]);
-      // chart.setOption(option);
+      this.getStepInfo(preTime.time, nextTime.time, 'week')
     } else if (currentTabId === 'month') {
       preDisplayDate = this.data.nextDisplayDate;
       if (clickNum === 0) {

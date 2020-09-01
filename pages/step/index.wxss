@@ -153,3 +153,7 @@ ec-canvas {
   margin-left: 150rpx;
   color: blueviolet;
 }
+.noData {
+  font-size: 14px;
+  color: #CCC;
+}
