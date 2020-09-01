@@ -14,14 +14,17 @@
 		</view>
 		<view class="step-num-box">
 			<view>
-				<text class="step-num">1440</text>
+				<text class="step-num">{{ stepData }}</text>
 				<text class="step">步</text>
 			</view>
 			<view class="step-tip">平均步数</view>
 		</view>
 		<view class="echart-box" style="position: relative;">
-			<view class="container">
+			<view wx:if="{{!noData}}" class="container">
 				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+			</view>
+			<view wx:if="{{noData}}" class="noData">
+				暂无数据
 			</view>
 		</view>
 	</view>
