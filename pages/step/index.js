@@ -1,4 +1,5 @@
 import * as echarts from '../../components/ec-canvas/echarts';
+import { formatTime } from '../../utils/util';
 const app = getApp();
 var textStyle = {
   color: '#929292',
@@ -77,6 +78,7 @@ Page({
   data: {
     currentTabId: 'week',
     preDisplayDate: '',
+    noData: false,
     nextDisplayDate: '',
     startTime: 0,
     endTime: '',
@@ -101,30 +103,31 @@ Page({
     }
   },
   onLoad: function () {
-    let stepList = this.formateStepData(app.globalData.runData);
-    let stepListWeek = this.splitRunData(stepList, 7);
+    // let stepList = this.formateStepData(app.globalData.runData);
+    // let stepListWeek = this.splitRunData(stepList, 7);
     let stepListMonth = app.globalData.runData;
     // this.getStepInfo();
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    let endTime = date.getTime() / 1000;
+    let endTime = parseInt(date.getTime() / 1000);
     let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
     let nextDisplayDate = initDate;
     let timeRes = this.getWeek(initDate, 6);
     let preDisplayDate = timeRes.date;
-    let startTime = timeRes.time / 1000;
-    let option = this.displayEcharts(stepListWeek[0]);
+    let startTime = timeRes.time;
+    this.getStepInfo(startTime, endTime, 'week')
+    // let option = this.displayEcharts(stepListWeek[0]);
     this.setData({
       preDisplayDate,
       nextDisplayDate,
       initDate,
-      echartsWeekList: stepListWeek,
-      echartsWeekMonth: stepListMonth
+      // echartsWeekList: stepListWeek,
+      // echartsWeekMonth: stepListMonth
     })
   },
-  formateStepData: function (datas) {
+/*   formateStepData: function (datas) {
     let stepList = datas.map(item => {
       return {
         date: `${item.date.split('/')[2]}日`,
@@ -132,8 +135,8 @@ Page({
       }
     })
     return stepList
-  },
-  displayEcharts: function (data) {
+  }, */
+  /* displayEcharts: function (data) {
     let arr = data && data.reverse();
     let xData = [];
     let yData = [];
@@ -144,14 +147,14 @@ Page({
     option.xAxis.data = xData;
     option.series[0].data = yData;
     return option;
-  },
-  splitRunData: function (runDataArr, size) {
+  }, */
+/*   splitRunData: function (runDataArr, size) {
     let results = [];
     for (let i = 0; i < runDataArr.length; i = i + size) {
       results.push(runDataArr.slice(i, i + size));
     }
     return results;
-  },
+  }, */
   toHistoryStep: function () {
     wx.navigateTo({
       url: '../historyStep/index',
@@ -177,17 +180,32 @@ Page({
       nextDisplayDate
     })
   },
-  getStepInfo: function () {
+  getStepInfo: function (startTime, endTime, demension) {
     wx.request({
-      url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
-      method: "GET",
+      url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
+      method: "POST",
       header: {
         'Content-Type': 'application/json',
-        "token": app.globalData.token
+        // "token": app.globalData.token
+        "token": 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqVirNTFGyUrI0VtJRSq0oULIyNDMwNDAwNDMyqgUAAAD__w.8qczZsmNSaujLW_FZKshX4ywD8RaUpWNW1bIf4rAN-SlZLKxt_T7OYdmP4H6i3LVLVSAMuy8LeaoQT2TC9SDRg'
+      },
+      data:{
+        startTime,
+        endTime,
+        demension,
+        features: 'steps'
       },
       success: function (res) {
+        console.log(res.data.data.dataList);
         if (res.data.code == 200) {
-
+          let stepList = res.data.data.dataList.map(item => {
+            let date = formatTime(new Date(item.dataTime * 1000))
+            return {
+              step: item.step,
+              time: date.split(" ")[0]
+            }
+          })
+          console.log(stepList)
         }
       },
       fail: function (res) {
@@ -205,8 +223,8 @@ Page({
       let preTime = this.getWeek(this.data.preDisplayDate, 7);
       nextDisplayDate = nextTime.date;
       preDisplayDate = preTime.date;
-      let option = this.displayEcharts(echartsWeekList[clickNum]);
-      chart.setOption(option);
+      // let option = this.displayEcharts(echartsWeekList[clickNum]);
+      // chart.setOption(option);
     } else if (currentTabId === 'month') {
       nextDisplayDate = this.data.preDisplayDate;
       preDisplayDate = this.getPreMonth(this.data.preDisplayDate);
@@ -227,8 +245,8 @@ Page({
       let nextTime = this.getWeek(preDisplayDate, 7, 'next')
       preDisplayDate = preTime.date;
       nextDisplayDate = nextTime.date;
-      let option = this.displayEcharts(echartsWeekList[clickNum]);
-      chart.setOption(option);
+      // let option = this.displayEcharts(echartsWeekList[clickNum]);
+      // chart.setOption(option);
     } else if (currentTabId === 'month') {
       preDisplayDate = this.data.nextDisplayDate;
       if (clickNum === 0) {
@@ -291,7 +309,7 @@ Page({
     let [year, month, date] = tmp;
     let d = new Date(year, month - 1, date);
     direction === 'pre' ? d.setDate(d.getDate() - n) : d.setDate(d.getDate() + n);
-    let time = d.getTime();
+    let time = d.getTime() / 1000;
     let year2 = d.getFullYear();
     let mon2 = d.getMonth() + 1;
     let day2 = d.getDate();
