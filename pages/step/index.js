@@ -135,7 +135,6 @@ Page({
   },
   displayEcharts: function (data) {
     let arr = data && data.reverse();
-    // let option = JSON.parse(JSON.stringify(option))
     let xData = [];
     let yData = [];
     arr.forEach(item => {
@@ -165,9 +164,9 @@ Page({
     let preDisplayDate = '';
     if (currentTabId === 'week') {
       let nextTime = this.getWeek(initDate, 0);
-      let preTime = this.getWeek(initDate, 6, 0);
-      nextDisplayDate = preTime.time;
-      preDisplayDate = this.getWeek(initDate);
+      let preTime = this.getWeek(initDate, 6);
+      nextDisplayDate = nextTime.date;
+      preDisplayDate = preTime.date;
     } else if (currentTabId === 'month') {
       preDisplayDate = this.getPreMonth(initDate);
     }
