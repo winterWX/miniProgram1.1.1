@@ -129,6 +129,7 @@ Page({
                       }
                       that.setData({ runData: runData.stepInfoList });
                       app.globalData.runData = runData.stepInfoList;
+                      that.getQueryLatestime(runData.stepInfoList)
                       console.log('1212121212',that.data.runData);
                     }
                     //授权成功跳转
@@ -168,4 +169,61 @@ Page({
   //     }
   //   })
   // },
+  //最近上传数据时间查询(query- queryLatestime)|移动端
+    getQueryLatestime: function (runData) {
+      let that = this;
+      wx.request({
+        method: 'GET',
+        url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "token": app.globalData.token
+        },
+        data:{
+           type:'MINIP'
+        },
+        success: (res) => {
+          if (res.data.code === 200) {
+              console.log('上传数据时间查询',res.data.data);
+              that.getUploaddata(runData,res.data.data)
+          }
+        }
+      })
+  },
+  //运动数据同步上传
+  getUploaddata: function (runData,time) {
+    console.log('runDatarunData',runData);
+    let runDataArray = [];
+    runData.forEach((item)=>{
+      runDataArray.push({
+          endTime:  item.timestamp +'',
+          startTime: item.timestamp +'',
+          steps: item.step
+      })
+    })
+    console.log('runDataArrayrunDataArray',runDataArray)
+    wx.request({
+      method: 'POST',
+      url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      data:{
+        bpm: 0,
+        source :'string',
+        type : 'MINIP',
+        caloriesDataModelList :[],
+        distanceDataModelList :[],
+        stepsDataModelList : runDataArray,
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+            wx.showToast({
+              title: '数据同步成功！',
+            })
+        }
+      }
+    })
+},
 })
