@@ -17,17 +17,30 @@ Page({
       weight:'--',
       bpm:'--'
     },
+    stepDataShow:true,
+    bpmShow: true,
     editBlck: false,
     blockForData:{},
     integral:100,
     integralBlock : false,
-    tipUpdate: false
+    tipUpdate: false  //同步数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    let that = this;
+    if(app.healthStep.SynchronousData){
+        that.setData({
+          tipUpdate : app.healthStep.SynchronousData
+        })
+        this.getHealthData();
+        this.getHeightWeight();  //身高体重
+        that.getQueryintegral();
+    }
+    console.log('app.healthStep.SynchronousData',app.healthStep.SynchronousData);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -102,10 +115,21 @@ Page({
       },
       data: parms,
       success: (res) => {
-        if (res.data.code === 200) {
-         this.setData({
-           health:res.data.data
-         })
+        if (res.data.code === 200 &&  res.data.data !== null) {
+          const {distance,calories,totalTime,bpm} = res.data.data;
+            this.setData({
+              health:res.data.data
+            })
+            if(totalTime === 0){
+              that.setData({
+                stepDataShow: false
+              })
+            }
+            if( bpm === 0){
+              that.setData({
+                bpmShow: false
+              })
+            }
         } else {
           wx.showModal({
             showCancel: false,
@@ -229,5 +253,5 @@ Page({
         }
       }
     })
-  },
+  }
 })
