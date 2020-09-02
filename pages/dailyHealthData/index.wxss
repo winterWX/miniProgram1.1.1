@@ -1,3 +1,6 @@
+page{
+  background-color: #ededed !important;
+}
 .container{
   padding: 30rpx;
   background-color: #ededed;

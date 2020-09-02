@@ -99,6 +99,7 @@ Page({
     that.getQueryintegral();
   },
   getHealthData() {
+    let that = this;
     wx.showLoading({
       title: 'loading...',
     })
@@ -117,7 +118,7 @@ Page({
       success: (res) => {
         if (res.data.code === 200 &&  res.data.data !== null) {
           const {distance,calories,totalTime,bpm} = res.data.data;
-            this.setData({
+            that.setData({
               health:res.data.data
             })
             if(totalTime === 0){
