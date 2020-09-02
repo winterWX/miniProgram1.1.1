@@ -118,27 +118,29 @@ Page({
                     sessionkey : app.globalData.userInfo.session_key
                   },
                   success: function (resDecrypt) {
-                    //let runData = resDecrypt.data.data;
-                    let runData = JSON.parse(resDecrypt.data.data); 
-                    if (runData.stepInfoList.length > 0)
-                    {
-                      runData.stepInfoList = runData.stepInfoList.reverse()
-                      for (var i in runData.stepInfoList)
+                    if(resDecrypt.data.data !== null ){
+                      //let runData = resDecrypt.data.data;
+                      let runData = JSON.parse(resDecrypt.data.data); 
+                      if (runData.stepInfoList.length > 0)
                       {
-                        runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
+                        runData.stepInfoList = runData.stepInfoList.reverse()
+                        for (var i in runData.stepInfoList)
+                        {
+                          runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
+                        }
+                        that.setData({ runData: runData.stepInfoList });
+                        app.globalData.runData = runData.stepInfoList;
+                        that.getQueryLatestime(runData.stepInfoList)
+                        console.log('1212121212',that.data.runData);
                       }
-                      that.setData({ runData: runData.stepInfoList });
-                      app.globalData.runData = runData.stepInfoList;
-                      that.getQueryLatestime(runData.stepInfoList)
-                      console.log('1212121212',that.data.runData);
+                      //授权成功跳转
+                      app.globalData.isWeRunSteps = true;
+                      wx.navigateTo({
+                        url: '../../pages/healthPage/index?id=' + that.data.rstProdu
+                      })
+                      // //记录领取积分
+                      // that.getintegral();  
                     }
-                    //授权成功跳转
-                    app.globalData.isWeRunSteps = true;
-                    wx.navigateTo({
-                      url: '../../pages/healthPage/index?id=' + that.data.rstProdu
-                    })
-                    // //记录领取积分
-                    // that.getintegral();  
                   },
                   fail: function () {
                     console.log('----------')
@@ -169,8 +171,12 @@ Page({
         },
         success: (res) => {
           if (res.data.code === 200) {
-              console.log('上传数据时间查询',res.data.data);
-              that.getUploaddata(runData,res.data.data)
+              //最后上传时间戳 和 当前时间戳进行比较
+              let dayTime = parseInt(new Date().getTime() / 1000);
+              let lastTime = res.data.data;
+              if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
+                    that.getUploaddata(runData,res.data.data)
+              }
           }
         }
       })
@@ -198,15 +204,14 @@ Page({
         bpm: 0,
         source :'string',
         type : 'MINIP',
+        lastTime: parseInt(new Date().getTime() / 1000) + '',
         caloriesDataModelList :[],
         distanceDataModelList :[],
         stepsDataModelList : runDataArray,
       },
       success: (res) => {
         if (res.data.code === 200) {
-            wx.showToast({
-              title: '数据同步成功！',
-            })
+            console.log('数据同步成功')
         }
       }
     })

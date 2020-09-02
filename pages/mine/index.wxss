@@ -9,12 +9,26 @@
    justify-content: center;
    border: 1rpx solid #ccc;
 }
+.healtProson{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.titleTip{
+  width: 90%;
+  text-align: center;
+  padding-left: 20rpx;
+  padding-left: 65rpx;
+}
+.titleRed{
+  width: 10%;
+}
 .red {
   width: 16rpx;
   height: 16rpx;
   border-radius: 8rpx;
   background-color: red;
   margin-left: 8rpx;
-  position: absolute;
   right: 30rpx;
 }
