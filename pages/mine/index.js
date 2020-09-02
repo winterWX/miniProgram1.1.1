@@ -129,8 +129,7 @@ Page({
                       }
                       that.setData({ runData: runData.stepInfoList });
                       app.globalData.runData = runData.stepInfoList;
-                      that.getQueryLatestime(runData.stepInfoList)
-                      console.log('1212121212',that.data.runData);
+                      that.getQueryLatestime(runData.stepInfoList);
                     }
                     //授权成功跳转
                     app.globalData.isWeRunSteps = true;
