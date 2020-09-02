@@ -15,6 +15,7 @@ var lineStyle = {
   color: '#EDEDED',
   width: '1'
 }
+let checkName = '';
 var option = {
   color: ['#00A865'],
   grid: {
@@ -25,6 +26,7 @@ var option = {
   },
   xAxis: {
     type: 'category',
+    triggerEvent:true,
     axisLabel: {
       interval: 6
     },
@@ -43,6 +45,7 @@ var option = {
     position: 'right',
     type: 'value',
     splitNumber: 2,
+    triggerEvent:true,
     splitArea: {
       show: false
     },
@@ -65,12 +68,24 @@ var option = {
     barWidth: 6,
     itemStyle: {
       normal: {
-        barBorderRadius: [5, 5, 0, 0]
+        barBorderRadius: [5, 5, 0, 0],
+        color: function (params) {
+          //判断选中的名字改变柱子的颜色样式
+          if (checkName === params.name) {
+            return '#00A865';
+          }
+        }
       }
     }
   }]
 };
 let chart = null;
+let dateMap = {};
+let stepInfo = {
+  selectedDate: '',
+  selectedDateNum: 0,
+  showSelectedDate: false,
+};
 function initChart(canvas, width, height) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -87,6 +102,9 @@ Page({
     stepData: 0,
     noData: false,
     nextDisplayDate: '',
+    selectedDate: '',
+    selectedDateNum: 0,
+    showSelectedDate: false,
     startTime: 0,
     endTime: '',
     echartsWeekMonth: [],
@@ -113,6 +131,24 @@ Page({
       preDisplayDate,
       nextDisplayDate,
       initDate
+    })
+  },
+  onReady: function () {
+    setTimeout(() => {
+      console.log('3333')
+      this.bindEchartsClick();
+    }, 1500)
+  },
+  bindEchartsClick: function() {
+    chart && chart.on('click', (params) => {
+      option.color = ['#55D0A6'];
+      checkName = params.name;
+      chart.setOption(option);
+      this.setData({
+        selectedDate: dateMap[checkName.substring(0, 2)],
+        selectedDateNum: params.value,
+        showSelectedDate: true,
+      })
     })
   },
   toHistoryStep: function () {
@@ -146,58 +182,62 @@ Page({
     })
   },
   getStepInfo: function (startTime, endTime, demension) {
+    this.setData({ showSelectedDate: false });
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token
-      },
-      data: {
-        startTime,
-        endTime,
-        demension,
-        features: 'steps'
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let { dataList = [], stepData, type } = res.data.data;
-          if (dataList.length === 0) {
-            that.setData({ stepData: 0, noData: !dataList.length });
-            return;
-          };
-          // 返回日期重新排序
-          dataList.sort((a, b) => {
-            return a.dataTime - b.dataTime
-          });
-          that.setData({
-            stepData,
-            tabs: type === 'MINIP' ? tabs : tabsWithDay,
-            noData: !dataList.length
-          })
-          let stepList = dataList.map(item => {
-            let date = formatTime(new Date(item.dataTime * 1000))
-            return {
-              step: item.steps,
-              time: `${date.split(" ")[0].split('/')[2]}日`
-            }
-          })
-          let xData = [];
-          let yData = [];
-          stepList.forEach(item => {
-            xData.push(item.time);
-            yData.push(item.step);
-          });
-          option.xAxis.data = xData;
-          option.series[0].data = yData;
-          chart && chart.setOption(option);
+    option.color = ['#00A865'],
+      wx.request({
+        url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
+        method: "POST",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        data: {
+          startTime,
+          endTime,
+          demension,
+          features: 'steps'
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+            let { dataList = [], stepData, type } = res.data.data;
+            if (dataList.length === 0) {
+              that.setData({ stepData: 0, noData: !dataList.length });
+              return;
+            };
+            // 返回日期重新排序
+            dataList.sort((a, b) => {
+              return a.dataTime - b.dataTime
+            });
+            that.setData({
+              stepData,
+              tabs: type === 'MINIP' ? tabs : tabsWithDay,
+              noData: !dataList.length
+            });
+            let xData = [];
+            let yData = [];
+            dateMap = {};
+            dataList.forEach(item => {
+              let t = formatTime(new Date(item.dataTime * 1000));
+              let dateArr = that.foramteDate(t);
+              let [year, month, day] = dateArr;
+              dateMap[day] = `${year}年${month}月${day}日`;
+              xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+              yData.push(item.steps);
+            });
+            option.xAxis.data = xData;
+            option.series[0].data = yData;
+            chart && chart.setOption(option);
+          }
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
         }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+      })
+  },
+  foramteDate: function (time) {
+    let timeArr = time.split(' ')[0].split('/');
+    return timeArr;
   },
   preClick: function () {
     let { currentTabId } = this.data;
@@ -233,8 +273,6 @@ Page({
     if (currentTabId === 'week') {
       preTime = this.getWeek(this.data.nextDisplayDate, 1, 'next');
       nextTime = this.getWeek(this.data.nextDisplayDate, 7, 'next');
-      console.log(preTime);
-      console.log(nextTime);
     } else if (currentTabId === 'month') {
       if (clickNum === 0) {
         preTime = this.getPreMonth(this.data.initDate, 1);
