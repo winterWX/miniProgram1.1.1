@@ -140,6 +140,9 @@ Page({
                       })
                       // //记录领取积分
                       // that.getintegral();  
+                      that.setData({ runData: runData.stepInfoList });
+                      app.globalData.runData = runData.stepInfoList;
+                      that.getQueryLatestime(runData.stepInfoList);
                     }
                   },
                   fail: function () {

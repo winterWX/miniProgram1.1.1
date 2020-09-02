@@ -12,16 +12,23 @@
 			</view>
 			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
-		<view class="step-num-box">
+		<view wx:if="{{!showSelectedDate}}" class="step-num-box">
 			<view>
 				<text class="step-num">{{ stepData }}</text>
 				<text class="step">步</text>
 			</view>
 			<view class="step-tip">平均步数</view>
 		</view>
+		<view wx:if="{{showSelectedDate}}" class="step-num-box">
+			<view>
+				<text class="step-num">{{ selectedDateNum }}</text>
+				<text class="step">步</text>
+			</view>
+			<view class="step-tip">{{selectedDate}}总步数</view>
+		</view>
 		<view class="echart-box" style="position: relative;">
 			<view scroll-x wx:if="{{!noData}}" class="container">
-				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
 			</view>
 			<view wx:if="{{noData}}" class="noData">
 				暂无数据
