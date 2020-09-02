@@ -118,7 +118,7 @@ Page({
                     sessionkey : app.globalData.userInfo.session_key
                   },
                   success: function (resDecrypt) {
-                    if(resDecrypt.data.data !== null ){
+                    if(resDecrypt.data.data.length > 0){
                       //let runData = resDecrypt.data.data;
                       let runData = JSON.parse(resDecrypt.data.data); 
                       if (runData.stepInfoList.length > 0)

@@ -21,7 +21,7 @@
       <view class="derlopent">
          <view class="derlopent-title">建议：体重过轻，不适合减脂，试试增肌吧</view>
          <view class="health-block">
-            <view class="flagColor"></view>
+            <view class="flagColor" style="background:{{background}};left:{{BMIleft}}%;"></view>
             <view class="health-item1">
                <view class="healthColor1"></view>
                <view class="healthText">偏瘦</view>
