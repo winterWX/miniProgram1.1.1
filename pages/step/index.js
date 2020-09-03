@@ -16,6 +16,7 @@ var lineStyle = {
   width: '1'
 }
 let checkName = '';
+let currentTab = '';
 var option = {
   color: ['#00A865'],
   grid: {
@@ -141,11 +142,13 @@ Page({
       option.color = ['#55D0A6'];
       checkName = params.name;
       chart.setOption(option);
-      this.setData({
-        selectedDate: dateMap[checkName.substring(0, 2)],
-        selectedDateNum: params.value,
-        showSelectedDate: true,
-      })
+      if (currentTab !== 'day') {
+        this.setData({
+          selectedDate: dateMap[checkName.substring(0, 2)],
+          selectedDateNum: params.value,
+          showSelectedDate: true,
+        })
+      }
     })
   },
   toHistoryStep: function () {
@@ -156,6 +159,7 @@ Page({
   changTab: function (e) {
     let { initDate } = this.data;
     let currentTabId = e.currentTarget.dataset.props;
+    currentTab = currentTabId;
     this.data.currentTabId = currentTabId;
     let nextDisplayDate = '';
     let preDisplayDate = '';
