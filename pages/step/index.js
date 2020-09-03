@@ -118,7 +118,8 @@ Page({
     let month = date.getMonth() + 1;
     let day = date.getDate();
     let endTime = parseInt(date.getTime() / 1000);
-    let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    // let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    let initDate = `${year}年${month}月${day}日`;
     let currentDate = initDate;
     let nextDisplayDate = initDate;
     let timeRes = this.getWeek(initDate, 6);
@@ -238,7 +239,12 @@ Page({
               let dateArr = that.foramteDate(t);
               let [year, month, day] = dateArr;
               dateMap[day] = `${month}月${day}日`;
-              currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+              if (currentTabId !== 'week') {
+                currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+              } else {
+                xData.push(that.getDisplayWeek(new Date(item.dataTime * 1000)));
+              }
+              
               option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
               yData.push(item.steps);
             });
@@ -251,6 +257,19 @@ Page({
           console.log('.........fail..........');
         }
       })
+  },
+  getDisplayWeek: function(date) {
+    let weekMap = {
+      0: '周日',
+      1: '周一',
+      2: '周二',
+      3: '周三',
+      4: '周四',
+      5: '周五',
+      6: '周六'
+    };
+    let day = date.getDay();
+    return weekMap[day];
   },
   foramteDate: function (time) {
     let timeArr = time.split(' ')[0].split('/');

@@ -19,23 +19,23 @@ Page({
     requiredInput: 6,
     inputedInfoNum: 2,
     optionList: [{
-      label: '暂不选择',
-      id: 4
-    }, {
       label: '男',
       id: 1
     }, {
       label: '女',
       id: 2
-    }, {
-      label: '保密',
+    },{
+      label: '其他',
       id: 3
+    }, {
+      label: '不提供',
+      id: 4
     }],
     genderMap: {
       1: '男',
       2: '女',
-      3: '保密',
-      4: '暂不选择'
+      3: '其他',
+      4: '不提供'
     },
     gender: '暂不选择',
     animationData: {},//
