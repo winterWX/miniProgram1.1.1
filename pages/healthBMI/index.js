@@ -72,11 +72,12 @@ Page({
 
   },
   BMIleftAnmation:function(num){
-    console.log('111111111',typeof num)
     let that = this;
     let numData = num.toFixed(1);
     if(parseFloat(16.0) <= parseFloat(numData) && parseFloat(numData) < parseFloat(18.5)){
-        let BMIleft =  (parseFloat(18.5) - parseFloat(numData)) * parseFloat(6.0);
+        let s1 =  (parseFloat(18.5) - parseFloat(numData)) * parseFloat(6.0);
+        let BMIleft = parseFloat(15.0) - parseFloat(s1)
+        console.log('BMIleft',BMIleft);
         that.setData({
           background: '#9B7C56'
         })
@@ -84,8 +85,8 @@ Page({
           BMIleft
         })
     }else if(parseFloat(18.5) <= parseFloat(numData) && parseFloat(numData) < parseFloat(25.0)){
-       //28%
-       let BMIleft =  parseFloat((parseFloat(25.0) - parseFloat(18.5)) * parseFloat(4.3)) + parseFloat(15.0);
+       let s1 = (parseFloat(25.0) - parseFloat(numData)) * parseFloat(4.3);
+       let BMIleft = parseFloat(43.0) - parseFloat(s1);
         that.setData({
           background: '#34A344'
         })
@@ -93,19 +94,17 @@ Page({
           BMIleft
         })
     }else if(parseFloat(25.0) <= parseFloat(numData) && parseFloat(numData) < parseFloat(35.0)){
-        let BMIleft =  parseFloat((parseFloat(35.0) - parseFloat(25.0)) * parseFloat(2.2)) + parseFloat(43.0);
-        //22%
-        //43
+        let s1 = (parseFloat(35.0) - parseFloat(numData)) * parseFloat(2.2);
+        let BMIleft = parseFloat(65.0) - parseFloat(s1);
         that.setData({
           background: '#EDAE26'
         })
         that.setData({
           BMIleft
         })
-    }else if(parseFloat(numData) > parseFloat(35.0)){
-        let BMIleft =  parseFloat((parseFloat(numData) - parseFloat(35.0)) * parseFloat(1.85)) + parseFloat(65.0);
-        //35%
-        //65
+    }else if(parseFloat(numData) >= parseFloat(35.0)){
+        let s1 = (parseFloat(numData) - parseFloat(35.0)) * parseFloat(0.52);
+        let BMIleft = parseFloat(65.0) + parseFloat(s1);
         that.setData({
           background: '#B10D19'
         })

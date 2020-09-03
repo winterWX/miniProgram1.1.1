@@ -1,5 +1,12 @@
 import * as echarts from '../../components/ec-canvas/echarts';
+import { formatTime } from '../../utils/util';
 const app = getApp();
+let tabsWithDay = [
+  { name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
+];
+let tabs = [
+  { name: '周', id: 'week' }, { name: '月', id: 'month' }
+];
 var textStyle = {
   color: '#929292',
   fontSize: 12
@@ -8,16 +15,18 @@ var lineStyle = {
   color: '#EDEDED',
   width: '1'
 }
+let checkName = '';
 var option = {
   color: ['#00A865'],
   grid: {
-    left: '5',
+    left: '8',
     right: '50',
     bottom: '30',
     top: '8'
   },
   xAxis: {
     type: 'category',
+    triggerEvent:true,
     axisLabel: {
       interval: 6
     },
@@ -30,12 +39,13 @@ var option = {
     axisLabel: {
       textStyle: textStyle
     },
-    data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日']
+    data: []
   },
   yAxis: {
     position: 'right',
     type: 'value',
     splitNumber: 2,
+    triggerEvent:true,
     splitArea: {
       show: false
     },
@@ -58,12 +68,24 @@ var option = {
     barWidth: 6,
     itemStyle: {
       normal: {
-        barBorderRadius: [5, 5, 0, 0]
+        barBorderRadius: [5, 5, 0, 0],
+        color: function (params) {
+          //判断选中的名字改变柱子的颜色样式
+          if (checkName === params.name) {
+            return '#00A865';
+          }
+        }
       }
     }
   }]
 };
 let chart = null;
+let dateMap = {};
+let stepInfo = {
+  selectedDate: '',
+  selectedDateNum: 0,
+  showSelectedDate: false,
+};
 function initChart(canvas, width, height) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -77,77 +99,57 @@ Page({
   data: {
     currentTabId: 'week',
     preDisplayDate: '',
+    stepData: 0,
+    noData: false,
     nextDisplayDate: '',
-    // currentCalcedDate: '',
-    echartsWeekList: [],
+    selectedDate: '',
+    selectedDateNum: 0,
+    showSelectedDate: false,
+    startTime: 0,
+    endTime: '',
     echartsWeekMonth: [],
     clickNum: 0,
     initDate: '',
-    tabs: [
-      {
-        name: '日',
-        id: 'day'
-      },{
-        name: '周',
-        id: 'week'
-      }, {
-        name: '月',
-        id: 'month'
-      }
-    ],
+    tabs: tabsWithDay,
     ec: {
       onInit: initChart
     }
   },
   onLoad: function () {
-    let stepList = this.formateStepData(app.globalData.runData);
-    let stepListWeek = this.splitRunData(stepList, 7);
-    let stepListMonth = app.globalData.runData;
-    // this.getStepInfo();
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
+    let endTime = parseInt(date.getTime() / 1000);
     let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
     let nextDisplayDate = initDate;
-    let preDisplayDate = this.getWeek(initDate);
-    let option = this.displayEcharts(stepListWeek[0]);
+    let timeRes = this.getWeek(initDate, 6);
+    let preDisplayDate = timeRes.date;
+    let startTime = timeRes.time;
+    this.getStepInfo(startTime, endTime, 'week')
     this.setData({
       preDisplayDate,
       nextDisplayDate,
-      initDate,
-      echartsWeekList: stepListWeek,
-      echartsWeekMonth: stepListMonth
+      initDate
     })
   },
-  formateStepData: function (datas) {
-    let stepList = datas.map(item => {
-      return {
-        date: `${item.date.split('/')[2]}日`,
-        step: item.step
-      }
-    })
-    return stepList
+  onReady: function () {
+    setTimeout(() => {
+      console.log('3333')
+      this.bindEchartsClick();
+    }, 1500)
   },
-  displayEcharts: function (data) {
-    let arr = data && data.reverse();
-    // let option = JSON.parse(JSON.stringify(option))
-    let xData = [];
-    let yData = [];
-    arr.forEach(item => {
-      xData.push(item.date);
-      yData.push(item.step);
+  bindEchartsClick: function() {
+    chart && chart.on('click', (params) => {
+      option.color = ['#55D0A6'];
+      checkName = params.name;
+      chart.setOption(option);
+      this.setData({
+        selectedDate: dateMap[checkName.substring(0, 2)],
+        selectedDateNum: params.value,
+        showSelectedDate: true,
+      })
     })
-    option.xAxis.data = xData;
-    option.series[0].data = yData;
-    return option;
-  },
-  splitRunData: function (runDataArr, size) {
-    let results = [];
-    for (let i = 0; i < runDataArr.length; i = i + size) {
-      results.push(runDataArr.slice(i, i + size));
-    }
-    return results;
   },
   toHistoryStep: function () {
     wx.navigateTo({
@@ -157,13 +159,20 @@ Page({
   changTab: function (e) {
     let { initDate } = this.data;
     let currentTabId = e.currentTarget.dataset.props;
-    this.setData({ currentCalcedDate: null })
-    let nextDisplayDate = initDate;
+    let nextDisplayDate = '';
     let preDisplayDate = '';
     if (currentTabId === 'week') {
-      preDisplayDate = this.getWeek(initDate);
+      let nextTime = this.getWeek(initDate, 0);
+      let preTime = this.getWeek(initDate, 6);
+      nextDisplayDate = nextTime.date;
+      preDisplayDate = preTime.date;
+      this.getStepInfo(preTime.time, nextTime.time, 'week')
     } else if (currentTabId === 'month') {
-      preDisplayDate = this.getPreMonth(initDate);
+      let nextTime = this.getNextMonth(initDate, 0);
+      let preTime = this.getPreMonth(initDate, 1);
+      nextDisplayDate = nextTime.date;
+      preDisplayDate = preTime.date;
+      this.getStepInfo(preTime.time, nextTime.time, 'month')
     }
     this.setData({
       currentTabId,
@@ -172,37 +181,82 @@ Page({
       nextDisplayDate
     })
   },
-  getStepInfo: function () {
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-
+  getStepInfo: function (startTime, endTime, demension) {
+    this.setData({ showSelectedDate: false });
+    let that = this;
+    option.color = ['#00A865'],
+      wx.request({
+        url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
+        method: "POST",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        data: {
+          startTime,
+          endTime,
+          demension,
+          features: 'sports'
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+            let { dataList = [], stepData, type } = res.data.data;
+            if (dataList.length === 0) {
+              that.setData({ stepData: 0, noData: !dataList.length });
+              return;
+            };
+            // 返回日期重新排序
+            dataList.sort((a, b) => {
+              return a.dataTime - b.dataTime
+            });
+            that.setData({
+              stepData,
+              tabs: type === 'MINIP' ? tabs : tabsWithDay,
+              noData: !dataList.length
+            });
+            let xData = [];
+            let yData = [];
+            dateMap = {};
+            dataList.forEach(item => {
+              let t = formatTime(new Date(item.dataTime * 1000));
+              let dateArr = that.foramteDate(t);
+              let [year, month, day] = dateArr;
+              dateMap[day] = `${year}年${month}月${day}日`;
+              xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+              yData.push(item.steps);
+            });
+            option.xAxis.data = xData;
+            option.series[0].data = yData;
+            chart && chart.setOption(option);
+          }
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
         }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+      })
+  },
+  foramteDate: function (time) {
+    let timeArr = time.split(' ')[0].split('/');
+    return timeArr;
   },
   preClick: function () {
-    let { currentTabId, echartsWeekList } = this.data;
+    let { currentTabId } = this.data;
     let clickNum = this.data.clickNum + 1;
     let nextDisplayDate = '';
     let preDisplayDate = '';
-    nextDisplayDate = this.data.preDisplayDate;
+    let nextTime = null;
+    let preTime = null;
     if (currentTabId === 'week') {
-      preDisplayDate = this.getWeek(this.data.preDisplayDate);
-      let option = this.displayEcharts(echartsWeekList[clickNum]);
-      chart.setOption(option);
+      nextTime = this.getWeek(this.data.preDisplayDate, 1);
+      preTime = this.getWeek(this.data.preDisplayDate, 7);
+
     } else if (currentTabId === 'month') {
-      preDisplayDate = this.getPreMonth(this.data.preDisplayDate);
+      nextTime = this.getPreMonth(this.data.nextDisplayDate);
+      preTime = this.getPreMonth(this.data.preDisplayDate);
     }
+    nextDisplayDate = nextTime.date;
+    preDisplayDate = preTime.date;
+    this.getStepInfo(preTime.time, nextTime.time, currentTabId)
     this.setData({
       clickNum,
       preDisplayDate,
@@ -211,21 +265,26 @@ Page({
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
-    let { currentTabId, echartsWeekList } = this.data;
+    let { currentTabId } = this.data;
     let nextDisplayDate = '';
-    let preDisplayDate = this.data.nextDisplayDate;
+    let preDisplayDate = '';
+    let preTime = null;
+    let nextTime = null;
     if (currentTabId === 'week') {
-      nextDisplayDate = this.getWeek(preDisplayDate, 'next');
-      let option = this.displayEcharts(echartsWeekList[clickNum]);
-      chart.setOption(option);
+      preTime = this.getWeek(this.data.nextDisplayDate, 1, 'next');
+      nextTime = this.getWeek(this.data.nextDisplayDate, 7, 'next');
     } else if (currentTabId === 'month') {
       if (clickNum === 0) {
-        nextDisplayDate = this.data.initDate;
-        preDisplayDate = this.getPreMonth(this.data.initDate);
+        preTime = this.getPreMonth(this.data.initDate, 1);
+        nextTime = this.getNextMonth(this.data.initDate, 0);
       } else {
-        nextDisplayDate = this.getNextMonth(this.data.nextDisplayDate);
+        preTime = this.getNextMonth(this.data.nextDisplayDate, 0);
+        nextTime = this.getNextMonth(this.data.nextDisplayDate, 1);
       }
     }
+    preDisplayDate = preTime.date;
+    nextDisplayDate = nextTime.date;
+    this.getStepInfo(preTime.time, nextTime.time, currentTabId)
     this.setData({
       clickNum,
       preDisplayDate,
@@ -244,6 +303,8 @@ Page({
     }
     let day2 = day;
     let days2 = new Date(year2, month2, 0);
+    let t = new Date(year2, month2 - 1, day);;
+    let time = parseInt(t.getTime() / 1000);
     let daysInMonth = days2.getDate();
     if (day2 > daysInMonth) {
       day2 = daysInMonth;
@@ -251,20 +312,25 @@ Page({
     if (month2 < 10) {
       month2 = '0' + month2;
     }
-    return `${year2}年${month2}月${day2}日`;;
+    return {
+      date: `${year2}年${month2}月${day2}日`,
+      time
+    };
   },
   // 获取后一个月日期
-  getNextMonth: function (formateTime) {
+  getNextMonth: function (formateTime, n) {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, day] = tmp;
     var year2 = year;
-    var month2 = parseInt(month) + 1;
+    var month2 = parseInt(month) + n;
     if (month2 == 13) {
       year2 = parseInt(year2) + 1;
       month2 = 1;
     }
     var day2 = day;
     var days2 = new Date(year2, month2, 0);
+    var t = new Date(year2, month2 - 1, day);
+    let time = parseInt(t.getTime() / 1000);
     days2 = days2.getDate();
     if (day2 > days2) {
       day2 = days2;
@@ -272,17 +338,24 @@ Page({
     if (month2 < 10) {
       month2 = '0' + month2;
     }
-    return `${year2}年${month2}月${day2}日`;
+    return {
+      date: `${year2}年${month2}月${day2}日`,
+      time
+    }
   },
-  getWeek: function (formateTime, direction = 'pre') {
+  getWeek: function (formateTime, n, direction = 'pre') {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, date] = tmp;
-    let d = new Date(year, month - 1, date)
-    direction === 'pre' ? d.setDate(d.getDate() - 7) : d.setDate(d.getDate() + 7);
+    let d = new Date(year, month - 1, date);
+    direction === 'pre' ? d.setDate(d.getDate() - n) : d.setDate(d.getDate() + n);
+    let time = parseInt(d.getTime() / 1000);
     let year2 = d.getFullYear();
     let mon2 = d.getMonth() + 1;
     let day2 = d.getDate();
     let s = year2 + "年" + (mon2 < 10 ? ('0' + mon2) : mon2) + "月" + (day2 < 10 ? ('0' + day2) : day2) + '日';
-    return s;
+    return {
+      date: s,
+      time: time
+    }
   }
 })

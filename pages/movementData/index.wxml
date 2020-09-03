@@ -12,27 +12,45 @@
 			</view>
 			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
-		<view class="step-num-box">
+		<view wx:if="{{!showSelectedDate}}" class="step-num-box">
 			<view>
-				<text class="step-num">1440</text>
+				<text class="step-num">{{ stepData }}</text>
 				<text class="step">步</text>
 			</view>
-			<view class="step-tip">平均步数</view>
+			<view class="step-tip">运动时间</view>
+		</view>
+		<view wx:if="{{showSelectedDate}}" class="step-num-box">
+			<view>
+				<text class="step-num">{{ selectedDateNum }}</text>
+				<text class="step">步</text>
+			</view>
+			<view class="step-tip">{{selectedDate}}总步数</view>
 		</view>
 		<view class="echart-box" style="position: relative;">
-			<view class="container">
-				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+			<view scroll-x wx:if="{{!noData}}" class="container">
+				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+			</view>
+			<view wx:if="{{noData}}" class="noData">
+				暂无数据
 			</view>
 		</view>
 	</view>
-	<view class="history-step">
-		<text class="label">历史步数</text>
-		<image class="icon" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="toHistoryStep"></image>
+	<view class="mainBlock"> 
+			<view class="mainInit">
+						<view class="mainBlockLeft">
+							<view class="mainNum">122</view>
+							<view class="mainText">身高/厘米</view>
+						</view>
+						<view class="mainBlockRight">
+							<view class="mainNum">344</view>
+							<view class="mainText">体重/公斤</view>
+						</view>
+			</view>
 	</view>
 	<view class="step-description">
-		<view class="desc-title">关于步行数据</view>
+		<view class="desc-title">关于运动数据</view>
 		<view class="desc-content">
-			步数指您一天中走了多少步。计步器和数字运动追踪器可帮助您确定步数。这类设备会为所有产生步数的活动计算步数，如走路、跑步、上下楼梯、越野楼梯、越野滑雪、甚至做家务等活动。
+        记录您总的运动时间和您走过的距离长度，以及卡路里信息的信息提供给应用程序。 您可以使用此来查看您近期的运动情况。
 		</view>
 	</view>
 </view>
