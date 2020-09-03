@@ -32,7 +32,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    numData:''
+    numData:'',
+    valData: false
   },
   lifetimes: { // 生命周期
     ready: function () {
@@ -48,34 +49,49 @@ Component({
    */
   methods: {
     inputNum(e){
-      this.setData({
-        numData: e.detail.value
-      })
+      let that = this;
+      if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{1,2})?)$/.test(e.detail.value))) {
+          console.log('不正常',e.detail.value)
+          that.setData({
+            valData :true
+          })
+        }else{
+          that.setData({
+            valData : false
+          })
+          that.setData({
+            numData: e.detail.value
+          })
+        }
     },
     saveNum(){
       let that = this;
-      let addUrl = app.globalData.baseUrl + '/remote/bodyData/add';
-      let editUrl = app.globalData.baseUrl + '/remote/bodyData/edit';
-      wx.request({
-        method: 'POST',
-        url: that.data.valueData !== true ? editUrl : addUrl,
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
-        },
-        data:{
-          weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
-          height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
-        },
-        success: (res) => {
-          if (res.data.code === 200) {
-              wx.showToast({
-                title: '保存成功',
-              })
-              that.closeBalck()
+      if(that.data.valData){
+         return;
+      }else{
+        let addUrl = app.globalData.baseUrl + '/remote/bodyData/add';
+        let editUrl = app.globalData.baseUrl + '/remote/bodyData/edit';
+        wx.request({
+          method: 'POST',
+          url: that.data.valueData !== true ? editUrl : addUrl,
+          header: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "token": app.globalData.token
+          },
+          data:{
+            weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
+            height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
+          },
+          success: (res) => {
+            if (res.data.code === 200) {
+                wx.showToast({
+                  title: '保存成功',
+                })
+                that.closeBalck()
+            }
           }
-        }
-      })
+        })
+      }
     },
     closeBalck(){
       let that = this;
