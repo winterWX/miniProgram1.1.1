@@ -73,7 +73,7 @@ Page({
   },
   BMIleftAnmation:function(num){
     let that = this;
-    let numData = num.toFixed(1);
+    let numData = Number(num).toFixed(1);
     if(parseFloat(16.0) <= parseFloat(numData) && parseFloat(numData) < parseFloat(18.5)){
         let s1 =  (parseFloat(18.5) - parseFloat(numData)) * parseFloat(6.0);
         let BMIleft = parseFloat(15.0) - parseFloat(s1)

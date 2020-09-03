@@ -117,9 +117,11 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200 &&  res.data.data !== null) {
-          const {distance,calories,totalTime,bpm} = res.data.data;
-            that.setData({
-              health:res.data.data
+           const {distance,calories,totalTime,bpm} = res.data.data;
+           let bmiNum = parseInt(res.data.data.weight) / ((parseInt(res.data.data.height) / 100)*2); 
+           res.data.data.bmi = Number(bmiNum.toFixed(1));
+           that.setData({
+              health: res.data.data
             })
             if(totalTime === 0){
               that.setData({
@@ -202,6 +204,8 @@ Page({
       },
       success: (res) => {
         if (res.data.data !== null) {
+            let bmiNum = parseInt(res.data.data.weight) / ((parseInt(res.data.data.height) / 100)*2) 
+            res.data.data.bmi = bmiNum.toFixed(1);
             that.setData({
               health: Object.assign(this.data.health,res.data.data)
             })

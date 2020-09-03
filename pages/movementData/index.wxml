@@ -7,24 +7,27 @@
 	<view class="step-echart-box">
 		<view class="time-slot">
 			<image src="http://106.54.73.125:8102/images/miniprogram/images/back2.png" catchtap="preClick"></image>
-			<view class="time-display">
+			<view wx:if="{{ currentTabId !== 'day' }}" class="time-display">
 				{{ preDisplayDate }} - {{ nextDisplayDate }}
+			</view>
+			<view wx:if="{{ currentTabId === 'day' }}" class="time-display">
+				{{ currentDate === initDate ? '今日' : currentDate}}
 			</view>
 			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
 		<view wx:if="{{!showSelectedDate}}" class="step-num-box">
 			<view>
-				<text class="step-num">{{ stepData }}</text>
-				<text class="step">步</text>
+				<text class="step-num">{{timeData}}</text>
+				<text class="step">分钟</text>
 			</view>
-			<view class="step-tip">运动时间</view>
+			<view class="step-tip">{{textObject.topTimeText}}</view>
 		</view>
 		<view wx:if="{{showSelectedDate}}" class="step-num-box">
 			<view>
-				<text class="step-num">{{ selectedDateNum }}</text>
-				<text class="step">步</text>
+				<text class="step-num">{{selectedDateNum}}</text>
+				<text class="step">分钟</text>
 			</view>
-			<view class="step-tip">{{selectedDate}}总步数</view>
+			<view class="step-tip">{{selectedDate}}总运动时间</view>
 		</view>
 		<view class="echart-box" style="position: relative;">
 			<view scroll-x wx:if="{{!noData}}" class="container">
@@ -38,12 +41,12 @@
 	<view class="mainBlock"> 
 			<view class="mainInit">
 						<view class="mainBlockLeft">
-							<view class="mainNum">122</view>
-							<view class="mainText">身高/厘米</view>
+							<view class="mainNum">{{caloriesData}}</view>
+							<view class="mainText">{{textObject.caloriesText}}</view>
 						</view>
 						<view class="mainBlockRight">
-							<view class="mainNum">344</view>
-							<view class="mainText">体重/公斤</view>
+							<view class="mainNum">{{distanceData}}</view>
+							<view class="mainText">{{textObject.distanceText}}</view>
 						</view>
 			</view>
 	</view>

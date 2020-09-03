@@ -55,40 +55,40 @@ Page({
         url:  app.globalData.imagesUrl + '/images/iconDefultTouxiang.png',
         id: 13
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconLaoshu.png',
+        url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
         id: 1
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconNiu.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconNiu.png',
         id: 2
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconLaohu.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
         id: 3
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconTuzi.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
         id: 4
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconLong.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconLong.png',
         id: 5
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon-she.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconShe.png',
         id: 6
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconMa.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconMa.png',
         id: 7
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconYang.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconYang.png',
         id: 8
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconHouzi.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
         id: 9
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconJi.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconJi.png',
         id: 10
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconGou.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconGou.png',
         id: 11
       }, {
-        url:  app.globalData.imagesUrl + '/images/iconZhu.png',
+        url:  app.globalData.imagesUrl + '/images/icon/iconZhu.png',
         id: 12
       }
     ]

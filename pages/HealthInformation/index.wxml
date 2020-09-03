@@ -38,7 +38,7 @@
    <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
             <view class="modals-cancel" bindtap="hideModal"></view>
             <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
-                <view class='msg-box-image' bindtap="closePage"><image src='http://106.54.73.125:8102/images/miniprogram/images/healthInfo/delete.png'></image></view>
+                <view class='msg-box-image' bindtap="closePage"><image src='http://106.54.73.125:8102/images/miniprogram/images/healthInfo/close@2x.png'></image></view>
                 <view class='msg-box'>
                     <view class='aumsg'>
                         <view class="searchList-main">

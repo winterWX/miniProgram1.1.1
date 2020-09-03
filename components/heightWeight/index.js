@@ -50,7 +50,8 @@ Component({
   methods: {
     inputNum(e){
       let that = this;
-      if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{1,2})?)$/.test(e.detail.value))) {
+      //if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{1,2})?)$/.test(e.detail.value))) { //两位小数
+      if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{0})?)$/.test(e.detail.value))) {  
           console.log('不正常',e.detail.value)
           that.setData({
             valData :true
