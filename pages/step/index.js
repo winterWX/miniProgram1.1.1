@@ -26,7 +26,7 @@ var option = {
   },
   xAxis: {
     type: 'category',
-    triggerEvent:true,
+    triggerEvent: true,
     axisLabel: {
       interval: 6
     },
@@ -45,7 +45,7 @@ var option = {
     position: 'right',
     type: 'value',
     splitNumber: 2,
-    triggerEvent:true,
+    triggerEvent: true,
     splitArea: {
       show: false
     },
@@ -81,11 +81,6 @@ var option = {
 };
 let chart = null;
 let dateMap = {};
-/* let stepInfo = {
-  selectedDate: '',
-  selectedDateNum: 0,
-  showSelectedDate: false,
-}; */
 function initChart(canvas, width, height) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -138,11 +133,10 @@ Page({
   },
   onReady: function () {
     setTimeout(() => {
-      console.log('3333')
       this.bindEchartsClick();
     }, 1500)
   },
-  bindEchartsClick: function() {
+  bindEchartsClick: function () {
     chart && chart.on('click', (params) => {
       option.color = ['#55D0A6'];
       checkName = params.name;
@@ -162,8 +156,11 @@ Page({
   changTab: function (e) {
     let { initDate } = this.data;
     let currentTabId = e.currentTarget.dataset.props;
+    this.data.currentTabId = currentTabId;
     let nextDisplayDate = '';
     let preDisplayDate = '';
+    option.xAxis.data = [];
+    option.series[0].data = [];
     if (currentTabId === 'week') {
       let nextTime = this.getWeek(initDate, 0);
       let preTime = this.getWeek(initDate, 6);
@@ -182,11 +179,10 @@ Page({
       let month = t.getMonth();
       let date = t.getDate();
       let endTime = parseInt(t.getTime() / 1000);
-      let currentDate = `${year}年${month+1}月${date}日`
+      let currentDate = `${year}年${month + 1}月${date}日`
       let t1 = new Date(year, month, date);
       let startTime = t1.getTime() / 1000;
-      console.log(startTime);
-      this.setData({currentDate})
+      this.setData({ currentDate })
       this.getStepInfo(startTime, endTime, 'day')
     }
     this.setData({
@@ -235,11 +231,11 @@ Page({
             dateMap = {};
             dataList.forEach(item => {
               let t = formatTime(new Date(item.dataTime * 1000));
-              console.log(t);
               let dateArr = that.foramteDate(t);
               let [year, month, day] = dateArr;
-              dateMap[day] = `${year}年${month}月${day}日`;
+              dateMap[day] = `${month}月${day}日`;
               currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+              option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
               yData.push(item.steps);
             });
             option.xAxis.data = xData;
@@ -267,7 +263,7 @@ Page({
       if (currentTabId === 'week') {
         nextTime = this.getWeek(this.data.preDisplayDate, 1);
         preTime = this.getWeek(this.data.preDisplayDate, 7);
-  
+
       } else if (currentTabId === 'month') {
         nextTime = this.getPreMonth(this.data.nextDisplayDate);
         preTime = this.getPreMonth(this.data.preDisplayDate);
@@ -280,13 +276,13 @@ Page({
         preDisplayDate,
         nextDisplayDate
       })
-    }  else {
+    } else {
       let time = this.getPreDay(currentDate);
       let { startTime, endTime, date } = time;
       this.getStepInfo(startTime, endTime, currentTabId)
-      this.setData({currentDate: date, clickNum});
+      this.setData({ currentDate: date, clickNum });
     }
-    
+
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
@@ -320,9 +316,9 @@ Page({
       let time = this.getNextDay(currentDate);
       let { startTime, endTime, date } = time;
       this.getStepInfo(startTime, endTime, currentTabId)
-      this.setData({currentDate: date, clickNum});
+      this.setData({ currentDate: date, clickNum });
     }
-   
+
   },
   // 获取前一个月日期
   getPreMonth: function (formateTime) {
@@ -391,15 +387,15 @@ Page({
       time: time
     }
   },
-  getPreDay: function(formateTime) {
+  getPreDay: function (formateTime) {
     let startTime = 0;
     let endTime = 0;
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, date] = tmp;
-    let d = new Date(year, month-1, date);
+    let d = new Date(year, month - 1, date);
     let time = d.getTime();
-    endTime = parseInt((time -60 * 1000) / 1000);
-    startTime = (time - 24*60*60*1000) / 1000;
+    endTime = parseInt((time - 60 * 1000) / 1000);
+    startTime = (time - 24 * 60 * 60 * 1000) / 1000;
     let d2 = new Date(startTime * 1000);
     let year2 = d2.getFullYear();
     let month2 = d2.getMonth() + 1;
@@ -410,18 +406,18 @@ Page({
       date: `${year2}年${month2}月${date2}日`
     }
   },
-  getNextDay: function(formateTime) {
+  getNextDay: function (formateTime) {
     let startTime = 0;
     let endTime = 0;
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, date] = tmp;
-    let d = new Date(year, month-1, date);
-    let d2 = new Date(d.getTime() + 24*60*60*1000);
+    let d = new Date(year, month - 1, date);
+    let d2 = new Date(d.getTime() + 24 * 60 * 60 * 1000);
     let year2 = d2.getFullYear();
     let month2 = d2.getMonth() + 1;
     let date2 = d2.getDate();
     startTime = parseInt(d2.getTime() / 1000);
-    endTime = parseInt((startTime*1000 + 24*60*59*1000) / 1000);
+    endTime = parseInt((startTime * 1000 + 24 * 60 * 59 * 1000) / 1000);
     return {
       startTime,
       endTime,
