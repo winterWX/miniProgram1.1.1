@@ -32,3 +32,10 @@
   display: block;
   margin-top: 40rpx;
 }
+.footer {
+  background-color: #ededed;
+  color: #929292;
+  font-size: 28rpx;
+  text-align: center;
+  padding: 30rpx 0;
+}

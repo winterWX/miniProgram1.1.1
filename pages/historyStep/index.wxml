@@ -1,13 +1,16 @@
-<view class="container">
-	<view wx:if="{{false}}" wx:for="{{steps}}" wx:key="id">
+<scroll-view scroll-y class="container">
+	<view wx:if="{{!noData}}" wx:for="{{stepInfo}}" wx:key="id">
 		<view wx:if="{{ currentMonth !== item.month}}" class="month"> {{item.month}}</view>
-		<view wx:for="{{item.steps}}" wx:for-item="step" class="date">
+		<view wx:for="{{item.data}}" wx:for-item="step" wx:key="index" class="date">
 			<view class="date-label">{{step.date}}</view>
-			<view class="step-num">{{step.number}}步</view>
+			<view class="step-num">{{step.steps}}步</view>
 		</view>
 	</view>
-	<view class="empty">
+	<view wx:if="{{noData}}" class="empty">
 		<image class="empty-icon" src="http://106.54.73.125:8102/images/miniprogram/images/icn-empty-history@2x.png"></image>
 		<text class="no-data">暂无历史数据</text>
 	</view>
-</view>
+	<view wx:if="{{!noData}}" class="footer">
+		仅支持查看一年内的数据
+	</view>
+</scroll-view>
