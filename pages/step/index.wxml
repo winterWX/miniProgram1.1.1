@@ -7,8 +7,11 @@
 	<view class="step-echart-box">
 		<view class="time-slot">
 			<image src="http://106.54.73.125:8102/images/miniprogram/images/back2.png" catchtap="preClick"></image>
-			<view class="time-display">
+			<view wx:if="{{ currentTabId !== 'day' }}" class="time-display">
 				{{ preDisplayDate }} - {{ nextDisplayDate }}
+			</view>
+			<view wx:if="{{ currentTabId === 'day' }}" class="time-display">
+				{{ currentDate }}
 			</view>
 			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
