@@ -1,45 +1,75 @@
 //logs.js
 const util = require('../../utils/util.js')
-
+let app = getApp();
 Page({
   data: {
-    currentMonth: 8,
-    steps: [
-      {
-        month: 8,
-        steps: [
-          {
-            date: '2020年8月6日',
-            number: 10000
-          }, {
-            date: '2020年8月5日',
-            number: 10000
-          }, {
-            date: '2020年8月4日',
-            number: 10000
-          }
-        ]
-      }, {
-        month: 7,
-        steps: [
-          {
-            date: '2020年7月6日',
-            number: 10000
-          }, {
-            date: '2020年7月5日',
-            number: 10000
-          }, {
-            date: '2020年7月4日',
-            number: 10000
-          }]
-      }
-    ]
+    noData: true,
+    currentMonth: '',
+    stepInfo: []
   },
   onLoad: function () {
+    this.getHistoryStep();
     this.setData({
       logs: (wx.getStorageSync('logs') || []).map(log => {
         return util.formatTime(new Date(log))
       })
     })
+  },
+  getHistoryStep: function() {
+    let that = this;
+    let time = new Date();
+    let year = time.getFullYear();
+    let month = time.getMonth() + 1;
+    let date = time.getDate();
+    let endTime = parseInt(time.getTime() / 1000);
+    let time2 = new Date(year-1, month, date);
+    let startTime = parseInt(time2.getTime() / 1000);
+    let currentMonth = `${year}年${month > 10 ? month : '0' + month}月`
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/health/data/query/history/steps',
+      method: "POST",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      data: {
+        startTime,
+        endTime
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          console.log(that.operateData(res.data.data))
+          let stepInfo = that.operateData(res.data.data);
+          that.setData({
+            currentMonth,
+            stepInfo,
+            noData: false
+          })
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
+  },
+  operateData(datas) {
+    let results = [];
+    for (let item of datas) {
+      let [year, month] = item.month.split('-');
+      let key = `${year}年${month}月`;
+      let stepList = [];
+      for (let data of item.data) {
+        let [y, m, d] = data.date.split('-');
+        stepList.push({
+          date: `${y}年${m}月${d}日`,
+          steps: data.steps
+        })
+      }
+      results.push({
+        month: key,
+        data: stepList
+      })
+    } 
+    return results;
   }
 })

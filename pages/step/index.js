@@ -134,23 +134,29 @@ Page({
     })
   },
   onReady: function () {
-    setTimeout(() => {
-      this.bindEchartsClick();
-    }, 1500)
-  },
-  bindEchartsClick: function () {
-    chart && chart.on('click', (params) => {
-      option.color = ['#55D0A6'];
-      checkName = params.name;
-      chart.setOption(option);
-      if (currentTab !== 'day') {
-        this.setData({
-          selectedDate: dateMap[checkName.substring(0, 2)],
-          selectedDateNum: params.value,
-          showSelectedDate: true,
+    let isBindEvent = false;
+    let timer = null;
+    timer = setInterval(() => {
+      if (isBindEvent) {
+        clearInterval(timer);
+        return;
+      }
+      if (chart) {
+        isBindEvent = true;
+        chart.on('click', (params) => {
+          option.color = ['#55D0A6'];
+          checkName = params.name;
+          chart.setOption(option);
+          if (currentTab !== 'day') {
+            this.setData({
+              selectedDate: dateMap[checkName.substring(0, 2)],
+              selectedDateNum: params.value,
+              showSelectedDate: true,
+            })
+          }
         })
       }
-    })
+    }, 100)
   },
   toHistoryStep: function () {
     wx.navigateTo({
@@ -194,7 +200,8 @@ Page({
       currentTabId,
       clickNum: 0,
       preDisplayDate,
-      nextDisplayDate
+      nextDisplayDate,
+      selectedDate: ''
     })
   },
   getStepInfo: function (startTime, endTime, demension) {
