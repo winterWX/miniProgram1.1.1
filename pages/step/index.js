@@ -81,11 +81,11 @@ var option = {
 };
 let chart = null;
 let dateMap = {};
-let stepInfo = {
+/* let stepInfo = {
   selectedDate: '',
   selectedDateNum: 0,
   showSelectedDate: false,
-};
+}; */
 function initChart(canvas, width, height) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -110,6 +110,7 @@ Page({
     echartsWeekMonth: [],
     clickNum: 0,
     initDate: '',
+    currentDate: '',
     tabs: tabsWithDay,
     ec: {
       onInit: initChart
@@ -122,6 +123,7 @@ Page({
     let day = date.getDate();
     let endTime = parseInt(date.getTime() / 1000);
     let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    let currentDate = initDate;
     let nextDisplayDate = initDate;
     let timeRes = this.getWeek(initDate, 6);
     let preDisplayDate = timeRes.date;
@@ -130,7 +132,8 @@ Page({
     this.setData({
       preDisplayDate,
       nextDisplayDate,
-      initDate
+      initDate,
+      currentDate
     })
   },
   onReady: function () {
@@ -173,6 +176,18 @@ Page({
       nextDisplayDate = nextTime.date;
       preDisplayDate = preTime.date;
       this.getStepInfo(preTime.time, nextTime.time, 'month')
+    } else {
+      let t = new Date();
+      let year = t.getFullYear();
+      let month = t.getMonth();
+      let date = t.getDate();
+      let endTime = parseInt(t.getTime() / 1000);
+      let currentDate = `${year}年${month+1}月${date}日`
+      let t1 = new Date(year, month, date);
+      let startTime = t1.getTime() / 1000;
+      console.log(startTime);
+      this.setData({currentDate})
+      this.getStepInfo(startTime, endTime, 'day')
     }
     this.setData({
       currentTabId,
@@ -182,6 +197,7 @@ Page({
     })
   },
   getStepInfo: function (startTime, endTime, demension) {
+    let { currentTabId } = this.data;
     this.setData({ showSelectedDate: false });
     let that = this;
     option.color = ['#00A865'],
@@ -219,10 +235,11 @@ Page({
             dateMap = {};
             dataList.forEach(item => {
               let t = formatTime(new Date(item.dataTime * 1000));
+              console.log(t);
               let dateArr = that.foramteDate(t);
               let [year, month, day] = dateArr;
               dateMap[day] = `${year}年${month}月${day}日`;
-              xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+              currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
               yData.push(item.steps);
             });
             option.xAxis.data = xData;
@@ -240,56 +257,72 @@ Page({
     return timeArr;
   },
   preClick: function () {
-    let { currentTabId } = this.data;
+    let { currentTabId, currentDate } = this.data;
     let clickNum = this.data.clickNum + 1;
     let nextDisplayDate = '';
     let preDisplayDate = '';
     let nextTime = null;
     let preTime = null;
-    if (currentTabId === 'week') {
-      nextTime = this.getWeek(this.data.preDisplayDate, 1);
-      preTime = this.getWeek(this.data.preDisplayDate, 7);
-
-    } else if (currentTabId === 'month') {
-      nextTime = this.getPreMonth(this.data.nextDisplayDate);
-      preTime = this.getPreMonth(this.data.preDisplayDate);
+    if (currentTabId !== 'day') {
+      if (currentTabId === 'week') {
+        nextTime = this.getWeek(this.data.preDisplayDate, 1);
+        preTime = this.getWeek(this.data.preDisplayDate, 7);
+  
+      } else if (currentTabId === 'month') {
+        nextTime = this.getPreMonth(this.data.nextDisplayDate);
+        preTime = this.getPreMonth(this.data.preDisplayDate);
+      }
+      nextDisplayDate = nextTime.date;
+      preDisplayDate = preTime.date;
+      this.getStepInfo(preTime.time, nextTime.time, currentTabId)
+      this.setData({
+        clickNum,
+        preDisplayDate,
+        nextDisplayDate
+      })
+    }  else {
+      let time = this.getPreDay(currentDate);
+      let { startTime, endTime, date } = time;
+      this.getStepInfo(startTime, endTime, currentTabId)
+      this.setData({currentDate: date, clickNum});
     }
-    nextDisplayDate = nextTime.date;
-    preDisplayDate = preTime.date;
-    this.getStepInfo(preTime.time, nextTime.time, currentTabId)
-    this.setData({
-      clickNum,
-      preDisplayDate,
-      nextDisplayDate
-    })
+    
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
-    let { currentTabId } = this.data;
+    let { currentTabId, currentDate } = this.data;
     let nextDisplayDate = '';
     let preDisplayDate = '';
     let preTime = null;
     let nextTime = null;
-    if (currentTabId === 'week') {
-      preTime = this.getWeek(this.data.nextDisplayDate, 1, 'next');
-      nextTime = this.getWeek(this.data.nextDisplayDate, 7, 'next');
-    } else if (currentTabId === 'month') {
-      if (clickNum === 0) {
-        preTime = this.getPreMonth(this.data.initDate, 1);
-        nextTime = this.getNextMonth(this.data.initDate, 0);
-      } else {
-        preTime = this.getNextMonth(this.data.nextDisplayDate, 0);
-        nextTime = this.getNextMonth(this.data.nextDisplayDate, 1);
+    if (currentTabId !== 'day') {
+      if (currentTabId === 'week') {
+        preTime = this.getWeek(this.data.nextDisplayDate, 1, 'next');
+        nextTime = this.getWeek(this.data.nextDisplayDate, 7, 'next');
+      } else if (currentTabId === 'month') {
+        if (clickNum === 0) {
+          preTime = this.getPreMonth(this.data.initDate, 1);
+          nextTime = this.getNextMonth(this.data.initDate, 0);
+        } else {
+          preTime = this.getNextMonth(this.data.nextDisplayDate, 0);
+          nextTime = this.getNextMonth(this.data.nextDisplayDate, 1);
+        }
       }
+      preDisplayDate = preTime.date;
+      nextDisplayDate = nextTime.date;
+      this.getStepInfo(preTime.time, nextTime.time, currentTabId)
+      this.setData({
+        clickNum,
+        preDisplayDate,
+        nextDisplayDate
+      })
+    } else {
+      let time = this.getNextDay(currentDate);
+      let { startTime, endTime, date } = time;
+      this.getStepInfo(startTime, endTime, currentTabId)
+      this.setData({currentDate: date, clickNum});
     }
-    preDisplayDate = preTime.date;
-    nextDisplayDate = nextTime.date;
-    this.getStepInfo(preTime.time, nextTime.time, currentTabId)
-    this.setData({
-      clickNum,
-      preDisplayDate,
-      nextDisplayDate
-    })
+   
   },
   // 获取前一个月日期
   getPreMonth: function (formateTime) {
@@ -356,6 +389,43 @@ Page({
     return {
       date: s,
       time: time
+    }
+  },
+  getPreDay: function(formateTime) {
+    let startTime = 0;
+    let endTime = 0;
+    let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let [year, month, date] = tmp;
+    let d = new Date(year, month-1, date);
+    let time = d.getTime();
+    endTime = parseInt((time -60 * 1000) / 1000);
+    startTime = (time - 24*60*60*1000) / 1000;
+    let d2 = new Date(startTime * 1000);
+    let year2 = d2.getFullYear();
+    let month2 = d2.getMonth() + 1;
+    let date2 = d2.getDate();
+    return {
+      startTime,
+      endTime,
+      date: `${year2}年${month2}月${date2}日`
+    }
+  },
+  getNextDay: function(formateTime) {
+    let startTime = 0;
+    let endTime = 0;
+    let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
+    let [year, month, date] = tmp;
+    let d = new Date(year, month-1, date);
+    let d2 = new Date(d.getTime() + 24*60*60*1000);
+    let year2 = d2.getFullYear();
+    let month2 = d2.getMonth() + 1;
+    let date2 = d2.getDate();
+    startTime = parseInt(d2.getTime() / 1000);
+    endTime = parseInt((startTime*1000 + 24*60*59*1000) / 1000);
+    return {
+      startTime,
+      endTime,
+      date: `${year2}年${month2}月${date2}日`
     }
   }
 })
