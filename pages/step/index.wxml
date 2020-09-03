@@ -11,7 +11,7 @@
 				{{ preDisplayDate }} - {{ nextDisplayDate }}
 			</view>
 			<view wx:if="{{ currentTabId === 'day' }}" class="time-display">
-				{{ currentDate }}
+				{{ currentDate === initDate ? '今日' : currentDate}}
 			</view>
 			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
