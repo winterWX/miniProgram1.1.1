@@ -6,7 +6,8 @@
         <view class="mainLeft">{{BMIData.bmi}}</view>
         <view class="mainRight">公斤/平方</view>
      </view>
-      <view class="mainBlock"> 
+      <view class="mainBlock">
+         <view class="mainBlockSan"></view> 
          <view class="mainInit">
                <view class="mainBlockLeft">
                   <view class="mainNum">{{BMIData.height}}</view>

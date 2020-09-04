@@ -39,3 +39,8 @@
   text-align: center;
   padding: 30rpx 0;
 }
+.itemContent{
+  height: 590rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

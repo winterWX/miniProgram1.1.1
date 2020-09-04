@@ -37,6 +37,17 @@ page{
   height: 212rpx;
   background-color: rgb(237,237,237);
   margin: 30rpx 0rpx 56rpx 0rpx;
+  position: relative;
+}
+.mainBlockSan{
+  position: absolute;
+  left: -268rpx;
+  top: -20rpx;  
+  margin-left: 305rpx;
+  border-width: 0 16rpx 20rpx;
+  border-style: solid;
+  border-color: transparent transparent #F6F6F6;
+
 } 
 .mainInit{
   display: flex;
