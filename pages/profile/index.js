@@ -398,8 +398,7 @@ Page({
             complete: showAnimation
           })
           wx.showToast({
-            title: '修改成功',
-            image:  app.globalData.imagesUrl + '/images/success.png'
+            title: '头像修改成功',
           });
         } else {
           that.setData({

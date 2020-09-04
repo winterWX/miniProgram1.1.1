@@ -229,8 +229,8 @@ page {
   position: absolute;
   width: 36rpx;
   height: 36rpx;
-  right: -20rpx;
-  bottom: 1rpx;
+  right: -5rpx;
+  bottom: 5rpx;
 }
 
 .animation-gift {
