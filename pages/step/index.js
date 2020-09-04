@@ -121,7 +121,6 @@ Page({
     let day = date.getDate();
     let endTime = parseInt(date.getTime() / 1000);
     let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
-    // let initDate = `${year}年${month}月${day}日`;
     let currentDate = initDate;
     let nextDisplayDate = initDate;
     let timeRes = this.getWeek(initDate, 6);
@@ -197,8 +196,6 @@ Page({
       this.setData({ currentDate })
       this.getStepInfo(startTime, endTime, 'day')
     }
-    console.log(preDisplayDate);
-    console.log(nextDisplayDate);
     this.setData({
       currentTabId,
       clickNum: 0,
