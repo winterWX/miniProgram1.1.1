@@ -28,7 +28,7 @@ var option = {
   xAxis: {
     type: 'category',
     triggerEvent: true,
-    interval: 24*60*60*1000*6,
+    interval: 24 * 60 * 60 * 1000 * 6,
     axisLabel: {
       interval: 6
     },
@@ -170,8 +170,8 @@ Page({
     let currentTabId = e.currentTarget.dataset.props;
     currentTab = currentTabId;
     this.data.currentTabId = currentTabId;
-    let nextDisplayDate = '';
-    let preDisplayDate = '';
+    var nextDisplayDate = '';
+    var preDisplayDate = '';
     option.xAxis.data = [];
     option.series[0].data = [];
     if (currentTabId === 'week') {
@@ -181,23 +181,24 @@ Page({
       preDisplayDate = preTime.date;
       this.getStepInfo(preTime.time, nextTime.time, 'week')
     } else if (currentTabId === 'month') {
-      let nextTime = this.getNextMonth(initDate, 0);
-      let preTime = this.getPreMonth(initDate, 1);
-      nextDisplayDate = nextTime.date;
-      preDisplayDate = preTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, 'month')
+      let tResult = this.initMonthDate(initDate);
+      nextDisplayDate = tResult.nextDisplayDate;
+      preDisplayDate = tResult.preDisplayDate;
+      this.getStepInfo(tResult.startTime, tResult.endTime, 'month');
     } else {
       let t = new Date();
       let year = t.getFullYear();
       let month = t.getMonth() + 1;
       let date = t.getDate();
       let endTime = parseInt(t.getTime() / 1000);
-      let currentDate = `${year}年${month > 10 ? month : '0' + month}月${date > 10 ? date : '0' + date}日`
+      let currentDate = `${year}年${month > 10 ? month : '0' + month}月${date < 10 ? '0' + date : date}日`
       let t1 = new Date(year, month, date);
       let startTime = t1.getTime() / 1000;
       this.setData({ currentDate })
       this.getStepInfo(startTime, endTime, 'day')
     }
+    console.log(preDisplayDate);
+    console.log(nextDisplayDate);
     this.setData({
       currentTabId,
       clickNum: 0,
@@ -254,9 +255,9 @@ Page({
               } else {
                 let week = that.getDisplayWeek(new Date(item.dataTime * 1000));
                 xData.push(week);
-                weekDateMap[week] =  `${month}月${day}日`;
+                weekDateMap[week] = `${month}月${day}日`;
               }
-              
+
               option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
               yData.push(item.steps);
             });
@@ -270,7 +271,7 @@ Page({
         }
       })
   },
-  getDisplayWeek: function(date) {
+  getDisplayWeek: function (date) {
     let weekMap = {
       0: '周日',
       1: '周一',
@@ -294,18 +295,19 @@ Page({
     let preDisplayDate = '';
     let nextTime = null;
     let preTime = null;
+    let monthResult = null;
     if (currentTabId !== 'day') {
       if (currentTabId === 'week') {
         nextTime = this.getWeek(this.data.preDisplayDate, 1);
         preTime = this.getWeek(this.data.preDisplayDate, 7);
-
       } else if (currentTabId === 'month') {
-        nextTime = this.getPreMonth(this.data.nextDisplayDate);
-        preTime = this.getPreMonth(this.data.preDisplayDate);
+        monthResult = this.getMonth(this.data.nextDisplayDate);
       }
-      nextDisplayDate = nextTime.date;
-      preDisplayDate = preTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, currentTabId)
+      nextDisplayDate = currentTabId === 'week' ? nextTime.date : monthResult.nextDisplayDate;
+      preDisplayDate = currentTabId === 'week' ? preTime.date : monthResult.preDisplayDate;
+      let startTime = currentTabId === 'week' ? preTime.time : monthResult.startTime;
+      let endTime = currentTabId === 'week' ? nextTime.time : monthResult.endTime;
+      this.getStepInfo(startTime, endTime, currentTabId)
       this.setData({
         clickNum,
         preDisplayDate,
@@ -321,27 +323,28 @@ Page({
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
-    let { currentTabId, currentDate } = this.data;
+    let { currentTabId, currentDate, initDate } = this.data;
     let nextDisplayDate = '';
     let preDisplayDate = '';
     let preTime = null;
     let nextTime = null;
+    let monthResult = null;
     if (currentTabId !== 'day') {
       if (currentTabId === 'week') {
         preTime = this.getWeek(this.data.nextDisplayDate, 1, 'next');
         nextTime = this.getWeek(this.data.nextDisplayDate, 7, 'next');
       } else if (currentTabId === 'month') {
         if (clickNum === 0) {
-          preTime = this.getPreMonth(this.data.initDate, 1);
-          nextTime = this.getNextMonth(this.data.initDate, 0);
+          monthResult = this.initMonthDate(initDate);
         } else {
-          preTime = this.getNextMonth(this.data.nextDisplayDate, 0);
-          nextTime = this.getNextMonth(this.data.nextDisplayDate, 1);
+          monthResult = this.getMonth(this.data.nextDisplayDate, true);
         }
       }
-      preDisplayDate = preTime.date;
-      nextDisplayDate = nextTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, currentTabId)
+      nextDisplayDate = currentTabId === 'week' ? nextTime.date : monthResult.nextDisplayDate;
+      preDisplayDate = currentTabId === 'week' ? preTime.date : monthResult.preDisplayDate;
+      let startTime = currentTabId === 'week' ? preTime.time : monthResult.startTime;
+      let endTime = currentTabId === 'week' ? nextTime.time : monthResult.endTime;
+      this.getStepInfo(startTime, endTime, currentTabId);
       this.setData({
         clickNum,
         preDisplayDate,
@@ -355,10 +358,12 @@ Page({
     }
 
   },
-  // 获取前一个月日期
-  getPreMonth: function (formateTime) {
+  // 切换的tab到月的时候 初始化月份显示时间
+  initMonthDate: function (formateTime) {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, day] = tmp;
+    let cTime = new Date(year, month - 1, day);
+    let endTime = parseInt(cTime.getTime() / 1000);
     var year2 = year;
     var month2 = parseInt(month) - 1;
     if (month2 == 0) {
@@ -367,8 +372,6 @@ Page({
     }
     let day2 = day;
     let days2 = new Date(year2, month2, 0);
-    let t = new Date(year2, month2 - 1, day);;
-    let time = parseInt(t.getTime() / 1000);
     let daysInMonth = days2.getDate();
     if (day2 > daysInMonth) {
       day2 = daysInMonth;
@@ -376,35 +379,39 @@ Page({
     if (month2 < 10) {
       month2 = '0' + month2;
     }
+    let t = new Date(year2, month2 - 1, day2);
+    let startTime = parseInt(t.getTime() / 1000);
     return {
-      date: `${year2}年${month2}月${day2}日`,
-      time
+      preDisplayDate: `${year2}年${month2}月${day2}日`,
+      nextDisplayDate: formateTime,
+      startTime,
+      endTime
     };
   },
-  // 获取后一个月日期
-  getNextMonth: function (formateTime, n) {
+  // 获取前一个月数据
+  getMonth: function (formateTime, flag = false) {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, day] = tmp;
-    var year2 = year;
-    var month2 = parseInt(month) + n;
-    if (month2 == 13) {
-      year2 = parseInt(year2) + 1;
+    let year2 = year;
+    let month2 = !flag ? parseInt(month) - 1 : parseInt(month) + 1;
+    if (!flag && month2 === 0) {
+      month2 = 12;
+      year2 = parseInt(year) - 1;
+    } else if (flag && month2 === 13) {
+      year2 = parseInt(year) + 1;
       month2 = 1;
-    }
-    var day2 = day;
-    var days2 = new Date(year2, month2, 0);
-    var t = new Date(year2, month2 - 1, day);
-    let time = parseInt(t.getTime() / 1000);
-    days2 = days2.getDate();
-    if (day2 > days2) {
-      day2 = days2;
-    }
-    if (month2 < 10) {
-      month2 = '0' + month2;
-    }
+    };
+    let t = new Date(year2, month2 - 1, 1);
+    let startTime = parseInt(t.getTime() / 1000);
+    let t2 = new Date(year2, month2, 0);
+    let days = t2.getDate();
+    let t3 = new Date(year2, month2 - 1, days);
+    let endTime = parseInt(t3.getTime() / 1000);
     return {
-      date: `${year2}年${month2}月${day2}日`,
-      time
+      startTime,
+      endTime,
+      preDisplayDate: `${year2}年${month2 < 10 ? '0' + month2 : month2}月01日`,
+      nextDisplayDate: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${days}日`
     }
   },
   getWeek: function (formateTime, n, direction = 'pre') {
@@ -438,7 +445,7 @@ Page({
     return {
       startTime,
       endTime,
-      date: `${year2}年${month2 > 10 ? month2 : '0' + month2}月${date2 > 10 ? date2 : '0' + date2}日`
+      date: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${date2 < 10 ? '0' + date2 : date2}日`
     }
   },
   getNextDay: function (formateTime) {
@@ -456,7 +463,7 @@ Page({
     return {
       startTime,
       endTime,
-      date: `${year2}年${month2 > 10 ? month2 : '0' + month2}月${date2 > 10 ? date2 : '0' + date2}日`
+      date: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${date2 < 10 ? '0' + date2 : date2}日`
     }
   }
 })
