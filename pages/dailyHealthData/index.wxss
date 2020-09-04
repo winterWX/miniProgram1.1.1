@@ -2,8 +2,11 @@ page{
   background-color: #ededed !important;
 }
 .container{
-  padding: 30rpx;
+  padding: 0rpx 30rpx 30rpx 30rpx;
   background-color: #ededed;
+}
+.containerPaing{
+  padding: 30rpx !important;
 }
 /* .successsSty{
    height: 100%;
@@ -17,6 +20,7 @@ page{
   height: 120rpx;
   padding: 30rpx;
   background-color: rgb(255,253,242);
+  margin-bottom: 30rpx;
 }
 .contaBlock{
   display: flex;
@@ -140,10 +144,9 @@ page{
   margin-right: 30rpx;
 }
 .dataOrgin{
-  height: 34rpx; 
   font-size: 24rpx; 
   color: #666666;
-  margin-bottom: 30rpx;
+  padding: 20rpx 20rpx 20rpx 30rpx;
 }
 .succeDefult{
   position: fixed;

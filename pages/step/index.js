@@ -2,7 +2,8 @@ import * as echarts from '../../components/ec-canvas/echarts';
 import { formatTime } from '../../utils/util';
 const app = getApp();
 let tabsWithDay = [
-  { name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
+  //{ name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
+    { name: '周', id: 'week' }, { name: '月', id: 'month' }
 ];
 let tabs = [
   { name: '周', id: 'week' }, { name: '月', id: 'month' }

@@ -5,6 +5,7 @@
     </view>
     <view class="containerBtn" bindtap="getWeRunStepsData">立即授权</view>
 </view>
+<view class="dataOrgin" wx:if="{{tipUpdate}}">以下数据来自“微信运动”。</view>
 <view class="container">
     <view class="panel">
       <view class="panel_header" catchtap="nagigateStep">
@@ -95,9 +96,6 @@
         </view>
       </view>
     </view>
-  <view class="dataOrgin">
-    以上数据来自“微信运动”。
-  </view>
 </view>
 <view  wx:if="{{editBlck}}"  class="succeDefult"></view>
 <heightWeight class="balckHeight"  wx:if="{{editBlck}}" 
