@@ -13,7 +13,7 @@
 			<view wx:if="{{ currentTabId === 'day' }}" class="time-display">
 				{{ currentDate === initDate ? '今日' : currentDate}}
 			</view>
-			<image wx:if="{{clickNum !==0}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
+			<image class="{{clickNum===0 ? 'hidden' : ''}}" src="http://106.54.73.125:8102/images/miniprogram/images/back3.png" catchtap="nextClick"></image>
 		</view>
 		<view wx:if="{{!showSelectedDate}}" class="step-num-box">
 			<view>
@@ -30,7 +30,7 @@
 			<view class="step-tip">{{selectedDate}}总步数</view>
 		</view>
 		<view class="echart-box" style="position: relative;">
-			<view scroll-x wx:if="{{!noData}}" class="container">
+			<view scroll-x hidden="{{noData}}" class="container">
 				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
 			</view>
 			<view wx:if="{{noData}}" class="noData">

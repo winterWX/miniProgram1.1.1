@@ -253,7 +253,7 @@ Page({
                 xData.push(week);
                 weekDateMap[week] = `${month}月${day}日`;
               }
-              option.series[0].barWidth = currentTabId !== 'month' ? 16 : 6;
+              option.series[0].barWidth = currentTabId !== 'month' ? 14 : 6;
               if (currentTabId === 'week') {
                 option.series[0].itemStyle.normal.barBorderRadius = [10,10,0,0];
               };
@@ -266,6 +266,10 @@ Page({
         },
         fail: function (res) {
           console.log('.........fail..........');
+          option.xAxis.data = [];
+          option.series[0].data = [];
+          chart && chart.setOption(option);
+          that.setData({ stepData: 0, noData: true });
         }
       })
   },
