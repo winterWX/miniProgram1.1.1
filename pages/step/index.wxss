@@ -82,7 +82,9 @@ page {
   margin: 10rpx 0 0 0;
   color: rgb(102, 102, 102);
 }
-
+.hidden {
+  visibility: hidden;
+}
 .echart-box {
   height: 450rpx;
   line-height: 450rpx;
