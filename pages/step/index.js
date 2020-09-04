@@ -28,6 +28,7 @@ var option = {
   xAxis: {
     type: 'category',
     triggerEvent: true,
+    interval: 24*60*60*1000*6,
     axisLabel: {
       interval: 6
     },
@@ -82,6 +83,7 @@ var option = {
 };
 let chart = null;
 let dateMap = {};
+let weekDateMap = {};
 function initChart(canvas, width, height) {
   chart = echarts.init(canvas, null, {
     width: width,
@@ -118,8 +120,8 @@ Page({
     let month = date.getMonth() + 1;
     let day = date.getDate();
     let endTime = parseInt(date.getTime() / 1000);
-    // let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
-    let initDate = `${year}年${month}月${day}日`;
+    let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    // let initDate = `${year}年${month}月${day}日`;
     let currentDate = initDate;
     let nextDisplayDate = initDate;
     let timeRes = this.getWeek(initDate, 6);
@@ -149,7 +151,7 @@ Page({
           chart.setOption(option);
           if (currentTab !== 'day') {
             this.setData({
-              selectedDate: dateMap[checkName.substring(0, 2)],
+              selectedDate: currentTab === 'month' ? dateMap[checkName.substring(0, 2)] : weekDateMap[checkName],
               selectedDateNum: params.value,
               showSelectedDate: true,
             })
@@ -187,10 +189,10 @@ Page({
     } else {
       let t = new Date();
       let year = t.getFullYear();
-      let month = t.getMonth();
+      let month = t.getMonth() + 1;
       let date = t.getDate();
       let endTime = parseInt(t.getTime() / 1000);
-      let currentDate = `${year}年${month + 1}月${date}日`
+      let currentDate = `${year}年${month > 10 ? month : '0' + month}月${date > 10 ? date : '0' + date}日`
       let t1 = new Date(year, month, date);
       let startTime = t1.getTime() / 1000;
       this.setData({ currentDate })
@@ -241,6 +243,7 @@ Page({
             let xData = [];
             let yData = [];
             dateMap = {};
+            weekDateMap = {};
             dataList.forEach(item => {
               let t = formatTime(new Date(item.dataTime * 1000));
               let dateArr = that.foramteDate(t);
@@ -249,7 +252,9 @@ Page({
               if (currentTabId !== 'week') {
                 currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
               } else {
-                xData.push(that.getDisplayWeek(new Date(item.dataTime * 1000)));
+                let week = that.getDisplayWeek(new Date(item.dataTime * 1000));
+                xData.push(week);
+                weekDateMap[week] =  `${month}月${day}日`;
               }
               
               option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
@@ -433,7 +438,7 @@ Page({
     return {
       startTime,
       endTime,
-      date: `${year2}年${month2}月${date2}日`
+      date: `${year2}年${month2 > 10 ? month2 : '0' + month2}月${date2 > 10 ? date2 : '0' + date2}日`
     }
   },
   getNextDay: function (formateTime) {
@@ -451,7 +456,7 @@ Page({
     return {
       startTime,
       endTime,
-      date: `${year2}年${month2}月${date2}日`
+      date: `${year2}年${month2 > 10 ? month2 : '0' + month2}月${date2 > 10 ? date2 : '0' + date2}日`
     }
   }
 })
