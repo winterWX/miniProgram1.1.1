@@ -38,7 +38,6 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          console.log(that.operateData(res.data.data))
           let stepInfo = that.operateData(res.data.data);
           that.setData({
             currentMonth,
@@ -58,7 +57,10 @@ Page({
       let [year, month] = item.month.split('-');
       let key = `${year}年${month}月`;
       let stepList = [];
-      for (let data of item.data) {
+      let list = item.data.sort((a, b) => {
+        return b.time - a.time;
+      });
+      for (let data of list) {
         let [y, m, d] = data.date.split('-');
         stepList.push({
           date: `${m}月${d}日`,
