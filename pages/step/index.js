@@ -28,7 +28,6 @@ var option = {
   xAxis: {
     type: 'category',
     triggerEvent: true,
-    interval: 24 * 60 * 60 * 1000 * 6,
     axisLabel: {
       interval: 6
     },
@@ -70,7 +69,7 @@ var option = {
     barWidth: 6,
     itemStyle: {
       normal: {
-        barBorderRadius: [5, 5, 0, 0],
+        barBorderRadius: [3, 3, 0, 0],
         color: function (params) {
           //判断选中的名字改变柱子的颜色样式
           if (checkName === params.name) {
@@ -254,8 +253,10 @@ Page({
                 xData.push(week);
                 weekDateMap[week] = `${month}月${day}日`;
               }
-
-              option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
+              option.series[0].barWidth = currentTabId !== 'month' ? 16 : 6;
+              if (currentTabId === 'week') {
+                option.series[0].itemStyle.normal.barBorderRadius = [10,10,0,0];
+              };
               yData.push(item.steps);
             });
             option.xAxis.data = xData;
