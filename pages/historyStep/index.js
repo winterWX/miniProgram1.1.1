@@ -61,7 +61,7 @@ Page({
       for (let data of item.data) {
         let [y, m, d] = data.date.split('-');
         stepList.push({
-          date: `${y}年${m}月${d}日`,
+          date: `${m}月${d}日`,
           steps: data.steps
         })
       }
