@@ -12,7 +12,7 @@
                         <view class="details-tipTime">{{contentAll.createTime}}</view>
                 </view>
                 <view class="details-tag">
-                        <view class="details-Btn">{{contentAll.tags}}</view>
+                        <view class="details-Btn" wx:if="{{contentAll.tags !==''}}">{{contentAll.tags}}</view>
                         <view class="details-RightBtn" bindtap="colletArtDaitle" wx:if="{{colletArt === '2' }}">
                         <image class="details-image" src = 'http://106.54.73.125:8102/images/miniprogram/images/healthInfo/icon-collect@2x.png'></image>
                         <view class="details-intall">收藏</view>

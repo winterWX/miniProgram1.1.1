@@ -25,10 +25,9 @@
   width: 10%;
 }
 .red {
-  width: 16rpx;
-  height: 16rpx;
-  border-radius: 8rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50rpx;
   background-color: red;
-  margin-left: 8rpx;
-  right: 30rpx;
+  margin-left: 0rpx;  
 }
