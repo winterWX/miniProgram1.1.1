@@ -152,6 +152,7 @@ Page({
   },
   //展示tag标签
   tagsShare:function () {
+      return;
       var that = this;
       that.setData({
         hideModal: false
@@ -242,13 +243,10 @@ Page({
                     myTagData: [...firstSortArray,...lastSortArray]   //我关注的话题
                   })
             }else{
-                let tabListsArray = [];
-                tabListsArray.push({tag:res.data.data.topic});
+                let tabListsArray = [{tag:'热门推荐'}];
                 that.setData({
-                  tabLists: tabListsArray
-                })
-                that.setData({
-                  myTagData: tabListsArray   //我关注的话题
+                  tabLists: tabListsArray,
+                  myTagData: tabListsArray //我关注的话题
                 })
             }
          }
