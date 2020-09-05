@@ -170,7 +170,8 @@ Page({
           "token": app.globalData.token
         },
         data:{
-           type:'MINIP'
+           type:'MINIP',
+		       source:'string'
         },
         success: (res) => {
           if (res.data.code === 200) {
