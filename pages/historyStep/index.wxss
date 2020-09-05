@@ -1,3 +1,16 @@
+page {
+  height: 100%;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.container .item {
+  flex: 1;
+  overflow-y: auto;
+}
 .month {
   background-color: rgb(247, 247, 247);
   height: 56rpx;
@@ -32,15 +45,10 @@
   display: block;
   margin-top: 40rpx;
 }
-.footer {
+.container .footer {
   background-color: #ededed;
   color: #929292;
   font-size: 28rpx;
   text-align: center;
   padding: 30rpx 0;
-}
-.itemContent{
-  height: 590rpx;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
