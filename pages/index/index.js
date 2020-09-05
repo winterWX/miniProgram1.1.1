@@ -3,7 +3,8 @@ const app = getApp()
 Page({
   data: {
     active:0,
-    successFlg: false
+    successFlg: false,
+    rstProdu: 'rstProdu'
   },
   onLoad: function (options) {
     console.log('options.flag',options.flag)
@@ -34,7 +35,7 @@ Page({
   },
   prograNum:function(){
     wx.navigateTo({
-      url: '../healthPage/index',
+      url: '../healthPage/index?id=' + that.data.rstProdu
     })
   },
   onShareAppMessage: function () {},
@@ -54,6 +55,12 @@ Page({
   challengePage:function(){
     wx.navigateTo({
       url: '../../pages/challenge/index',
+    })
+  },
+  /////////////////////////////////////////////////
+  navigateToStep: function() {
+    wx.navigateTo({
+      url: '../healthPage/index',
     })
   }
 })

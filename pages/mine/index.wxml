@@ -1,5 +1,5 @@
 
-<view>
+<!-- <view>
  <view class="healthBack-main">
 		<view class="healthBack" bindtap="healthPage" >乐健康</view>
 		<view class="healthBack" bindtap="sendFriend" >推荐好友</view>
@@ -8,7 +8,20 @@
 			<view class="titleRed"><view wx:if="{{!complete}}" class="red"></view></view>
 		</view>
 		<view class="healthBack" bindtap="settingPage">设置	</view>
-		<!-- <navigator class="icon" url="../profile/index">个人信息</navigator> -->
+	</view>
+	<footer active="{{active}}"></footer>
+</view> -->
+
+<view>
+ <view class="healthBack-main">
+		<view class="profile back" catchtap="profilePage"></view>
+		<view class="sport back" catchtap="healthPage"></view>
+ 		<view class="recommend back" catchtap="sendFriend"></view>
+		<image class="mine-image" src="../../image/mine.png"></image>
+	</view>
+	<view class="bottom-box">
+		<view class="setting back" catchtap="settingPage"></view>
+		<image src="../../image/mine-bottom.png"></image>
 	</view>
 	<footer active="{{active}}"></footer>
 </view>
