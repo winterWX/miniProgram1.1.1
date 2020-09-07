@@ -57,10 +57,7 @@ Page({
       let [year, month] = item.month.split('-');
       let key = `${year}年${month}月`;
       let stepList = [];
-      let list = item.data.sort((a, b) => {
-        return b.time - a.time;
-      });
-      for (let data of list) {
+      for (let data of item.data) {
         let [y, m, d] = data.date.split('-');
         stepList.push({
           date: `${m}月${d}日`,
