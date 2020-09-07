@@ -170,23 +170,28 @@ Page({
           "token": app.globalData.token
         },
         data:{
-           type:'MINIP',
-		       source:'string'
+          //  type:'MINIP',
+		      //  source:'string'
+          source: 'MINIP'
         },
         success: (res) => {
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
               let dayTime = parseInt(new Date().getTime() / 1000);
-              let lastTime = res.data.data;
-              if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
-                    that.getUploaddata(runData,res.data.data)
+              let lastTime = res.data.data.time;
+              if (res.data.data.type !== 'register'){
+                  if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
+                    that.getUploaddata(runData, res.data.data.type)
+                  }
+              }else{
+                   that.getUploaddata(runData, res.data.data.type)
               }
           }
         }
       })
   },
   //运动数据同步上传
-  getUploaddata: function (runData,time) {
+  getUploaddata: function (runData, type) {
     console.log('runDatarunData',runData);
     let runDataArray = [];
     runData.forEach((item)=>{
@@ -211,7 +216,7 @@ Page({
         lastTime: parseInt(new Date().getTime() / 1000) + '',
         caloriesDataModelList :[],
         distanceDataModelList :[],
-        stepsDataModelList : runDataArray,
+        stepsDataModelList: type === 'register' ? runDataArray : [runDataArray[0]],
       },
       success: (res) => {
         if (res.data.code === 200) {
