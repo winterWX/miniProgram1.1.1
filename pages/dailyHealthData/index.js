@@ -117,9 +117,13 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200 &&  res.data.data !== null) {
-           const {distance,calories,totalTime,bpm} = res.data.data;
-           let bmiNum = parseInt(res.data.data.weight) / ((parseInt(res.data.data.height) / 100)*2); 
-           res.data.data.bmi = Number(bmiNum.toFixed(1));
+           const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
+          if(weight> 0  &&  height> 0){
+              let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
+              res.data.data.bmi =Number(bmiNum.toFixed(1));
+          }else{
+               res.data.data.bmi = that.data.health.bmi;
+          }
            that.setData({
               health: res.data.data
             })
@@ -204,8 +208,13 @@ Page({
       },
       success: (res) => {
         if (res.data.data !== null) {
-            let bmiNum = parseInt(res.data.data.weight) / ((parseInt(res.data.data.height) / 100)*2) 
-            res.data.data.bmi = bmiNum.toFixed(1);
+            const {weight , height} =  res.data.data;
+            if(weight> 0  &&  height> 0){
+                let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
+                res.data.data.bmi = bmiNum.toFixed(1);
+            }else{
+                 res.data.data.bmi = that.data.health.bmi;
+            }
             that.setData({
               health: Object.assign(this.data.health,res.data.data)
             })

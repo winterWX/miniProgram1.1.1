@@ -3,7 +3,8 @@
   <view class="main-top">
      <view class="main-topTitle">质量指数(BMI)</view>
      <view class="main-topSecode"> 
-        <view class="mainLeft">{{BMIData.bmi}}</view>
+        <view  wx:if="{{BMIData.bmi  ==='--'}}" class="mainRight2">{{BMIData.bmi}}</view>
+        <view  wx:if="{{BMIData.bmi !=='--'}}"  class="mainLeft">{{BMIData.bmi}}</view>
         <view class="mainRight">公斤/平方</view>
      </view>
       <view class="mainBlock">

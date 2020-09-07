@@ -131,7 +131,6 @@ Page({
                         that.setData({ runData: runData.stepInfoList });
                         app.globalData.runData = runData.stepInfoList;
                         that.getQueryLatestime(runData.stepInfoList)
-                        console.log('1212121212',that.data.runData);
                       }
                       //授权成功跳转
                       app.globalData.isWeRunSteps = true;
@@ -142,7 +141,6 @@ Page({
                       // that.getintegral();  
                       that.setData({ runData: runData.stepInfoList });
                       app.globalData.runData = runData.stepInfoList;
-                      that.getQueryLatestime(runData.stepInfoList);
                     }
                   },
                   fail: function () {
@@ -181,10 +179,10 @@ Page({
               let lastTime = res.data.data.time;
               if (res.data.data.type !== 'register'){
                   if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
-                    that.getUploaddata(runData, res.data.data.type)
+                    that.getUploaddata(runData, res.data.data.type);
                   }
               }else{
-                   that.getUploaddata(runData, res.data.data.type)
+                   that.getUploaddata(runData, res.data.data.type);
               }
           }
         }

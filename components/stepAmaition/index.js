@@ -74,13 +74,7 @@ Component({
             num: num > this.data.targetSteps ? this.data.targetSteps : (num > this.data.stepNum ? this.data.stepNum : num)
           })
         }
-
-
-
-      }, 100)
-
-
+      }, 20)
     }
-
   }
 })

@@ -170,16 +170,15 @@ Page({
              if(res.data.data.todaySteps === null){
                   todayStepsInit = 0;
              }else{
-                  todayStepsInit = res.data.data.todaySteps
+                  todayStepsInit = res.data.data.todaySteps  > 10000 ? 10000 : res.data.data.todaySteps;
              }
+              res.data.data.todaySteps = todayStepsInit;
               that.setData({
                 stepsNum: res.data.data
               })
               if(todayStepsInit < 10000){
                     that.setData({
-                        startStep : targetStepsNum - todayStepsInit
-                    })
-                    that.setData({
+                        startStep : targetStepsNum - todayStepsInit,
                         btnStatus: 0
                     })
                }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
@@ -197,31 +196,23 @@ Page({
                           integral: 10	
                         }
                       })
-                  }else{
+               }else{
                       that.setData({
                         btnStatus: 1,
                         isDone:1
                       })
                   }
                }
-              //  else if(that.data.stepsNum.receiveStatus === 1){
-              //       that.setData({
-              //         btnStatus: 2   // 已经领取
-              //       })
-              //  }
                that.setData({
                 startStatus:false
                })
           }else{
               // res 返回的是null的时候
               that.setData({
-                startStep : 10000
-              })
-              that.setData({
-                  btnStatus: 0
+                startStep : 10000,
+                btnStatus: 0
               })
           }
-       // }
       },
       fail: function (res) {
         console.log('.........fail..........');
