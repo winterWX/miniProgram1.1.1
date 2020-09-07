@@ -52,7 +52,8 @@ Page({
     },
     avatarObjList: [
       {
-        url:  app.globalData.imagesUrl + '/images/iconDefultTouxiang.png',
+        // url:  app.globalData.imagesUrl + '/images/iconDefultTouxiang.png',
+        url: '../../image/icon-defult-touxiang.png',
         id: 13
       }, {
         url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
