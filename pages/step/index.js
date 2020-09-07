@@ -20,6 +20,10 @@ let checkName = '';
 let currentTab = '';
 var option = {
   color: ['#00A865'],
+  // tooltip: {
+    // show: false,
+    // trigger: 'axis'
+  // },
   grid: {
     left: '8',
     right: '50',
