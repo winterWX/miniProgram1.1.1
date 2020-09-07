@@ -60,7 +60,7 @@ Page({
   /////////////////////////////////////////////////
   navigateToStep: function() {
     wx.navigateTo({
-      url: '../healthPage/index',
+      url: '../healthPage/index?id=' + this.data.rstProdu
     })
   }
 })
