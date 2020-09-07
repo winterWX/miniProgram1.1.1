@@ -62,7 +62,7 @@ page {
 .progress-bar {
   position: absolute;
   top: 44rpx;
-  width: 620rpx;
+  width: 630rpx;
   left: 34rpx;
 }
 
@@ -71,7 +71,7 @@ page {
   height: 55rpx;
   z-index: 3;
   position: absolute;
-  bottom: 32rpx;
+  bottom: 35rpx;
   right: 38rpx;
 }
 

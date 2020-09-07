@@ -20,10 +20,15 @@ let checkName = '';
 let currentTab = '';
 var option = {
   color: ['#00A865'],
-  // tooltip: {
-    // show: false,
-    // trigger: 'axis'
-  // },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'line',
+      lineStyle: {
+        color: '#00A865'
+      }
+    }
+  },
   grid: {
     left: '8',
     right: '50',
@@ -163,6 +168,9 @@ Page({
       }
     }, 100)
   },
+  onUnload: function(){
+    chart = null;
+  },
   toHistoryStep: function () {
     wx.navigateTo({
       url: '../historyStep/index',
@@ -270,7 +278,6 @@ Page({
           }
         },
         fail: function (res) {
-          console.log('.........fail..........');
           option.xAxis.data = [];
           option.series[0].data = [];
           chart && chart.setOption(option);
