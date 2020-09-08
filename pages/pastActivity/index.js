@@ -5,9 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-      activityList: [],
-      loadingFinish: false,
-      page: 1
+    activityList: [],
+    loadingFinish: false,
+    page: 1
   },
 
   /**
@@ -49,7 +49,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log('>>>>>>>>>>')
     this.setData({page: 1, activityList: [], loadingFinish: false});
+    // this.data.activityListL = [];
     this.getActivityList(1);
   },
 
@@ -60,10 +62,16 @@ Page({
     let page = this.data.page + 1;
     this.getActivityList(page);
   },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
   getActivityList: function(page) {
     let that = this;
     wx.showToast({title: '加载中', icon: 'loading'});
-    this.setData({loadingFinish: false});
     wx.request({
       url: app.globalData.baseUrl + '/remote/activity/list',
       method: "POST",
@@ -72,14 +80,11 @@ Page({
         "token": app.globalData.token
       },
       data: {
-        currentPage: page,
+        currentPage: 1,
         pageSize: 10,
         "status": [
           {
-            "status": 1
-          },
-          {
-            "status": 2
+            "status": 3
           }
         ]
       },
@@ -90,7 +95,7 @@ Page({
           if (res.data.data.length === 0 && page > 1) {
             page = page - 1;
           }
-          that.setData({activityList: [...list,...res.data.data], loadingFinish: true, page});
+          that.setData({activityList: [...list,...res.data.data], page, loadingFinish: true});
           wx.stopPullDownRefresh();
         }
       },
@@ -98,7 +103,7 @@ Page({
         if (page > 1) {
           page = page - 1;
         };
-        that.setData({loadingFinish: true, page});
+        that.setData({page, loadingFinish: true});
         wx.stopPullDownRefresh();
         wx.hideToast();
       }

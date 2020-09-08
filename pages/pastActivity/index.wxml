@@ -1,25 +1,20 @@
-<view scroll-y wx:if="{{activityList.length > 0}}" class="container">
+<view class="container" wx:if="{{activityList.length > 0}}">
 	<view wx:for="{{activityList}}" wx:for-item="activity" wx:key="id" class="activity-box">
 		<image class="img" src="{{activity.coverImageLocation}}"></image>
 		<view class="activity-content">
 			<text class="title">{{activity.title}}</text>
-			<view class="remain-days" wx:if="{{activity.status === 2}}">
-				<image class="time-icon" src="../../image/icon-left-time.png"></image>
-				<text>剩余{{activity.remainDays}}天</text>
+			<view class="remain-days">
+				<text>已过期</text>
 			</view>
 		</view>
 		<view class="activity-desc">
 			<text>{{activity.description}}</text>
 		</view>
 	</view>
-	<view class="past-activity">
-		<navigator url="../pastActivity/index"><text>往期精彩活动</text></navigator>
-	</view>
 </view>
 <view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">
 	<view>
 		<image class="icon" src="../../image/search-result.png"></image>
-		<view class="no-data">暂无活动</view>
-		<view class="browse">去看看</view>
+		<view class="no-data">暂无数据</view>
 	</view>
 </view>
