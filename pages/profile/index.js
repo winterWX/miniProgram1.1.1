@@ -5,8 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rstProdu: 'rstProdu',
-    btnHidden: 'btnHidden',
     active: 4,
     integral: 100,
     received: false, // 用户是否领取过积分

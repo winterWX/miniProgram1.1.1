@@ -149,6 +149,7 @@ Page({
   },
   settingDataBtn(){
     var that = this;
+    app.healthStep.SynchronousData = true;  //每日健康不需要授权
     app.globalData.isWeRunStepsFail = true;
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
@@ -267,11 +268,11 @@ Page({
         if(res.data.data !== null){
             const {distance,calories,totalTime} = res.data.data;
             //总运动时间判断有APP上传数据
-            if(totalTime >0){
+            if(totalTime > 0){
                 that.setData({
-                  distance,
-                  calories,
-                  totalTime,
+                  distance: Number(distance).toFixed(1),
+                  calories: Number(calories).toFixed(1),
+                  totalTime: Number(totalTime).toFixed(1),
                   showAPPData: true
               })
             }
