@@ -73,9 +73,7 @@ Page({
   healthPage: function () {
     if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
       let that = this;
-      wx.navigateTo({
-        url: '../../pages/healthPage/index?id=' + that.data.rstProdu
-      })
+      that.healthSccuss();
     } else {
       this.getWeRunStepsData();
     }
@@ -84,6 +82,13 @@ Page({
     wx.navigateTo({
       url: '../../pages/recommend/index'
     })
+  },
+  healthSccuss:function(){
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/healthPage/index?id=' + that.data.rstProdu
+    })
+    app.healthStep.SynchronousData = true;  //每日健康页面不需要授权
   },
   profilePage: function () {
     wx.navigateTo({
@@ -101,58 +106,13 @@ Page({
     let that = this;
     wx.login({
       success: (res) => {
-            wx.getWeRunData({
-              success(resRun) {
-                const encryptedData = resRun
-                console.info(resRun);
-                wx.request({
-                  url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
-                  method: 'GET', 
-                  header: {
-                    'Content-Type': 'application/json',
-                    "token": app.globalData.token
-                  },
-                  data: {
-                    encryptedData: resRun.encryptedData,
-                    iv: resRun.iv,
-                    sessionkey : app.globalData.userInfo.session_key
-                  },
-                  success: function (resDecrypt) {
-                    if(resDecrypt.data.data.length > 0){
-                      //let runData = resDecrypt.data.data;
-                      let runData = JSON.parse(resDecrypt.data.data); 
-                      if (runData.stepInfoList.length > 0)
-                      {
-                        runData.stepInfoList = runData.stepInfoList.reverse()
-                        for (var i in runData.stepInfoList)
-                        {
-                          runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
-                        }
-                        that.setData({ runData: runData.stepInfoList });
-                        app.globalData.runData = runData.stepInfoList;
-                        that.getQueryLatestime(runData.stepInfoList)
-                      }
-                      //授权成功跳转
-                      app.globalData.isWeRunSteps = true;
-                      wx.navigateTo({
-                        url: '../../pages/healthPage/index?id=' + that.data.rstProdu
-                      })
-                      that.setData({ runData: runData.stepInfoList });
-                      app.globalData.runData = runData.stepInfoList;
-                    }
-                  },
-                  fail: function () {
-                    console.log('----------')
-                  }
-                });
-              },
-              fail: function () {
-                  wx.navigateTo({
-                    url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
-                  })
-              }
-            })
-        }
+          if(res.code){
+            that.getKeySessionData(res.code);
+          }
+        },
+      fail: function(res) {
+        console.log('----------');
+      }
     })
   },
   //最近上传数据时间查询(query- queryLatestime)|移动端
@@ -176,6 +136,8 @@ Page({
               if (res.data.data.type !== 'register'){
                   if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
                     that.getUploaddata(runData, res.data.data.type);
+                  }else{
+                    that.healthSccuss();
                   }
               }else{
                    that.getUploaddata(runData, res.data.data.type);
@@ -186,7 +148,7 @@ Page({
   },
   //运动数据同步上传
   getUploaddata: function (runData, type) {
-    console.log('runDatarunData',runData);
+    let that = this;
     let runDataArray = [];
     runData.forEach((item)=>{
       runDataArray.push({
@@ -195,7 +157,6 @@ Page({
           steps: item.step
       })
     })
-    console.log('runDataArrayrunDataArray',runDataArray)
     wx.request({
       method: 'POST',
       url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
@@ -208,15 +169,102 @@ Page({
         source :'string',
         type : 'MINIP',
         lastTime: parseInt(new Date().getTime() / 1000) + '',
-        caloriesDataModelList :[],
-        distanceDataModelList :[],
         stepsDataModelList: type === 'register' ? runDataArray : [runDataArray[0]],
       },
       success: (res) => {
         if (res.data.code === 200) {
+            that.healthSccuss();
             console.log('数据同步成功')
         }
       }
     })
+},
+getKeySessionData(code) {
+  let that = this;
+  wx.getSetting({
+    success: (setingres) => {
+      if (setingres.authSetting['scope.userInfo']) {               
+        wx.getUserInfo({
+          success: (res) => {
+            that.miniproLogin(code,res.encryptedData,res.iv)
+          },
+          fail: () => {
+             console.log('---------------')
+          }
+        })
+      }
+    }
+  })
+},
+getAllWeRunData:function(sessionkey){
+  let that = this;
+  wx.getWeRunData({
+    success(resRun) {
+      const encryptedData = resRun
+      console.info(resRun);
+      wx.request({
+        url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
+        method: 'POST', 
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        data: {
+          encryptedData: resRun.encryptedData,
+          iv: resRun.iv,
+          sessionkey : sessionkey
+        },
+        success: function (resDecrypt) {
+          if(resDecrypt.data.data.length > 0){
+            let runData = JSON.parse(resDecrypt.data.data); 
+            if (runData.stepInfoList.length > 0)
+            {
+              runData.stepInfoList = runData.stepInfoList.reverse()
+              for (var i in runData.stepInfoList)
+              {
+                runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
+              }
+              that.setData({ runData: runData.stepInfoList });
+              app.globalData.runData = runData.stepInfoList;
+              that.getQueryLatestime(runData.stepInfoList)
+            }
+            //授权成功跳转
+            app.globalData.isWeRunSteps = true;
+            that.setData({ runData: runData.stepInfoList });
+            app.globalData.runData = runData.stepInfoList;
+          }
+        },
+        fail: function () {
+          console.log('----------')
+        }
+      });
+    },
+    fail: function () {
+        wx.navigateTo({
+          url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
+        })
+    }
+  })
+},
+miniproLogin:function(code,enData,ivData){
+  let that = this;
+  const parms = {
+    code:code,
+    encrypteData: enData,
+    iv: ivData
+  }
+  wx.request({
+    method: 'post',
+    url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
+    header: {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    data: parms,
+    success: (res) => {
+      if (res.data.code === 200) {
+        that.getAllWeRunData(res.data.data.session_key);
+      }
+    }
+  })
 },
 })

@@ -17,8 +17,8 @@ Page({
       weight:'--',
       bpm:'--'
     },
-    stepDataShow:true,
-    bpmShow: true,
+    stepDataShow: false,
+    bpmShow: false,
     editBlck: false,
     blockForData:{},
     integral:100,
@@ -117,8 +117,8 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200 &&  res.data.data !== null) {
-           const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
-          if(weight> 0  &&  height> 0){
+          const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
+          if(weight> 0 && height> 0){
               let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
               res.data.data.bmi =Number(bmiNum.toFixed(1));
           }else{
@@ -127,14 +127,14 @@ Page({
            that.setData({
               health: res.data.data
             })
-            if(totalTime === 0){
+            if(totalTime > 0){
               that.setData({
-                stepDataShow: false
+                stepDataShow: true
               })
             }
-            if( bpm === 0){
+            if( bpm > 0){
               that.setData({
-                bpmShow: false
+                bpmShow: true
               })
             }
         } else {
