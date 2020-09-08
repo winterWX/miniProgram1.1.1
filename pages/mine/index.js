@@ -137,8 +137,6 @@ Page({
                       wx.navigateTo({
                         url: '../../pages/healthPage/index?id=' + that.data.rstProdu
                       })
-                      // //记录领取积分
-                      // that.getintegral();  
                       that.setData({ runData: runData.stepInfoList });
                       app.globalData.runData = runData.stepInfoList;
                     }
@@ -158,7 +156,7 @@ Page({
     })
   },
   //最近上传数据时间查询(query- queryLatestime)|移动端
-    getQueryLatestime: function (runData) {
+  getQueryLatestime: function (runData) {
       let that = this;
       wx.request({
         method: 'GET',
@@ -168,8 +166,6 @@ Page({
           "token": app.globalData.token
         },
         data:{
-          //  type:'MINIP',
-		      //  source:'string'
           source: 'string'
         },
         success: (res) => {

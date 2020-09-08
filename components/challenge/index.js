@@ -1,6 +1,4 @@
-// components/challenge/index.js
 const app = getApp();
-const token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqViotTi3yS8xNVbJSsjBXqgUAAAD__w.YGUQwlZwBhBUfLUJ05CBn3mpEvU8_eni7iYMHuM_5dqvSJOSXzOwkMfU8ud1H6yvQ2YafIM0teJNcueLWC3K4A'
 Component({
   /**
    * 组件的属性列表
@@ -33,50 +31,7 @@ Component({
       integral:''
     },  
     nowDay:-1, 
-    list:[
-      // {
-      //   receiveStatus:1,//已领        
-      //   day:'1',
-      //   reward:'+10',
-      //   iconPath:'http://106.54.73.125:8102/images/miniprogram/images/icon-got-the-points@2x.png'       
-      // },
-      // {
-      //   receiveStatus: 4, //过期      
-      //   day: '2',
-      //   reward: '+10',
-      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points-black@2x.png'              
-      // },      
-      // {
-      //   receiveStatus: 1,//补领       
-      //   day: '3',
-      //   reward: '+10',
-      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'         
-      // },      
-      // {
-      //   receiveStatus: 3,//补领       
-      //   day: '4',
-      //   reward: '+10',
-      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'           
-      // },
-      // {
-      //   receiveStatus: 2,//还不到时间领      
-      //   day: '5',
-      //   reward: '+10',
-      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'              
-      // },      
-      // {
-      //   receiveStatus: 2,//还不到时间领      
-      //   reward: '+10',
-      //   day: '6',
-      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-10-points@2x.png'             
-      // },
-      // {
-      //   receiveStatus: 2,//还不到时间领       
-      //   day: '7',
-      //   reward: '+50',
-      //   iconPath: 'http://106.54.73.125:8102/images/miniprogram/images/icon-50-points@2x.png'             
-      // }
-    ]
+    list:[]
   },
   lifetimes: { // 生命周期
     ready: function () {
