@@ -2,6 +2,9 @@
   "usingComponents": {
 
   },
-  "navigationBarTitleText": "我要挑战",
-  "navigationBarTextStyle": "black"
+  "navigationBarTitleText": "热门活动",
+  "navigationBarTextStyle": "black",
+  "backgroundTextStyle":"dark",
+  "onReachBottomDistance":50,
+  "enablePullDownRefresh": true
 }

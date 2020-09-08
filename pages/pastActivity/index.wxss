@@ -6,8 +6,6 @@ page {
 .container {
   background-color: #ededed;
   /* height: 100%; */
-  /* overflow: hidden; */
-  overflow-y: auto;
 }
 
 .activity-box {
@@ -52,10 +50,6 @@ page {
   align-items: center;
 }
 
-.activity-box .activity-content .remain-days .time-icon {
-  width: 40rpx;
-  height: 40rpx;
-}
 
 .activity-box .activity-desc {
   color: #666666;
@@ -66,18 +60,7 @@ page {
   overflow: hidden;
   white-space: nowrap;
 }
-.past-activity {
-  z-index: 3;
-  text-align: center;
-  color: #333333;
-  font-size: 24rpx;
-  text-decoration: blink;
-  background-color: #ededed;
-  margin-bottom: 30rpx;
-}
-.past-activity text {
-  border-bottom: 2rpx solid #333333;
-}
+
 .empty-box {
   display: flex;
   justify-content: center;
@@ -94,15 +77,4 @@ page {
   font-size: 28rpx;
   color: #333333;
   margin-top: 50rpx;
-}
-.browse {
-  width: 144rpx;
-  height: 46rpx;
-  text-align: center;
-  line-height: 46rpx;
-  border: 2rpx solid #333333;
-  border-radius: 4rpx;
-  font-size: 24rpx;
-  color: rgb(51, 51, 51);
-  margin: 20rpx auto 0 auto;
 }
