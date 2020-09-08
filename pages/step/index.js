@@ -37,7 +37,6 @@ var option = {
   },
   xAxis: {
     type: 'category',
-    triggerEvent: true,
     axisLabel: {
       interval: 6
     },
@@ -56,7 +55,6 @@ var option = {
     position: 'right',
     type: 'value',
     splitNumber: 2,
-    triggerEvent: true,
     splitArea: {
       show: false
     },
