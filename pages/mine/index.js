@@ -170,7 +170,7 @@ Page({
         data:{
           //  type:'MINIP',
 		      //  source:'string'
-          source: 'MINIP'
+          source: 'string'
         },
         success: (res) => {
           if (res.data.code === 200) {

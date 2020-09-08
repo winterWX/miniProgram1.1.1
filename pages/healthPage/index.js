@@ -39,9 +39,7 @@ Page({
        let that = this;
        if(options.id === 'rstProdu'){ 
           that.setData({
-            flag: true
-          })
-          that.setData({
+            flag: true,
             guidance1: true
           })
           that.settingDataBtn();
@@ -57,7 +55,6 @@ Page({
        }
        that.healthEveryday();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -108,18 +105,14 @@ Page({
   guidanceOne:function(){
      let that = this;
      that.setData({
-         guidance1:false
-     })
-     that.setData({
-          guidance2:true
+         guidance1: false,
+         guidance2: true
      })
   },
   guidanceTwo:function(){
       let that = this;
       that.setData({
-        guidance2: false
-      })
-      that.setData({
+        guidance2: false,
         flag: false
       })
       app.firstInit.bootImage = false;
@@ -271,14 +264,11 @@ Page({
       },
       success: function (res) {
         if(res.data.data !== null){
+          const {distance,calories,totalTime} = res.data.data;
             that.setData({
-                distance:res.data.data.distance
-            })
-            that.setData({
-              calories:res.data.data.distance
-            })
-            that.setData({
-              totalTime:res.data.data.distance
+                distance,
+                calories,
+                totalTime
             })
         }
       },

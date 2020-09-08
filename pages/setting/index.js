@@ -71,6 +71,9 @@ Page({
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
+      data:{
+        device: 2
+      },
       success: function (res) {
         if (res.data.code == 200) {
           app.globalData.token = '';
