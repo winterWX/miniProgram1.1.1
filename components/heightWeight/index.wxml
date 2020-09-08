@@ -5,7 +5,7 @@
     </viwe>
     <viwe class="blackInput">
         <viwe class="blackInputText">{{blockForData.blockText}}<text class="textCode">{{blockForData.blockTextAfter}}</text></viwe>
-        <input  type="text" value="{{numData}}"  class="blackView-input" bindinput="inputNum" />
+        <input  type="text" value="{{numData}}" focus='{true}' class="blackView-input" bindinput="inputNum" />
     </viwe>
     <viwe class="lineBottomSty"></viwe>
     <viwe class="bottomBtn">

@@ -22,6 +22,7 @@ Page({
      distance: '00',
      calories: '00',
      totalTime: '00',
+     showAPPData: false,  //是否有APP上传数据
      leftDire: 750/2 + 120,
      topDire: 240 / 2,
      goldAnimationShow: false,
@@ -264,12 +265,16 @@ Page({
       },
       success: function (res) {
         if(res.data.data !== null){
-          const {distance,calories,totalTime} = res.data.data;
-            that.setData({
-                distance,
-                calories,
-                totalTime
-            })
+            const {distance,calories,totalTime} = res.data.data;
+            //总运动时间判断有APP上传数据
+            if(totalTime >0){
+                that.setData({
+                  distance,
+                  calories,
+                  totalTime,
+                  showAPPData: true
+              })
+            }
         }
       },
       fail: function (res) {
