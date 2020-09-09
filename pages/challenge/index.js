@@ -7,7 +7,8 @@ Page({
   data: {
       activityList: [],
       loadingFinish: false,
-      page: 1
+      page: 1,
+      totalPage: 0
   },
 
   /**
@@ -57,8 +58,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    let page = this.data.page + 1;
-    this.getActivityList(page);
+    let {page, totalPage} = this.data;
+    if (page >= totalPage) {
+      return;
+    }
+    let curPage = page + 1;
+    this.getActivityList(curPage);
   },
   getActivityList: function(page) {
     let that = this;
@@ -73,7 +78,7 @@ Page({
       },
       data: {
         currentPage: page,
-        pageSize: 10,
+        pageSize: 3,
         "status": [
           {
             "status": 1
@@ -87,10 +92,8 @@ Page({
         wx.hideToast();
         if (res.data.code == 200) {
           let list = that.data.activityList;
-          if (res.data.data.length === 0 && page > 1) {
-            page = page - 1;
-          }
-          that.setData({activityList: [...list,...res.data.data], loadingFinish: true, page});
+          let totalPage = res.data.totalPage;
+          that.setData({activityList: [...list,...res.data.data], loadingFinish: true, page, totalPage});
           wx.stopPullDownRefresh();
         }
       },
@@ -102,6 +105,12 @@ Page({
         wx.stopPullDownRefresh();
         wx.hideToast();
       }
+    })
+  },
+  navigatorDetail: function(e) {
+    let {title,id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: '../activityDetail/index?id=' + id + '&title=' + title,
     })
   }
 })
