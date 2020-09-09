@@ -1,7 +1,7 @@
 <view scroll-y wx:if="{{activityList.length > 0}}" class="container">
 	<view wx:for="{{activityList}}" wx:for-item="activity" wx:key="id" class="activity-box">
 		<image class="img" src="{{activity.coverImageLocation}}"></image>
-		<view class="activity-content">
+		<view class="activity-content" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
 			<text class="title">{{activity.title}}</text>
 			<view class="remain-days" wx:if="{{activity.status === 2}}">
 				<image class="time-icon" src="../../image/icon-left-time.png"></image>

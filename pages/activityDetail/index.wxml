@@ -1,0 +1,17 @@
+<view class="container">
+	<view class="activity-desc">
+		<image class="poster" src="{{detail.thumb}}"></image>
+		<view class="content">
+			<view class="activity-content">
+				<text class="title">{{detail.title}}</text>
+				<view class="remain-days" wx:if="{{detail.status === 2}}">
+					<image class="time-icon" src="../../image/icon-left-time.png"></image>
+					<text>剩余{{detail.days}}天</text>
+				</view>
+			</view>
+			<view class="activity-desc">
+				<text>{{detail.description}}</text>
+			</view>
+		</view>
+	</view>
+</view>

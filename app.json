@@ -24,7 +24,8 @@
     "pages/healthBMI/index",
     "pages/movementData/index",
     "pages/historyStep/index",
-    "pages/pastActivity/index"
+    "pages/pastActivity/index",
+    "pages/activityDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
