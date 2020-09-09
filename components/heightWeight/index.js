@@ -37,11 +37,21 @@ Component({
   },
   lifetimes: { // 生命周期
     ready: function () {
-      let height = this.data.height !== '--' ? this.data.height : '';
-      let weight = this.data.weight  !== '--' ? this.data.weight : '';
-      this.setData({
-        numData: this.data.blockForData.titleTop === '记录身高' ? height : weight
-      })
+        let height = '';
+        let weight = '';
+        if(this.data.height !== '--' || this.data.height !== 0){
+          height = '';
+        }else{
+          height= this.data.height;
+        }
+        if(this.data.weight !== '--' || this.data.weight !== 0){
+          weight = '';
+        }else{
+          weight= this.data.weight;
+        }
+        this.setData({
+          numData: this.data.blockForData.titleTop === '记录身高' ? height : weight
+        })
     },
   },
   /**
@@ -49,9 +59,10 @@ Component({
    */
   methods: {
     inputNum(e){
-      let that = this;
-      //if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{1,2})?)$/.test(e.detail.value))) { //两位小数
-      if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{0})?)$/.test(e.detail.value))) {  
+        let that = this;
+        //if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{1,2})?)$/.test(e.detail.value))) { //两位小数
+        //if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{0})?)$/.test(e.detail.value))) {  
+        if (!(/^([1-9][0-9]{1,2})$/.test(e.detail.value))) {         
           console.log('不正常',e.detail.value)
           that.setData({
             valData :true

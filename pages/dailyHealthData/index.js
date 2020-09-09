@@ -39,7 +39,6 @@ Page({
         this.getHeightWeight();  //身高体重
         that.getQueryintegral();
     }
-    console.log('app.healthStep.SynchronousData',app.healthStep.SynchronousData);
   },
 
   /**

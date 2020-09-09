@@ -5,6 +5,7 @@ Page({
    */
   data: {
      forceNum:false,
+     allowRun:false,
      startStatus:false,
      anBackShow:false,
      startStep: '10000',
@@ -44,6 +45,7 @@ Page({
             guidance1: true
           })
           that.settingDataBtn();
+          that.getQueryintegral();
         }
         if(options.flg === 'btnHidden'){
           if(app.globalData.isWeRunStepsFail){
@@ -151,6 +153,7 @@ Page({
     var that = this;
     app.healthStep.SynchronousData = true;  //每日健康不需要授权
     app.globalData.isWeRunStepsFail = true;
+    that.getQueryintegral();
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
       method:"GET",
@@ -243,7 +246,7 @@ Page({
             }
           })
           that.setData({
-              forceNum: true
+            forceNum: true
           })          
         },
         fail: function (res) {
@@ -301,5 +304,43 @@ Page({
     wx.navigateTo({
       url: '../dailyHealthData/index',
     })
-  }
+  },
+  //查询用户是否已经获取步数积分
+  getQueryintegral: function () {
+      let that= this;
+      wx.request({
+        method: 'GET',
+        url: app.globalData.baseUrl + '/remote/integral/queryReceivedStatus',
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "token": app.globalData.token
+        },
+        success: (res) => {
+          // 100412--已经领取积分  200--未领取积分
+          if (res.data.code === 200) {
+              that.getintegral();
+          }
+        }
+      })
+    },
+    //领取积分
+    getintegral: function () {
+      let that= this;
+      wx.request({
+        method: 'GET',
+        url: app.globalData.baseUrl + '/remote/integral/stepAuth',
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "token": app.globalData.token
+        },
+        success: (res) => {
+          if (res.data.code === 200) {
+              that.setData({
+                forceNum : app.healthStep.SynchronousData,
+                allowRun : true 
+              })
+          }
+        }
+      })
+    }
 })
