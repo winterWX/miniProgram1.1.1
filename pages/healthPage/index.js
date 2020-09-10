@@ -36,9 +36,6 @@ Page({
      firstInitShow: true,  //第一次进来显示
      iconPath:  app.globalData.imagesUrl + '/images/icon-10-points@2x.png'
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
        let that = this;
        that.setData({
@@ -74,15 +71,8 @@ Page({
             }
         }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
       let that = this;
       that.setData({
@@ -114,9 +104,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -218,13 +206,13 @@ Page({
                 }
           }
           that.setData({
-          startStatus : false
+          startStatus: false
           })
           }else{
             that.setData({
-              startStep : 10000,
+              startStep: 10000,
               btnStatus: 0,
-              startStatus : false
+              startStatus: false
             })
           }
       },
