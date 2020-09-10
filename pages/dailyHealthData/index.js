@@ -16,13 +16,12 @@ Page({
       weight:'--',
       bpm:'--'
     },
-    stepDataShow: false,
-    bpmShow: false,
     editBlck: false,
     blockForData:{},
     integral:100,
     integralBlock : false,
-    tipUpdate: false  //同步数据
+    tipUpdate: false,  //同步数据
+    showAPPData: 0
   },
 
   /**
@@ -30,6 +29,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    that.setData({
+      showAPPData: app.healthStep.dataCource
+    })
     if(app.healthStep.SynchronousData){
         that.setData({
           tipUpdate : app.healthStep.SynchronousData
@@ -122,19 +124,9 @@ Page({
           }else{
                res.data.data.bmi = that.data.health.bmi;
           }
-           that.setData({
+          that.setData({
               health: res.data.data
-            })
-            if(totalTime > 0){
-              that.setData({
-                stepDataShow: true
-              })
-            }
-            if( bpm > 0){
-              that.setData({
-                bpmShow: true
-              })
-            }
+          })
         } else {
           wx.showModal({
             showCancel: false,

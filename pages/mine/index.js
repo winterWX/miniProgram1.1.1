@@ -5,25 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rstProdu: 'rstProdu',
-    btnHidden: 'btnHidden',
+    allowTo: 'allowTo',
+    refusedTo: 'refusedTo',  
     complete: false,
     active: 4,
-    runData:[]
+    runData:[],
+    isAppData: false  //判断是不是app用户
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    that.checkIsAppUser();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    this.getMyprofileInfo();
-  },
-
+  onReady: function () {},
   /**
    * 生命周期函数--监听页面显示
    */
@@ -71,11 +71,15 @@ Page({
 
   },
   healthPage: function () {
-    if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
-      let that = this;
-      that.healthSccuss();
-    } else {
-      this.getWeRunStepsData();
+    let that = this;
+    if(that.data.isAppData){
+      that.carryAPPData();
+    }else{
+      if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
+        that.healthSccuss();
+      } else {
+        that.getWeRunStepsData();
+      }
     }
   },
   sendFriend: function () {
@@ -83,10 +87,15 @@ Page({
       url: '../../pages/recommend/index'
     })
   },
+  carryAPPData:function(){
+    wx.navigateTo({
+      url: '../../pages/healthPage/index?id=' + 'carryAPPData'
+    })
+  },
   healthSccuss:function(){
     let that = this;
     wx.navigateTo({
-      url: '../../pages/healthPage/index?id=' + that.data.rstProdu
+      url: '../../pages/healthPage/index?id=' + that.data.allowTo
     })
     app.healthStep.SynchronousData = true;  //每日健康页面不需要授权
   },
@@ -99,8 +108,6 @@ Page({
     wx.navigateTo({
       url: '../../pages/setting/index'
     })
-  },
-  getMyprofileInfo: function () {
   },
   getWeRunStepsData: function () {
     let that = this;
@@ -133,30 +140,23 @@ Page({
               //最后上传时间戳 和 当前时间戳进行比较
               let dayTime = parseInt(new Date().getTime() / 1000);
               let lastTime = res.data.data.time;
+              const runArray = that.runArray(runData,lastTime);
               if (res.data.data.type !== 'register'){
                   if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
-                    that.getUploaddata(runData, res.data.data.type);
+                      that.getUploaddata(runArray);
                   }else{
-                    that.healthSccuss();
+                      that.getUploaddata(runArray);
                   }
               }else{
-                   that.getUploaddata(runData, res.data.data.type);
+                  that.getUploaddata(runArray);
               }
           }
         }
       })
   },
   //运动数据同步上传
-  getUploaddata: function (runData, type) {
+  getUploaddata: function (runData) {
     let that = this;
-    let runDataArray = [];
-    runData.forEach((item)=>{
-      runDataArray.push({
-          endTime:  item.timestamp +'',
-          startTime: item.timestamp +'',
-          steps: item.step
-      })
-    })
     wx.request({
       method: 'POST',
       url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
@@ -169,7 +169,7 @@ Page({
         source :'string',
         type : 'MINIP',
         lastTime: parseInt(new Date().getTime() / 1000) + '',
-        stepsDataModelList: type === 'register' ? runDataArray : [runDataArray[0]],
+        stepsDataModelList: runData,
       },
       success: (res) => {
         if (res.data.code === 200) {
@@ -241,7 +241,7 @@ getAllWeRunData:function(sessionkey){
     },
     fail: function () {
         wx.navigateTo({
-          url: '../../pages/healthPage/index?flg=' + that.data.btnHidden
+          url: '../../pages/healthPage/index?flg=' + that.data.refusedTo
         })
     }
   })
@@ -254,7 +254,7 @@ miniproLogin:function(code,enData,ivData){
     iv: ivData
   }
   wx.request({
-    method: 'post',
+    method: 'POST',
     url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
     header: {
       "Content-Type": "application/json;charset=UTF-8"
@@ -267,4 +267,41 @@ miniproLogin:function(code,enData,ivData){
     }
   })
 },
+checkIsAppUser:function(){
+  let that = this;
+  wx.request({
+    method: 'GET',
+    url: app.globalData.baseUrl + '/remote/health/data/ensure/user',
+    header: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "token": app.globalData.token
+    },
+    success: (res) => {
+      if (res.data.code === 200) {
+          that.setData({
+            isAppData: res.data.data === 1 ? true : false
+          })
+          //数据源
+          app.healthStep.dataCource = res.data.data;
+      }
+    }
+  })
+},
+runArray:function(array,lastTime){
+    let runDataArray = [];
+    array.forEach((item)=>{
+      runDataArray.push({
+          endTime:  item.timestamp + '',
+          startTime: item.timestamp + '' ,
+          steps: item.step
+        })
+    })
+    const indexs = runDataArray.findIndex(item =>{
+      return util.timestampToTime(item.endTime) === util.timestampToTime(lastTime);
+    })
+    if(indexs > -1){
+      return runDataArray.splice(0,indexs+1)
+    }
+    return runDataArray;
+  }
 })
