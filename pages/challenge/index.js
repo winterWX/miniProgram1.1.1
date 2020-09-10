@@ -78,7 +78,7 @@ Page({
       },
       data: {
         currentPage: page,
-        pageSize: 3,
+        pageSize: 10,
         "status": [
           {
             "status": 1
