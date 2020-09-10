@@ -23,7 +23,7 @@ var option = {
  /*  position: function(point, params) {
     console.log(point[0])
     console.log(params)
-    return [point[0], 0]
+    return [point[0], -20]
   }, */
   tooltip: {
     trigger: 'axis',
@@ -32,7 +32,8 @@ var option = {
       lineStyle: {
         color: '#00A865'
       }
-    }
+    },
+    extraCssText: "z-index: 1000;"
   },
   grid: {
     left: '9',
@@ -152,6 +153,7 @@ Page({
           option.color = ['#55D0A6'];
           checkName = params.name;
           chart.setOption(option);
+          console.log(weekDateMap)
           if (currentTab !== 'day') {
             this.setData({
               selectedDate: currentTab === 'month' ? dateMap[checkName] : weekDateMap[checkName],
@@ -242,7 +244,7 @@ Page({
             dataList.forEach(item => {
               let t = formatTime(new Date(item.dataTime * 1000));
               let dateArr = that.foramteDate(t);
-              let [month, day] = dateArr;
+              let [year, month, day] = dateArr;
               // dateMap[day] = `${month}月${day}日`;
               let key = currentTabId === 'month' ? `${t.split(" ")[0].split('/')[2]}日` : that.getDisplayWeek(new Date(item.dataTime * 1000));
               if (currentTabId === 'week') {
