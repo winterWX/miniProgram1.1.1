@@ -33,7 +33,6 @@ var option = {
         color: '#00A865'
       }
     },
-    extraCssText: "z-index: 1000;"
   },
   grid: {
     left: '9',
@@ -92,10 +91,11 @@ var option = {
 let chart = null;
 let dateMap = {};
 let weekDateMap = {};
-function initChart(canvas, width, height) {
+function initChart(canvas, width, height, dpr) {
   chart = echarts.init(canvas, null, {
     width: width,
-    height: height
+    height: height,
+    devicepixelratio: dpr
   });
   canvas.setChart(chart);
   chart.setOption(option);
@@ -153,7 +153,6 @@ Page({
           option.color = ['#55D0A6'];
           checkName = params.name;
           chart.setOption(option);
-          console.log(weekDateMap)
           if (currentTab !== 'day') {
             this.setData({
               selectedDate: currentTab === 'month' ? dateMap[checkName] : weekDateMap[checkName],
