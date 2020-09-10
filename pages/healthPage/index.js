@@ -8,7 +8,8 @@ Page({
      allowRun:false,
      startStatus:false,
      anBackShow:false,
-     startStep: '10000',
+     startStep: 10000,
+     showAPPData: 0, 
      stepsNum:{
         todaySteps: 0,	 //今日步数
         targetSteps: 0,	 //	目标步数
@@ -19,11 +20,13 @@ Page({
         integral: 0	 //	可以领取的积分
      },
      isDone:2,
-     btnStatus: -1,  // 0 还差，1领积分，2已领
-     distance: '00',
-     calories: '00',
-     totalTime: '00',
-     showAPPData: false,  //是否有APP上传数据
+     btnStatus: 0,  // 0 还差，1领积分，2已领
+     everyDayData:{
+        distance: 0,
+        calories: 0,
+        totalTime: 0,
+        todaySteps:0
+     }, 
      leftDire: 750/2 + 120,
      topDire: 240 / 2,
      goldAnimationShow: false,
@@ -33,30 +36,43 @@ Page({
      firstInitShow: true,  //第一次进来显示
      iconPath:  app.globalData.imagesUrl + '/images/icon-10-points@2x.png'
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
        let that = this;
-       if(options.id === 'rstProdu'){ 
-          that.setData({
-            flag: true,
-            guidance1: true
-          })
-          that.settingDataBtn();
-          that.getQueryintegral();
-        }
-        if(options.flg === 'btnHidden'){
-          if(app.globalData.isWeRunStepsFail){
-            that.settingDataBtn();
-          }else{
+       that.setData({
+          showAPPData: app.healthStep.dataCource
+       })
+       console.log('11111', options.id)
+       if(options.id ==='allowTo'){ 
             that.setData({
-              startStatus :true
+              flag: true,
+              guidance1: true
             })
-          }
-       }
-       that.healthEveryday();
+            that.settingDataBtn();
+            that.healthEveryday();
+            that.getQueryintegral();
+        }else if(options.flg ==='refusedTo'){
+            if(app.globalData.isWeRunStepsFail){
+              that.settingDataBtn();
+            }else{
+              that.setData({
+                btnStatus: -1, 
+                startStatus :true
+              })
+            }
+            that.healthEveryday();
+        }else if(options.flg ==='carryAPPData'){
+            that.settingDataBtn();
+            that.healthEveryday();
+            //判断是否有app数据
+            if(that.data.stepsNum.todaySteps === 0 && that.data.totalTime === 0){
+                that.setData({
+                  startStatus :true
+                })
+            }
+        }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -151,7 +167,7 @@ Page({
   },
   settingDataBtn(){
     var that = this;
-    app.healthStep.SynchronousData = true;  //每日健康不需要授权
+    app.healthStep.SynchronousData = true;
     app.globalData.isWeRunStepsFail = true;
     that.getQueryintegral();
     wx.request({
@@ -202,22 +218,19 @@ Page({
                   }
                }
                that.setData({
-                startStatus:false
+                startStatus : false
                })
-          }else{
-              // res 返回的是null的时候
-              that.setData({
-                startStep : 10000,
-                btnStatus: 0
-              })
           }
       },
       fail: function (res) {
-        console.log('.........fail..........');
+          that.setData({
+            startStep : 10000,
+            btnStatus: 0
+          })
       }
     })
   },
-  topSettingBtn:function(){
+  integralBtn:function(){
     let that = this;
     if(that.data.btnStatus === 1 ){
       wx.request({
@@ -228,26 +241,27 @@ Page({
             "token": app.globalData.token
         },
         success: function (res) {
-        // if(res.data.data !== null){}
-          that.setData({
-            anBackShow:true
-          })
-          that.startAnimation();
-          that.setData({
-            btnStatus: 2
-          })
-          app.globalData.isReceiveStatus = true;  // 标记第二次进来
-          that.setData({
-            stepsNum: {
-              todaySteps: 10000,           
-              receiveStatus: 1,	           
-              isDone: 1,	
-              integral: 10	
-            }
-          })
-          that.setData({
-            forceNum: true
-          })          
+        if(res.data.code !== null){
+            that.setData({
+              anBackShow:true
+            })
+            that.startAnimation();
+            that.setData({
+              btnStatus: 2
+            })
+            app.globalData.isReceiveStatus = true;  // 标记第二次进来
+            that.setData({
+              stepsNum: {
+                todaySteps: 10000,           
+                receiveStatus: 1,	           
+                isDone: 1,	
+                integral: 10	
+              }
+            })
+            that.setData({
+              forceNum: true
+            })
+          }          
         },
         fail: function (res) {
           console.log('.........fail..........');
@@ -269,16 +283,9 @@ Page({
       },
       success: function (res) {
         if(res.data.data !== null){
-            const {distance,calories,totalTime} = res.data.data;
-            //总运动时间判断有APP上传数据
-            if(totalTime > 0){
-                that.setData({
-                  distance: Number(distance).toFixed(1),
-                  calories: Number(calories).toFixed(1),
-                  totalTime: Number(totalTime).toFixed(1),
-                  showAPPData: true
-              })
-            }
+            that.setData({
+              everyDayData : res.data.data
+            })
         }
       },
       fail: function (res) {

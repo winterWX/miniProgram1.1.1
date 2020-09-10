@@ -4,16 +4,13 @@ Page({
   data: {
     active:0,
     successFlg: false,
-    rstProdu: 'rstProdu'
+    allowTo: 'allowTo'
   },
   onLoad: function (options) {
-    console.log('options.flag',options.flag)
-    console.log('options.flag', typeof options.flag)
     if (options.flag === 'true'){   //是 true
-        console.log('options.flag里面',options.flag)
-        this.setData({
-          successFlg: true
-        })
+      this.setData({
+        successFlg: true
+      })
       this.selectComponent('#filterCmp').restFilterDatas();
     }
     wx.showModal({
@@ -35,7 +32,7 @@ Page({
   },
   prograNum:function(){
     wx.navigateTo({
-      url: '../healthPage/index?id=' + that.data.rstProdu
+      url: '../healthPage/index?id='+ that.data.allowTo
     })
   },
   onShareAppMessage: function () {},
@@ -60,7 +57,7 @@ Page({
   /////////////////////////////////////////////////
   navigateToStep: function() {
     wx.navigateTo({
-      url: '../healthPage/index?id=' + this.data.rstProdu
+      url: '../healthPage/index?id=' + this.data.allowTo
     })
   }
 })

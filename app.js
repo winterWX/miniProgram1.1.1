@@ -29,6 +29,7 @@ App({
   },
   healthStep:{
     SynchronousData :false,  // 是否已经立即授过权 同步数据
-    integralRecord :false   //标记是否领取
+    integralRecord :false,   //标记是否领取
+    dataCource: 0  //数据源 1.APP  2.miniPro
   }
 })
