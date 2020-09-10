@@ -178,7 +178,7 @@ Page({
           "token": app.globalData.token
       },
       success: function (res) {
-          if(res.data.data !== null){
+          if(res.data.code === 200){
              let targetStepsNum = 10000;
              let todayStepsInit = 0;
              if(res.data.data.todaySteps === null){
@@ -195,7 +195,7 @@ Page({
                         startStep : targetStepsNum - todayStepsInit,
                         btnStatus: 0
                     })
-               }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
+              }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
                   if(app.globalData.isReceiveStatus){
                       //返回乐健康，第二次进来，默认已选的状态
                       that.setData({
@@ -211,22 +211,25 @@ Page({
                         }
                       })
                }else{
-                      that.setData({
-                        btnStatus: 1,
-                        isDone:1
-                      })
-                  }
-               }
-               that.setData({
-                startStatus : false
-               })
+                  that.setData({
+                    btnStatus: 1,
+                    isDone:1
+                  })
+                }
+          }
+          that.setData({
+          startStatus : false
+          })
+          }else{
+            that.setData({
+              startStep : 10000,
+              btnStatus: 0,
+              startStatus : false
+            })
           }
       },
       fail: function (res) {
-          that.setData({
-            startStep : 10000,
-            btnStatus: 0
-          })
+          console.log('--------------');
       }
     })
   },
