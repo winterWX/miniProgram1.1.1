@@ -1,7 +1,6 @@
 const util = require('../../utils/util')
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,7 +12,7 @@ Page({
       calories:'--',
       distance:'--',
       bmi:'--',
-      height:'--',
+      height:'--',  
       weight:'--',
       bpm:'--'
     },
@@ -117,7 +116,7 @@ Page({
       success: (res) => {
         if (res.data.code === 200 &&  res.data.data !== null) {
           const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
-          if(weight> 0 && height> 0){
+          if(weight > 0 && height > 0){
               let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
               res.data.data.bmi =Number(bmiNum.toFixed(1));
           }else{
@@ -183,15 +182,13 @@ Page({
            return;
       }else{
           let flag = e.currentTarget.dataset.id;
-          that.setData({ 
-            editBlck: true,
-          })
           let blockForData = {
             titleTop: flag === 'height' ? '记录身高' : '记录体重',
             blockText: flag === 'height' ? '身高':'体重',
             blockTextAfter: flag === 'height' ? '（厘米）': '（公斤）'
           }
-          that.setData({ 
+          that.setData({
+            editBlck: true, 
             blockForData: JSON.parse(JSON.stringify(blockForData)),
           })
       }
