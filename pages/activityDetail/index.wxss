@@ -1,0 +1,53 @@
+/* pages/activityDetail/index.wxss */
+page {
+  background-color: #ededed;
+}
+.container {
+  background-color: white;
+}
+.activity-desc .poster {
+  width: 100%;
+  height: 290rpx;
+}
+.activity-desc .content {
+  padding: 10rpx 30rpx;
+}
+.activity-desc .content .activity-content {
+  display: flex;
+}
+.activity-desc .activity-content .title {
+  flex: 1;
+  font-size: 32rpx;
+  color: #333333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.activity-desc .activity-content .remain-days {
+  font-size: 24rpx;
+  background-color: #ededed;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: #666666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-desc .activity-content .remain-days .time-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.activity-desc .activity-desc {
+  color: #666666;
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
