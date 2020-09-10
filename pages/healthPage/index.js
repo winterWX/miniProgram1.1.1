@@ -36,9 +36,6 @@ Page({
      firstInitShow: true,  //第一次进来显示
      iconPath:  app.globalData.imagesUrl + '/images/icon-10-points@2x.png'
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
        let that = this;
        that.setData({
@@ -74,15 +71,8 @@ Page({
             }
         }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
       let that = this;
       that.setData({
@@ -114,9 +104,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -178,7 +166,7 @@ Page({
           "token": app.globalData.token
       },
       success: function (res) {
-          if(res.data.data !== null){
+          if(res.data.code === 200){
              let targetStepsNum = 10000;
              let todayStepsInit = 0;
              if(res.data.data.todaySteps === null){
@@ -195,7 +183,7 @@ Page({
                         startStep : targetStepsNum - todayStepsInit,
                         btnStatus: 0
                     })
-               }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
+              }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
                   if(app.globalData.isReceiveStatus){
                       //返回乐健康，第二次进来，默认已选的状态
                       that.setData({
@@ -211,22 +199,25 @@ Page({
                         }
                       })
                }else{
-                      that.setData({
-                        btnStatus: 1,
-                        isDone:1
-                      })
-                  }
-               }
-               that.setData({
-                startStatus : false
-               })
+                  that.setData({
+                    btnStatus: 1,
+                    isDone:1
+                  })
+                }
+          }
+          that.setData({
+          startStatus: false
+          })
+          }else{
+            that.setData({
+              startStep: 10000,
+              btnStatus: 0,
+              startStatus: false
+            })
           }
       },
       fail: function (res) {
-          that.setData({
-            startStep : 10000,
-            btnStatus: 0
-          })
+          console.log('--------------');
       }
     })
   },
