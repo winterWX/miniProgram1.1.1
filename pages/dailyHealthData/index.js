@@ -1,7 +1,6 @@
 const util = require('../../utils/util')
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,17 +12,16 @@ Page({
       calories:'--',
       distance:'--',
       bmi:'--',
-      height:'--',
+      height:'--',  
       weight:'--',
       bpm:'--'
     },
-    stepDataShow: false,
-    bpmShow: false,
     editBlck: false,
     blockForData:{},
     integral:100,
     integralBlock : false,
-    tipUpdate: false  //同步数据
+    tipUpdate: false,  //同步数据
+    showAPPData: 0
   },
 
   /**
@@ -31,6 +29,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    that.setData({
+      showAPPData: app.healthStep.dataCource
+    })
     if(app.healthStep.SynchronousData){
         that.setData({
           tipUpdate : app.healthStep.SynchronousData
@@ -117,25 +118,15 @@ Page({
       success: (res) => {
         if (res.data.code === 200 &&  res.data.data !== null) {
           const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
-          if(weight> 0 && height> 0){
+          if(weight > 0 && height > 0){
               let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
               res.data.data.bmi =Number(bmiNum.toFixed(1));
           }else{
                res.data.data.bmi = that.data.health.bmi;
           }
-           that.setData({
+          that.setData({
               health: res.data.data
-            })
-            if(totalTime > 0){
-              that.setData({
-                stepDataShow: true
-              })
-            }
-            if( bpm > 0){
-              that.setData({
-                bpmShow: true
-              })
-            }
+          })
         } else {
           wx.showModal({
             showCancel: false,
@@ -183,15 +174,13 @@ Page({
            return;
       }else{
           let flag = e.currentTarget.dataset.id;
-          that.setData({ 
-            editBlck: true,
-          })
           let blockForData = {
             titleTop: flag === 'height' ? '记录身高' : '记录体重',
             blockText: flag === 'height' ? '身高':'体重',
             blockTextAfter: flag === 'height' ? '（厘米）': '（公斤）'
           }
-          that.setData({ 
+          that.setData({
+            editBlck: true, 
             blockForData: JSON.parse(JSON.stringify(blockForData)),
           })
       }
