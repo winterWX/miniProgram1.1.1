@@ -57,7 +57,7 @@
    </view>
    <view class="sendBlock PageBackColor" bindtap="healthShow">
          <view class="sendBlockBefore">
-               <view class="sendBlock-main" bindtap="healthShow">
+               <view class="sendBlock-main">
                   <view class="sendBlock-title">每日健康数据</view>
                   <view class="sendBlockBack" ></view>
                   <!-- <view class="back" bindtap="healthShow"><image   src = 'http://106.54.73.125:8102/images/miniprogram/images/back.png'></image></view> -->

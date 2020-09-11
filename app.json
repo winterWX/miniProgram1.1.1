@@ -25,7 +25,8 @@
     "pages/movementData/index",
     "pages/historyStep/index",
     "pages/pastActivity/index",
-    "pages/activityDetail/index"
+    "pages/activityDetail/index",
+    "pages/addFriend/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

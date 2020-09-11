@@ -6,7 +6,8 @@
         <view class="text">达标天数</view>
       </view>
       <view class="header_item">
-        <view class="number">{{detail.totalIntegral}}</view>
+        <!-- <view class="number">{{detail.totalIntegral}}</view> -->
+        <view class="number">0</view>
         <view class="text">竞走积分</view>
       </view>
       <view class="header_item">

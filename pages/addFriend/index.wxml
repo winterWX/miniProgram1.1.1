@@ -1,0 +1,15 @@
+<view>
+  <view>
+        <van-search
+        value="{{ value }}"
+        placeholder="搜索手机号码"
+        show-action
+        shape="round"
+        bind:search="onSearch"
+        bind:cancel="onCancel"
+      />
+  </view>
+  <view></view>
+  <view></view>
+  <view></view>
+</view>

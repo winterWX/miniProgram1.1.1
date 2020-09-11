@@ -56,6 +56,11 @@
   height: 132rpx;  
   position: absolute;
 }
+.addFriendSty{
+  width: 690rpx;
+  height: 132rpx;
+  position: absolute;
+}
 .healthBack-main .profile {
   right: 30rpx;
   top: 27rpx;  
@@ -68,7 +73,10 @@
   right: 30rpx;
   bottom: 140rpx;  
 }
-
+.healthBack-main .addFriend {
+  right: 30rpx;
+  bottom: 140rpx;  
+}
 .mine-image {
   width: 750rpx;
   height: 1140rpx;
