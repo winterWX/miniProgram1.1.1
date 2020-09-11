@@ -7,10 +7,8 @@ Page({
     rstProdu: 'rstProdu'
   },
   onLoad: function (options) {
-    console.log('options.flag',options.flag)
-    console.log('options.flag', typeof options.flag)
+    console.log(this.data)
     if (options.flag === 'true'){   //是 true
-        console.log('options.flag里面',options.flag)
         this.setData({
           successFlg: true
         })

@@ -254,7 +254,7 @@ Page({
             // 重置echarts样式
             option.series[0].barWidth = currentTabId !== 'month' ? 14 : 6;
             option.color = ['#00A865'],
-            option.xAxis.axisLabel.interval = demension === 'month' ? 7 : 'auto';
+            option.xAxis.axisLabel.interval = demension === 'month' ? 6 : 'auto';
             option.series[0].itemStyle.normal.barBorderRadius = demension === 'month' ? [3,3,0,0] : [10,10,0,0];
             let displayData =  Object.assign(initData, displayDataMap);
             option.xAxis.data = Object.keys(displayData);
