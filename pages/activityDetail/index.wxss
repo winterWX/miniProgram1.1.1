@@ -1,20 +1,38 @@
 /* pages/activityDetail/index.wxss */
 page {
   background-color: #ededed;
+  height: 100%;
 }
+
 .container {
-  background-color: white;
+  background-color: #ededed;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
 }
+.container .main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.activity-desc {
+  background-color: #fff;
+}
+
 .activity-desc .poster {
   width: 100%;
   height: 290rpx;
 }
+
 .activity-desc .content {
   padding: 10rpx 30rpx;
 }
+
 .activity-desc .content .activity-content {
   display: flex;
 }
+
 .activity-desc .activity-content .title {
   flex: 1;
   font-size: 32rpx;
@@ -51,3 +69,151 @@ page {
   overflow: hidden;
   white-space: nowrap;
 }
+
+.milepost {
+  margin: 30rpx;
+  padding: 30rpx;
+  background-color: white;
+  height: 246rpx;
+  position: relative;
+}
+
+.milepost .title {
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+}
+.progress-box {
+  padding-top: 20rpx;
+  position: relative;
+  top: 50rpx;
+}
+.progress-box .progress {
+  width: 100%;
+  height: 20rpx;
+  background-color: #F7F7F7;
+  border-radius: 10rpx;
+  position: relative;
+  display: table;
+}
+.progress-box .progress .cell {
+  display: table-cell;
+}
+.progress-box .percent {
+  height: 20rpx;
+  background-color: #00A865;
+  border-radius: 10rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  z-index: 3;
+}
+.progress-box .progress .item {
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 9rpx;
+  position: absolute;
+  display: inline-block;
+  background-color: #fff;
+  top: 1rpx;
+  transform: translate(-18rpx);
+}
+.progress-box .progress .cell:first-child .item {
+  transform: translate(4rpx);
+}
+
+.progress-box .progress .cell:last-child .item{
+  transform: translate(-22rpx);
+}
+.progress-box .progress .cell .reward {
+  font-size: 20rpx;
+  background-color: #9B7C56;
+  position: absolute;
+  height: 28rpx;
+  line-height: 28rpx;
+  border-radius: 14rpx;
+  padding: 0 8rpx;
+  bottom: 46rpx;
+  transform: translate(-60%);
+}
+.progress-box .progress .cell:first-child .reward {
+  transform: translate(0);
+}
+.progress-box .progress .cell:last-child .reward {
+  transform: translate(-100%);
+  min-width: 76rpx;
+  text-align: center;
+}
+.progress-box .progress .cell .reward .arrow {
+  width: 0;
+  height: 0;
+  border: 6rpx solid transparent;
+  border-top-color: #9B7C56;
+  position: absolute;
+  left: 45%;
+}
+.progress-box .progress .cell:first-child .reward .arrow {
+  transform: rotate(135deg);
+  left: 10%;
+  top: 22rpx;
+}
+.progress-box .progress .cell:last-child .reward .arrow {
+  transform: rotate(-135deg);
+  left: 78%;
+  top: 22rpx;
+}
+.num {
+  position: absolute;
+  width: auto;
+  transform: translate(-70%);
+  top: 22rpx;
+  font-size: 24rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  color: #333333;
+}
+.progress-box .progress .cell:first-child .num {
+  transform: translate(0);
+}
+.progress-box .progress .cell:last-child .num {
+  transform: translate(-100%);
+}
+.unit {
+  position: absolute;
+  bottom: 30rpx;
+  color: #929292;
+  font-size: 24rpx;
+}
+.activity-info {
+  margin: 0 30rpx 30rpx 30rpx;
+  background-color: #fff;
+  padding: 30rpx;
+}
+.activity-info .info-title {
+  color: #333333;
+  font-size: 32rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.activity-info .content {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.btn-box {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+.btn-box .btn {
+  width: 100%;
+  font-size: 32rpx;
+  color: #D9D9D9;
+  background-color: #00a865;
+}
+.btn-box .dis-btn {
+  width: 100%;
+  font-size: 32rpx;
+  color: #ffffff;
+  background-color: #D9D9D9;
+}
+
+
