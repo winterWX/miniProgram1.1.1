@@ -41,7 +41,6 @@ Page({
        that.setData({
           showAPPData: app.healthStep.dataCource
        })
-       console.log('11111', options.id)
        if(options.id ==='allowTo'){ 
             that.setData({
               flag: true,
@@ -160,10 +159,14 @@ Page({
     that.getQueryintegral();
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
-      method:"GET",
+      method: "POST",
       header:{
           "Content-Type":"application/json;charset=UTF-8",
           "token": app.globalData.token
+      },
+      data:{
+        souce:'string',
+        type:'MINIP'
       },
       success: function (res) {
           if(res.data.code === 200){
