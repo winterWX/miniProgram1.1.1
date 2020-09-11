@@ -12,7 +12,6 @@ Component({
       type: Number,
       value: 0
     }
-
   },
 
   /**
@@ -215,6 +214,5 @@ Component({
       })
 
     },
-
   }
 })

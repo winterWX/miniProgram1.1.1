@@ -5,8 +5,8 @@
     </view>
     <view class="containerBtn" bindtap="getWeRunStepsData">立即授权</view>
 </view>
-<view class="dataOrgin" wx:if="{{tipUpdate && stepDataShow === 1}}">以下数据来自“APP同步数据”。</view>
-<view class="dataOrgin" wx:if="{{tipUpdate && stepDataShow === 2}}">以下数据来自“微信运动”。</view>
+<view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 1}}">以下数据来自“APP同步数据”。</view>
+<view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 2}}">以下数据来自“微信运动”。</view>
 <view class="container">
     <view class="panel">
       <view class="panel_header" catchtap="nagigateStep">

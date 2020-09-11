@@ -10,7 +10,8 @@ Page({
     complete: false,
     active: 4,
     runData:[],
-    isAppData: false  //判断是不是app用户
+    isAppData: false,  //判断是不是app用户
+    typeFlg:''
   },
 
   /**
@@ -109,6 +110,11 @@ Page({
       url: '../../pages/setting/index'
     })
   },
+  addFriend: function () {
+    wx.navigateTo({
+      url: '../../pages/addFriend/index'
+    })
+  },
   getWeRunStepsData: function () {
     let that = this;
     wx.login({
@@ -138,11 +144,12 @@ Page({
         success: (res) => {
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
+              const {time,type} = res.data.data;
+              that.setData({typeFlg: type});
               let dayTime = parseInt(new Date().getTime() / 1000);
-              let lastTime = res.data.data.time;
-              const runArray = that.runArray(runData,lastTime);
-              if (res.data.data.type !== 'register'){
-                  if(util.timestampToTime(dayTime) !== util.timestampToTime(lastTime)){
+              const runArray = that.runArray(runData,time);
+              if (type !== 'register'){
+                  if(util.timestampToTime(dayTime) !== util.timestampToTime(time)){
                       that.getUploaddata(runArray);
                   }else{
                       that.getUploaddata(runArray);
@@ -287,7 +294,8 @@ checkIsAppUser:function(){
     }
   })
 },
-runArray:function(array,lastTime){
+runArray:function(array,lastTime,type){
+    let that = this;
     let runDataArray = [];
     array.forEach((item)=>{
       runDataArray.push({
@@ -296,12 +304,16 @@ runArray:function(array,lastTime){
           steps: item.step
         })
     })
-    const indexs = runDataArray.findIndex(item =>{
-      return util.timestampToTime(item.endTime) === util.timestampToTime(lastTime);
-    })
-    if(indexs > -1){
-      return runDataArray.splice(0,indexs+1)
+    if(that.data.typeFlg !== 'register'){
+      const indexs = runDataArray.findIndex(item =>{
+        return util.timestampToTime(item.endTime) === util.timestampToTime(lastTime);
+      })
+      if(indexs > -1){
+        return runDataArray.splice(0,indexs+1)
+      }
+      return runDataArray;
+    }else{
+      return runDataArray;
     }
-    return runDataArray;
   }
 })

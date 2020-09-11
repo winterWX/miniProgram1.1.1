@@ -17,6 +17,7 @@
 		<view class="profile backPro" catchtap="profilePage"></view>
 		<view class="sport backTop" catchtap="healthPage"></view>
  		<view class="recommend backRemon" catchtap="sendFriend"></view>
+		<view class="addFriend addFriendSty" catchtap="addFriend"></view>
 		<image class="mine-image" src="../../image/mine.png"></image>
 	</view>
 	<view class="bottom-box">
