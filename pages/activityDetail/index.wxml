@@ -44,7 +44,9 @@
 	</view>
 	<view class="btn-box">
 		<!-- <button class="btn" catchtap="joinActivity">一键参与</button> -->
-		<button wx:if="{{!isJoin}}" class="btn"  type="primary" size="large"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
-		<button wx:if="{{isJoin}}" class="dis-btn">已报名</button>
+		<button wx:if="{{detail.status ===2 && detail.isJoinStatus === '1'}}" class="btn"  type="primary" size="large"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
+		<button wx:if="{{detail.status === 2 && detail.isJoinStatus === '2'}}" class="dis-btn">已报名</button>
+		<button wx:if="{{detail.status === 1}}" class="dis-btn">未开始</button>
+		<button wx:if="{{detail.status === 3}}" class="dis-btn">活动已结束</button>
 	</view>
 </view>
