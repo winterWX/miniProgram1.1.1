@@ -90,8 +90,8 @@ Page({
         if (res.data.code == 200) {
           let detail = {
             ...res.data.data,
-            content: res.data.data.content.replace(/<[^>]+>/g, ''),
-            ruledescription: res.data.data.ruledescription.replace(/<[^>]+>/g, '')
+            content: res.data.data.content.replace(/<[^>]+>|\s+/g, ''),
+            ruledescription: res.data.data.ruledescription.replace(/<[^>]+>|\s+/g, '')
           }
           let isJoin = detail.isJoinStatus === '2';
           that.setData({detail, isJoin});

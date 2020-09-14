@@ -9,6 +9,9 @@
 						<image class="time-icon" src="../../image/icon-left-time.png"></image>
 						<text>剩余{{detail.days}}天</text>
 					</view>
+					<view class="remain-days" wx:if="{{detail.status === 3}}">
+						<text>已结束</text>
+					</view>
 				</view>
 				<view class="activity-desc">
 					<text>{{detail.description}}</text>
@@ -43,9 +46,9 @@
 		</view>
 	</view>
 	<view class="btn-box">
-		<button wx:if="{{isLogin === 0 && detail.status ===2 && detail.isJoinStatus === '1'}}" class="btn"  type="primary" size="large"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
-		<button wx:if="{{isLogin === 1 && detail.status ===2 && detail.isJoinStatus === '1'}}" class="btn"  catchtap="joinActivity" data-id="{{detail.activityId}}">一键参与</button>
-		<button wx:if="{{detail.status === 2 && detail.isJoinStatus === '2'}}" class="dis-btn">已报名</button>
+		<button wx:if="{{isLogin === 0 && detail.status ===2 && !isJoin}}" class="btn" type="primary" size="large" open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
+		<button wx:if="{{isLogin === 1 && detail.status ===2 && !isJoin}}" class="btn" catchtap="joinActivity" data-id="{{detail.activityId}}">一键参与</button>
+		<button wx:if="{{detail.status === 2 && isJoin}}" class="dis-btn">已报名</button>
 		<button wx:if="{{detail.status === 1}}" class="dis-btn">未开始</button>
 		<button wx:if="{{detail.status === 3}}" class="dis-btn">活动已结束</button>
 	</view>
