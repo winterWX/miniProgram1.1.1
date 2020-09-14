@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "friendList": "../../components/friendList/index"
+    "friendList": "../../components/friendList/index",
+    "van-search": "vant-weapp/search/index"
   },
   "navigationBarTitleText": "我的好友"
 }

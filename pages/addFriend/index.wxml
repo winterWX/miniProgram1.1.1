@@ -1,15 +1,32 @@
 <view>
-  <view>
-        <van-search
-        value="{{ value }}"
-        placeholder="搜索手机号码"
-        show-action
-        shape="round"
-        bind:search="onSearch"
-        bind:cancel="onCancel"
-      />
-  </view>
-  <view></view>
-  <view></view>
-  <view></view>
+    <view class="content-list">
+        <view class="content-listInput">
+              <van-search
+              value="{{ value }}"
+              placeholder="搜索手机号码"
+              shape="round"
+              bind:search="onSearch"
+              bind:cancel="onCancel"
+            />
+        </view>
+        <view class="content-listItem" bindtap="newFriend">
+          <view class="imageSty">
+              <image src = '../../image/addFriend/rectangle@2x.png'></image>
+          </view>
+          <view class="item-text">新的好友</view>
+          <view class="redText">2</view>
+        </view>
+        <view class="content-listItem">
+            <view class="imageSty">
+              <image src = '../../image/addFriend/rectangle-2@2x.png'></image>
+            </view>
+            <view class="item-text">微信添加好友</view>
+        </view>
+    </view>
+    <view class="friendList-list">
+         <view class="topText">我的好友 (6)</view>
+         <friendList />
+    </view>
+
+
 </view>
