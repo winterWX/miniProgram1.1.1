@@ -119,7 +119,7 @@ Page({
         if (res.data.code === 200 &&  res.data.data !== null) {
           const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
           if(weight > 0 && height > 0){
-              let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
+              let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2);
               res.data.data.bmi =Number(bmiNum.toFixed(1));
           }else{
                res.data.data.bmi = that.data.health.bmi;
@@ -198,7 +198,7 @@ Page({
         if (res.data.data !== null) {
             const {weight , height} =  res.data.data;
             if(weight> 0  &&  height> 0){
-                let bmiNum = parseInt(weight) / ((parseInt(height) / 100)*2) 
+                let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2); 
                 res.data.data.bmi = bmiNum.toFixed(1);
             }else{
                  res.data.data.bmi = that.data.health.bmi;

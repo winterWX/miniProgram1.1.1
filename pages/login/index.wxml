@@ -1,7 +1,7 @@
 <!--pages/login/index.wxml-->
 <view class="container">
   <view class="authorization">
-    <view class="auth_image"><image src="http://106.54.73.125:8102/images/miniprogram/images/authorization.png" mode="widthFix"/></view>
+    <view class="auth_image"><image src="http://106.54.73.125:8104/images/miniprogram/images/authorization.png" mode="widthFix"/></view>
     <view class="auth_text auth_text_padding">“HASE wellness”申请获取你的手机号码</view>
     <view class="auth_text ">为了你账号的安全和一致性，请先绑定手机号码，再使用相关功能。</view>
   </view> 

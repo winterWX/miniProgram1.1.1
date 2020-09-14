@@ -1,4 +1,4 @@
-// pages/addFriend/index.js
+// pages/newFriend/index.js
 Page({
 
   /**
@@ -62,10 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  newFriend:function(){
-    wx.navigateTo({
-      url: '../../pages/newFriend/index',
-    })
   }
 })

@@ -75,7 +75,7 @@
 }
 .healthBack-main .addFriend {
   right: 30rpx;
-  bottom: 140rpx;  
+  bottom: 2rpx;  
 }
 .mine-image {
   width: 750rpx;
