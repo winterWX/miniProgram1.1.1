@@ -17,16 +17,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let isLogin = app.globalData.loginSuccess ? 1 : 0;
     let {id='', title='活动详情', goodsId=''} = options;
     let activityId = id || goodsId;
     wx.setNavigationBarTitle({
       title: title,
     })
-    this.setData({activityId: id});
-    this.getActivityDetail(activityId);
-    if (goodsId) {
-      this.joinActivity(goodsId);
-    }
+    this.setData({activityId, isLogin});
+    this.getActivityDetail(activityId, goodsId);
   },
 
   /**
@@ -77,7 +75,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getActivityDetail: function(id) {
+  getActivityDetail: function(id, goodsId='') {
     let that = this;
     wx.showToast({title: '加载中', icon: 'loading'});
     wx.request({
@@ -95,7 +93,11 @@ Page({
             content: res.data.data.content.replace(/<[^>]+>/g, ''),
             ruledescription: res.data.data.ruledescription.replace(/<[^>]+>/g, '')
           }
-          that.setData({detail});
+          let isJoin = detail.isJoinStatus === '2';
+          that.setData({detail, isJoin});
+          if(!isJoin && goodsId) {
+            this.joinActivity();
+          }
         }
       },
       fail: function (res) {
@@ -122,9 +124,8 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200) {
-          console.log('res:' + res)
           app.globalData.userInfo = res.data.data
-          this.setData({
+          that.setData({
             isLogin: 1
           })
           let urlBase = '../activityDetail/index/#' + that.data.activityId;
@@ -157,7 +158,7 @@ Page({
                 showCancel: false,
                 content: '获取用户信息失败,请重试',
                 success: (res) => {
-                  this.setData({
+                  that.setData({
                     isLogin: 0
                   })
                 }
@@ -202,8 +203,10 @@ Page({
       this.onLogin(e.detail)
     }
   },
-  joinActivity: function(id) {
+  joinActivity: function(e) {
     let that = this;
+    let { activityId } = this.data;
+    let id = e && e.currentTarget && e.currentTarget.dataset.id || activityId;
     wx.showToast({title: '加载中', icon: 'loading'});
     wx.request({
       url: app.globalData.baseUrl + '/remote/myactivity/add',

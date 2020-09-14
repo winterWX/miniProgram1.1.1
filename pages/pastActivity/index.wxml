@@ -2,7 +2,7 @@
 	<view wx:for="{{activityList}}" wx:for-item="activity" wx:key="id" class="activity-box">
 		<image class="img" src="{{activity.coverImageLocation}}"></image>
 		<view class="activity-content">
-			<text class="title">{{activity.title}}</text>
+			<text class="title" bindtap="navigatorDetail" data-id="{{activity.id}}">{{activity.title}}</text>
 			<view class="remain-days">
 				<text>已结束</text>
 			</view>

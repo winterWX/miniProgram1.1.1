@@ -16,10 +16,10 @@
 		<navigator url="../pastActivity/index"><text>往期精彩活动</text></navigator>
 	</view>
 </view>
-<view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">
+<!-- <view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">
 	<view>
 		<image class="icon" src="../../image/search-result.png"></image>
 		<view class="no-data">暂无活动</view>
 		<view class="browse">去看看</view>
 	</view>
-</view>
+</view> -->

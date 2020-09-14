@@ -67,6 +67,7 @@ Page({
       that.searchSend(that.data.researchTag);
   },
   listClick(e){
+    debugger
      let goodsId = e.currentTarget.dataset.itemid;      
       wx.navigateTo({                                 
         url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
