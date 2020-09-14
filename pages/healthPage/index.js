@@ -1,4 +1,5 @@
 const app = getApp();
+const authorizeRun = require('../../utils/authorizeRun.js');
 Page({
   /**
    * 页面的初始数据
@@ -34,9 +35,10 @@ Page({
      guidance1:false,
      guidance2:false,
      firstInitShow: true,  //第一次进来显示
-     iconPath:  app.globalData.imagesUrl + '/images/icon-10-points@2x.png'
+     iconPath:app.globalData.imagesUrl + '/images/icon-10-points@2x.png',
+     dataSyn: false //标记数据同步
   },
-  onLoad: function (options) {
+  onLoad:function (options) {
        let that = this;
        that.setData({
           showAPPData: app.healthStep.dataCource
@@ -96,18 +98,76 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let that = this;
+    wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
+    if(app.globalData.isWeRunSteps){
+      that.calloutfun();
+    }
+    setTimeout(function(){
+        wx.hideNavigationBarLoading();    //在当前页面隐藏导航条加载动画
+        wx.stopPullDownRefresh();    //停止下拉动作
+    },1000)
   },
-
+  //调用微信运动数据
+  calloutfun:function(){
+      let that = this;
+      let resultData = [];
+      authorizeRun.getWxRunData(function(result){
+        if(result.length > 0){
+            resultData = result.splice(0,1).map(item=>{
+                return {
+                    endTime: item.timestamp + '',
+                    startTime: item.timestamp + '',
+                    steps: item.step
+                }
+            })
+        }else{
+          resultData = [];
+        }
+        that.getUploaddata(resultData);
+        console.log('数据下拉更新',resultData[0].steps)
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  },
+  onReachBottom: function () {},
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {},
+  //刷新的时候上传数据
+  getUploaddata: function (runData) {
+    let that = this;
+    wx.request({
+      method: 'POST',
+      url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      data:{
+        bpm: 0,
+        source :'string',
+        type : 'MINIP',
+        lastTime: parseInt(new Date().getTime() / 1000) + '',
+        stepsDataModelList: runData,
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+            //数据同步完成再重新加载
+            let options ={id:'allowTo'};
+            that.onLoad(options); //刷新页面
+            that.setData({
+              guidance1: false,
+              guidance2: false,
+              firstInitShow:false
+            })
+            console.log('数据同步成功')
+        }
+      }
+    })
+  },
   guidanceOne:function(){
      let that = this;
      that.setData({
@@ -323,9 +383,9 @@ Page({
           }
         }
       })
-    },
-    //领取积分
-    getintegral: function () {
+  },
+  //领取积分
+  getintegral: function () {
       let that= this;
       wx.request({
         method: 'GET',
@@ -343,5 +403,5 @@ Page({
           }
         }
       })
-    }
+  }
 })
