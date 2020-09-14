@@ -7,18 +7,10 @@ Page({
     allowTo: 'allowTo'
   },
   onLoad: function (options) {
-<<<<<<< HEAD
-    console.log(this.data)
-    if (options.flag === 'true'){   //是 true
-        this.setData({
-          successFlg: true
-        })
-=======
     if (options.flag === 'true'){   //是 true
       this.setData({
         successFlg: true
       })
->>>>>>> 22ead2538a6d850fec3a452f22d1d70ef356118b
       this.selectComponent('#filterCmp').restFilterDatas();
     }
     wx.showModal({

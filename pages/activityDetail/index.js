@@ -218,7 +218,11 @@ Page({
       success: function (res) {
         wx.hideToast();
         if (res.data.code == 200) {
-          that.setData({isJoin: true})
+          that.setData({isJoin: true});
+          wx.showToast({
+            title: '参与成功',
+            icon: 'successS'
+          })
         }
       },
       fail: function (res) {
