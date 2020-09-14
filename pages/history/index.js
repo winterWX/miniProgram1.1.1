@@ -129,8 +129,7 @@ Page({
       },
       data: {
         currentTime: Date.parse(new Date()) / 1000,
-        year: this.data.year,
-       
+        year: this.data.year
       },
       success: (res) => {
         if (res.data.code === 200) {                 

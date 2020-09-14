@@ -1,5 +1,6 @@
 const app = getApp();
-const util = require('../../utils/util')
+const util = require('../../utils/util');
+const authorizeRun = require('../../utils/authorizeRun.js');
 Page({
   /**
    * 页面的初始数据
@@ -79,7 +80,17 @@ Page({
       if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
         that.healthSccuss();
       } else {
-        that.getWeRunStepsData();
+        authorizeRun.getWxRunData(function(result){
+            if(result !== 'refusedTo'){
+              //授权成功跳转获取步数
+              app.globalData.runData = result;
+              app.globalData.isWeRunSteps = true; //标志授权成功
+              that.getQueryLatestime(result);
+            }else{
+              //拒绝授权
+              that.healthFail();
+            }
+        })
       }
     }
   },
@@ -100,6 +111,12 @@ Page({
     })
     app.healthStep.SynchronousData = true;  //每日健康页面不需要授权
   },
+  healthFail:function(){
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/healthPage/index?flg=' + that.data.refusedTo
+    })
+  },
   profilePage: function () {
     wx.navigateTo({
       url: '../../pages/profile/index'
@@ -113,19 +130,6 @@ Page({
   addFriend: function () {
     wx.navigateTo({
       url: '../../pages/addFriend/index'
-    })
-  },
-  getWeRunStepsData: function () {
-    let that = this;
-    wx.login({
-      success: (res) => {
-          if(res.code){
-            that.getKeySessionData(res.code);
-          }
-        },
-      fail: function(res) {
-        console.log('----------');
-      }
     })
   },
   //最近上传数据时间查询(query- queryLatestime)|移动端
@@ -185,95 +189,7 @@ Page({
         }
       }
     })
-},
-getKeySessionData(code) {
-  let that = this;
-  wx.getSetting({
-    success: (setingres) => {
-      if (setingres.authSetting['scope.userInfo']) {               
-        wx.getUserInfo({
-          success: (res) => {
-            that.miniproLogin(code,res.encryptedData,res.iv)
-          },
-          fail: () => {
-             console.log('---------------')
-          }
-        })
-      }
-    }
-  })
-},
-getAllWeRunData:function(sessionkey){
-  let that = this;
-  wx.getWeRunData({
-    success(resRun) {
-      const encryptedData = resRun
-      console.info(resRun);
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
-        method: 'POST', 
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token
-        },
-        data: {
-          encryptedData: resRun.encryptedData,
-          iv: resRun.iv,
-          sessionkey : sessionkey
-        },
-        success: function (resDecrypt) {
-          if(resDecrypt.data.data.length > 0){
-            let runData = JSON.parse(resDecrypt.data.data); 
-            if (runData.stepInfoList.length > 0)
-            {
-              runData.stepInfoList = runData.stepInfoList.reverse()
-              for (var i in runData.stepInfoList)
-              {
-                runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp*1000)).split(' ')[0]
-              }
-              that.setData({ runData: runData.stepInfoList });
-              app.globalData.runData = runData.stepInfoList;
-              that.getQueryLatestime(runData.stepInfoList)
-            }
-            //授权成功跳转
-            app.globalData.isWeRunSteps = true;
-            that.setData({ runData: runData.stepInfoList });
-            app.globalData.runData = runData.stepInfoList;
-          }
-        },
-        fail: function () {
-          console.log('----------')
-        }
-      });
-    },
-    fail: function () {
-        wx.navigateTo({
-          url: '../../pages/healthPage/index?flg=' + that.data.refusedTo
-        })
-    }
-  })
-},
-miniproLogin:function(code,enData,ivData){
-  let that = this;
-  const parms = {
-    code:code,
-    encrypteData: enData,
-    iv: ivData
-  }
-  wx.request({
-    method: 'POST',
-    url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
-    header: {
-      "Content-Type": "application/json;charset=UTF-8"
-    },
-    data: parms,
-    success: (res) => {
-      if (res.data.code === 200) {
-        that.getAllWeRunData(res.data.data.session_key);
-      }
-    }
-  })
-},
+  },
 checkIsAppUser:function(){
   let that = this;
   wx.request({

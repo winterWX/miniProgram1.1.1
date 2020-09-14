@@ -1,7 +1,7 @@
 <view class="pageTopPick-main">  
    <view class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flag}}"></view>
-         <view class="mask-guidance1"  wx:if='{{guidance1 }}'  >
+         <view class="mask-guidance1"  wx:if='{{guidance1}}'>
             <image src='http://106.54.73.125:8102/images/miniprogram/images/pic-guidance.png'></image>
             <view class="picBottom">
                <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
