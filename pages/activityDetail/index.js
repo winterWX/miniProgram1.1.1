@@ -91,7 +91,7 @@ Page({
           let detail = {
             ...res.data.data,
             content: res.data.data.content.replace(/<[^>]+>|\s+/g, ''),
-            ruledescription: res.data.data.ruledescription.replace(/<[^>]+>|\s+/g, '')
+            ruledescription: res.data.data.ruledescription
           }
           let isJoin = detail.isJoinStatus === '2';
           that.setData({detail, isJoin});

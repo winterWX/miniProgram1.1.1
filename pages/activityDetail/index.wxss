@@ -146,6 +146,7 @@ page {
   padding: 0 8rpx;
   bottom: 46rpx;
   transform: translate(-60%);
+  color: #fff;
 }
 .progress-box .progress .cell:first-child .reward {
   transform: translate(0);
