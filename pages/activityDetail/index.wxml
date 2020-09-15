@@ -46,7 +46,7 @@
 		</view>
 		<view class="activity-info">
 			<view class="info-title">活动规则及声明</view>
-			<view class="content">{{ detail.ruledescription }}</view>
+			<rich-text type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
 		</view>
 	</view>
 	<view class="btn-box">
