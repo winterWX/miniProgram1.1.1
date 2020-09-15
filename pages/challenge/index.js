@@ -59,8 +59,6 @@ Page({
    */
   onReachBottom: function () {
     let {page, totalPage} = this.data;
-    console.log(page)
-    debugger
     if (page >= totalPage) {
       return;
     }
