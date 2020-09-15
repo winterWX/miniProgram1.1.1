@@ -155,11 +155,9 @@ Page({
         if (res.data.code === 200) {
           app.globalData.userInfo = res.data.data;
           app.globalData.userInfoDetail = data.userInfo || res.data.data;
-          this.setData({
-            isLogin: 1
-          })
-          //let successLogin = true;  //新用户注册成功的标志
-          let urlBase = '../index/index';
+          this.setData({ isLogin: 1 });
+          let successLogin = true;  //新用户注册成功的标志
+          let urlBase = '../index/index/#'+ successLogin;
           wx.redirectTo({
             url: '../login/index?url=' + urlBase,
           })

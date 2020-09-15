@@ -18,6 +18,7 @@ Page({
       let startStr = options.url.substr(0, options.url.indexOf('/#'));
       let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length - 1);
       baseUrlNum = startStr + '?goodsId=' + endStr;
+      console.log('baseUrlNum=====转',baseUrlNum);
       this.setData({
         url: baseUrlNum
       })

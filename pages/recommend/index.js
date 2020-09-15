@@ -77,15 +77,11 @@ Page({
         'token': app.globalData.token
       },
       success: function (res) {
-          if(res.data.data !== null){
-              that.setData({  
-                invitData: res.data.data
-              })
-              console.log('res.data.data外', res.data.data)
+          if(res.data.data === 200){
+              that.setData({ invitData: res.data.data });
               //添加邀请码到 userInfo
               app.globalData.invitationCode = res.data.data.invitationCode;
               if(res.data.data.invitationList.length > 0){
-                  console.log('res.data.data里', res.data.data)
                   res.data.data.invitationList.forEach( v => {
                       let reg = /^(\d{3})\d{4}(\d{4})$/;
                       v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
@@ -125,10 +121,9 @@ Page({
         'token': app.globalData.token
       },
       success: function (res) {
-          // if(res.data.data !==null){
-
-          // }
-          console.log('res',res);
+          if(res.data.code == 200){
+             console.log('res',res);
+          }
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -143,19 +138,18 @@ Page({
     this.setData({
         userInfoData :app.globalData.userInfo
     })
-    //code 码
     this.data.userInfoData.invitationCode = this.data.invitData.invitationCode;
     let userInfoData = JSON.stringify(this.data.userInfoData);
-    console.log('app.globalData.userInfo分享时的参数', userInfoData)
     let shareObj = {
 　　　　title: "邀请好友注册领好礼",
 　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
-        imageUrl: '/images/recommend/img@2x.png',
+       imageUrl: '/image/addFriend/image@2x.png'
 　　}
+    console.log('分享参数',userInfoData);
 　　// 来自页面内的按钮的转发
 　　if (options.from == 'button') {
-　　　　 shareObj.path = '/pages/sharedPage/index?userInfoData='+ userInfoData;
+  　　　return shareObj;
 　　}
 　　return shareObj;
-},
+  }
 })

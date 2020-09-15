@@ -8,9 +8,7 @@ Page({
   },
   onLoad: function (options) {
     if (options.flag === 'true'){   //是 true
-      this.setData({
-        successFlg: true
-      })
+      this.setData({ successFlg: true })
       this.selectComponent('#filterCmp').restFilterDatas();
     }
     wx.showModal({
