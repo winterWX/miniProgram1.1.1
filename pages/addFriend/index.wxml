@@ -10,18 +10,16 @@
             />
         </view>
         <view class="content-listItem" bindtap="newFriend">
-          <view class="imageSty">
-              <image src = '../../image/addFriend/rectangle@2x.png'></image>
-          </view>
+          <image  class="imageSty" src = '../../image/addFriend/rectangle@2x.png'></image>
           <view class="item-text">新的好友</view>
           <view class="redText">2</view>
         </view>
-        <view class="content-listItem">
-            <view class="imageSty">
-              <image src = '../../image/addFriend/rectangle-2@2x.png'></image>
+        <button class="content-listItem" open-type="share">
+            <view class="imageStyBtn">
+              <image class="imageStyBtn" src = '../../image/addFriend/rectangle-2@2x.png'></image>
             </view>
             <view class="item-text">微信添加好友</view>
-        </view>
+        </button>
     </view>
     <view class="friendList-list">
          <view class="topText">我的好友 (6)</view>

@@ -33,7 +33,16 @@ page{
   color: rgb(51,51,51);
   font-size: 28rpx;
 }
-.imageSty image{
+.imageSty{
+  width: 80rpx;
+  height: 80rpx;
+}
+.imageStyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+.imageStyBtn image{
   width: 80rpx;
   height: 80rpx;
 }

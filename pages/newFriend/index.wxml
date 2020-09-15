@@ -1,2 +1,14 @@
-<!--pages/newFriend/index.wxml-->
-<text>pages/newFriend/index.wxml</text>
+<view>
+    <view class="content-list">
+        <view wx:for="{{friendList}}" wx:key="index" class="content-friendList">
+            <view class="leftBlock">
+                <image src="{{item.touxiang}}"/>
+                <view class="nameText">{{item.name}}</view>
+            </view>
+            <view class="rightBlock">
+                <view  wx:if="{{item.flg}}" bindtap="addNewBtn">已添加</view>
+                <view  class="btnSty" wx:if="{{!item.flg}}">同意添加</view>
+            </view>
+        </view>
+    </view>
+</view>
