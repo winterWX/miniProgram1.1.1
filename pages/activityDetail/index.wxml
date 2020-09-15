@@ -1,4 +1,8 @@
 <view class="container">
+	<view class="disable-tip">
+		<image class="disable-icon" src="../../image/circle-info.png"></image>
+		<text>活动已结束</text>
+	</view>
 	<view class="main">
 		<view class="activity-desc">
 			<image class="poster" src="{{detail.thumb}}"></image>

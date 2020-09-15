@@ -98,9 +98,6 @@ Page({
         }
       },
       fail: function (res) {
-        if (page > 1) {
-          page = page - 1;
-        };
         that.setData({loadingFinish: true, page});
         wx.stopPullDownRefresh();
         wx.hideToast();
