@@ -166,12 +166,12 @@ page {
 .progress-box .progress .cell:first-child .reward .arrow {
   transform: rotate(135deg);
   left: 10%;
-  top: 22rpx;
+  top: 21rpx;
 }
 .progress-box .progress .cell:last-child .reward .arrow {
   transform: rotate(-135deg);
   left: 78%;
-  top: 22rpx;
+  top: 21rpx;
 }
 .num {
   position: absolute;
