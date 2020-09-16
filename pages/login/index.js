@@ -18,7 +18,6 @@ Page({
       let startStr = options.url.substr(0, options.url.indexOf('/#'));
       let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length - 1);
       baseUrlNum = startStr + '?goodsId=' + endStr;
-      console.log('baseUrlNum=====转',baseUrlNum);
       this.setData({
         url: baseUrlNum
       })
@@ -104,7 +103,7 @@ Page({
             app.globalData.token = token;
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
-            wx.redirectTo({
+            wx.reLaunch({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })
