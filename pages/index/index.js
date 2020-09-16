@@ -23,7 +23,6 @@ Page({
         }
       }
     })
-    this.arryFriend();
   },
   onShow: function () {
     this.setData({
@@ -59,22 +58,5 @@ Page({
     wx.navigateTo({
       url: '../healthPage/index?id=' + this.data.allowTo
     })
-  },
-  arryFriend:function(){
-    let arryData =[
-        { avatar: "1",
-         createTime: "1600162386",
-         mobile: "13919180189",
-         nickname: "恒生健康12VP9d",
-         uid: 395
-        },
-        { 
-        avatar: "1",
-        createTime: "1600162386",
-        mobile: "13919180189",
-        nickname: "恒生健康12VP9d",
-        uid: 395
-       }
-    ];
   }
 })

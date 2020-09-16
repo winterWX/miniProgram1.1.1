@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vant-weapp": "^0.5.28"
+    "vant-weapp": "^0.5.28",
+    "wl-pinyin": "^1.0.1"
   },
   "devDependencies": {},
   "repository": {

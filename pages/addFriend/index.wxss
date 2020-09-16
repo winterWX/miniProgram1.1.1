@@ -25,7 +25,7 @@ page{
    align-items: center;
    height: 140rpx;
    background-color: #ffffff;
-   margin-bottom: 2rpx;
+   /* //margin-bottom: 2rpx; */
    padding-left: 30rpx;
 }
 .item-text{

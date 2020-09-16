@@ -123,3 +123,7 @@
       background: #3F82FD;
       color: #FFFFFF;
       border-radius: 50%; }
+.item__hd .item__hd_image{
+    width:100%;
+    height:100%;
+}
