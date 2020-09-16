@@ -1,46 +1,46 @@
-let ColorUtil = {
-	rgbToHex(r, g, b) {
-		let hex = ((r << 16) | (g << 8) | b).toString(16);
-		return "#" + new Array(Math.abs(hex.length - 7)).join("0") + hex;
-	},
-	hexToRgb(hex) {
-		let rgb = [];
-		for (let i = 1; i < 7; i += 2) {
-			rgb.push(parseInt("0x" + hex.slice(i, i + 2)));
-		}
-		return rgb;
-	},
-	/**
-	 * 生成渐变过渡色数组 {startColor: 开始颜色值, endColor: 结束颜色值, step: 生成色值数组长度}
-	 */
-	gradient(startColor, endColor, step) {
-		// 将hex转换为rgb
-		let sColor = this.hexToRgb(startColor),
-			eColor = this.hexToRgb(endColor);
+// let ColorUtil = {
+// 	rgbToHex(r, g, b) {
+// 		let hex = ((r << 16) | (g << 8) | b).toString(16);
+// 		return "#" + new Array(Math.abs(hex.length - 7)).join("0") + hex;
+// 	},
+// 	hexToRgb(hex) {
+// 		let rgb = [];
+// 		for (let i = 1; i < 7; i += 2) {
+// 			rgb.push(parseInt("0x" + hex.slice(i, i + 2)));
+// 		}
+// 		return rgb;
+// 	},
+// 	/**
+// 	 * 生成渐变过渡色数组 {startColor: 开始颜色值, endColor: 结束颜色值, step: 生成色值数组长度}
+// 	 */
+// 	gradient(startColor, endColor, step) {
+// 		// 将hex转换为rgb
+// 		let sColor = this.hexToRgb(startColor),
+// 			eColor = this.hexToRgb(endColor);
 
-		// 计算R\G\B每一步的差值
-		let rStep = (eColor[0] - sColor[0]) / step,
-			gStep = (eColor[1] - sColor[1]) / step,
-			bStep = (eColor[2] - sColor[2]) / step;
+// 		// 计算R\G\B每一步的差值
+// 		let rStep = (eColor[0] - sColor[0]) / step,
+// 			gStep = (eColor[1] - sColor[1]) / step,
+// 			bStep = (eColor[2] - sColor[2]) / step;
 
-		let gradientColorArr = [];
-		for (let i = 0; i < step; i++) {
-			// 计算每一步的hex值
-			gradientColorArr.push(this.rgbToHex(parseInt(rStep * i + sColor[0]), parseInt(gStep * i + sColor[1]), parseInt(bStep * i + sColor[2])));
-		}
-		return gradientColorArr;
-	},
-	/**
-	 * 生成随机颜色值
-	 */
-	generateColor() {
-		let color = "#";
-		for (let i = 0; i < 6; i++) {
-			color += (Math.random() * 16 | 0).toString(16);
-		}
-		return color;
-	}
-}
+// 		let gradientColorArr = [];
+// 		for (let i = 0; i < step; i++) {
+// 			// 计算每一步的hex值
+// 			gradientColorArr.push(this.rgbToHex(parseInt(rStep * i + sColor[0]), parseInt(gStep * i + sColor[1]), parseInt(bStep * i + sColor[2])));
+// 		}
+// 		return gradientColorArr;
+// 	},
+// 	/**
+// 	 * 生成随机颜色值
+// 	 */
+// 	generateColor() {
+// 		let color = "#";
+// 		for (let i = 0; i < 6; i++) {
+// 			color += (Math.random() * 16 | 0).toString(16);
+// 		}
+// 		return color;
+// 	}
+// }
 
 Component({
 	properties: {
@@ -66,11 +66,6 @@ Component({
 		color: {
 			type: String,
 			value: ""
-		},
-		// 空状态的图片
-		emptyUrl: {
-			type: String,
-			value: "/assets/image/empty/empty.png"
 		},
 		// 空状态的文字提示
 		emptyText: {
@@ -193,24 +188,24 @@ Component({
 		/**
 		 * tree 触摸结束
 		 */
-		touchEnd(e) {
-			let {treeItemCur, listItemCur} = this.data;
-			if (treeItemCur !== listItemCur) {
-				this.setData({
-					treeItemCur: listItemCur,
-					indicatorTop: this.data.indicatorTopList[treeItemCur]
-				});
-			}
-			this.setData({
-				treeKeyTran: true
-			});
-			setTimeout(() => {
-				this.setData({
-					touching: false,
-					treeKeyTran: false
-				});
-			}, 300);
-		},
+		// touchEnd(e) {
+		// 	let {treeItemCur, listItemCur} = this.data;
+		// 	if (treeItemCur !== listItemCur) {
+		// 		this.setData({
+		// 			treeItemCur: listItemCur,
+		// 			indicatorTop: this.data.indicatorTopList[treeItemCur]
+		// 		});
+		// 	}
+		// 	this.setData({
+		// 		treeKeyTran: true
+		// 	});
+		// 	setTimeout(() => {
+		// 		this.setData({
+		// 			touching: false,
+		// 			treeKeyTran: false
+		// 		});
+		// 	}, 300);
+		// },
 		/**
 		 * 获取当前触摸的 tree-item
 		 * @param pageY: 当前触摸点pageY
@@ -280,65 +275,64 @@ Component({
 			let {windowHeight, windowWidth, platform} = wx.getSystemInfoSync();
 			let remScale = (windowWidth || 375) / 375,
 				realTopSize = this.data.topSize * remScale / 2,
-				realBottomSize = this.data.bottomSize * remScale / 2,
-				colors = ColorUtil.gradient(this.data.color, "#767676", 100);
+				realBottomSize = this.data.bottomSize * remScale / 2;
+				//colors = ColorUtil.gradient(this.data.color, "#767676", 100);
 
 			this.setData({
 				platform: platform,
 				remScale: remScale,
 				realTopSize: realTopSize,
-				realBottomSize: realBottomSize,
-				colors: colors
+				realBottomSize: realBottomSize
 			});
 
-			this.createSelectorQuery().select("#tree").boundingClientRect((res) => {
-				let treeTop = res.top,
-					treeBottom = res.top + res.height,
-					itemHeight = res.height / this.data.listData.length,
-					itemMount = this.data.listData.length;
+			// this.createSelectorQuery().select("#tree").boundingClientRect((res) => {
+			// 	let treeTop = res.top,
+			// 		treeBottom = res.top + res.height,
+			// 		itemHeight = res.height / this.data.listData.length,
+			// 		itemMount = this.data.listData.length;
 
-				let indicatorTopList = this.data.listData.map((item, index) => {
-					return itemHeight / 2 + index * itemHeight + treeTop - remScale * 25;
-				});
+			// 	let indicatorTopList = this.data.listData.map((item, index) => {
+			// 		return itemHeight / 2 + index * itemHeight + treeTop - remScale * 25;
+			// 	});
 
-				this.setData({
-					treeInfo: {
-						treeTop: treeTop,
-						treeBottom: treeBottom,
-						itemHeight: itemHeight,
-						itemMount: itemMount
-					},
-					indicatorTopList: indicatorTopList
-				});
-			}).exec();
+			// 	this.setData({
+			// 		treeInfo: {
+			// 			treeTop: treeTop,
+			// 			treeBottom: treeBottom,
+			// 			itemHeight: itemHeight,
+			// 			itemMount: itemMount
+			// 		},
+			// 		indicatorTopList: indicatorTopList
+			// 	});
+			// }).exec();
 
-			this.createSelectorQuery().select(".block-wrap").boundingClientRect((res) => {
-				let maxScrollTop = res.height - (windowHeight - realTopSize - realBottomSize);
+			// this.createSelectorQuery().select(".block-wrap").boundingClientRect((res) => {
+			// 	let maxScrollTop = res.height - (windowHeight - realTopSize - realBottomSize);
 
-				this.createSelectorQuery().selectAll(".block").boundingClientRect((res) => {
-					let maxScrollIndex = -1;
+			// 	this.createSelectorQuery().selectAll(".block").boundingClientRect((res) => {
+			// 		let maxScrollIndex = -1;
 
-					let blocks = res.map((item, index) => {
-						// Math.ceil 向上取整, 防止索引树切换列表时候造成真机固定头部上边线显示过粗问题
-						let itemTop = Math.ceil(item.top - realTopSize),
-							itemBottom = Math.ceil(itemTop + item.height);
+			// 		let blocks = res.map((item, index) => {
+			// 			// Math.ceil 向上取整, 防止索引树切换列表时候造成真机固定头部上边线显示过粗问题
+			// 			let itemTop = Math.ceil(item.top - realTopSize),
+			// 				itemBottom = Math.ceil(itemTop + item.height);
 
-						if (maxScrollTop >= itemTop && maxScrollTop < itemBottom) maxScrollIndex = index;
+			// 			if (maxScrollTop >= itemTop && maxScrollTop < itemBottom) maxScrollIndex = index;
 
-						return {
-							itemTop: itemTop,
-							itemBottom: itemBottom,
-							scrollTop: itemTop >= maxScrollTop ? maxScrollTop : itemTop,
-							scrollIndex: maxScrollIndex === -1 ? index : maxScrollIndex
-						};
-					});
+			// 			return {
+			// 				itemTop: itemTop,
+			// 				itemBottom: itemBottom,
+			// 				scrollTop: itemTop >= maxScrollTop ? maxScrollTop : itemTop,
+			// 				scrollIndex: maxScrollIndex === -1 ? index : maxScrollIndex
+			// 			};
+			// 		});
 
-					this.setData({
-						maxScrollTop: maxScrollTop,
-						blocks: blocks
-					});
-				}).exec();
-			}).exec();
+			// 		this.setData({
+			// 			maxScrollTop: maxScrollTop,
+			// 			blocks: blocks
+			// 		});
+			// 	}).exec();
+			// }).exec();
 		},
 		/**
 		 *  初始化
@@ -354,7 +348,7 @@ Component({
 				item.data = item.data.map((chItem, chIndex) => {
 					return {
 						firstChar: chItem.name.slice(0, 1),
-						color: ColorUtil.generateColor(),
+						//color: ColorUtil.generateColor(),
 						...chItem
 					}
 				});

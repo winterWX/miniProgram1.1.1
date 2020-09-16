@@ -2,7 +2,7 @@
     <view class="content-list">
         <view class="content-listInput">
               <van-search
-              value="{{ value }}"
+              value="{{ searchValue }}"
               placeholder="搜索手机号码"
               shape="round"
               bind:search="onSearch"
@@ -23,8 +23,6 @@
     </view>
     <view class="friendList-list">
          <view class="topText">我的好友 (6)</view>
-         <friendList />
+         <friendList bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" color="#3F82FD" />
     </view>
-
-
 </view>

@@ -8,8 +8,9 @@ Page({
   },
   onLoad: function (options) {
     if (options.flag === 'true'){   //是 true
-      this.setData({ successFlg: true })
-      this.selectComponent('#filterCmp').restFilterDatas();
+        this.setData({ successFlg: true })
+        this.selectComponent('#filterCmp').restFilterDatas();
+        console.log('新用户是否邀请成功',options.flag);
     }
     wx.showModal({
       title: '提示',
@@ -22,6 +23,7 @@ Page({
         }
       }
     })
+    this.arryFriend();
   },
   onShow: function () {
     this.setData({
@@ -57,5 +59,22 @@ Page({
     wx.navigateTo({
       url: '../healthPage/index?id=' + this.data.allowTo
     })
+  },
+  arryFriend:function(){
+    let arryData =[
+        { avatar: "1",
+         createTime: "1600162386",
+         mobile: "13919180189",
+         nickname: "恒生健康12VP9d",
+         uid: 395
+        },
+        { 
+        avatar: "1",
+        createTime: "1600162386",
+        mobile: "13919180189",
+        nickname: "恒生健康12VP9d",
+        uid: 395
+       }
+    ];
   }
 })
