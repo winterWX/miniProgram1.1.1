@@ -42,11 +42,12 @@
 		</view>
 		<view class="activity-info">
 			<view class="info-title">活动详情</view>
-			<view class="content">{{ detail.content }}</view>
+			<!-- <view class="content">{{ detail.content }}</view> -->
+			<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
 		</view>
 		<view class="activity-info">
 			<view class="info-title">活动规则及声明</view>
-			<rich-text type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
+			<rich-text class="content" type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
 		</view>
 	</view>
 	<view class="btn-box">

@@ -90,7 +90,7 @@ Page({
         if (res.data.code == 200) {
           let detail = {
             ...res.data.data,
-            content: res.data.data.content.replace(/<[^>]+>|\s+/g, ''),
+            content: res.data.data.content,
             ruledescription: res.data.data.ruledescription
           }
           let isJoin = detail.isJoinStatus === '2';
