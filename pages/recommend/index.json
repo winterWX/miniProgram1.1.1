@@ -3,6 +3,7 @@
       "van-button": "vant-weapp/button/index",
       "share-box": "/components/shareBox/index"
   },
-    "navigationBarTitleText": "推荐有礼",
-    "navigationBarTextStyle": "black"
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "推荐有礼",
+  "navigationBarTextStyle": "black"
 }

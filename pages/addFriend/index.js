@@ -1,11 +1,17 @@
-const app = getApp()
+const app = getApp();
+//const {CityList} = require("../../utils/city.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    invitData:{}
+    invitData:{},
+    //排序
+    listData: [],
+		searchValue: '',
+		emptyShow: false,
+		topSize: 100
   },
 
   /**
@@ -14,6 +20,10 @@ Page({
   onLoad: function (options) {
      this.hasAddFriend();
      this.inviteCode();
+     // 模拟异步获取数据场景
+     setTimeout(() => {
+        this.setList(this.formatList(CityList));
+     },100)
   },
 
   /**
@@ -129,5 +139,63 @@ Page({
         console.log('.........fail..........');
       }
     })
+  },
+  //排序代码
+  formatList(list) {
+		let tempArr = [];
+
+		["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"].forEach(initial => {
+			let tempObj = {};
+			tempObj.key = initial;
+			tempObj.data = list.filter(item => item.initial == initial).map(item => {
+				return {name: item.city, code: item.code, short: item.short}
+			});
+
+			if(tempObj.data && tempObj.data.length > 0) {
+				tempArr.push(tempObj);
+			}
+		})
+		return tempArr;
+	},
+	onSearch(e) {
+		let value = e.detail;
+		this.setData({
+			searchValue: value
+    });
+    let cityList = CityList.filter(item => item.city.indexOf(value) > -1 || item.short.indexOf(value) > -1);
+		this.setList(this.formatList(cityList));
+	},
+	onCancel() {
+		this.setData({
+			searchValue: ""
+		});
+		this.setList(this.formatList(CityList));
+	},
+	setList(listData) {
+		let emptyShow = listData.length == 0 ? true : false;
+		this.setData({
+			listData: listData,
+			emptyShow: emptyShow
+		});
+	},
+	// itemClick(e) {
+	// 	console.log(e);
+  // },
+  arryFriend:function(){
+    let arryData =[
+        { avatar: "1",
+         createTime: "1600162386",
+         mobile: "13919180189",
+         nickname: "恒生健康12VP9d",
+         uid: 395
+        },
+        { 
+        avatar: "1",
+        createTime: "1600162386",
+        mobile: "13919180189",
+        nickname: "恒生健康12VP9d",
+        uid: 395
+       }
+    ];
   }
 })

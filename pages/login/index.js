@@ -86,6 +86,7 @@ Page({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       invitationCode: app.globalData.invitationCode
     }
+    console.log('parms注册的信息',parms);
     wx.showLoading({
       title: 'loading...',
     })
@@ -98,20 +99,21 @@ Page({
       data: parms,
       success: (res) => {
         if (res.data.code === 200) {
-          const { data: { data: { token, phoneNumber,integral={}}}} = res;
-          app.globalData.token = token;
-          app.globalData.phoneNumber = phoneNumber;
-          let integralFlg = integral.flag !== undefined ? integral.flag : '';
-          wx.redirectTo({
-            url: this.data.url + '?flag=' + integralFlg,
-            complete: () => {}
-          })
+            console.log('所有的返回信息',res);
+            const { data: { data: { token, phoneNumber,integral={}}}} = res;
+            app.globalData.token = token;
+            app.globalData.phoneNumber = phoneNumber;
+            let integralFlg = integral.flag !== undefined ? integral.flag : '';
+            wx.redirectTo({
+              url: this.data.url + '?flag=' + integralFlg,
+              complete: () => {}
+            })
         } else {
-          wx.showModal({
-            showCancel: false,
-            content: res.message,
-            success: (res) => { }
-          })
+            wx.showModal({
+              showCancel: false,
+              content: res.message,
+              success: (res) => { }
+            })
         }
         wx.hideLoading()
       }

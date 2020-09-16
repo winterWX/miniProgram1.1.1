@@ -52,7 +52,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+      let that = this;
+      wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
+      that.recommendNum();  //查看返回记录
+      setTimeout(function(){
+          wx.hideNavigationBarLoading();    //在当前页面隐藏导航条加载动画
+          wx.stopPullDownRefresh();    //停止下拉动作
+      },1000)
   },
 
   /**
@@ -77,8 +83,8 @@ Page({
         'token': app.globalData.token
       },
       success: function (res) {
-          if(res.data.data === 200){
-              that.setData({ invitData: res.data.data });
+          if(res.data.code === 200){
+              that.setData({ invitData: res.data.data }); 
               //添加邀请码到 userInfo
               app.globalData.invitationCode = res.data.data.invitationCode;
               if(res.data.data.invitationList.length > 0){
@@ -87,17 +93,9 @@ Page({
                       v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
                   })
                   res.data.data.personNum = res.data.data.invitationList.length;
-                  that.setData({  
-                    invitData: res.data.data
-                  })
-                  console.log('invitData',that.data.invitData)
-                  that.setData({  
-                    recommendFlg: true
-                  })
+                  that.setData({ invitData: res.data.data, recommendFlg: true})
               }else{
-                  that.setData({  
-                    recommendFlg: false
-                  })
+                  that.setData({recommendFlg: false });
               }
           }
       },
@@ -135,11 +133,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    this.setData({
-        userInfoData :app.globalData.userInfo
-    })
-    this.data.userInfoData.invitationCode = this.data.invitData.invitationCode;
-    let userInfoData = JSON.stringify(this.data.userInfoData);
+    app.globalData.userInfo.invitationCode = this.data.invitData.invitationCode;
+    console.log('app.globalData.userInfo',app.globalData.userInfo);
+    let userInfoData = JSON.stringify(app.globalData.userInfo);
     let shareObj = {
 　　　　title: "邀请好友注册领好礼",
 　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
