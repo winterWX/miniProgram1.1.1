@@ -138,7 +138,6 @@ Component({
       wx.login({
         success: (res) => {
           wx.hideLoading() 
-          console.log("res",res)
           if (res.code) {
             //发起网络请求
             this.setData({
@@ -166,7 +165,6 @@ Component({
 
     },
     getUserInfo(e) { //获取用户信息
-      console.log('getUserInfo',e)
       if (e.detail.userInfo) {
         this.onLogin(e.detail)
       } else {

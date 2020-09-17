@@ -26,6 +26,10 @@ Page({
       this.setData({ urlTag: 'pageTag' })
     }else {
       this.setData({
+        url: baseUrlNum
+      })
+    } else {
+      this.setData({
         url: options.url
       })
     }
@@ -112,6 +116,7 @@ Page({
                 wx.redirectTo({ url: '../newFriend/index' });
             }
             wx.redirectTo({
+            wx.reLaunch({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })
