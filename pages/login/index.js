@@ -6,23 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url: ''
+    url: '',
+    urlTag:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.url.indexOf('/#') > -1) {
+    console.log('optionsoptions',options)
+    if (options.url && options.url.indexOf('/#') > -1) {
       let baseUrlNum = ''
       let startStr = options.url.substr(0, options.url.indexOf('/#'));
       let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length - 1);
       baseUrlNum = startStr + '?goodsId=' + endStr;
       console.log('baseUrlNum=====转',baseUrlNum);
-      this.setData({
-        url: baseUrlNum
-      })
-    } else {
+      this.setData({ url: baseUrlNum })
+    }else if(options.pageTag === 'pageTag'){
+      this.setData({ urlTag: 'pageTag' })
+    }else {
       this.setData({
         url: options.url
       })
@@ -104,6 +106,11 @@ Page({
             app.globalData.token = token;
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
+            if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
+                wx.redirectTo({ url: '../recommend/index' });
+            }else if(this.data.urlTag === 'pageTag' && integralFlg !== 'true'){
+                wx.redirectTo({ url: '../newFriend/index' });
+            }
             wx.redirectTo({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}

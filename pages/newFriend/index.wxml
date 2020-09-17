@@ -1,5 +1,5 @@
 <view>
-    <view class="content-list">
+    <view class="content-list" wx:if="{{listHiden}}">
         <view wx:for="{{friendList}}" wx:key="index" class="content-friendList">
             <view class="leftBlock">
                 <image src="{{item.touxiang}}"/>
@@ -10,5 +10,19 @@
                 <view  class="btnSty" wx:if="{{!item.flg}}">同意添加</view>
             </view>
         </view>
+    </view>
+    <view class="initFriend" wx:if="{{!listHiden}}">
+       <view class="topBlock">
+           <view class="topBlock_image2hang"><image class="topBlock_image2"  src="../../image/addFriend/invalid-name@2x.png" /></view>
+          <view class="topBlock_image1hang"><image class="topBlock_image1"  src="{{userInfoData.avatarUrl}}"/></view>
+          <view class="topBlock_name" >{{userInfoData.nickName}}</view>
+          <view class="topBlock_text1" >邀请你成为ta的好友</view>
+          <view class="topBlock_text2"><view class="textli">“快快加我为好友，一起在恒生健康运动打卡吧”</view></view>
+          <view class="topBlock_btnTom"><van-button type="primary" width="400rpx" 
+          open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即添加</van-button></view>
+          <view class="bottom-image">
+              <image class="topBlock_image2"  src="../../image/addFriend/icon-close@2x.png" />
+          </view>
+       </view>
     </view>
 </view>

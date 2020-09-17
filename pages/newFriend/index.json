@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-button": "vant-weapp/button/index"
+  },
   "navigationBarTitleText": "新的好友",
   "navigationBarTextStyle": "black"
 }
