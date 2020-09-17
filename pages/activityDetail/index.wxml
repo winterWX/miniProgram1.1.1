@@ -1,6 +1,6 @@
 <view class="container">
 	<view wx:if="{{detail.status === 3}}" class="disable-tip">
-		<image class="disable-icon" src="../../image/circle-info.png"></image>
+		<image class="disable-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/circle-info.png"></image>
 		<text>活动已结束</text>
 	</view>
 	<view class="main">
@@ -10,7 +10,7 @@
 				<view class="activity-content">
 					<text class="title">{{detail.title}}</text>
 					<view class="remain-days" wx:if="{{detail.status === 2}}">
-						<image class="time-icon" src="../../image/icon-left-time.png"></image>
+						<image class="time-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-left-time.png"></image>
 						<text>剩余{{detail.days}}天</text>
 					</view>
 					<view class="remain-days" wx:if="{{detail.status === 3}}">

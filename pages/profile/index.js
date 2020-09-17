@@ -51,7 +51,7 @@ Page({
     avatarObjList: [
       {
         // url:  app.globalData.imagesUrl + '/images/iconDefultTouxiang.png',
-        url: '../../image/icon-defult-touxiang.png',
+        url: 'http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-defult-touxiang.png',
         id: 13
       }, {
         url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',

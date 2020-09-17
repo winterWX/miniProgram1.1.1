@@ -4,7 +4,7 @@
 		<view class="activity-content" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
 			<text class="title">{{activity.title}}</text>
 			<view class="remain-days" wx:if="{{activity.status === 2}}">
-				<image class="time-icon" src="../../image/icon-left-time.png"></image>
+				<image class="time-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-left-time.png"></image>
 				<text>剩余{{activity.remainDays}}天</text>
 			</view>
 		</view>
@@ -18,7 +18,7 @@
 </view>
 <view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">
 	<view>
-		<image class="icon" src="../../image/search-result.png"></image>
+		<image class="icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/search-result.png"></image>
 		<view class="no-data">暂无活动</view>
 	</view>
 </view>
