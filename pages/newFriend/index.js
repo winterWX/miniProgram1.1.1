@@ -8,8 +8,8 @@ Page({
   data: {
      isLogin: 0, //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
      friendList:[
-       {touxiang:'../../image/addFriend/rectangle@2x.png',name:'王大锤',flg:false},
-       {touxiang:'../../image/addFriend/rectangle@2x.png',name:'猪八戒',flg:true}
+       {touxiang:'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png',name:'王大锤',flg:false},
+       {touxiang:'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png',name:'猪八戒',flg:true}
      ],
      listHiden: false,
      userInfoData:{}

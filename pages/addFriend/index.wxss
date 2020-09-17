@@ -11,8 +11,8 @@ page{
   justify-content: center;  
 }
 .van-search{
-  padding: 5rpx 15rpx !important;
-  width: 680rpx;
+  padding: 5rpx 0rpx !important;
+  width: 690rpx;
   background-color: rgba(255,255,255,0.9) !important;
   color:rgb(146,146,146) !important;
   font-size: 28rpx !important;
@@ -69,4 +69,11 @@ page{
     padding-left: 30rpx;
     display: flex;
     align-items: center;
+}
+.van-field__input{
+  height: 56rpx !important;
+  min-height: 56rpx !important;
+}
+.van-cell__left-icon-wrap,.van-cell__right-icon-wrap{
+  height: 56rpx !important;
 }

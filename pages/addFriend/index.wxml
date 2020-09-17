@@ -10,13 +10,13 @@
             />
         </view>
         <view class="content-listItem" bindtap="newFriend">
-          <image  class="imageSty" src = '../../image/addFriend/rectangle@2x.png'></image>
+          <image  class="imageSty" src = 'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png'></image>
           <view class="item-text">新的好友</view>
           <view class="redText">1</view>
         </view>
         <button class="content-listItem" open-type="share">
             <view class="imageStyBtn">
-              <image class="imageStyBtn" src = '../../image/addFriend/rectangle-2@2x.png'></image>
+              <image class="imageStyBtn" src = 'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle-2@2x.png'></image>
             </view>
             <view class="item-text">微信添加好友</view>
         </button>

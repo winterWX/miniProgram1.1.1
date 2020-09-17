@@ -52,7 +52,7 @@ Page({
         id: 12
       },
       {
-        url: '../../image/icon-defult-touxiang.png',
+        url: 'http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-defult-touxiang.png',
         id: 13
       }, 
     ]
@@ -152,7 +152,7 @@ Page({
     let shareObj = {
   　　　　title: "邀请好友注册领好礼",
   　　　　path: "/pages/newFriend/index?userInfoData="+ userInfoData,
-         imageUrl: "/image/addFriend/image@2x.png",
+         imageUrl: "http://106.54.73.125:8104/images/miniprogram/images/addFriend/img@3x.png",
   　　}
   　　// 来自页面内的按钮的转发
   　　if (options.from == "button") {

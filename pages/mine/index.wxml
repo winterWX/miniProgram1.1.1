@@ -18,11 +18,11 @@
 		<view class="sport backTop" catchtap="healthPage"></view>
  		<view class="recommend backRemon" catchtap="sendFriend"></view>
 		<view class="addFriend addFriendSty" catchtap="addFriend"></view>
-		<image class="mine-image" src="../../image/mine.png"></image>
+		<image class="mine-image" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine.png"></image>
 	</view>
 	<view class="bottom-box">
 		<view class="setting back" catchtap="settingPage"></view>
-		<image src="../../image/mine-bottom.png"></image>
+		<image src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine-bottom.png"></image>
 	</view>
 	<footer active="{{active}}"></footer>
 </view>
