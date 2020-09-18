@@ -94,3 +94,10 @@
   width: 750rpx;
   height: 300rpx;
 }
+.activity {
+  position: absolute;
+  width: 200rpx;
+  height: 50rpx;
+  left: 276rpx;
+  top: 386rpx;
+}

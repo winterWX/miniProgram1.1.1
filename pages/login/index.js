@@ -116,7 +116,7 @@ Page({
                 console.log('是否已经互为好友',isFriend);
                 wx.redirectTo({ url: '../addFriend/index' });
             }
-            wx.redirectTo({
+            wx.reLaunch({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })

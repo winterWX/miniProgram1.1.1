@@ -15,6 +15,7 @@
 <view>
  <view class="healthBack-main">
 		<view class="profile backPro" catchtap="profilePage"></view>
+		<view class="activity" catchtap="navigateMyActivity"></view>
 		<view class="sport backTop" catchtap="healthPage"></view>
  		<view class="recommend backRemon" catchtap="sendFriend"></view>
 		<view class="addFriend addFriendSty" catchtap="addFriend"></view>

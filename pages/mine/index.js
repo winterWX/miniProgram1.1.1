@@ -122,6 +122,11 @@ Page({
       url: '../../pages/profile/index'
     })
   },
+  navigateMyActivity: function () {
+    wx.navigateTo({
+      url: '../../pages/myActivity/index'
+    })
+  },
   settingPage: function () {
     wx.navigateTo({
       url: '../../pages/setting/index'
