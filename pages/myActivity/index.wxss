@@ -5,9 +5,13 @@ page {
 
 .container {
   background-color: #ededed;
-  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-
+.container .my-activity {
+  flex: 1;
+}
 .activity-box {
   padding: 36rpx 30rpx;
   margin-bottom: 30rpx;
@@ -71,14 +75,18 @@ page {
   font-size: 24rpx;
   text-decoration: blink;
   background-color: #ededed;
-  margin-bottom: 30rpx;
+  padding: 30rpx 0;
 }
 .empty-box {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   text-align: center;
+}
+.empty-box .content-box {
+
 }
 .icon {
   width: 210rpx;
@@ -100,4 +108,10 @@ page {
   font-size: 24rpx;
   color: rgb(51, 51, 51);
   margin: 20rpx auto 0 auto;
+}
+.my-activity-btn {
+  margin: 60rpx 0rpx;
+  width: 690rpx;
+  color: #333333;
+  font-size: 32rpx;
 }
