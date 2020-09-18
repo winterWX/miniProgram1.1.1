@@ -70,7 +70,6 @@ Page({
     wx.showToast({title: '加载中', icon: 'loading'});
     this.setData({loadingFinish: false});
     wx.request({
-      // url: app.globalData.baseUrl + '/remote/activity/list',
       url: app.globalData.baseUrl + '/remote/myactivity/list',
       method: "POST",
       header: {

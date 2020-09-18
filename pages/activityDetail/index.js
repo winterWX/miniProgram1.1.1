@@ -96,7 +96,7 @@ Page({
           let isJoin = detail.isJoinStatus === '2';
           that.setData({detail, isJoin});
           if(!isJoin && goodsId) {
-            this.joinActivity();
+            that.joinActivity();
           }
         }
       },
