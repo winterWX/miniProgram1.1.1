@@ -8,7 +8,7 @@
 </view>
 <footer active="{{active}}"  wx:if="{{!successFlg}}"></footer> -->
 
-<view class="container {{successFlg ? 'successsSty':''}}">
+<view class="container {{successFlg ? 'successsSty':''}}" wx:if="{{!successFlg}}">
     <view class="top-box">
       <view class="back-icon" bindtap="navigateToStep"></view>
       <view class="active-title">
@@ -23,5 +23,6 @@
       <image class="bottom" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/bottom.png"></image>
     </view>
 </view>
+<collectionOption  wx:if="{{successFlg}}"  id="filterCmp"  bind:parentReceive="parentCallBack" />
 <footer active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 

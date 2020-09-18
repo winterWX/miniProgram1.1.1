@@ -102,14 +102,19 @@ Page({
       success: (res) => {
         if (res.data.code === 200) {
             console.log('所有的返回信息',res);
-            const { data: { data: { token, phoneNumber,integral={}}}} = res;
+            const { data: { data: { token, phoneNumber,integral={},isFriend}}} = res;
             app.globalData.token = token;
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
-                wx.reLaunch({ url: '../recommend/index' });
+                wx.redirectTo({ url: '../index/index?flag='+ integralFlg });
             }else if(this.data.urlTag === 'pageTag' && integralFlg !== 'true'){
-                wx.reLaunch({ url: '../newFriend/index' });
+                let addSuccess = 'addSuccess';
+                wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
+            }else if((this.data.urlTag === 'pageTag' && integralFlg !== 'true') && isFriend){
+                //是否已经互为好友
+                console.log('是否已经互为好友',isFriend);
+                wx.redirectTo({ url: '../addFriend/index' });
             }
             wx.reLaunch({
               url: this.data.url + '?flag=' + integralFlg,

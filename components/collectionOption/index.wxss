@@ -7,6 +7,10 @@
   right: 0;
   z-index: 999;
 }
+.successsSty{
+   height: 100%;
+   background-color: rgba(0,0,0, 0.62);
+}
 .miainImage{
   position: relative;
   width: 100%;

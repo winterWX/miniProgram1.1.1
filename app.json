@@ -28,7 +28,8 @@
     "pages/activityDetail/index",
     "pages/addFriend/index",
     "pages/newFriend/index",
-    "pages/myActivity/index"
+    "pages/myActivity/index",
+    "pages/friendSearch/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

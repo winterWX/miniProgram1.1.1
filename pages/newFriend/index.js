@@ -7,12 +7,53 @@ Page({
    */
   data: {
      isLogin: 0, //0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
-     friendList:[
-       {touxiang:'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png',name:'王大锤',flg:false},
-       {touxiang:'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png',name:'猪八戒',flg:true}
-     ],
+     friendList:[],
      listHiden: false,
-     userInfoData:{}
+     userInfoData:{},
+     avatarObjList: [
+      {
+        url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
+        id: 1
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconNiu.png',
+        id: 2
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
+        id: 3
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
+        id: 4
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconLong.png',
+        id: 5
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconShe.png',
+        id: 6
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconMa.png',
+        id: 7
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconYang.png',
+        id: 8
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
+        id: 9
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconJi.png',
+        id: 10
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconGou.png',
+        id: 11
+      }, {
+        url:  app.globalData.imagesUrl + '/images/icon/iconZhu.png',
+        id: 12
+      },
+      {
+        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+        id: 13
+      }, 
+    ],
+    friendFlg:false,
   },
 
   /**
@@ -26,9 +67,18 @@ Page({
       this.setData({
         userInfoData : userInfoData
       })
+    }else if(options.addSuccess === 'addSuccess'){
+        wx.showToast({
+          title: '添加成功',
+          icon: 'succes',  
+          duration: 1500
+        });
+        this.newFriendList();
+        this.setData( {listHiden:true} );
     }else{
-      this.newFriendList();
-      this.setData({listHiden:true})
+        this.newFriendList();
+        this.setData( {listHiden:true} );
+        console.log('刷新功能');
     }
   },
 
@@ -64,7 +114,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let that = this;
+    wx.showNavigationBarLoading();         //在当前页面显示导航条加载动画
+    that.newFriendList();
+    setTimeout(function(){
+        wx.hideNavigationBarLoading();     //在当前页面隐藏导航条加载动画
+        wx.stopPullDownRefresh();          //停止下拉动作
+    },1000)
   },
 
   /**
@@ -88,8 +144,9 @@ Page({
         'token': app.globalData.token
       },
       success: function (res) {
-          if(res.data.code !==null){
-            console.log('res',res);
+          if(res.data.code === 200){
+            let friendList = that.arryFriend(res.data.data);
+            that.setData({ friendList : friendList});
           }
       },
       fail: function (res) {
@@ -97,8 +154,9 @@ Page({
       }
     })
   },
-  addNewBtn:function(){
+  addNewBtn:function(option){
     var that = this;
+    let arrayNum = option.currentTarget.dataset.index;
     wx.request({
       url: app.globalData.baseUrl +'/remote/friend/accept',
       method: "POST",
@@ -107,14 +165,26 @@ Page({
         'token': app.globalData.token
       },
       data:{
-        uid:''
+        uid: that.data.friendList[arrayNum].uid
       },
       success: function (res) {
           if(res.data.code == 200){
+              let clickList = [];
+              that.data.friendList.forEach((element,index) => {
+                 if(index === arrayNum){
+                    element.showFlg = true;
+                    clickList.push(element);
+                 }else{
+                    clickList.push(element);
+                 }
+              });
+              that.setData({ friendList: clickList });
+              //console.log('lastlastlastlastlastlast',that.data.friendList)
               wx.showToast({
                 title: '添加成功',
-              })
-              this.newFriendList();
+                icon: 'succes',  
+                duration: 1500
+              });
           }
       },
       fail: function (res) {
@@ -126,11 +196,22 @@ Page({
     let that = this;
     if (e.detail.userInfo) {
         userLogin.onLogin(function(result){
-          console.log('result=========',result);
           that.data.isLogin = result.isLoginState;
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
         },e.detail,that.data.isLogin)
     }
-  }
+  },
+  arryFriend:function(allData){
+    let lastArryData = allData.map( item =>{
+        return {
+          avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
+          nickname: item.nickname,
+          uid: item.uid,
+          showFlg: false
+        }
+    })
+    console.log("lastArryData+=====",lastArryData);
+    return lastArryData;
+}
 })
