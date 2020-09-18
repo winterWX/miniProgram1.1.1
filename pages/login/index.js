@@ -107,11 +107,11 @@ Page({
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
-                wx.redirectTo({ url: '../recommend/index' });
+                wx.reLaunch({ url: '../recommend/index' });
             }else if(this.data.urlTag === 'pageTag' && integralFlg !== 'true'){
-                wx.redirectTo({ url: '../newFriend/index' });
+                wx.reLaunch({ url: '../newFriend/index' });
             }
-            wx.redirectTo({
+            wx.reLaunch({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })

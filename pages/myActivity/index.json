@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+
+  },
+  "navigationBarTitleText": "我的活动",
+  "navigationBarTextStyle": "black",
+  "backgroundTextStyle":"dark",
+  "onReachBottomDistance":50,
+  "enablePullDownRefresh": true
+}
