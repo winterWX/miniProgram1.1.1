@@ -8,7 +8,12 @@ App({
   },
   globalData: {
     userInfo: null,
-    userInfoDetail: null,
+    userInfoDetail: {
+      nickName: '',
+      gender: '',
+      avatarUrl: '',
+      phoneNumber: ''
+    },
     runData: null,
     baseUrl:'http://106.54.73.125:8104',
     imagesUrl: 'http://106.54.73.125:8104/images/miniprogram',

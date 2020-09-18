@@ -176,6 +176,7 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
+        console.log(app.globalData);
         const { nickName, gender, avatarUrl = '', phoneNumber } = app.globalData.userInfoDetail;
         let sex = app.globalData.userInfoDetail.gender === 1 ? '男' : '女';
         let userInfo = {};
