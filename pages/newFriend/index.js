@@ -199,6 +199,7 @@ Page({
           that.data.isLogin = result.isLoginState;
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
+          app.globalData.userInfoDetail = result.newUserInfo;
         },e.detail,that.data.isLogin)
     }
   },
