@@ -52,10 +52,13 @@ Page({
         id: 12
       },
       {
-        url: 'http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-defult-touxiang.png',
+        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
         id: 13
       }, 
-    ]
+    ],
+    arrayNum: '',
+    redTag: 0,
+    redTagShow:false
   },
 
   /**
@@ -64,6 +67,7 @@ Page({
   onLoad: function (options) {
      this.inviteCode();
      this.hasAddFriend();
+     this.newFriendList();
   },
 
   /**
@@ -77,7 +81,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.inviteCode();
+    this.hasAddFriend();
+    this.newFriendList();
   },
 
   /**
@@ -98,14 +104,20 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+      let that = this;
+      wx.showNavigationBarLoading();         //在当前页面显示导航条加载动画
+      that.hasAddFriend();
+      that.newFriendList();
+      setTimeout(function(){
+          wx.hideNavigationBarLoading();     //在当前页面隐藏导航条加载动画
+          wx.stopPullDownRefresh();          //停止下拉动作
+      },1000)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
   newFriend:function(){
     wx.navigateTo({
@@ -181,6 +193,33 @@ Page({
       }
     })
   },
+  //新的好友
+  newFriendList:function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.baseUrl +'/remote/friend/apply',
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        'token': app.globalData.token
+      },
+      success: function (res) {
+          if(res.data.code === 200){
+            let numlength = res.data.data.length;
+            if(numlength > 0){
+              that.setData({ redTagShow: true });
+            }else{
+              that.setData({ redTagShow: false });
+            }
+            that.setData({ redTag: numlength });
+          }
+          console.log('redTagredTag红色标记',that.data.redTag);
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
+  },
   //排序代码
   formatList(list) {
 		let tempArr = [];
@@ -197,14 +236,21 @@ Page({
 		})
 		return tempArr;
 	},
-	onSearch(e) {
+	onChange(e) {
 		let value = e.detail;
 		this.setData({
 			searchValue: value
     });
-    let friendData = this.data.friendArrayData.filter(item => item.nickname.indexOf(value) > -1 || item.short.indexOf(value) > -1);
+    // let friendData = this.data.friendArrayData.filter(item => item.nickname.indexOf(value) > -1 || item.short.indexOf(value) > -1);
+    // this.setList(this.formatList(friendData));
+    let friendData = this.data.friendArrayData.filter(item => item.mobile.indexOf(value) > -1 );
 		this.setList(this.formatList(friendData));
-	},
+  },
+  // onFocus(){
+  //    wx.navigateTo({
+  //       url: '../friendSearch/index',
+  //    })
+  // },
 	onCancel(e) {
 		this.setData({ searchValue: "" });
     this.setList(this.formatList(this.data.friendArrayData));
@@ -214,234 +260,27 @@ Page({
 		this.setData({
 			listData: listData,
 			emptyShow: emptyShow
-		});
+    });
+    console.log('listData===============',this.data.listData);
+    console.log('emptyShow=========',this.data.emptyShow);
 	},
 	itemClick(e) {
 		console.log(e);
   },
   arryFriend:function(allData){
-      // let arryData =[
-      //     { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },
-      //     { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },          { 
-      //       avatar: "1",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "阿生健康12d",
-      //       uid: 395
-      //     },
-      //     { 
-      //       avatar: "",
-      //       createTime: "1600162386",
-      //       mobile: "13919180189",
-      //       nickname: "陈生健康VP9d",
-      //       uid: 395
-      //    },
-      //    { 
-      //     avatar: "",
-      //     createTime: "1600162386",
-      //     mobile: "13919180189",
-      //     nickname: "大生健康",
-      //     uid: 395
-      //    },
-      //   { 
-      //     avatar: "10",
-      //     createTime: "1600162386",
-      //     mobile: "13919180189",
-      //     nickname: "门生健康12VP9d",
-      //     uid: 395
-      //   }
-      // ];
-      //let mastData = [...allData,...arryData]
       let lastArryData = allData.map((item,index)=>{
           return {
             avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
             nickname: item.nickname,
-            initial: pinyin.getFirstLetter(item.nickname).slice(0,1),
+            mobile: item.mobile,
+            initial: pinyin.getFirstLetter(item.nickname).slice(0,1).toUpperCase(),
             short: pinyin.getPinyin(item.nickname).replace(/\s+/g,"")
           }
       })
       console.log("lastArryData+=====",lastArryData);
-      //return lastArryData;
+      this.setData({
+          arrayNum: `(${lastArryData.length})`
+      })
       return lastArryData;
   }
 })

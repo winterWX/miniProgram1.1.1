@@ -1,4 +1,4 @@
-<view class="miain">   
+<view class="miain successsSty">   
   <view class="miainContent">
         <view class="miainImage">
             <image  class="miainImage0" src="http://106.54.73.125:8104/images/miniprogram/images/recommend/img_0.png"></image>

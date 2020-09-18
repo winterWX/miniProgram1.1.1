@@ -32,10 +32,13 @@ page{
   margin-left: 20rpx;
   color: rgb(51,51,51);
   font-size: 28rpx;
+  font-family: PingFang-SC-Regular;
 }
 .imageSty{
   width: 80rpx;
   height: 80rpx;
+  border: 2rpx solid #ffffff;
+  border-radius: 50%;
 }
 .imageStyBtn {
   display: flex;
@@ -49,14 +52,14 @@ page{
 .redText{
   width: 34rpx;
   height: 34rpx;
-  background-color: red;
+  background-color: rgb(177,13,25);
   color: white;
   font-size: 24rpx;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   border-radius: 50%;
-  margin-left:450rpx;
+  margin-left:440rpx;
 }
 .friendList-list{
   /* //padding: 0 30rpx; */
