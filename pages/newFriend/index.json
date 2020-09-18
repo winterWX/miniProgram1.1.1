@@ -1,7 +1,9 @@
 {
   "usingComponents": {
-    "van-button": "vant-weapp/button/index"
+      "van-button": "vant-weapp/button/index",
+      "showToast":"../../components/showToast/showToast"
   },
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "新的好友",
   "navigationBarTextStyle": "black"
 }

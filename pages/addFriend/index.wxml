@@ -2,17 +2,19 @@
     <view class="content-list">
         <view class="content-listInput">
               <van-search
-              value="{{ searchValue }}"
+              value="{{searchValue}}"
               placeholder="搜索手机号码"
               shape="round"
+              bind:change="onChange"
               bind:search="onSearch"
               bind:cancel="onCancel"
+              bind:focus="onFocus"
             />
         </view>
         <view class="content-listItem" bindtap="newFriend">
           <image  class="imageSty" src = 'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png'></image>
           <view class="item-text">新的好友</view>
-          <view class="redText">1</view>
+          <view class="redText" wx:if="{{redTagShow}}">{{redTag}}</view>
         </view>
         <button class="content-listItem" open-type="share">
             <view class="imageStyBtn">
@@ -22,7 +24,7 @@
         </button>
     </view>
     <view class="friendList-list">
-         <view class="topText">我的好友 (6)</view>
+         <view class="topText">我的好友{{arrayNum}}</view>
          <friendList bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" color="#3F82FD" />
     </view>
 </view>
