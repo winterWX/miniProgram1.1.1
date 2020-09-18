@@ -104,10 +104,9 @@ Page({
       }
     })
   },
-  navigatorDetail: function(e) {
-    let {title,id } = e.currentTarget.dataset;
+  navigateList: function() {
     wx.navigateTo({
-      url: '../activityDetail/index?id=' + id + '&title=' + title,
+      url: '../challenge/index'
     })
   }
 })
