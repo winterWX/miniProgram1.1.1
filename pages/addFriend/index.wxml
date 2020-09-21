@@ -2,11 +2,9 @@
     <view class="content-list">
         <view class="content-listInput">
               <van-search
-              value="{{searchValue}}"
+              value="{{}}"
               placeholder="搜索手机号码"
               shape="round"
-              bind:change="onChange"
-              bind:search="onSearch"
               bind:cancel="onCancel"
               bind:focus="onFocus"
             />
@@ -24,7 +22,7 @@
         </button>
     </view>
     <view class="friendList-list">
-         <view class="topText">我的好友{{arrayNum}}</view>
+         <view class="topText" wx:if="{{listData.length > 0}}">我的好友{{arrayNum}}</view>
          <friendList bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" color="#3F82FD" />
     </view>
 </view>
