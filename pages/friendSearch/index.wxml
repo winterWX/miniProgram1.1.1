@@ -2,6 +2,7 @@
       <van-search
           value="{{ value }}"
           placeholder="搜索手机号码"
+          focus='{true}'
           show-action
           shape="round"
           bind:change="onChange"
