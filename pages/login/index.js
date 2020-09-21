@@ -108,7 +108,7 @@ Page({
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
                 wx.redirectTo({ url: '../index/index?flag='+ integralFlg });
-            }else if(this.data.urlTag === 'pageTag' && integralFlg !== 'true'){
+            }else if((this.data.urlTag === 'pageTag' && integralFlg !== 'true') && isFriend === undefined){
                 let addSuccess = 'addSuccess';
                 wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
             }else if(this.data.urlTag === 'pageTag' && isFriend){
