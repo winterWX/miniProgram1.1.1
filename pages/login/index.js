@@ -111,7 +111,7 @@ Page({
             }else if(this.data.urlTag === 'pageTag' && integralFlg !== 'true'){
                 let addSuccess = 'addSuccess';
                 wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
-            }else if((this.data.urlTag === 'pageTag' && integralFlg !== 'true') && isFriend){
+            }else if(this.data.urlTag === 'pageTag' && isFriend){
                 //是否已经互为好友
                 console.log('是否已经互为好友',isFriend);
                 wx.redirectTo({ url: '../addFriend/index' });

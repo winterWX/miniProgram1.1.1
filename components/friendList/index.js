@@ -26,7 +26,7 @@ Component({
 		// 空状态的文字提示
 		emptyText: {
 			type: String,
-			value: "未找到数据"
+			value: ""
 		},
 		// 控制空状态的显示
 		emptyShow: {

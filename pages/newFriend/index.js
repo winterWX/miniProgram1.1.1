@@ -179,7 +179,6 @@ Page({
                  }
               });
               that.setData({ friendList: clickList });
-              //console.log('lastlastlastlastlastlast',that.data.friendList)
               wx.showToast({
                 title: '添加成功',
                 icon: 'succes',  
@@ -204,6 +203,7 @@ Page({
     }
   },
   arryFriend:function(allData){
+    //let avatarDafult = app.globalData.userInfoData.avatarUrl;  //微信头像
     let lastArryData = allData.map( item =>{
         return {
           avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,

@@ -13,11 +13,11 @@
             <image src="{{item.avatar}}"/>
             <view class="nameText">{{item.nickname}}</view>
         </view>
-        <view class="rightBlock">
+        <!-- <view class="rightBlock">
             <view>已添加</view>
-        </view>
+        </view> -->
     </view>
-    <view class="BlochShow" wx:if="{{noArray}}">
+    <!-- <view class="BlochShow" wx:if="{{noArray}}">
         <view class="imsageShow">
           <image src="http://106.54.73.125:8104/images/miniprogram/images/addFriend/search-result@3x.png" />
         </view>   
@@ -27,6 +27,6 @@
         <view class="text2">
             该手机号码尚未注册本应该 邀请好友赚取50积分
         </view> -->
-        <view class="text1">暂无好友</view>
-    </view>
+        <!-- <view class="text1">暂无好友</view>
+    </view> -->
 </view>

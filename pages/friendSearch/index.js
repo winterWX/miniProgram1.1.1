@@ -58,7 +58,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    that.setData({ noArray:true });
+    // that.setData({ noArray:true });
     that.hasAddFriend();
   },
 
@@ -111,19 +111,12 @@ Page({
 
   },
   onChange:function(event){
-    console.log(event.detail);
     let that = this;
-    that.setData({ noArray: false });
     let inputVal = event.detail;
-    let friendData = that.data.friendArrayData.findIndex((item,index)=>{
-        return item.mobile === inputVal;
-    })
-    if(friendData > -1 ){
-       that.setData({ showArray : that.data.friendArrayData.splice(friendData,1)})
-    }else{
-      that.setData({ noArray:true,showArray:[]});
-    }
+    let friendData = that.data.friendArrayData.filter(item => item.mobile.indexOf(inputVal) > -1 );
+    that.setData({showArray: inputVal === '' ? [] : friendData});
   },
+
   hasAddFriend:function(){
     let that = this;
     wx.request({

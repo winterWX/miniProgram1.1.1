@@ -236,21 +236,21 @@ Page({
 		})
 		return tempArr;
 	},
-	onChange(e) {
-		let value = e.detail;
-		this.setData({
-			searchValue: value
-    });
-    // let friendData = this.data.friendArrayData.filter(item => item.nickname.indexOf(value) > -1 || item.short.indexOf(value) > -1);
-    // this.setList(this.formatList(friendData));
-    let friendData = this.data.friendArrayData.filter(item => item.mobile.indexOf(value) > -1 );
-		this.setList(this.formatList(friendData));
-  },
-  // onFocus(){
-  //    wx.navigateTo({
-  //       url: '../friendSearch/index',
-  //    })
+	// onChange(e) {
+	// 	let value = e.detail;
+	// 	this.setData({
+	// 		searchValue: value
+  //   });
+  //   // let friendData = this.data.friendArrayData.filter(item => item.nickname.indexOf(value) > -1 || item.short.indexOf(value) > -1);
+  //   // this.setList(this.formatList(friendData));
+  //   let friendData = this.data.friendArrayData.filter(item => item.mobile.indexOf(value) > -1 );
+	// 	this.setList(this.formatList(friendData));
   // },
+  onFocus(){
+     wx.navigateTo({
+        url: '../friendSearch/index',
+     })
+  },
 	onCancel(e) {
 		this.setData({ searchValue: "" });
     this.setList(this.formatList(this.data.friendArrayData));
@@ -261,13 +261,12 @@ Page({
 			listData: listData,
 			emptyShow: emptyShow
     });
-    console.log('listData===============',this.data.listData);
-    console.log('emptyShow=========',this.data.emptyShow);
 	},
 	itemClick(e) {
 		console.log(e);
   },
   arryFriend:function(allData){
+      //let avatarDafult = app.globalData.userInfoDetail.avatarUrl;
       let lastArryData = allData.map((item,index)=>{
           return {
             avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
