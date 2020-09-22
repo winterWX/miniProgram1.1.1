@@ -9,8 +9,9 @@ page {
   display: flex;
   flex-direction: column;
   height: 100%;
-  
+
 }
+
 .container .disable-tip {
   background-color: #F2F2F2;
   color: #333;
@@ -18,11 +19,13 @@ page {
   display: flex;
   align-items: center;
 }
+
 .container .disable-tip .disable-icon {
   width: 40rpx;
   height: 40rpx;
   margin: 4rpx 14rpx 0 0;
 }
+
 .container .main {
   flex: 1;
   overflow-y: auto;
@@ -30,6 +33,7 @@ page {
 
 .activity-desc {
   background-color: #fff;
+  font-size: 0;
 }
 
 .activity-desc .poster {
@@ -38,7 +42,7 @@ page {
 }
 
 .activity-desc .content {
-  padding: 10rpx 30rpx;
+  padding: 20rpx 30rpx 30rpx 30rpx;
 }
 
 .activity-desc .content .activity-content {
@@ -54,22 +58,37 @@ page {
   white-space: nowrap;
 }
 
-.activity-desc .activity-content .remain-days {
+.activity-desc .remain-days {
   font-size: 24rpx;
   background-color: #ededed;
   height: 30rpx;
   line-height: 30rpx;
   border-radius: 10rpx;
-  padding: 10rpx;
-  color: #666666;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: table-cell;
+  padding: 4rpx 16rpx 4rpx 12rpx;
+  color: #00A865;
+  border: 2rpx solid #00A865;
 }
 
-.activity-desc .activity-content .remain-days .time-icon {
+.over {
+  font-size: 24rpx;
+  background-color: #ededed;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 10rpx;
+  padding: 10rpx 30rpx;
+  color: #666666;
+  display: table-cell;
+}
+
+.activity-desc .remain-days .time-icon {
   width: 40rpx;
   height: 40rpx;
+  vertical-align: middle;
+}
+
+.activity-desc .remain-days text {
+  vertical-align: middle;
 }
 
 .activity-desc .activity-desc {
@@ -80,6 +99,7 @@ page {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-bottom: 20rpx;
 }
 
 .milepost {
@@ -94,11 +114,13 @@ page {
   font-size: 32rpx;
   margin-bottom: 30rpx;
 }
+
 .progress-box {
   padding-top: 20rpx;
   position: relative;
   top: 50rpx;
 }
+
 .progress-box .progress {
   width: 100%;
   height: 20rpx;
@@ -107,9 +129,11 @@ page {
   position: relative;
   display: table;
 }
+
 .progress-box .progress .cell {
   display: table-cell;
 }
+
 .progress-box .percent {
   height: 20rpx;
   background-color: #00A865;
@@ -119,6 +143,7 @@ page {
   left: 0;
   z-index: 3;
 }
+
 .progress-box .progress .item {
   width: 18rpx;
   height: 18rpx;
@@ -129,13 +154,15 @@ page {
   top: 1rpx;
   transform: translate(-18rpx);
 }
+
 .progress-box .progress .cell:first-child .item {
   transform: translate(4rpx);
 }
 
-.progress-box .progress .cell:last-child .item{
+.progress-box .progress .cell:last-child .item {
   transform: translate(-22rpx);
 }
+
 .progress-box .progress .cell .reward {
   font-size: 20rpx;
   background-color: #9B7C56;
@@ -148,14 +175,17 @@ page {
   transform: translate(-60%);
   color: #fff;
 }
+
 .progress-box .progress .cell:first-child .reward {
   transform: translate(0);
 }
+
 .progress-box .progress .cell:last-child .reward {
   transform: translate(-100%);
   min-width: 76rpx;
   text-align: center;
 }
+
 .progress-box .progress .cell .reward .arrow {
   width: 0;
   height: 0;
@@ -164,16 +194,19 @@ page {
   position: absolute;
   left: 45%;
 }
+
 .progress-box .progress .cell:first-child .reward .arrow {
   transform: rotate(135deg);
   left: 10%;
   top: 21rpx;
 }
+
 .progress-box .progress .cell:last-child .reward .arrow {
   transform: rotate(-135deg);
   left: 78%;
   top: 21rpx;
 }
+
 .num {
   position: absolute;
   width: auto;
@@ -184,49 +217,56 @@ page {
   line-height: 34rpx;
   color: #333333;
 }
+
 .progress-box .progress .cell:first-child .num {
   transform: translate(0);
 }
+
 .progress-box .progress .cell:last-child .num {
   transform: translate(-100%);
 }
+
 .unit {
   position: absolute;
   bottom: 30rpx;
   color: #929292;
   font-size: 24rpx;
 }
+
 .activity-info {
   margin: 0 30rpx 30rpx 30rpx;
   background-color: #fff;
   padding: 30rpx;
 }
+
 .activity-info .info-title {
   color: #333333;
   font-size: 32rpx;
   height: 44rpx;
   line-height: 44rpx;
 }
+
 .activity-info .content {
   margin-top: 20rpx;
   font-size: 28rpx;
   color: #333333;
 }
+
 .btn-box {
   background-color: #fff;
   padding: 20rpx 30rpx;
 }
+
 .btn-box .btn {
   width: 100%;
   font-size: 32rpx;
   color: #D9D9D9;
   background-color: #00a865;
 }
+
 .btn-box .dis-btn {
   width: 100%;
   font-size: 32rpx;
   color: #ffffff;
   background-color: #D9D9D9;
 }
-
-

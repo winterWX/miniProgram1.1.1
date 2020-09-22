@@ -9,17 +9,17 @@
 			<view class="content">
 				<view class="activity-content">
 					<text class="title">{{detail.title}}</text>
-					<view class="remain-days" wx:if="{{detail.status === 2}}">
-						<image class="time-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-left-time.png"></image>
-						<text>剩余{{detail.days}}天</text>
-					</view>
-					<view class="remain-days" wx:if="{{detail.status === 3}}">
-						<text>已结束</text>
-					</view>
 				</view>
 				<view class="activity-desc">
 					<text>{{detail.description}}</text>
 				</view>
+				<view class="remain-days" wx:if="{{detail.status === 2}}">
+						<image class="time-icon" src="../../image/active-left-time.png"></image>
+						<text>剩余{{detail.days}}天</text>
+					</view>
+					<view class="over" wx:if="{{detail.status === 3}}">
+						<text>已结束</text>
+					</view>
 			</view>
 		</view>
 		<!-- 里程碑 -->
@@ -42,7 +42,6 @@
 		</view>
 		<view class="activity-info">
 			<view class="info-title">活动详情</view>
-			<!-- <view class="content">{{ detail.content }}</view> -->
 			<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
 		</view>
 		<view class="activity-info">

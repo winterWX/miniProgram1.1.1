@@ -37,22 +37,26 @@ page {
   white-space: nowrap;
 }
 
-.activity-box .activity-content .remain-days {
+.activity-box .remain-days {
+  display: table-cell;
   font-size: 24rpx;
   background-color: #ededed;
   height: 30rpx;
   line-height: 30rpx;
   border-radius: 10rpx;
-  padding: 10rpx;
-  color: #666666;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 4rpx 16rpx 4rpx 12rpx;
+  color: #00A865;
+  border: 2rpx solid #00A865;
 }
 
-.activity-box .activity-content .remain-days .time-icon {
+.activity-box .remain-days .time-icon {
   width: 40rpx;
   height: 40rpx;
+  margin-right: 4rpx;
+  vertical-align: middle;
+}
+.activity-box .remain-days text {
+  vertical-align: middle;
 }
 
 .activity-box .activity-desc {
@@ -63,6 +67,7 @@ page {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-bottom: 20rpx;
 }
 .past-activity {
   z-index: 3;

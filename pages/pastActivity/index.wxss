@@ -37,17 +37,15 @@ page {
   white-space: nowrap;
 }
 
-.activity-box .activity-content .remain-days {
+.activity-box .remain-days {
   font-size: 24rpx;
   background-color: #ededed;
   height: 30rpx;
   line-height: 30rpx;
   border-radius: 10rpx;
-  padding: 10rpx;
+  padding: 10rpx 30rpx;
   color: #666666;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: table-cell;
 }
 
 
@@ -59,6 +57,7 @@ page {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-bottom: 20rpx;
 }
 
 .empty-box {
