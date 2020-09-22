@@ -108,7 +108,8 @@ Page({
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
                 wx.redirectTo({ url: '../index/index?flag='+ integralFlg });
-            }else if((this.data.urlTag === 'pageTag' && integralFlg !== 'true') && isFriend === undefined){
+            }else if((this.data.urlTag === 'pageTag' && integralFlg === '') && !isFriend){
+                console.log('新的好友列表 urlTag  integralFlg  ！isFriend', this.data.urlTag,integralFlg,!isFriend);
                 let addSuccess = 'addSuccess';
                 wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
             }else if(this.data.urlTag === 'pageTag' && isFriend){

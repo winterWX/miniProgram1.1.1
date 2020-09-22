@@ -203,10 +203,9 @@ Page({
     }
   },
   arryFriend:function(allData){
-    //let avatarDafult = app.globalData.userInfoData.avatarUrl;  //微信头像
     let lastArryData = allData.map( item =>{
         return {
-          avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
+          avatar: this.avatarSelect(item.avatar,item.avatarUrl),
           nickname: item.nickname,
           uid: item.uid,
           showFlg: false
@@ -214,5 +213,15 @@ Page({
     })
     console.log("lastArryData+=====",lastArryData);
     return lastArryData;
-}
+},
+avatarSelect:function(avatar,avatarUrl){
+    if(avatar !==''){
+        return this.data.avatarObjList[Number(avatar)-Number(1)].url;
+    }else if(avatar ==='' && avatarUrl !==''){
+        return avatarUrl;
+    }else{
+        return this.data.avatarObjList[12].url;
+    }
+ }
+
 })

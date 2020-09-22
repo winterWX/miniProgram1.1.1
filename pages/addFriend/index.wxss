@@ -80,3 +80,21 @@ page{
 .van-cell__left-icon-wrap,.van-cell__right-icon-wrap{
   height: 56rpx !important;
 }
+.inputBlock{
+  display: flex;
+  align-items: center;
+  background-color: rgba(0,0,0, 0.05);
+  width: 685rpx;
+  height: 56rpx;
+  border-radius: 50rpx;
+  padding-left: 21rpx;
+}
+.inputBlock image{
+  width: 32rpx;
+  height: 32rpx;
+}
+.inputText{
+  color:rgb(146,146,146);
+  margin-left: 12rpx;
+  font-size: 28rpx;
+}
