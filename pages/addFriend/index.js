@@ -58,13 +58,15 @@ Page({
     ],
     arrayNum: '',
     redTag: 0,
-    redTagShow:false
+    redTagShow:false,
+    bottomHight:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     this.topHeight();
      this.inviteCode();
      this.hasAddFriend();
      this.newFriendList();
@@ -82,8 +84,10 @@ Page({
    */
   onShow: function () {
     this.inviteCode();
+    this.topHeight();
     this.hasAddFriend();
     this.newFriendList();
+    this.setData({searchValue:''});
   },
 
   /**
@@ -172,8 +176,22 @@ Page({
   　　}
   　　return shareObj;
   },
+  topHeight:function(){
+    let that = this;
+    let query = wx.createSelectorQuery();
+    query.select('#topHeight').boundingClientRect()
+    query.exec(function (res) {
+      console.log(res);
+      console.log(res[0].height);
+      //取高度
+      let topViewHeight = res[0].height
+      let windowHeight = wx.getSystemInfoSync().windowHeight;
+      let bottomHight = (windowHeight - topViewHeight)*2
+      that.setData({bottomHight})
+    })
+  },
   hasAddFriend:function(){
-    var that = this;
+    let that = this;
     wx.request({
       url: app.globalData.baseUrl +'/remote/friend',
       method: "GET",
@@ -206,14 +224,9 @@ Page({
       success: function (res) {
           if(res.data.code === 200){
             let numlength = res.data.data.length;
-            if(numlength > 0){
-              that.setData({ redTagShow: true });
-            }else{
-              that.setData({ redTagShow: false });
-            }
+            that.setData({ redTagShow: numlength > 0 ? true : false});
             that.setData({ redTag: numlength });
           }
-          console.log('redTagredTag红色标记',that.data.redTag);
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -236,25 +249,11 @@ Page({
 		})
 		return tempArr;
 	},
-	// onChange(e) {
-	// 	let value = e.detail;
-	// 	this.setData({
-	// 		searchValue: value
-  //   });
-  //   // let friendData = this.data.friendArrayData.filter(item => item.nickname.indexOf(value) > -1 || item.short.indexOf(value) > -1);
-  //   // this.setList(this.formatList(friendData));
-  //   let friendData = this.data.friendArrayData.filter(item => item.mobile.indexOf(value) > -1 );
-	// 	this.setList(this.formatList(friendData));
-  // },
-  onFocus(){
+  onFocusInput(){
      wx.navigateTo({
         url: '../friendSearch/index',
      })
   },
-	onCancel(e) {
-		this.setData({ searchValue: "" });
-    this.setList(this.formatList(this.data.friendArrayData));
-	},
 	setList(listData) {
 		let emptyShow = listData.length == 0 ? true : false;
 		this.setData({
@@ -266,20 +265,27 @@ Page({
 		console.log(e);
   },
   arryFriend:function(allData){
-      //let avatarDafult = app.globalData.userInfoDetail.avatarUrl;
       let lastArryData = allData.map((item,index)=>{
           return {
-            avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
+            avatar: this.avatarSelect(item.avatar,item.avatarUrl),
             nickname: item.nickname,
             mobile: item.mobile,
             initial: pinyin.getFirstLetter(item.nickname).slice(0,1).toUpperCase(),
             short: pinyin.getPinyin(item.nickname).replace(/\s+/g,"")
           }
       })
-      console.log("lastArryData+=====",lastArryData);
       this.setData({
           arrayNum: `(${lastArryData.length})`
       })
       return lastArryData;
+  },
+  avatarSelect:function(avatar,avatarUrl){
+    if(avatar !==''){
+        return this.data.avatarObjList[Number(avatar)-Number(1)].url;
+    }else if(avatar ==='' && avatarUrl !==''){
+        return avatarUrl;
+    }else{
+        return this.data.avatarObjList[12].url;
+    }
   }
 })

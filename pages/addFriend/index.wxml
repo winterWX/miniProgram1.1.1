@@ -1,13 +1,10 @@
 <view>
-    <view class="content-list">
+    <view class="content-list" id="topHeight">
         <view class="content-listInput">
-              <van-search
-              value="{{}}"
-              placeholder="搜索手机号码"
-              shape="round"
-              bind:cancel="onCancel"
-              bind:focus="onFocus"
-            />
+            <view class="inputBlock" bindtap="onFocusInput">
+              <image src="../../image/search@3x.png" />
+              <view class="inputText">搜索手机号码</view>
+            </view>
         </view>
         <view class="content-listItem" bindtap="newFriend">
           <image  class="imageSty" src = 'http://106.54.73.125:8104/images/miniprogram/images/addFriend/rectangle@2x.png'></image>
@@ -23,6 +20,6 @@
     </view>
     <view class="friendList-list">
          <view class="topText" wx:if="{{listData.length > 0}}">我的好友{{arrayNum}}</view>
-         <friendList bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" color="#3F82FD" />
+         <friendList bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" bottom-hight="{{bottomHight}}" color="#3F82FD" />
     </view>
 </view>

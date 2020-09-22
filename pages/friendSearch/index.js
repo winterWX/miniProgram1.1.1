@@ -116,7 +116,11 @@ Page({
     let friendData = that.data.friendArrayData.filter(item => item.mobile.indexOf(inputVal) > -1 );
     that.setData({showArray: inputVal === '' ? [] : friendData});
   },
-
+  onCancel:function(){
+    wx.navigateBack({
+      url: '../addFriend/index',
+    })
+  },
   hasAddFriend:function(){
     let that = this;
     wx.request({
@@ -140,11 +144,20 @@ Page({
   arryFriend:function(allData){
     let lastArryData = allData.map((item,index)=>{
         return {
-          avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
+          avatar: this.avatarSelect(item.avatar,item.avatarUrl),
           nickname: item.nickname,
           mobile: item.mobile
         }
     })
     return lastArryData;
+  },
+  avatarSelect:function(avatar,avatarUrl){
+    if(avatar !==''){
+        return this.data.avatarObjList[Number(avatar)-Number(1)].url;
+    }else if(avatar ==='' && avatarUrl !==''){
+        return avatarUrl;
+    }else{
+        return this.data.avatarObjList[12].url;
+    }
   }
 })
