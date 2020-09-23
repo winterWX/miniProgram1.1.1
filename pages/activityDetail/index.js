@@ -10,7 +10,8 @@ Page({
     width: 0,
     isLogin: 0,
     code: '',
-    isJoin: false
+    isJoin: false,
+    showDetail: true
   },
 
   /**
@@ -93,8 +94,13 @@ Page({
             content: res.data.data.content,
             ruledescription: res.data.data.ruledescription
           }
+          detail.mileStoneVo.unshift({
+            reward: 0,
+            mileStoneTarget: 0
+          });
+          // console.log(detail.)
           let isJoin = detail.isJoinStatus === '2';
-          that.setData({detail, isJoin});
+          that.setData({detail, isJoin, showDetail: !isJoin});
           if(!isJoin && goodsId) {
             that.joinActivity();
           }

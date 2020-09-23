@@ -101,15 +101,17 @@ page {
   white-space: nowrap;
   margin-bottom: 20rpx;
 }
-
-.milepost {
-  margin: 30rpx;
-  padding: 30rpx;
+.milepost-box {
   background-color: white;
-  height: 246rpx;
+  margin: 30rpx;
+  padding-bottom: 30rpx;
+}
+.milepost-box .milepost {
+  padding: 30rpx 30rpx 0 30rpx;
+  background-color: white;
+  height: 300rpx;
   position: relative;
 }
-
 .milepost .title {
   font-size: 32rpx;
   margin-bottom: 30rpx;
@@ -145,24 +147,33 @@ page {
 }
 
 .progress-box .progress .item {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 9rpx;
+  position: absolute;
+  display: inline-block;
+  background-color: #fff;
+  top: -8rpx;
+  transform: translate(-18rpx);
+}
+
+.progress-box .progress .cell:first-child .item {
+  transform: translate(5rpx);
+}
+
+.progress-box .progress .cell:last-child .item {
+  transform: translate(-26rpx);
+}
+.active-item {
   width: 18rpx;
   height: 18rpx;
   border-radius: 9rpx;
   position: absolute;
   display: inline-block;
   background-color: #fff;
-  top: 1rpx;
-  transform: translate(-18rpx);
+  top: 0rpx;
+  transform: translate(-11rpx);
 }
-
-.progress-box .progress .cell:first-child .item {
-  transform: translate(4rpx);
-}
-
-.progress-box .progress .cell:last-child .item {
-  transform: translate(-22rpx);
-}
-
 .progress-box .progress .cell .reward {
   font-size: 20rpx;
   background-color: #9B7C56;
@@ -172,16 +183,16 @@ page {
   border-radius: 14rpx;
   padding: 0 8rpx;
   bottom: 46rpx;
-  transform: translate(-60%);
+  transform: translate(-50%);
   color: #fff;
 }
 
 .progress-box .progress .cell:first-child .reward {
-  transform: translate(0);
+  transform: translate(4rpx);
 }
 
 .progress-box .progress .cell:last-child .reward {
-  transform: translate(-100%);
+  transform: translate(-90%);
   min-width: 76rpx;
   text-align: center;
 }
@@ -210,8 +221,8 @@ page {
 .num {
   position: absolute;
   width: auto;
-  transform: translate(-70%);
-  top: 22rpx;
+  transform: translate(-60%);
+  top: 30rpx;
   font-size: 24rpx;
   height: 34rpx;
   line-height: 34rpx;
@@ -228,11 +239,25 @@ page {
 
 .unit {
   position: absolute;
-  bottom: 30rpx;
+  width: 91%;
+  bottom: 0rpx;
   color: #929292;
   font-size: 24rpx;
 }
-
+.unit .unit-box {
+  display: flex;
+  justify-content: space-between;
+}
+.unit .unit-box .step {
+  color: #00A865;
+  font-size: 28rpx;
+}
+.reward-btn {
+  height: 90rpx;
+  margin: 30rpx 30rpx 0 30rpx;
+  background-color: #00A865;
+  color: white;
+}
 .activity-info {
   margin: 0 30rpx 30rpx 30rpx;
   background-color: #fff;
@@ -269,4 +294,10 @@ page {
   font-size: 32rpx;
   color: #ffffff;
   background-color: #D9D9D9;
+}
+.hero-list {
+  margin: 30rpx;
+  background-color: #fff;
+  text-align: center;
+  padding: 30rpx;
 }
