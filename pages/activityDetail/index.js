@@ -15,6 +15,8 @@ Page({
     showDetail: true,
     percent: 0,
     latestTime: 0,
+    reward: 0,
+    showAnimation: false
   },
 
   /**
@@ -139,33 +141,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getActivityDetail: function (id, goodsId = '') {
     let that = this;
     // wx.showToast({ title: '加载中', icon: 'loading' });
@@ -191,6 +166,7 @@ Page({
           if (detail.friendRank) {
             let currentStep = detail.friendRank.self.steps;
             that.calcPercent(currentStep, detail.mileStoneVo);
+            that.getCanReceiveReward(currentStep, detail.mileStoneVo);
           }
           let isJoin = detail.isJoinStatus === '2';
           that.setData({ detail, isJoin, showDetail: !isJoin });
@@ -203,6 +179,20 @@ Page({
         // wx.hideToast();
       }
     })
+  },
+ // 领取积分 
+  receiveReward: function() {
+    console.log('received-reward');
+    this.setData({showAnimation: true})
+  },
+  getCanReceiveReward: function(currentStep, arr) {
+    let reward = 0;
+    for (let item of arr) {
+      if (currentStep > arr[0].mileStoneTarget && item.mileStoneTarget < currentStep) {
+        reward += item.reward;
+      }
+    }
+    this.setData({reward});
   },
   calcPercent: function (currentNum, arr) {
     let currentValue = 27355;

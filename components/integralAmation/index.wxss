@@ -178,3 +178,17 @@
   }   
   
 }
+.display-num {
+  z-index: 50000;
+  position: absolute;
+  color: #927452;
+  font-size:40rpx;
+  top:16rpx;
+  right: 16rpx;
+  background-color: #f0ccab;
+  width: 78rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  text-align: center;
+  border-radius: 39rpx
+}

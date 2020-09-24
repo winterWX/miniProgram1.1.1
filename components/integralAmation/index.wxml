@@ -6,7 +6,11 @@
         <image  wx:if="{{integral === 10}}"   src="http://106.54.73.125:8104/images/miniprogram/images/img_0.png"   mode="aspectFit" />
         <image  wx:if="{{integral === 50}}"   src="http://106.54.73.125:8104/images/miniprogram/images/img_50.png"  mode="aspectFit" />
         <image  wx:if="{{integral === 100}}"  src="http://106.54.73.125:8104/images/miniprogram/images/img_100.png" mode="aspectFit" />
-      </view>
+        <view wx:if="{{integral !== 100 && integral !== 50 && integral !== 10}}" style="position: relative;">
+          <image  src="http://106.54.73.125:8104/images/miniprogram/images/img_0.png" mode="aspectFit" />
+          <text class="display-num">{{integral}}</text>
+        </view>
+      </view> 
       <view class="jifenAmation">
         <view class="rewardText">
           <view class="rewardTxtTitle">积分</view>

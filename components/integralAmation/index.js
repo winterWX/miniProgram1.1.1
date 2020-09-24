@@ -24,7 +24,7 @@ Component({
         }else{
           var result = value / 10 +1
           var numberAarry=[]
-          for (var i = 0; i < result; i++){
+          for (var i = 1; i < result; i++){
             numberAarry.push(i)
           }
         }
