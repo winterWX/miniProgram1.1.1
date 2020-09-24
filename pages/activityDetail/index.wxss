@@ -149,12 +149,13 @@ page {
 .progress-box .progress .item {
   width: 36rpx;
   height: 36rpx;
-  border-radius: 9rpx;
+  border-radius: 18rpx;
   position: absolute;
   display: inline-block;
   background-color: #fff;
   top: -8rpx;
   transform: translate(-18rpx);
+  z-index: 3;
 }
 
 .progress-box .progress .cell:first-child .item {

@@ -28,7 +28,7 @@
 			<view class="milepost">
 				<view class="title">里程碑</view>
 				<view class="progress-box">
-					<view class="percent"></view>
+					<view class="percent" style="width: {{percent}};"></view>
 					<view class="progress">
 						<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
 							<view class="active-item" wx:if="{{step.reward !== 0}}"
