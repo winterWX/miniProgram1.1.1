@@ -21,11 +21,7 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-<<<<<<< HEAD
-    "useMultiFrameRuntime": false,
-=======
     "useMultiFrameRuntime": true,
->>>>>>> 2cc75c7a95fcf8a0090397001bf8e4a932cff950
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
@@ -33,11 +29,7 @@
       "outputPath": ""
     },
     "useIsolateContext": true,
-<<<<<<< HEAD
-    "useCompilerModule": true,
-=======
     "useCompilerModule": false,
->>>>>>> 2cc75c7a95fcf8a0090397001bf8e4a932cff950
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": []
