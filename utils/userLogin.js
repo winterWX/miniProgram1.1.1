@@ -4,8 +4,7 @@ const newState = {
   newUserInfo :null,
   isLoginState : 0
 }
-function onLogin(result,data,isLogin) { //登录
-  console.log('===========',data,isLogin)
+function onLogin(result,data,isLogin) {     //登录
   wx.showLoading({
     title: 'loading...',
   })

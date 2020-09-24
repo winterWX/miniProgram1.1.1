@@ -18,6 +18,11 @@ Component({
 			value: 0,
 			observer: "dataChange"
 		},
+		bottomHight: {
+			type: Number,
+			value: 0,
+			observer: "dataChange"
+		},
 		// 颜色
 		color: {
 			type: String,
@@ -26,7 +31,7 @@ Component({
 		// 空状态的文字提示
 		emptyText: {
 			type: String,
-			value: "未找到数据"
+			value: ""
 		},
 		// 控制空状态的显示
 		emptyShow: {
@@ -110,88 +115,88 @@ Component({
 				}
 			}
 		},
-		/**
-		 * tree 触摸开始
-		 */
-		touchStart(e) {
-			// 获取触摸点信息
-			let startTouch = e.changedTouches[0];
-			if (!startTouch) return;
+		// /**
+		//  * tree 触摸开始
+		//  */
+		// touchStart(e) {
+		// 	// 获取触摸点信息
+		// 	let startTouch = e.changedTouches[0];
+		// 	if (!startTouch) return;
 
-			this.setData({touching: true});
+		// 	this.setData({touching: true});
 
-			let treeItemCur = this.getCurrentTreeItem(startTouch.pageY);
-			this.setValue(treeItemCur);
-		},
-		/**
-		 * tree 触摸移动
-		 */
-		touchMove(e) {
-			// 获取触摸点信息
-			let currentTouch = e.changedTouches[0];
-			if (!currentTouch) return;
+		// 	let treeItemCur = this.getCurrentTreeItem(startTouch.pageY);
+		// 	this.setValue(treeItemCur);
+		// },
+		// /**
+		//  * tree 触摸移动
+		//  */
+		// touchMove(e) {
+		// 	// 获取触摸点信息
+		// 	let currentTouch = e.changedTouches[0];
+		// 	if (!currentTouch) return;
 
-			// 滑动结束后迅速开始第二次滑动时候 touching 为 false 造成不显示 indicator 问题
-			if (!this.data.touching) {
-				this.setData({
-					touching: true
-				});
-			}
+		// 	// 滑动结束后迅速开始第二次滑动时候 touching 为 false 造成不显示 indicator 问题
+		// 	if (!this.data.touching) {
+		// 		this.setData({
+		// 			touching: true
+		// 		});
+		// 	}
 
-			let treeItemCur = this.getCurrentTreeItem(currentTouch.pageY);
-			this.setValue(treeItemCur);
-		},
+		// 	let treeItemCur = this.getCurrentTreeItem(currentTouch.pageY);
+		// 	this.setValue(treeItemCur);
+		// },
 		/**
 		 * 获取当前触摸的 tree-item
-		 * @param pageY: 当前触摸点pageY
-		 */
-		getCurrentTreeItem(pageY) {
-			let {treeTop, treeBottom, itemHeight, itemMount} = this.data.treeInfo;
+		//  * @param pageY: 当前触摸点pageY
+		//  */
+		// getCurrentTreeItem(pageY) {
+		// 	let {treeTop, treeBottom, itemHeight, itemMount} = this.data.treeInfo;
 
-			if (pageY < treeTop) {
-				return 0;
-			} else if (pageY >= treeBottom) {
-				return itemMount - 1;
-			} else {
-				return Math.floor((pageY - treeTop) / itemHeight);
-			}
-		},
+		// 	if (pageY < treeTop) {
+		// 		return 0;
+		// 	} else if (pageY >= treeBottom) {
+		// 		return itemMount - 1;
+		// 	} else {
+		// 		return Math.floor((pageY - treeTop) / itemHeight);
+		// 	}
+		// },
 		/**
 		 * 触摸之后后设置对应value
 		 */
-		setValue(treeItemCur) {
-			if (treeItemCur === this.data.treeItemCur) return;
+		// setValue(treeItemCur) {
+		// 	if (treeItemCur === this.data.treeItemCur) return;
 
-			let block = this.data.blocks[treeItemCur];
-			if (!block) return;
+		// 	let block = this.data.blocks[treeItemCur];
+		// 	if (!block) return;
 
-			let {
-					scrollTop,
-					scrollIndex
-				} = block,
-				indicatorTop = this.data.indicatorTopList[treeItemCur];
+		// 	let {
+		// 			scrollTop,
+		// 			scrollIndex
+		// 		} = block,
+		// 		indicatorTop = this.data.indicatorTopList[treeItemCur];
 
-			this.setData({
-				style1: "",
-				style2: "",
-				treeItemCur: treeItemCur,
-				scrollTop: scrollTop,
-				listItemCur: scrollIndex,
-				indicatorTop: indicatorTop
-			});
+		// 	this.setData({
+		// 		style1: "",
+		// 		style2: "",
+		// 		treeItemCur: treeItemCur,
+		// 		scrollTop: scrollTop,
+		// 		listItemCur: scrollIndex,
+		// 		indicatorTop: indicatorTop
+		// 	});
 
-			if (this.data.platform !== "devtools") wx.vibrateShort();
-		},
+		// 	if (this.data.platform !== "devtools") wx.vibrateShort();
+		// },
 		/**
 		 * 清除参数
 		 */
 		clearData() {
 			this.setData({
-				treeItemCur: 0, // 索引树的聚焦项
-				listItemCur: 0, // 节点树的聚焦项
-				touching: false, // 是否在触摸索引树中
-				scrollTop: 0, // 节点树滚动高度
-				indicatorTop: -1, // 指示器顶部距离
+				treeItemCur: 0,  // 索引树的聚焦项
+				listItemCur: 0,  // 节点树的聚焦项
+				touching: false,  // 是否在触摸索引树中
+				scrollTop: 0,   // 节点树滚动高度
+				indicatorTop: -1,   // 指示器顶部距离
 				treeKeyTran: false,
 				style1: "",
 				style2: ""

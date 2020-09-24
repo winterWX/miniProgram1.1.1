@@ -1,7 +1,7 @@
 <view>
-	<view class="view-wrap">
+	<view class="view-wrap" style="height:{{bottomHight}}rpx;">
 		<scroll-view class="scroll-view"
-					 style="height: calc(100vh - {{topSize + bottomSize}}rpx);"
+		             style="height:{{bottomHight}}rpx;"
 					 scroll-y
 					 scroll-top="{{scrollTop}}"
 					 bind:scroll="scroll">

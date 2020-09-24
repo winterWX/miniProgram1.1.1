@@ -58,7 +58,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    that.setData({ noArray:true });
+    // that.setData({ noArray:true });
     that.hasAddFriend();
   },
 
@@ -111,18 +111,15 @@ Page({
 
   },
   onChange:function(event){
-    console.log(event.detail);
     let that = this;
-    that.setData({ noArray: false });
     let inputVal = event.detail;
-    let friendData = that.data.friendArrayData.findIndex((item,index)=>{
-        return item.mobile === inputVal;
+    let friendData = that.data.friendArrayData.filter(item => item.mobile.indexOf(inputVal) > -1 );
+    that.setData({showArray: inputVal === '' ? [] : friendData});
+  },
+  onCancel:function(){
+    wx.navigateBack({
+      url: '../addFriend/index',
     })
-    if(friendData > -1 ){
-       that.setData({ showArray : that.data.friendArrayData.splice(friendData,1)})
-    }else{
-      that.setData({ noArray:true,showArray:[]});
-    }
   },
   hasAddFriend:function(){
     let that = this;
@@ -147,11 +144,20 @@ Page({
   arryFriend:function(allData){
     let lastArryData = allData.map((item,index)=>{
         return {
-          avatar: item.avatar !== '' ? this.data.avatarObjList[Number(item.avatar)-Number(1)].url : this.data.avatarObjList[12].url,
+          avatar: this.avatarSelect(item.avatar,item.avatarUrl),
           nickname: item.nickname,
           mobile: item.mobile
         }
     })
     return lastArryData;
+  },
+  avatarSelect:function(avatar,avatarUrl){
+    if(avatar !==''){
+        return this.data.avatarObjList[Number(avatar)-Number(1)].url;
+    }else if(avatar ==='' && avatarUrl !==''){
+        return avatarUrl;
+    }else{
+        return this.data.avatarObjList[12].url;
+    }
   }
 })

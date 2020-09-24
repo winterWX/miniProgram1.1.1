@@ -20,9 +20,9 @@
           <view class="topBlock_text2"><view class="textli">“快快加我为好友，一起在恒生健康运动打卡吧”</view></view>
           <view class="topBlock_btnTom"><van-button type="primary" width="400rpx" 
           open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即添加</van-button></view>
-          <view class="bottom-image">
+          <!-- <view class="bottom-image">
               <image class="topBlock_image2"  src="http://106.54.73.125:8104/images/miniprogram/images/addFriend/icon-close@2x.png" />
-          </view>
+          </view> -->
        </view>
     </view>
     <view wx:if="{{friendList.length === 0 && listHiden}}" class="imageShow">
