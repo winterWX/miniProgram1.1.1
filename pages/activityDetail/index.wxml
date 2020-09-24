@@ -1,6 +1,7 @@
 <view class="container">
 	<view wx:if="{{detail.status === 3}}" class="disable-tip">
-		<image class="disable-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/circle-info.png"></image>
+		<image class="disable-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/circle-info.png">
+		</image>
 		<text>活动已结束</text>
 	</view>
 	<view class="main">
@@ -14,46 +15,68 @@
 					<text>{{detail.description}}</text>
 				</view>
 				<view class="remain-days" wx:if="{{detail.status === 2}}">
-						<image class="time-icon" src="../../image/active-left-time.png"></image>
-						<text>剩余{{detail.days}}天</text>
-					</view>
-					<view class="over" wx:if="{{detail.status === 3}}">
-						<text>已结束</text>
-					</view>
+					<image class="time-icon" src="../../image/active-left-time.png"></image>
+					<text>剩余{{detail.days}}天</text>
+				</view>
+				<view class="over" wx:if="{{detail.status === 3}}">
+					<text>已结束</text>
+				</view>
 			</view>
 		</view>
 		<!-- 里程碑 -->
-		<view class="milepost">
-			<view class="title">里程碑</view>
-			<view class="progress-box">
-				<view class="percent"></view>
-				<view class="progress">
-					<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
-						<view class="item" style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></view>
-						<view class="reward" style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}">
-							{{step.reward}}积分
-							<view class="arrow"></view>
+		<view class="milepost-box">
+			<view class="milepost">
+				<view class="title">里程碑</view>
+				<view class="progress-box">
+					<view class="percent" style="width: {{percent}};"></view>
+					<view class="progress">
+						<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
+							<view class="active-item" wx:if="{{step.reward !== 0}}"
+								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}};"></view>
+							<image src="../../image/star.png" class="item" wx:if="{{step.reward !==0}}"
+								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></image>
+							<view wx:if="{{step.reward !==0}}" class="reward"
+								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}">
+								{{step.reward}}积分
+								<view class="arrow"></view>
+							</view>
+							<view class="num" style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}">
+								{{step.mileStoneTarget}}</view>
 						</view>
-						<view class="num" style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}">{{step.mileStoneTarget}}</view>
+					</view>
+				</view>
+				<view class="unit">
+					<view class="unit-box">
+						<view wx:if="{{detail.friendRank}}">
+							累计步数 <text class="step">{{detail.friendRank.self.steps}}</text>
+						</view>
+						<view class="unit-box__unit">单位： 步</view>
 					</view>
 				</view>
 			</view>
-			<view class="unit">单位： 步</view>
+			<button wx:if="{{isJoin}}" class="reward-btn">点击领取20积分</button>
 		</view>
-		<view class="activity-info">
-			<view class="info-title">活动详情</view>
-			<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
+		<view wx:if="{{showDetail}}">
+			<view class="activity-info">
+				<view class="info-title">活动详情</view>
+				<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
+			</view>
+			<view class="activity-info">
+				<view class="info-title">活动规则及声明</view>
+				<rich-text class="content" type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
+			</view>
+			<view class="btn-box">
+				<button wx:if="{{isLogin === 0 && detail.status ===2 && !isJoin}}" class="btn" type="primary" size="large"
+					open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
+				<button wx:if="{{isLogin === 1 && detail.status ===2 && !isJoin}}" class="btn" catchtap="joinActivity"
+					data-id="{{detail.activityId}}">一键参与</button>
+				<button wx:if="{{detail.status === 2 && isJoin}}" class="dis-btn">已报名</button>
+				<button wx:if="{{detail.status === 1}}" class="dis-btn">未开始</button>
+				<button wx:if="{{detail.status === 3}}" class="dis-btn">活动已结束</button>
+			</view>
 		</view>
-		<view class="activity-info">
-			<view class="info-title">活动规则及声明</view>
-			<rich-text class="content" type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
+		<view wx:if="{{!showDetail}}" class="hero-list">
+			英雄榜
 		</view>
-	</view>
-	<view class="btn-box">
-		<button wx:if="{{isLogin === 0 && detail.status ===2 && !isJoin}}" class="btn" type="primary" size="large" open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
-		<button wx:if="{{isLogin === 1 && detail.status ===2 && !isJoin}}" class="btn" catchtap="joinActivity" data-id="{{detail.activityId}}">一键参与</button>
-		<button wx:if="{{detail.status === 2 && isJoin}}" class="dis-btn">已报名</button>
-		<button wx:if="{{detail.status === 1}}" class="dis-btn">未开始</button>
-		<button wx:if="{{detail.status === 3}}" class="dis-btn">活动已结束</button>
 	</view>
 </view>

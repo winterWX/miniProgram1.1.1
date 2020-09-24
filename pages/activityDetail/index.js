@@ -10,7 +10,9 @@ Page({
     width: 0,
     isLogin: 0,
     code: '',
-    isJoin: false
+    isJoin: false,
+    showDetail: true,
+    percent: 0
   },
 
   /**
@@ -93,8 +95,16 @@ Page({
             content: res.data.data.content,
             ruledescription: res.data.data.ruledescription
           }
+          detail.mileStoneVo.unshift({
+            reward: 0,
+            mileStoneTarget: 0
+          });
+          if (detail.friendRank) {
+            let currentStep = detail.friendRank.self.steps;
+            that.calcPercent(currentStep, detail.mileStoneVo);
+          }
           let isJoin = detail.isJoinStatus === '2';
-          that.setData({detail, isJoin});
+          that.setData({detail, isJoin, showDetail: !isJoin});
           if(!isJoin && goodsId) {
             that.joinActivity();
           }
@@ -104,6 +114,20 @@ Page({
         wx.hideToast();
       }
     })
+  },
+  calcPercent: function (currentNum, arr){
+    let currentValue = 27355;
+    let result = 0;
+    for (let item of arr) {
+      if (item.mileStoneTarget - currentValue > 0) {
+        result = item;
+        break;
+      }
+    }
+    let index = arr.indexOf(result);
+    let ratio = parseInt((100 / (arr.length - 1))) * index;
+    let percent = `${parseInt((currentNum * ratio) / result.mileStoneTarget)}%`;
+    this.setData({percent})
   },
   userLogin(data) {
     let that = this;
