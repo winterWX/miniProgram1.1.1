@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "integral-act：":"../../components/IntegralAct",
+    "membership-card":"../../components/membershipCard"
+  },
+  "navigationBarTitleText": "会员等级",
+  "navigationBarTextStyle": "black"
+}

@@ -29,7 +29,9 @@
     "pages/addFriend/index",
     "pages/newFriend/index",
     "pages/myActivity/index",
-    "pages/friendSearch/index"
+    "pages/friendSearch/index",
+    "pages/silverDetail/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
