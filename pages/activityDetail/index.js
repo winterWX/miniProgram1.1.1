@@ -16,7 +16,8 @@ Page({
     percent: 0,
     latestTime: 0,
     reward: 0,
-    showAnimation: false
+    showAnimation: false,
+    receivedReward: false
   },
 
   /**
@@ -167,6 +168,7 @@ Page({
             let currentStep = detail.friendRank.self.steps;
             that.calcPercent(currentStep, detail.mileStoneVo);
             that.getCanReceiveReward(currentStep, detail.mileStoneVo);
+            that.judgeReceivedStatus(detail.mileStoneVo);
           }
           let isJoin = detail.isJoinStatus === '2';
           that.setData({ detail, isJoin, showDetail: !isJoin });
@@ -180,15 +182,41 @@ Page({
       }
     })
   },
+  judgeReceivedStatus: function(arr) {
+    for (let item of arr) {
+      if(item.received === 1) {
+        this.setData({receivedReward: true});
+      }
+    }
+  },
  // 领取积分 
   receiveReward: function() {
-    console.log('received-reward');
-    this.setData({showAnimation: true})
+    let that = this;
+    let { reward, activityId } = this.data;
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/myactivity/integral/receive',
+      method: "POST",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      data: {
+        activityId,
+        integral: reward
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          that.setData({showAnimation: true, receivedReward: true})
+        }
+      },
+      fail: function (res) {
+      }
+    })
   },
   getCanReceiveReward: function(currentStep, arr) {
     let reward = 0;
     for (let item of arr) {
-      if (currentStep > arr[0].mileStoneTarget && item.mileStoneTarget < currentStep) {
+      if (item.received === 2) {
         reward += item.reward;
       }
     }
