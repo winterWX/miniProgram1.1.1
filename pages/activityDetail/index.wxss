@@ -169,7 +169,7 @@ page {
   transform: translate(-26rpx);
 }
 
-.active-item {
+.progress-box .progress .cell .active-item {
   width: 18rpx;
   height: 18rpx;
   border-radius: 9rpx;
@@ -179,7 +179,9 @@ page {
   top: 1rpx;
   transform: translate(-8rpx);
 }
-
+.progress-box .progress .cell:last-child .active-item {
+  transform: translate(-20rpx);
+}
 .progress-box .progress .cell .reward {
   font-size: 20rpx;
   background-color: #9B7C56;
@@ -384,6 +386,7 @@ page {
 .member-box .step-show text {
   font-size: 24rpx;
   color: #929292;
+  margin-left: 10rpx;
 }
 
 .medal {

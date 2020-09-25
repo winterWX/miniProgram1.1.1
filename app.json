@@ -31,7 +31,8 @@
     "pages/myActivity/index",
     "pages/friendSearch/index",
     "pages/silverDetail/index",
-    "pages/heroList/index"
+    "pages/heroList/index",
+    "pages/activityResult/index"
 
   ],
   "window": {
