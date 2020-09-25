@@ -21,7 +21,8 @@ Page({
     receivedReward: false,
     self: {},
     heroList: [],
-    defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png'
+    defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+    completeChange: false
   },
 
   /**
@@ -92,13 +93,11 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
-        // wx.hideToast();
         if (res.data.code == 200) {
           that.setData({ latestTime: res.data.data });
         }
       },
       fail: function (res) {
-        // wx.hideToast();
       }
     })
   },
@@ -112,7 +111,6 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
-        // wx.hideToast();
         if (res.data.code == 200) {
           // 1 微信用户 2 APP用户
           if (res.data.data === 1) {
@@ -121,7 +119,6 @@ Page({
         }
       },
       fail: function (res) {
-        // wx.hideToast();
       }
     })
   },
@@ -147,7 +144,6 @@ Page({
 
   getActivityDetail: function (id, goodsId = '') {
     let that = this;
-    // wx.showToast({ title: '加载中', icon: 'loading' });
     wx.request({
       url: app.globalData.baseUrl + '/remote/myactivity/detail/' + id,
       method: "GET",
@@ -156,7 +152,6 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
-        // wx.hideToast();
         if (res.data.code == 200) {
           let detail = {
             ...res.data.data,
@@ -165,8 +160,11 @@ Page({
           }
           detail.mileStoneVo.unshift({
             reward: 0,
-            mileStoneTarget: 0
+            mileStoneTarget: 0,
+            received: 5
           });
+          // 判断挑战是否完成并且领取积分
+          let completeChange = detail.mileStoneVo[detail.mileStoneVo.length - 1].received === 1;
           if (detail.friendRank) {
             let { self = {}, friend = []} = detail.friendRank;
             let currentStep = detail.friendRank.self.steps;
@@ -177,14 +175,13 @@ Page({
             that.setData({self, heroList});
           }
           let isJoin = detail.isJoinStatus === '2';
-          that.setData({ detail, isJoin, showDetail: !isJoin });
+          that.setData({ detail, isJoin, showDetail: !isJoin, completeChange });
           if (!isJoin && goodsId) {
             that.joinActivity();
           }
         }
       },
       fail: function (res) {
-        // wx.hideToast();
       }
     })
   },
@@ -198,7 +195,7 @@ Page({
  // 领取积分 
   receiveReward: function() {
     let that = this;
-    let { reward, activityId } = this.data;
+    let { reward, activityId, detail: { mileStoneVo } } = this.data;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myactivity/integral/receive',
       method: "POST",
@@ -212,10 +209,27 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          that.setData({showAnimation: true, receivedReward: true})
+          let mileStoneVos = that.updateTargetStatus(mileStoneVo);
+          detail.mileStoneVo = mileStoneVos;
+          let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
+          that.setData({showAnimation: true, receivedReward: true, detail});
+          if (completeChange) {
+            wx.navigateTo({
+              url: '../activityResult/index'
+            })
+          }
         }
       },
       fail: function (res) {
+      }
+    })
+  },
+  // 领取积分之后更新数据的领取状态
+  updateTargetStatus: function(arr) {
+    return arr.map((item) => {
+      return {
+        ...item,
+        received: item.received === 2 ? 1 : item.received
       }
     })
   },
@@ -359,7 +373,9 @@ Page({
       success: function (res) {
         wx.hideToast();
         if (res.data.code == 200) {
-          that.setData({ isJoin: true });
+          let { activityId } = that.data;
+          that.setData({ isJoin: true, showDetail: false });
+          that.getActivityDetail(activityId);
           wx.showToast({
             title: '参与成功',
             icon: 'successS'
@@ -377,6 +393,12 @@ Page({
         ...item,
         completeTime: item.completeTime ? Utils.formatTime(new Date(item.completeTime * 1000), true) : ''
       }
+    })
+  },
+  // 跳转到挑战结果页面
+  navigateActivityResult: function() {
+    wx.navigateTo({
+      url: '../activityResult/index'
     })
   }
 })
