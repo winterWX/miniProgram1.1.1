@@ -330,7 +330,7 @@ page {
 .member-box {
   display: flex;
   align-items: center;
-  padding: 30rpx 0 30rpx 54rpx;
+  padding: 30rpx 0 30rpx 60rpx;
   border-bottom: 2rpx solid #ededed;
 }
 
@@ -350,7 +350,7 @@ page {
 .member-info .index {
   color: #929292;
   font-size: 44rpx;
-  margin-right: 30rpx;
+  width: 60rpx;
 }
 
 .member-info .order {
