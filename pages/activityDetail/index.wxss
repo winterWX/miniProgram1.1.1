@@ -172,8 +172,8 @@ page {
   position: absolute;
   display: inline-block;
   background-color: #fff;
-  top: 0rpx;
-  transform: translate(-11rpx);
+  top: 1rpx;
+  transform: translate(-8rpx);
 }
 .progress-box .progress .cell .reward {
   font-size: 20rpx;
@@ -258,6 +258,12 @@ page {
   margin: 30rpx 30rpx 0 30rpx;
   background-color: #00A865;
   color: white;
+}
+.reward-dis-btn {
+  height: 90rpx;
+  margin: 30rpx 30rpx 0 30rpx;
+  background-color: #D9D9D9;
+  color: #fff;
 }
 .activity-info {
   margin: 0 30rpx 30rpx 30rpx;
