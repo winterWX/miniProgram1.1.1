@@ -1,11 +1,17 @@
-const formatTime = date => {
+const formatTime = (date, flag=false) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  let paddingTime = [year, month, day].map(formatNumber);
+  let result = paddingTime.join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+  if (flag) {
+    let [y, m, d] = paddingTime;
+    result = `${y}年${m}月${d}日 ${[hour, minute, second].map(formatNumber).join(':')}`
+  };
+  return result;
 }
 
 const timestampToTime = timestamp => {
