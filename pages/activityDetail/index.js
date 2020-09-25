@@ -1,5 +1,6 @@
 let app = getApp();
 let step = require('../../utils/authorizeRun');
+let Utils = require('../../utils/util');
 Page({
 
   /**
@@ -17,7 +18,10 @@ Page({
     latestTime: 0,
     reward: 0,
     showAnimation: false,
-    receivedReward: false
+    receivedReward: false,
+    self: {},
+    heroList: [],
+    defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png'
   },
 
   /**
@@ -125,7 +129,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log(Utils.formatTime(new Date(), true));
   },
 
   /**
@@ -165,10 +169,13 @@ Page({
             mileStoneTarget: 0
           });
           if (detail.friendRank) {
+            let { self = {}, friend = []} = detail.friendRank;
             let currentStep = detail.friendRank.self.steps;
             that.calcPercent(currentStep, detail.mileStoneVo);
             that.getCanReceiveReward(currentStep, detail.mileStoneVo);
             that.judgeReceivedStatus(detail.mileStoneVo);
+            let heroList = that.operateHeroData(friend);
+            that.setData({self, heroList});
           }
           let isJoin = detail.isJoinStatus === '2';
           that.setData({ detail, isJoin, showDetail: !isJoin });
@@ -363,5 +370,13 @@ Page({
         wx.hideToast();
       }
     });
+  },
+  operateHeroData: function(arr) {
+    return arr.map(item => {
+      return {
+        ...item,
+        completeTime: item.completeTime ? Utils.formatTime(new Date(item.completeTime * 1000), true) : ''
+      }
+    })
   }
 })

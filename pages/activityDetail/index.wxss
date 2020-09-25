@@ -101,17 +101,20 @@ page {
   white-space: nowrap;
   margin-bottom: 20rpx;
 }
+
 .milepost-box {
   background-color: white;
   margin: 30rpx;
   padding-bottom: 30rpx;
 }
+
 .milepost-box .milepost {
   padding: 30rpx 30rpx 0 30rpx;
   background-color: white;
   height: 300rpx;
   position: relative;
 }
+
 .milepost .title {
   font-size: 32rpx;
   margin-bottom: 30rpx;
@@ -165,6 +168,7 @@ page {
 .progress-box .progress .cell:last-child .item {
   transform: translate(-26rpx);
 }
+
 .active-item {
   width: 18rpx;
   height: 18rpx;
@@ -175,6 +179,7 @@ page {
   top: 1rpx;
   transform: translate(-8rpx);
 }
+
 .progress-box .progress .cell .reward {
   font-size: 20rpx;
   background-color: #9B7C56;
@@ -245,26 +250,31 @@ page {
   color: #929292;
   font-size: 24rpx;
 }
+
 .unit .unit-box {
   display: flex;
   justify-content: space-between;
 }
+
 .unit .unit-box .step {
   color: #00A865;
   font-size: 28rpx;
 }
+
 .reward-btn {
   height: 90rpx;
   margin: 30rpx 30rpx 0 30rpx;
   background-color: #00A865;
   color: white;
 }
+
 .reward-dis-btn {
   height: 90rpx;
   margin: 30rpx 30rpx 0 30rpx;
   background-color: #D9D9D9;
   color: #fff;
 }
+
 .activity-info {
   margin: 0 30rpx 30rpx 30rpx;
   background-color: #fff;
@@ -302,9 +312,93 @@ page {
   color: #ffffff;
   background-color: #D9D9D9;
 }
+
 .hero-list {
   margin: 30rpx;
-  background-color: #fff;
-  text-align: center;
   padding: 30rpx;
+  background-color: #ffffff;
+}
+
+.hero-list .hero-list-title {
+  color: #333333;
+  font-size: 32rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  font-weight: bolder;
+}
+
+.member-box {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0 30rpx 54rpx;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.member-box .member-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.member-box .member-info .header {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  margin-right: 20rpx;
+}
+
+.member-info .index {
+  color: #929292;
+  font-size: 44rpx;
+  margin-right: 30rpx;
+}
+
+.member-info .order {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.member-info .order .nickname {
+  color: #00A865;
+  font-size: 28rpx;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300rpx;
+  margin-bottom: 10rpx;
+}
+
+.member-info .order .rank {
+  color: #929292;
+  font-size: 24rpx;
+}
+
+.member-box .step-show {
+  color: #333333;
+  font-size: 44rpx;
+}
+
+.member-box .step-show text {
+  font-size: 24rpx;
+  color: #929292;
+}
+
+.medal {
+  width: 60rpx;
+  height: 76rpx;
+}
+.pl0 {
+  padding-left: 0;
+}
+.active {
+  color: #00A865!important;
+}
+.more {
+  color: #333333;
+  font-size: 28rpx;
+  text-align: center;
+  padding: 20rpx 0rpx 0 0;
 }
