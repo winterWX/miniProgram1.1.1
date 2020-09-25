@@ -103,7 +103,7 @@
 				<view class="step-show" wx:if="{{!hero.completeTime}}">{{hero.steps}}<text>步</text></view>
 				<image src="../../image/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image>
 			</view>
-			<navigator wx:if="{{heroList.length}}" hover-class="none" url="../heroList/index">
+			<navigator wx:if="{{heroList.length}}" hover-class="none" url="../heroList/index?id={{activityId}}">
 				<view class="more">查看更多</view>
 			</navigator>
 		</view>

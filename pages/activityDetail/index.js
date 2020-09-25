@@ -129,7 +129,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log(Utils.formatTime(new Date(), true));
   },
 
   /**
@@ -240,7 +239,8 @@ Page({
     }
     let index = arr.indexOf(result);
     let ratio = parseInt((100 / (arr.length - 1))) * index;
-    let percent = `${parseInt((currentNum * ratio) / result.mileStoneTarget)}%`;
+    let percentNum = parseInt((currentNum * ratio) / result.mileStoneTarget);
+    let percent = `${percentNum > 100 ? 100 :percentNum}%`;
     this.setData({ percent })
   },
   userLogin(data) {
