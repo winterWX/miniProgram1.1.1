@@ -1,0 +1,19 @@
+page{
+  background-color: #ededed;
+}
+.topLeftBlock{
+   display: flex;
+   align-items: center;
+   justify-self: center;
+   background-color: #ffffff;
+   padding: 10rpx 0rpx;
+   padding-left: 30rpx;
+   position: relative;
+}
+.topLeftBlock image{
+  width: 650rpx;
+  height: 288rpx;
+}
+.itemImage{
+   margin-right: 20rpx;
+}

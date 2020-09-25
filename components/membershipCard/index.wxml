@@ -1,0 +1,7 @@
+<view>
+   <view class="topLeftBlock">
+        <view class="itemImage" catchtouchstart='touchStart' catchtouchend="touchEnd"><image src="../../image/silver/bg-bronze@3x.png" /></view>
+        <view class="itemImage" catchtouchstart='touchStart' catchtouchend="touchEnd"><image src="../../image/silver/silver-bg@3x.png" /></view>
+        <view class="itemImage" catchtouchstart='touchStart' catchtouchend="touchEnd"><image src="../../image/silver/gold-bg@3x.png" /></view>
+   </view>
+</view>
