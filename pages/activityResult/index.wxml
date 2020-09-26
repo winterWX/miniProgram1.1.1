@@ -1,2 +1,12 @@
-<!--pages/activityResult/index.wxml-->
-<text>pages/activityResult/index.wxml</text>
+<view class="activity-result">
+  <view class="activity" catchtap="navigateDetail">活动详情</view>
+  <image class="header" src="{{self.avatarUrl ? self.avatarUrl : defaultIcon}}"></image>
+  <image class="success-icon" src="../../image/success.png"></image>
+  <view class="rank-info">
+    <view class="tip text-middle">恭喜完成周周步数挑战赛</view>
+    <view class="reward-tip text-middle">恭喜您获得积分</view>
+    <view class="reward text-middle"><text>{{self.receivedIntegral}}</text></view>
+    <view class="rank text-middle">好友排名</view>
+    <view class="rank-num text-middle">{{self.rank}}</view>
+  </view>
+</view>

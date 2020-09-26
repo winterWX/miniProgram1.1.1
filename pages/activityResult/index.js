@@ -1,18 +1,22 @@
-// pages/activityResult/index.js
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id: '',
+    defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+    self: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let { id } = options;
+    this.setData({id});
+    this.getActivityInfo(id);
   },
 
   /**
@@ -61,6 +65,34 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    wx.showShareMenu();
+  },
+  getActivityInfo: function(id) {
+    let that = this;
+      wx.showToast({ title: '加载中', icon: 'loading' });
+      wx.request({
+        url: app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id,
+        method: "POST",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        success: function (res) {
+          wx.hideToast();
+          if (res.data.code == 200) {
+            let { self } = res.data.data;
+            that.setData({self});
+          }
+        },
+        fail: function (res) {
+          wx.hideToast();
+        }
+      })
+  },
+  navigateDetail: function() {
+    let { id } = this.data;
+    wx.navigateTo({
+      url: '../activityDetail/index?id=' + id
+    })
   }
 })
