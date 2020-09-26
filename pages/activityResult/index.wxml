@@ -5,8 +5,8 @@
   <view class="rank-info">
     <view class="tip text-middle">恭喜完成周周步数挑战赛</view>
     <view class="reward-tip text-middle">恭喜您获得积分</view>
-    <view class="reward text-middle"><text>{{self.receivedIntegral}}</text></view>
+    <view class="reward text-middle"><text>{{self.receivedIntegral ? self.receivedIntegral : 0}}</text></view>
     <view class="rank text-middle">好友排名</view>
-    <view class="rank-num text-middle">{{self.rank}}</view>
+    <view class="rank-num text-middle">{{self.rank ? self.rank : '--'}}</view>
   </view>
 </view>

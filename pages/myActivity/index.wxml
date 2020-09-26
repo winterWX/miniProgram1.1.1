@@ -14,9 +14,6 @@
 			</view>
 		</view>
 	</view>
-	<view class="past-activity">
-		<text>历史记录仅保留一年</text>
-	</view>
 </view>
 <view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">
 	<view class="content-box">

@@ -1,0 +1,7 @@
+<view class="box">
+  <view class="">
+    <image class="star" src="../../image/picPoints.png"></image>
+    <view class="tip">恭喜挑战完成 共获得<text class="reward"> {{reward}} </text>积分！</view>
+    <button class="btn" catchtap="navigateActivityResult">查看战绩</button>
+  </view>
+</view>

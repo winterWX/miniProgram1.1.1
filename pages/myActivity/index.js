@@ -108,5 +108,11 @@ Page({
     wx.navigateTo({
       url: '../challenge/index'
     })
+  },
+  navigatorDetail: function(e) {
+    let {title,id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: '../activityDetail/index?id=' + id + '&title=' + title,
+    })
   }
 })
