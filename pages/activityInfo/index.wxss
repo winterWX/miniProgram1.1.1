@@ -157,7 +157,7 @@ page {
   z-index: 3;
 }
 
-.progress-box .progress .item {
+/* .progress-box .progress .item {
   width: 36rpx;
   height: 36rpx;
   border-radius: 18rpx;
@@ -167,15 +167,15 @@ page {
   top: -8rpx;
   transform: translate(-18rpx);
   z-index: 3;
-}
+} */
 
-.progress-box .progress .cell:first-child .item {
+/* .progress-box .progress .cell:first-child .item {
   transform: translate(5rpx);
-}
+} */
 
-.progress-box .progress .cell:last-child .item {
+/* .progress-box .progress .cell:last-child .item {
   transform: translate(-26rpx);
-}
+} */
 
 .progress-box .progress .cell .active-item {
   width: 18rpx;
@@ -266,25 +266,6 @@ page {
   justify-content: space-between;
 }
 
-.unit .unit-box .step {
-  color: #00A865;
-  font-size: 28rpx;
-}
-
-.reward-btn {
-  height: 90rpx;
-  margin: 30rpx 30rpx 0 30rpx;
-  background-color: #00A865;
-  color: white;
-}
-
-.reward-dis-btn {
-  height: 90rpx;
-  margin: 30rpx 30rpx 0 30rpx;
-  background-color: #D9D9D9;
-  color: #fff;
-}
-
 .activity-info {
   margin: 0 30rpx 30rpx 30rpx;
   background-color: #fff;
@@ -304,7 +285,7 @@ page {
   color: #333333;
 }
 
-.btn-box {
+/* .btn-box {
   background-color: #fff;
   padding: 20rpx 30rpx;
 }
@@ -314,7 +295,7 @@ page {
   font-size: 32rpx;
   color: #D9D9D9;
   background-color: #00a865;
-}
+} */
 
 .btn-box .dis-btn {
   width: 100%;
@@ -323,7 +304,7 @@ page {
   background-color: #D9D9D9;
 }
 
-.hero-list {
+/* .hero-list {
   margin: 30rpx;
   padding: 30rpx;
   background-color: #ffffff;
@@ -412,4 +393,4 @@ page {
   font-size: 28rpx;
   text-align: center;
   padding: 20rpx 0rpx 0 0;
-}
+} */

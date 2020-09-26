@@ -22,7 +22,8 @@ Page({
     self: {},
     heroList: [],
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
-    completeChange: false
+    completeChange: false,
+    allReward: 0
   },
 
   /**
@@ -185,6 +186,13 @@ Page({
       }
     })
   },
+  calcActivityAllReward: function(arr) {
+    let result = 0;
+    for (let item of arr) {
+      result += item.reward;
+    }
+    return result;
+  },
   judgeReceivedStatus: function(arr) {
     for (let item of arr) {
       if(item.received === 1) {
@@ -195,7 +203,7 @@ Page({
  // 领取积分 
   receiveReward: function() {
     let that = this;
-    let { reward, activityId, detail: { mileStoneVo } } = this.data;
+    let { reward, activityId, detail } = this.data;
     wx.request({
       url: app.globalData.baseUrl + '/remote/myactivity/integral/receive',
       method: "POST",
@@ -209,13 +217,14 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          let mileStoneVos = that.updateTargetStatus(mileStoneVo);
+          let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
           let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
           that.setData({showAnimation: true, receivedReward: true, detail});
           if (completeChange) {
+            let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
-              url: '../activityResult/index'
+              url: '../challengeComplete/index?id=' + activityId + "&reward=" + allReward
             })
           }
         }

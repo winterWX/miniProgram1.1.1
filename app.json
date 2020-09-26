@@ -26,14 +26,15 @@
     "pages/historyStep/index",
     "pages/pastActivity/index",
     "pages/activityDetail/index",
+    "pages/activityInfo/index",
     "pages/addFriend/index",
     "pages/newFriend/index",
     "pages/myActivity/index",
     "pages/friendSearch/index",
     "pages/silverDetail/index",
     "pages/heroList/index",
-    "pages/activityResult/index"
-
+    "pages/activityResult/index",
+    "pages/challengeComplete/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

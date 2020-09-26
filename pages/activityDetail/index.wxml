@@ -26,12 +26,18 @@
 		<!-- 里程碑 -->
 		<view class="milepost-box">
 			<view class="milepost">
-				<view class="title">里程碑</view>
+				<view class="header">
+					<view class="title">里程碑</view>
+					<navigator hover-class="none" url="../activityInfo/index?id={{activityId}}">
+						<view wx:if="{{!showDetail}}" class="activity-detail">活动详情</view>
+					</navigator>
+				</view>
+				
 				<view class="progress-box">
 					<view class="percent" style="width: {{percent}};"></view>
 					<view class="progress">
 						<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
-							<view class="active-item" wx:if="{{step.reward !== 0 && step.received === 1}}"
+							<view class="active-item" wx:if="{{step.received === 1}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}};z-index: 5;"></view>
 							<image src="../../image/star.png" class="item"
 								wx:if="{{step.reward !==0 && (step.received === 2 || step.received === 3)}}"

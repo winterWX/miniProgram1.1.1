@@ -12,10 +12,10 @@
 } 
 .header {
   position: absolute;
-  width: 130rpx;
-  height: 130rpx;
+  width: 134rpx;
+  height: 134rpx;
   left: 50%;
-  top: 165rpx;
+  top: 162rpx;
   border-radius: 50%;
   transform: translate(-50%);
 }
