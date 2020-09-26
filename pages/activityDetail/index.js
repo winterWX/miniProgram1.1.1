@@ -397,8 +397,9 @@ Page({
   },
   // 跳转到挑战结果页面
   navigateActivityResult: function() {
+    let { activityId } = this.data;
     wx.navigateTo({
-      url: '../activityResult/index'
+      url: '../activityResult/index?id=' + activityId + "&success=" + true
     })
   }
 })
