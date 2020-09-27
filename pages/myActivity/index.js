@@ -5,10 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-      activityList: [],
-      loadingFinish: false,
-      page: 1,
-      totalPage: 0
+    activityList: [],
+    loadingFinish: false,
+    page: 1,
+    totalPage: 0
   },
 
   /**
@@ -50,7 +50,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({page: 1, activityList: [], loadingFinish: false});
+    this.setData({ page: 1, activityList: [], loadingFinish: false });
     this.getActivityList(1);
   },
 
@@ -58,17 +58,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    let {page, totalPage} = this.data;
+    let { page, totalPage } = this.data;
     if (page >= totalPage) {
       return;
     }
     let curPage = page + 1;
     this.getActivityList(curPage);
   },
-  getActivityList: function(page) {
+  getActivityList: function (page) {
     let that = this;
-    wx.showToast({title: '加载中', icon: 'loading'});
-    this.setData({loadingFinish: false});
+    wx.showToast({ title: '加载中', icon: 'loading' });
+    this.setData({ loadingFinish: false });
     wx.request({
       url: app.globalData.baseUrl + '/remote/myactivity/list',
       method: "POST",
@@ -93,26 +93,61 @@ Page({
         if (res.data.code == 200) {
           let list = that.data.activityList;
           let totalPage = res.data.totalPage;
-          that.setData({activityList: [...list,...res.data.data], loadingFinish: true, page, totalPage});
+          that.setData({ activityList: [...list, ...res.data.data], loadingFinish: true, page, totalPage });
           wx.stopPullDownRefresh();
         }
       },
       fail: function (res) {
-        that.setData({loadingFinish: true, page});
+        that.setData({ loadingFinish: true, page });
         wx.stopPullDownRefresh();
         wx.hideToast();
       }
     })
   },
-  navigateList: function() {
+  navigateList: function () {
     wx.navigateTo({
       url: '../challenge/index'
     })
   },
-  navigatorDetail: function(e) {
-    let {title,id } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: '../activityDetail/index?id=' + id + '&title=' + title,
+  navigatorDetail: function (e) {
+    let { title, id } = e.currentTarget.dataset;
+    this.getActivityDetail(id);
+  },
+  getActivityDetail: function (id) {
+    let that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/myactivity/detail/' + id,
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          let detail = {
+            ...res.data.data,
+            content: res.data.data.content,
+            ruledescription: res.data.data.ruledescription
+          };
+
+          let success = that.judgeChallengeStatus(detail.mileStoneVo);
+          wx.navigateTo({
+            url: '../activityResult/index?id=' + id + "&success=" + success
+          })
+        }
+      },
+      fail: function (res) {
+      }
     })
+  },
+  judgeChallengeStatus: function (arr) {
+    let success = true;
+    for (let item of arr) {
+      if (item.received === 3) {
+        success = false;
+        break;
+      }
+    }
+    return success;
   }
 })

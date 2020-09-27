@@ -1,9 +1,11 @@
 <view class="activity-result">
-  <view class="activity" catchtap="navigateDetail">活动详情</view>
+  <view class="activity {{ success ? 'success-color' : 'fail-color' }}" catchtap="navigateDetail">活动详情</view>
   <image class="header" src="{{self.avatarUrl ? self.avatarUrl : defaultIcon}}"></image>
-  <image class="success-icon" src="../../image/success.png"></image>
+  <image class="result-pic"  wx:if="{{success}}" src="../../image/success.png"></image>
+  <image class="result-pic"  wx:if="{{!success}}" src="../../image/fail.png"></image>
   <view class="rank-info">
-    <view class="tip text-middle">恭喜完成周周步数挑战赛</view>
+    <view wx:if="{{success}}" class="tip text-middle">恭喜完成周周步数挑战赛</view>
+    <view wx:if="{{!success}}" class="tip text-middle">很可惜，未完成周周步数挑战赛</view>
     <view class="reward-tip text-middle">恭喜您获得积分</view>
     <view class="reward text-middle"><text>{{self.receivedIntegral ? self.receivedIntegral : 0}}</text></view>
     <view class="rank text-middle">好友排名</view>
