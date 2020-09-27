@@ -7,9 +7,15 @@
   border-radius: 25rpx;
   top: 30rpx;
   right: 30rpx;
-  background-color: #1d7351;
+  
   color: #fff;
 } 
+.success-color {
+  background-color: #1d7351;
+}
+.fail-color {
+  background-color: #4d5451;
+}
 .header {
   position: absolute;
   width: 134rpx;
@@ -19,9 +25,15 @@
   border-radius: 50%;
   transform: translate(-50%);
 }
-.success-icon {
+.result-pic {
   width: 100%;
   height: 420rpx;
+}
+.fail-pic {
+  position: absolution;
+  width: 100%;
+  height: 488rpx;
+  top: -68px;
 }
 .text-middle {
   text-align: center;

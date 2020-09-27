@@ -7,15 +7,16 @@ Page({
   data: {
     id: '',
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
-    self: {}
+    self: {},
+    success: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { id } = options;
-    this.setData({id});
+    let { id, success } = options;
+    this.setData({id, success: success === 'true'});
     this.getActivityInfo(id);
   },
 
