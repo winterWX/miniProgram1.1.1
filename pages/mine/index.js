@@ -32,9 +32,7 @@ Page({
   onShow: function () {
     let complete = wx.getStorageSync('complete');
     this.setData({
-      complete
-    })
-    this.setData({
+      complete,
       active: 4
     })
   },

@@ -22,7 +22,7 @@ Page({
     }, {
       label: '女',
       id: 2
-    },{
+    }, {
       label: '其他',
       id: 3
     }, {
@@ -50,43 +50,43 @@ Page({
     },
     avatarObjList: [
       {
-        url:  app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
         id: 13
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
+        url: app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
         id: 1
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconNiu.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconNiu.png',
         id: 2
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
         id: 3
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
         id: 4
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconLong.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconLong.png',
         id: 5
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconShe.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconShe.png',
         id: 6
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconMa.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconMa.png',
         id: 7
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconYang.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconYang.png',
         id: 8
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
         id: 9
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconJi.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconJi.png',
         id: 10
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconGou.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconGou.png',
         id: 11
       }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconZhu.png',
+        url: app.globalData.imagesUrl + '/images/icon/iconZhu.png',
         id: 12
       }
     ]
@@ -104,9 +104,11 @@ Page({
       avatarUrl,
       gender: gender === 1 ? '男' : '女',
     }
+    let received = wx.getStorageSync('received') || false;
     this.setData({
       userInfo: Object.assign(this.data.userInfo, userInfo),
-      currentDate
+      currentDate,
+      received
     })
     console.log('userInfo首次', this.data.userInfo);
   },
@@ -126,22 +128,20 @@ Page({
     this.setData({
       complete,
       received
-    })
-    wx.clearStorageSync('complete');
+    });
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.clearStorageSync('complete');
     wx.setStorageSync('complete', this.data.complete);
     wx.setStorageSync('received', this.data.received);
   },
@@ -175,21 +175,20 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
-        console.log(app.globalData);
         const { nickName, gender, avatarUrl = '', phoneNumber } = app.globalData.userInfoDetail;
         let sex = app.globalData.userInfoDetail.gender === 1 ? '男' : '女';
         let userInfo = {};
         let selectedAvatarId = '';
         let received = that.data.received;
         if (res.data.code == 200) {
-          const { data: { data: { avatar, birthday, email, gender, mobile = '', percentage, nickname, id, receive } } } = res;
+          const { data: { data: { avatar, birthday, email, gender, mobile = '', completedCount, nickname, id, receive } } } = res;
           let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(' ')[0].split('/').join('-') : '--';
           let displayDate = '--';
           if (formateDate !== '--') {
-            let [ a, b, c, d, e, f, g,h,i] = formateDate;
+            let [a, b, c, d, e, f, g, h, i] = formateDate;
             displayDate = `${a}${b}${c}${d}-${f}${g}-**`
           }
-          
+
           let selectedAvatar = that.data.avatarObjList.find(item => item.id === avatar);
           let poneeNumber = mobile || phoneNumber;
           let [a, b, c, d, e, f, g, h, i, j, k] = poneeNumber;
@@ -197,7 +196,7 @@ Page({
           selectedAvatarId = selectedAvatar && selectedAvatar.id || '';
           received = receive;
           wx.setStorageSync('received', received);
-          if (percentage === '100%') {
+          if (completedCount === 6) {
             that.setData({
               compelete: true
             })
@@ -227,7 +226,6 @@ Page({
           }
         }
         let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
-        userInfo.percentage = percentage;
         wx.setStorageSync('complete', percentage === 100);
         that.setData({
           userInfo: userInfo,
@@ -235,7 +233,6 @@ Page({
           received,
           complete: percentage === 100
         })
-        console.log('userInfo接口', that.userInfo);
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -283,7 +280,7 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          let [a, b ,c ,d,f,g,h] = e.detail.value;
+          let [a, b, c, d, f, g, h] = e.detail.value;
           let userInfo = {
             ...that.data.userInfo,
             birthday: `${a}${b}${c}${d}${f}${g}${h}-**`
@@ -489,13 +486,13 @@ Page({
   },
   nickNameChange: function () {
     let that = this;
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/modifyNickname/index?id=${that.data.userInfo.id}&nickName=${that.data.userInfo.nickName}`,
     })
   },
   emaidEdit: function () {
     let that = this;
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/emailEditor/index?email=${that.data.userInfo.email}`,
     })
   },
@@ -503,24 +500,25 @@ Page({
   rewardIntegral: function () {
     let that = this;
     wx.request({
-      url: app.globalData.baseUrl + '/remote/myprofile/homepage/rewardIntegral',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          that.setData({
-            received: true,
-            isGetReword: true
-          });
-          wx.setStorageSync('received', true)
+        url: app.globalData.baseUrl + '/remote/myprofile/homepage/rewardIntegral',
+        method: "GET",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+            that.setData({
+              received: true,
+              isGetReword: true,
+              showAnimation: true
+            });
+            wx.setStorageSync('received', true)
+          }
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
         }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+      })
   }
 })
