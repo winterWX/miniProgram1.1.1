@@ -18,22 +18,16 @@
 }
 .header {
   position: absolute;
-  width: 134rpx;
-  height: 134rpx;
+  width: 128rpx;
+  height: 128rpx;
   left: 50%;
-  top: 162rpx;
+  top: 164rpx;
   border-radius: 50%;
   transform: translate(-50%);
 }
 .result-pic {
   width: 100%;
   height: 420rpx;
-}
-.fail-pic {
-  position: absolution;
-  width: 100%;
-  height: 488rpx;
-  top: -68px;
 }
 .text-middle {
   text-align: center;

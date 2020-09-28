@@ -73,14 +73,16 @@ Component({
         num = num+1
         if (num == this.data.numberAarry.length){ 
           clearInterval(timer)
-          this.setData({
+          /* this.setData({
             animateCompelte:true,            
-          }) 
+          })  */
           setTimeout(()=>{
             this.setData({
+              animateCompelte:true,            
+            });
+            this.setData({
               show: false,
-            }) 
-            
+            });
           },2000)         
         }else{
           var translateY=0
@@ -94,7 +96,7 @@ Component({
         }
 
       }
-      timer = setInterval(counterNumber,1000)
+      timer = setInterval(counterNumber,500)
     },
 
   }
