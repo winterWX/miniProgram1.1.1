@@ -1,4 +1,3 @@
-import { formatNumber, formatTime } from '../../utils/util';
 const app = getApp();
 Page({
   /**
@@ -44,7 +43,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(this.data);
   },
 
   /**
@@ -87,7 +85,6 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          console.log(res.data.message);
           wx.showToast({
             titel: '服务繁忙， 请稍后重试。',
             icon: 'loading'

@@ -9,24 +9,15 @@ Component({
       value: 0,
       observer(value) {
         console.log('积分', value);
-        // var result = value / 10 +1
-        // var numberAarry=[]
-        // for (var i = 0; i < result; i++){
-        //   numberAarry.push(i)
-        // }
-        // this.setData({
-        //   numberAarry: numberAarry
-        // })
-        if(value === 100){
-          var result = value / 10
-          var numberAarry=[]
-          numberAarry.push(result)
+        var numberAarry=[];
+        var result = value / 10 + 1;
+      /*   if(value === 100){
+          var result = value / 10 + 1
         }else{
-          var result = value / 10 +1
-          var numberAarry=[]
-          for (var i = 1; i < result; i++){
-            numberAarry.push(i)
-          }
+          var result = value / 10 + 1
+        } */
+        for (var i = 1; i < result; i++){
+          numberAarry.push(i)
         }
         this.setData({
           numberAarry: numberAarry
