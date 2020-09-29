@@ -8,7 +8,8 @@ Page({
       activityList: [],
       loadingFinish: false,
       page: 1,
-      totalPage: 0
+      totalPage: 0,
+      baseUrl: app.globalData.imagesUrl,
   },
 
   /**

@@ -6,6 +6,7 @@ Page({
    */
   data: {
     id: '',
+    baseUrl: app.globalData.imagesUrl,
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
     self: {},
     success: true

@@ -22,6 +22,7 @@ Page({
     self: {},
     heroList: [],
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+    baseUrl: app.globalData.imagesUrl,
     completeChange: false,
     allReward: 0
   },
