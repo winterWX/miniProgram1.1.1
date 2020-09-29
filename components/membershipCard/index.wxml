@@ -1,7 +1,68 @@
-<view>
-   <view class="topLeftBlock">
-        <view class="itemImage" catchtouchstart='touchStart' catchtouchend="touchEnd"><image src="../../image/silver/bg-bronze@3x.png" /></view>
-        <view class="itemImage" catchtouchstart='touchStart' catchtouchend="touchEnd"><image src="../../image/silver/silver-bg@3x.png" /></view>
-        <view class="itemImage" catchtouchstart='touchStart' catchtouchend="touchEnd"><image src="../../image/silver/gold-bg@3x.png" /></view>
+<view class="imageBalock">
+   <view class="topLeftBlock" style="left:{{leftImage}}rpx;">
+        <view class="itemImage itemImage1" catchtouchstart='touchStart' catchtouchend="touchEnd" data-id="image1">
+           <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/bg-bronze@3x.png" />
+           <view  class="imageTopText">
+              <view class="imageTopTextLeft">
+                 <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/bronze@3x.png"/>
+                 <view   class="imageRihtText">铜会员</view>
+              </view>
+              <view class="imageTopTextRight">立即升级</view>
+           </view>
+           <view class="imageBottom">
+              <view class="imageBottom1">积分 <text class="imageBottomText">700 / </text>1500升级</view>
+              <view class="imageBottom2">当前等级</view>
+           </view>
+         </view>
+        <view class="itemImage itemImage1 {{imageFlg === true ? 'imageFlg': ''}}" catchtouchstart='touchStart' catchtouchend="touchEnd" data-id="image2">
+           <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/silver-bg@3x.png" />
+           <view  class="imageTopText">
+              <view class="imageTopTextLeft">
+                 <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/silver@3x.png"/>
+                 <view   class="imageRihtText">铜会员</view>
+              </view>
+              <view class="imageTopTextRight">立即升级</view>
+           </view>
+           <view class="silver-bgText">会员永久有效</view>
+           <view class="imageBottom">
+              <!-- <view class="imageBottom1">积分 <text class="imageBottomText">700 / </text>1500升级</view> -->
+              <view class="imageBottom1">积分1400/4500升级</view>
+           </view>
+         
+         </view>
+        <view class="itemImage itemImage1 {{imageFlg === true ? 'imageFlg2': ''}}" catchtouchstart='touchStart' catchtouchend="touchEnd" data-id="image3">
+         <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/gold-bg@3x.png" />
+         <view  class="imageTopText3">
+              <view class="imageTopTextLeft3">
+                 <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png"/>
+                 <view   class="imageRihtText3">金会员</view>
+              </view>
+              <view class="imageTopTextRight3">会员续期</view>
+           </view>
+           <view class="silver-bgText3">会员等级于2021年08月31日到期</view>
+           <view class="imageBottom3">
+              <view class="imageBottom13">积分 1600/4500续会籍一年</view>
+           </view>
+      </view>
    </view>
 </view>
+<view class="seliverBlock">
+      <view class="seliverBlockLeft">
+         <view class="seliverText">
+            <view class="seliverTextLeft">我的优惠券</view>
+            <view class="seliverTextLeftBottom">折扣券、现金券</view>
+         </view>
+         <view class="seliverTextImge">
+            <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-19@3x.png" />
+         </view>
+      </view>
+      <view class="seliverBlockRight">
+         <view>
+            <view class="seliverTextRight">积分详情</view>
+            <view class="seliverTextRightBottom">积分130天后过期</view>
+         </view>
+         <view class="seliverTextImge">
+            <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-3@3x.png"/>
+         </view>
+      </view>
+   </view>
