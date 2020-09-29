@@ -2,7 +2,7 @@
     <view class="content-list" id="topHeight">
         <view class="content-listInput">
             <view class="inputBlock" bindtap="onFocusInput">
-              <image src="../../image/search@3x.png" />
+              <image src="{{baseUrl + '/images/challenge/search@3x.png.png'}}" />
               <view class="inputText">搜索手机号码</view>
             </view>
         </view>

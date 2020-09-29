@@ -1,4 +1,4 @@
-// pages/challengeComplete/index.js
+let app = getApp();
 Page({
 
   /**
@@ -6,7 +6,8 @@ Page({
    */
   data: {
     id: '',
-    reward: 0
+    reward: 0,
+    baseUrl: app.globalData.imagesUrl,
   },
 
   /**

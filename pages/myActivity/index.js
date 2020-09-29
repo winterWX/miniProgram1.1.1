@@ -95,6 +95,8 @@ Page({
           let totalPage = res.data.totalPage;
           that.setData({ activityList: [...list, ...res.data.data], loadingFinish: true, page, totalPage });
           wx.stopPullDownRefresh();
+        } else {
+          that.setData({ loadingFinish: true });
         }
       },
       fail: function (res) {

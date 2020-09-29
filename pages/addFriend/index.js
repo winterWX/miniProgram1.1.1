@@ -12,6 +12,7 @@ Page({
 		searchValue: '',
 		emptyShow: false,
     topSize: 100,
+    baseUrl: app.globalData.imagesUrl,
     friendArrayData:[],
     avatarObjList: [
       {

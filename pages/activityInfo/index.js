@@ -8,7 +8,8 @@ Page({
     activityId: '',
     detail: {},
     code: '',
-    isJoin: false
+    isJoin: false,
+    baseUrl: app.globalData.imagesUrl,
   },
 
   /**
