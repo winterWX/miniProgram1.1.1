@@ -1,6 +1,10 @@
 page{
   background-color: #ededed;
 }
+.imageBalock{
+  position: relative;
+  height: 318rpx;
+}
 .topLeftBlock{
    display: flex;
    align-items: center;
@@ -8,7 +12,7 @@ page{
    background-color: #ffffff;
    padding: 10rpx 0rpx;
    padding-left: 30rpx;
-   position: relative;
+   position: absolute;
 }
 .topLeftBlock image{
   width: 650rpx;
@@ -16,4 +20,194 @@ page{
 }
 .itemImage{
    margin-right: 20rpx;
+} 
+.itemImage3{
+  width: 100%;
+  padding: 0rpx 60rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 30rpx;
+}
+.imageFlg{
+  margin-left: -20rpx;
+}
+.imageFlg2{
+ padding: 0rpx 30rpx;
+}
+.imageTopText{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 44rpx;
+  left: 30rpx;
+}
+.imageTopTextLeft{
+  display: flex;
+  align-items: center;
+  width: 450rpx;
+}
+.imageTopTextLeft image{
+  height: 40rpx;
+  width: 40rpx;
+}
+.itemImage1{
+  position: relative;
+}
+.imageTopTextRight{
+  flex: 1;
+  border: 2rpx solid rgb(51,51,51);
+  border-radius: 50rpx;
+  padding: 3rpx 18rpx;
+  font-size: 24rpx; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imageRihtText{
+ color: rgb(13,13,13);
+ font-size: 32rpx;
+ margin-left: 30rpx;
+ font-family: PingFangSC-Medium;
+ /* font-weight: 550; */
+}
+.imageBottom{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 218rpx;
+  padding-left: 30rpx;
+}
+.imageBottom1{
+  width: 490rpx;
+  color: rgb(51,51,51);
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+}
+.imageBottomText{
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+  font-family: Flama-Medium;
+}
+.imageBottom2{
+  flex:1;
+}
+.imageBottom2{
+  color: rgb(51,51,51);
+  font-size: 24rpx;
+}
+.seliverBlockLeft{
+  width: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 2rpx solid #ededed;
+  /* padding-left: 30rpx; */
+}
+.seliverBlockRight{
+  width: 52%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10rpx;
+}
+.seliverBlock{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.seliverBlock{
+  height: 85rpx;
+  margin-top: 1rpx;
+  background-color: #ffffff;
+  padding: 30rpx 0rpx;
+}
+.seliverTextImge image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.silver-bgText{
+  position: absolute;
+  top:95rpx;
+  left: 30rpx;
+  color: rgb(51,51,51);
+  font-size: 24rpx;
+}
+
+
+.imageTopText3{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 44rpx;
+  left: 60rpx;
+}
+.imageTopTextLeft3{
+  display: flex;
+  align-items: center;
+  width: 450rpx;
+}
+.imageTopTextLeft3 image{
+  height: 40rpx;
+  width: 40rpx;
+}
+.imageRihtText3{
+  color: rgb(1255,212,120);
+  font-size: 32rpx;
+  margin-left: 30rpx;
+  font-family: PingFangSC-Medium;
+  /* font-weight: 550; */
+ }
+ .imageTopTextRight3{
+  flex: 1;
+  border: 2rpx solid rgb(253,224,188);
+  border-radius: 50rpx;
+  padding: 3rpx 18rpx;
+  font-size: 24rpx; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(253,224,188);
+}
+.silver-bgText3{
+  position: absolute;
+  top:95rpx;
+  left: 60rpx;
+  color: rgb(253,224,188);
+  font-size: 24rpx;
+}
+.imageBottom3{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 218rpx;
+  padding-left: 30rpx;
+}
+.imageBottom13{
+  width: 490rpx;
+  color: rgb(253,224,188);
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+}
+.seliverTextImge{
+  margin-left:30rpx;
+}
+.seliverText{
+ /* padding-left: 30rpx; */
+}
+.seliverTextLeft{
+   color: rgb(51,51,51);
+   font-size: 28rpx;
+   width: 90%;
+}
+.seliverTextLeftBottom{
+  color: rgb(102,102,102);
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  flex: 1;
 }
