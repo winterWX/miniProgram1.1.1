@@ -17,6 +17,7 @@
 		<view class="profile backPro" catchtap="profilePage"></view>
 		<view class="activity" catchtap="navigateMyActivity"></view>
 		<view class="sport backTop" catchtap="healthPage"></view>
+		<view class="silverDetail silverDetailers" catchtap="silverDetail"></view>
  		<view class="recommend backRemon" catchtap="sendFriend"></view>
 		<view class="addFriend addFriendSty" catchtap="addFriend"></view>
 		<image class="mine-image" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine.png"></image>

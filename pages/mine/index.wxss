@@ -101,3 +101,13 @@
   left: 276rpx;
   top: 386rpx;
 }
+
+.healthBack-main .silverDetail{
+  right: 30rpx;
+  bottom: 270rpx;  
+}
+.silverDetailers{
+  width: 690rpx;
+  height: 132rpx;
+  position: absolute;
+}
