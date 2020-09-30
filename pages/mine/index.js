@@ -135,6 +135,11 @@ Page({
       url: '../../pages/addFriend/index'
     })
   },
+  silverDetail: function () {
+    wx.navigateTo({
+      url: '../../pages/silverDetail/index'
+    })
+  },
   //最近上传数据时间查询(query- queryLatestime)|移动端
   getQueryLatestime: function (runData) {
       let that = this;
