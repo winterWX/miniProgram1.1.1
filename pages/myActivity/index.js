@@ -133,8 +133,10 @@ Page({
           };
 
           let success = that.judgeChallengeStatus(detail.mileStoneVo);
+          let url = success ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
+          console.log(success)
           wx.navigateTo({
-            url: '../activityResult/index?id=' + id + "&success=" + success
+            url
           })
         }
       },
