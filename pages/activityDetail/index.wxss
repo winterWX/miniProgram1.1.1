@@ -413,3 +413,12 @@ page {
   text-align: center;
   padding: 20rpx 0rpx 0 0;
 }
+.add-friend {
+  color: #333333;
+  font-size: 28rpx;
+  text-align: center;
+  padding-bottom: 30rpx;
+}
+.add-friend  text {
+  border-bottom: 2rpx solid #333;
+}

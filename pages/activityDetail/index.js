@@ -46,18 +46,6 @@ Page({
   // 微信用户  获取欸新步数  上传操作
   getWxStepAndUplod: function() {
     this.getLatestUploadTime();
-    step.getWxRunData((data) => {
-      let { latestTime } = this.data;
-      let results = data.filter(item => item.timestamp > latestTime);
-      let stepsDataModelList = results.map(item => {
-        return {
-          "endTime": item.timestamp,
-          "startTime": item.timestamp,
-          "steps": item.step
-        }
-      })
-      stepsDataModelList.length && this.uploadStep(stepsDataModelList);
-    })
   },
   // 上传步数
   uploadStep: function(stepList){
@@ -96,7 +84,21 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          that.setData({ latestTime: res.data.data });
+          var time = Utils.formatTime(new Date(res.data.data*1000));
+          let latestTime = time.split(' ')[0];
+          step.getWxRunData((data) => {
+            let result = data.find(item => item.date === latestTime);
+            let index = data.indexOf(result);
+            let results = data.splice(0, index+1);
+            let stepsDataModelList = results.map(item => {
+              return {
+                "endTime": item.timestamp,
+                "startTime": item.timestamp,
+                "steps": item.step
+              }
+            })
+            stepsDataModelList.length && that.uploadStep(stepsDataModelList);
+          })
         }
       },
       fail: function (res) {
@@ -115,7 +117,7 @@ Page({
       success: function (res) {
         if (res.data.code == 200) {
           // 1 微信用户 2 APP用户
-          if (res.data.data === 1) {
+          if (res.data.data === 2) {
             that.getWxStepAndUplod();
           }
         }
