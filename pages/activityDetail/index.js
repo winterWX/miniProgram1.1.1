@@ -24,7 +24,49 @@ Page({
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
     baseUrl: app.globalData.imagesUrl,
     completeChange: false,
-    allReward: 0
+    allReward: 0,
+    avatarObjList: [
+      {
+        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+        id: 13
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
+        id: 1
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconNiu.png',
+        id: 2
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
+        id: 3
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
+        id: 4
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconLong.png',
+        id: 5
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconShe.png',
+        id: 6
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconMa.png',
+        id: 7
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconYang.png',
+        id: 8
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
+        id: 9
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconJi.png',
+        id: 10
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconGou.png',
+        id: 11
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconZhu.png',
+        id: 12
+      }
+    ]
   },
 
   /**
