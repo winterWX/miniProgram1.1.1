@@ -117,7 +117,7 @@ Page({
       success: function (res) {
         if (res.data.code == 200) {
           // 1 微信用户 2 APP用户
-          if (res.data.data === 2) {
+          if (res.data.data === 1) {
             that.getWxStepAndUplod();
           }
         }
