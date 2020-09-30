@@ -57,7 +57,7 @@
          </view>
       </view>
       <view class="seliverBlockRight">
-         <view>
+         <view class="seliverTextRightBlock">
             <view class="seliverTextRight">积分详情</view>
             <view class="seliverTextRightBottom">积分130天后过期</view>
          </view>

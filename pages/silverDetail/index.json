@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "integral-act：":"../../components/IntegralAct",
+    "discountAct：":"../../components/discountAct",
     "membership-card":"../../components/membershipCard"
   },
   "navigationBarTitleText": "会员等级",
