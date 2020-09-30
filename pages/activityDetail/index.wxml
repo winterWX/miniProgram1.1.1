@@ -113,7 +113,7 @@
 				<view class="more">查看更多</view>
 			</navigator>
 		</view>
-		<navigator wx:if="{{heroList.length === 0 && isLogin === 1 && detail.status === 2 }}" hover-class="none" url="../addFriend/index">
+		<navigator wx:if="{{heroList.length === 0 && isLogin === 1 && detail.status === 2 && isJoin }}" hover-class="none" url="../addFriend/index">
 				<view class="add-friend"><text>添加更多通讯录好友</text></view>
 		</navigator>
 	</view>
