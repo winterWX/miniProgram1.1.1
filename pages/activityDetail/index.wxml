@@ -78,7 +78,7 @@
 			<view class="btn-box">
 				<button wx:if="{{isLogin === 0 && detail.status ===2 && !isJoin}}" class="btn" type="primary" size="large"
 					open-type="getUserInfo" bindgetuserinfo="getUserInfo">一键参与</button>
-				<button wx:if="{{isLogin === 1 && detail.status ===2 && !isJoin}}" class="btn" catchtap="joinActivity"
+				<button wx:if="{{isLogin === 1 && detail.status === 2 && !isJoin}}" class="btn" catchtap="joinActivity"
 					data-id="{{detail.activityId}}">一键参与</button>
 				<button wx:if="{{detail.status === 1}}" class="dis-btn">未开始</button>
 				<button wx:if="{{detail.status === 3}}" class="dis-btn">活动已结束</button>
@@ -113,6 +113,9 @@
 				<view class="more">查看更多</view>
 			</navigator>
 		</view>
+		<navigator wx:if="{{heroList.length === 0 && isLogin === 1 && detail.status === 2 }}" hover-class="none" url="../heroList/index?id={{activityId}}">
+				<view class="add-friend"><text>添加更多通讯录好友</text></view>
+		</navigator>
 	</view>
 </view>
 <integralAmation integral="{{reward}}" wx:if="{{showAnimation}}" />
