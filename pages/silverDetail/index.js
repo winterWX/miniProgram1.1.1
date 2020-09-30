@@ -1,11 +1,12 @@
-// pages/silverDetail/index.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    secore:[{secores:300},{secores:300},{secores:300},{secores:300},{secores:300}],
+    secoreNun:0
   },
 
   /**
@@ -13,6 +14,8 @@ Page({
    */
   onLoad: function (options) {
     console.log('1111111')
+    this.secoreFun();
+    this.tierMytier();
   },
 
   /**
@@ -62,5 +65,30 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  secoreFun:function(){
+    let that = this;
+    let numData = that.data.secore.length;
+    that.setData({
+      secoreNun :  (100 / Number(numData)).toFixed(5)
+    })
+  },
+  tierMytier:function(){
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/tier/mytier',
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+           console.log('RES',res)
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
   }
 })

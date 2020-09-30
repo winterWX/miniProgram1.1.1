@@ -1,3 +1,36 @@
 <view>
-  <membership-card />
+    <membership-card />
+    <view class="integralAct-main">
+        <view class="integralActTitle">折扣券积分活动</view>
+        <view class="progressSecore">
+            <view  class="itemBlock" wx:for="{{secore}}" style="width:{{secoreNun}}%;">
+                <view class="rab-item">{{item.secores}}</view>
+                <view class="rab-item1"><view class="rabie"></view></view>
+            </view>
+        </view>
+        <view class="progressBlock">
+            <view class="progressBlockPosee"></view>
+            <view class="progressBlockBlue" style="width:{{secoreNun}}%;"></view>
+        </view>
+        <view class="progressCark">
+            <view wx:for="{{secore}}" class="blockTextTop">
+                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group@3x.png" /> 
+                <view class="blockText">
+                    <view class="topText">9折</view>
+                    <view class="minText">健康服务</view>
+                    <view class="bottomText">已领取</view>
+                </view>
+            </view>
+        </view>
+        <view class="progressBlockImage">
+            <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-2@3x.png"/>
+            <view class="progressBlockText">
+                <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
+                <view class="progressBlockText2">立即升级</view>
+            </view>
+        </view>
+    </view>
+    <view class="bouttomImage">
+       <image src="../../image/bottom1.PNG" />
+    </view>
 </view>

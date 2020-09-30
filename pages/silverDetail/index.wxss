@@ -1,1 +1,134 @@
-/* pages/silverDetail/index.wxss */
+.integralAct-main{
+  height: 424rpx;
+  background-color: #ffffff;
+  margin-top:20rpx;
+  padding: 30rpx;
+  position: relative;
+}
+.integralActTitle{
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold;
+}
+.progressBlockImage image{
+  height: 100rpx;
+  width: 690rpx;
+}
+.progressBlockImage{
+  margin-top: 20rpx;
+  position: relative;
+}
+.progressBlockText{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -6rpx;
+  height: 100rpx;
+}
+.progressSecore{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+}
+.progressBlockPosee{
+  width: 100%;
+  height: 20rpx;
+  background-color: rgb(237,237,237);
+  border-radius: 50rpx;
+  width: 100%;
+  z-index: 1;
+  margin-top: -18rpx;
+}
+.progressBlock{
+  margin-top: -10rpx;
+  /* position: relative; */
+}
+.progressBlockBlue{
+    position: absolute;
+    top: 140rpx;
+    width: 100%;
+    height: 20rpx;
+    background-color: rgb(0,168,101);
+    border-radius: 50rpx;
+    z-index: 10;
+}
+.rabie{
+  background-color: rgb(255,255,255);
+  border-radius: 50%;
+  width: 16rpx;
+  height: 16rpx;
+  z-index: 11;
+}
+.progressSecore .itemBlock{
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  text-align: center;
+}
+.rab-item{
+  height: 40rpx;
+}
+.rab-item1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rpx;
+}
+.progressCark{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 8rpx;
+}
+.progressCark image{
+    width: 126rpx;
+    height: 158rpx;
+}
+.blockText{
+  width: 126rpx;
+  height: 158rpx;
+  text-align: center;
+}
+.topText{
+  color: rgb(155,124,86);
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.minText{
+  color: rgb(102,102,102);
+  font-size: 20rpx;
+  margin-bottom: 15rpx;
+}
+.bottomText{
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+}
+.blockTextTop{
+  position: relative;
+}
+.blockText{
+  position: absolute;
+  top: 18rpx;
+}
+.progressBlockText1{
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+  padding-left: 100rpx;
+  margin-right: 30rpx;
+}
+.progressBlockText2{
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+  border: 2rpx solid rgb(51,51,51);
+  padding: 5rpx 10rpx;
+}
+.bouttomImage{
+  margin-top: 20rpx;
+}
+.bouttomImage image{
+  height: 210rpx;
+  width: 100%;
+}

@@ -1,0 +1,38 @@
+<view>
+    <view class="topImage">
+      <image src="../../image/shengji.PNG" />
+    </view>
+    <view class="inputBlock">
+        <view class="nick">
+          <view class="nickname">恒生尊享码</view>
+          <input class="input-name {{showTip ? 'textRed' : ''}}" value="{{ nickName }}" bindinput="nameChange"></input>
+          <view class="line {{showTip ? 'lineRed' : ''}}"></view>
+          <view class='tip'  wx:if="{{showTip}}">
+              <image src="../../image/red@3x.png" />
+              <text>输入的恒生尊享码无效，请确认有效性并重新输入。</text>
+          </view>
+        </view>
+        <button disabled="{{nickName.length === 0 && showTip}}" class="btn-finish" catchtap="submitHnadle">完成</button>
+    </view>
+    <view class="carkBlock" wx:if="{{showCarkBlock}}">
+       <view class="carkBlock-main">
+           <image class="topImage1" src ="../../image/group-02@3x.png" />
+           <image class="topImage2" src ="../../image/group-25-copy-19@3x.png" />
+           <view class="carkBlock-allMain">
+              <image class="imageBottom" src="http://106.54.73.125:8104/images/miniprogram/images/silver/rectangle@3x.png"/>
+              <view class="text-main">
+                <view class="text1-main">恭喜你成功升级为</view>
+                <view class="text2-main">白银会员</view>
+                <view class="text3-main">会员等级永恒有效，在此期间你将享有白银会员权益，已获得的优惠券已经放置在“我的优惠券”列表中。</view>
+                <view class="text4-main">
+                  <van-button type="primary" size="large" bindtap="bindEmail">继续查看视频</van-button>
+                </view>
+                <view class="text5-main">查看的我的优惠券</view>
+            </view>
+           </view>
+           <view class="bottomBlock" bindtap="closeBlock">
+             <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/clear@3x.png" />
+           </view>
+       </view>
+    </view>
+</view>
