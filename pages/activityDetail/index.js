@@ -129,6 +129,7 @@ Page({
           var time = Utils.formatTime(new Date(res.data.data*1000));
           let latestTime = time.split(' ')[0];
           step.getWxRunData((data) => {
+            console.log('获取微信步数：' + data);
             let result = data.find(item => item.date === latestTime);
             let index = data.indexOf(result);
             let results = data.splice(0, index+1);
@@ -139,6 +140,7 @@ Page({
                 "steps": item.step
               }
             })
+            console.log('微信需要上传的步数：' + data);
             stepsDataModelList.length && that.uploadStep(stepsDataModelList);
           })
         }
