@@ -126,13 +126,14 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
+          console.log(res.data.data);
           let detail = {
             ...res.data.data,
             content: res.data.data.content,
             ruledescription: res.data.data.ruledescription
           };
 
-          let success = that.judgeChallengeStatus(detail.mileStoneVo);
+          let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
           let url = success ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
           console.log(success)
           wx.navigateTo({
@@ -144,9 +145,10 @@ Page({
       }
     })
   },
-  judgeChallengeStatus: function (arr) {
+  judgeReceivedRewardStatus: function (arr) {
     let success = true;
     for (let item of arr) {
+      // received 3 不可领取
       if (item.received === 3) {
         success = false;
         break;

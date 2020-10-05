@@ -297,18 +297,22 @@ Page({
     this.setData({reward});
   },
   calcPercent: function (currentNum, arr) {
-    let currentValue = 27355;
     let result = 0;
-    for (let item of arr) {
-      if (item.mileStoneTarget - currentValue >= 0) {
-        result = item;
-        break;
+    let percent = '0%';
+    if (arr[arr.length-1].mileStoneTarget >= currentNum) {
+      for (let item of arr) {
+        if ( item.received === 2 && item.received === 3 && item.mileStoneTarget - currentNum >= 0) {
+          result = item;
+          break;
+        }
       }
+      let index = arr.indexOf(result);
+      let ratio = parseInt((100 / (arr.length - 1))) * index;
+      let percentNum = parseInt((currentNum * ratio) / result.mileStoneTarget);
+      percent = `${percentNum > 100 ? 100 :percentNum}%`;
+    } else {
+      percent = '100%';
     }
-    let index = arr.indexOf(result);
-    let ratio = parseInt((100 / (arr.length - 1))) * index;
-    let percentNum = parseInt((currentNum * ratio) / result.mileStoneTarget);
-    let percent = `${percentNum > 100 ? 100 :percentNum}%`;
     this.setData({ percent })
   },
   userLogin(data) {
