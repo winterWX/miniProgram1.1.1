@@ -1,5 +1,5 @@
 <view>
-    <membership-card />
+    <membership-card  activeData ="{{activeData}}"/>
     <view class="integralAct-main">
         <view class="integralActTitle">折扣券积分活动</view>
         <view class="progressSecore">
@@ -24,15 +24,24 @@
                 </view>
             </view>
         </view>
-        <view class="progressBlockImage">
-            <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-2@3x.png"/>
+        <view  wx:if="{{activeData.level === 1}}"  class="progressBlockImage">
+            <image src="../../image/group-12@3x.png"/>
             <view class="progressBlockText">
+                <image src="../../image/group-2@3x.png"/>
                 <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
-                <view class="progressBlockText2">立即升级</view>
+                <view class="progressBlockText2" bindtap="upgradeFun" data-card="{{activeData.level}}">立即查看</view>
+            </view>
+        </view>
+        <view wx:if="{{activeData.level === 2}}" class="progressBlockImage">
+            <image src="../../image/bg-x-5@3x.png"/>
+            <view class="progressBlockText glodBlock">un
+                <view class="progressBlockText2">金会员积分x5升级攻略</view>
+                <view class="progressBlockText3" bindtap="upgradeFun" data-card="{{activeData.level}}">立即查看</view>
             </view>
         </view>
     </view>
     <view class="bouttomImage">
-       <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/bottom1.PNG" />
+       <image wx:if="{{activeData.level === 1}}"   class="bottomSeliveImage"  src="http://106.54.73.125:8104/images/miniprogram/images/silver/bottom1.PNG" />
+       <image wx:if="{{activeData.level === 2}}"   class="bottomImage" src="../../image/glod@bottom.PNG" />
     </view>
 </view>

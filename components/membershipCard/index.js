@@ -3,7 +3,16 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    activeData: {
+      type: Object,
+      value: {},
+      observer(value) {              
+        console.log("111111",value);
+        if (Object.keys(value).length !== 0){
+           this.cardTopShow(value);
+        } 
+      }
+    }
   },
 
   /**
@@ -24,6 +33,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    cardTopShow(value){
+      console.log('valuevalue+valuevalue',value);
+      if(value.level === 2 && value.level === 4){
+          this.setData({leftImage: -680});
+      }else if(value.level === 3 && value.level === 5){
+          this.setData({leftImage: -1330});
+      }
+    },
     touchStart(e){
       console.log('touchStart',e)
       this.setData({
@@ -53,6 +70,13 @@ Component({
       }else{
         return
       }
+    },
+    upgradeCard:function(e){
+      console.log('0------------------')
+      let cardUp = e.target.dataset.card;
+      wx.navigateTo({
+        url: '../../pages/membership/index',
+      })
     }
   }
 })
