@@ -20,6 +20,7 @@ page{
 }
 .itemImage{
    margin-right: 20rpx;
+   z-index: 99;
 } 
 .itemImage3{
   width: 100%;
@@ -65,6 +66,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 .imageRihtText{
  color: rgb(13,13,13);

@@ -7,7 +7,8 @@ Page({
   data: {
     nickName : '',
     showTip : false,
-    showCarkBlock:false
+    showCarkBlock:false,
+    tierCode:{}
   },
 
   /**
@@ -74,15 +75,16 @@ Page({
     if (!this.data.nickName) {
         return;
     }else{
-      if(/[A-Z0-9]/.test(this.data.nickName)){
-        console.log('0000000000000000',this.data.nickName)
-        this.setData({showTip : true})
+      if(/^(?=.*[A-Z])(?=.*[0-9])[A-Z-0-9]{2,}$/.test(this.data.nickName)){
+        this.setData({showTip : false});
      }else{
-        this.setData({showTip : false})
-        console.log('this.data.nickName',this.data.nickName);
+        this.setData({showTip : true});
      }
     }
     this.membershipCode();
+  },
+  nameChangeFocus:function(){
+    this.setData({showTip : false});
   },
   membershipCode:function(){
     wx.request({
@@ -97,12 +99,9 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          wx.showToast({
-            titel: '服务繁忙， 请稍后重试。',
-            icon: 'loading'
-          })
+          this.setData({tierCode:res.data.data,showCarkBlock:true})
           wx.redirectTo({
-            url: '../profile/index',
+            url: '../../pages/silverDetail/indexs',
             success: function(res) {
                 wx.showToast({
                   title: '修改成功',
@@ -114,7 +113,7 @@ Page({
         }
       },
       fail: function (res) {
-        console.log('.........fail..........');
+        console.log('.........fail..........',res);
         wx.showToast({
           titel: '服务繁忙， 请稍后重试。',
           icon: 'loading'

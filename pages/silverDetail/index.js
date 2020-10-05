@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    secore:[{secores:300},{secores:300},{secores:300},{secores:300},{secores:300}],
+    secore:[],
     secoreNun:0,
     activeNum:0,
     bluPosse:0,
@@ -100,4 +100,7 @@ Page({
       secoreNun :  (100 / Number(activeNum)).toFixed(5)
     })
   },
+  // upgradeFun(e){
+  //   let cardUpgrade =  e.target.dataset.card;
+  // }
 })
