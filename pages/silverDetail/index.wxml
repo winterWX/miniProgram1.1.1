@@ -3,22 +3,24 @@
     <view class="integralAct-main">
         <view class="integralActTitle">折扣券积分活动</view>
         <view class="progressSecore">
-            <view  class="itemBlock" wx:for="{{secore}}" style="width:{{secoreNun}}%;">
-                <view class="rab-item">{{item.secores}}</view>
+            <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
+                <view class="rab-item">{{item.targetIntegral}}</view>
                 <view class="rab-item1"><view class="rabie"></view></view>
             </view>
         </view>
         <view class="progressBlock">
             <view class="progressBlockPosee"></view>
-            <view class="progressBlockBlue" style="width:{{secoreNun}}%;"></view>
+            <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
         </view>
         <view class="progressCark">
-            <view wx:for="{{secore}}" class="blockTextTop">
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group@3x.png" /> 
+            <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
+                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                 <view class="blockText">
-                    <view class="topText">9折</view>
-                    <view class="minText">健康服务</view>
-                    <view class="bottomText">已领取</view>
+                    <view class="topText">{{item.couponValue}}折</view>
+                    <view class="minText">{{item.couponName}}</view>
+                    <view class="bottomText" wx:if="{{item.received === 1}}">已领取</view>
+                    <view class="bottomText" wx:if="{{item.received === 2}}">可领</view>
+                    <view class="bottomText" wx:if="{{item.received === 3}}">未达成</view>
                 </view>
             </view>
         </view>
@@ -31,6 +33,6 @@
         </view>
     </view>
     <view class="bouttomImage">
-       <image src="../../image/bottom1.PNG" />
+       <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/bottom1.PNG" />
     </view>
 </view>

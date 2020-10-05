@@ -84,7 +84,7 @@
   margin-top: 8rpx;
 }
 .progressCark image{
-    width: 126rpx;
+    width: 138rpx;
     height: 158rpx;
 }
 .blockText{
