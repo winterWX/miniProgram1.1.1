@@ -6,7 +6,10 @@ Page({
    */
   data: {
     secore:[{secores:300},{secores:300},{secores:300},{secores:300},{secores:300}],
-    secoreNun:0
+    secoreNun:0,
+    activeNum:0,
+    bluPosse:0,
+    activeData:{}
   },
 
   /**
@@ -14,7 +17,6 @@ Page({
    */
   onLoad: function (options) {
     console.log('1111111')
-    this.secoreFun();
     this.tierMytier();
   },
 
@@ -66,14 +68,8 @@ Page({
   onShareAppMessage: function () {
 
   },
-  secoreFun:function(){
-    let that = this;
-    let numData = that.data.secore.length;
-    that.setData({
-      secoreNun :  (100 / Number(numData)).toFixed(5)
-    })
-  },
   tierMytier:function(){
+    let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/tier/mytier',
       method: "GET",
@@ -83,12 +79,25 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-           console.log('RES',res)
+            let sercode = res.data.data.mileStones.length;
+            that.setData({
+                activeData : res.data.data,
+                activeNum : sercode,
+                bluPosse : (1000 / Number(res.data.data.integral)).toFixed(5)
+            })
+            that.secoreFun();
         }
       },
       fail: function (res) {
         console.log('.........fail..........');
       }
     })
-  }
+  },
+  secoreFun:function(){
+    let that = this;
+    let activeNum = that.data.activeNum;
+    that.setData({
+      secoreNun :  (100 / Number(activeNum)).toFixed(5)
+    })
+  },
 })
