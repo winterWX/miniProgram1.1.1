@@ -8,7 +8,8 @@ Page({
     activityList: [],
     loadingFinish: false,
     page: 1,
-    totalPage: 0
+    totalPage: 0,
+    baseUrl: app.globalData.imagesUrl
   },
 
   /**
@@ -126,7 +127,7 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          console.log(res.data.data);
+          let { status } = res.data.data;
           let detail = {
             ...res.data.data,
             content: res.data.data.content,
@@ -134,8 +135,7 @@ Page({
           };
 
           let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
-          let url = success ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
-          console.log(success)
+          let url = success || status === 3 ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
           wx.navigateTo({
             url
           })
