@@ -148,7 +148,7 @@ page {
 }
 
 .progress-box .percent {
-  height: 20rpx;
+  height: 22rpx;
   background-color: #00A865;
   border-radius: 10rpx;
   position: absolute;
@@ -184,7 +184,7 @@ page {
   position: absolute;
   display: inline-block;
   background-color: #fff;
-  top: 1rpx;
+  top: 3rpx;
   transform: translate(-8rpx);
 }
 .progress-box .progress .cell:last-child .active-item {
