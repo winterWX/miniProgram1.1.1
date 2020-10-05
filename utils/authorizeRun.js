@@ -6,6 +6,7 @@ function getWxRunData(result){  //用result往出暴露结果
       success() {
          //session_key 未过期，并且在本生命周期一直有效
          let sessionkey = app.globalData.userInfo.session_key;
+         console.log('sessionkey:' + sessionkey);
          getAllWeRunData(sessionkey,result);
       },
       fail() {
@@ -61,6 +62,7 @@ function miniproLogin(code,enData,ivData,result){
    })
 };
 function getAllWeRunData (sessionkey,result){
+   console.log('getAllWeRunData');
       wx.getWeRunData({
          success(resRun) {
             wx.request({
@@ -76,6 +78,7 @@ function getAllWeRunData (sessionkey,result){
                sessionkey: sessionkey
                },
                success: function (resDecrypt) {
+                  console.log('获取微信数据成功：' + resDecrypt);
                if(resDecrypt.data.data.length > 0){
                   let runData = JSON.parse(resDecrypt.data.data); 
                   if (runData.stepInfoList.length > 0)
@@ -95,7 +98,7 @@ function getAllWeRunData (sessionkey,result){
             });
         },
         fail: function () {
-            result('refusedTo');  //拒绝授权
+            result([]);  //拒绝授权
         }
       })
 };

@@ -34,12 +34,18 @@
 				</view>
 				
 				<view class="progress-box">
-					<view class="percent" style="width: {{percent}};"></view>
+					<!-- <view class="percent" style="width: {{percent}};"></view> -->
+					<view class="percent">
+						<progress percent="{{percent}}" stroke-width="8" activeColor="#00A865" active active-mode="forwards" duration="20" border-radius="4"></progress>
+					</view>
 					<view class="progress">
 						<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
 							<view class="active-item" wx:if="{{step.received === 1}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}};z-index: 5;"></view>
-							<image src="{{baseUrl + '/images/challenge/star.png'}}" class="item"
+						<!-- 	<image src="{{baseUrl + '/images/challenge/star.png'}}" class="item"
+								wx:if="{{step.reward !==0 && (step.received === 2 || step.received === 3)}}"
+								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></image> -->
+							<image src="../../image/star.png" class="item"
 								wx:if="{{step.reward !==0 && (step.received === 2 || step.received === 3)}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></image>
 							<view wx:if="{{step.reward !==0}}" class="reward"
@@ -109,7 +115,7 @@
 				<view class="step-show" wx:if="{{!hero.completeTime}}">{{hero.steps}}<text>步</text></view>
 				<image src="{{baseUrl + '/images/challenge/medal.png'}}" class="medal" wx:if="{{hero.completeTime}}"></image>
 			</view>
-			<navigator wx:if="{{heroList.length}}" hover-class="none" url="../heroList/index?id={{activityId}}">
+			<navigator wx:if="{{heroList.length }}" hover-class="none" url="../heroList/index?id={{activityId}}">
 				<view class="more">查看更多</view>
 			</navigator>
 		</view>
