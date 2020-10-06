@@ -226,6 +226,7 @@ Page({
           }
         }
         let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
+        userInfo.percentage = percentage;
         wx.setStorageSync('complete', percentage === 100);
         that.setData({
           userInfo: userInfo,
