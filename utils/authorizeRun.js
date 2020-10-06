@@ -6,7 +6,6 @@ function getWxRunData(result) {  //用result往出暴露结果
       success() {
          //session_key 未过期，并且在本生命周期一直有效
          let sessionkey = app.globalData.userInfo.session_key;
-         console.log('sessionkey:' + sessionkey);
          getAllWeRunData(sessionkey, result);
       },
       fail() {
@@ -85,7 +84,6 @@ function postFirstAuthorizedTime() {
    let t = new Date();
    let time = t.getTime();
    let lastTime = parseInt(time / 1000);
-   console.log(parseInt(time / 1000));
    wx.request({
       url: app.globalData.baseUrl + '/remote/data/authorize',
       method: "post",
@@ -98,7 +96,6 @@ function postFirstAuthorizedTime() {
          source: 'MINIP'
       },
       success: function (res) {
-         console.log('上传时间' + JSON.stringify(res));
       },
       fail: function (res) {
          console.log('.........fail..........');
@@ -106,10 +103,8 @@ function postFirstAuthorizedTime() {
    })
 };
 function getAllWeRunData(sessionkey, result) {
-   console.log('getAllWeRunData');
    // 微信授权之后看是否是第一次授权
    wxAuthorizedTime().then((data) => {
-      console.log('>>>>>>>>>>>>>>>>>>>>data')
       if (data.data.code === 100711) {
          postFirstAuthorizedTime();
       }
@@ -130,7 +125,6 @@ function getAllWeRunData(sessionkey, result) {
             },
             success: function (resDecrypt) {
                // 微信授权成功
-               console.log('微信授权成功：' + resDecrypt);
                if (resDecrypt.data.data.length > 0) {
                   let runData = JSON.parse(resDecrypt.data.data);
                   if (runData.stepInfoList.length > 0) {

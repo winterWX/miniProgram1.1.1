@@ -182,8 +182,6 @@ Page({
     let query = wx.createSelectorQuery();
     query.select('#topHeight').boundingClientRect()
     query.exec(function (res) {
-      console.log(res);
-      console.log(res[0].height);
       //取高度
       let topViewHeight = res[0].height
       let windowHeight = wx.getSystemInfoSync().windowHeight;
