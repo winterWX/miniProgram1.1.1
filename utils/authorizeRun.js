@@ -106,8 +106,10 @@ function postFirstAuthorizedTime() {
    })
 };
 function getAllWeRunData(sessionkey, result) {
+   console.log('getAllWeRunData');
    // 微信授权之后看是否是第一次授权
    wxAuthorizedTime().then((data) => {
+      console.log('>>>>>>>>>>>>>>>>>>>>data')
       if (data.data.code === 100711) {
          postFirstAuthorizedTime();
       }

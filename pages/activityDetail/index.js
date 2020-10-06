@@ -22,7 +22,7 @@ Page({
     self: {},
     heroList: [],
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
-    baseUrl: app.globalData.imagesUrl,
+    baseUrl: app.globalData.imagesUrl,
     completeChange: false,
     allReward: 0,
     avatarObjList: [
@@ -86,11 +86,11 @@ Page({
     }
   },
   // 微信用户  获取微信步数  上传操作
-  getWxStepAndUplod: function() {
-    this.getLatestUploadTime();
+  getWxStepAndUplod: function () {
+    this.getWxRunData();
   },
   // 上传步数
-  uploadStep: function(stepList){
+  uploadStep: function (stepList) {
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
@@ -99,10 +99,10 @@ Page({
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
-      data:{
+      data: {
         bpm: 0,
-        source :'string',
-        type : 'MINIP',
+        source: 'string',
+        type: 'MINIP',
         lastTime: parseInt(new Date().getTime() / 1000) + '',
         stepsDataModelList: stepList
       },
@@ -114,8 +114,13 @@ Page({
       }
     })
   },
+  getWxRunData: function () {
+    step.getWxRunData((data) => {
+      this.getLatestUploadTime(data);
+    })
+  },
   // 获取最近上传步数的时间 
-  getLatestUploadTime: function () {
+  getLatestUploadTime: function (data) {
     let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
@@ -125,28 +130,21 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
-        console.log('latestTime:' + JSON.stringify(res));
-        // if (res.data.code == 200) {
-          console.log('获取最近更新时间成功！');
-          var time = Utils.formatTime(new Date(res.data.data*1000));
+        if (res.data.code == 200) {
+          var time = Utils.formatTime(new Date(res.data.data * 1000));
           let latestTime = time.split(' ')[0];
-          step.getWxRunData((data) => {
-            console.log('微信返回的运动数据');
-            console.log('获取微信步数：' + data);
-            let result = data.find(item => item.date === latestTime);
-            let index = data.indexOf(result);
-            let results = data.splice(0, index+1);
-            let stepsDataModelList = results.map(item => {
-              return {
-                "endTime": item.timestamp,
-                "startTime": item.timestamp,
-                "steps": item.step
-              }
-            })
-            console.log('微信需要上传的步数：' + stepsDataModelList);
-            stepsDataModelList.length && that.uploadStep(stepsDataModelList);
+          let result = data.find(item => item.date === latestTime);
+          let index = data.indexOf(result);
+          let results = data.splice(0, index + 1);
+          let stepsDataModelList = results.map(item => {
+            return {
+              "endTime": item.timestamp,
+              "startTime": item.timestamp,
+              "steps": item.step
+            }
           })
-        // }
+          stepsDataModelList.length && that.uploadStep(stepsDataModelList);
+        }
       },
       fail: function (res) {
         console.log('获取更新时间失败')
@@ -166,7 +164,6 @@ Page({
         if (res.data.code == 200) {
           // 1 微信用户 2 APP用户
           if (res.data.data === 1) {
-            console.log('我是微信用户');
             that.getWxStepAndUplod();
           }
         }
@@ -219,13 +216,13 @@ Page({
           // 判断挑战是否完成并且领取积分
           let completeChange = detail.mileStoneVo[detail.mileStoneVo.length - 1].received === 1;
           if (detail.friendRank) {
-            let { self = {}, friend = []} = detail.friendRank;
+            let { self = {}, friend = [] } = detail.friendRank;
             let currentStep = detail.friendRank.self.steps;
             that.calcPercent(currentStep, detail.mileStoneVo);
             that.getCanReceiveReward(currentStep, detail.mileStoneVo);
             that.judgeReceivedStatus(detail.mileStoneVo);
             let heroList = that.operateHeroData(friend);
-            that.setData({self, heroList});
+            that.setData({ self, heroList });
           }
           let isJoin = detail.isJoinStatus === '2';
           that.setData({ detail, isJoin, showDetail: !isJoin, completeChange });
@@ -238,22 +235,22 @@ Page({
       }
     })
   },
-  calcActivityAllReward: function(arr) {
+  calcActivityAllReward: function (arr) {
     let result = 0;
     for (let item of arr) {
       result += item.reward;
     }
     return result;
   },
-  judgeReceivedStatus: function(arr) {
+  judgeReceivedStatus: function (arr) {
     for (let item of arr) {
-      if(item.received === 1) {
-        this.setData({receivedReward: true});
+      if (item.received === 1) {
+        this.setData({ receivedReward: true });
       }
     }
   },
- // 领取积分 
-  receiveReward: function() {
+  // 领取积分 
+  receiveReward: function () {
     let that = this;
     let { reward, activityId, detail } = this.data;
     wx.request({
@@ -272,7 +269,7 @@ Page({
           let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
           let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
-          that.setData({showAnimation: true, receivedReward: true, detail});
+          that.setData({ showAnimation: true, receivedReward: true, detail, completeChange });
           if (completeChange) {
             let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
@@ -286,7 +283,7 @@ Page({
     })
   },
   // 领取积分之后更新数据的领取状态
-  updateTargetStatus: function(arr) {
+  updateTargetStatus: function (arr) {
     return arr.map((item) => {
       return {
         ...item,
@@ -294,19 +291,19 @@ Page({
       }
     })
   },
-  getCanReceiveReward: function(currentStep, arr) {
+  getCanReceiveReward: function (currentStep, arr) {
     let reward = 0;
     for (let item of arr) {
       if (item.received === 2) {
         reward += item.reward;
       }
     }
-    this.setData({reward});
+    this.setData({ reward });
   },
   calcPercent: function (currentNum, arr) {
     let result = 0;
     let percent = 0;
-    if (arr[arr.length-1].mileStoneTarget >= currentNum) {
+    if (arr[arr.length - 1].mileStoneTarget >= currentNum) {
       for (let item of arr) {
         if (item.received === 3 && item.mileStoneTarget - currentNum >= 0) {
           result = item;
@@ -316,7 +313,7 @@ Page({
       let index = arr.indexOf(result);
       let ratio = parseInt((100 / (arr.length - 1))) * index;
       let percentNum = parseInt((currentNum * ratio) / result.mileStoneTarget);
-      percent = percentNum > 100 ? 100 :percentNum;
+      percent = percentNum > 100 ? 100 : percentNum;
     } else {
       percent = 100;
     }
@@ -452,7 +449,7 @@ Page({
       }
     });
   },
-  operateHeroData: function(arr) {
+  operateHeroData: function (arr) {
     return arr.map(item => {
       return {
         ...item,
@@ -461,7 +458,7 @@ Page({
     })
   },
   // 跳转到挑战结果页面
-  navigateActivityResult: function() {
+  navigateActivityResult: function () {
     let { activityId } = this.data;
     wx.navigateTo({
       url: '../activityResult/index?id=' + activityId + "&success=" + true
