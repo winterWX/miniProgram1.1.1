@@ -317,6 +317,7 @@ Page({
     } else {
       percent = 100;
     }
+    console.log(percent)
     this.setData({ percent })
   },
   userLogin(data) {

@@ -87,7 +87,7 @@ Component({
         }
 
       }
-      timer = setInterval(counterNumber,500)
+      timer = setInterval(counterNumber,50)
     },
 
   }

@@ -19,7 +19,7 @@
           <view wx:if="{{showErroe}}" class="showErroeSty">验证码输入错误</view>
 				</view>
 				<view class='tip'>
-					<text>验证码已经通过电子邮件发送至您的电子邮件地址Olivia1234@gmail.com。请及时查看邮箱并输入验证码完成绑定。</text>
+					<text>验证码已经通过电子邮件发送至您的电子邮件地址{{email}}。请及时查看邮箱并输入验证码完成绑定。</text>
 				</view>
 				<view class="btnSty"><van-button disabled="{{codeNum.length === 0}}" type="primary" size="large" bindtap="bindEmail">完成</van-button></view>
 		</view>
