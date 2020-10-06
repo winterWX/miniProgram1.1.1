@@ -85,7 +85,7 @@ Page({
       this.getUseType();
     }
   },
-  // 微信用户  获取欸新步数  上传操作
+  // 微信用户  获取微信步数  上传操作
   getWxStepAndUplod: function() {
     this.getLatestUploadTime();
   },
@@ -125,10 +125,13 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
-        if (res.data.code == 200) {
+        console.log('latestTime:' + JSON.stringify(res));
+        // if (res.data.code == 200) {
+          console.log('获取最近更新时间成功！');
           var time = Utils.formatTime(new Date(res.data.data*1000));
           let latestTime = time.split(' ')[0];
           step.getWxRunData((data) => {
+            console.log('微信返回的运动数据');
             console.log('获取微信步数：' + data);
             let result = data.find(item => item.date === latestTime);
             let index = data.indexOf(result);
@@ -140,12 +143,13 @@ Page({
                 "steps": item.step
               }
             })
-            console.log('微信需要上传的步数：' + data);
+            console.log('微信需要上传的步数：' + stepsDataModelList);
             stepsDataModelList.length && that.uploadStep(stepsDataModelList);
           })
-        }
+        // }
       },
       fail: function (res) {
+        console.log('获取更新时间失败')
       }
     })
   },
@@ -162,6 +166,7 @@ Page({
         if (res.data.code == 200) {
           // 1 微信用户 2 APP用户
           if (res.data.data === 1) {
+            console.log('我是微信用户');
             that.getWxStepAndUplod();
           }
         }
@@ -300,10 +305,10 @@ Page({
   },
   calcPercent: function (currentNum, arr) {
     let result = 0;
-    let percent = '0%';
+    let percent = 0;
     if (arr[arr.length-1].mileStoneTarget >= currentNum) {
       for (let item of arr) {
-        if ( item.received === 2 && item.received === 3 && item.mileStoneTarget - currentNum >= 0) {
+        if (item.received === 3 && item.mileStoneTarget - currentNum >= 0) {
           result = item;
           break;
         }
@@ -311,9 +316,9 @@ Page({
       let index = arr.indexOf(result);
       let ratio = parseInt((100 / (arr.length - 1))) * index;
       let percentNum = parseInt((currentNum * ratio) / result.mileStoneTarget);
-      percent = `${percentNum > 100 ? 100 :percentNum}%`;
+      percent = percentNum > 100 ? 100 :percentNum;
     } else {
-      percent = '100%';
+      percent = 100;
     }
     this.setData({ percent })
   },
