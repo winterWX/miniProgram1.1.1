@@ -87,6 +87,7 @@ Page({
     this.setData({showTip : false});
   },
   membershipCode:function(){
+    let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/remote/tier/code',
       method: "POST",
@@ -99,18 +100,9 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          this.setData({tierCode:res.data.data,showCarkBlock:true})
-          wx.redirectTo({
-            url: '../../pages/silverDetail/indexs',
-            success: function(res) {
-                wx.showToast({
-                  title: '修改成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-            }
-          });
-        }
+            that.setData({tierCode:res.data.data});
+            that.setData({showCarkBlock:true,nickName : ''});
+         }
       },
       fail: function (res) {
         console.log('.........fail..........',res);
@@ -123,5 +115,10 @@ Page({
   },
   closeBlock:function(){
     this.setData({ showCarkBlock:true })
+  },
+  bindEmail:function(){
+    wx.navigateTo({
+      url: '../../pages/silverDetail/index',
+    })
   }
 })

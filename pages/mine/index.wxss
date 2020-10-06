@@ -104,10 +104,10 @@
 
 .healthBack-main .silverDetail{
   right: 30rpx;
-  bottom: 270rpx;  
+  bottom: 860rpx;  
 }
 .silverDetailers{
   width: 690rpx;
-  height: 132rpx;
+  height: 75rpx;
   position: absolute;
 }

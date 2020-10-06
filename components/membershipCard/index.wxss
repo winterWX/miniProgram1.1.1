@@ -179,7 +179,7 @@ page{
   position: absolute;
   top:95rpx;
   left: 60rpx;
-  color: rgb(253,224,188);
+  color: rgb(255,212,120);
   font-size: 24rpx;
 }
 .imageBottom3{
@@ -192,17 +192,15 @@ page{
 }
 .imageBottom13{
   width: 490rpx;
-  color: rgb(253,224,188);
+  color: rgb(255,212,120);
   font-size: 24rpx;
   font-family: PingFangSC-Regular;
 }
 .seliverTextImge{
-  /* margin-left:30rpx; */
   flex: 1;
 }
 .seliverText{
  padding-left: 30rpx;
- /* margin-right: 20rpx; */
  width: 230rpx;
 }
 .seliverTextLeft{
@@ -235,4 +233,28 @@ page{
 }
 .seliverTextImge{
   flex: 1;
+}
+.silverBgImge .silver-bgImge{
+  width: 92rpx;
+  height: 92rpx;
+}
+.silverBgImge{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 280rpx;
+  top: 107rpx;
+}
+.silverBgImgen .silver-bgImgen{
+  width: 92rpx;
+  height: 92rpx;
+}
+.silverBgImgen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 315rpx;
+  top: 116rpx;
 }

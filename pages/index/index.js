@@ -41,7 +41,7 @@ Page({
       that.setData({
         successFlg: false
       })
-  }
+    }
   },
   myfindPage:function(){
     wx.navigateTo({

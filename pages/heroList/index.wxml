@@ -21,6 +21,6 @@
       </view>
     </view>
     <view class="step-show">{{hero.steps}}<text>步</text></view>
-    <!-- <image src="../../image/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image> -->
+    <!-- <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image> -->
   </view>
 </view>
