@@ -126,7 +126,7 @@ Page({
       },
       success: function (res) {
         console.log('latestTime:' + JSON.stringify(res));
-        if (res.data.code == 200) {
+        // if (res.data.code == 200) {
           console.log('获取最近更新时间成功！');
           var time = Utils.formatTime(new Date(res.data.data*1000));
           let latestTime = time.split(' ')[0];
@@ -146,7 +146,7 @@ Page({
             console.log('微信需要上传的步数：' + stepsDataModelList);
             stepsDataModelList.length && that.uploadStep(stepsDataModelList);
           })
-        }
+        // }
       },
       fail: function (res) {
         console.log('获取更新时间失败')
