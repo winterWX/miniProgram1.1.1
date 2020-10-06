@@ -9,14 +9,14 @@ Page({
     secoreNun:0,
     activeNum:0,
     bluPosse:0,
-    activeData:{}
+    activeData:{},
+    LockFlg : true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('1111111')
     this.tierMytier();
   },
 
@@ -79,11 +79,11 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-            let sercode = res.data.data.mileStones.length;
+            let sercode = res.data.data.mileStones.length;   
             that.setData({
                 activeData : res.data.data,
                 activeNum : sercode,
-                bluPosse : (1000 / Number(res.data.data.integral)).toFixed(5)
+                bluPosse : that.bluPosse(sercode,res.data.data)
             })
             that.secoreFun();
         }
@@ -93,6 +93,10 @@ Page({
       }
     })
   },
+  bluPosse:function(sercode,data){
+     let bluNum = (100 / Number(data.mileStones[sercode-1].targetIntegral));
+     return (Number(bluNum) * Number(data.integral)).toFixed(1);
+  },
   secoreFun:function(){
     let that = this;
     let activeNum = that.data.activeNum;
@@ -100,7 +104,34 @@ Page({
       secoreNun :  (100 / Number(activeNum)).toFixed(5)
     })
   },
-  // upgradeFun(e){
-  //   let cardUpgrade =  e.target.dataset.card;
-  // }
+  receivedFun:function(e){
+    let that = this;
+    let idCode = e.currentTarget.dataset.id;
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode,
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+            that.tierMytier();
+        }
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+      }
+    })
+  },
+  parentCallBack:function(event){
+    let that = this;
+    if (event.detail.LockLevel === 2){
+        that.setData({ silverLevel: true, glodLevel: false,LockFlg: false});
+    }else if(event.detail.LockLevel === 3){
+        that.setData({ glodLevel: true,silverLevel: false,LockFlg:false });
+    }else{
+        that.setData({ silverLevel: false, glodLevel:false,LockFlg: true});
+    }
+  }
 })
