@@ -16,6 +16,23 @@ Page({
   onLoad: function (options) {
     let {id, reward=0 } = options;
     this.setData({id, reward});
+   /*  this.setData({ successFlg: true })
+    this.selectComponent('#filterCmp').restFilterDatas(); */
+  },
+  onShow: function() {
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 100
+    });
+    animation.opacity().translate(100, -88).step()
+    this.setData({
+      ani:  animation.export()
+    })
+    animation.opacity().translate(-85, -45).step()
+    this.setData({
+      aniLeft:  animation.export()
+    })
   },
   navigateActivityResult: function() {
     wx.navigateTo({

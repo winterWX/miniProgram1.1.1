@@ -179,9 +179,9 @@ page {
 }
 
 .progress-box .progress .cell .active-item {
-  width: 18rpx;
-  height: 18rpx;
-  border-radius: 9rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
   position: absolute;
   display: inline-block;
   background-color: #fff;

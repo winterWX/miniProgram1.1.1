@@ -269,7 +269,7 @@ Page({
           let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
           let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
-          that.setData({ showAnimation: true, receivedReward: true, detail, completeChange });
+          that.setData({ showAnimation: true, receivedReward: true, detail, completeChange,reward: 0 });
           if (completeChange) {
             let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
@@ -301,7 +301,7 @@ Page({
     this.setData({ reward });
   },
   calcPercent: function (currentNum, arr) {
-    let result = 0;
+    let result = null;
     let percent = 0;
     if (arr[arr.length - 1].mileStoneTarget >= currentNum) {
       for (let item of arr) {
@@ -311,13 +311,20 @@ Page({
         }
       }
       let index = arr.indexOf(result);
-      let ratio = parseInt((100 / (arr.length - 1))) * index;
-      let percentNum = parseInt((currentNum * ratio) / result.mileStoneTarget);
+      let target = null;
+      if (index !==1 && index !== arr.length-1){
+        let num1 = currentNum - arr[index-1].mileStoneTarget;
+        let num2 = arr[index].mileStoneTarget - currentNum;
+        target = num1 >= num2 ? arr[index+1] : arr[index - 1]
+      } else {
+        target = result;
+      }
+      let ratio = parseInt((100 / (arr.length - 1))) * arr.indexOf(target);
+      let percentNum = parseInt((currentNum * ratio) / target.mileStoneTarget);
       percent = percentNum > 100 ? 100 : percentNum;
     } else {
       percent = 100;
     }
-    console.log(percent)
     this.setData({ percent })
   },
   userLogin(data) {
