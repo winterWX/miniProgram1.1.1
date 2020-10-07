@@ -156,19 +156,10 @@ Page({
         success: (res) => {
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
-              const {time,type} = res.data.data;
-              that.setData({typeFlg: type});
-              let dayTime = parseInt(new Date().getTime() / 1000);
+              let time = res.data.data;
+              //let dayTime = parseInt(new Date().getTime() / 1000);
               const runArray = that.runArray(runData,time);
-              if (type !== 'register'){
-                  if(util.timestampToTime(dayTime) !== util.timestampToTime(time)){
-                      that.getUploaddata(runArray);
-                  }else{
-                      that.getUploaddata(runArray);
-                  }
-              }else{
-                  that.getUploaddata(runArray);
-              }
+              that.getUploaddata(runArray);
           }
         }
       })
@@ -209,8 +200,9 @@ checkIsAppUser:function(){
     },
     success: (res) => {
       if (res.data.code === 200) {
+          // 2 app 用户，1 mini用户
           that.setData({
-            isAppData: res.data.data === 1 ? true : false
+            isAppData: res.data.data === 2 ? true : false
           })
           //数据源
           app.healthStep.dataCource = res.data.data;
@@ -218,7 +210,7 @@ checkIsAppUser:function(){
     }
   })
 },
-runArray:function(array,lastTime,type){
+runArray:function(array,lastTime){
     let that = this;
     let runDataArray = [];
     array.forEach((item)=>{
@@ -228,16 +220,12 @@ runArray:function(array,lastTime,type){
           steps: item.step
         })
     })
-    if(that.data.typeFlg !== 'register'){
-      const indexs = runDataArray.findIndex(item =>{
-        return util.timestampToTime(item.endTime) === util.timestampToTime(lastTime);
-      })
-      if(indexs > -1){
-        return runDataArray.splice(0,indexs+1)
-      }
-      return runDataArray;
-    }else{
-      return runDataArray;
+    const indexs = runDataArray.findIndex(item =>{
+      return util.timestampToTime(item.endTime) === util.timestampToTime(lastTime);
+    })
+    if(indexs > -1){
+      return runDataArray.splice(0,indexs+1)
     }
+    return runDataArray;
   }
 })
