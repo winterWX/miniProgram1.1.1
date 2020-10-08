@@ -4,6 +4,7 @@ page{
 .imageBalock{
   position: relative;
   height: 318rpx;
+  overflow: hidden;
 }
 .topLeftBlock{
    display: flex;
@@ -196,6 +197,9 @@ page{
   font-size: 24rpx;
   font-family: PingFangSC-Regular;
 }
+.imageBottoFu{
+  color: rgb(253,224,188);
+}
 .seliverTextImge{
   flex: 1;
 }
@@ -256,5 +260,5 @@ page{
   justify-content: center;
   position: absolute;
   left: 315rpx;
-  top: 116rpx;
+  top: 100rpx;
 }

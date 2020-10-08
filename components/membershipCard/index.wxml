@@ -1,4 +1,4 @@
-<view class="imageBalock">
+<view class="imageBalock" style="width:{{windowWidth}}rpx;">
    <view class="topLeftBlock" style="left:{{leftImage}}rpx;">
         <view class="itemImage itemImage1" bindtouchstart='touchStart' bindtouchend="touchEnd"  data-id="image1">
            <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/bg-bronze@3x.png" />
@@ -23,7 +23,7 @@
               </view>
               <view class="imageTopTextRight" bindtap="upgradeCard" data-card="{{activeData.level}}">立即升级</view>
            </view>
-           <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员等级于{{levelExpiryTime}}日到期</view>
+           <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员等级于{{levelExpiryTime}}到期</view>
            <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会员永久有效</view>
            <view class="silverBgImge"   wx:if="{{activeData.level === 1}}"><image class="silver-bgImge" src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/silver-lock@3x.png"/></view>
            <view class="imageBottom">
@@ -45,7 +45,7 @@
            <view class="imageBottom3">
               <view class="imageBottom13" wx:if="{{activeData.level === 3}}">积分 {{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}续会籍一年</view>
               <view class="imageBottom13" wx:if="{{activeData.level === 5}}">积分 {{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}</view>
-              <view class="imageBottom13" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达到{{infoLevelObj.nextLevelIntegral}}积分可升级/使用恒生尊享码可升级</view>
+              <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达到{{infoLevelObj.nextLevelIntegral}}积分可升级/使用恒生尊享码可升级</view>
            </view>
       </view>
    </view>
@@ -63,7 +63,7 @@
       <view class="seliverBlockRight">
          <view class="seliverTextRightBlock">
             <view class="seliverTextRight">积分详情</view>
-            <view class="seliverTextRightBottom">积分130天后过期</view>
+            <view class="seliverTextRightBottom">部分活动2倍积分</view>
          </view>
          <view class="seliverTextImge">
             <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-3@3x.png"/>

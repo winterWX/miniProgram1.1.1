@@ -10,7 +10,15 @@ Page({
     activeNum:0,
     bluPosse:0,
     activeData:{},
-    LockFlg : true
+    LockFlg : true,
+    indicatorColor:'#EDEDED',
+    indicatorActive:"#929292",
+    indicatorDots: true,
+    vertical: true,
+    autoplay: true,
+    interval: 2000,
+    duration: 500,
+    windowWidth: wx.getSystemInfoSync().windowWidth*2,
   },
 
   /**
@@ -79,7 +87,7 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-            let sercode = res.data.data.mileStones.length;   
+            let sercode = res.data.data.mileStones.length;
             that.setData({
                 activeData : res.data.data,
                 activeNum : sercode,
