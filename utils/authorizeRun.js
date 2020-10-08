@@ -142,7 +142,7 @@ function getAllWeRunData(sessionkey, result) {
          });
       },
       fail: function () {
-         result([]);  //拒绝授权
+         result({authorize:false});  //拒绝授权
       }
    })
 };
