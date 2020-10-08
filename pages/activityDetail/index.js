@@ -25,6 +25,7 @@ Page({
     baseUrl: app.globalData.imagesUrl,
     completeChange: false,
     allReward: 0,
+    showDialog: false,
     avatarObjList: [
       {
         url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
@@ -116,6 +117,10 @@ Page({
   },
   getWxRunData: function () {
     step.getWxRunData((data) => {
+      if ( data.hasOwnProperty('authorize') && !data.authorize) {
+        this.setData({showDialog: true});
+        return;
+      }
       this.getLatestUploadTime(data);
     })
   },
@@ -189,7 +194,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({showDialog: false});
   },
 
   getActivityDetail: function (id, goodsId = '') {
@@ -471,5 +476,11 @@ Page({
     wx.navigateTo({
       url: '../activityResult/index?id=' + activityId + "&success=" + true
     })
+  },
+  closeModal: function() {
+    this.setData({showDialog: false});
+  },
+  callback: function() {
+    
   }
 })
