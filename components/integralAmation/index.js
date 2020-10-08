@@ -10,17 +10,17 @@ Component({
       observer(value) {
         console.log('积分', value);
         var numberAarry=[];
-        var result = value / 10 + 1;
+        // var result = value / 10 + 1;
       /*   if(value === 100){
           var result = value / 10 + 1
         }else{
           var result = value / 10 + 1
         } */
-        for (var i = 1; i < result; i++){
-          numberAarry.push(i)
-        }
+        // for (var i = 1; i < result; i++){
+        //   numberAarry.push(i)
+        // }
         this.setData({
-          numberAarry: numberAarry
+          numberAarry: [0,value],
         })
         setTimeout(() => {
           wx.createSelectorQuery().in(this).selectAll('.itemTxt').boundingClientRect((rects) => {
@@ -64,9 +64,6 @@ Component({
         num = num+1
         if (num == this.data.numberAarry.length){ 
           clearInterval(timer)
-          /* this.setData({
-            animateCompelte:true,            
-          })  */
           setTimeout(()=>{
             this.setData({
               animateCompelte:true,            
@@ -87,7 +84,7 @@ Component({
         }
 
       }
-      timer = setInterval(counterNumber,50)
+      timer = setInterval(counterNumber,1000)
     },
 
   }
