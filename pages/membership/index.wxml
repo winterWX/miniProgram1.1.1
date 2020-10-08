@@ -56,14 +56,14 @@
                 <view class="text3-main" wx:if="{{tierCode.newTier === 4}}">升级为尊享银，以后等级最低为银。</view>
                 <view class="text3-main" wx:if="{{tierCode.newTier === 5}}">使用前是普通金，本次使用后，以后等级最低为银。</view>
                 <view class="text4-main">
-                  <van-button type="primary" size="large" bindtap="bindEmail">继续查看视频</van-button>
+                  <van-button type="primary" size="large" bindtap="bindEmail">继续</van-button>
                 </view>
                 <view class="text5-main">查看的我的优惠券</view>
             </view>
            </view>
-           <view class="bottomBlock" bindtap="closeBlock">
+           <!-- <view class="bottomBlock" bindtap="closeBlock">
              <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/clear@3x.png" />
-           </view>
+           </view> -->
        </view>
     </view>
 </view>

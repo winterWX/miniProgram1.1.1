@@ -34,6 +34,7 @@ Component({
       levelExpiryTime:'',
       nextLevelIntegral:'',
       seliverBlockShow : true,
+      windowWidth: wx.getSystemInfoSync().windowWidth*2,
       infoLevelObj:{}
   },
 

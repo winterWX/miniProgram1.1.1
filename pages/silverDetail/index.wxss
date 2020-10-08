@@ -88,7 +88,7 @@
 .glodBlock{
   left: 95rpx;
 }
-.progressBlockBlue{
+/* .progressBlockBlue{
     position: absolute;
     top: 145rpx;
     width: 100%;
@@ -96,6 +96,15 @@
     background-color: rgb(0,168,101);
     border-radius: 50rpx;
     z-index: 10;
+} */
+.progressBlockBlue{
+  /* position: absolute;
+  top: 145rpx;
+  width: 100%; */
+  height: 100%;
+  background-color: rgb(0,168,101);
+  border-radius: 50rpx;
+  z-index: 10;
 }
 .rabie{
   background-color: rgb(255,255,255);
@@ -194,6 +203,12 @@
   font-size: 24rpx;
   color: rgb(151,111,23);
   border: 2rpx solid rgb(151,111,23);
+  padding: 5rpx 10rpx;
+}
+.progressBlockText30{
+  font-size: 24rpx;
+  color: rgb(7,56,36);
+  border: 2rpx solid rgb(7,56,36);
   padding: 5rpx 10rpx;
 }
 .bouttomImage{
@@ -312,4 +327,61 @@
 .bottomTextSecondeBlock2{
  font-size: 28rpx;
  color: rgb(102,102,102);
+}
+.container .page-body{
+  height: 135rpx;
+}
+.page-body swiper{
+  height: 135rpx;
+}
+.swiper{
+  height: 135rpx;
+}
+.glodBottom{
+  width: 100%;
+  height: 190rpx;
+  background-color: #ffffff;
+  padding: 30rpx;
+  margin-top: 20rpx;
+}
+.glodBottomBlock{
+   display: flex;
+   align-items: center;
+}
+.glodBottomTitle{
+  font-size: 32rpx;
+  color: rgb(51,51,51);
+  margin-bottom: 50rpx;
+}
+.glodBottomLeft{
+  border-right: 1rpx solid rgb(237,237,237);
+}
+.glodBottomItem{
+  display: flex;
+  align-items: center;
+}
+.glodBottomText{
+  width: 260rpx;
+}
+.glodBottomImage{
+  flex: 1;
+  padding-right: 20rpx;
+}
+.glodBottomImage image{
+ height: 76rpx;
+ width: 76rpx;
+}
+.glodBottomPind{
+  padding-left: 30rpx;
+  width: 215rpx !important;
+}
+.glodBottomText1{
+  
+  font-size: 28rpx;
+  color:rgb(51,51,51);
+}
+.glodBottomText2{
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  margin-top: 10rpx;
 }
