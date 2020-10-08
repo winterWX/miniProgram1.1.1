@@ -20,7 +20,7 @@
                         <view class="topText">{{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -78,7 +78,7 @@
                         <view class="topText">{{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -150,7 +150,7 @@
                         <view class="topText">${{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -227,7 +227,7 @@
                         <view class="topText">{{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -298,7 +298,7 @@
                         <view class="topText">${{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>

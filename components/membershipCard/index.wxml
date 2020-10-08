@@ -38,7 +38,7 @@
                  <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png"/>
                  <view class="imageRihtText3">金会员</view>
               </view>
-              <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="{{activeData.level}}">立即升级</view>
+              <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="{{activeData.level}}">会员续期</view>
            </view>
            <view class="silver-bgText3" wx:if="{{activeData.level == 3 || activeData.level == 5}}">会员等级于{{levelExpiryTime}}到期</view>
            <view class="silverBgImgen" wx:if="{{activeData.level === 1 || activeData.level === 2}}"><image  class="silver-bgImgen"  src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/silver-lock@3x.png"/></view>
