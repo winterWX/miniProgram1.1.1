@@ -274,7 +274,10 @@ Page({
           let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
           let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
-          that.setData({ showAnimation: true, receivedReward: true, detail, completeChange,reward: 0 });
+          that.setData({ showAnimation: true, receivedReward: true, detail, completeChange });
+          setTimeout(() => {
+            that.setData({reward: 0})
+          }, 2000)
           if (completeChange) {
             let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
