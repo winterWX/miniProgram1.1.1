@@ -20,7 +20,7 @@
                 <view wx:for="{{numberAarry}}" wx:key="index" class="itemTxt">{{item}}</view>
               </view>
             <view class="reusult" wx:if="{{animateCompelte}}">{{numberAarry[numberAarry.length-1]}}</view>
-            </view>0</view>
+            </view></view>
         </view>
       </view>
 
