@@ -13,18 +13,27 @@
 </view> -->
 
 <view>
- <view class="healthBack-main">
-		<view class="profile backPro" catchtap="profilePage"></view>
-		<view class="activity" catchtap="navigateMyActivity"></view>
-		<view class="sport backTop" catchtap="healthPage"></view>
-		<view class="silverDetail silverDetailers" catchtap="silverDetail"></view>
- 		<view class="recommend backRemon" catchtap="sendFriend"></view>
-		<view class="addFriend addFriendSty" catchtap="addFriend"></view>
-		<image class="mine-image" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine.png"></image>
-	</view>
-	<view class="bottom-box">
-		<view class="setting back" catchtap="settingPage"></view>
-		<image src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine-bottom.png"></image>
-	</view>
-	<footer active="{{active}}"></footer>
+		<view class="healthBack-main">
+			<view  class="profile backPro" catchtap="profilePage"></view>
+			<view  class="activity" catchtap="navigateMyActivity"></view>
+			<view  class="sport backTop" catchtap="healthPage"></view>
+			<view  class="silverDetail silverDetailers" catchtap="silverDetail"></view>
+			<view  class="recommend backRemon" catchtap="sendFriend"></view>
+			<view  class="addFriend addFriendSty" catchtap="addFriend"></view>
+			<image class="mine-image" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine.png"></image>
+			<view  wx:if="{{showDialog}}" class="modal-mianConten" style="height:{{windowHeight}}rpx;"></view>
+		</view>
+		<view class="bottom-box">
+			<view class="setting back" catchtap="settingPage"></view>
+			<image src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine-bottom.png"></image>
+		</view>
+		<view wx:if="{{showDialog}}" class="modal-body">
+				<view class="modal-title">提示</view>
+				<view class="modal-content">乐健康需微信步数授权</view>
+				<view class="flex">
+					<button class="dis" catchtap="closeModal">取消</button>
+					<button class="btn" open-type="openSetting" bindopensetting="callback">确认</button>
+				</view>
+		</view>
+		<footer wx:if="{{!showDialog}}" active="{{active}}"></footer>
 </view>

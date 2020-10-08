@@ -12,7 +12,9 @@ Page({
     active: 4,
     runData:[],
     isAppData: false,  //判断是不是app用户
-    typeFlg:''
+    typeFlg:'',
+    showDialog:false,
+    windowHeight: wx.getSystemInfoSync().windowHeight *2
   },
 
   /**
@@ -79,14 +81,15 @@ Page({
         that.healthSccuss();
       } else {
         authorizeRun.getWxRunData(function(result){
-            if(result !== 'refusedTo'){
+            if(result.length > 0){
               //授权成功跳转获取步数
               app.globalData.runData = result;
               app.globalData.isWeRunSteps = true; //标志授权成功
               that.getQueryLatestime(result);
             }else{
               //拒绝授权
-              that.healthFail();
+              that.setData({showDialog: true});
+              //that.healthFail();
             }
         })
       }
@@ -149,9 +152,6 @@ Page({
         header: {
           "Content-Type": "application/json;charset=UTF-8",
           "token": app.globalData.token
-        },
-        data:{
-          source: 'string'
         },
         success: (res) => {
           if (res.data.code === 200) {
@@ -227,5 +227,12 @@ runArray:function(array,lastTime){
       return runDataArray.splice(0,indexs+1)
     }
     return runDataArray;
+  },
+  closeModal: function() {
+    this.setData({showDialog: false});
+    this.healthFail();
+  },
+  callback: function() {
+    this.setData({showDialog: false});
   }
 })
