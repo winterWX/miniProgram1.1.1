@@ -78,6 +78,7 @@ Page({
         if (res.data.code == 200) {
           app.globalData.token = '';
           app.globalData.userInfo = null;
+          app.globalData.loginSuccess = false;
           wx.navigateTo({
             url: '../index/index'
           })
