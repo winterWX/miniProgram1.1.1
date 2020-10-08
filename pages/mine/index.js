@@ -79,7 +79,7 @@ Page({
         that.healthSccuss();
       } else {
         authorizeRun.getWxRunData(function(result){
-            if(result !== 'refusedTo'){
+            if(result.length > 0){
               //授权成功跳转获取步数
               app.globalData.runData = result;
               app.globalData.isWeRunSteps = true; //标志授权成功
