@@ -30,10 +30,10 @@
    position: relative;
 }
 .top-box .back-icon {
-   width: 36rpx;
-   height: 36rpx;
+   width: 680rpx;
+   height: 260rpx;
    position: absolute;
-   top: 38rpx;
+   top: 18rpx;
    right: 30rpx;
    opacity: 0.2;
 }
