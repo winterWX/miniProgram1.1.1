@@ -93,8 +93,9 @@
                 </view>
             </view>
             <view class="progressBlock">
-                <view class="progressBlockPosee"></view>
-                <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                <view class="progressBlockPosee">
+                    <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                </view>
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
@@ -187,8 +188,9 @@
                 </view>
             </view>
             <view class="progressBlock">
-                <view class="progressBlockPosee"></view>
-                <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                <view class="progressBlockPosee">
+                    <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                </view>
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
@@ -305,8 +307,9 @@
                 </view>
             </view>
             <view class="progressBlock">
-                <view class="progressBlockPosee"></view>
-                <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                <view class="progressBlockPosee">
+                    <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                </view>
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
@@ -398,8 +401,9 @@
                 </view>
             </view>
             <view class="progressBlock">
-                <view class="progressBlockPosee"></view>
-                <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                <view class="progressBlockPosee">
+                    <view class="progressBlockBlue" style="width:{{bluPosse}}%;"></view>
+                </view>
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
