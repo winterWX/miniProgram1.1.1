@@ -36,15 +36,15 @@
               <text  wx:if="{{errorTip}}">输入的恒生尊享码已被使用，请确认有效性并重新输入。</text>
               <text  wx:if="{{errorTipThree}}">输入的恒生尊享码已经输错3次，24小时内不能再尝试。</text>
           </view> -->
-          <view class='tip' wx:if="{{showTip}}">
+          <view class='tip' wx:if="{{showTip && nickName.length !==0}}">
               <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
               <text>输入的恒生尊享码无效，请确认有效性并重新输入。</text>
           </view>
-          <view class='tip' wx:if="{{errorTip}}">
+          <view class='tip' wx:if="{{errorTip && nickName.length !==0}}">
               <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
               <text>输入的恒生尊享码已被使用，请确认有效性并重新输入。</text>
           </view>
-          <view class='tip' wx:if="{{errorTipThree}}">
+          <view class='tip' wx:if="{{errorTipThree && nickName.length !==0}}">
               <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
               <text>输入的恒生尊享码已经输错3次，24小时内不能再尝试。</text>
           </view>

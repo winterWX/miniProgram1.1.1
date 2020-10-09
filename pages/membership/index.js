@@ -72,6 +72,7 @@ Page({
     this.setData({
       nickName: e.detail.value
     })
+    console.log('nickName',that.data.nickName);
   },
   submitHnadle:function(){
     if (!this.data.nickName) {
@@ -85,8 +86,9 @@ Page({
      }
     }
   },
-  nameChangeFocus:function(){
+  nameChangeFocus:function(e){
     this.setData({showTip:false});
+    console.log('e foe',e);
   },
   membershipCode:function(){
     let that = this;
