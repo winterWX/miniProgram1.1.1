@@ -2,7 +2,7 @@
     <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}"  bind:parentLevel="parentCallBack" />
     <view wx:if="{{activeData.level === 1 && LockFlg}}">
         <view class="integralAct-main">
-            <view class="integralActTitle">折扣券积分活动</view>
+            <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
@@ -23,7 +23,7 @@
                         <view class="topText">{{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -85,7 +85,7 @@
             <view class="vipBottomBlock" >vvip尊享升级，权益更多</view>
         </view>
         <view class="integralAct-main">
-            <view class="integralActTitle">折扣券积分活动</view>
+            <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
@@ -104,7 +104,7 @@
                         <view class="topText">{{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -180,7 +180,7 @@
     </view>
     <view wx:if="{{activeData.level === 3  && LockFlg}}">
         <view class="integralAct-main integralAct-main2">
-            <view class="integralActTitle">折扣券积分活动</view>
+            <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
@@ -199,7 +199,7 @@
                         <view class="topText">${{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -299,7 +299,7 @@
             <view class="vipBottomBlock" >vvip尊享升级，权益更多</view>
         </view>
         <view class="integralAct-main">
-            <view class="integralActTitle">折扣券积分活动</view>
+            <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
@@ -318,7 +318,7 @@
                         <view class="topText">{{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -393,7 +393,7 @@
             <view class="vipBottomBlock" >vvip尊享升级，权益更多</view>
         </view>
         <view class="integralAct-main">
-            <view class="integralActTitle">折扣券积分活动</view>
+            <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
@@ -413,7 +413,7 @@
                         <view class="topText">${{item.couponValue}}折</view>
                         <view class="minText">{{item.couponName}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">可领</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
