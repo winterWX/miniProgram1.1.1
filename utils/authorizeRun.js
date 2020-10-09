@@ -60,7 +60,7 @@ function miniproLogin(code, enData, ivData, result) {
       }
    })
 };
-// 存储微信授权时间
+// 获取微信授权时间
 function wxAuthorizedTime() {
    return new Promise((resolve) => {
       wx.request({
@@ -82,8 +82,9 @@ function wxAuthorizedTime() {
 // 上传初次授权时间
 function postFirstAuthorizedTime() {
    let t = new Date();
-   let time = t.getTime();
-   let lastTime = parseInt(time / 1000);
+  /*  let time = t.getTime();
+   let lastTime = parseInt(time / 1000); */
+  let lastTime = t.getTime();
    wx.request({
       url: app.globalData.baseUrl + '/remote/data/authorize',
       method: "post",

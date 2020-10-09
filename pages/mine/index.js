@@ -221,7 +221,7 @@ runArray:function(array,lastTime){
         })
     })
     const indexs = runDataArray.findIndex(item =>{
-      return util.timestampToTime(item.endTime) === util.timestampToTime(lastTime);
+      return util.timestampToTime(new Date(item.endTime * 1000)) === util.timestampToTime(new Date(lastTime));
     })
     if(indexs > -1){
       return runDataArray.splice(0,indexs+1)
