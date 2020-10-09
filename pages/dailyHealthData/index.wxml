@@ -8,8 +8,8 @@
 <view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 2}}">以下数据来自“APP同步数据”。</view>
 <view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 1}}">以下数据来自“微信运动”。</view>
 <view class="container">
-    <view class="panel">
-      <view class="panel_header" catchtap="nagigateStep">
+    <view class="panel" catchtap="nagigateStep">
+      <view class="panel_header">
         <view class="icon"><image src="http://106.54.73.125:8104/images/miniprogram/images/icon-walking-data@2x.png" mode="aspectFit"/></view>
         <view class="title title_ft">步行数据</view>      
       </view>
@@ -46,8 +46,8 @@
       </view>
     </view>
 
-  <view class="panel">
-      <view class="panel_header" bindtap="healthbmi">
+  <view class="panel" bindtap="healthbmi">
+      <view class="panel_header">
         <view class="icon"><image src="http://106.54.73.125:8104/images/miniprogram/images/icon-bmi@2x.png" mode="aspectFit"/></view>
         <view class="title title_ft">质量指数（BMI）</view>      
       </view>
