@@ -8,6 +8,8 @@ Page({
     nickName : '',
     showTip : false,
     showCarkBlock:false,
+    errorTip:false,
+    errorTipThree:false,
     tierCode:{}
   },
 
@@ -76,15 +78,15 @@ Page({
         return;
     }else{
       if(/^(?=.*[A-Z])(?=.*[0-9])[A-Z-0-9]{2,}$/.test(this.data.nickName)){
-        this.setData({showTip : false});
+          this.setData({showTip : false});
+          this.membershipCode();
      }else{
-        this.setData({showTip : true});
+          this.setData({showTip : true});
      }
     }
-    this.membershipCode();
   },
   nameChangeFocus:function(){
-    this.setData({showTip : false});
+    this.setData({showTip:false});
   },
   membershipCode:function(){
     let that = this;
@@ -99,15 +101,19 @@ Page({
         "membershipCode": this.data.nickName
       },
       success: function (res) {
-        if (res.data.code == 200) {
-            that.setData({tierCode:res.data.data});
-            that.setData({showCarkBlock:true,nickName : ''});
-         }
+        if (res.data.code === 200) {
+            that.setData({tierCode: res.data.data});
+            that.setData({showCarkBlock: true,nickName : ''});
+         }else if(res.data.code === 100804){
+            that.setData({errorTip:true});
+         }else if(res.data.code === 100802){
+            that.setData({errorTipThree:true});
+          }
       },
       fail: function (res) {
         console.log('.........fail..........',res);
         wx.showToast({
-          titel: '服务繁忙， 请稍后重试。',
+          title: '服务繁忙， 请稍后重试。',
           icon: 'loading'
         })
       }
