@@ -1,4 +1,4 @@
-const formatTime = (date, flag=false) => {
+const formatTime = (date, flag = false) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -11,11 +11,12 @@ const formatTime = (date, flag=false) => {
     let [y, m, d] = paddingTime;
     result = `${y}年${m}月${d}日 ${[hour, minute, second].map(formatNumber).join(':')}`
   };
+  // debugger
   return result;
 }
 
-const timestampToTime = timestamp => {
-  const date = new Date(timestamp * 1000); 
+const timestampToTime = date => {
+  // const date = new Date(timestamp * 1000); 
   const Y = date.getFullYear() + '-';
   const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
   const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());

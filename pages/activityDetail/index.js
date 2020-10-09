@@ -104,7 +104,8 @@ Page({
         bpm: 0,
         source: 'string',
         type: 'MINIP',
-        lastTime: parseInt(new Date().getTime() / 1000) + '',
+        // lastTime: parseInt(new Date().getTime() / 1000) + '',
+        lastTime: new Date().getTime() + '',
         stepsDataModelList: stepList
       },
       success: function (res) {
@@ -136,7 +137,9 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          var time = Utils.formatTime(new Date(res.data.data * 1000));
+          // var time = Utils.formatTime(new Date(res.data.data * 1000));
+          console.log('返回存储的时间' + new Date(Number(res.data.data)))
+          var time = Utils.formatTime(new Date(Number(res.data.data)));
           let latestTime = time.split(' ')[0];
           let result = data.find(item => item.date === latestTime);
           let index = data.indexOf(result);
