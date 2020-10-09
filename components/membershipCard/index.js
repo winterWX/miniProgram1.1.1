@@ -51,29 +51,37 @@ Component({
       }
     },
     touchStart(e){
-      this.setData({
-        "touch.startX": e.changedTouches[0].clientX,
-        "touch.startY": e.changedTouches[0].clientY
-      });
-      console.log('startX',this.data.touch.startX);
+        this.setData({
+          "touch.startX": e.changedTouches[0].clientX,
+          "touch.startY": e.changedTouches[0].clientY
+        });
+        console.log('startX',this.data.touch.startX);
     },
     touchEnd(e) {
       let imageFlg = e.currentTarget.dataset.id;
-      this.setData({
-        "touch.endX": e.changedTouches[0].clientX,
-        "touch.endY": e.changedTouches[0].clientY
-      });
-      this.imageLeft(imageFlg,this.data.touch.endX);
+      let stopeClick = e.target.dataset.card;
+      if(stopeClick === 'stopeClick'){
+           return;
+      }else{
+        this.setData({
+          "touch.endX": e.changedTouches[0].clientX,
+          "touch.endY": e.changedTouches[0].clientY
+        });
+        this.imageLeft(imageFlg,this.data.touch.endX);
+      }
     },
     imageLeft:function(imageFlg,endX){
+      console.log('endXendXendX',endX);
       if(Number(this.data.touch.startX) !== Number(endX)){
           if(imageFlg === 'image1' && endX > 30){
               this.setData({leftImage: -680});
               this.searchLeve(2);
           }else if(imageFlg === 'image2' && endX > 20){
-              this.setData({leftImage: -1330});
-              this.setData({imageFlg: true});
+              this.setData({leftImage: -1330,imageFlg: true});
               this.searchLeve(3);
+          }else if(this.data.activeData.level === 1 && (imageFlg === 'image3' && endX > 140)){
+              this.setData({leftImage: -680,imageFlg: false});
+              this.searchLeve(2);
           }
       }else{
           return;

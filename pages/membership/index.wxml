@@ -30,31 +30,44 @@
           <view class="nickname">恒生尊享码</view>
           <input class="input-name" value="{{ nickName }}" bindfocus='nameChangeFocus'  bindinput="nameChange"></input>
           <view class="line {{showTip ? 'lineRed' : ''}}"></view>
-          <view class='tip'  wx:if="{{showTip}}">
+          <!-- <view class='tip'>
+              <image wx:if="{{showTip ||errorTip || errorTipThree}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
+              <text  wx:if="{{showTip}}">输入的恒生尊享码无效，请确认有效性并重新输入。</text>
+              <text  wx:if="{{errorTip}}">输入的恒生尊享码已被使用，请确认有效性并重新输入。</text>
+              <text  wx:if="{{errorTipThree}}">输入的恒生尊享码已经输错3次，24小时内不能再尝试。</text>
+          </view> -->
+          <view class='tip' wx:if="{{showTip}}">
               <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
               <text>输入的恒生尊享码无效，请确认有效性并重新输入。</text>
+          </view>
+          <view class='tip' wx:if="{{errorTip}}">
+              <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
+              <text>输入的恒生尊享码已被使用，请确认有效性并重新输入。</text>
+          </view>
+          <view class='tip' wx:if="{{errorTipThree}}">
+              <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/red@3x.png" />
+              <text>输入的恒生尊享码已经输错3次，24小时内不能再尝试。</text>
           </view>
         </view>
         <button disabled="{{nickName.length === 0}}" class="btn-finish" catchtap="submitHnadle">确认</button>
     </view>
     <view class="carkBlock" wx:if="{{showCarkBlock}}">
        <view class="carkBlock-main">
-           <image class="topImage1" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-02@3x.png" />
-           <image class="topImage2" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-25-copy-19@3x.png" />
+          <image class="topImage1" wx:if="{{tierCode.resultCode === 3}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-02@3x.png" />
+           <image class="topImage1" wx:if="{{tierCode.newTier === 4}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-2@3x.png" />
+           <image class="topImage2" wx:if="{{tierCode.newTier === 4}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-4@3x.png" />
+           <image class="topImage1" wx:if="{{tierCode.newTier === 5}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-02@3x.png" />
+           <image class="topImage2" wx:if="{{tierCode.newTier === 5}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-25-copy-19@3x.png" />
            <view class="carkBlock-allMain">
               <image class="imageBottom" src="http://106.54.73.125:8104/images/miniprogram/images/silver/rectangle@3x.png" />
               <view class="text-main">
                 <view class="text1-main">恭喜你成功升级为</view>
-                <view class="text2-main" wx:if="{{tierCode.newTier === 1}}">铜会员</view>
-                <view class="text2-main" wx:if="{{tierCode.newTier === 2}}">白银会员</view>
-                <view class="text2-main" wx:if="{{tierCode.newTier === 3}}">黄金会员</view>
-                <view class="text2-main" wx:if="{{tierCode.newTier === 4}}">尊享银会员</view>
-                <view class="text2-main" wx:if="{{tierCode.newTier === 5}}">尊享金会员</view>
-                <view class="text3-main" wx:if="{{tierCode.newTier === 1}}">升级为尊享金，以后等级最低为银，金等级有效期1年。</view>
-                <view class="text3-main" wx:if="{{tierCode.newTier === 2}}">使用前已经是尊享金，本次使用只延长金等级有效期1年。</view>
-                <view class="text3-main" wx:if="{{tierCode.newTier === 3}}">使用前是普通金，本次使用成为尊享金，以后等级最低为银，并延长金等级有效期1年。</view>
-                <view class="text3-main" wx:if="{{tierCode.newTier === 4}}">升级为尊享银，以后等级最低为银。</view>
-                <view class="text3-main" wx:if="{{tierCode.newTier === 5}}">使用前是普通金，本次使用后，以后等级最低为银。</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 3}}">尊享好礼</view>
+                <view class="text2-main" wx:if="{{tierCode.newTier === 4}}">白银会员</view>
+                <view class="text2-main" wx:if="{{tierCode.newTier === 5}}">黄金会员</view>
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 3}}">已获得的优惠券已经放置在“我的优惠券”列表中，当前等级仍为黄金，过期后最低将不低于白银会员，可在“会员等级”查看等级及尊享优惠。</view>
+                <view class="text3-main" wx:if="{{tierCode.newTier === 4}}">会员等级永恒有效，在此期间你将享有白银会员权益，已获得的优惠券已经放置在“我的优惠券”列表中。</view>
+                <view class="text3-main" wx:if="{{tierCode.newTier === 5}}">已增加一年金会员有效期，已获得的优惠券已经放置在“我的优惠券”列表中，可在“会员等级”查看等级及尊享优惠。</view>
                 <view class="text4-main">
                   <van-button type="primary" size="large" bindtap="bindEmail">继续</van-button>
                 </view>
