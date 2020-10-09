@@ -20,7 +20,7 @@ Component({
         //   numberAarry.push(i)
         // }
         this.setData({
-          numberAarry: [0,value],
+          numberAarry: ['',value],
         })
         setTimeout(() => {
           wx.createSelectorQuery().in(this).selectAll('.itemTxt').boundingClientRect((rects) => {
