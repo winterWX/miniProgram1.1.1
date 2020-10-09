@@ -63,7 +63,7 @@
 }
 .healthBack-main .profile {
   right: 30rpx;
-  top: 27rpx;  
+  top: 27rpx;
 }
 .healthBack-main .sport {
   right: 30rpx;
@@ -82,8 +82,8 @@
   height: 1140rpx;
 }
 .bottom-box {
-  /* margin-bottom: 120rpx;
-  position: relative; */
+  margin-bottom: 120rpx;
+  position: relative;
 }
 .bottom-box .setting {
   position: absolute;
