@@ -150,7 +150,7 @@ Page({
         bpm: 0,
         source :'string',
         type : 'MINIP',
-        lastTime: parseInt(new Date().getTime() / 1000) + '',
+        lastTime: new Date().getTime() + '',
         stepsDataModelList: runData,
       },
       success: (res) => {
