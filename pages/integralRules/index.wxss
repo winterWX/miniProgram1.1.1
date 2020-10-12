@@ -1,1 +1,15 @@
-/* pages/integralRules/index.wxss */
+.topText{
+  background-color: #ffffff;
+  padding: 30rpx;
+}
+.bottomText{
+  margin-top: 30rpx;
+  background-color: #ffffff;
+  padding: 30rpx;
+}
+.title{
+
+}
+.content{
+
+}

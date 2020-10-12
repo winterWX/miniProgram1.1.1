@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    integralList:[]
   },
 
   /**
@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  integralRules:function(){
+    wx.navigateTo({
+        url: '../../pages/integralRules/index',
+    })
   }
 })
