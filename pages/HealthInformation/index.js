@@ -152,7 +152,6 @@ Page({
   },
   //展示tag标签
   tagsShare:function () {
-      return;
       var that = this;
       that.setData({
         hideModal: false
