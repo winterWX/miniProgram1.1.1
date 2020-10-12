@@ -1,0 +1,22 @@
+<view>
+    <view class="blue-content">
+        <view class="blueBlock">
+           <view class="blueBlockNum">100</view>
+           <view class="blueBlockLeft">
+              <image class="blueBlockLeft-image" src="../../image/integralDetails/oval-2@3x.png" />
+              <view class="blueBlockLeftText">积分规则</view>
+           </view>
+        </view>
+        <view class="blueBlockText">积分将于2021年8月31日到期</view>
+    </view>
+    <view class="blueBottomTitle">获取积分</view>
+    <view class="itemContent">
+        <view class="blueBlockItem">
+           <view class="blueBlockNumItem">100</view>
+           <view class="blueBlockTextItem">积分将于2021年8月31日到期</view>
+        </view>
+        <view class="blueBlockLeftItem">
+          <view class="blueBlockLeftTextItem">积分规则</view>
+        </view>
+    </view>
+</view>
