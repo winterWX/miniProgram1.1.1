@@ -1,2 +1,18 @@
-<!--pages/integralRules/index.wxml-->
-<text>pages/integralRules/index.wxml</text>
+<view>
+  <view class="topText">
+    <view class="title">积分有效期</view>
+    <view class="content">1、积分为入账时间，而非积分获取时间
+          2、医疗签到会有延时
+          3、恒生账户开户签到有延时
+          4、Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </view>
+  </view>
+  <view class="bottomText">
+    <view class="title">积分有效期</view>
+    <view class="content">1、积分为入账时间，而非积分获取时间
+          2、医疗签到会有延时
+          3、恒生账户开户签到有延时
+          4、Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </view>
+  </view>
+</view>
+
+

@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/integralDetails/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/activity/index",
@@ -37,6 +36,7 @@
     "pages/heroList/index",
     "pages/activityResult/index",
     "pages/challengeComplete/index",
+    "pages/integralDetails/index",
     "pages/integralRules/index"
   ],
   "window": {
