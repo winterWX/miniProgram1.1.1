@@ -280,7 +280,7 @@ Page({
           that.setData({ showAnimation: true, receivedReward: true, detail, completeChange });
           setTimeout(() => {
             that.setData({reward: 0})
-          }, 2000)
+          }, 5000)
           if (completeChange) {
             let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
