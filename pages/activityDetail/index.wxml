@@ -72,7 +72,7 @@
 			<button wx:if="{{isJoin && !reward && receivedReward && !completeChange }}" class="reward-dis-btn">已领取</button>
 			<button wx:if="{{isJoin && !reward && !receivedReward && !completeChange&& detail.status !== 3 }}"
 				class="reward-dis-btn">收起手机，走一走</button>
-			<button wx:if="{{completeChange}}" class="reward-btn" catchtap="navigateActivityResult">查看战绩</button>
+			<button wx:if="{{completeChange || detail.status === 3}}" class="reward-btn" catchtap="navigateActivityResult">查看战绩</button>
 		</view>
 		<view wx:if="{{showDetail}}">
 			<view class="activity-info">
