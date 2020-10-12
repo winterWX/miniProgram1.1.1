@@ -19,7 +19,9 @@ Page({
     interval: 2000,
     duration: 500,
     windowWidth: wx.getSystemInfoSync().windowWidth*2,
-    couponTypeText:''
+    couponTypeText:'',
+    couponTypes:'',
+    couponTypeAfter:'',
   },
 
   /**
@@ -90,11 +92,12 @@ Page({
         if (res.data.code == 200) {
             let sercode = res.data.data.mileStones.length;
             let couponType = res.data.data.tierInfo.couponType;
-            // that.setData({couponTypeText: couponType === 1 ? '折扣券' : '现金券'});
             that.setData({
                 activeData : res.data.data,
                 activeNum : sercode,
                 bluPosse : that.bluPosse(sercode,res.data.data),
+                couponTypes : couponType === 1 ? '折' : '',
+                couponTypeAfter : couponType === 1 ? '' : '$',
                 couponTypeText: couponType === 1 ? '折扣券' : '现金券'
             })
             that.secoreFun();
