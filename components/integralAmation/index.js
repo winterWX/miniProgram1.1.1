@@ -6,7 +6,6 @@ Component({
   properties: {
     integral: {
       type: Number,
-      value: 0,
       observer(value) {
         console.log('积分', value);
         var numberAarry=[];
@@ -20,7 +19,7 @@ Component({
         //   numberAarry.push(i)
         // }
         this.setData({
-          numberAarry: ['',value],
+          numberAarry: ['00',value],
         })
         setTimeout(() => {
           wx.createSelectorQuery().in(this).selectAll('.itemTxt').boundingClientRect((rects) => {
