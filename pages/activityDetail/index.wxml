@@ -67,12 +67,10 @@
 					</view>
 				</view>
 			</view>
-			<button wx:if="{{isJoin && reward && detail.status !== 3 && !completeChange}}" class="reward-btn"
-				catchtap="receiveReward">点击领取{{reward}}积分</button>
-			<button wx:if="{{isJoin && !reward && receivedReward && !completeChange }}" class="reward-dis-btn">已领取</button>
-			<button wx:if="{{isJoin && !reward && !receivedReward && !completeChange&& detail.status !== 3 }}"
+			<button wx:if="{{isJoin && canReceivedReward && detail.status !== 3 && !completeChange}}" class="reward-btn" catchtap="receiveReward">点击领取{{reward}}积分</button>
+			<button wx:if="{{isJoin && !canReceivedReward && !completeChange && detail.status !== 3 }}"
 				class="reward-dis-btn">收起手机，走一走</button>
-			<button wx:if="{{completeChange || detail.status === 3}}" class="reward-btn" catchtap="navigateActivityResult">查看战绩</button>
+			<button wx:if="{{completeChange || (detail.status === 3 && detail.isJoinStatus ==='2')}}" class="reward-btn" catchtap="navigateActivityResult">查看战绩</button>
 		</view>
 		<view wx:if="{{showDetail}}">
 			<view class="activity-info">
@@ -104,7 +102,7 @@
 						<view class="rank">第{{self.rank}}名</view>
 					</view>
 				</view>
-				<view wx:if="{{self.rank > 3 && !self.completeTime}}" class="step-show">{{self.steps}}<text>步</text></view>
+				<view wx:if="{{self.rank > 3 || !self.completeTime}}" class="step-show">{{self.steps}}<text>步</text></view>
 				<view wx:if="{{self.rank > 3 && self.completeTime}}" class="step-show"><text>已达标</text></view>
 				<image wx:if="{{self.rank <= 3 && self.completeTime}}" src="{{baseUrl + '/images/challenge/medal.png'}}"
 					class="medal"></image>
@@ -117,12 +115,12 @@
 					</image>
 					<view class="order">
 						<view class="nickname" style="color: #333;">{{hero.nickname}}</view>
-						<view class="rank" wx:if="{{hero.completeTime && hero.rank <= 3}}">{{hero.completeTime}}</view>
+						<view class="rank" wx:if="{{hero.completeTime}}">{{hero.completeTime}}</view>
 						<view class="rank" wx:if="{{hero.rank > 3 || !hero.completeTime}}">累计{{hero.receivedIntegral}}积分</view>
 					</view>
 				</view>
 				<view class="step-show" wx:if="{{hero.rank > 3}}">{{hero.steps}}<text>步</text></view>
-				<image src="{{baseUrl + '/images/challenge/medal.png'}}" class="medal" wx:if="{{hero.rank <= 3}}"></image>
+				<image src="{{baseUrl + '/images/challenge/medal.png'}}" class="medal" wx:if="{{hero.rank <= 3 && hero.completeTime}}"></image>
 			</view>
 			<navigator wx:if="{{heroList.length > 5}}" hover-class="none" url="../heroList/index?id={{activityId}}">
 				<view class="more">查看更多</view>
