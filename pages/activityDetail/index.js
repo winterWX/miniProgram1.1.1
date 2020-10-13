@@ -278,11 +278,12 @@ Page({
           let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
           let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
-          that.setData({ showAnimation: true, detail, completeChange, canReceivedReward: false });
-          setTimeout(() => {
-            that.setData({reward: 0})
-          }, 5000)
+          that.setData({ detail, completeChange, canReceivedReward: false });
+          if (!completeChange) {
+            that.setData({ showAnimation: true});
+          };
           if (completeChange) {
+            that.setData({ showAnimation: false });
             let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
               url: '../challengeComplete/index?id=' + activityId + "&reward=" + allReward

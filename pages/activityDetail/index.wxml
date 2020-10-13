@@ -75,7 +75,7 @@
 		<view wx:if="{{showDetail}}">
 			<view class="activity-info">
 				<view class="info-title">活动详情</view>
-				<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
+        <rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
 			</view>
 			<view class="activity-info">
 				<view class="info-title">活动规则及声明</view>
@@ -119,7 +119,7 @@
 						<view class="rank" wx:if="{{hero.rank > 3 || !hero.completeTime}}">累计{{hero.receivedIntegral}}积分</view>
 					</view>
 				</view>
-				<view class="step-show" wx:if="{{hero.rank > 3}}">{{hero.steps}}<text>步</text></view>
+				<view class="step-show" wx:if="{{hero.rank > 3 || !hero.completeTime}}">{{hero.steps}}<text>步</text></view>
 				<image src="{{baseUrl + '/images/challenge/medal.png'}}" class="medal" wx:if="{{hero.rank <= 3 && hero.completeTime}}"></image>
 			</view>
 			<navigator wx:if="{{heroList.length > 5}}" hover-class="none" url="../heroList/index?id={{activityId}}">
