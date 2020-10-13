@@ -151,10 +151,10 @@ page {
 }
 
 .progress-box .percent {
-  /* height: 22rpx; */
+  height: 20rpx;
   width: 100%;
-  /* background-color: #00A865; */
-  /* border-radius: 10rpx; */
+  background-color: #00A865;
+  border-radius: 10rpx;
   position: absolute;
   top: 20rpx;
   left: 0;

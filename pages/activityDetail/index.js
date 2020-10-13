@@ -15,6 +15,7 @@ Page({
     isJoin: false,
     showDetail: true,
     percent: 0,
+    percentage: 0,
     latestTime: 0,
     reward: 0,
     showAnimation: false,
@@ -314,8 +315,9 @@ Page({
     this.setData({ reward });
   },
   calcPercent: function (currentNum, arr) {
+    let { percent } = this.data;
     let result = null;
-    let percent = 0;
+    let p = 0;
     if (arr[arr.length - 1].mileStoneTarget >= currentNum) {
       for (let item of arr) {
         if (item.received === 3 && item.mileStoneTarget - currentNum >= 0) {
@@ -334,11 +336,28 @@ Page({
       }
       let ratio = parseInt((100 / (arr.length - 1))) * arr.indexOf(target);
       let percentNum = parseInt((currentNum * ratio) / target.mileStoneTarget);
-      percent = percentNum > 100 ? 100 : percentNum;
+      p = percentNum > 100 ? 100 : percentNum;
     } else {
-      percent = 100;
+      p = 100;
     }
-    this.setData({ percent })
+    if (p !==0 && p === percent) {
+      return;
+    }
+    this.setData({ percent: p});
+    console.log(p)
+    let percentage = 0;
+    console.log(p)
+    let timer = null;
+    timer = setInterval(() => {
+      if (percentage === p) {
+        console.log('clearInterval')
+        clearInterval(timer);
+        return;
+      }
+      percentage += 1;
+      console.log('percentage: ' + percentage)
+      this.setData({ percentage })
+    }, 16)
   },
   userLogin(data) {
     let that = this;
