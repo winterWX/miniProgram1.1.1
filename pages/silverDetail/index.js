@@ -109,8 +109,10 @@ Page({
     })
   },
   bluPosse:function(sercode,data){
-     let bluNum = (100 / Number(data.mileStones[sercode-1].targetIntegral));
-     return (Number(bluNum) * Number(data.integral)).toFixed(1);
+      let  targetIntegral = data.mileStones[sercode-1].targetIntegral;
+      let  integralNum = Number(data.integral) > Number(targetIntegral)  ? targetIntegral : data.integral;
+      let  bluNum = (100 / Number(targetIntegral));
+      return (Number(bluNum) * Number(integralNum)).toFixed(1);
   },
   secoreFun:function(){
     let that = this;

@@ -88,11 +88,18 @@ Component({
       }
     },
     upgradeCard:function(e){
-      console.log('0------------------')
+      let that = this;
       let cardUp = e.target.dataset.card;
-      wx.navigateTo({
-        url: '../../pages/membership/index',
-      })
+      let cardShow = [1,2,4];
+      if(cardUp === 'image2' && that.data.activeData.level === 1){
+          return;
+      }else if(cardUp === 'image3' && cardShow.includes(that.data.activeData.level)){
+          return;
+      }else{
+        wx.navigateTo({
+          url: '../../pages/membership/index',
+        })
+      }
     },
     cardDayShow:function(value){
         const date = new Date(value.levelExpiryTime * 1000); 
