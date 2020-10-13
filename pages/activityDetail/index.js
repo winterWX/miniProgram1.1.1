@@ -138,8 +138,6 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          // var time = Utils.formatTime(new Date(res.data.data * 1000));
-          console.log('返回存储的时间' + new Date(Number(res.data.data)))
           var time = Utils.formatTime(new Date(Number(res.data.data)));
           let latestTime = time.split(' ')[0];
           let result = data.find(item => item.date === latestTime);
@@ -344,19 +342,15 @@ Page({
       return;
     }
     this.setData({ percent: p});
-    console.log(p)
     let percentage = 0;
-    console.log(p)
     let timer = null;
     timer = setInterval(() => {
       if (percentage === p) {
-        console.log('clearInterval')
         clearInterval(timer);
         return;
       }
       percentage += 1;
-      console.log('percentage: ' + percentage)
-      this.setData({ percentage })
+      this.setData({ percentage });
     }, 16)
   },
   userLogin(data) {
