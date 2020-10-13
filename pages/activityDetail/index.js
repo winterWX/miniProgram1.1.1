@@ -342,16 +342,6 @@ Page({
       return;
     }
     this.setData({ percent: p});
-    let percentage = 0;
-    let timer = null;
-    timer = setInterval(() => {
-      if (percentage === p) {
-        clearInterval(timer);
-        return;
-      }
-      percentage += 1;
-      this.setData({ percentage });
-    }, 16)
   },
   userLogin(data) {
     let that = this;

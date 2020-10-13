@@ -34,7 +34,7 @@
 				</view>
 
 				<view class="progress-box">
-					<view class="percent" style="width: {{percentage + '%'}}">
+					<view class="percent" style="width: {{percent + '%'}}">
 						<!-- <progress percent="{{percent}}" stroke-width="9" activeColor="#00A865" active active-mode="forwards"
 							duration="20" border-radius="4"></progress> -->
 					</view>
@@ -102,8 +102,7 @@
 						<view class="rank">第{{self.rank}}名</view>
 					</view>
 				</view>
-				<view wx:if="{{self.rank > 3 || !self.completeTime}}" class="step-show">{{self.steps}}<text>步</text></view>
-				<view wx:if="{{self.rank > 3 && self.completeTime}}" class="step-show"><text>已达标</text></view>
+				<view wx:if="{{self.rank > 3 }}" class="step-show">{{self.steps}}<text>步</text></view>
 				<image wx:if="{{self.rank <= 3 && self.completeTime}}" src="{{baseUrl + '/images/challenge/medal.png'}}"
 					class="medal"></image>
 			</view>
@@ -119,7 +118,7 @@
 						<view class="rank" wx:if="{{hero.rank > 3 || !hero.completeTime}}">累计{{hero.receivedIntegral}}积分</view>
 					</view>
 				</view>
-				<view class="step-show" wx:if="{{hero.rank > 3 || !hero.completeTime}}">{{hero.steps}}<text>步</text></view>
+				<view class="step-show" wx:if="{{hero.rank > 3 && !hero.completeTime}}">{{hero.steps}}<text>步</text></view>
 				<image src="{{baseUrl + '/images/challenge/medal.png'}}" class="medal" wx:if="{{hero.rank <= 3 && hero.completeTime}}"></image>
 			</view>
 			<navigator wx:if="{{heroList.length > 5}}" hover-class="none" url="../heroList/index?id={{activityId}}">
