@@ -18,7 +18,7 @@ Page({
     latestTime: 0,
     reward: 0,
     showAnimation: false,
-    receivedReward: false,
+    canReceivedReward: false,
     self: {},
     heroList: [],
     defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
@@ -252,8 +252,9 @@ Page({
   },
   judgeReceivedStatus: function (arr) {
     for (let item of arr) {
-      if (item.received === 1) {
-        this.setData({ receivedReward: true });
+      // received 表示有积分未领取
+      if (item.received === 2) {
+        this.setData({ canReceivedReward: true });
       }
     }
   },
@@ -277,7 +278,7 @@ Page({
           let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
           let completeChange = mileStoneVos[mileStoneVos.length - 1].received === 1;
-          that.setData({ showAnimation: true, receivedReward: true, detail, completeChange });
+          that.setData({ showAnimation: true, detail, completeChange, canReceivedReward: false });
           setTimeout(() => {
             that.setData({reward: 0})
           }, 5000)
