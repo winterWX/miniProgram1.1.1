@@ -1,9 +1,5 @@
 const app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     nickName : '',
     showTip : false,
@@ -72,7 +68,6 @@ Page({
     this.setData({
       nickName: e.detail.value
     })
-    console.log('nickName',that.data.nickName);
   },
   submitHnadle:function(){
     if (!this.data.nickName) {
@@ -81,9 +76,9 @@ Page({
       if(/^(?=.*[A-Z])(?=.*[0-9])[A-Z-0-9]{2,}$/.test(this.data.nickName)){
           this.setData({showTip : false});
           this.membershipCode();
-     }else{
-          this.setData({showTip : true});
-     }
+      }else{
+            this.setData({showTip : true, errorTip : false, errorTipThree : false});
+      }
     }
   },
   nameChangeFocus:function(e){
@@ -103,14 +98,15 @@ Page({
         "membershipCode": this.data.nickName
       },
       success: function (res) {
+        console.log('会员升级返回的内容==',res.data.data)
         if (res.data.code === 200) {
             that.setData({tierCode: res.data.data});
-            that.setData({showCarkBlock: true,nickName : ''});
+            that.setData({showCarkBlock: true, nickName : ''});
          }else if(res.data.code === 100804){
-            that.setData({errorTip:true});
+            that.setData({errorTip:true, errorTipThree : false, showTip:false});
          }else if(res.data.code === 100802){
-            that.setData({errorTipThree:true});
-          }
+            that.setData({errorTipThree:true, errorTip : false, showTip:false});
+         }
       },
       fail: function (res) {
         console.log('.........fail..........',res);
