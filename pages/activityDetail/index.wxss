@@ -315,7 +315,7 @@ page {
 .btn-box .btn {
   width: 100%;
   font-size: 32rpx;
-  color: #D9D9D9;
+  color: #fff;
   background-color: #00a865;
 }
 
