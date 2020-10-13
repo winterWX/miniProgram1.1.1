@@ -324,17 +324,11 @@ Page({
         }
       }
       let index = arr.indexOf(result);
-      let target = null;
-      if (index !==1 && index !== arr.length-1){
-        let num1 = currentNum - arr[index-1].mileStoneTarget;
-        let num2 = arr[index].mileStoneTarget - currentNum;
-        target = num1 >= num2 ? arr[index+1] : arr[index - 1]
-      } else {
-        target = result;
-      }
-      let ratio = parseInt((100 / (arr.length - 1))) * arr.indexOf(target);
-      let percentNum = parseInt((currentNum * ratio) / target.mileStoneTarget);
-      p = percentNum > 100 ? 100 : percentNum;
+      let percent1 = parseInt((100 / (arr.length - 1))) * (index - 1);
+      let num = (currentNum - arr[index-1].mileStoneTarget) / (arr[index].mileStoneTarget - arr[index-1].mileStoneTarget).toFixed(2);
+      let percent2 = parseInt((num*(1 / (arr.length - 1))) * 100);
+      p = percent1 + percent2;
+      p = p > 100 ? 100 : p;
     } else {
       p = 100;
     }
