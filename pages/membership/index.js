@@ -2,8 +2,8 @@ const app = getApp();
 Page({
   data: {
     nickName : '',
-    showTip : false,
     showCarkBlock:false,
+    showTip : false,
     errorTip:false,
     errorTipThree:false,
     tierCode:{}
@@ -66,8 +66,11 @@ Page({
   },
   nameChange:function(e){
     this.setData({
-      nickName: e.detail.value
+       nickName: e.detail.value
     })
+    if(e.detail.value === ''){
+        this.setData({showTip : false,errorTip:false,errorTipThree : false});
+    }
   },
   submitHnadle:function(){
     if (!this.data.nickName) {
@@ -82,8 +85,8 @@ Page({
     }
   },
   nameChangeFocus:function(e){
-    this.setData({showTip:false});
-    console.log('e foe',e);
+      this.setData({showTip:false});
+      console.log('e foe',e);
   },
   membershipCode:function(){
     let that = this;

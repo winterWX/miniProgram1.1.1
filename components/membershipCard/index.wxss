@@ -15,6 +15,9 @@ page{
    padding-left: 30rpx;
    position: absolute;
 }
+.topLeftFrist{
+  padding-left: 0rpx !important;
+}
 .topLeftBlock image{
   width: 650rpx;
   height: 288rpx;
@@ -22,6 +25,7 @@ page{
 .itemImage{
    margin-right: 20rpx;
    z-index: 99;
+   position: relative;
 } 
 .itemImage3{
   width: 100%;
@@ -56,7 +60,7 @@ page{
   width: 40rpx;
 }
 .itemImage1{
-  position: relative;
+  
 }
 .imageTopTextRight{
   flex: 1;
@@ -147,7 +151,7 @@ page{
   align-items: center;
   justify-content: center;
   top: 44rpx;
-  left: 60rpx;
+  left: 30rpx;
 }
 .imageTopTextLeft3{
   display: flex;
@@ -163,23 +167,22 @@ page{
   font-size: 32rpx;
   margin-left: 30rpx;
   font-family: PingFangSC-Medium;
-  /* font-weight: 550; */
  }
  .imageTopTextRight3{
   flex: 1;
-  border: 2rpx solid rgb(253,224,188);
+  border: 2rpx solid rgb(255,212,120);
   border-radius: 50rpx;
   padding: 3rpx 18rpx;
   font-size: 24rpx; 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(253,224,188);
+  color: rgb(255,212,120);
 }
 .silver-bgText3{
   position: absolute;
   top:95rpx;
-  left: 60rpx;
+  left: 30rpx;
   color: rgb(255,212,120);
   font-size: 24rpx;
 }
@@ -247,8 +250,11 @@ page{
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: 280rpx;
-  top: 107rpx;
+  left: 282rpx;
+  top: 105rpx;
+}
+.silverBgImgen13 {
+  left: 287rpx !important;
 }
 .silverBgImgen .silver-bgImgen{
   width: 92rpx;
@@ -261,4 +267,16 @@ page{
   position: absolute;
   left: 315rpx;
   top: 100rpx;
+}
+.page-section{
+  width: 100%;
+}
+.swiperItem{
+  width: 100%;
+}
+.itemImageLast{
+  left: 30rpx;
+}
+.topPaddingLeft{
+  padding-left: 50rpx !important;
 }
