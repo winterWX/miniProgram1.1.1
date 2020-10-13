@@ -140,4 +140,4 @@
 		</view>
 	</view>
 </view>
-<integralAmation integral="{{reward}}" wx:if="{{showAnimation}}" />
+<integralAmation integral="{{reward}}" wx:if="{{showAnimation}}" style="z-index:4;" />
