@@ -19,7 +19,7 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -100,7 +100,7 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -195,7 +195,7 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -314,7 +314,7 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -326,7 +326,7 @@
                         <view class="page-section page-section-spacing swiper">
                         <swiper indicator-dots="{{indicatorDots}}"
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                            <swiper-item>
+                            <!-- <swiper-item>
                                 <view class="progressBlockImage">
                                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
                                     <view class="progressBlockText">
@@ -335,7 +335,7 @@
                                         <view class="progressBlockText2">立即查看</view>
                                     </view>
                                 </view>
-                            </swiper-item>
+                            </swiper-item> -->
                             <!-- <swiper-item>
                                 <view class="progressBlockImage">
                                     <image src="../../image/bg-x-2@t3x.png"/>
@@ -390,7 +390,7 @@
             </view>
             <view class="vipBottomBlock" >vvip尊享升级，权益更多</view>
         </view>
-        <view class="integralAct-main">
+        <view class="integralAct-main" style="height: 275rpx;">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
@@ -409,14 +409,14 @@
                     <image  wx:if="{{item.received === 2}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3x.png" />
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
             </view>
-            <view class="container">
+            <!-- <view class="container">
                     <view class="page-body">
                         <view class="page-section page-section-spacing swiper">
                         <swiper indicator-dots="{{indicatorDots}}"
@@ -440,7 +440,7 @@
                                     </view>
                                 </view>
                             </swiper-item>
-                            <!-- <swiper-item>
+                            <swiper-item>
                                 <view class="progressBlockImage">
                                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
                                     <view class="progressBlockText glodBlock">
@@ -448,11 +448,11 @@
                                         <view class="progressBlockText3" >立即查看</view>
                                     </view>
                                 </view>
-                            </swiper-item> -->
+                            </swiper-item>
                         </swiper>
                         </view>
                     </view>
-            </view>
+            </view> -->
         </view>
         <view class="bouttomImage">
             <view class="bouttomTitlr">已享限时优惠</view>

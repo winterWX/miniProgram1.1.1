@@ -35,7 +35,14 @@ Component({
       nextLevelIntegral:'',
       seliverBlockShow : true,
       windowWidth: wx.getSystemInfoSync().windowWidth*2,
-      infoLevelObj:{}
+      infoLevelObj:{},
+      duration: 500,
+      paddingLeft:0,
+      currentNum: -1,
+      prevFlg: 0,
+      nextFlg: 0,
+      prevFlgSeconde: 0,
+      nextFlgSeconde: 0
   },
 
   /**
@@ -43,49 +50,31 @@ Component({
    */
   methods: {
     cardTopShow(value){
-      if(value.level === 2 || value.level === 4){
-          this.setData({leftImage: -680});
-      }else if(value.level === 3 || value.level === 5){
-          this.setData({leftImage: -1330});
-          this.setData({imageFlg: true});
+      if(value.level === 1){
+          this.setData({ currentNum: 0,prevFlg: 18, nextFlg: 20});
+      }else if(value.level === 2 || value.level === 4){
+          this.setData({ currentNum: 0,prevFlgSeconde: 20, nextFlgSeconde: 20});
       }
     },
-    touchStart(e){
-        this.setData({
-          "touch.startX": e.changedTouches[0].clientX,
-          "touch.startY": e.changedTouches[0].clientY
-        });
-        console.log('startX',this.data.touch.startX);
+    cardChange(event){
+        let cardNum = event.detail.current;
+        if(cardNum === 0){
+            this.setData({prevFlg: 18, nextFlg: 20});
+        }else if(cardNum === 1){
+            this.setData({prevFlg: 25, nextFlg: 15});
+        }else if(cardNum === 2){
+            this.setData({prevFlg: 32, nextFlg: 10});
+        }
+        this.searchLeve(cardNum + 1);
     },
-    touchEnd(e) {
-      let imageFlg = e.currentTarget.dataset.id;
-      let stopeClick = e.target.dataset.card;
-      if(stopeClick === 'stopeClick'){
-           return;
-      }else{
-        this.setData({
-          "touch.endX": e.changedTouches[0].clientX,
-          "touch.endY": e.changedTouches[0].clientY
-        });
-        this.imageLeft(imageFlg,this.data.touch.endX);
-      }
-    },
-    imageLeft:function(imageFlg,endX){
-      console.log('endXendXendX',endX);
-      if(Number(this.data.touch.startX) !== Number(endX)){
-          if(imageFlg === 'image1' && endX > 30){
-              this.setData({leftImage: -680});
-              this.searchLeve(2);
-          }else if(imageFlg === 'image2' && endX > 20){
-              this.setData({leftImage: -1330,imageFlg: true});
-              this.searchLeve(3);
-          }else if(this.data.activeData.level === 1 && (imageFlg === 'image3' && endX > 140)){
-              this.setData({leftImage: -680,imageFlg: false});
-              this.searchLeve(2);
-          }
-      }else{
-          return;
-      }
+    cardChangeSeconde:function(event){
+        let cardNum = event.detail.current;
+        if(cardNum === 0){
+          this.setData({prevFlgSeconde: 20, nextFlgSeconde: 20});
+        }else if(cardNum === 1){
+          this.setData({prevFlgSeconde: 32, nextFlgSeconde: 10});
+        }
+        this.searchLeve(cardNum + 2);
     },
     upgradeCard:function(e){
       let that = this;
@@ -101,15 +90,8 @@ Component({
         })
       }
     },
-    cardDayShow:function(value){
-        const date = new Date(value.levelExpiryTime * 1000); 
-        const Y = date.getFullYear() + '年';
-        const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
-        const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
-        this.setData({levelExpiryTime: Y + M + D});
-    },
     searchLeve:function(level){
-      if(this.data.activeData.level === 1 || this.data.activeData.level === 2){
+      if(this.data.activeData.level === 1 || this.data.activeData.level === 2 || this.data.activeData.level === 4){
          this.infoLevel(level);
          this.setData({seliverBlockShow: false})
          this.triggerEvent('parentLevel', {
@@ -137,6 +119,13 @@ Component({
           console.log('.........fail..........');
         }
       })
+    },
+    cardDayShow:function(value){
+      const date = new Date(value.levelExpiryTime * 1000); 
+      const Y = date.getFullYear() + '年';
+      const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
+      const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
+      this.setData({levelExpiryTime: Y + M + D});
     }
   }
 })
