@@ -51,28 +51,35 @@ Component({
   methods: {
     cardTopShow(value){
       if(value.level === 1){
-          this.setData({ currentNum: 0,prevFlg: 18, nextFlg: 20});
+          //this.setData({ currentNum: 0,prevFlg: 18, nextFlg: 20});
+          this.setData({ currentNum: 0,prevFlg: 36, nextFlg: 40});
       }else if(value.level === 2 || value.level === 4){
-          this.setData({ currentNum: 0,prevFlgSeconde: 20, nextFlgSeconde: 20});
+          //this.setData({ currentNum: 0,prevFlgSeconde: 20, nextFlgSeconde: 20});
+          this.setData({ currentNum: 0,prevFlgSeconde: 40, nextFlgSeconde: 40});
       }
     },
     cardChange(event){
         let cardNum = event.detail.current;
         if(cardNum === 0){
-            this.setData({prevFlg: 18, nextFlg: 20});
+            //this.setData({prevFlg: 18, nextFlg: 20});
+            this.setData({prevFlg: 36, nextFlg: 40});
         }else if(cardNum === 1){
-            this.setData({prevFlg: 25, nextFlg: 15});
+            //this.setData({prevFlg: 25, nextFlg: 15});
+            this.setData({prevFlg: 50, nextFlg: 30});
         }else if(cardNum === 2){
-            this.setData({prevFlg: 32, nextFlg: 10});
+            //this.setData({prevFlg: 32, nextFlg: 10});
+            this.setData({prevFlg: 64, nextFlg:20});
         }
         this.searchLeve(cardNum + 1);
     },
     cardChangeSeconde:function(event){
         let cardNum = event.detail.current;
         if(cardNum === 0){
-          this.setData({prevFlgSeconde: 20, nextFlgSeconde: 20});
+           // this.setData({prevFlgSeconde: 20, nextFlgSeconde: 20});
+           this.setData({prevFlgSeconde: 40, nextFlgSeconde: 40});
         }else if(cardNum === 1){
-          this.setData({prevFlgSeconde: 32, nextFlgSeconde: 10});
+            //this.setData({prevFlgSeconde: 32, nextFlgSeconde: 10});
+            this.setData({prevFlgSeconde: 64, nextFlgSeconde: 20});
         }
         this.searchLeve(cardNum + 2);
     },

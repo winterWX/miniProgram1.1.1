@@ -55,16 +55,16 @@
          </swiper>
       </view>
       <view class="topLeftBlock topLeftFrist"  style="width:{{windowWidth}}rpx;" wx:if="{{activeData.level === 2 || activeData.level === 4}}">
-         <swiper class="swiperItem"  duration="{{duration}}"  previousMargin='{{prevFlgSeconde}}' nextMargin='{{nextFlgSeconde}}'  bindchange="cardChangeSeconde">
-               <swiper-item>
-                  <view class="itemImage" data-id="image2">
+         <swiper class="swiperItem"  duration="{{duration}}"  previousMargin='{{prevFlgSeconde}}rpx' nextMargin='{{nextFlgSeconde}}rpx'  bindchange="cardChangeSeconde">
+               <swiper-item  data-id="image2">
+                  <view class="itemImage">
                         <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/silver-bg@3x.png" />
                         <view  class="imageTopText">
                            <view class="imageTopTextLeft">
                               <image  src="http://106.54.73.125:8104/images/miniprogram/images/silver/silver@3x.png"/>
                               <view   class="imageRihtText">银会员</view>
                            </view>
-                           <view class="imageTopTextRight"  bindtap="upgradeCard" data-card="image2">立即升级</view>
+                           <view class="imageTopTextRight" bindtap="upgradeCard" data-card="image2">立即升级</view>
                         </view>
                         <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员等级于{{levelExpiryTime}}到期</view>
                         <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会员永久有效</view>
