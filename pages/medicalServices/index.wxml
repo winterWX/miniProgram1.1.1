@@ -2,10 +2,9 @@
   <view class="container">
     <view class="page-body">
       <view class="page-section page-section-spacing swiper">
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <swiper style="height: 290rpx;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
           <block wx:for="{{imageList}}" wx:key="id">
             <swiper-item>
-              <view class="swiper-item {{item}}"></view>
               <image class="slide-image" src="{{item.url}}"></image>
               <view class="slide-word">
                 <view class="outpatient"  wx:if="{{item.id === 1}}">
@@ -28,4 +27,54 @@
       </view>
     </view>
   </view>
+  
+  <view class="hospital">
+    <view class="hospital-info">
+      <image class="bg-img" src="../../image/medical/banner-mask-copy.png"></image>
+      <image class="hospital-icon" src="../../image/medical/icon.png"></image>
+      <view class="basic-info">
+        香港中文大学医院 (中大医院) 是一所非牟利、私营教学医院，由香港中文大学全资拥有。中大医院本着平衡香港私营及公营医…
+      </view>
+      <image class="forward" src="../../image/medical/forward.png"></image>
+    </view>
+    <view class="function-list">
+      <view class="function-item">
+        <image class="icon" src="../../image/medical/icon_3.png"></image>
+        <view class="text">
+          预约线下门诊
+        </view>
+      </view>
+      <view class="function-item">
+        <image class="icon" src="../../image/medical/icon_2.png"></image>
+        <view class="text">
+          了解机构
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="hospital">
+    <view class="hospital-info">
+      <image class="bg-img" src="../../image/medical/mask.png"></image>
+      <image class="hospital-icon" src="../../image/medical/zhuojian@2x.png"></image>
+      <view class="basic-info">
+        积极主动，悉心关怀，专注留心，实时回应，令人信赖。守护病人的医疗安全，支持香港医疗发展，关爱社区及环境，助人活…
+      </view>
+      <image class="forward" src="../../image/medical/forward.png"></image>
+    </view>
+    <view class="function-list">
+      <view class="function-item">
+        <image class="icon" src="../../image/medical/icon_3.png"></image>
+        <view class="text">
+          预约线下门诊
+        </view>
+      </view>
+      <view class="function-item">
+        <image class="icon" src="../../image/medical/icon_2.png"></image>
+        <view class="text">
+          了解机构
+        </view>
+      </view>
+    </view>
+  </view>
+  <footer active="{{active}}"></footer>
 </view>

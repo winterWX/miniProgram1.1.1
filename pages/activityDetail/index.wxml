@@ -42,9 +42,6 @@
 						<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
 							<view class="active-item" wx:if="{{step.received === 1}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}};z-index: 5;"></view>
-							<!-- 	<image src="{{baseUrl + '/images/challenge/star.png'}}" class="item"
-								wx:if="{{step.reward !==0 && (step.received === 2 || step.received === 3)}}"
-								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></image> -->
 							<image src="../../image/star.png" class="item"
 								wx:if="{{step.reward !==0 && (step.received === 2 || step.received === 3)}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></image>
@@ -118,7 +115,7 @@
 						<view class="rank" wx:if="{{hero.rank > 3 && !hero.completeTime}}">累计{{hero.receivedIntegral}}积分</view>
 					</view>
 				</view>
-				<view class="step-show" wx:if="{{hero.rank > 3 && !hero.completeTime}}">{{hero.steps}}<text>步</text></view>
+				<view class="step-show" wx:if="{{hero.rank > 3}}">{{hero.steps}}<text>步</text></view>
 				<image src="{{baseUrl + '/images/challenge/medal.png'}}" class="medal" wx:if="{{hero.rank <= 3 && hero.completeTime}}"></image>
 			</view>
 			<navigator wx:if="{{heroList.length > 5}}" hover-class="none" url="../heroList/index?id={{activityId}}">
