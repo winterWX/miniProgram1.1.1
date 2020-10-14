@@ -115,7 +115,7 @@
 					<view class="order">
 						<view class="nickname" style="color: #333;">{{hero.nickname}}</view>
 						<view class="rank" wx:if="{{hero.completeTime}}">{{hero.completeTime}}</view>
-						<view class="rank" wx:if="{{hero.rank > 3 || !hero.completeTime}}">累计{{hero.receivedIntegral}}积分</view>
+						<view class="rank" wx:if="{{hero.rank > 3 && !hero.completeTime}}">累计{{hero.receivedIntegral}}积分</view>
 					</view>
 				</view>
 				<view class="step-show" wx:if="{{hero.rank > 3 && !hero.completeTime}}">{{hero.steps}}<text>步</text></view>
