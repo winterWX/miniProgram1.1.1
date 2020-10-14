@@ -1,1 +1,35 @@
-/* pages/medicalServices/index.wxss */
+.page {
+    height: 100%;
+}
+.medical-box {
+    height: 100%;
+}
+.medical-box .rotation {
+    height: 290rpx;
+}
+.slide-image {
+    height: 290rpx;
+    width: 100%;
+}
+.slide-word {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.slide-word .outpatient {
+    color: #9b7c56;
+    font-size: 32rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-weight: bolder;
+    margin: 40rpx 0 20rpx 30rpx;
+}
+.slide-word .appointment {
+    color: #333333;
+    font-size: 28rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-left: 30rpx;
+}

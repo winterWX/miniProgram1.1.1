@@ -5,9 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    active:3
+    active:3,
+    imageList: [{
+      id: 1,
+      url: '../../image/medical/banner-1.png'
+    }, {
+      id: 2,
+      url: '../../image/medical/banner-1.png'
+    }],
+    currentImg: {},
+    background: ['../../image/medical/banner-1.png', '../../image/medical/banner-4.png'],
+    indicatorDots: true,
+    vertical: false,
+    autoplay: false,
+    interval: 2000,
+    duration: 500
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -19,7 +32,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

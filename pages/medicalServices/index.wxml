@@ -1,3 +1,24 @@
-<!--pages/medicalServices/index.wxml-->
-
-<footer active="{{active}}"></footer>
+<view class="medical-box">
+  <view class="container">
+    <view class="page-body">
+      <view class="page-section page-section-spacing swiper">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for="{{background}}" wx:key="*this">
+            <swiper-item>
+              <view class="swiper-item {{item}}"></view>
+              <image class="slide-image" src="{{item}}"></image>
+              <view class="slide-word">
+                <view class="outpatient" hover-class="none" hover-stop-propagation="false">
+                  门诊赴约后，扫码签到得积分
+                </view>
+                <view class="appointment" hover-class="none" hover-stop-propagation="false">
+                  预约医疗服务，扫码签到。
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>
