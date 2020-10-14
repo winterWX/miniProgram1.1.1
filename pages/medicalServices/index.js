@@ -11,7 +11,7 @@ Page({
       url: '../../image/medical/banner-1.png'
     }, {
       id: 2,
-      url: '../../image/medical/banner-1.png'
+      url: '../../image/medical/banner-4.png'
     }],
     currentImg: {},
     background: ['../../image/medical/banner-1.png', '../../image/medical/banner-4.png'],

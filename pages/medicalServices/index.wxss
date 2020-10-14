@@ -33,3 +33,24 @@
     line-height: 40rpx;
     margin-left: 30rpx;
 }
+
+.slide-word .gold-silver-title {
+    padding: 10rpx;
+    background-color: rgba(138, 138, 138, 0.11);
+    width: 188rpx;
+    height: 20rpx;
+    line-height: 20rpx;
+    font-size: 20rpx;
+    border-radius: 20rpx;
+    color: #333333;
+    margin: 0 0 0 30rpx;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 50rpx;
+}
+.gold-silver-title .icon {
+    width: 20rpx;
+    height: 20rpx;
+    margin-right: 5rpx;
+}
