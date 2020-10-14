@@ -6,6 +6,7 @@ Page({
     showTip : false,
     errorTip:false,
     errorTipThree:false,
+    errorSeconeTip:false,
     tierCode:{}
   },
 
@@ -69,7 +70,7 @@ Page({
        nickName: e.detail.value
     })
     if(e.detail.value === ''){
-        this.setData({showTip : false,errorTip:false,errorTipThree : false});
+        this.setData({showTip : false,errorTip:false,errorTipThree : false, errorSeconeTip:false});
     }
   },
   submitHnadle:function(){
@@ -80,7 +81,7 @@ Page({
           this.setData({showTip : false});
           this.membershipCode();
       }else{
-            this.setData({showTip : true, errorTip : false, errorTipThree : false});
+            this.setData({showTip : true, errorTip : false, errorTipThree : false, errorSeconeTip:false});
       }
     }
   },
@@ -106,10 +107,12 @@ Page({
             that.setData({tierCode: res.data.data});
             that.setData({showCarkBlock: true, nickName : ''});
          }else if(res.data.code === 100804){
-            that.setData({errorTip:true, errorTipThree : false, showTip:false});
+            that.setData({errorTip:true, errorTipThree : false, showTip:false, errorSeconeTip:false});
          }else if(res.data.code === 100802){
-            that.setData({errorTipThree:true, errorTip : false, showTip:false});
-         }
+            that.setData({errorTipThree:true, errorTip : false, showTip:false, errorSeconeTip:false});
+         }else if(res.data.code === 100803){
+          that.setData({errorSeconeTip:true, errorTipThree:false, errorTip : false, showTip:false});
+       }
       },
       fail: function (res) {
         console.log('.........fail..........',res);

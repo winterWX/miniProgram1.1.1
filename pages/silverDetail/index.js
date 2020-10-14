@@ -109,10 +109,26 @@ Page({
     })
   },
   bluPosse:function(sercode,data){
-      let  targetIntegral = data.mileStones[sercode-1].targetIntegral;
-      let  integralNum = Number(data.integral) > Number(targetIntegral)  ? targetIntegral : data.integral;
-      let  bluNum = (100 / Number(targetIntegral));
-      return (Number(bluNum) * Number(integralNum)).toFixed(1);
+      let numarry = [1.8,1.3,1.2,1.13,1.1];
+      let num = 0;
+      if(parseFloat(data.integral) <= 1000  && parseFloat(data.integral) >= 0){
+            num  = numarry[0];
+      }else if(parseFloat(data.integral) <=2000  && parseFloat(data.integral) >= 1000){
+            num  = numarry[1];
+      }else if(parseFloat(data.integral) <=3000  && parseFloat(data.integral) >= 2000){
+            num  = numarry[2];
+      }else if(parseFloat(data.integral) <=4000  && parseFloat(data.integral) >= 3000){
+            num  = numarry[3];
+      }else if(parseFloat(data.integral) <=5000  && parseFloat(data.integral) >= 4000){
+            num  = numarry[4];
+      }
+      if(parseFloat(data.integral) >= 5000){
+          return 100;
+      }else{
+          let  targetIntegral = Number(data.mileStones[sercode-1].targetIntegral)*num;
+          let  bluNum = (100 / Number(targetIntegral));
+          return (Number(bluNum) * Number(data.integral)).toFixed(1);
+      }
   },
   secoreFun:function(){
     let that = this;
@@ -143,12 +159,30 @@ Page({
   },
   parentCallBack:function(event){
     let that = this;
+    if(that.data.activeData.level === 1){
+        that.lockLevelFirst(event);
+    }else if(that.data.activeData.level === 2){
+        that.lockLeveLast(event);
+    }else if(that.data.activeData.level === 4){
+        that.lockLeveLast(event);
+    }
+  },
+  lockLevelFirst:function(event){
+      let that = this;
+      if (event.detail.LockLevel === 1){
+          that.setData({ silverLevel: false, glodLevel: false, LockFlg: true});
+      }else if (event.detail.LockLevel === 2){
+          that.setData({silverLevel: true, glodLevel: false, LockFlg: false});
+      }else if(event.detail.LockLevel === 3){
+          that.setData({glodLevel: true, silverLevel: false, LockFlg: false });
+      }
+  },
+  lockLeveLast:function(event){
+    let that = this;
     if (event.detail.LockLevel === 2){
-        that.setData({ silverLevel: true, glodLevel: false,LockFlg: false});
+        that.setData({silverLevel: false, glodLevel: false, LockFlg: true});
     }else if(event.detail.LockLevel === 3){
-        that.setData({ glodLevel: true,silverLevel: false,LockFlg:false });
-    }else{
-        that.setData({ silverLevel: false, glodLevel:false,LockFlg: true});
+        that.setData({glodLevel: true, silverLevel: false, LockFlg: false });
     }
   }
 })

@@ -272,6 +272,7 @@ page{
   width: 100%;
 }
 .swiperItem{
+  display: inline !important;
   width: 100%;
 }
 .itemImageLast{

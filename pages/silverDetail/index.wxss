@@ -181,6 +181,7 @@
 .blockText{
   position: absolute;
   top: 18rpx;
+  left: 6rpx;
 }
 .progressBlockText1{
   font-size: 24rpx;
