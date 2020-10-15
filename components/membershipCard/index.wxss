@@ -281,3 +281,38 @@ page{
 .topPaddingLeft{
   padding-left: 50rpx !important;
 }
+
+.swiperItemSevlier{
+    margin-left: 30rpx;
+}
+.swiperItemSeconde{
+    margin-left: -40rpx;
+}
+.levelFristFive{
+    margin-left: 140rpx;
+}
+.levelSecomdeFive{
+    margin-left: 70rpx;
+}
+
+.afterBalck{
+  margin-left: 30rpx;
+}
+.aboubtBalck{
+ margin-left: -40rpx;
+}
+.secondeCardShow1{
+  margin-left: 130rpx;
+}
+.secondeCardShow2{
+  margin-left: 50rpx;
+}
+.secondeCardShow3{
+  margin-left: -30rpx;
+}
+.lastCareds1{
+  margin-left: 140rpx;
+}
+.lastCareds2{
+  margin-left: 70rpx;
+}

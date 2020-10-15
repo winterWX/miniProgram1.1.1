@@ -21,7 +21,7 @@ Page({
     windowWidth: wx.getSystemInfoSync().windowWidth*2,
     couponTypeText:'',
     couponTypes:'',
-    couponTypeAfter:'',
+    couponTypeAfter:''
   },
 
   /**
