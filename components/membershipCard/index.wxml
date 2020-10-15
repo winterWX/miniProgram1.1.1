@@ -1,5 +1,5 @@
 <view class="imageBalock" >
-      <view class="topLeftBlock topLeftFrist" style="width:{{windowWidth}}rpx;" wx:if="{{activeData.level === 1}}">
+      <view class="topLeftBlock topLeftFrist" style="width:{{windowWidth}};" wx:if="{{activeData.level === 1}}">
          <swiper class="swiperItem" duration="{{duration}}"  bindchange="cardChange" current="{{currentNum}}">
             <swiper-item class="{{fristCaredShow ? 'afterBalck' :''}} {{secondeCardShow ? 'secondeCardShow1' : ''}}">
                   <view class="itemImage">
@@ -54,7 +54,7 @@
             </swiper-item>
          </swiper>
       </view>
-      <view class="topLeftBlock topLeftFrist"  style="width:{{windowWidth}}rpx;" wx:if="{{activeData.level === 2 || activeData.level === 4}}">
+      <view class="topLeftBlock topLeftFrist"  style="width:{{windowWidth}};" wx:if="{{activeData.level === 2 || activeData.level === 4}}">
          <swiper class="swiperItem {{levelSecondeFour ? 'swiperItemSevlier' :''}}"  duration="{{duration}}"  bindchange="cardChangeSeconde">
                <swiper-item class="{{levelFive ? 'levelFristFive' :''}}">
                   <view class="itemImage">
@@ -91,7 +91,7 @@
                </swiper-item>
          </swiper>
       </view>
-      <view class="topLeftBlock topPaddingLeft"  style="width:{{windowWidth}}rpx;" wx:if="{{activeData.level === 3 || activeData.level === 5}}">
+      <view class="topLeftBlock topPaddingLeft"  style="width:{{windowWidth}};" wx:if="{{activeData.level === 3 || activeData.level === 5}}">
          <view class="itemImage swiperItem" data-id="image3">
                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/gold-bg@3x.png" />
                <view  class="imageTopText3">
