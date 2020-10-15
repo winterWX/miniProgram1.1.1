@@ -1,11 +1,11 @@
-let app = getApp();
+// pages/offlineAppointment/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl,
+    url: 'https://www.cuclinic.hk/en/my_appointment/?cid=123&tid=345&mti=456'
   },
 
   /**
@@ -63,20 +63,18 @@ Page({
   onShareAppMessage: function () {
 
   },
-  clickHandleHK: function() {
-    wx.navigateTo({
-      url: '../offlineAppointment/index',
-    })
-  },
-  scanCode: function() {
-    wx.scanCode({
-      onlyFromCamera: false,
-      scanType: 'qrCode',
-      success(res) {
-        console.log(res)
+  copyData: function() {
+    let { url } = this.data;
+    wx.setClipboardData({
+      data: url,
+      success: (res) => {
+        console.log('success');
       },
-      fail(){
-
+      fail: (res) => {
+        console.log('fail');
+      },
+      complete: () => {
+        console.log('complete');
       }
     })
   }

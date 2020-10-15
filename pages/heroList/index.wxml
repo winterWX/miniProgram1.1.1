@@ -2,7 +2,7 @@
 <view class="hero-container">
   <view class="member-box mb10">
     <view class="member-info">
-      <image class="header" src="{{self.avatarUrl}}"></image>
+      <image class="header" src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : (self.avatarUrl ? self.avatarUrl : defaultIcon)}}"></image>
       <view class="order">
         <view class="nickname">{{self.nickname}}（我自己）</view>
         <view class="rank">第{{self.rank}}名</view>
@@ -13,7 +13,7 @@
   <view class="member-box pl0" wx:if="{{friend.length}}" wx:for="{{friend}}" wx:for-item="hero" wx:key="id">
     <view class="member-info">
       <view class="index {{ index <= 2 ? 'active' : ''}}">{{ index + 1}}</view>
-      <image class="header" src="{{hero.avatarUrl ? hero.avatarUrl : defaultIcon}}"></image>
+      <image class="header" src="{{avatarObjList[hero.avatar] ? avatarObjList[hero.avatar].url : (hero.avatarUrl ? hero.avatarUrl : defaultIcon)}}"></image>
       <view class="order">
         <view class="nickname">{{hero.nickname}}</view>
         <!-- <view class="rank" wx:if="{{hero.completeTime}}">{{hero.completeTime}}</view> -->

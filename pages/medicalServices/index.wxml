@@ -31,16 +31,16 @@
   <view class="hospital">
     <view class="hospital-info">
       <image class="bg-img" src="{{baseUrl + '/images/medical/banner-mask-copy.png'}}"></image>
-      <image class="hospital-icon" src="../../images/medical/icon.png"></image>
+      <image class="hospital-icon" src="{{baseUrl + '/images/medical/icon.png'}}"></image>
       <view class="basic-info">
         香港中文大学医院 (中大医院) 是一所非牟利、私营教学医院，由香港中文大学全资拥有。中大医院本着平衡香港私营及公营医…
       </view>
       <image class="forward" src="{{baseUrl + '/images/medical/forward.png'}}"></image>
     </view>
     <view class="function-list">
-      <view class="function-item">
+      <view class="function-item" catchtap="clickHandle">
         <image class="icon" src="{{baseUrl + '/images/medical/icon_3.png'}}"></image>
-        <view class="text">
+        <view class="text" catchtap="clickHandle">
           预约线下门诊
         </view>
       </view>
