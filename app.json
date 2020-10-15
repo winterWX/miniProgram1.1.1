@@ -39,6 +39,7 @@
     "pages/integralDetails/index",
     "pages/integralRules/index",
     "pages/signAppointment/index",
+    "pages/offlineAppointment/index"
     "pages/myCoupons/index"
   ],
   "window": {
