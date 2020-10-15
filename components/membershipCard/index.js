@@ -42,7 +42,12 @@ Component({
       prevFlg: 0,
       nextFlg: 0,
       prevFlgSeconde: 0,
-      nextFlgSeconde: 0
+      nextFlgSeconde: 0,
+      levelSecondeFour:false,
+      levelFive:false,
+      fristCaredShow:false,
+      secondeCardShow:false,
+      threeCardShow:false
   },
 
   /**
@@ -51,24 +56,21 @@ Component({
   methods: {
     cardTopShow(value){
       if(value.level === 1){
-          //this.setData({ currentNum: 0,prevFlg: 18, nextFlg: 20});
+          this.setData({fristCaredShow:true});
           this.setData({ currentNum: 0,prevFlg: 36, nextFlg: 40});
       }else if(value.level === 2 || value.level === 4){
-          //this.setData({ currentNum: 0,prevFlgSeconde: 20, nextFlgSeconde: 20});
+          this.setData({levelSecondeFour:true});
           this.setData({ currentNum: 0,prevFlgSeconde: 40, nextFlgSeconde: 40});
       }
     },
     cardChange(event){
         let cardNum = event.detail.current;
         if(cardNum === 0){
-            //this.setData({prevFlg: 18, nextFlg: 20});
-            this.setData({prevFlg: 36, nextFlg: 40});
+            this.setData({fristCaredShow:true,secondeCardShow:false});
         }else if(cardNum === 1){
-            //this.setData({prevFlg: 25, nextFlg: 15});
-            this.setData({prevFlg: 50, nextFlg: 30});
+            this.setData({secondeCardShow:true,fristCaredShow:false,threeCardShow:false});
         }else if(cardNum === 2){
-            //this.setData({prevFlg: 32, nextFlg: 10});
-            this.setData({prevFlg: 64, nextFlg:20});
+            this.setData({threeCardShow:true,secondeCardShow:false,fristCaredShow:false});
         }
         this.searchLeve(cardNum + 1);
     },
@@ -77,9 +79,13 @@ Component({
         if(cardNum === 0){
            // this.setData({prevFlgSeconde: 20, nextFlgSeconde: 20});
            this.setData({prevFlgSeconde: 40, nextFlgSeconde: 40});
+           this.setData({levelSecondeFour: true});
+           this.setData({levelFive: false});
         }else if(cardNum === 1){
             //this.setData({prevFlgSeconde: 32, nextFlgSeconde: 10});
             this.setData({prevFlgSeconde: 64, nextFlgSeconde: 20});
+            this.setData({levelFive: true});
+            this.setData({levelSecondeFour: false});
         }
         this.searchLeve(cardNum + 2);
     },
