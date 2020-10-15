@@ -1,4 +1,3 @@
-// pages/medicalServices/index.js
 let app = getApp();
 Page({
 
@@ -6,43 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    active:3,
-    imageList: [{
-      id: 1,
-      url: app.globalData.imagesUrl  + '/images/medical/banner-1.png'
-    }, {
-      id: 2,
-      url: app.globalData.imagesUrl + '/images/medical/banner-4.png'
-    }],
-    currentImg: {},
     baseUrl: app.globalData.imagesUrl,
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    interval: 2000,
-    duration: 500
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
   },
- 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      active: 3
-    })
+
   },
 
   /**
@@ -78,11 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  clickHandle: function(e) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>')
-    wx.navigateTo({
-      url: '../signAppointment/index',
-    })
   }
 })

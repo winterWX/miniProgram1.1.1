@@ -4,6 +4,7 @@
 .medical-box {
     height: 100%;
     background-color: #ededed;
+    margin-bottom: 110rpx;
 }
 .medical-box .rotation {
     height: 290rpx;
