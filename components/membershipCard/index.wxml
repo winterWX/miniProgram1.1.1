@@ -110,7 +110,7 @@
       </view>
 </view>
 <view class="seliverBlock" wx:if="{{seliverBlockShow}}">
-      <view class="seliverBlockLeft">
+      <view class="seliverBlockLeft" bindtap="myCoupons">
          <view class="seliverText">
             <view class="seliverTextLeft">我的优惠券</view>
             <view class="seliverTextLeftBottom">折扣券、现金券</view>
@@ -120,7 +120,7 @@
          </view>
       </view>
       <view class="seliverBlockRight">
-         <view class="seliverTextRightBlock">
+         <view class="seliverTextRightBlock" bindtap="intergRalDatails">
             <view class="seliverTextRight">积分详情</view>
             <view class="seliverTextRightBottom" wx:if="{{activeData.level === 1}}">积分130天后过期</view>
             <view class="seliverTextRightBottom" wx:if="{{activeData.level === 2 || activeData.level === 4}}">部分活动2倍积分</view>
