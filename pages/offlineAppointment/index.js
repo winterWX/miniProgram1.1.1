@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    url: 'https://www.cuclinic.hk/en/my_appointment/?cid=123&tid=345&mti=456'
   },
 
   /**
@@ -62,5 +62,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  copyData: function() {
+    let { url } = this.data;
+    wx.setClipboardData({
+      data: url,
+      success: (res) => {
+        console.log('success');
+      },
+      fail: (res) => {
+        console.log('fail');
+      },
+      complete: () => {
+        console.log('complete');
+      }
+    })
   }
 })

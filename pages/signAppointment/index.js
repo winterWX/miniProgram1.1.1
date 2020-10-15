@@ -67,5 +67,17 @@ Page({
     wx.navigateTo({
       url: '../offlineAppointment/index',
     })
+  },
+  scanCode: function() {
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: 'qrCode',
+      success(res) {
+        console.log(res)
+      },
+      fail(){
+
+      }
+    })
   }
 })

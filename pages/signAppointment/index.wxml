@@ -56,7 +56,7 @@
         </view>
     </view>
     <view class="btn-box">
-        <button class="sign">扫码签到</button>
+        <button class="sign" catchtap="scanCode">扫码签到</button>
         <view class="appointment">
             <button class="appointment-btn" bindtap="clickHandleHK">预约中大医疗</button>
             <button class="appointment-btn disabled" disabled="{{true}}" catchtap="clickHandle">预约卓健医疗</button>

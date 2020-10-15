@@ -80,7 +80,6 @@ Page({
 
   },
   clickHandle: function(e) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>')
     wx.navigateTo({
       url: '../signAppointment/index',
     })
