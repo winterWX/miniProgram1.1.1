@@ -17,5 +17,5 @@
     <view class="link">
         https://www.cuhkclinic.com.hk
     </view>
-    <button class="btn">复制链接</button>
+    <button class="btn" catchtap="copyData">复制链接</button>
 </view>
