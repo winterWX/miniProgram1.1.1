@@ -38,7 +38,8 @@
     "pages/challengeComplete/index",
     "pages/integralDetails/index",
     "pages/integralRules/index",
-    "pages/signAppointment/index"
+    "pages/signAppointment/index",
+    "pages/offlineAppointment/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

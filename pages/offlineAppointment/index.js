@@ -1,11 +1,11 @@
-let app = getApp();
+// pages/offlineAppointment/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl,
+
   },
 
   /**
@@ -62,10 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  clickHandleHK: function() {
-    wx.navigateTo({
-      url: '../offlineAppointment/index',
-    })
   }
 })

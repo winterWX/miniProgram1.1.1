@@ -38,9 +38,9 @@
       <image class="forward" src="{{baseUrl + '/images/medical/forward.png'}}"></image>
     </view>
     <view class="function-list">
-      <view class="function-item">
+      <view class="function-item" catchtap="clickHandle">
         <image class="icon" src="{{baseUrl + '/images/medical/icon_3.png'}}"></image>
-        <view class="text">
+        <view class="text" catchtap="clickHandle">
           预约线下门诊
         </view>
       </view>
