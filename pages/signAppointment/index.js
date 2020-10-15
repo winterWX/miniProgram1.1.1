@@ -62,5 +62,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  clickHandle: function() {
+    console.log('>>>>>>>>>>>>>>>>>>')
   }
 })
