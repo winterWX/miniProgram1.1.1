@@ -133,6 +133,16 @@ Component({
         }
       })
     },
+    intergRalDatails:function(){
+        wx.navigateTo({
+            url: '../../pages/integralDetails/index',
+        })
+    },
+    myCoupons:function(){
+      wx.navigateTo({
+          url: '../../pages/myCoupons/index',
+      })
+    },
     cardDayShow:function(value){
       const date = new Date(value.levelExpiryTime * 1000); 
       const Y = date.getFullYear() + '年';

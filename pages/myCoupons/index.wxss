@@ -1,0 +1,71 @@
+.mainContent{
+  padding: 0rpx 30rpx;
+}
+.swiper-tab{
+    width: 100%;
+    text-align: center;
+    line-height: 70rpx;
+}
+.swiper-tab-list{  
+    font-size: 28rpx;
+    display: inline-block;
+    width: 14%;
+    color: rgb(0,0,0);
+    margin-left: 9%;
+    margin-right: 9%;
+    text-align: center;
+}
+.on{ 
+    color: rgb(51,51,51);
+    border-bottom: 6rpx solid rgb(0,168,101);
+}
+.swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden; }
+/* .swiper-box view{
+    text-align: center;
+} */
+.swiper-tabItem{
+    width: 96rpx;
+}
+.item-content{
+  height: 144rpx;
+  margin-top: 20rpx;
+  position: relative;
+}
+.item-contentImage{
+    height: 144rpx;
+    width: 100%;
+}
+.itemSecondeImage{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0rpx;
+  width: 100%;
+  height: 144rpx;
+  padding-left: 20rpx;
+}
+.itemMiddenImage{
+    width: 96rpx;
+    height: 96rpx;
+    border-radius: 50rpx;
+}
+.itemBlock{
+  margin-left: 18rpx;
+}
+.itemBlockText1{
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+  margin-bottom: 10rpx;
+}
+.itemBlockText2{
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+}
+.itemBlockTextLast{
+  margin-left: 145rpx;
+  color: rgb(155,124,86);
+  font-size: 28rpx;
+}
+.swpierItemContent{
+  padding-top: 20rpx;
+}
