@@ -49,10 +49,6 @@ Component({
       secondeCardShow:false,
       threeCardShow:false
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
     cardTopShow(value){
       if(value.level === 1){
