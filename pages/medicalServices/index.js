@@ -77,5 +77,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  clickHandle: function(e) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>')
+    console.log(e.currentTarget.dataset.id);
+    let { dataset: {id} } = e.currentTarget;
+    let url = id && id === 1 ? true : false;
   }
 })
