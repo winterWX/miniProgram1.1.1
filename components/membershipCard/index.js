@@ -34,7 +34,7 @@ Component({
       levelExpiryTime:'',
       nextLevelIntegral:'',
       seliverBlockShow : true,
-      windowWidth: wx.getSystemInfoSync().windowWidth*2,
+      windowWidth: 100+'%',
       infoLevelObj:{},
       duration: 500,
       paddingLeft:0,
@@ -49,10 +49,6 @@ Component({
       secondeCardShow:false,
       threeCardShow:false
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
     cardTopShow(value){
       if(value.level === 1){
@@ -131,6 +127,16 @@ Component({
         fail: function (res) {
           console.log('.........fail..........');
         }
+      })
+    },
+    intergRalDatails:function(){
+        wx.navigateTo({
+            url: '../../pages/integralDetails/index',
+        })
+    },
+    myCoupons:function(){
+      wx.navigateTo({
+          url: '../../pages/myCoupons/index',
       })
     },
     cardDayShow:function(value){

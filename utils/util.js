@@ -11,7 +11,6 @@ const formatTime = (date, flag = false) => {
     let [y, m, d] = paddingTime;
     result = `${y}年${m}月${d}日 ${[hour, minute, second].map(formatNumber).join(':')}`
   };
-  // debugger
   return result;
 }
 
