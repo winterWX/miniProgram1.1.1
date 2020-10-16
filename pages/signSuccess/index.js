@@ -1,11 +1,11 @@
-let app = getApp();
+// pages/signSuccess/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl,
+
   },
 
   /**
@@ -63,29 +63,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  clickHandleHK: function() {
+  linkToIntegral: function() {
     wx.navigateTo({
-      url: '../offlineAppointment/index',
-      // url: '../signSuccess/index',
-    })
-  },
-  scanCode: function() {
-   /*  wx.scanCode({
-      onlyFromCamera: false,
-      scanType: 'qrCode',
-      success(res) {
-        console.log(res)
-      },
-      fail(){
-        wx.showToast({
-          title: '扫码失败',
-          icon: 'loading',
-          duration: 1500
-       })
-      }
-    }) */
-    wx.navigateTo({
-      url: '../scan/index',
+      url: '../integralDetails/index',
     })
   }
 })
