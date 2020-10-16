@@ -17,7 +17,7 @@
                   使用在线咨询服务，得积分
                 </view>
                 <view class="gold-silver-title" hover-class="none">
-                  <image class="icon" src="../../image/star.png"></image>
+                  <image class="icon" src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/star.png"></image>
                        金银会员积分翻倍
                 </view>
               </view>

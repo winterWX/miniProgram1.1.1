@@ -43,7 +43,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
+                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">银会员积分x2升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
@@ -276,14 +276,14 @@
                         <view class="glodBottomText1">积分翻倍</view>
                         <view class="glodBottomText2">银会员2倍活动积分</view>
                      </view>
-                     <view class="glodBottomImage"><image src='../../image/goldimg1.PNG' /></view>
+                     <view class="glodBottomImage"><image src='http://106.54.73.125:8104/images/miniprogram/images/otherCarde/goldimg1.PNG' /></view>
                 </view>
                 <view class="glodBottomItem">
                      <view class="glodBottomText glodBottomPind">
                         <view class="glodBottomText1">会员特权专享</view>
                         <view class="glodBottomText2">银会员专享内容</view>
                      </view>
-                     <view class="glodBottomImage"><image src='../../image/goldimg2.PNG' /></view>
+                     <view class="glodBottomImage"><image src='http://106.54.73.125:8104/images/miniprogram/images/otherCarde/goldimg2.PNG' /></view>
                 </view>
             </view>
         </view>
@@ -491,7 +491,7 @@
                     <view class="bottomText1">尊享银会员视频文章</view>
                     <view class="bottomText2">实时获得专业权威资讯</view>
                     </view>
-                    <image src="../../image/selier.PNG"/>
+                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/selier.PNG"/>
                 </view>
         </view>
         <view class="bouttomImage">
@@ -533,7 +533,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
+                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">银会员积分x2升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
@@ -577,7 +577,7 @@
                         <view class="bottomText1">畅享所有视频文章</view>
                         <view class="bottomText2">海量专业视频文章任你挑选</view>
                     </view>
-                    <image src="../../image/glogs.PNG"/>
+                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/glogs.PNG"/>
                 </view>
         </view>
         <view class="bouttomImage">
@@ -626,7 +626,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
+                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">银会员积分x2升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
