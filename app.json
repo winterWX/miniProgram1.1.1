@@ -40,8 +40,10 @@
     "pages/integralRules/index",
     "pages/signAppointment/index",
     "pages/offlineAppointment/index",
-    "pages/scan/index",
-    "pages/myCoupons/index"
+    "pages/myCoupons/index",
+    "pages/signSuccess/index",
+    "pages/signFail/index",
+    "pages/scan/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
