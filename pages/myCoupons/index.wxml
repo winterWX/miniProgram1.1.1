@@ -7,9 +7,9 @@
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
       <swiper-item class="swpierItemContent">
           <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="../../image/myCounty/quan@3x.png" />
+                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/quan@3x.png" />
                 <view class="itemSecondeImage">
-                    <!-- <image  class="itemMiddenImage" src="../../image/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
+                    <!-- <image  class="itemMiddenImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
                         <view class="itemBlockText1">{{item.name}}</view>
@@ -21,7 +21,7 @@
       </swiper-item>
       <swiper-item class="swpierItemContent">
         <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="../../image/myCounty/invalid-name@3x.png" />
+                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/invalid-name@3x.png" />
                 <view class="itemSecondeImage">
                     <!-- <image  class="itemMiddenImage" src="../../image/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
@@ -29,14 +29,14 @@
                         <view class="itemBlockText1">{{item.name}}</view>
                         <view class="itemBlockText2">有效期至{{item.expiryTime}}</view>
                     </view>
-                    <image class="itemBlockTextLast" src="../../image/myCounty/invalid-name@3x.png" />
+                    <image class="itemBlockTextLast" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/invalid-name@3x.png" />
                     <!-- <view class="itemBlockTextLast" wx:if="{{item.useTime === 0}}">未使用</view> -->
                 </view>
           </view>
       </swiper-item>
       <swiper-item class="swpierItemContent">
         <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="../../image/myCounty/invalid-name@3x.png" />
+                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/invalid-name@3x.png" />
                 <view class="itemSecondeImage">
                     <!-- <image  class="itemMiddenImage" src="../../image/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
@@ -44,7 +44,7 @@
                         <view class="itemBlockText1">{{item.name}}</view>
                         <view class="itemBlockText2">有效期至{{item.expiryTime}}</view>
                     </view>
-                    <image class="itemBlockTextLast" src="../../image/myCounty/invalid-name@2x.png" />
+                    <image class="itemBlockTextLast" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/invalid-name@2x.png" />
                     <!-- <view class="itemBlockTextLast" wx:if="{{item.useTime === 0}}">未使用</view> -->
                 </view>
           </view>
