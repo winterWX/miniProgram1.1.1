@@ -49,12 +49,13 @@
 
 .scan-animation {
   position: absolute;
-  top: -10rpx;
-  left: 10rpx;
-  width: 480rpx;
-  height: 8rpx;
-  background-color: #08FDFE;
-  border-radius: 50%;
+  top: 0rpx;
+  left: 0rpx;
+  width: 500rpx;
+  height: 100rpx;
+  background: url(../../image/medical/rectangle-4.png);
+  /* background-color: #08FDFE; */
+  /* border-radius: 50%; */
 }
 .scan-view .tip {
   color: #fff;

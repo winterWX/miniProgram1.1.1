@@ -22,10 +22,10 @@ Page({
 	
     setInterval(function () {
       if (m) {
-        animation.translateY(250).step({ duration: 3000 })
+        animation.translateY(200).step({ duration: 3000 })
         m = !m;
       } else {
-        animation.translateY(-10).step({ duration: 3000 })
+        animation.translateY(5).step({ duration: 3000 })
         m = !m;
       }
 
@@ -39,6 +39,8 @@ Page({
     innerAudioContext.play()
     // 校验扫描结果，并处理
     let res = e.detail.result
+    console.log('>>>>>>>>>>>>>>>>>>>>>')
+    console.log(e);
   }
 })
 
