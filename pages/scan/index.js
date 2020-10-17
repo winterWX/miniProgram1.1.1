@@ -22,7 +22,7 @@ Page({
 	
     setInterval(function () {
       if (m) {
-        animation.translateY(200).step({ duration: 3000 })
+        animation.translateY(210).step({ duration: 3000 })
         m = !m;
       } else {
         animation.translateY(5).step({ duration: 3000 })
