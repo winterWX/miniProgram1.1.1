@@ -103,6 +103,7 @@ page {
 .container .btn-box .appointment .appointment-btn {
     width: 330rpx;
     height: 90rpx;
+    line-height: 90rpx;
     background-color: #fff;
     border: #929292;
     color: #333;

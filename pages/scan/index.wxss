@@ -53,7 +53,6 @@
   left: 0rpx;
   width: 500rpx;
   height: 100rpx;
-  background: url(../../image/medical/rectangle-4.png);
   /* background-color: #08FDFE; */
   /* border-radius: 50%; */
 }
