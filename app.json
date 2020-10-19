@@ -41,7 +41,8 @@
     "pages/signAppointment/index",
     "pages/offlineAppointment/index",
     "pages/scan/index",
-    "pages/myCoupons/index"
+    "pages/myCoupons/index",
+    "pages/couponDetails/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

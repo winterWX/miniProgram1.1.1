@@ -23,7 +23,7 @@
         <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
                 <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/invalid-name@3x.png" />
                 <view class="itemSecondeImage">
-                    <!-- <image  class="itemMiddenImage" src="../../image/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
+                    <!-- <image  class="itemMiddenImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
                         <view class="itemBlockText1">{{item.name}}</view>
@@ -38,7 +38,7 @@
         <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
                 <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/invalid-name@3x.png" />
                 <view class="itemSecondeImage">
-                    <!-- <image  class="itemMiddenImage" src="../../image/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
+                    <!-- <image  class="itemMiddenImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/myCounty/cuhk-medical-centre-logo-hori-4-c@3x.png" />  -->
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
                         <view class="itemBlockText1">{{item.name}}</view>

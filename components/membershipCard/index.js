@@ -33,16 +33,12 @@ Component({
       imageFlg:false,
       levelExpiryTime:'',
       nextLevelIntegral:'',
-      seliverBlockShow : true,
+      seliverBlockShow : false,
       windowWidth: 100+'%',
       infoLevelObj:{},
       duration: 500,
       paddingLeft:0,
       currentNum: -1,
-      prevFlg: 0,
-      nextFlg: 0,
-      prevFlgSeconde: 0,
-      nextFlgSeconde: 0,
       levelSecondeFour:false,
       levelFive:false,
       fristCaredShow:false,
@@ -52,36 +48,34 @@ Component({
   methods: {
     cardTopShow(value){
       if(value.level === 1){
-          this.setData({fristCaredShow:true});
-          this.setData({ currentNum: 0,prevFlg: 36, nextFlg: 40});
+          this.setData({ currentNum: 0,fristCaredShow:true,seliverBlockShow: true});
       }else if(value.level === 2 || value.level === 4){
-          this.setData({levelSecondeFour:true});
-          this.setData({ currentNum: 0,prevFlgSeconde: 40, nextFlgSeconde: 40});
+          this.setData({levelSecondeFour:true,seliverBlockShow: true});
+      }else if(value.level === 3 || value.level === 5){
+          this.setData({seliverBlockShow:true});
       }
     },
     cardChange(event){
         let cardNum = event.detail.current;
         if(cardNum === 0){
             this.setData({fristCaredShow:true,secondeCardShow:false});
+            if(this.data.activeData.level === 1){this.setData({seliverBlockShow:true});}
         }else if(cardNum === 1){
-            this.setData({secondeCardShow:true,fristCaredShow:false,threeCardShow:false});
+            this.setData({secondeCardShow:true,fristCaredShow:false,threeCardShow:false,seliverBlockShow:false});
         }else if(cardNum === 2){
-            this.setData({threeCardShow:true,secondeCardShow:false,fristCaredShow:false});
+            this.setData({threeCardShow:true,secondeCardShow:false,fristCaredShow:false,seliverBlockShow:false});
         }
         this.searchLeve(cardNum + 1);
     },
     cardChangeSeconde:function(event){
         let cardNum = event.detail.current;
         if(cardNum === 0){
-           // this.setData({prevFlgSeconde: 20, nextFlgSeconde: 20});
-           this.setData({prevFlgSeconde: 40, nextFlgSeconde: 40});
-           this.setData({levelSecondeFour: true});
-           this.setData({levelFive: false});
+           this.setData({levelSecondeFour: true,levelFive: false});
+           if(this.data.activeData.level === 2 || this.data.activeData.level === 4){
+              this.setData({seliverBlockShow:true});
+          }
         }else if(cardNum === 1){
-            //this.setData({prevFlgSeconde: 32, nextFlgSeconde: 10});
-            this.setData({prevFlgSeconde: 64, nextFlgSeconde: 20});
-            this.setData({levelFive: true});
-            this.setData({levelSecondeFour: false});
+            this.setData({levelFive: true,levelSecondeFour: false,seliverBlockShow:false});
         }
         this.searchLeve(cardNum + 2);
     },
@@ -100,16 +94,15 @@ Component({
       }
     },
     searchLeve:function(level){
-      if(this.data.activeData.level === 1 || this.data.activeData.level === 2 || this.data.activeData.level === 4){
-         this.infoLevel(level);
-         this.setData({seliverBlockShow: false})
-         this.triggerEvent('parentLevel', {
-              LockLevel: level
-         }, {})
-      }else{
-        return;
-      }
+        this.infoLevel(level);
+        //this.setData({seliverBlockShow: true});
+        this.triggerEvent('parentLevel', {
+            LockLevel: level
+        }, {});
     },
+    // seliverBlockShow:function(){
+
+    // },
     infoLevel:function(level){
       let that = this;
       wx.request({

@@ -1,0 +1,27 @@
+<view class="allContent">
+  <view class="topMainContent">
+    <image  class="topMainContentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-3@3x.png" />
+    <view class="secondeMainConten">
+        <image class="arultImage" src="{{couponDetail.attachmentUrl}}" />
+        <!-- <view class="textBottom">卓健/中大优惠券（任何服务6折）</view> -->
+        <view class="textBottom">{{couponDetail.name}}</view>
+    </view>
+    <view class="texteContent1">优惠码</view>
+    <view class="texteContent2">{{couponDetail.code}}</view>
+    <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 1}}"><view class="texteContent30">已使用</view></view>
+    <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 2}}"><view class="texteContent30">未使用</view></view>
+    <view class="texteContent4">有效期至{{couponDetail.expiryTime}}</view>
+  </view>
+  <view class="textContent">
+    <htmlView  class="textContentText" detail ="{{couponDetail.description}}"/>
+    <htmlView  class="textContentText" detail ="{{couponDetail.remark}}"/>
+    <htmlView  class="textContentText" detail ="{{couponDetail.rules}}"/>
+     <!-- <view>{{couponDetail.description}}</view>
+     <view>{{couponDetail.remark}}</view>
+     <view>{{couponDetail.rules}}</view> -->
+  </view>
+  <view class="bottomBtn">
+      <van-button wx:if="{{couponDetail.useTime === 0}}" class="save-btn" bindtap="handleFell" type="primary" size="large">立即使用</van-button>
+      <van-button wx:if="{{couponDetail.useTime !== 0}}"  disabled="{{couponDetail.useTime !== 0}}"  class="save-btn" type="primary" size="large">已使用</van-button>
+  </view>
+</view>

@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "discountAct：":"../../components/discountAct",
-    "membership-card":"../../components/membershipCard"
+    "membership-card":"../../components/membershipCard",
+    "van-button": "vant-weapp/button/index"
   },
   "navigationBarTitleText": "会员等级",
   "navigationBarTextStyle": "black"

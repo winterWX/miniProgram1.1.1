@@ -21,7 +21,10 @@ Page({
     windowWidth: wx.getSystemInfoSync().windowWidth*2,
     couponTypeText:'',
     couponTypes:'',
-    couponTypeAfter:''
+    couponTypeAfter:'',
+    showCarkBlock:false,
+    indexNum:-1,
+    receiveId: -1
   },
 
   /**
@@ -92,6 +95,12 @@ Page({
         if (res.data.code == 200) {
             let sercode = res.data.data.mileStones.length;
             let couponType = res.data.data.tierInfo.couponType;
+            res.data.data.mileStones = res.data.data.mileStones.map(item=>{
+                  return {
+                      ...item,
+                      expiryTime: item.expiryTime ? that.cardDayShow(item.expiryTime) :''
+                  }
+            })
             that.setData({
                 activeData : res.data.data,
                 activeNum : sercode,
@@ -100,6 +109,7 @@ Page({
                 couponTypeAfter : couponType === 1 ? '' : '$',
                 couponTypeText: couponType === 1 ? '折扣券' : '现金券'
             })
+            console.log('activeData++==',that.data.activeData);
             that.secoreFun();
         }
       },
@@ -139,7 +149,9 @@ Page({
   },
   receivedFun:function(e){
     let that = this;
-    let idCode = e.currentTarget.dataset.id;
+    let indexNum = e.currentTarget.dataset.index;
+    let idCode = that.data.activeData.mileStones[indexNum].id;
+    that.setData({indexNum:indexNum});
     wx.request({
       url: app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode,
       method: "GET",
@@ -149,7 +161,8 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-            that.tierMytier();
+              that.tierMytier();
+              that.setData({showCarkBlock:true,receiveId:res.data.data});
         }
       },
       fail: function (res) {
@@ -184,5 +197,22 @@ Page({
     }else if(event.detail.LockLevel === 3){
         that.setData({glodLevel: true, silverLevel: false, LockFlg: false });
     }
+  },
+  bindEmail:function(){
+      let that = this;
+      wx.navigateTo({
+        url: '../../pages/couponDetails/index?id='+ that.data.receiveId,
+      })
+  },
+  closeBolck:function(){
+    let that = this;
+    that.setData({showCarkBlock: false});
+  },
+  cardDayShow:function(value){
+    const date = new Date(value * 1000); 
+    const Y = date.getFullYear() + '年';
+    const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
+    const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
+    return  Y + M + D;
   }
 })
