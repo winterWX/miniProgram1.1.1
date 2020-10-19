@@ -6,7 +6,16 @@ Page({
     show: true
   },
   onLoad: function () {
-    
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+        // if (res.authSetting['scope.camera']) {
+        //   wx.navigateTo({
+        //     url: '../scan/index',
+        //   })
+        // }
+      },
+    })
   },
   onShow(){
     this.donghua()

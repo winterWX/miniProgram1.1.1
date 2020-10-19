@@ -47,7 +47,7 @@ page {
 }
 .container .activity .title {
     color: #333;
-    font-size: 28rpx;
+    font-size: 32rpx;
 }
 .container .activity .point {
     color: #666;
@@ -96,12 +96,12 @@ page {
     color: #fff;
     margin-bottom: 20rpx;
 }
-.container .btn-box .appointment {
+/* .container .btn-box .appointment {
     display: flex;
     justify-content: space-between;
-}
+} */
 .container .btn-box .appointment .appointment-btn {
-    width: 330rpx;
+    /* width: 330rpx; */
     height: 90rpx;
     line-height: 90rpx;
     background-color: #fff;

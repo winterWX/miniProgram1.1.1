@@ -5,7 +5,7 @@
     <view class="info">
         <view class="title">门诊赴约签到得积分</view>
         <view class="content">
-            扫码签到可获得100积分。该活动需要你提前预约并提供就诊信息，然后至线下诊所完成赴约。
+            扫码签到可获得10积分。该活动需要你提前预约并提供就诊信息，然后至线下诊所完成赴约。
 愿你一生平安康健，但不测风雨来临时，我们希望与你共担风雨。点击了解更多香港卓健医疗详情或香港中文大学医院详情相关医疗服务。
         </view>
     </view>
@@ -59,7 +59,7 @@
         <button class="sign" catchtap="scanCode">扫码签到</button>
         <view class="appointment">
             <button class="appointment-btn" bindtap="clickHandleHK">预约中大医疗</button>
-            <button class="appointment-btn disabled" disabled="{{true}}" catchtap="clickHandle">预约卓健医疗</button>
+            <!-- <button wx:if="{{false}}" class="appointment-btn disabled" disabled="{{true}}" catchtap="clickHandle">预约卓健医疗</button> -->
         </view>
     </view>
 </view>

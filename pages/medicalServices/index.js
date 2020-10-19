@@ -16,7 +16,7 @@ Page({
     } */],
     currentImg: {},
     baseUrl: app.globalData.imagesUrl,
-    indicatorDots: true,
+    indicatorDots: false,
     vertical: false,
     autoplay: false,
     interval: 2000,
