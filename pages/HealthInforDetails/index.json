@@ -2,7 +2,6 @@
   "usingComponents": {
       "htmlView": "../../components/htmlView/htmlView",
       "integralAmation": "../../components/integralAmation/index",
-      "HtmlView":"../../components/htmlView/htmlView",
       "van-button": "vant-weapp/button/index"
   },
   "navigationBarTitleText": "详情",

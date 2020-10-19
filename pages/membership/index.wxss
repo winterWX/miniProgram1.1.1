@@ -62,9 +62,6 @@ page{
   bottom: 0;
   position: fixed;
   background-color: rgba(0,0 ,0, 0.5);
-} 
-.carkBlock-allMain{
-  /* margin: 450rpx auto; */
 }
 .topImage1{
   width: 288rpx;

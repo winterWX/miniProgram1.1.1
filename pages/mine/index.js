@@ -156,10 +156,23 @@ Page({
         success: (res) => {
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
-              let time = res.data.data;
-              //let dayTime = parseInt(new Date().getTime() / 1000);
-              const runArray = that.runArray(runData,time);
-              that.getUploaddata(runArray);
+              let time = util.formatTime(new Date(Number(res.data.data)));
+              let latestTime = time.split(' ')[0];
+              console.log('latestTime+=====',latestTime);
+              let result = runData.find(item => item.date === latestTime);
+              let index = runData.indexOf(result);
+              let results = runData.splice(0, index + 1).map(item=>{
+                   return {
+                      startTime: item.timestamp + '',
+                      endTime: item.timestamp + '',
+                      steps: item.step
+                   }
+              });
+              console.log('resultsresults+=====',results);
+              that.getUploaddata(results);
+              // let time = res.data.data;
+              // const runArray = that.runArray(runData,time);
+              // that.getUploaddata(runArray);
           }
         }
       })

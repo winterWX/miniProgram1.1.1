@@ -65,7 +65,7 @@
                         <view class="bottomTage">
                            <view class="bottomTage-title">全部话题</view>
                            <view class="intringData">
-                            <view class="viewBtnBoxint"  bindtap="addTagBbtn"  wx:for="{{forYouData}}" data-index="{{index}}" wx:key="{{index}}">
+                            <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" data-index="{{index}}">
                                 <view class="viewBtn">{{item.tag}}</view>
                                 <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="http://106.54.73.125:8104/images/miniprogram/images/healthInfo/icon-add.png"></image>
                             </view>

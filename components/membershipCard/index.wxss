@@ -128,7 +128,7 @@ page{
 }
 .seliverBlock{
   height: 85rpx;
-  margin-top: 1rpx;
+  margin-top: 2rpx;
   background-color: #ffffff;
   padding: 30rpx 0rpx;
 }

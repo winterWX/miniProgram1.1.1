@@ -21,7 +21,7 @@
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
                         <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -102,7 +102,7 @@
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
                         <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -122,15 +122,6 @@
                                     </view>
                                 </view>
                             </swiper-item>
-                            <!-- <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
-                                    <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">银会员积分x2升级攻略</view>
-                                        <view class="progressBlockText30">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item> -->
                             <swiper-item>
                                 <view class="progressBlockImage">
                                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
@@ -197,48 +188,11 @@
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
                         <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
             </view>
-            <!-- <view class="container">
-                    <view class="page-body">
-                        <view class="page-section page-section-spacing swiper">
-                        <swiper indicator-dots="{{indicatorDots}}"
-                            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                            <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
-                                    <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
-                                        <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
-                                        <view class="progressBlockText2">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                            <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
-                                    <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">银会员积分x2升级攻略</view>
-                                        <view class="progressBlockText30">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                            <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
-                                    <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">金会员积分x5升级攻略</view>
-                                        <view class="progressBlockText3" >立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                        </swiper>
-                        </view>
-                    </view>
-            </view> -->
         </view>
         <view class="bouttomImage">
             <view class="bouttomTitlr">已享限时优惠</view>
@@ -316,7 +270,7 @@
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
                         <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
@@ -326,25 +280,6 @@
                         <view class="page-section page-section-spacing swiper">
                         <swiper indicator-dots="{{indicatorDots}}"
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                            <!-- <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
-                                    <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
-                                        <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
-                                        <view class="progressBlockText2">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item> -->
-                            <!-- <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
-                                    <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">银会员积分x2升级攻略</view>
-                                        <view class="progressBlockText30">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item> -->
                             <swiper-item>
                                 <view class="progressBlockImage">
                                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
@@ -411,48 +346,11 @@
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
                         <view class="minText">{{item.couponCategory}}</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-id="{{item.id}}">领取</view>
+                        <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
                     </view>
                 </view>
             </view>
-            <!-- <view class="container">
-                    <view class="page-body">
-                        <view class="page-section page-section-spacing swiper">
-                        <swiper indicator-dots="{{indicatorDots}}"
-                            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                            <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
-                                    <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
-                                        <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
-                                        <view class="progressBlockText2">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                            <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="../../image/bg-x-2@t3x.png"/>
-                                    <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">银会员积分x2升级攻略</view>
-                                        <view class="progressBlockText30">立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                            <swiper-item>
-                                <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
-                                    <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">金会员积分x5升级攻略</view>
-                                        <view class="progressBlockText3" >立即查看</view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                        </swiper>
-                        </view>
-                    </view>
-            </view> -->
         </view>
         <view class="bouttomImage">
             <view class="bouttomTitlr">已享限时优惠</view>
@@ -477,7 +375,7 @@
         </view>
     </view>
     <view  wx:if="{{silverLevel}}">
-        <view class="bouttomImage">
+        <view class="bouttomImage noCardShow">
             <view class="bouttomTitlr">会员权益</view>
                 <view class="bottomBlockGold">
                     <view class="bottomText">
@@ -563,7 +461,7 @@
         </view>
     </view>
     <view  wx:if="{{glodLevel}}">
-        <view class="bouttomImage">
+        <view class="bouttomImage noCardShow">
             <view class="bouttomTitlr">会员权益</view>
                 <view class="bottomBlockGold">
                     <view class="bottomText">
@@ -653,6 +551,32 @@
                     </view>
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img@3x.png"/>
                 </view>
+        </view>
+    </view>
+    <view class="carkBlock" wx:if="{{showCarkBlock}}">
+       <view class="carkBlock-main">
+           <view class="carkBlock-allMain">
+                <image class="carkBlockMainImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group@3x.png" />
+                <view class="carkBlockClose"><image  bindtap="closeBolck"  src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/coupon-pop-up@3x.png" /></view>
+                <view class="carkBlockTitle">恭喜你获得以下奖励</view>
+                <view class="carkSeconde">
+                    <image class="carkBlockAfter" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-3@2x.png"/>
+                    <view class="aboutBlock">
+                        <image class="tenImage"  src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/coupon@3x.png"/>
+                        <view class="leftContent">
+                            <view class="firstFlg">¥</view>
+                            <view class="firstNum">{{activeData.mileStones[indexNum].couponValue}}</view>
+                        </view>
+                        <view class="textContent">
+                            <view class="textContent1">{{activeData.mileStones[indexNum].couponName}}</view>
+                            <view class="textContent2">有效期至{{activeData.mileStones[indexNum].expiryTime}}</view>
+                        </view>
+                    </view>
+                    <view class="text4-main">
+                        <van-button type="primary" size="large" bindtap="bindEmail">查看我的优惠券</van-button>
+                    </view>
+                </view>
+            </view>
         </view>
     </view>
 </view>
