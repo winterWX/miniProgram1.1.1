@@ -26,6 +26,7 @@ Page({
       url: '../offlineAppointment/index',
       // url: '../signSuccess/index',
     })
+    
   },
   scanCode: function() {
     wx.navigateTo({

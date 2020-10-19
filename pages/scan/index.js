@@ -1,9 +1,9 @@
-
+let app = getApp();
 // 移动动画
 let animation = wx.createAnimation({});
 Page({
   data: {
-    
+    show: true
   },
   onLoad: function () {
     
@@ -17,23 +17,49 @@ Page({
     let m = true
     setInterval(function () {
       if (m) {
-        animation.translateY(210).step({ duration: 3000 })
+        animation.translateY(210).step({ duration: 1500 })
         m = !m;
       } else {
-        animation.translateY(5).step({ duration: 3000 })
+        animation.translateY(5).step({ duration: 1500 })
         m = !m;
       }
 
       that.setData({
         animation: animation.export()
       })
-    }.bind(this), 3000)
+    }.bind(this), 1500)
   },
   scancode(e){
     // 校验扫描结果，并处理
-    let res = e.detail.result
-    console.log('>>>>>>>>>>>>>>>>>>>>>')
-    console.log(e);
+    if ( e.detail.type === 'qrcode' && e.detail.result) {
+      this.setData({show: false});
+      wx.showToast({
+        icon: 'loading',
+        duration: 2000
+       })
+      wx.request({
+        url: app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result,
+        method: "GET",
+        header: {
+          'Content-Type': 'application/json',
+          "token": app.globalData.token
+        },
+        success: function (res) {
+          wx.navigateTo({
+            url: '../signSuccess/index',
+          })
+        },
+        fail: function (res) {
+          wx.navigateTo({
+            url: '../signFail/index',
+          })
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../signFail/index',
+      })
+    }
   }
 })
 
