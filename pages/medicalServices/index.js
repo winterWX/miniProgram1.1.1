@@ -10,17 +10,18 @@ Page({
     imageList: [{
       id: 1,
       url: app.globalData.imagesUrl  + '/images/medical/banner-1.png'
-    }, {
+    }/* , {
       id: 2,
       url: app.globalData.imagesUrl + '/images/medical/banner-4.png'
-    }],
+    } */],
     currentImg: {},
     baseUrl: app.globalData.imagesUrl,
     indicatorDots: true,
     vertical: false,
     autoplay: false,
     interval: 2000,
-    duration: 500
+    duration: 500,
+    showDetailInfo: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -82,6 +83,11 @@ Page({
   clickHandle: function(e) {
     wx.navigateTo({
       url: '../signAppointment/index',
+    })
+  },
+  showDetailInfo: function() {
+    this.setData({
+      showDetailInfo:!this.data.showDetailInfo
     })
   }
 })
