@@ -108,6 +108,7 @@ page{
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
+  height: 83.2rpx;
 }
 .info .description_text{
   font-size: 32rpx;
@@ -174,7 +175,7 @@ page{
   font-style: normal;
   letter-spacing: normal;
   color: #929292;
-  margin-top: 20rpx;
+  margin-top: 26rpx;
 }
 .timeText .timeTextLeft{
     /* font-size: 31rpx;

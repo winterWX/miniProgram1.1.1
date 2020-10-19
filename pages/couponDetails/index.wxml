@@ -8,17 +8,15 @@
     </view>
     <view class="texteContent1">优惠码</view>
     <view class="texteContent2">{{couponDetail.code}}</view>
-    <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 1}}"><view class="texteContent30">已使用</view></view>
-    <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 2}}"><view class="texteContent30">未使用</view></view>
+    <view class="texteContent3" wx:if="{{couponDetail.useTime === 0}}"><view class="texteContent30  {{!copyCode ? 'texteCopy' : ''}}" bindtap="texteCopy">复制</view></view>       
+    <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 1}}"><view class="texteContent30">已过期</view></view> 
+    <view class="texteContent3" wx:if="{{couponDetail.useTime !== 0}}"><view class="texteContent30">未使用</view></view>
     <view class="texteContent4">有效期至{{couponDetail.expiryTime}}</view>
   </view>
   <view class="textContent">
     <htmlView  class="textContentText" detail ="{{couponDetail.description}}"/>
     <htmlView  class="textContentText" detail ="{{couponDetail.remark}}"/>
     <htmlView  class="textContentText" detail ="{{couponDetail.rules}}"/>
-     <!-- <view>{{couponDetail.description}}</view>
-     <view>{{couponDetail.remark}}</view>
-     <view>{{couponDetail.rules}}</view> -->
   </view>
   <view class="bottomBtn">
       <van-button wx:if="{{couponDetail.useTime === 0}}" class="save-btn" bindtap="handleFell" type="primary" size="large">立即使用</van-button>

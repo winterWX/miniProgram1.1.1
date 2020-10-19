@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    copyCode:false
   },
 
   /**
@@ -13,9 +13,8 @@ Page({
    */
   onLoad: function (options) {
       let that = this;
-      if(options.id){
-         that.couponDetail(options.id);
-      }
+      let {id} = options;
+      that.couponDetail(id);
   },
 
   /**
@@ -50,22 +49,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
-
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  },
+  onShareAppMessage: function () {},
   couponDetail:function(id){
     let that = this;
     wx.request({
@@ -93,5 +87,16 @@ Page({
     const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
     const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
     return  Y + M + D;
+  },
+  texteCopy:function(){
+    let that = this;
+    if(this.data.copyCode){
+        return;
+    }else{
+        that.setData({copyCode:true});
+        wx.showToast({
+          title: '复制成功',
+        })
+    }
   }
 })

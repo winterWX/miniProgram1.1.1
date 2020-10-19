@@ -62,6 +62,12 @@ Page({
       }
     })
   },
+  immediateUse:function(e){
+      let id = e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: '../../pages/couponDetails/index?id='+ id,
+      })
+  },
   cardDayShow:function(value){
       const date = new Date(value * 1000); 
       const Y = date.getFullYear() + '年';
