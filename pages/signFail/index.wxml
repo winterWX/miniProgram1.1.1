@@ -1,0 +1,10 @@
+<view class="container">
+    <view class="fail-tip">
+        二维码无效
+    </view>
+    <view class="friendly-tips">
+        您扫描的二维码无效，请确认二维码的有效性。
+    </view>
+    <button class="re-sign btn" catchtap="resign">重新扫描</button>
+    <button class="home btn" catchtap="goHome">首页</button>
+</view>

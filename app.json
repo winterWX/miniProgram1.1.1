@@ -42,7 +42,9 @@
     "pages/offlineAppointment/index",
     "pages/scan/index",
     "pages/myCoupons/index",
-    "pages/couponDetails/index"
+    "pages/couponDetails/index",
+    "pages/signSuccess/index",
+    "pages/signFail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,11 +1,11 @@
-let app = getApp();
+// pages/signFail/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl,
+
   },
 
   /**
@@ -21,13 +21,12 @@ Page({
   onReady: function () {
 
   },
-  clickHandleHK: function() {
+  goHome: function() {
     wx.navigateTo({
-      url: '../offlineAppointment/index',
-      // url: '../signSuccess/index',
+      url: '../index/index',
     })
   },
-  scanCode: function() {
+  resign: function() {
     wx.navigateTo({
       url: '../scan/index',
     })
