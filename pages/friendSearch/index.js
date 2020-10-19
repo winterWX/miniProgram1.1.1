@@ -117,9 +117,9 @@ Page({
     that.setData({showArray: inputVal === '' ? [] : friendData});
   },
   onCancel:function(){
-    wx.navigateBack({
-      url: '../addFriend/index',
-    })
+      wx.navigateBack({
+        url: '../addFriend/index',
+      })
   },
   hasAddFriend:function(){
     let that = this;

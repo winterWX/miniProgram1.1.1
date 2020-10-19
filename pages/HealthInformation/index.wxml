@@ -19,7 +19,7 @@
         </view>
     </view>
    <view class="info-main">
-        <view class="info"  wx:for="{{listData}}" wx:key="index">
+        <view class="info"  wx:for="{{listData}}" wx:key="{{item.id}}">
         <view class="top-block"  bindtap="listClick" data-itemid="{{item.id}}">
             <view class="title">
                 <view class="mainText mainTextHidden">{{item.title}}</view>
@@ -57,9 +57,6 @@
                                         <image  wx:if="{{editStute && item.tag !=='热门推荐'}}" src='http://106.54.73.125:8104/images/miniprogram/images/healthInfo/icon-clear.png'></image>
                                     </view>
                                 </view> 
-
-
-
                               </view>
                         </view>
                         <view class="bottomTage">
