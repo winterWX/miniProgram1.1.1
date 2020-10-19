@@ -1,4 +1,4 @@
-.page {
+page {
     height: 100%;
 }
 .medical-box {
@@ -65,11 +65,11 @@
 .hospital .hospital-info {
     position: relative;
     width: 100%;
-    height: 250rpx;
+    height: 350rpx;
 }
 .hospital .hospital-info .bg-img {
     width: 100%;
-    height: 250rpx;
+    height: 350rpx;
 }
 .hospital .hospital-info .hospital-icon {
     position: absolute;

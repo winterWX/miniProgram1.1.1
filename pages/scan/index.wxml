@@ -9,10 +9,7 @@
       <cover-image class='cover-corner cover-right-top' src='../../image/medical/rt.png'></cover-image>
       <cover-image class='cover-corner cover-left-bottom' src='../../image/medical/lb.png'></cover-image>
       <cover-image class='cover-corner cover-right-bottom' src='../../image/medical/rb.png'></cover-image>
-      
-      <!-- <cover-view class='scan-animation' animation="{{animation}}"> -->
-        <cover-image class='scan-animation' animation="{{animation}}" src="../../image/medical/rectangle-4.png"></cover-image>
-      <!-- </cover-view> -->
+      <cover-image class='scan-animation' animation="{{animation}}" src="../../image/medical/rectangle-4.png"></cover-image>
     </camera>
     <!-- 这里可以处理其他内容 -->
   </view>

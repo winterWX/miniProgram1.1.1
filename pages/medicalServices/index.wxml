@@ -33,9 +33,12 @@
       <image class="bg-img" src="{{baseUrl + '/images/medical/banner-mask-copy.png'}}"></image>
       <image class="hospital-icon" src="{{baseUrl + '/images/medical/icon.png'}}"></image>
       <view class="basic-info" >
-        香港中文大学医院 (中大医院) 是一所非牟利、私营教学医院，由香港中文大学全资拥有。中大医院本着平衡香港私营及公营医…
+        香港中文大学医院（中大医院）是一所非牟利、私营教学医院，由香港中文大学全资拥有。
+        中大医院本着平衡香港私营及公营医疗体系差异的责任，一位病人提供优质，可负担及透明度的医疗服务位己任。
+        贯彻医院非牟利的宗旨，我们经所有盈余投放于医院及香港中文大学医院，以支持医院的长远发展以及香港中文大学
+        医学院，以支持医院的长远发展及医学院的的科研和教学工作。
       </view>
-      <image class="forward" catchtap="showDetailInfo" src="{{baseUrl + '/images/medical/forward.png'}}"></image>
+      <!-- <image class="forward" catchtap="showDetailInfo" src="{{baseUrl + '/images/medical/forward.png'}}"></image> -->
     </view>
     <view class="function-list">
       <view class="function-item" catchtap="clickHandle">
@@ -52,7 +55,7 @@
       </view>
     </view>
   </view>
-  <view class="hospital">
+  <view class="hospital" wx:if="{{false}}">
     <view class="hospital-info">
       <image class="bg-img" src="{{baseUrl + '/images/medical/mask.png'}}"></image>
       <image class="hospital-icon" src="{{baseUrl + '/images/medical/zhuojian@2x.png'}}"></image>

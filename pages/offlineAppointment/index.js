@@ -19,16 +19,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log('sunbinbin')
-    console.log(app.globalData.phoneNumber);
     let mobile = app.globalData.phoneNumber;
-    let getTransactionid = this.getTransactionid(mobile);
-    let getMembershipid = this.getMembershipid(mobile);
-    Promise.all([getTransactionid, getMembershipid]).then(data => {
-      console.log('???????????????????????')
-      console.log(data);
-    })
-
+    this.getTransactionid(mobile);
   },
 
   /**
@@ -47,49 +39,27 @@ Page({
   },
 
   getTransactionid: function(mobile) {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/interrogation/cumc/findinter',
-        method: "GET",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token
-        },
-        data: {
-          mobile: mobile
-        },
-        success: function (res) {
-          console.log('Transactionid');
-          console.log(res.data)
-          resolve(res.data.data);
-        },
-        fail: function (res) {
-          reject(false);
-        }
-      })
-    })
-  },
-  getMembershipid: function(mobile) {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/register/mobile/findmember',
-        method: "GET",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token
-        },
-        data: {
-          mobile: mobile
-        },
-        success: function (res) {
-          console.log('Membershipid');
-          console.log(res);
-          resolve(res.data.data);
-        },
-        fail: function (res) {
-          reject(false)
-        }
-      })
+    let that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/interrogation/cumc/findinter',
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": app.globalData.token
+      },
+      data: {
+        mobile: mobile
+      },
+      success: function (res) {      
+        let { membershipid, transationid } = res.data.data;
+        console.log('membershipid:' + membershipid)
+        console.log('transationid:' + transationid)
+        let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=18k&tid=${transationid}&mti=${membershipid}`
+        that.setData({url});
+      },
+      fail: function (res) {
+        reject(false);
+      }
     })
   },
   copyData: function() {
