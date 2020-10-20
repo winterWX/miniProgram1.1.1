@@ -40,14 +40,14 @@ Component({
         let height = '';
         let weight = '';
         if(this.data.height !== '--' || this.data.height !== 0){
-          height= this.data.height;
+           height= this.data.height;
         }else{
-          height = '';
+           height = '';
         }
         if(this.data.weight !== '--' || this.data.weight !== 0){
-          weight= this.data.weight;
+           weight= this.data.weight;
         }else{
-          weight = '';
+           weight = '';
         }
         this.setData({
           numData: this.data.blockForData.titleTop === '记录身高' ? height : weight
