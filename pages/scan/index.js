@@ -57,6 +57,11 @@ Page({
   onShow(){
     this.donghua();
     // this.getAuth();
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+      },
+    })
   },
  /*  getAuth: function() {
     wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
@@ -84,17 +89,17 @@ Page({
     let m = true
     timer = setInterval(function () {
       if (m) {
-        animation.translateY(210).step({ duration: 1500 })
+        animation.translateY(260).step({ duration: 3000 })
         m = !m;
       } else {
-        animation.translateY(5).step({ duration: 1500 })
+        animation.translateY(5).step({ duration: 3000 })
         m = !m;
       }
 
       that.setData({
         animation: animation.export()
       })
-    }.bind(this), 1500)
+    }.bind(this), 3000)
   },
   cameraError: function() {
     let that = this;
