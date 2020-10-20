@@ -5,7 +5,7 @@ let timer = null;
 let isScan = false
 Page({
   data: {
-    
+    show: true
   },
   onLoad: function () {
     clearInterval(timer);
@@ -135,49 +135,49 @@ Page({
     })
   },
   scancode(e){
-    console.log('>>>>>>>>>>>>>>>>>>>>>')
     console.log(e);
+    let that = this;
+    this.setData({show: false});
     if (isScan) {
       return;
     }
-    console.log(e);
-    isScan = true;
     // 校验扫描结果，并处理
     if ( e.detail.type === 'qrcode' && e.detail.result) {
       let url = '';
-      this.setData({show: false});
       wx.showToast({
         icon: 'loading',
         duration: 2000
        })
-      wx.request({
-        url: app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result,
-        method: "GET",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token
-        },
-        success: function (res) {
-
-          if(res.data.data) {
-            let { integral } = res.data.data;
-            url = '../signSuccess/index?integral=' + integral;
-          } else {
-            url = '../signFail/index';
+      if (!isScan) {
+        isScan = true;
+        wx.request({
+          url: app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result,
+          method: "GET",
+          header: {
+            'Content-Type': 'application/json',
+            "token": app.globalData.token
+          },
+          success: function (res) {
+            isScan = false;
+            if(res.data.data) {
+              let { integral } = res.data.data;
+              url = '../signSuccess/index?integral=' + integral;
+            } else {
+              url = '../signFail/index';
+            }
+            that.setData({show: true});
+            wx.navigateTo({url});
+          },
+          fail: function (res) {
+            isScan = false;
+            that.setData({show: true});
+            wx.navigateTo({
+              url: '../signFail/index',
+            })
           }
-          wx.navigateTo({url});
-        },
-        fail: function (res) {
-          console.log('request failed')
-          wx.navigateTo({
-            url: '../signFail/index',
-          })
-        }
-      })
-    } else {
-      wx.navigateTo({
-        url: '../signFail/index',
-      })
+        })
+      }
+      
     }
   }
 })
