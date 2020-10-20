@@ -31,6 +31,7 @@ Page({
   scanCode: function() {
     wx.navigateTo({
       url: '../scan/index',
+      // url: '../signFail/index',
     })
   }
 })

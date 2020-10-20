@@ -1,4 +1,8 @@
 <view class="container">
+<view class="warn-box">
+    <image class="warn-img" src="../../image/medical/warn.png" mode="aspectFill" lazy-load="true"></image>
+</view>
+    
     <view class="fail-tip">
         二维码无效
     </view>
