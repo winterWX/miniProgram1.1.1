@@ -22,6 +22,10 @@ Page({
       },
     })
   },
+  onHide: function() {
+    isScan = false;
+    that.setData({show: true});
+  },
   donghua(){
     var that = this;
 	// 控制向上还是向下移动
@@ -52,8 +56,6 @@ Page({
           console.log('用户点击确定')
           wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
             success: (res) => {
-              console.log('confirm');
-              console.log(res);
               if (!res.authSetting['scope.camera']) {
                 wx.authorize({
                   scope: 'scope.camera',
@@ -80,20 +82,15 @@ Page({
     })
   },
   scancode(e){
-    console.log(e);
     let that = this;
     this.setData({show: false});
-    if (isScan) {
-      return;
-    }
-    // 校验扫描结果，并处理
-    if ( e.detail.type === 'qrcode' && e.detail.result) {
-      let url = '';
-      wx.showToast({
-        icon: 'loading',
-        duration: 2000
-       })
-      if (!isScan) {
+    if (!isScan) {
+      if ( e.detail.type === 'qrcode' && e.detail.result) {
+        let url = '';
+        wx.showToast({
+          icon: 'loading',
+          duration: 2000
+         })
         isScan = true;
         wx.request({
           url: app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result,
@@ -103,27 +100,24 @@ Page({
             "token": app.globalData.token
           },
           success: function (res) {
-            isScan = false;
             if(res.data.data) {
               let { integral } = res.data.data;
               url = '../signSuccess/index?integral=' + integral;
             } else {
               url = '../signFail/index';
             }
-            that.setData({show: true});
             wx.navigateTo({url});
           },
           fail: function (res) {
-            isScan = false;
-            that.setData({show: true});
             wx.navigateTo({
               url: '../signFail/index',
             })
           }
         })
+        
       }
-      
+      return;
     }
-  }
+   }
 })
 
