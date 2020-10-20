@@ -55,9 +55,6 @@ Page({
   },
   onShow(){
     this.donghua();
-    wx.scanCode({
-      complete: (res) => {},
-    })
     // this.getAuth();
   },
  /*  getAuth: function() {
@@ -162,6 +159,7 @@ Page({
           wx.navigateTo({url});
         },
         fail: function (res) {
+          console.log('request failed')
           wx.navigateTo({
             url: '../signFail/index',
           })
