@@ -152,7 +152,7 @@
 .minText{
   color: rgb(102,102,102);
   font-size: 20rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 15rpx;
 }
 .bottomTextTop{
   font-size: 24rpx;
