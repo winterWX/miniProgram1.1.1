@@ -16,14 +16,14 @@ Component({
       type: String,
       value: '',
       observer(value) {
-        console.log('value',value) 
+        console.log('value',value)
       }
     },    
     weight: {
       type: String,
       value: '',
       observer(value) {
-        console.log('value',value) 
+        console.log('value',value)
       }
     }
   },
@@ -52,6 +52,7 @@ Component({
         this.setData({
           numData: this.data.blockForData.titleTop === '记录身高' ? height : weight
         })
+        this.btnShow();
     },
   },
   /**
@@ -68,9 +69,7 @@ Component({
             valData :true
           })
         }else{
-          that.setData({
-            valData : false
-          })
+          that.setData({valData : false });
           that.setData({
             numData: e.detail.value
           })
@@ -110,6 +109,11 @@ Component({
       that.triggerEvent('closeBalck',{
          close:false
       },{})
+    },
+    btnShow(){
+      if(this.data.height === '' || this.data.weight === ''){
+        this.setData({valData : true });
+      }
     }
   }
 })

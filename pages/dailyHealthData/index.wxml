@@ -102,7 +102,7 @@
 <view  wx:if="{{editBlck}}"  class="succeDefult"></view>
 <heightWeight class="balckHeight"  wx:if="{{editBlck}}" 
   blockForData='{{blockForData}}'
-  height='{{health.height === "--" ?  0 : health.height}}'
-  weight='{{health.weight === "--" ?  0 : health.weight}}'
+  height='{{(health.height === "--" || health.height === 0) ?  "" : health.height}}'
+  weight='{{(health.weight === "--" || health.weight === 0) ?  "" : health.weight}}'
   bind:closeBalck="closeBalck" />
-  <integralAmation integral="{{integral}}"  wx:if="{{integralBlock}}" />
+  <integralAmation integral="{{integral}}"  wx:if="{{integralBlock}}"/>
