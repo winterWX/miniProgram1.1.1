@@ -21,7 +21,8 @@ Page({
     autoplay: false,
     interval: 2000,
     duration: 500,
-    showDetailInfo: false
+    showDetailInfo: false,
+    showLink:false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -89,5 +90,8 @@ Page({
     this.setData({
       showDetailInfo:!this.data.showDetailInfo
     })
+  },
+  showLinkFun:function(){
+    this.setData({ showLink: true});
   }
 })
