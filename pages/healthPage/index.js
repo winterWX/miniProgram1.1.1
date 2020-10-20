@@ -333,13 +333,12 @@ Page({
           "token": app.globalData.token
       },
       data:{
-        'date': parseInt(new Date().getTime() /1000)
+        //date: parseInt(new Date().getTime() /1000)
+        date: new Date().getTime() + '',
       },
       success: function (res) {
-        if(res.data.data !== null){
-            that.setData({
-              everyDayData : res.data.data
-            })
+        if(res.data.code === 200){
+            that.setData({ everyDayData : res.data.data });
         }
       },
       fail: function (res) {

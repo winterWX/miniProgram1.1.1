@@ -20,7 +20,7 @@
       </swiper-item>
       <swiper-item class="swpierItemContent">
         <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="../../image/group-2-3@t3x.png" />
+                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-2-3@t3x.png" />
                 <view class="itemSecondeImage">
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
@@ -34,7 +34,7 @@
       </swiper-item>
       <swiper-item class="swpierItemContent">
         <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="../../image/group-2-3@t3x.png" />
+                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-2-3@t3x.png" />
                 <view class="itemSecondeImage">
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
