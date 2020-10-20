@@ -1,6 +1,15 @@
 .container {
     padding: 20rpx 30rpx;
 }
+.container .warn-box {
+    margin: 350rpx 0 30rpx 0;
+    display: flex;
+    justify-content: space-around;
+}
+.container .warn-box .warn-img {
+    width: 100rpx;
+    height: 100rpx;
+}
 .container .fail-tip {
     color: #333;
     font-size: 32rpx;

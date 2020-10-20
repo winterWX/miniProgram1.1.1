@@ -2,6 +2,7 @@ let app = getApp();
 // 移动动画
 let animation = wx.createAnimation({});
 let timer = null;
+let isScan = false
 Page({
   data: {
     
@@ -134,7 +135,13 @@ Page({
     })
   },
   scancode(e){
-    console.log(e)
+    console.log('>>>>>>>>>>>>>>>>>>>>>')
+    console.log(e);
+    if (isScan) {
+      return;
+    }
+    console.log(e);
+    isScan = true;
     // 校验扫描结果，并处理
     if ( e.detail.type === 'qrcode' && e.detail.result) {
       let url = '';
@@ -151,8 +158,10 @@ Page({
           "token": app.globalData.token
         },
         success: function (res) {
+
           if(res.data.data) {
-            url = '../signSuccess/index';
+            let { integral } = res.data.data;
+            url = '../signSuccess/index?integral=' + integral;
           } else {
             url = '../signFail/index';
           }

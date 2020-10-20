@@ -26,3 +26,4 @@
         </view>
     </view>
 </view>
+<integralAmation integral="{{integral}}" style="z-index:4;" />
