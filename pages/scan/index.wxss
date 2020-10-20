@@ -4,7 +4,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #B9BEC4;
+  /* background-color: #B9BEC4; */
   position: fixed;
   align-items: center;
 }

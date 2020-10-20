@@ -9,80 +9,19 @@ Page({
   },
   onLoad: function () {
     clearInterval(timer);
-  /*   wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.camera']) {     //获取摄像头权限
-          wx.authorize({
-            scope:'scope.camera',
-            success() {
-              console.log('授权成功')
-            }, fail() {
-              wx.showModal({
-                title: '提示',
-                content: '尚未进行授权，部分功能将无法使用',
-                showCancel: false,
-                success(res) {
-                  if (res.confirm) {
-                    console.log('用户点击确定')
-                    wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
-                      success: (res) => {
-                        if (!res.authSetting['scope.camera']) {
-                          wx.authorize({
-                            scope: 'scope.camera',
-                            success() {
-                              console.log('授权成功')
-                            }, fail() {
-                              console.log('用户点击取消')
-                            }
-                          })
-                        }
-                      },
-                      fail: function () {
-                        console.log("授权设置录音失败");
-                      }
-                    })
-                    
-                  } else if (res.cancel) {
-                    console.log('用户点击取消')
-                  }
-                }
-              })
-            }
-          })
-        }
-      }
-    }) */
-
   },
   onShow(){
+    let that = this;
     this.donghua();
-    // this.getAuth();
     wx.getSetting({
       success: (res) => {
         console.log(res)
+        if (res.authSetting['scope.camera']) {
+          that.setData({show: true});
+        }
       },
     })
   },
- /*  getAuth: function() {
-    wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
-      success: (res) => {
-        console.log(res)
-        if (!res.authSetting['scope.camera']) {
-          wx.authorize({
-            scope: 'scope.camera',
-            success() {
-              console.log('授权成功')
-            }, fail() {
-              console.log('用户点击取消')
-            }
-          })
-        }
-      },
-      fail: function () {
-        console.log("授权相机权限失败");
-      }
-    })
-  }, */
   donghua(){
     var that = this;
 	// 控制向上还是向下移动
@@ -103,6 +42,7 @@ Page({
   },
   cameraError: function() {
     let that = this;
+    this.setData({show: false});
     wx.showModal({
       title: '提示',
       content: '尚未进行授权，部分功能将无法使用',
