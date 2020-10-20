@@ -44,7 +44,8 @@
     "pages/myCoupons/index",
     "pages/couponDetails/index",
     "pages/signSuccess/index",
-    "pages/signFail/index"
+    "pages/signFail/index",
+    "pages/externalLinks/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

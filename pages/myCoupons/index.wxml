@@ -6,21 +6,22 @@
   </view>
   <swiper current="{{currentTab}}" class="swiper-box {{currentTab !== 0 ? 'currentTabColor' : ''}}" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
       <swiper-item class="swpierItemContent">
-          <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/quan@3x.png" />
+          <view class="item-content" wx:for="{{detailArray}}" wx:key="index" data-id="{{item.id}}"  bindtap="immediateUse">
+                <image class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/quan@3x.png" />
                 <view class="itemSecondeImage">
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
                         <view class="itemBlockText1">{{item.name}}</view>
                         <view class="itemBlockText2">有效期至{{item.expiryTime}}</view>
                     </view>
-                    <view class="itemBlockTextLast" wx:if="{{item.useTime === 0}}" bindtap="immediateUse" data-id="{{item.id}}">立即使用</view>
+                    <!-- <view class="itemBlockTextLast" wx:if="{{item.useTime === 0}}" bindtap="immediateUse" data-id="{{item.id}}">立即使用</view> -->
+                    <view class="itemBlockTextLast" wx:if="{{item.useTime === 0}}">立即使用</view>
                 </view>
           </view>
       </swiper-item>
       <swiper-item class="swpierItemContent">
-        <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-2-3@t3x.png" />
+        <view class="item-content" wx:for="{{detailArray}}" wx:key="index" data-id="{{item.id}}" bindtap="immediateUse">
+                <image class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-2-3@t3x.png" />
                 <view class="itemSecondeImage">
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">
@@ -33,8 +34,8 @@
           </view>
       </swiper-item>
       <swiper-item class="swpierItemContent">
-        <view class="item-content" wx:for="{{detailArray}}" wx:key="index">
-                <image  data-id="{{item.id}}"   class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-2-3@t3x.png" />
+        <view class="item-content" wx:for="{{detailArray}}" wx:key="index" data-id="{{item.id}}" bindtap="immediateUse">
+                <image class="item-contentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-2-3@t3x.png" />
                 <view class="itemSecondeImage">
                     <image  class="itemMiddenImage" src="{{item.attachmentUrl}}" />
                     <view class="itemBlock">

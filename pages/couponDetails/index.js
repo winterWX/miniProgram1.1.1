@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    copyCode:false
+    couponDetail:{},
+    copyCode: false,
+    showLink: false
   },
 
   /**
@@ -90,13 +92,33 @@ Page({
   },
   texteCopy:function(){
     let that = this;
-    if(this.data.copyCode){
-        return;
-    }else{
-        that.setData({copyCode:true});
-        wx.showToast({
-          title: '复制成功',
+    // if(this.data.copyCode){
+    //     return;
+    // }else{
+    //     that.setData({copyCode:true});
+    //     wx.showToast({
+    //       title: '复制成功',
+    //     })
+    // }
+    wx.showToast({
+      title: '复制成功',
+    });
+    wx.setClipboardData({
+      data: that.data.couponDetail.code,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            console.log('res.data',res.data)    // data
+          }
         })
-    }
+      }
+    })
+  },
+  handleFell:function(){
+     this.setData({showLink :true})
+    //  let link = that.data.couponDetail.thirdPartyUrl;
+    //  wx.navigateTo({
+    //    url: '../../pages/externalLinks/index?link='+ link,
+    //  })
   }
 })
