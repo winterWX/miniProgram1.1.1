@@ -51,6 +51,7 @@
 .texteCopy{
   border: 1rpx solid rgb(0,168,101) !important;
   color: rgb(0,168,101) !important;
+  padding: 7rpx 46rpx !important;
 }
 .texteContent4{
   position: absolute;

@@ -68,11 +68,12 @@
   color: rgb(102,102,102);
 }
 .itemBlockTextLast{
-  margin-left: 130rpx;
+  /* margin-left: 130rpx; */
+  margin-left: 22%;
   color: rgb(155,124,86);
   font-size: 28rpx;
   font-family: PingFangSC-Medium;
-  margin-top: 5rpx;
+  margin-top: 6rpx;
 }
 .swpierItemContent{
   padding-top: 20rpx;
@@ -80,7 +81,7 @@
 .itemBlockTextLast-image{
   width: 98rpx;
   height: 98rpx;
-  margin-left: 145rpx;
+  margin-left: 155rpx;
   color: rgb(155,124,86);
   font-size: 28rpx;
   font-family: PingFangSC-Medium;
