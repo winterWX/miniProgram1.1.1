@@ -3,7 +3,7 @@
   <view class="title">
     请职员为你出示签到二维码
   </view>
-  <view class='scan-border' wx:if="{{show}}">
+  <view class='scan-border'>
     <camera class='scan-camera' mode="scanCode" binderror="cameraError" bindscancode='scancode' frame-size='large'>
       <cover-image class='cover-corner cover-left-top' src='http://106.54.73.125:8104/images/miniprogram/images/meides/lt.png'></cover-image>
       <cover-image class='cover-corner cover-right-top' src='http://106.54.73.125:8104/images/miniprogram/images/meides/rt.png'></cover-image>
