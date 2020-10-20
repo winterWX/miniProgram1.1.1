@@ -7,8 +7,8 @@
     justify-content: space-around;
 }
 .container .warn-box .warn-img {
-    width: 100rpx;
-    height: 100rpx;
+    width: 150rpx;
+    height: 150rpx;
 }
 .container .fail-tip {
     color: #333;
