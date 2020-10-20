@@ -105,7 +105,6 @@ Page({
     })
     const parms = {
       date: Date.parse(new Date()) / 1000
-     
     }
     wx.request({
       method: 'post',
@@ -120,13 +119,14 @@ Page({
           const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
           if(weight > 0 && height > 0){
               let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2);
-              res.data.data.bmi =Number(bmiNum.toFixed(1));
+              res.data.data.bmi = Number(bmiNum.toFixed(1));
           }else{
                res.data.data.bmi = that.data.health.bmi;
           }
-          that.setData({
-              health: res.data.data
-          })
+          res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
+          res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
+          res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
+          that.setData({health: res.data.data});
         } else {
           wx.showModal({
             showCancel: false,
@@ -203,8 +203,10 @@ Page({
             }else{
                  res.data.data.bmi = that.data.health.bmi;
             }
+            res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
+            res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
             that.setData({
-              health: Object.assign(this.data.health,res.data.data)
+                 health: Object.assign(this.data.health,res.data.data)
             })
         }
       }
