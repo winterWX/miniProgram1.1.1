@@ -11,7 +11,7 @@
     </view>
     <view class="member">
         <image class="title" src="http://106.54.73.125:8104/images/miniprogram/images/medical/member-icon.png"></image>
-        <view class="member-info">银会员200积分，金会员500积分</view>
+        <view class="member-info">银会员20积分，金会员50积分</view>
     </view>
     <view class="activity">
         <view class="title">活动详情</view>
