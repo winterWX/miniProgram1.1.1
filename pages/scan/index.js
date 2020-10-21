@@ -81,10 +81,9 @@ Page({
     })
   },
   scancode(e){
-    let that = this;
     this.setData({show: false});
     if (!isScan) {
-      if ( e.detail.type === 'qrcode' && e.detail.result) {
+      if ( (e.detail.type === 'qrcode' || e.detail.type === 'QR_CODE') && e.detail.result) {
         let url = '';
         wx.showToast({
           icon: 'loading',
