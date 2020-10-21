@@ -112,10 +112,10 @@ Page({
             } else {
               url = '../signFail/index';
             }
-            wx.navigateTo({url});
+            wx.redirectTo({url});
           },
           fail: function (res) {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../signFail/index',
             })
           }
