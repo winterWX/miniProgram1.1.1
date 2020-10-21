@@ -23,7 +23,9 @@ Page({
   },
   onHide: function() {
     isScan = false;
-    // this.setData({show: true});
+  },
+  onUnload: function(){
+    isScan = false;
   },
   donghua(){
     var that = this;
@@ -82,6 +84,7 @@ Page({
   },
   scancode(e){
     this.setData({show: false});
+    console.log('isScan:' + isScan);
     if (!isScan) {
       if ( (e.detail.type === 'qrcode' || e.detail.type === 'QR_CODE') && e.detail.result) {
         let url = '';
@@ -109,8 +112,10 @@ Page({
               });
               wx.setStorageSync('hospitalInfo', JSON.stringify(hospitalInfo));
               url = '../signSuccess/index?integral=' + integral;
+            } else if(res.data.code === 100709) {
+              url = '../signFail/index?repeat=true&invalid=false';
             } else {
-              url = '../signFail/index';
+              url = '../signFail/index?repeat=false&invalid=true';
             }
             wx.redirectTo({url});
           },

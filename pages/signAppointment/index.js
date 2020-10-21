@@ -24,14 +24,12 @@ Page({
   clickHandleHK: function() {
     wx.navigateTo({
       url: '../offlineAppointment/index',
-      // url: '../signSuccess/index',
     })
     
   },
   scanCode: function() {
     wx.navigateTo({
       url: '../scan/index',
-      // url: '../signFail/index',
     })
   }
 })
