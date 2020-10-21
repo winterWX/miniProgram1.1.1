@@ -12,7 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let { repeat, invalid} = options;
+    this.setData ({
+      repeat: repeat === 'true',
+      invalid: invalid === 'true'
+    })
   },
 
   /**
@@ -23,12 +27,12 @@ Page({
   },
   goHome: function() {
     wx.navigateTo({
-      url: '../index/index',
+      url: '../medicalServices/index',
     })
   },
   resign: function() {
     wx.navigateTo({
       url: '../scan/index',
     })
-  }
+  },
 })

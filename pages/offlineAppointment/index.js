@@ -52,7 +52,7 @@ Page({
       },
       success: function (res) {      
         let { membershipid, transationid } = res.data.data;
-        let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=${membershipid}&tid=${transationid}&mti=Tele-consultation`
+        let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=${membershipid}&tid=${transationid}&mti=E-booking`
         that.setData({url});
       },
       fail: function (res) {
