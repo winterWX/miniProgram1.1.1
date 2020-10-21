@@ -229,11 +229,12 @@ Page({
           String.prototype.replaceAll = function (FindText, RepText) {
             return this.replace(new RegExp(FindText, "g"), RepText);
           }
-          res.data.data.content =  res.data.data.content.replaceAll('../upload', baseUrl);
+          console.log('res.data.data.content===',res.data.data.content);
+          if(res.data.data.content.indexOf('../upload') > -1){
+            res.data.data.content = res.data.data.content.replaceAll('../upload', baseUrl);
+          }
           that.setData({
-            contentAll : res.data.data
-          })
-          that.setData({
+             contentAll : res.data.data,
              colletArt: res.data.data.isCollect   //收藏状态
           })
           console.log('colletArtcolletArtcolletArt',that.data.colletArt)
