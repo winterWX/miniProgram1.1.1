@@ -15,7 +15,6 @@ Page({
     this.donghua();
     wx.getSetting({
       success: (res) => {
-        console.log(res)
         if (res.authSetting['scope.camera']) {
           that.setData({show: true});
         }
@@ -24,7 +23,7 @@ Page({
   },
   onHide: function() {
     isScan = false;
-    that.setData({show: true});
+    // this.setData({show: true});
   },
   donghua(){
     var that = this;
@@ -101,7 +100,15 @@ Page({
           },
           success: function (res) {
             if(res.data.data) {
-              let { integral } = res.data.data;
+              let { integral, bankInfoEntities = [] } = res.data.data;
+              let hospitalInfo = bankInfoEntities.map((item) => {
+                let { bankName, bankAddress} = item;
+                return {
+                  name: bankName,
+                  address: bankAddress
+                }
+              });
+              wx.setStorageSync('hospitalInfo', JSON.stringify(hospitalInfo));
               url = '../signSuccess/index?integral=' + integral;
             } else {
               url = '../signFail/index';

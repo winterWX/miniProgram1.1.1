@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    integral: 0
+    integral: 0,
+    hospitalInfo: []
   },
 
   /**
@@ -13,6 +14,8 @@ Page({
    */
   onLoad: function (options) {
     let { integral } = options;
+    let hospitalInfo = JSON.parse(wx.getStorageSync('hospitalInfo'));
+    this.setData({hospitalInfo})
     this.setData({integral})
   },
 
@@ -20,7 +23,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -41,7 +43,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    wx.removeStorageSync('hospitalInfo');
   },
 
   /**
