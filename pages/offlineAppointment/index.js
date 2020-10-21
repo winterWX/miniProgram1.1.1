@@ -52,9 +52,7 @@ Page({
       },
       success: function (res) {      
         let { membershipid, transationid } = res.data.data;
-        console.log('membershipid:' + membershipid)
-        console.log('transationid:' + transationid)
-        let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=18k&tid=${transationid}&mti=${membershipid}`
+        let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=${membershipid}&tid=${transationid}&mti=Tele-consultation`
         that.setData({url});
       },
       fail: function (res) {
