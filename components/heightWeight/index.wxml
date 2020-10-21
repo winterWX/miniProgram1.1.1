@@ -9,6 +9,7 @@
     </viwe>
     <viwe class="lineBottomSty"></viwe>
     <viwe class="bottomBtn">
-       <van-button type="primary" size="large" bindtap="saveNum" disabled="{{valData}}">保存</van-button>
+       <van-button  type="primary" size="large" bindtap="saveNum" disabled="{{valData}}">保存</van-button>
     </viwe>
 </viwe>
+ 

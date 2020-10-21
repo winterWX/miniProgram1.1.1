@@ -39,20 +39,23 @@ Component({
     ready: function () {
         let height = '';
         let weight = '';
-        if(this.data.height !== '--' || this.data.height !== 0){
-           height= this.data.height;
-        }else{
-           height = '';
+        if(this.data.blockForData.titleTop === '记录身高'){
+            if(this.data.height !== '--' || this.data.height !== 0){
+                height = this.data.height;
+            }else{
+                height = '';
+            }
+            this.btnShow(height);
         }
-        if(this.data.weight !== '--' || this.data.weight !== 0){
-           weight= this.data.weight;
-        }else{
-           weight = '';
+        if(this.data.blockForData.titleTop !== '记录身高'){
+            if(this.data.weight !== '--' || this.data.weight !== 0){
+                weight= this.data.weight;
+            }else{
+                weight = '';
+            }
+            this.btnShow(weight);
         }
-        this.setData({
-          numData: this.data.blockForData.titleTop === '记录身高' ? height : weight
-        })
-        this.btnShow();
+        this.setData({numData: this.data.blockForData.titleTop === '记录身高' ? height : weight });
     },
   },
   /**
@@ -60,9 +63,7 @@ Component({
    */
   methods: {
     inputNum(e){
-        let that = this;
-        //if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{1,2})?)$/.test(e.detail.value))) { //两位小数
-        //if (!(/^(0(?!\.0{1,2}$)(\.[0-9]{1,2})?|[1-9][0-9]{0,2}(\.[0-9]{0})?)$/.test(e.detail.value))) {  
+        let that = this; 
         if (!(/^([1-9][0-9]{1,2})$/.test(e.detail.value))) {         
           console.log('不正常',e.detail.value)
           that.setData({
@@ -110,9 +111,12 @@ Component({
          close:false
       },{})
     },
-    btnShow(){
-      if(this.data.height === '' || this.data.weight === ''){
-        this.setData({valData : true });
+    btnShow(numData){
+      let that = this; 
+      if (!(/^([1-9][0-9]{1,2})$/.test(numData))) {         
+          that.setData({valData :true});
+      }else{
+          that.setData({valData : false });
       }
     }
   }

@@ -153,6 +153,7 @@
   color: rgb(102,102,102);
   font-size: 20rpx;
   margin-bottom: 15rpx;
+  height: 25rpx;
 }
 .bottomTextTop{
   font-size: 24rpx;
