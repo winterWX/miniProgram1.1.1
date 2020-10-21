@@ -14,13 +14,9 @@
             </view>
             <view class="more">
                 <view class="more-tip">如欲了解更多，請到以下附近分行。</view>
-                <view class="address">
-                    <view class="">汉口道分行</view>
-                    <view class="">地址：尖沙咀汉口道4号</view>
-                </view>
-                <view class="address">
-                    <view class="">尖沙咀分行</view>
-                    <view class="">地址：尖沙咀加拿芬道18号</view>
+                <view class="address" wx:for="{{hospitalInfo}}" wx:key="id">
+                    <view>{{item.name}}</view>
+                    <view>地址：{{item.address}}</view>
                 </view>
             </view>
         </view>
