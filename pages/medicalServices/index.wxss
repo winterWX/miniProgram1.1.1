@@ -111,3 +111,12 @@ page {
     height: 40rpx;
     line-height: 40rpx;
 }
+.main-content .content {
+    color: #333;
+    font-size: 28rpx;
+    line-height: 42rpx;
+    word-break: break-all;
+} 
+.main-content .content .rule {
+    border-bottom: 2rpx solid #333;
+}
