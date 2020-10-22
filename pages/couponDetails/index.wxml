@@ -3,7 +3,6 @@
     <image  class="topMainContentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-3@3x.png" />
     <view class="secondeMainConten">
         <image class="arultImage" src="{{couponDetail.attachmentUrl}}" />
-        <!-- <view class="textBottom">卓健/中大优惠券（任何服务6折）</view> -->
         <view class="textBottom">{{couponDetail.name}}</view>
     </view>
     <view class="texteContent1">优惠码</view>
@@ -25,8 +24,8 @@
       <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button> 
       <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button> -->
       <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="bottomBtnColor">立即使用</button>
-      <button wx:if="{{couponDetail.useTime !== 0}}"  class="bottomBtnColor">已使用</button>
-      <button wx:if="{{couponDetail.isExpiry === 1}}" class="btnSty">已过期</button>
+      <button wx:if="{{couponDetail.useTime !== 0}}"   class="btnSty">已使用</button>
+      <button wx:if="{{couponDetail.isExpiry === 1}}"  class="btnSty">已过期</button>
   </view>
   <view wx:if="{{showLink}}"><web-view src="{{couponDetail.thirdPartyUrl}}"></web-view></view>
 </view>
