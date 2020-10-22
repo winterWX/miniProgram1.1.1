@@ -10,6 +10,7 @@
     </view>
     <view class="footer" hover-class="none" hover-stop-propagation="false">
         <text class="statement">免责声明</text>
+        <button class="btn btn-lg btn-primary" catchtap="goResult">查看结果</button>
         <button class="btn btn-lg btn-primary">开始答题</button>
     </view>
 </view>
