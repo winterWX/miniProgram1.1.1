@@ -20,9 +20,13 @@
     <htmlView  class="textContentText" detail ="{{couponDetail.rules}}"/>
   </view>
   <view class="bottomBtn">
-      <van-button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="save-btn" bindtap="handleFell" type="primary" size="large">立即使用</van-button>
+      <!-- <van-button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="save-btn" bindtap="handleFell" type="primary" size="large">立即使用</van-button>
       <van-button wx:if="{{couponDetail.useTime !== 0}}"  disabled="{{couponDetail.useTime !== 0}}"  class="save-btn" type="primary" size="large">已使用</van-button>
-      <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button>
+      <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button> 
+      <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button> -->
+      <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="bottomBtnColor">立即使用</button>
+      <button wx:if="{{couponDetail.useTime !== 0}}"  class="bottomBtnColor">已使用</button>
+      <button wx:if="{{couponDetail.isExpiry === 1}}" class="btnSty">已过期</button>
   </view>
   <view wx:if="{{showLink}}"><web-view src="{{couponDetail.thirdPartyUrl}}"></web-view></view>
 </view>

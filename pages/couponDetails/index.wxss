@@ -80,7 +80,20 @@
 .textContentText{
   margin-bottom: 20rpx;
 }
-.texteCopy2{
-
-
+.btnSty{
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 690rpx;
+  background-color: rgb(217,217,217);
+  font-size: 32rpx;
+  color: rgb(255,255,255);
+  /* border: 1rpx solid rgb(217,217,217); */
+}
+.bottomBtnColor{
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 690rpx;
+  background-color: rgb(0,168,101);
+  font-size: 32rpx;
+  color: rgb(255,255,255);
 }
