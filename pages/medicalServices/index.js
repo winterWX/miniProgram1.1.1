@@ -22,7 +22,9 @@ Page({
     interval: 2000,
     duration: 500,
     showDetailInfo: false,
-    showLink:false
+    showLink:false,
+    showModal: false,
+    single: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -93,5 +95,18 @@ Page({
   },
   showLinkFun:function(){
     this.setData({ showLink: true});
+  },
+  // 点击确定按钮的回调函数
+  modalConfirm(e) {
+   // 这里面处理点击确定按钮业务逻辑
+    this.setData({showLink: true});
+  },
+  openModal: function() {
+    this.setData({showModal: true});
+  },
+  goTermCondition: function() {
+    wx.navigateTo({
+      url: '../termsConditions/index',
+    })
   }
 })
