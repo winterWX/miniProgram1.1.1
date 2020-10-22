@@ -103,5 +103,10 @@ Page({
   },
   openModal: function() {
     this.setData({showModal: true});
+  },
+  goTermCondition: function() {
+    wx.navigateTo({
+      url: '../termsConditions/index',
+    })
   }
 })

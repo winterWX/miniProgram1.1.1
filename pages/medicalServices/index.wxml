@@ -50,7 +50,7 @@
       <scroll-view scroll-y class='main-content'>
         <view class="content">
           你现在正在离开恒生健康并进入中大医疗官方网站。此跳转并不构成恒生健康向你作任何保险产品的介绍或销售。
-          请细阅连结其他网站之章则，因为该等网站之章则可能跟恒生健康之章则不相同。须受<text class="rule">条款及细则</text>约束。
+          请细阅连结其他网站之章则，因为该等网站之章则可能跟恒生健康之章则不相同。须受<text class="rule" catchtap="goTermCondition">条款及细则</text>约束。
         </view>
         <view wx:if="{{showLink}}"><web-view src="https://www.cuhkmc.hk/zh-hant/"></web-view></view>
       </scroll-view>
