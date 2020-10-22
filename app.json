@@ -45,7 +45,8 @@
     "pages/couponDetails/index",
     "pages/signSuccess/index",
     "pages/signFail/index",
-    "pages/externalLinks/index"
+    "pages/externalLinks/index",
+    "pages/termsConditions/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
