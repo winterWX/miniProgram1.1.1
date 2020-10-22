@@ -44,7 +44,8 @@
     "pages/signSuccess/index",
     "pages/signFail/index",
     "pages/externalLinks/index",
-    "pages/termsConditions/index"
+    "pages/termsConditions/index",
+    "pages/healthKnowledge/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
