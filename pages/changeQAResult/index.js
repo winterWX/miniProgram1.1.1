@@ -1,4 +1,4 @@
-// pages/healthKnowledge/index.js
+// pages/changeQAResult/index.js
 Page({
 
   /**
@@ -62,10 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  goResult: function() {
-    wx.navigateTo({
-      url: '../changeQAResult/index',
-    })
   }
 })
