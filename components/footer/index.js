@@ -1,4 +1,3 @@
-// components/footer/index.js
 const app = getApp();
 Component({
   options: {
@@ -20,24 +19,10 @@ Component({
   data: {
     menu: [{
         "text": "首页",
-        "iconPath": app.globalData.imagesUrl + "/images/tabBar/index.png",
+        "iconPath": '../../image/home@3x.png',
         "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/index_on.png",
         "url": "../index/index",
         "requiredLogin": false
-      },
-      {
-        "text": "活动",
-        "iconPath": app.globalData.imagesUrl + "/images/tabBar/exercise_default.png",
-        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/exercise.png",
-        "url": "../activity/index",
-        "requiredLogin": true
-      },
-      {
-        "text": "优惠商城",
-        "iconPath": app.globalData.imagesUrl + "/images/tabBar/insurance_default.png",
-        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/insurance.png",
-        "url": "../shop/index",
-        "requiredLogin": true
       },
       {
         "text": "医疗服务",
