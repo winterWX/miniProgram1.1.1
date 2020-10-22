@@ -1,0 +1,15 @@
+<view class="container">
+    <image class="bg" src="../../image/question/q&a.png"></image>
+    <view class="content">
+        <view class="title">健康知识知多少？</view>
+        <view class="tip">共5题，答对80%将获得100积分</view>
+        <view class="info">
+            你的健康知识知多少？参与答题了解更多健康知识，赢取积分好礼！
+            分享也将获得额外积分。还在等什么？快来挑战答题赢取积分吧。
+        </view>
+    </view>
+    <view class="footer" hover-class="none" hover-stop-propagation="false">
+        <text class="statement">免责声明</text>
+        <button class="btn btn-lg btn-primary">开始答题</button>
+    </view>
+</view>

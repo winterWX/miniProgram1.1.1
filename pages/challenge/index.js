@@ -111,6 +111,7 @@ Page({
     let {title,id } = e.currentTarget.dataset;
     wx.navigateTo({
       url: '../activityDetail/index?id=' + id + '&title=' + title,
+      // url: '../healthKnowledge/index',
     })
   }
 })
