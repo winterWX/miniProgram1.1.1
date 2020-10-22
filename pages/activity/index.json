@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "footer": "../../components/footer/index"
-  },
-  "navigationBarTitleText": "活动"
-}

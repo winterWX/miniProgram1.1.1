@@ -21,11 +21,8 @@
         mode="aspectFit"
         style="width: 22px; height: 22px;"
       />
-      
        {{item.text}}
         <button wx:if="{{(isLogin===0)&&(item.requiredLogin===true)}}" class="openTypeBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo" >
-       
-      
         </button>
   </van-tabbar-item>
   </block> 
