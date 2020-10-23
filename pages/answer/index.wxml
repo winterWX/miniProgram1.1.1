@@ -17,8 +17,14 @@
             <view class="qa">
                 <view class="quesition">蜂蜜和什么同食会导致耳聋？</view>
                 <view class="options">
-                    <view class="option">香蕉</view>
-                    <view class="option">豆腐</view>
+                    <view class="option cross">
+                        香蕉
+                        <image class="icon" src="../../image/question/no-thick.png" mode="aspectFill" lazy-load="true"></image>
+                    </view>
+                    <view class="option success">
+                        豆腐
+                        <image class="icon" src="../../image/question/yes-thick.png" mode="aspectFill" lazy-load="true"></image>
+                    </view>
                     <view class="option">苹果</view>
                     <view class="option">土豆</view>
                 </view>
