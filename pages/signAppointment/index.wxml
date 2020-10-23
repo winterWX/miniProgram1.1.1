@@ -40,14 +40,14 @@
                 网上预约门诊
             </view>
         </view>
-        <image class="to" src="http://106.54.73.125:8104/images/miniprogram/images/medical/dianer.png" lazy-load="true"></image>
+        <image class="to" src="http://106.54.73.125:8104/images/miniprogram/images/medical/dianer@2x.png" lazy-load="true"></image>
         <view class="item">
             <image class="item-img" src="http://106.54.73.125:8104/images/miniprogram/images/medical/siginin.png" lazy-load="true"></image>
             <view class="tip">
                 完成赴约扫描签到
             </view>
         </view>
-        <image class="to" src="http://106.54.73.125:8104/images/miniprogram/images/medical/dianer.png" lazy-load="true"></image>
+        <image class="to" src="http://106.54.73.125:8104/images/miniprogram/images/medical/dianer@2x.png" lazy-load="true"></image>
         <view class="item">
             <image class="item-img" src="http://106.54.73.125:8104/images/miniprogram/images/medical/getreward.png" lazy-load="true"></image>
             <view class="tip">

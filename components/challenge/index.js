@@ -323,7 +323,6 @@ Component({
 
     },
     gotoHistory(){
-      console.log(22)
       wx.navigateTo({
         url: '../history/index',
       })
