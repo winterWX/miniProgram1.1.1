@@ -7,12 +7,12 @@
     <view class="recommend">
         <view class="title">为你推荐</view>
         <view class="content">
-            <image class="bg" src="http://106.54.73.125:8104/images/miniprogram/images/meides/sign-success-bg.png"></image>
+            <image class="bg" src="http://106.54.73.125:8104/images/miniprogram/images/meides/banner-3@2x.png"></image>
             <view class="insurance-title">前往分行量身定制保险/理财计划</view>
             <view class="insurance-content">
                 恒生银行致力为客户提供专业可靠的理财及保险服务，业务范围涵盖人寿保险、一般保险及医疗保险，以配合你多元化的理财需求。我们承诺与你未雨绸缪，策划未来生活。
             </view>
-            <view class="more">
+            <view class="more" wx:if="{{hospitalInfo.length > 0}}">
                 <view class="more-tip">如欲了解更多，請到以下附近分行。</view>
                 <view class="address" wx:for="{{hospitalInfo}}" wx:key="id">
                     <view>{{item.name}}</view>

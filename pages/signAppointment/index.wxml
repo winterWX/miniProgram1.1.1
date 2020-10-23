@@ -1,6 +1,6 @@
 <view class="container">
     <view class="header">
-        <image class="head-bgimg" src="http://106.54.73.125:8104/images/miniprogram/images/medical/banner-2.png"></image>
+        <image class="head-bgimg" src="http://106.54.73.125:8104/images/miniprogram/images/medical/banner-2@2x.png"></image>
     </view>
     <view class="info">
         <view class="title">门诊赴约签到得积分</view>
