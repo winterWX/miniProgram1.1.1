@@ -46,7 +46,8 @@
     "pages/externalLinks/index",
     "pages/termsConditions/index",
     "pages/healthKnowledge/index",
-    "pages/changeQAResult/index"
+    "pages/changeQAResult/index",
+    "pages/answer/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
