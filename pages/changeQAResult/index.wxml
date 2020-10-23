@@ -2,8 +2,10 @@
     <view class="main">
         <view class="header">
             <image class="bg-img" src="../../image/question/gift-succ.png"></image>
+            <!-- <image class="bg-img" src="../../image/question/gift-fail.png"></image> -->
             <view class="label">查看详情</view>
             <view class="result-tip">挑战成功，获得100积分</view>
+            <!-- <view class="result-tip">很遗憾，本次挑战失败</view> -->
         </view>
         <view class="questions">
             <view class="result">
