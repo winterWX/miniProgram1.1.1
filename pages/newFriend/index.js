@@ -1,7 +1,6 @@
 const app = getApp();
-const userLogin = require('../../utils/userLogin.js')
+const userLogin = require('../../utils/userLogin.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -10,6 +9,7 @@ Page({
      friendList:[],
      listHiden: false,
      userInfoData:{},
+     redirectToUrl:'pageTag', //调转的标记
      avatarObjList: [
       {
         url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
@@ -199,7 +199,7 @@ Page({
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
           app.globalData.userInfoDetail = result.newUserInfo;
-        },e.detail,that.data.isLogin)
+        },e.detail,that.data.isLogin,that.data.redirectToUrl)
     }
   },
   arryFriend:function(allData){

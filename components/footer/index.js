@@ -19,13 +19,13 @@ Component({
   data: {
     menu: [{
         "text": "首页",
-        "iconPath": '../../image/home@3x.png',
+        "iconPath": app.globalData.imagesUrl + '/images/tabBar/index_on@3x.png',
         "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/index_on.png",
         "url": "../index/index",
         "requiredLogin": false
       },
       {
-        "text": "医疗服务",
+        "text": "理财健康",
         "iconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry_default.png",
         "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry.png",
         "url": "../medicalServices/index",
@@ -62,19 +62,12 @@ Component({
    */
   methods: {
     onChange(event) {
-      this.setData({
-        active: event.detail,
-        tempActive: this.data.active
-      });
+      this.setData({ active: event.detail, tempActive: this.data.active });
       const item = this.data.menu[event.detail]
       if (item.requiredLogin && app.globalData.token == '') {
-        this.setData({
-          requiredLogin: true
-        })
+        this.setData({ requiredLogin: true });
         if (app.globalData.userInfo !== null) {
-          this.setData({
-            isLogin: 1
-          })
+          this.setData({ isLogin: 1 });
           wx.navigateTo({
             url: '../login/index?url=' + this.data.menu[this.data.active].url,
           })

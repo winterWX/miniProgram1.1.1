@@ -8,7 +8,10 @@
 </view>
 <footer active="{{active}}"  wx:if="{{!successFlg}}"></footer> -->
 
-<view class="container {{successFlg ? 'successsSty':''}}" wx:if="{{!successFlg}}">
+
+
+
+<!-- <view class="container {{successFlg ? 'successsSty':''}}" wx:if="{{!successFlg}}">
     <view class="top-box">
       <view class="back-icon" bindtap="navigateToStep"></view>
       <view class="active-title">
@@ -23,6 +26,105 @@
       <image class="bottom" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/bottom.png"></image>
     </view>
 </view>
-<collectionOption  wx:if="{{successFlg}}"  id="filterCmp"  bind:parentReceive="parentCallBack" />
-<footer active="{{active}}"  wx:if="{{!successFlg}}"></footer>
+<collectionOption  wx:if="{{successFlg}}"  id="filterCmp"  bind:parentReceive="parentCallBack" /> -->
+
+<view class="main-content">
+    <view class="topBlock"  wx:if="{{isLogin !== 3}}">
+        <view class="topBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/landing-page-image@3x.png"/></view>
+        <view class="topBlock-text">
+          <view class="topBlock-text1">每日万步 即得奖励</view>
+          <view class="topBlock-text2">登录后查看更多，一起动起来吧！</view>
+          <view class="topBlock-btn"> <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">未授权</button></view>
+        </view>
+    </view>
+    <view class="topSetting" wx:if="{{isLogin === 3}}">
+       <view class="imageRight" bindtap="navigateToStep"><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
+        <stepAmaition stepNum="{{stepsNum.todaySteps}}" indexStep ="{{indexStep}}"/>
+        <view class="topSetting-text">
+            <view class="topSett-disp" wx:if="{{runDataText !== 10000}}">还剩{{runDataText}}步达成今日挑战</view>
+            <view class="topSett-disp" wx:if="{{runDataText === 10000}}">
+                <view>今日万数挑战成功,<text class="clickText"  bindtap="getIntegral">点击领取积分</text>！</view>
+            </view>
+        </view>    
+    </view>
+    <view class="secondeBlock">
+        <view class="secondeBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/banner-1@3x.png"/></view>
+        <view class="secondeBlock-text">
+          <view class="secondeBlock-text1">恒生保险  独家优惠码</view>
+          <view class="secondeBlock-text2">升级金银会员享更多好礼</view>
+          <view class="secondeBlock-btn"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/icon-circle@3x.png" /></view>
+        </view>
+     </view>
+     <view class="threesBlock">
+         <view class="threesBlock-title" bindtap="myfindPage">
+             <view class="threesBlock-left">
+                <text class="threesBlock-leftBorber">健康头条</text>
+              </view>
+             <view class="threesBlock-right">更多</view>
+         </view>
+         <view class="threesBlock-item">
+           <view class="threesBlock-itemCher">
+                <view class="threesBlock-itemText">
+                  <view class="threesBlockText1">肺功能？如何提高心肺功能？</view>
+                  <view class="threesBlock-itemTime">2020-10-12，18:00 </view>
+                  <view></view>
+                </view>
+                <view class="threesBlock-itemImage"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/image-1@3x.png" /></view>
+           </view>
+           <view class="threesBlock-itemCher">
+                <view class="threesBlock-itemText">
+                  <view class="threesBlockText1">防脱护发，拯救「渐行渐远」的发际线</view>
+                  <view class="threesBlock-itemTime">2020-10-12，18:00 </view>
+                  <view></view>
+                </view>
+                <view class="threesBlock-itemImage"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/image-1@3x.png" /></view>
+           </view>
+           <view class="threesBlock-itemCher">
+                <view class="threesBlock-itemText">
+                  <view class="threesBlockText1">不好好吃早饭，身体又多大变化？</view>
+                  <view class="threesBlock-itemTime">2020-10-12，18:00 </view>
+                  <view></view>
+                </view>
+                <view class="threesBlock-itemImage"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/image-1@3x.png" /></view>
+           </view>         
+         </view>
+     </view>
+     <view class="fourBlock">
+         <view class="threesBlock-title" bindtap="challengePage">
+             <view class="threesBlock-left">
+                <text class="threesBlock-leftBorber">热门活动</text>
+              </view>
+             <view class="threesBlock-right">更多</view>
+         </view>
+         <view class="iamgeAll">
+            <view class="iamgeAllTop">
+                <image src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
+                <view class="iamgeAllTop-image">
+                  <view class="imageText1">每日步数挑战</view>
+                  <view class="imageText2">连续挑战赢取积分大礼包</view>
+                  <view class="imageText3">剩余5天</view>
+                </view>
+            </view>
+            <view class="iamgeAllBottom">
+                <image src='http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png'/>
+                <view class="iamgeAllBottom-image">
+                  <view class="imageText11">健康知识问答王者</view>
+                  <view class="imageText12">参与答题赢取积分好礼</view>
+                  <view class="imageText13">剩余5天</view>
+                </view>
+            </view>
+         </view>
+     </view>
+     <view wx:if="{{showDialog}}" class="modal-body">
+				<view class="modal-title">提示</view>
+				<view class="modal-content">今日步数需要微信步数授权</view>
+				<view class="flex">
+					<button class="dis"  catchtap="closeModal">取消</button>
+					<button class="btn"  open-type="openSetting" bindopensetting="callback">确认</button>
+				</view>
+    </view>
+    <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
+</view>
+
+
 

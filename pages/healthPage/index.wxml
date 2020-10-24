@@ -25,9 +25,7 @@
    </view>
    <view class="topSetting PageBackColor" style="padding-top:30rpx;">
        <view class="imageLeft"><image src='http://106.54.73.125:8104/images/miniprogram/images/icon-guideline.png'></image></view>
-       <!-- <view class="circleRigth" style="left:{{leftDire}}rpx;top:{{topDire}}rpx;">10000</view> -->
        <view class="imageRight"><view>排行榜</view><image src='http://106.54.73.125:8104/images/miniprogram/images/icon-right-arrow-12-x-12.png'></image></view>
-        <!-- <progressView  id="progressView2"  todayStepNum="{{stepsNum.todaySteps}}" /> -->
         <view style="padding-top:30rpx">
             <stepAmaition stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
         </view>

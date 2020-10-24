@@ -74,5 +74,5 @@
       </view>
     </view>
   </view>
-  <footer active="{{active}}"></footer>
+  <footer class="footerContent" active="{{active}}"></footer>
 </view>

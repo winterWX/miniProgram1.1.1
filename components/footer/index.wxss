@@ -38,7 +38,7 @@ position: relative;
   line-height: 1.5;
   letter-spacing: normal;
   text-align: center;
-  color: #333333;
+  /* color: #333333; */
 }
 .popupContent{
   width:90%;	

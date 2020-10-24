@@ -1,7 +1,5 @@
-<!--components/stepAmaition/index.wxml-->
-<view class="step_amation">
-
-<view class="wrap">   
+<view class="step_amation {{indexStep ? 'stepAmation1' : ''}}">
+<view class="wrap {{indexStep ? 'wrapIndex' : ''}}">   
     <view class="box-bottom">
         <view class="circle-bottom" style=" transform: rotate({{rotateNum}}deg);"></view>
     </view>

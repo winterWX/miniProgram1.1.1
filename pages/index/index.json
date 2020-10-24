@@ -1,7 +1,10 @@
 {
   "usingComponents": {    
     "footer": "../../components/footer/index",
-    "collectionOption": "../../components/collectionOption/index"
+    "collectionOption": "../../components/collectionOption/index",
+    "integralAmation": "../../components/integralAmation/index",
+    "stepAmaition": "../../components/stepAmaition/index"  
   },
-  "navigationBarTitleText": "首页"  
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true  
 }

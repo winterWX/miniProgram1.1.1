@@ -137,7 +137,7 @@ Page({
             titel: '服务繁忙， 请稍后重试。',
             icon: 'loading'
           })
-          wx.navigateTo({
+          wx.navigateBack({
             url: '../profile/index',
             success: function(res) {
                 wx.showToast({

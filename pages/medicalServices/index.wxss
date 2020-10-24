@@ -120,3 +120,10 @@ page {
 .main-content .content .rule {
     border-bottom: 2rpx solid #333;
 }
+.footerContent{
+    width: 100%;
+    height: 112rpx;
+    position:fixed; 
+    bottom:0;
+    border-top: 1rpx solid rgb(242,242,242);
+}
