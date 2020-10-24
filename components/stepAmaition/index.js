@@ -1,4 +1,3 @@
-// components/stepAmaition/index.js
 Component({
   /**
    * 组件的属性列表
@@ -14,6 +13,11 @@ Component({
           this.cilcleAmation(0, rate * 100)
         }, 500)
       }
+    },
+    indexStep:{
+      type: String,
+      value: false,
+      observer(value) {}
     }
   },
 

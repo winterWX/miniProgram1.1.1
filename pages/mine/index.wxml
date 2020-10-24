@@ -35,5 +35,5 @@
 					<button class="btn" open-type="openSetting" bindopensetting="callback">确认</button>
 				</view>
 		</view>
-		<footer wx:if="{{!showDialog}}" active="{{active}}"></footer>
+		<footer class="footerContent" wx:if="{{!showDialog}}"  active="{{active}}"></footer>
 </view>

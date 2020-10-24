@@ -1,4 +1,3 @@
-// pages/login/index.js
 const app = getApp();
 Page({
 
@@ -102,6 +101,7 @@ Page({
         if (res.data.code === 200) {
             console.log('所有的返回信息',res);
             const { data: { data: { token, phoneNumber,integral={},isFriend}}} = res;
+            app.globalData.isLogin = 3;  //登录成功
             app.globalData.token = token;
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';

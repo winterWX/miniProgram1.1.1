@@ -4,7 +4,7 @@ const newState = {
   newUserInfo :null,
   isLoginState : 0
 }
-function onLogin(result,data,isLogin) {     //登录
+function onLogin(result,data,isLogin,redirectToUrl) {     //登录
   wx.showLoading({
     title: 'loading...',
   })
@@ -15,9 +15,9 @@ function onLogin(result,data,isLogin) {     //登录
       if (res.code) {
           //发起网络请求
           if (isLogin === 0) {
-            checkAuthorization(result,res.code)
+            checkAuthorization(result,res.code,redirectToUrl)
           } else if (isLogin === 1) {
-            userLogin(result,data,res.code)
+            userLogin(result,data,res.code,redirectToUrl)
           }
           //标记登录成功
           newState.loginSuccess = true;
@@ -33,7 +33,7 @@ function onLogin(result,data,isLogin) {     //登录
     }
   })
 }
-function userLogin(result,data,code) {
+function userLogin(result,data,code,redirectToUrl) {
   wx.showLoading({
     title: 'loading...',
   })
@@ -54,10 +54,13 @@ function userLogin(result,data,code) {
         newState.newUserInfo = res.data.data;
         newState.isLoginState = 1;
         result(newState);
-        let pageTag = 'pageTag';
-        wx.redirectTo({
-          url: '../login/index?pageTag='+ pageTag,
-        })
+        let url = '';
+        if(redirectToUrl !== '') {
+           url = '../login/index?pageTag='+ redirectToUrl;
+        }else{
+           url = '../login/index?url='+'../index/index';  //首页授权跳转
+        }
+        wx.redirectTo({ url: url })
       } else {
         wx.showModal({
           showCancel: false,
@@ -70,14 +73,14 @@ function userLogin(result,data,code) {
   })
 }
 //检测是否已经授权  
-function checkAuthorization(result,code) {     
+function checkAuthorization(result,code,redirectToUrl) {     
     wx.getSetting({
       success: (setingres) => {
         wx.hideLoading()
         if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
           wx.getUserInfo({
             success: (res) => {
-              userLogin(result,res,code)
+              userLogin(result,res,code,redirectToUrl)
             },
             fail: () => {
               wx.showModal({

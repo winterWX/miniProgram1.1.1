@@ -19,6 +19,7 @@ App({
     imagesUrl: 'http://106.54.73.125:8104/images/miniprogram',
     token: '',
     phoneNumber: '',
+    isLogin : 0,  //未登录
     loginSuccess: false,
     isWeRunSteps:false,
     isWeRunStepsFail:false,

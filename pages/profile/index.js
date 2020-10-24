@@ -129,13 +129,14 @@ Page({
       complete,
       received
     });
+    this.getMyprofileInfo();  //页面重新请求
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log('11111111');
   },
 
   /**

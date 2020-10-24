@@ -175,19 +175,6 @@ page{
   width: 36rpx;
   height: 36rpx;
 }
-.circleRigth{
-  position: absolute;
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 50%;
-  background-color: #00a865;
-  font-size: 12rpx;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-  line-height: 40rpx;
-  z-index: 1500;
-}
 .imageRight{
   position: absolute;
   width: 136rpx;

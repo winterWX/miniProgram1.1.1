@@ -10,6 +10,7 @@ Page({
     refusedTo: 'refusedTo',  
     complete: false,
     active: 4,
+    activeFooter:0,
     runData:[],
     isAppData: false,  //判断是不是app用户
     typeFlg:'',
@@ -240,12 +241,12 @@ runArray:function(array,lastTime){
       return runDataArray.splice(0,indexs+1)
     }
     return runDataArray;
-  },
-  closeModal: function() {
+},
+closeModal: function() {
     this.setData({showDialog: false});
     this.healthFail();
   },
-  callback: function() {
+callback: function() {
     this.setData({showDialog: false});
-  }
+}
 })
