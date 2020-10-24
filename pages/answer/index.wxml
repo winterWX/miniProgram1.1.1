@@ -1,0 +1,35 @@
+<!-- pages/answer/index.wxml -->
+<view class="container">
+    <view class="header">
+        <image class="bg-img" src="../../image/question/gift-fail.png"></image>
+        <view class="label">查看详情</view>
+    </view>
+    <view class="main">
+        <view class="answer-box">
+            <view class="circle-out">
+                <view class="circle-in">
+                    <view class="show-result">
+                        <text class="pass">1/</text>
+                        <text class="all">5</text>
+                    </view>
+                </view>
+            </view>
+            <view class="qa">
+                <view class="quesition">蜂蜜和什么同食会导致耳聋？</view>
+                <view class="options">
+                    <view class="option cross">
+                        香蕉
+                        <image class="icon" src="../../image/question/no-thick.png" mode="aspectFill" lazy-load="true"></image>
+                    </view>
+                    <view class="option success">
+                        豆腐
+                        <image class="icon" src="../../image/question/yes-thick.png" mode="aspectFill" lazy-load="true"></image>
+                    </view>
+                    <view class="option">苹果</view>
+                    <view class="option">土豆</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <button class="btn btn-lg btn-primary">完成</button>
+</view>

@@ -6,4 +6,12 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-} 
+}
+.btn-lg {
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+}
+.btn-primary {
+  background-color: #00a865;
+}
