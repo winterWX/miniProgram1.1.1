@@ -52,7 +52,7 @@
         <view class="secondeBlock-text">
           <view class="secondeBlock-text1">恒生保险  独家优惠码</view>
           <view class="secondeBlock-text2">升级金银会员享更多好礼</view>
-          <view class="secondeBlock-btn"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/icon-circle@3x.png" /></view>
+          <view class="secondeBlock-btn" bindtap="membership"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/icon-circle@3x.png" /></view>
         </view>
      </view>
      <view class="threesBlock">
@@ -63,30 +63,16 @@
              <view class="threesBlock-right">更多</view>
          </view>
          <view class="threesBlock-item">
-           <view class="threesBlock-itemCher">
+           <view class="threesBlock-itemCher" wx:for="{{homeAllData.article}}" wx:key="{{item.id}}" bindtap="listClick" data-id="{{item.id}}">
                 <view class="threesBlock-itemText">
-                  <view class="threesBlockText1">肺功能？如何提高心肺功能？</view>
-                  <view class="threesBlock-itemTime">2020-10-12，18:00 </view>
-                  <view></view>
+                  <view class="threesBlockText1">{{item.title}}</view>
+                  <view class="threesBlock-itemTime">{{item.inputtime}}</view>
                 </view>
-                <view class="threesBlock-itemImage"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/image-1@3x.png" /></view>
+                <view class="threesBlock-itemImage">
+                  <view  class="thumbNone" wx:if="{{item.thumb === ''}}"></view>
+                  <image wx:if="{{item.thumb !== ''}}"   src="{{item.thumb}}" />
+                </view>
            </view>
-           <view class="threesBlock-itemCher">
-                <view class="threesBlock-itemText">
-                  <view class="threesBlockText1">防脱护发，拯救「渐行渐远」的发际线</view>
-                  <view class="threesBlock-itemTime">2020-10-12，18:00 </view>
-                  <view></view>
-                </view>
-                <view class="threesBlock-itemImage"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/image-1@3x.png" /></view>
-           </view>
-           <view class="threesBlock-itemCher">
-                <view class="threesBlock-itemText">
-                  <view class="threesBlockText1">不好好吃早饭，身体又多大变化？</view>
-                  <view class="threesBlock-itemTime">2020-10-12，18:00 </view>
-                  <view></view>
-                </view>
-                <view class="threesBlock-itemImage"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/image-1@3x.png" /></view>
-           </view>         
          </view>
      </view>
      <view class="fourBlock">
@@ -97,22 +83,22 @@
              <view class="threesBlock-right">更多</view>
          </view>
          <view class="iamgeAll">
-            <view class="iamgeAllTop">
+            <view class="iamgeAllTop" wx:for="{{homeAllData.activity}}"  wx:key="{{item.id}}"  bindtap="listChange" data-item="{{item}}">
                 <image src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
                 <view class="iamgeAllTop-image">
-                  <view class="imageText1">每日步数挑战</view>
-                  <view class="imageText2">连续挑战赢取积分大礼包</view>
-                  <view class="imageText3">剩余5天</view>
+                  <view class="imageText1">{{item.title}}</view>
+                  <view class="imageText2">{{item.description}}</view>
+                  <!-- <view class="imageText3">剩余5天</view> -->
                 </view>
             </view>
-            <view class="iamgeAllBottom">
+            <!-- <view class="iamgeAllBottom">
                 <image src='http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png'/>
                 <view class="iamgeAllBottom-image">
                   <view class="imageText11">健康知识问答王者</view>
                   <view class="imageText12">参与答题赢取积分好礼</view>
                   <view class="imageText13">剩余5天</view>
                 </view>
-            </view>
+            </view> -->
          </view>
      </view>
      <view wx:if="{{showDialog}}" class="modal-body">

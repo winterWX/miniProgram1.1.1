@@ -83,6 +83,7 @@ page{
 }
 .main-content{
    overflow-y: hidden;
+   padding-bottom: 60rpx;
 }
 .topBlock{
  position: relative;
@@ -188,10 +189,13 @@ page{
   .threesBlock-itemCher{
       display: flex;
       padding: 22rpx 0rpx 10rpx 0rpx;
-      border-top: 1rpx solid rgb(242,242,242);
+      border-bottom: 1rpx solid rgb(242,242,242);
+  }
+  .threesBlock-itemCher:last-child{
+      border-bottom: none;
   }
   .threesBlock-itemText{
-      width: 71%;
+      width: 66%;
       padding-right: 40rpx;
   }
   .threesBlock-itemImage{
@@ -245,12 +249,18 @@ page{
   margin-bottom: 52rpx;
 }
 .iamgeAll{
-   height: 720rpx;
    background-color: #ffffff;
+   padding-top: 20rpx;
 }
 .iamgeAllTop{
-   padding: 20rpx 30rpx;
+   padding: 0rpx 30rpx 20rpx 30rpx;
    position: relative;
+   height: 288rpx;
+}
+.iamgeAllTop:last-child{
+   padding: 0rpx 30rpx 32rpx 30rpx;
+   position: relative;
+   height: 288rpx;
 }
 .iamgeAllTop image{
    height: 288rpx;
@@ -430,3 +440,8 @@ page{
    width: 100%;
    bottom: 128rpx;
  } 
+ .thumbNone{
+   width: 192rpx;
+   height: 120rpx;
+   background-color: #eeeeee;
+ }

@@ -90,7 +90,7 @@ Page({
     success: function (res) {
        if(res.data.data !== null){
         //that.collectionQueryCounts();  // 赋值前调用
-         res.data.data.forEach((item)=>{
+         res.data.data.articles.forEach((item)=>{
             item.inputtime = that.timestampToTime(item.inputtime)
          })
          that.setData({
