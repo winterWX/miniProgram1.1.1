@@ -36,6 +36,7 @@ Page({
       this.setData({ isLogin: app.globalData.isLogin });
       this.getStepRunData();
     }
+    this.homePageInit();
   },
   onShow: function () {
     this.setData({
@@ -228,5 +229,62 @@ closeModal: function() {
 },
 callback: function() {
     this.setData({showDialog: false});
+},
+homePageInit: function () {
+  let that = this;
+  wx.request({
+    method: 'GET',
+    url: app.globalData.baseUrl + '/remote/homePage/homePageActivitys',
+    header: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "token": app.globalData.token
+    },
+    success: (res) => {
+      if (res.data.code === 200) {
+          console.log('res.data=====',res.data.data)
+          res.data.data.activity = res.data.data.activity.map(item =>{
+             return {
+               ...item,
+               coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+               createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
+             }
+          });
+          res.data.data.article = res.data.data.article.map(item =>{
+            return {
+              ...item,
+              thumb: typeof item.thumb == 'number' ? '' : item.thumb,
+              inputtime : item.inputtime ? util.timestampToTimeHM(item.inputtime) : ''
+            }
+         });
+        this.setData({homeAllData: res.data.data});
+      }
+    }
+  })
+},
+
+membership:function(){
+  wx.navigateTo({                                 
+    url: '../../pages/membership/index' 
+  })
+},
+listClick(e){
+    let goodsId = e.currentTarget.dataset.id;      
+    wx.navigateTo({                                 
+      url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
+    })
+},
+listChange(e){
+  let {type,id,title} = e.currentTarget.dataset.item;
+  if(type === '1'){
+    wx.navigateTo({
+      url: '../activityDetail/index?id=' + id + '&title=' + title
+    })
+  }else{
+    // wx.navigateTo({                                 
+    //   url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
+    // })
+  }     
 }
+
+
 })
