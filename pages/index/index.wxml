@@ -38,7 +38,6 @@
     </view>
     <view class="topSetting" wx:if="{{isLogin === 3}}">
        <view class="imageRight" bindtap="navigateToStep"><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
-        <!-- <stepAmaition stepNum="{{stepsNum.todaySteps}}" indexStep ="{{indexStep}}"/> -->
         <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{runDataText !== 10000 || stepsNum.todaySteps === 0}}">还剩{{runDataText}}步达成今日挑战</view>
@@ -89,17 +88,8 @@
                 <view class="iamgeAllTop-image">
                   <view class="imageText1">{{item.title}}</view>
                   <view class="imageText2">{{item.description}}</view>
-                  <!-- <view class="imageText3">剩余5天</view> -->
                 </view>
             </view>
-            <!-- <view class="iamgeAllBottom">
-                <image src='http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png'/>
-                <view class="iamgeAllBottom-image">
-                  <view class="imageText11">健康知识问答王者</view>
-                  <view class="imageText12">参与答题赢取积分好礼</view>
-                  <view class="imageText13">剩余5天</view>
-                </view>
-            </view> -->
          </view>
      </view>
      <view wx:if="{{showDialog}}" class="modal-body">
@@ -110,6 +100,7 @@
 					<button class="btn"  open-type="openSetting" bindopensetting="callback">确认</button>
 				</view>
     </view>
+    <integralAmation integral="{{integral}}" wx:if="{{integral !== 0}}" style="z-index:4;" />
     <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 </view>
 
