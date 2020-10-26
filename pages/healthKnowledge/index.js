@@ -89,7 +89,7 @@ Page({
           that.setData({
             isLogin: 1
           })
-          let urlBase = '../answer/index';
+          let urlBase = '../answer/index/#' + that.data.id;
           wx.redirectTo({
             url: '../login/index?url=' + urlBase,
           })
@@ -106,15 +106,17 @@ Page({
 
   },
   goToAnswer: function() {
+    let { id } = this.data;
     wx.navigateTo({
-      url: '../answer/index',
+      url: '../answer/index?id=' + id,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let { id } = options;
+    this.setData({id});
   },
 
   /**

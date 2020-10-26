@@ -10,7 +10,7 @@
                 <view class="circle-in">
                     <view class="show-result">
                         <text class="pass">{{quesIndex + 1}}/</text>
-                        <text class="all">5</text>
+                        <text class="all">{{questions.length}}</text>
                     </view>
                 </view>
             </view>
@@ -22,17 +22,9 @@
                         <view class="{{ !isConfirm && selected.optionId === item.optionId ? 'active' : ''}}">
                             {{item.option}}
                         <image class="icon" src="../../image/question/no-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && !isOk}}"></image>
-                        <image class="icon" src="../../image/question/yes-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && isOk || isConfirm && confirm.optionId !== item.optionId && !isOk }}"></image>
-                        </view>
-                        
+                        <image class="icon" src="../../image/question/yes-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && isOk || isConfirm && !isOk && item.isCorrect === 1 }}"></image>
+                        </view>                     
                     </view>
-                    
-                    <!-- <view class="option success">
-                        豆腐
-                        <image class="icon" src="../../image/question/yes-thick.png" mode="aspectFill" lazy-load="true"></image>
-                    </view>
-                    <view class="option">苹果</view>
-                    <view class="option">土豆</view> -->
                 </view>
             </view>
         </view>

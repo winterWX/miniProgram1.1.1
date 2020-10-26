@@ -110,6 +110,11 @@ Page({
       url: '../healthPage/index?id=' + this.data.allowTo
     })
   },
+<<<<<<< HEAD
+  onTabItemTap:function(){
+  },
+=======
+>>>>>>> b13b6b70ef5b5133f439e7db1c7b86798a5cb0f8
   getUserInfo:function(e) { //获取用户信息
     let that = this;
     if (e.detail.userInfo) {
