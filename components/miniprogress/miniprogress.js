@@ -6,15 +6,9 @@ Component({
     properties: {
         stepNum: {
             type: Number,
-            value: 0,
+            value : 0,
             observer(value) {
-               console.log('value',value);
-               clearInterval(timer);
-               const query = this.createSelectorQuery()
-               query.select('#ring').boundingClientRect(res => {
-                     this.drawRing('ring', res.width, res.height,value);
-               }).exec()
-               // this.anmitionRic(value);
+                this.createQueryFun(value)
             }
         },
     },
@@ -30,12 +24,20 @@ Component({
         query.select('#ringTop').boundingClientRect(res => {
             this.topDrawRing('ringTop', res.width, res.height)
         }).exec()
+        this.createQueryFun(this.data.stepNum);
     },
 
     /**
      * 组件的方法列表
      */
     methods: {
+        createQueryFun:function(value){
+            clearInterval(timer);
+            const query = this.createSelectorQuery()
+            query.select('#ring').boundingClientRect(res => {
+                 this.drawRing('ring', res.width, res.height,value);
+            }).exec()
+        },
         topDrawRing: function(canvasId, width, height){
             var context = wx.createCanvasContext(canvasId, this)
             // 外层圆环
@@ -53,20 +55,14 @@ Component({
         },
         drawRing: function (canvasId, width, height,stepNum) {
             var context = wx.createCanvasContext(canvasId, this)
-            // // 外层圆环
-            // context.beginPath()
-            // context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, 2 * Math.PI,true)
-            // context.setLineWidth(12)
-            // context.setLineCap('round')
-            // context.setStrokeStyle('#ebeeeb')
-            // context.textAlign = 'center' //文字居中
-            // context.font = '14px Arial'
-            // context.fillStyle = '#7D7D7D' //字体颜色
-            // context.fillText('今日步数',width / 2,25)
-            // context.stroke()
-
             let stepData = 0;
-            let angle = Math.ceil(stepNum / 100);
+            let dayInit = 0;
+            if(stepNum === 0){
+                dayInit = 1;
+            }else if(stepNum >= 10000){
+                dayInit = 10000;
+            }
+            let angle = Math.ceil(dayInit / 100);
             console.log("angleangle",angle)
             timer = setInterval(() => {
                 if(stepData === angle){
