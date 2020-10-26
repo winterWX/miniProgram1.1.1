@@ -110,7 +110,6 @@ Page({
     })
   },
   onTabItemTap:function(){
-    console.log('111111111111');
   },
   getUserInfo:function(e) { //获取用户信息
     let that = this;
@@ -274,15 +273,16 @@ listClick(e){
     })
 },
 listChange(e){
+  console.log(e);
   let {type,id,title} = e.currentTarget.dataset.item;
   if(type === '1'){
     wx.navigateTo({
       url: '../activityDetail/index?id=' + id + '&title=' + title
     })
   }else{
-    wx.navigateTo({                                 
-      url: '../../pages/healthKnowledge/index'     
-    })
+      wx.navigateTo({                                 
+         url: '../../pages/healthKnowledge/index?id=' + id
+      })
   }     
 }
 
