@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    active:3,
+    active: 1,
     imageList: [{
       id: 1,
       url: app.globalData.imagesUrl  + '/images/medical/banner-1.png'
@@ -44,9 +44,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      active: 3
-    })
+    this.setData({active: 1 })
   },
 
   /**

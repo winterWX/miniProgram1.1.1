@@ -9,8 +9,8 @@ Page({
     allowTo: 'allowTo',
     refusedTo: 'refusedTo',  
     complete: false,
-    active: 4,
-    activeFooter:0,
+    active: 2,  //下标
+    //activeFooter: 2, //选中下标
     runData:[],
     isAppData: false,  //判断是不是app用户
     typeFlg:'',
@@ -34,10 +34,7 @@ Page({
    */
   onShow: function () {
     let complete = wx.getStorageSync('complete');
-    this.setData({
-      complete,
-      active: 4
-    })
+    this.setData({complete, active: 2 });
   },
 
   /**

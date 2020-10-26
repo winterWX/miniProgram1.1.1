@@ -360,9 +360,6 @@ page{
    right: 0rpx;
    top: 28rpx;
    padding-right: 30rpx;
-   width: 170rpx;
-   text-align: right;
-   height: 200rpx;
  }
  .imageRight image{
    width: 36rpx;

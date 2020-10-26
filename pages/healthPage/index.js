@@ -233,44 +233,30 @@ Page({
              let targetStepsNum = 10000;
              let todayStepsInit = 0;
              if(res.data.data.todaySteps === null){
-                  todayStepsInit = 0;
+                res.data.data.todaySteps = todayStepsInit;
              }else{
-                  todayStepsInit = res.data.data.todaySteps  > 10000 ? 10000 : res.data.data.todaySteps;
+                todayStepsInit = res.data.data.todaySteps;
              }
-              res.data.data.todaySteps = todayStepsInit;
-              that.setData({
-                stepsNum: res.data.data
-              })
-              if(todayStepsInit < 10000){
-                    that.setData({
-                        startStep : targetStepsNum - todayStepsInit,
-                        btnStatus: 0
-                    })
-              }else if(todayStepsInit === 10000 || todayStepsInit > 10000){
+             that.setData({ stepsNum: res.data.data });
+             if(todayStepsInit < 10000){
+                  that.setData({ startStep : targetStepsNum - todayStepsInit, btnStatus: 0});
+              }else if(todayStepsInit >= 10000){
                   if(app.globalData.isReceiveStatus){
                       //返回乐健康，第二次进来，默认已选的状态
-                      that.setData({
-                        btnStatus: 2,
-                        isDone:1
-                      })
+                      that.setData({ btnStatus: 2, isDone:1 });
                       that.setData({
                         stepsNum: {     
-                          todaySteps:10000,   
+                          todaySteps: todayStepsInit,   
                           receiveStatus: 1,	           
                           isDone: 1,	
                           integral: 10	
                         }
                       })
                }else{
-                  that.setData({
-                    btnStatus: 1,
-                    isDone:1
-                  })
+                  that.setData({ btnStatus: 1, isDone:1 });
                 }
           }
-          that.setData({
-          startStatus: false
-          })
+          that.setData({ startStatus: false });
           }else{
             that.setData({
               startStep: 10000,
