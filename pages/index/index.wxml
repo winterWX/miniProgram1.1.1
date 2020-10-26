@@ -26,8 +26,7 @@
       <image class="bottom" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/bottom.png"></image>
     </view>
 </view>
-<collectionOption  wx:if="{{successFlg}}"  id="filterCmp"  bind:parentReceive="parentCallBack" /> -->
-
+<collectionOption  wx:if="{{successFlg}}" id="filterCmp"  bind:parentReceive="parentCallBack" /> -->
 <view class="main-content">
     <view class="topBlock"  wx:if="{{isLogin !== 3}}">
         <view class="topBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/landing-page-image@3x.png"/></view>
@@ -39,10 +38,11 @@
     </view>
     <view class="topSetting" wx:if="{{isLogin === 3}}">
        <view class="imageRight" bindtap="navigateToStep"><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
-        <stepAmaition stepNum="{{stepsNum.todaySteps}}" indexStep ="{{indexStep}}"/>
+        <!-- <stepAmaition stepNum="{{stepsNum.todaySteps}}" indexStep ="{{indexStep}}"/> -->
+        <view class="miniprogress"><miniprogress stepNum="{{7500}}" /></view>
         <view class="topSetting-text">
-            <view class="topSett-disp" wx:if="{{runDataText !== 10000}}">还剩{{runDataText}}步达成今日挑战</view>
-            <view class="topSett-disp" wx:if="{{runDataText === 10000}}">
+            <view class="topSett-disp" wx:if="{{runDataText !== 10000 || stepsNum.todaySteps === 0}}">还剩{{runDataText}}步达成今日挑战</view>
+            <view class="topSett-disp" wx:if="{{runDataText === 10000 && stepsNum.todaySteps !== 0}}">
                 <view>今日万数挑战成功,<text class="clickText"  bindtap="getIntegral">点击领取积分</text>！</view>
             </view>
         </view>    
@@ -84,7 +84,8 @@
          </view>
          <view class="iamgeAll">
             <view class="iamgeAllTop" wx:for="{{homeAllData.activity}}"  wx:key="{{item.id}}"  bindtap="listChange" data-item="{{item}}">
-                <image src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
+                <image wx:if="{{item.coverImage === ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
+                <image wx:if="{{item.coverImage !== ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
                 <view class="iamgeAllTop-image">
                   <view class="imageText1">{{item.title}}</view>
                   <view class="imageText2">{{item.description}}</view>

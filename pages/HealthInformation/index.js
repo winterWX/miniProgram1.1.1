@@ -93,9 +93,7 @@ Page({
          res.data.data.articles.forEach((item)=>{
             item.inputtime = that.timestampToTime(item.inputtime)
          })
-         that.setData({
-            listData: res.data.data
-         })
+         that.setData({ listData: res.data.data })
        }
     },
     fail: function (res) {
