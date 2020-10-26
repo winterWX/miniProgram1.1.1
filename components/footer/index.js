@@ -9,7 +9,10 @@ Component({
   properties: {
     active: {
       type: Number,
-      value: 0
+      value: 0,
+      observer(value){
+         console.log('value=====',value);
+      }
     }
   },
 
@@ -55,6 +58,7 @@ Component({
           isLogin: 1
         })
       }
+      console.log('111111111111111')
     },
   },
   /**
