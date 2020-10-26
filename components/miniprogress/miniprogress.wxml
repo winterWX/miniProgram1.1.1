@@ -1,1 +1,6 @@
-<canvas id="ring" canvas-id="ring" class="progress-canvas"></canvas>
+
+<view class="main-content">
+    <canvas id="ringTop" canvas-id="ringTop" class="progress-canvas "></canvas>
+    <canvas id="ring" canvas-id="ring" class="progress-canvas progress-bottom"></canvas>
+</view>
+

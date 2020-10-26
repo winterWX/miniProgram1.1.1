@@ -1,4 +1,12 @@
+.main-content{
+  position: relative;
+  height: 280rpx;
+}
 .progress-canvas {
     width: 100%;
     height: 100%;
+}
+.progress-bottom{
+   position: absolute;
+   top:0;
 }
