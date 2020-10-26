@@ -13,6 +13,7 @@ Page({
     redirectToUrl: '', //调转的标记
     stepsNum:{},
     runDataText:0,
+    rejectRun:false, //拒绝授权
     showDialog:false
   },
   onLoad: function (options) {
@@ -109,11 +110,6 @@ Page({
       url: '../healthPage/index?id=' + this.data.allowTo
     })
   },
-<<<<<<< HEAD
-  onTabItemTap:function(){
-  },
-=======
->>>>>>> b13b6b70ef5b5133f439e7db1c7b86798a5cb0f8
   getUserInfo:function(e) { //获取用户信息
     let that = this;
     if (e.detail.userInfo) {
@@ -138,7 +134,7 @@ Page({
           that.stepRunState();
         }else{
           //拒绝授权
-          that.setData({showDialog: true});
+          that.setData({ showDialog: true, rejectRun:true });
         }
     })
   },
@@ -211,12 +207,10 @@ Page({
       success: function (res) {
           if(res.data.code === 200){
               console.log('res.data.data',res.data.data);
-              //res.data.data.todaySteps  = 10000
               that.setData({
                 stepsNum: res.data.data,
                 runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)
               });
-              //that.getIntegral();   // 达到10000步领取积分
           }
       },
       fail: function (res) {
@@ -224,26 +218,6 @@ Page({
       }
     })
   },
-// getIntegral:function(){
-//     let that = this;
-//       wx.request({
-//         url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
-//         method: "GET",
-//         header:{
-//             "Content-Type":"application/json;charset=UTF-8",
-//             "token": app.globalData.token
-//         },
-//         success: function (res) {
-//           if(res.data.code == 200){
-//              that.setData({ integral : 10})
-//           }          
-//         },
-//         fail: function (res) {
-//           console.log('.........fail..........');
-//         }
-//       });
-    
-// },
 closeModal: function() {
     this.setData({showDialog: false});
 },

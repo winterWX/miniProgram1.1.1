@@ -59,5 +59,19 @@
   .confirm-btn {
     color: #09BA07
   }
-  
-  
+  .confirm-btn button{
+    color: #09BA07;
+    background-color: transparent !important;
+    border-radius: 0rpx !important;
+    font-size: 32rpx !important;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin: 0;
+    padding: 0;
+    border: 1px solid  transparent !important;
+    outline: none;
+  }
+  .confirm-btn button::after{
+     border: 1px solid  transparent !important;
+  } 
+  .confirm-btn button:focus{outline:none;}
