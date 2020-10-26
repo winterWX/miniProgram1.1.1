@@ -9,27 +9,35 @@
             <view class="circle-out">
                 <view class="circle-in">
                     <view class="show-result">
-                        <text class="pass">1/</text>
+                        <text class="pass">{{quesIndex + 1}}/</text>
                         <text class="all">5</text>
                     </view>
                 </view>
             </view>
             <view class="qa">
-                <view class="quesition">蜂蜜和什么同食会导致耳聋？</view>
+                <view class="quesition">{{currentQ.question}}</view>
                 <view class="options">
-                    <view class="option cross">
-                        香蕉
-                        <image class="icon" src="../../image/question/no-thick.png" mode="aspectFill" lazy-load="true"></image>
+                
+                    <view class="option {{ confirm && confirm.optionId === item.optionId ? (isOk ? 'success' : 'cross') : '' }})" wx:for="{{currentQ.options}}" wx:key="id" catchtap="selectOption" data-answer="{{item}}">
+                        <view class="{{ !isConfirm && selected.optionId === item.optionId ? 'active' : ''}}">
+                            {{item.option}}
+                        <image class="icon" src="../../image/question/no-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && !isOk}}"></image>
+                        <image class="icon" src="../../image/question/yes-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && isOk || isConfirm && confirm.optionId !== item.optionId && !isOk }}"></image>
+                        </view>
+                        
                     </view>
-                    <view class="option success">
+                    
+                    <!-- <view class="option success">
                         豆腐
                         <image class="icon" src="../../image/question/yes-thick.png" mode="aspectFill" lazy-load="true"></image>
                     </view>
                     <view class="option">苹果</view>
-                    <view class="option">土豆</view>
+                    <view class="option">土豆</view> -->
                 </view>
             </view>
         </view>
     </view>
-    <button class="btn btn-lg btn-primary">完成</button>
+    <button class="btn btn-lg btn-primary" wx:if="{{!complete && isConfirm}}" catchtap="next">下一题</button>
+    <button class="btn btn-lg btn-primary" catchtap="confirm" disabled="{{!selected && !complete}}" wx:if="{{!isConfirm}}">确定</button>
+    <button class="btn btn-lg btn-primary" wx:if="{{complete}}" catchtap="submit">完成</button>
 </view>
