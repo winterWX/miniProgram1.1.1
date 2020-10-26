@@ -6,15 +6,9 @@ Component({
     properties: {
         stepNum: {
             type: Number,
-            value: 0,
+            value : 0,
             observer(value) {
-               console.log('value',value);
-               clearInterval(timer);
-               const query = this.createSelectorQuery()
-               query.select('#ring').boundingClientRect(res => {
-                     this.drawRing('ring', res.width, res.height,value);
-               }).exec()
-               // this.anmitionRic(value);
+                this.createQueryFun(value)
             }
         },
     },
@@ -26,18 +20,25 @@ Component({
        numStep :0
     },
     ready: function () {
-        // clearInterval(timer);
-        // const query = this.createSelectorQuery()
-        // query.select('#ring').boundingClientRect(res => {
-        //     this.drawRing('ring', res.width, res.height,this.data.stepNum)
-        // }).exec()
+        const query = this.createSelectorQuery()
+        query.select('#ringTop').boundingClientRect(res => {
+            this.topDrawRing('ringTop', res.width, res.height)
+        }).exec()
+        this.createQueryFun(this.data.stepNum);
     },
 
     /**
      * 组件的方法列表
      */
     methods: {
-        drawRing: function (canvasId, width, height,stepNum) {
+        createQueryFun:function(value){
+            clearInterval(timer);
+            const query = this.createSelectorQuery()
+            query.select('#ring').boundingClientRect(res => {
+                 this.drawRing('ring', res.width, res.height,value);
+            }).exec()
+        },
+        topDrawRing: function(canvasId, width, height){
             var context = wx.createCanvasContext(canvasId, this)
             // 外层圆环
             context.beginPath()
@@ -46,13 +47,23 @@ Component({
             context.setLineCap('round')
             context.setStrokeStyle('#ebeeeb')
             context.textAlign = 'center' //文字居中
-            context.font = '14px Arial'
+            context.font = '16px Arial'
             context.fillStyle = '#7D7D7D' //字体颜色
-            context.fillText('今日步数',width / 2,25)
+            context.fillText('今日步数',width / 2,22)
             context.stroke()
-            
+            context.draw()
+        },
+        drawRing: function (canvasId, width, height,stepNum) {
+            var context = wx.createCanvasContext(canvasId, this)
             let stepData = 0;
-            let angle = Math.ceil(stepNum / 100);
+            let dayInit = 0;
+            if(stepNum === 0){
+                dayInit = 1;
+            }else if(stepNum >= 10000){
+                dayInit = 10000;
+            }
+            let angle = Math.ceil(dayInit / 100);
+            console.log("angleangle",angle)
             timer = setInterval(() => {
                 if(stepData === angle){
                     clearInterval(timer);
@@ -68,7 +79,7 @@ Component({
                     context.font = '40px Arial'
                     context.fillStyle = '#333333' //字体颜色
                     console.log('stepNum===',stepNum)
-                    context.fillText( stepNum+'' , width / 2,70);
+                    context.fillText( stepNum+'' , width / 2,72);
                     context.stroke()
 
                     // 指示器
