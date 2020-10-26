@@ -280,9 +280,9 @@ listChange(e){
       url: '../activityDetail/index?id=' + id + '&title=' + title
     })
   }else{
-    // wx.navigateTo({                                 
-    //   url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
-    // })
+    wx.navigateTo({                                 
+      url: '../../pages/healthKnowledge/index'     
+    })
   }     
 }
 

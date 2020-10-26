@@ -49,11 +49,8 @@ Component({
             num: num < this.data.stepNum ? num : this.data.stepNum
           })
         }
-
       }
-
       timer = setInterval(counterNumber, 50)
-
     },
     cilcleAmation(start, target) {
       var timerOut = null;

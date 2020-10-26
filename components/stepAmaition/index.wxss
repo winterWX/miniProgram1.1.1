@@ -123,3 +123,14 @@ color:#fff;
   z-index: 200;
   
 }
+
+.rautateSty{
+   width: 60rpx;
+   height: 60rpx;
+   background-color: red;
+   border-radius: 50%;
+   box-sizing: border-box;
+   border: 24rpx #00a865 solid;
+   border-radius: 50%;
+   position: absolute;
+}
