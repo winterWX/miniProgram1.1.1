@@ -82,7 +82,6 @@ Component({
                 context.textAlign = 'center' //文字居中
                 context.font = '40px Arial'
                 context.fillStyle = '#333333' //字体颜色
-                console.log('numnum===',num)
                 context.fillText( num +'' , width / 2,72);
                 context.stroke()
 
