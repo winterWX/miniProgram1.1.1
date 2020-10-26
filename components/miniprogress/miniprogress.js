@@ -35,7 +35,7 @@ Component({
             clearInterval(timer);
             const query = this.createSelectorQuery()
             query.select('#ring').boundingClientRect(res => {
-                 this.drawRing('ring', res.width, res.height,value);
+                 this.drawRing('ring', res.width, res.height,5000);
             }).exec()
         },
         topDrawRing: function(canvasId, width, height){
@@ -62,16 +62,18 @@ Component({
             }else if(stepNum >= 10000){
                 dayInit = 10000;
             }
-            let angle = Math.ceil(dayInit / 100);
-            console.log("angleangle",angle)
+            // let angle = Math.ceil(dayInit / 100);
+            // console.log("angleangle",angle);
+            let num = 0;
             timer = setInterval(() => {
-                if(stepData === angle){
+                if(num === stepNum){ // 这里的清除订时器的条件需要改一下
                     clearInterval(timer);
                 }else{
-                    stepData += 1 ;
+                    num += 10 ;
                     //外层进度圆环
+                    let angle = Math.ceil(num / 100);
                     context.beginPath()
-                    context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- stepData / 100) * Math.PI,true)
+                    context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
                     context.setLineWidth(12)
                     context.setLineCap('round')
                     context.setStrokeStyle('#00a865')
@@ -79,7 +81,7 @@ Component({
                     context.font = '40px Arial'
                     context.fillStyle = '#333333' //字体颜色
                     console.log('stepNum===',stepNum)
-                    context.fillText( stepNum+'' , width / 2,72);
+                    context.fillText( num+'' , width / 2,72);
                     context.stroke()
 
                     // 指示器
@@ -95,7 +97,7 @@ Component({
                     context.fill()
                     context.draw()
                 }
-            },16);
+            },5);
         },
         // anmitionRic:function(runStep){
         //     let  num = 0;
