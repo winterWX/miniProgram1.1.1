@@ -236,10 +236,11 @@ homePageInit: function () {
     success: (res) => {
       if (res.data.code === 200) {
           console.log('res.data=====',res.data.data)
-          res.data.data.activity = res.data.data.activity.map(item =>{
+          res.data.data.activity = res.data.data.activity.map((item,index) =>{
              return {
                ...item,
-               coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+              //  coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+              coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
                createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
              }
           });
