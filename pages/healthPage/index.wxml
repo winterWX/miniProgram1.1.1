@@ -32,7 +32,7 @@
         <view class="topSetting-btn">
             <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
             <van-button  wx:if='{{btnStatus === 0}}'>还差{{startStep}}步</van-button>
-            <van-button  wx:if='{{btnStatus === 1}}' class="{{btnStatus=== 1 ? 'topSetting-vanBtn' :''}}"  bindtap="integralBtn">领取{{stepsNum.integral}}积分奖励</van-button>
+            <van-button  wx:if='{{btnStatus === 1}}' class="{{btnStatus === 1 ? 'topSetting-vanBtn' :''}}"  bindtap="integralBtn">领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{btnStatus === 2}}'>已领取</van-button>
         </view>   
         <view class="topSetting-text">
@@ -85,5 +85,5 @@
       </view>
 </view>
 <!-- <integralAmation integral="{{stepsNum.integral}}" wx:if="{{stepsNum.integral !=0}}"/> -->
-<integralAmation integral="{{allowRun? 100 : stepsNum.integral}}"  wx:if="{{forceNum}}"/>
+<integralAmation integral="{{allowRun ? 100 : stepsNum.integral}}"  wx:if="{{forceNum}}"/>
 

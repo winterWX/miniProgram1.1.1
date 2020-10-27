@@ -30,7 +30,6 @@ Page({
      }, 
      leftDire: 750/2 + 120,
      topDire: 240 / 2,
-     goldAnimationShow: false,
      flag:false,
      guidance1:false,
      guidance2:false,
@@ -76,9 +75,7 @@ Page({
   },
   onShow: function () {
       let that = this;
-      that.setData({
-        firstInitShow: app.firstInit.bootImage
-      })
+      that.setData({ firstInitShow: app.firstInit.bootImage });
   },
 
   /**
@@ -193,7 +190,6 @@ Page({
     that.setData({
       anBackShow: true
     })
-    that.startAnimation();
     that.setData({
       btnStatus: 2,
       stepsNum: {
@@ -224,10 +220,7 @@ Page({
           "Content-Type":"application/json;charset=UTF-8",
           "token": app.globalData.token
       },
-      data:{
-        souce:'string',
-        type:'MINIP'
-      },
+      data:{ souce:'string', type:'MINIP' },
       success: function (res) {
           if(res.data.code === 200){
              let targetStepsNum = 10000;
@@ -252,17 +245,13 @@ Page({
                           integral: 10	
                         }
                       })
-               }else{
+              }else{
                   that.setData({ btnStatus: 1, isDone:1 });
-                }
+              }
           }
           that.setData({ startStatus: false });
           }else{
-            that.setData({
-              startStep: 10000,
-              btnStatus: 0,
-              startStatus: false
-            })
+            that.setData({ startStep: 10000, btnStatus: 0,startStatus: false })
           }
       },
       fail: function (res) {
@@ -272,7 +261,7 @@ Page({
   },
   integralBtn:function(){
     let that = this;
-    if(that.data.btnStatus === 1 ){
+    if(that.data.btnStatus === 1){
       wx.request({
         url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
         method: "GET",
@@ -281,14 +270,8 @@ Page({
             "token": app.globalData.token
         },
         success: function (res) {
-        if(res.data.code !== null){
-            that.setData({
-              anBackShow:true
-            })
-            that.startAnimation();
-            that.setData({
-              btnStatus: 2
-            })
+        if(res.data.code === 200){
+            that.setData({ anBackShow:true, btnStatus: 2 })
             app.globalData.isReceiveStatus = true;  // 标记第二次进来
             that.setData({
               stepsNum: {
@@ -298,9 +281,7 @@ Page({
                 integral: 10	
               }
             })
-            that.setData({
-              forceNum: true
-            })
+            that.setData({ forceNum: true })
           }          
         },
         fail: function (res) {
@@ -319,7 +300,6 @@ Page({
           "token": app.globalData.token
       },
       data:{
-        //date: parseInt(new Date().getTime() /1000)
         date: new Date().getTime() + '',
       },
       success: function (res) {
@@ -330,20 +310,6 @@ Page({
       fail: function (res) {
         console.log('.........fail..........');
       }
-    })
-  },
-  startAnimation:function(){
-    var animation = wx.createAnimation({
-        duration: 2000,
-        timingFunction: 'ease',
-        delay: 0
-    });
-    animation.opacity(0.01).translate(0, 250).step()
-    this.setData({
-      ani: animation.export()
-    })
-    this.setData({
-      animationShow: false
     })
   },
   gotoDailyHeathdata(){

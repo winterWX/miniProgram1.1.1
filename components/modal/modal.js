@@ -16,6 +16,10 @@ Component({
       single: {
         type: Boolean,
         value: false 
+      },
+      rejectBtn:{
+        type: Boolean,
+        value: false 
       }
     },
   

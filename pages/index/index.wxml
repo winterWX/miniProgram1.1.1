@@ -40,7 +40,8 @@
        <view class="imageRight" ><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
         <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view>
         <view class="topSetting-text">
-            <view class="topSett-disp" wx:if="{{runDataText !== 10000 || stepsNum.todaySteps === 0}}">还剩{{runDataText}}步达成今日挑战</view>
+            <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun}}">还剩{{runDataText}}步达成今日挑战</view>
+            <view class="topSett-disp" wx:if="{{ rejectRun }}">还剩10000步达成今日挑战</view>
             <view class="topSett-disp" wx:if="{{runDataText === 10000 && stepsNum.todaySteps !== 0}}">
                 <view>今日万数挑战成功,<text class="clickText">点击领取积分</text>！</view>
             </view>
@@ -83,8 +84,9 @@
          </view>
          <view class="iamgeAll">
             <view class="iamgeAllTop" wx:for="{{homeAllData.activity}}"  wx:key="{{item.id}}"  bindtap="listChange" data-item="{{item}}">
-                <image wx:if="{{item.coverImage === ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
-                <image wx:if="{{item.coverImage !== ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
+                <!-- <image wx:if="{{item.coverImage === ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
+                <image wx:if="{{item.coverImage !== ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/> -->
+              <image wx:if="{{item.coverImage !== ''}}" src='{{item.coverImage}}'/>
                 <view class="iamgeAllTop-image">
                   <view class="imageText1">{{item.title}}</view>
                   <view class="imageText2">{{item.description}}</view>
@@ -92,15 +94,13 @@
             </view>
          </view>
      </view>
-     <view wx:if="{{showDialog}}" class="modal-body">
-				<view class="modal-title">提示</view>
-				<view class="modal-content">今日步数需要微信步数授权</view>
-				<view class="flex">
-					<button class="dis"  catchtap="closeModal">取消</button>
-					<button class="btn"  open-type="openSetting" bindopensetting="callback">确认</button>
-				</view>
+    <modalView  show="{{showDialog}}"  single='{{false}}' rejectBtn="{{true}}"  bindcancel="cancel" bindconfirm='confirm' title="提示">
+    <view class='modal-content'>
+      <scroll-view scroll-y class='contentText'>
+        <view class="content">今日步数需要微信步数授权</view>
+      </scroll-view>
     </view>
-    <!-- <integralAmation integral="{{integral}}" wx:if="{{integral !== 0}}" style="z-index:4;" /> -->
+  </modalView>
     <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 </view>
 

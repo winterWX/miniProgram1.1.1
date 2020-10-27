@@ -447,3 +447,7 @@ page{
    background: #ffffff;
    height: 280rpx;
  }
+ .contentText{
+   text-align: center;
+   padding: 30rpx 0rpx;
+ }

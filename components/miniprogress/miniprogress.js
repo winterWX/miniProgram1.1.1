@@ -67,7 +67,6 @@ Component({
                 }else{
                     num += 20 ;
                     //外层进度圆环
-                    //angle = Math.ceil(num / 100);
                     if(num >= 10000){
                         angle = 100;
                     }else{

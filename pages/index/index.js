@@ -13,6 +13,7 @@ Page({
     redirectToUrl: '', //调转的标记
     stepsNum:{},
     runDataText:0,
+    rejectRun:false, //拒绝授权
     showDialog:false
   },
   onLoad: function (options) {
@@ -133,7 +134,7 @@ Page({
           that.stepRunState();
         }else{
           //拒绝授权
-          that.setData({showDialog: true});
+          that.setData({ showDialog: true, rejectRun:true });
         }
     })
   },
@@ -206,12 +207,10 @@ Page({
       success: function (res) {
           if(res.data.code === 200){
               console.log('res.data.data',res.data.data);
-              //res.data.data.todaySteps  = 10000
               that.setData({
                 stepsNum: res.data.data,
                 runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)
               });
-              //that.getIntegral();   // 达到10000步领取积分
           }
       },
       fail: function (res) {
@@ -219,26 +218,6 @@ Page({
       }
     })
   },
-// getIntegral:function(){
-//     let that = this;
-//       wx.request({
-//         url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
-//         method: "GET",
-//         header:{
-//             "Content-Type":"application/json;charset=UTF-8",
-//             "token": app.globalData.token
-//         },
-//         success: function (res) {
-//           if(res.data.code == 200){
-//              that.setData({ integral : 10})
-//           }          
-//         },
-//         fail: function (res) {
-//           console.log('.........fail..........');
-//         }
-//       });
-    
-// },
 closeModal: function() {
     this.setData({showDialog: false});
 },
@@ -257,10 +236,11 @@ homePageInit: function () {
     success: (res) => {
       if (res.data.code === 200) {
           console.log('res.data=====',res.data.data)
-          res.data.data.activity = res.data.data.activity.map(item =>{
+          res.data.data.activity = res.data.data.activity.map((item,index) =>{
              return {
                ...item,
-               coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+              //  coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+              coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
                createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
              }
           });
