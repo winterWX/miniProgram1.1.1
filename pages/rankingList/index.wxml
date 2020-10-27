@@ -4,10 +4,10 @@
       <image class="header" src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : (self.avatarUrl ? self.avatarUrl : defaultIcon)}}"></image>
       <view class="order">
         <view class="nickname">{{self.nickname}}（我自己）</view>
-        <view class="rank">第{{self.rank}}名</view>
+        <view class="rank">第{{self.order}}名</view>
       </view>
     </view>
-    <view class="step-show">{{self.steps}}<text>步</text></view>
+    <view class="step-show">{{self.actualTotalSteps}}<text>步</text></view>
   </view>
   <view class="member-box pl0" wx:if="{{friend.length}}" wx:for="{{friend}}" wx:for-item="hero" wx:key="id">
     <view class="member-info">
@@ -16,10 +16,10 @@
       <view class="order">
         <view class="nickname">{{hero.nickname}}</view>
         <!-- <view class="rank" wx:if="{{hero.completeTime}}">{{hero.completeTime}}</view> -->
-        <view class="rank">累计积分{{hero.receivedIntegral}}分</view>
+        <view class="rank">累计积分{{hero.totalIntegral}}分</view>
       </view>
     </view>
-    <view class="step-show">{{hero.steps}}<text>步</text></view>
+    <view class="step-show">{{hero.actualTotalSteps}}<text>步</text></view>
     <!-- <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image> -->
   </view>
 </view>
