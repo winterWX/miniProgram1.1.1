@@ -38,7 +38,8 @@
     </view>
     <view class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
        <view class="imageRight" ><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
-        <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view>
+        <!-- <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view> -->
+        <view class="miniprogress"><miniprogress stepNum="{{ stepsNum.todaySteps }}" /></view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun}}">还剩{{runDataText}}步达成今日挑战</view>
             <view class="topSett-disp" wx:if="{{ rejectRun }}">还剩10000步达成今日挑战</view>
