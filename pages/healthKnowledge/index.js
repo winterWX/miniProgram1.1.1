@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLogin: 0
+    isLogin: 0,
+    bannerUrl: '',
+    title: '',
+    content: '',
+    questionNumber: 0,
+    participated: false,
+    id: ''
   },
   getUserInfo(e) { //获取用户信息
     if (e.detail.userInfo) {
@@ -89,7 +95,7 @@ Page({
           that.setData({
             isLogin: 1
           })
-          let urlBase = '../answer/index/#' + that.data.id;
+          let urlBase = '../healthKnowledge/index/#' + that.data.id;
           wx.redirectTo({
             url: '../login/index?url=' + urlBase,
           })
@@ -115,8 +121,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { id } = options;
-    this.setData({id});
+    let { id, goodsId } = options;
+    let activityId = id || goodsId;
+    this.setData({id: activityId});
+    this.getQuestion(activityId);
   },
 
   /**
@@ -126,51 +134,38 @@ Page({
     let isLogin = app.globalData.loginSuccess ? 1 : 0;
     this.setData({isLogin});
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   goResult: function() {
+    let { id } = this.data;
     wx.navigateTo({
-      url: '../changeQAResult/index',
+      url: '../changeQAResult/index?id=' + id,
+    })
+  },
+  getQuestion: function(id) {
+    let that = this;
+    let token = app.globalData.token || '';
+    wx.request({
+      url: app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id,
+      method: "GET",
+      header: {
+        'Content-Type': 'application/json',
+        "token": token
+      },
+      success: function (res) {
+        if(res.data.code === 200) {
+          let { bannerUrl, title, content, questionNumber, quizResult } = res.data.data;
+          let info = content.replace(/<[^>]+>/g,"");
+          let participated = quizResult !== null;
+          that.setData({
+            bannerUrl,
+            title,
+            content: info,
+            questionNumber,
+            participated
+          })
+        }
+      },
+      fail: function (res) {
+      }
     })
   }
 })

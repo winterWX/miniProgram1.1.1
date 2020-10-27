@@ -391,7 +391,7 @@ Page({
   },
   stepRunSorce:function(){
     wx.navigateTo({
-      url: '../../pages/heroList/index',
+      url: '../../pages/rankingList/index',
     })
   }
 })
