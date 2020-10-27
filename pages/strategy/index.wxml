@@ -1,0 +1,65 @@
+<view>
+<!-- 白银 -->
+<view class="slierMain">
+  <view class="top-mainText">
+      <view class="left-mainText">
+        <image  class="leftImageCode" src="../../image/strategy/rectangle-rectangle-rectangle-mask@3xg.png" />
+        <view class="leftImageCode-text">
+          <view class="text1">积分升级</view>
+          <view class="leftImge"><image  src="../../image/strategy/group@3x.png" /></view>
+          <view class="text2">白银会员</view>
+          <view class="text3">积分达到{{tierInfo.nextLevelIntegral}}积分</view>
+          <view class="text4">即升级白银会员</view>
+          <view class="text5"><view class="btnClass">领任务赚积分</view></view>
+        </view>
+      </view>
+      <view class="right-mainText">
+        <image class="roghtImageCode"  src="../../image/strategy/rectangle-rectangle-rectangle-mask@3xg.png" />
+        <view  class="roghtImageCode-text">
+          <view class="text1">快速升级</view>
+          <view class="rightImge"><image  src="../../image/strategy/group-3@3x.png" /></view>
+          <view class="text2">永恒白银会员+尊享好礼</view>
+          <view class="text3">恒生银行开户</view>
+          <view class="text4">享白银会员+尊享好礼</view>
+          <view class="text5"><view class="btnClass">预约开户</view></view>
+        </view>
+      </view>
+  </view>
+  <view class="midden-text">
+      <image src="../../image/strategy/qingtong-2-copy-5@3x.png" />
+      <view>黄金会员同享权利，查看攻略</view>
+  </view>
+  <view class="bottom-main">
+    <view class="bottom-mainOut">
+      <view class="listTop">
+         <view class="listTop-text">
+           <image src="../../image/strategy/group.png"/>
+           <view>白银会员</view>
+         </view>
+         <view class="listItem">
+           <view class="everyItem" wx:for="{{copyWriting}}" wx:key="{{item.id}}"><image src="../../image/strategy/path@3x.png" />
+            <!-- <view>{{item.content}}</view> -->
+            <view>收到贵司的身高身高</view>
+          </view>
+         </view>
+      </view>
+      <view class="listBottom">
+         <view class="listBottom-text">
+           <image  src="../../image/strategy/group-10.png"/>
+           <view>尊享码尊享好礼</view>
+         </view>
+         <view class="listItemBottom">
+           <view class="everyItem" wx:for="{{enjoyCopywriting}}" wx:key="{{item.id}}"><image src="../../image/strategy/path@3x.png" /><view>{{item.content}}</view></view>
+         </view>
+      </view>
+      <view class="bottomTexts">什么是尊享码？</view>
+    </view>
+  </view>
+  <view class="bottomBtn">
+      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，升级成为永恒白银会员</view>
+  </view>
+</view>
+<!-- 黄金 -->
+<view></view>
+
+</view>

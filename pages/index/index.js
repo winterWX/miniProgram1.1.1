@@ -12,9 +12,10 @@ Page({
     indexStep: true,
     redirectToUrl: '', //调转的标记
     stepsNum:{},
-    runDataText:0,
-    rejectRun:false, //拒绝授权
-    showDialog:false
+    runDataText: 0,
+    rejectRun: false, //拒绝授权
+    showDialog: false,
+    membershipModal: false
   },
   onLoad: function (options) {
     if (options.flag === 'true'){   //是 true
@@ -38,6 +39,7 @@ Page({
       this.getStepRunData();
     }
     this.homePageInit();
+    this.userLevel();
   },
   onShow: function () {
     this.setData({
@@ -256,11 +258,31 @@ homePageInit: function () {
     }
   })
 },
-
-membership:function(){
-  wx.navigateTo({                                 
-    url: '../../pages/membership/index' 
+userLevel:function(){
+  let that = this;
+  wx.request({
+    method: 'GET',
+    url: app.globalData.baseUrl + '/remote/homePage/userlevel',
+    header: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "token": app.globalData.token
+    },
+    success: (res) => {
+      if (res.data.code === 200) {
+          this.setData({levelNum:res.data.data});
+          console.log('res.data.data',res.data.data);
+      }
+    }
   })
+},
+membership:function(){
+  if(app.globalData.isLogin !== 3){
+      return;
+  }
+   this.setData({ membershipModal:true });
+},
+closeModal:function(){
+   this.setData({ membershipModal:false });
 },
 listClick(e){
     let goodsId = e.currentTarget.dataset.id;      

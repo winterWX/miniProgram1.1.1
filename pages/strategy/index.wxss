@@ -1,0 +1,188 @@
+page{
+  background-color: #ededed;
+}
+.slierMain{
+  padding-top: 30rpx;
+}
+.top-mainText{
+   display: flex;
+   justify-content: center;
+   background-color: #ffffff;
+}
+.leftImageCode-text{
+  position: absolute;
+  margin-right: 11rpx;
+  text-align: center;
+  width: 334rpx;
+  height: 542rpx;
+  top:0;
+  padding-top: 20rpx;
+}
+.roghtImageCode-text{
+  position: absolute;
+  margin-right: 11rpx;
+  text-align: center;
+  width: 334rpx;
+  height: 542rpx;
+  top:0;
+  padding-top: 20rpx;
+}
+.leftImageCode{
+  width: 334rpx;
+  height: 542rpx;
+}
+.left-mainText{
+  position: relative;
+  margin-right: 11rpx;
+}
+.right-mainText{
+  position: relative;
+  margin-left: 11rpx;
+}
+.roghtImageCode{
+  width: 334rpx;
+  height: 542rpx;
+}
+.leftImge image{
+   width: 120rpx;
+   height: 120rpx;
+}
+.rightImge image{
+  width: 220rpx;
+  height: 120rpx;
+}
+.text1{
+  margin-bottom: 30rpx;
+}
+.leftImge{
+  margin-bottom: 40rpx;
+}
+.rightImge{
+  margin-bottom: 40rpx;
+}
+.text1{
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+}
+.text2{
+  color: rgb(155,124,86);
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+}
+.text3{
+  color: rgb(51,51,51);
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
+}
+.text4{
+  margin-bottom: 28rpx;
+  font-size: 28rpx;
+}
+.text5{
+  display: flex;
+  justify-content: center;
+}
+.btnClass{
+  font-size: 28rpx;
+  width: 247rpx;
+  height: 79rpx;
+  line-height: 79rpx;
+  border: 1rpx solid rgb(51,51,51);
+  border-radius: 10rpx;
+}
+.midden-text{
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35rpx 0rpx 24rpx 0rpx;
+  color: rgb(51,51,51);
+  font-size: 28rpx;
+}
+.midden-text image{
+   width: 40rpx;
+   height: 34rpx;
+   margin-right: 20rpx;
+}
+.bottom-main{
+  margin-top: 20rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+.bottom-mainOut{
+  width: 90%;
+  height: 514rpx;
+  background-color: #ffffff;
+  padding: 30rpx;
+}
+.bottomBtn{
+  height: 130rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bottomBtnBlue{
+  width: 89%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: rgb(0,168,101);
+  font-size: 32rpx;
+  text-align: center;
+  color: rgb(255,255,255);
+  border-radius: 10rpx;
+}
+.listTop-text{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  color: rgb(155,124,86);
+  font-size: 28rpx;
+}
+.listTop-text image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right:10rpx;
+}
+.listBottom-text image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right:10rpx;
+}
+.listItem{
+  padding: 20rpx 0rpx 10rpx 0rpx;
+  height: 178rpx;
+  border-bottom: 1rpx solid rgb(237,237,237);
+}
+.everyItem{
+  display: flex;
+  align-items: center;
+  color: rgb(51,51,51);
+  font-size: 24rpx;
+  padding: 10rpx 0rpx;
+  padding-right: 20rpx;
+}
+.everyItem image{
+  width: 20rpx;
+  height: 16rpx;
+  margin-right:10rpx;
+}
+
+.listBottom-text{
+  padding: 20rpx 0rpx 0rpx 0rpx;
+  display: flex;
+  align-items: center;
+  color: rgb(155,124,86);
+  font-size: 28rpx;
+}
+.listItemBottom{
+  padding: 10rpx 0rpx;
+}
+.bottomTexts{
+   font-size: 24rpx;
+   color: rgb(51, 51, 51);
+   text-decoration: underline;
+   margin-top: 20rpx;
+}
