@@ -26,8 +26,8 @@
             <view class='confirm-btn' catchtap='confirm' wx:if="{{levelNum === 1}}">查看白银会员升级攻略</view>
             <view class='confirm-btn' catchtap='goldconfirm' wx:if="{{levelNum !== 1}}">查看黄金会员升级攻略</view>
         </view>
-        <view class="bottomClose" bindtap ="closeModal">
-          <image src="http://106.54.73.125:8104/images/miniprogram/images/index/group-4@3x.png" />
-        </view>
     </view>
+</view>
+<view wx:if='{{show}}' class="bottomClose"  bindtap="closeModal">
+    <image src="http://106.54.73.125:8104/images/miniprogram/images/index/group-4@3x.png" />
 </view>

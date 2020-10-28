@@ -25,7 +25,7 @@
 			<view class="setting back" catchtap="settingPage"></view>
 			<image src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine-bottom.png"></image>
 		</view>
-		<view wx:if="{{showDialog}}" class="modal-body">
+		<!-- <view wx:if="{{showDialog}}" class="modal-body">
 				<view class="modal-title">提示</view>
 				<view class="modal-content">乐健康需微信步数授权</view>
 				<view class="flex">

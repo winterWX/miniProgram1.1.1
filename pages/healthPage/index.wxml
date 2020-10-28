@@ -75,7 +75,7 @@
                       <view class="health-bottom">距离</view>
                   </view>
                </view>
-               <view  class="sendBlock-bottom" wx:if="{{showAPPData === 2}}">
+               <view  class="sendBlock-bottom" wx:if="{{showAPPData !== 1}}">
 				   <view class="sendBlock-Balck" style="padding-left:20rpx">
 				      <view class="health-item"><view class="health-num">{{everyDayData.todaySteps}}</view><view class="health-text">步</view></view>
 				      <view class="health-bottom">今日步数</view>
