@@ -21,8 +21,8 @@
                     <view class="option {{ confirm && confirm.optionId === item.optionId ? (isOk ? 'success' : 'cross') : '' }})" wx:for="{{currentQ.options}}" wx:key="id" catchtap="selectOption" data-answer="{{item}}">
                         <view class="{{ !isConfirm && selected.optionId === item.optionId ? 'active' : ''}}">
                             {{item.option}}
-                        <image class="icon" src="../../image/question/no-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && !isOk}}"></image>
-                        <image class="icon" src="../../image/question/yes-thick.png" wx:if="{{confirm && confirm.optionId === item.optionId && isOk || isConfirm && !isOk && item.isCorrect === 1 }}"></image>
+                        <image class="icon" src="{{baseUrl + '/images/question/no-thick.png'}}" wx:if="{{confirm && confirm.optionId === item.optionId && !isOk}}"></image>
+                        <image class="icon" src="{{baseUrl + '/images/question/yes-thick.png'}}" wx:if="{{confirm && confirm.optionId === item.optionId && isOk || isConfirm && !isOk && item.isCorrect === 1 }}"></image>
                         </view>                     
                     </view>
                 </view>

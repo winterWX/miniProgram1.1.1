@@ -18,7 +18,8 @@ Page({
     confirm: null,
     submitResult: [],
     isOk: false,
-    complete: false
+    complete: false,
+    baseUrl: app.globalData.imagesUrl
   },
   selectOption: function(e) {
     this.setData({selected: e.currentTarget.dataset.answer});
