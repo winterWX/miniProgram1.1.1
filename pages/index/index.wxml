@@ -8,9 +8,6 @@
 </view>
 <footer active="{{active}}"  wx:if="{{!successFlg}}"></footer> -->
 
-
-
-
 <!-- <view class="container {{successFlg ? 'successsSty':''}}" wx:if="{{!successFlg}}">
     <view class="top-box">
       <view class="back-icon" bindtap="navigateToStep"></view>
@@ -27,7 +24,8 @@
     </view>
 </view>
 <collectionOption  wx:if="{{successFlg}}" id="filterCmp"  bind:parentReceive="parentCallBack" /> -->
-<view class="main-content">
+
+<view class="main-content {{successFlg ? 'successsSty':''}}" wx:if="{{!successFlg}}">
     <view class="topBlock"  wx:if="{{isLogin !== 3}}">
         <view class="topBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/landing-page-image@3x.png"/></view>
         <view class="topBlock-text">
@@ -38,7 +36,6 @@
     </view>
     <view class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
        <view class="imageRight" ><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
-        <!-- <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view> -->
         <view class="miniprogress"><miniprogress stepNum="{{ stepsNum.todaySteps }}" /></view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun}}">还剩{{runDataText}}步达成今日挑战</view>
@@ -103,6 +100,7 @@
     </view>
     </modalView>
     <strategyModal show="{{membershipModal}}" levelNum ="{{levelNum}}"  bind:infotan="closeModal"></strategyModal>
+    <collectionOption  wx:if="{{successFlg}}" id="filterCmp"  bind:parentReceive="parentCallBack" />
     <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 </view>
 
