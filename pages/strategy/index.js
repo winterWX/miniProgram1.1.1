@@ -93,7 +93,7 @@ Page({
     })
   },
   btnNetoPage:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/silverDetail/index',
     })
   },

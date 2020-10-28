@@ -1,4 +1,3 @@
-// pages/medicalServices/index.js
 let app = getApp();
 Page({
 
