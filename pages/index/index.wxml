@@ -38,7 +38,8 @@
     </view>
     <view class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
        <view class="imageRight" ><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
-        <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view>
+        <!-- <view class="miniprogress"><miniprogress stepNum="{{stepsNum.todaySteps}}" /></view> -->
+        <view class="miniprogress"><miniprogress stepNum="{{ stepsNum.todaySteps }}" /></view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun}}">还剩{{runDataText}}步达成今日挑战</view>
             <view class="topSett-disp" wx:if="{{ rejectRun }}">还剩10000步达成今日挑战</view>
@@ -47,12 +48,12 @@
             </view>
         </view>    
     </view>
-    <view class="secondeBlock">
+    <view class="secondeBlock" bindtap="membership">
         <view class="secondeBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/banner-1@3x.png"/></view>
         <view class="secondeBlock-text">
           <view class="secondeBlock-text1">恒生保险  独家优惠码</view>
           <view class="secondeBlock-text2">升级金银会员享更多好礼</view>
-          <view class="secondeBlock-btn" bindtap="membership"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/icon-circle@3x.png" /></view>
+          <view class="secondeBlock-btn"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/icon-circle@3x.png" /></view>
         </view>
      </view>
      <view class="threesBlock">
@@ -100,7 +101,8 @@
         <view class="content">今日步数需要微信步数授权</view>
       </scroll-view>
     </view>
-  </modalView>
+    </modalView>
+    <strategyModal show="{{membershipModal}}" levelNum ="{{levelNum}}"  bind:infotan="closeModal"></strategyModal>
     <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 </view>
 

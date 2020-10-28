@@ -73,15 +73,17 @@ Component({
                         angle = Math.ceil(num / 100);
                     }
                 }
+                angle = angle === 0 ? 1 : angle;
                 context.beginPath()
                 context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
                 context.setLineWidth(12)
                 context.setLineCap('round')
                 context.setStrokeStyle('#00a865')
-                context.textAlign = 'center' //文字居中
-                context.font = '40px Arial'
-                context.fillStyle = '#333333' //字体颜色
-                context.fillText( num +'' , width / 2,72);
+                this.setData({ numStep:num });
+                // context.textAlign = 'center' //文字居中
+                // context.font = '40px Arial'
+                // context.fillStyle = '#333333' //字体颜色
+                // context.fillText( num +'' , width / 2,72);
                 context.stroke()
 
                 // 指示器

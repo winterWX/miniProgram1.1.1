@@ -1,31 +1,34 @@
-const app = getApp();
+let app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    
+    copyWriting:[],
+    enjoyCopywriting:[],
+    tierInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     let levelParam = JSON.parse(options.levelParam)
+     this.initPage(levelParam);
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      active: 4
-    })
+
   },
 
   /**
@@ -39,7 +42,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(this.data);
+
   },
 
   /**
@@ -60,34 +63,39 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   },
-  // 退出登录
-  loginOut: function() {
+  initPage: function (levelParam){
+    let that = this;
     wx.request({
-      url: app.globalData.baseUrl + '/remote/loginOut',
-      method: "GET",
+      url: app.globalData.baseUrl + '/remote/copywriting/findMemberCopy',
+      method: "POST",
       header: {
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
       data:{
-        device: 2
+          // flag : levelParam.flag,
+          flag : 2,
+          level : levelParam.level,
       },
       success: function (res) {
-        if (res.data.code == 200) {
-            app.globalData.isLogin = 0;
-            app.globalData.token = '';
-            app.globalData.userInfo = null;
-            app.globalData.loginSuccess = false;
-            wx.navigateTo({
-              url: '../index/index'
-            })
+        if(res.data.code === 200){
+          that.setData({
+              copyWriting : res.data.data.copyWriting,
+              enjoyCopywriting : res.data.data.enjoyCopywriting,
+              tierInfo : res.data.data.tierInfo
+          })
         }
       },
       fail: function (res) {
-        console.log('.........fail..........');
+          console.log('---------------');
       }
+    })
+  },
+  btnNetoPage:function(){
+    wx.navigateTo({
+      url: '../../pages/silverDetail/index',
     })
   }
 })

@@ -10,3 +10,12 @@
    position: absolute;
    top:0;
 }
+.stepnNums{
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  text-align: center;
+  font-size: 65rpx;
+  color: rgb(51,51,51);
+}
+

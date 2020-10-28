@@ -5,7 +5,8 @@
     "integralAmation": "../../components/integralAmation/index",
     "stepAmaition": "../../components/stepAmaition/index",
     "miniprogress": "../../components/miniprogress/miniprogress",
-    "modalView": "../../components/modal/modal" 
+    "modalView": "../../components/modal/modal",
+    "strategyModal" : "../../components/strategyModal/index"
   },
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true  

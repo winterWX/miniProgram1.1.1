@@ -48,6 +48,7 @@
     "pages/healthKnowledge/index",
     "pages/changeQAResult/index",
     "pages/answer/index",
+    "pages/strategy/index",
     "pages/rankingList/index"
   ],
   "window": {
