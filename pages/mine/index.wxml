@@ -38,6 +38,43 @@
 						<image class="bg" src="../../images/mine/background@2x.png"></image>
 						<view class="profile-tip">20%个人信息尚未完善，<text class="link">完成即可获得100积分</text>。</view>
 					</view>
+					<view class="portrait">
+						<view class="header-box">
+							<image class="circle" src="../../images/mine/oval@2x.png"></image>
+							<image class="avatar" src="../../images/mine/group-27@2x.png"></image>
+						</view>
+						<view class="name">
+							刘雅丽
+						</view>
+					</view>
+					<view class="info">
+						<view class="item">
+							<view class="num">
+								1650
+							</view>
+							<view class="tip">
+								积分
+							</view>
+						</view>
+						<view class="dividing-line"></view>
+						<view class="item">
+							<view class="num">
+								30
+							</view>
+							<view class="tip">
+								优惠券
+							</view>
+						</view>
+					</view>
+					<view class="member-info">
+						<image class="img" src="../../images/mine/gold-member.png"></image>
+						<view class="level">
+							金会员
+						</view>
+						<view class="guide">
+							查看会员权益
+						</view>
+					</view>
 				</view>
 				<footer class="footerContent" wx:if="{{!showDialog}}" active="{{active}}"></footer>
 </view>
