@@ -120,7 +120,6 @@ Page({
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
           app.globalData.userInfoDetail = result.newUserInfo;
-          console.log('that.data.isLogin===',that.data.isLogin)
         },e.detail,that.data.isLogin,that.data.redirectToUrl)
     }
   },

@@ -81,6 +81,10 @@
 page{
    background-color: rgb(242,242,242);
 }
+.successsSty{
+   height: 100%;
+   background-color: rgba(0,0,0, 0.62);
+}
 .main-content{
    overflow-y: hidden;
    padding-bottom: 60rpx;
