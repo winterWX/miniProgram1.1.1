@@ -9,9 +9,11 @@
     </view>
     <view class="footer" hover-class="none" hover-stop-propagation="false">
         <text class="statement">免责声明</text>
-        <button class="btn btn-lg btn-primary" wx:if="{{isLogin === 1 && participated}}" catchtap="goResult">查看结果</button>
-        <button wx:if="{{isLogin === 1 && !participated}}" class="btn btn-lg btn-primary" catchtap="goToAnswer">开始答题</button>
-        <button wx:if="{{isLogin === 0 && !participated}}" class="btn btn-lg btn-primary" size="large"
+        <button class="btn btn-lg btn-primary" wx:if="{{isLogin === 1 && participated && isEnds === 2}}" catchtap="goResult">查看结果</button>
+        <button wx:if="{{isLogin === 1 && isEnds === 2 && !participated}}" class="btn btn-lg btn-primary" catchtap="goToAnswer">开始答题</button>
+        <button wx:if="{{isLogin === 0}}" class="btn btn-lg btn-primary" size="large"
 					open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始答题</button>
+        <button wx:if="{{isLogin === 1 && isEnds === 1}}" class="btn btn-lg disabled">未开始</button>
+        <button wx:if="{{isLogin === 1 && isEnds === 3}}" class="btn btn-lg disabled">本期活动已结束</button>
     </view>
 </view>
