@@ -39,14 +39,9 @@ Page({
   },
   onLoad:function (options) {
        let that = this;
-       that.setData({
-          showAPPData: app.healthStep.dataCource
-       })
+       that.setData({ showAPPData: app.healthStep.dataCource })
        if(options.id ==='allowTo'){ 
-            that.setData({
-              flag: true,
-              guidance1: true
-            })
+            that.setData({ flag: true, guidance1: true })
             that.settingDataBtn();
             that.healthEveryday();
             that.getQueryintegral();
@@ -54,10 +49,7 @@ Page({
             if(app.globalData.isWeRunStepsFail){
               that.settingDataBtn();
             }else{
-              that.setData({
-                btnStatus: -1, 
-                startStatus :true
-              })
+              that.setData({ btnStatus: -1,startStatus :true })
             }
             that.healthEveryday();
         }else if(options.flg ==='carryAPPData'){
@@ -65,9 +57,7 @@ Page({
             that.healthEveryday();
             //判断是否有app数据
             if(that.data.stepsNum.todaySteps === 0 && that.data.totalTime === 0){
-                that.setData({
-                  startStatus :true
-                })
+                that.setData({ startStatus :true })
             }
         }
   },
@@ -199,14 +189,10 @@ Page({
         integral: 10
       }
     })
-    that.setData({
-      forceNum: true
-    })       
+    that.setData({ forceNum: true })       
   },
   yesterdayIntegral(){  //领取昨天的积分
-    this.setData({
-      anBackShow: true
-    })
+    this.setData({ anBackShow: true })
   },
   settingDataBtn(){
     var that = this;

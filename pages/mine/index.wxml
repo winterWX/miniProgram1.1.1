@@ -27,13 +27,20 @@
 			<view class="setting back" catchtap="settingPage"></view>
 			<image src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine-bottom.png"></image>
 		</view>
-		<view wx:if="{{showDialog}}" class="modal-body">
+		<!-- <view wx:if="{{showDialog}}" class="modal-body">
 				<view class="modal-title">提示</view>
 				<view class="modal-content">乐健康需微信步数授权</view>
 				<view class="flex">
 					<button class="dis" catchtap="closeModal">取消</button>
 					<button class="btn" open-type="openSetting" bindopensetting="callback">确认</button>
 				</view>
-		</view>
+		</view> -->
+		<modalView  show="{{showDialog}}"  single='{{false}}' rejectBtn="{{true}}"  bindcancel="cancel" bindconfirm='confirm' title="提示">
+				<view class='modal-content'>
+					<scroll-view scroll-y class='contentText'>
+						<view class="content">乐健康需微信步数授权</view>
+					</scroll-view>
+				</view>
+    </modalView>
 		<footer class="footerContent" wx:if="{{!showDialog}}"  active="{{active}}"></footer>
 </view>
