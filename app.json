@@ -49,6 +49,7 @@
     "pages/changeQAResult/index",
     "pages/answer/index",
     "pages/strategy/index",
+    "pages/goldStrategy/index",
     "pages/rankingList/index"
   ],
   "window": {

@@ -35,25 +35,21 @@ Component({
       // 点击modal背景关闭遮罩层，如果不需要注释掉即可
       this.setData({show: false})
     },
-  //  // 点击取消按钮的回调函数
-  //   cancel() {
-  //     this.setData({ show: false })
-  //     this.triggerEvent('cancel')  //triggerEvent触发事件
-  //   },
     closeModal:function() {
         this.triggerEvent('infotan');
     },
     // 点击确定按钮的回调函数
     confirm() {
-      this.setData({ show: false })
-      let levelObje = {
-          flag:'',
-          level: this.data.levelNum
-      }
-      let levelParam = JSON.stringify(levelObje);
+      this.setData({ show: false });
       wx.navigateTo({
-          url: '../../pages/strategy/index?levelParam='+ levelParam,
+          url: '../../pages/strategy/index?levelParam='+ this.data.levelNum,
       })
+    },
+    goldconfirm:function(){
+        this.setData({ show: false });
+        wx.navigateTo({
+            url: '../../pages/goldStrategy/index?levelParam='+ this.data.levelNum,
+        })
     }
   }
 })

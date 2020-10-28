@@ -48,7 +48,7 @@
             </view>
         </view>    
     </view>
-    <view class="secondeBlock" bindtap="membership">
+    <view class="secondeBlock" bindtap="membership" wx:if="{{levelNum !== 3}}">
         <view class="secondeBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/banner-1@3x.png"/></view>
         <view class="secondeBlock-text">
           <view class="secondeBlock-text1">恒生保险  独家优惠码</view>

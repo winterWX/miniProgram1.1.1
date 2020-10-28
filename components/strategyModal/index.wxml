@@ -1,16 +1,16 @@
 <view class='modal-mask' wx:if='{{show}}'>
     <view class='modal-content'>
         <view class="imageAllText" wx:if="{{levelNum === 1}}">
-          <image class="topImage" src="../../image/index/silver-bg@3x.png"/>
+          <image class="topImage" src="http://106.54.73.125:8104/images/miniprogram/images/index/silver-bg@3x.png"/>
           <view class="topTexts">
-            <image src="../../image/index/silver@3x.png"/>
+            <image src="http://106.54.73.125:8104/images/miniprogram/images/index/silver@3x.png"/>
             <view class="topTextsName">白银会员</view>
           </view>
         </view>
         <view class="imageAllText" wx:if="{{levelNum !== 1}}">
-          <image  class="topImage" src="../../image/index/gold-bg@3x.png"/>
+          <image  class="topImage" src="http://106.54.73.125:8104/images/miniprogram/images/index/gold-bg@3x.png"/>
           <view class="topTexts">
-            <image src="../../image/index/qingtong-2-copy-5@3x.png"/>
+            <image src="http://106.54.73.125:8104/images/miniprogram/images/index/qingtong-2-copy-5@3x.png"/>
             <view class="topTextsName">黄金会员</view>
           </view>
         </view>
@@ -24,10 +24,10 @@
         </view>
         <view class='modal-footer'>
             <view class='confirm-btn' catchtap='confirm' wx:if="{{levelNum === 1}}">查看白银会员升级攻略</view>
-            <view class='confirm-btn' catchtap='confirm' wx:if="{{levelNum !== 1}}">查看黄金会员升级攻略</view>
+            <view class='confirm-btn' catchtap='goldconfirm' wx:if="{{levelNum !== 1}}">查看黄金会员升级攻略</view>
         </view>
         <view class="bottomClose" bindtap ="closeModal">
-          <image src="../../image/index/group-4@3x.png" />
+          <image src="http://106.54.73.125:8104/images/miniprogram/images/index/group-4@3x.png" />
         </view>
     </view>
 </view>

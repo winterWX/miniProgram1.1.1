@@ -7,13 +7,14 @@ Page({
     copyWriting:[],
     enjoyCopywriting:[],
     tierInfo:{},
-    hideModal: true  //模态框的状态  true-隐藏  false-显示
+    hideModal: true    //模态框的状态  true-隐藏  false-显示
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     //let levelParam = JSON.parse(options.levelParam);
      this.initPage(options.levelParam);
   },
 
@@ -75,8 +76,8 @@ Page({
         "token": app.globalData.token
       },
       data:{
-          flag : param === '1' ? 2 : 0,
-          level : param === '1' ? 4 : 0
+          flag : param === '2' ? 3 : 0, 
+          level : param === '2' ?  5 : 0
       },
       success: function (res) {
         if(res.data.code === 200){
@@ -95,11 +96,6 @@ Page({
   btnNetoPage:function(){
     wx.navigateTo({
       url: '../../pages/silverDetail/index',
-    })
-  },
-  goldPage:function(){
-    wx.navigateTo({
-      url: '../../pages/goldStrategy/index',
     })
   },
   activePage:function(){
@@ -154,5 +150,5 @@ Page({
     let that =this;
     that.fadeDown();
     that.setData({ hideModal: true })
-  },
+  }
 })

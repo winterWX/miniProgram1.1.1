@@ -4,35 +4,31 @@
         <image  class="leftImageCode" src="http://106.54.73.125:8104/images/miniprogram/images/strategy/rectangle-rectangle-rectangle-mask@3xg.png" />
         <view class="leftImageCode-text">
           <view class="text1">积分升级</view>
-          <view class="leftImge"><image  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/group@3x.png" /></view>
-          <view class="text2">白银会员</view>
+          <view class="leftImge"><image  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/group-18@3xg.png" /></view>
+          <view class="text2">黄金会员</view>
           <view class="text3">积分达到{{tierInfo.nextLevelIntegral}}积分</view>
-          <view class="text4">即升级白银会员</view>
+          <view class="text4">即升级黄金会员</view>
           <view class="text5" bindtap="activePage"><view class="btnClass">领任务赚积分</view></view>
         </view>
       </view>
-      <view class="right-mainText">
+      <view class="right-mainText"> 
         <image class="roghtImageCode"  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/rectangle-rectangle-rectangle-mask@3xg.png" />
         <view  class="roghtImageCode-text">
           <view class="text1">快速升级</view>
-          <view class="rightImge"><image  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/group-3@3x.png" /></view>
-          <view class="text2">永恒白银会员+尊享好礼</view>
-          <view class="text3">恒生银行开户</view>
-          <view class="text4">享白银会员+尊享好礼</view>
-          <view class="text5" bindtap="hangshengPage"><view class="btnClass">预约开户</view></view>
+          <view class="rightImge"><image  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/group-3@3xg.png" /></view>
+          <view class="text2">黄金会员+尊享好礼</view>  
+          <view class="text3">购买恒生保险</view>
+          <view class="text4">黄金会员+尊享好礼</view>
+          <view class="text5" bindtap="hangshengPage"><view class="btnClass">了解恒生保险</view></view>
         </view>
       </view>
-  </view>
-  <view class="midden-text" bindtap="goldPage">
-      <image src="http://106.54.73.125:8104/images/miniprogram/images/strategy/qingtong-2-copy-5@3x.png" />
-      <view class="goldTextLink">黄金会员同享权利，查看攻略</view>
   </view>
   <view class="bottom-main">
     <view class="bottom-mainOut">
       <view class="listTop">
          <view class="listTop-text">
            <image src="http://106.54.73.125:8104/images/miniprogram/images/strategy/group.png"/>
-           <view>白银会员</view>
+           <view>黄金会员</view>
          </view>
          <view class="listItem">
            <view class="everyItem" wx:for="{{copyWriting}}" wx:key="{{item.id}}"><image src="http://106.54.73.125:8104/images/miniprogram/images/strategy/path@3x.png" />
@@ -42,18 +38,18 @@
       </view>
       <view class="listBottom">
          <view class="listBottom-text">
-           <image  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/group-10.png"/>
+           <image  src="http://106.54.73.125:8104/images/miniprogram/images/strategy/qingtong-2-copy-5@3xg.png"/>
            <view>尊享码尊享好礼</view>
          </view>
          <view class="listItemBottom">
-           <view class="everyItem" wx:for="{{enjoyCopywriting}}" wx:key="{{item.id}}"><image src="http://106.54.73.125:8104/images/miniprogram/images/strategy/path@3x.png" /><view>{{item.content}}</view></view>
+           <view class="everyItem" wx:for="{{enjoyCopywriting}}" wx:key="{{item.id}}"><image src="http://106.54.73.125:8104/images/miniprogram/images/strategy/rewards-filled@3xg.png" /><view>{{item.content}}</view></view>
          </view>
       </view>
-      <view class="bottomTexts" bindtap="textShowMain">什么是尊享码？</view>
+      <view class="bottomTexts">什么是尊享码？</view>
     </view>
   </view>
   <view class="bottomBtn">
-      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，升级成为永恒白银会员</view>
+      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，立即升级黄金会员</view>
   </view>
   <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
             <view class="modals-cancel" bindtap="hideModal"></view>
