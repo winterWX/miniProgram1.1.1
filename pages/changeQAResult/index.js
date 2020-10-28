@@ -10,7 +10,8 @@ Page({
     wrong: 0,
     all: 0,
     questionAnalysis: [],
-    id: ''
+    id: '',
+    baseUrl: app.globalData.imagesUrl
   },
 
   /**
