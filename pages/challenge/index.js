@@ -108,11 +108,10 @@ Page({
     })
   },
   navigatorDetail: function(e) {
-    console.log(e)
-    let {title,id } = e.currentTarget.dataset;
+    let {title,id, type } = e.currentTarget.dataset;
+    let url = type === '2' ? '../healthKnowledge/index?id=' + id : '../activityDetail/index?id=' + id + '&title=' + title;
     wx.navigateTo({
-      url: '../activityDetail/index?id=' + id + '&title=' + title,
-      // url: '../healthKnowledge/index?id=' + id,
+      url
     })
   }
 })

@@ -187,6 +187,7 @@ page {
 }
 .container .header .tip-box {
   position: relative;
+  height: 90rpx;
 }
 .container .header .tip-box .profile-tip {
   position: absolute;
@@ -200,7 +201,7 @@ page {
   letter-spacing: -0.3rpx;
 }
 .container .header .tip-box .bg {
-  width: 100%;
+  width: 750rpx;
   height: 90rpx;
 }
 .container .header .tip-box .link {
@@ -212,21 +213,85 @@ page {
   width: 100%;
 }
 .container .portrait .header-box {
-  
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto;
   position: relative;
-  text-align: center;
+  margin-bottom: 20rpx;
 }
 .container .portrait .header-box .circle {
   width: 200rpx;
   height: 200rpx;
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 .container .portrait .header-box .avatar {
   width: 176rpx;
   height: 176rpx;
   position: absolute;
-  left: 12rpx;
   top: 12rpx;
+  left: 12rpx;
+}
+.container .portrait .name {
+  text-align: center;
+  font-size: 32rpx;
+  color: #333;
+}
+.container .info {
+  display: flex;
+  align-items: center;
+}
+.container .info .item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .info .dividing-line {
+  width: 2rpx;
+  height: 60rpx;
+  background-color: #d7d8d6;
+}
+.container .info .item .num {
+  text-align: center;
+  font-size: 48rpx;
+  font-weight: 500;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-bottom: 10rpx;
+}
+.container .info .item .tip {
+  text-align: center;
+  color: #666;
+  font-size: 30rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+}
+.container .member-info {
+  text-align: center;
+  margin-top: 40rpx;
+  position: relative;
+  height: 128rpx;
+}
+.container .member-info .img {
+  width: 694rpx;
+  height: 128rpx;
+}
+.container .member-info .level {
+  position: absolute;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #ffd478;
+  left: 120rpx;
+  top: 50rpx;
+}
+.container .member-info .guide {
+  position: absolute;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #ffd478;
+  right: 72rpx;
+  top: 50rpx;
 }

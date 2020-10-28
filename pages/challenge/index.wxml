@@ -1,10 +1,10 @@
 <view scroll-y wx:if="{{activityList.length > 0}}" class="container">
 	<view wx:for="{{activityList}}" wx:for-item="activity" wx:key="id" class="activity-box">
-		<image class="img" src="{{activity.coverImageLocation}}" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}"></image>
-		<view class="activity-content" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
+		<image class="img" src="{{activity.coverImageLocation}}" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}" data-type="{{activity.type}}"></image>
+		<view class="activity-content" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}" data-type="{{activity.type}}">
 			<text class="title">{{activity.title}}</text>
 		</view>
-		<view class="activity-desc" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
+		<view class="activity-desc" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}" data-type="{{activity.type}}">
 			<text>{{activity.description}}</text>
 		</view>
 		<view class="remain-days" wx:if="{{activity.status === 2}}">
