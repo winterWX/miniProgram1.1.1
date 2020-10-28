@@ -26,7 +26,12 @@ Page({
   confirm: function() {
     let { selected, quesIndex, questions, answers } = this.data;
     let complete = quesIndex === questions.length - 1;
-    let confirm = selected;
+    let { isCorrect, optionId } = selected;
+    let confirm = {
+      isCorrect,
+      optionId,
+      questionId: questions[quesIndex].id
+    };
     let isOk = selected.isCorrect === 1;
     answers.push(confirm);
     this.setData({confirm , isConfirm: true, isOk, complete, answers});
@@ -45,6 +50,9 @@ Page({
   },
   submit: function() {
     let { activityId, answers } = this.data;
+    wx.showLoading({
+      title: 'loading...',
+    })
     wx.request({
       url: app.globalData.baseUrl + '/remote/health/quiz/answer',
       method: "POST",
@@ -57,11 +65,25 @@ Page({
         answers
       },
       success: function (res) {
+        wx.hideLoading()
         if(res.data.code === 200) {
-
+          let { rate, status } = res.data.data;
+          let success = status === 1;
+          wx.navigateTo({
+            url: '../changeQAResult/index?rate=' + rate + '&success=' + success + '&id=' + activityId,
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            content: '服务器异常'
+          })
         }
       },
       fail: function (res) {
+        wx.showModal({
+          showCancel: false,
+          content: '服务器异常'
+        })
       }
     })
   },
@@ -126,6 +148,9 @@ Page({
   getQuestion: function(id) {
     let { quesIndex } = this.data;
     let that = this;
+    wx.showLoading({
+      title: 'loading...',
+    })
     wx.request({
       url: app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id,
       method: "GET",
@@ -134,13 +159,23 @@ Page({
         "token": app.globalData.token
       },
       success: function (res) {
+        wx.hideLoading()
         if(res.data.code === 200) {
           let { questions } = res.data.data;
           let currentQ = questions[quesIndex];
           that.setData({questions, currentQ});
+        } else {
+          wx.showModal({
+            showCancel: false,
+            content: '获取数据失败'
+          })
         }
       },
       fail: function (res) {
+        wx.showModal({
+          showCancel: false,
+          content: '获取数据失败'
+        })
       }
     })
   }
