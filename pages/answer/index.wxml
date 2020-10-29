@@ -1,8 +1,8 @@
 <!-- pages/answer/index.wxml -->
 <view class="container">
     <view class="header">
-        <image class="bg-img" src="../../image/question/gift-fail.png"></image>
-        <view class="label">查看详情</view>
+        <image class="bg-img" src="{{bannerUrl}}"></image>
+        <view class="label" catchtap="navigateDetail">查看详情</view>
     </view>
     <view class="main">
         <view class="answer-box">
