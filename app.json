@@ -50,7 +50,8 @@
     "pages/answer/index",
     "pages/strategy/index",
     "pages/goldStrategy/index",
-    "pages/rankingList/index"
+    "pages/rankingList/index",
+    "pages/messageCenter/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

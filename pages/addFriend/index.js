@@ -53,7 +53,7 @@ Page({
         id: 12
       },
       {
-        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+        url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
         id: 13
       }, 
     ],

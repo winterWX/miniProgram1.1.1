@@ -1,37 +1,3 @@
-/* .healthBack{
-   width: 100%;
-   height: 100rpx;
-   background-color: #00a865;
-   color: black;
-   font-size: 30rpx;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border: 1rpx solid #ccc;
-}
-.healtProson{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.titleTip{
-  width: 90%;
-  text-align: center;
-  padding-left: 20rpx;
-  padding-left: 65rpx;
-}
-.titleRed{
-  width: 10%;
-}
-.red {
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50rpx;
-  background-color: red;
-  margin-left: 0rpx;  
-} */
-
 .healthBack-main{
 
   position: relative;
@@ -232,27 +198,34 @@ page {
   top: 12rpx;
   left: 12rpx;
 }
+.container .portrait .header-box .edit-icon {
+  width: 68rpx;
+  height: 68rpx;
+  position: absolute;
+  bottom: 0rpx;
+  right: 0rpx;
+}
 .container .portrait .name {
   text-align: center;
   font-size: 32rpx;
   color: #333;
 }
-.container .info {
+.container .header .info {
   display: flex;
   align-items: center;
 }
-.container .info .item {
+.container .header .info .item {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.container .info .dividing-line {
+.container .header .info .dividing-line {
   width: 2rpx;
   height: 60rpx;
   background-color: #d7d8d6;
 }
-.container .info .item .num {
+.container .header .info .item .num {
   text-align: center;
   font-size: 48rpx;
   font-weight: 500;
@@ -260,12 +233,20 @@ page {
   line-height: 70rpx;
   margin-bottom: 10rpx;
 }
-.container .info .item .tip {
+.container .header .info .item .tip {
   text-align: center;
   color: #666;
   font-size: 30rpx;
   height: 42rpx;
   line-height: 42rpx;
+  position: relative;
+}
+.container .header .info .item .tip .icon {
+  width: 44rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 100rpx;
+  top: -10rpx;
 }
 .container .member-info {
   text-align: center;
@@ -283,17 +264,32 @@ page {
   line-height: 40rpx;
   font-size: 28rpx;
   font-weight: 500;
-  color: #ffd478;
   left: 120rpx;
   top: 50rpx;
 }
+.container .member-info .gold {
+  color: #ffd478;
+}
+.container .member-info .silver {
+  color: #304352;
+}
+.container .member-info .copper {
+  color: #0d0d0d;
+}
+.container .member-info .lever-icon {
+  position: absolute;
+  bottom: 36rpx;
+  left: 62rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
 .container .member-info .guide {
   position: absolute;
   height: 40rpx;
   line-height: 40rpx;
   font-size: 28rpx;
   font-weight: 500;
-  color: #ffd478;
   right: 72rpx;
   top: 50rpx;
 }

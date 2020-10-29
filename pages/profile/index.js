@@ -50,7 +50,7 @@ Page({
     },
     avatarObjList: [
       {
-        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+        url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
         id: 13
       }, {
         url: app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
@@ -110,7 +110,6 @@ Page({
       currentDate,
       received
     })
-    console.log('userInfo首次', this.data.userInfo);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
