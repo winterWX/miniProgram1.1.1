@@ -1,4 +1,4 @@
-<view>
+<view class="container">
 	<view class="title">
 		<text class="title-basic">基本信息</text>
 		<text class="title-tip">(完善即得100积分)</text>
@@ -68,30 +68,32 @@
 				<image class="userinfo-item-value__icon" src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
 		</view>
-		<view class="title">
-			<text>会员信息</text>
-		</view>
-
-		<view class="userinfo-item-container pr10">
-			<text class="memeber-label">会员级别</text>
-			<view>
-				<text class="memeber-label-value">青铜会员</text>
+		<view wx:if="{{false}}">
+			<view class="title">
+				<text>会员信息</text>
 			</view>
-		</view>
 
-		<view class="userinfo-item-container">
-			<text class="memeber-label">会员积分</text>
-			<view>
-				<text class="memeber-label-value">200</text>
+			<view class="userinfo-item-container pr10">
+				<text class="memeber-label">会员级别</text>
+				<view>
+					<text class="memeber-label-value">青铜会员</text>
+				</view>
 			</view>
-		</view>
-		<view class="userinfo-item-container" style="border-bottom: none;">
-		<view class="userinfo-item-label" style="vertical-align: middle">
-			<text>恒生会员码</text>
-			<image src="http://106.54.73.125:8104/images/miniprogram/images/icon-bubble.png" style="vertical-align: middle;width: 36rpx;height: 36rpx;margin-left: 20rpx"></image>
-		</view>
-			<view>
-				<text class="userinfo-item-value__label disabled-color">未绑定</text>
+
+			<view class="userinfo-item-container">
+				<text class="memeber-label">会员积分</text>
+				<view>
+					<text class="memeber-label-value">200</text>
+				</view>
+			</view>
+			<view class="userinfo-item-container" style="border-bottom: none;">
+				<view class="userinfo-item-label" style="vertical-align: middle">
+					<text>恒生会员码</text>
+					<image src="http://106.54.73.125:8104/images/miniprogram/images/icon-bubble.png" style="vertical-align: middle;width: 36rpx;height: 36rpx;margin-left: 20rpx"></image>
+				</view>
+				<view>
+					<text class="userinfo-item-value__label disabled-color">未绑定</text>
+				</view>
 			</view>
 		</view>
 	</view>
