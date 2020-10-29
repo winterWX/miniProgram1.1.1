@@ -22,6 +22,7 @@ Page({
     activityCount: 0,
     hideModal: true,  //模态框的状态  true-隐藏  false-显示
     titleText:false,
+    baseUrl: app.globalData.imagesUrl,
     avatarObjList: [
       {
         url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
@@ -190,10 +191,15 @@ Page({
       url: '../../pages/addFriend/index'
     })
   },
-  // 积分页面
+  // 会员等级
   silverDetail: function () {
     wx.navigateTo({
       url: '../../pages/silverDetail/index'
+    })
+  },
+  integralDetails: function () {
+    wx.navigateTo({
+      url: '../integralDetails/index'
     })
   },
   messageCenter: function() {
@@ -216,7 +222,6 @@ Page({
               //最后上传时间戳 和 当前时间戳进行比较
               let time = util.formatTime(new Date(Number(res.data.data)));
               let latestTime = time.split(' ')[0];
-              console.log('latestTime+=====',latestTime);
               let result = runData.find(item => item.date === latestTime);
               let index = runData.indexOf(result);
               let results = runData.splice(0, index + 1).map(item=>{
@@ -254,7 +259,6 @@ Page({
       success: (res) => {
         if (res.data.code === 200) {
             that.healthSccuss();
-            console.log('数据同步成功')
         }
       }
     })
@@ -321,7 +325,6 @@ getMyprofileInfo: function () {
     },
     success: function (res) {
       if (res.data.code == 200) {
-        console.log(res.data.data);
         let userInfo = res.data.data;
         userInfo.level = 2;
         let color = colorMap[userInfo.level]

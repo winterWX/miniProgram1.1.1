@@ -19,7 +19,8 @@ Page({
     submitResult: [],
     isOk: false,
     complete: false,
-    baseUrl: app.globalData.imagesUrl
+    baseUrl: app.globalData.imagesUrl,
+    bannerUrl: ''
   },
   selectOption: function(e) {
     this.setData({selected: e.currentTarget.dataset.answer});
@@ -162,9 +163,9 @@ Page({
       success: function (res) {
         wx.hideLoading()
         if(res.data.code === 200) {
-          let { questions } = res.data.data;
+          let { questions, bannerUrl } = res.data.data;
           let currentQ = questions[quesIndex];
-          that.setData({questions, currentQ});
+          that.setData({questions, currentQ, bannerUrl});
         } else {
           wx.showModal({
             showCancel: false,
@@ -178,6 +179,12 @@ Page({
           content: '获取数据失败'
         })
       }
+    })
+  },
+  navigateDetail: function() {
+    let { activityId } = this.data;
+    wx.navigateTo({
+      url: '../healthKnowledge/index?id=' + activityId,
     })
   }
 })
