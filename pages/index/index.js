@@ -292,10 +292,10 @@ listClick(e){
 },
 listChange(e){
     let {type,id,title} = e.currentTarget.dataset.item;
-  /*   wx.navigateTo({
+    wx.navigateTo({
       url: '../mine/index'
-    }) */
-   if(type === '1'){
+    })
+  /*  if(type === '1'){
       wx.navigateTo({
         url: '../activityDetail/index?id=' + id + '&title=' + title
       })
@@ -303,6 +303,6 @@ listChange(e){
       wx.navigateTo({                                 
         url: '../../pages/healthKnowledge/index?id=' + id
       })
-    }
+    } */
 }
 })
