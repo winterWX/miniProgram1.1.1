@@ -15,7 +15,8 @@ Page({
     runDataText: 0,
     rejectRun: false, //拒绝授权
     showDialog: false,
-    membershipModal: false
+    membershipModal: false,
+    semicircleState: false //控制半圆的显示，因为canves 半圆层级比较高
   },
   onLoad: function (options) {
     if (options.flag === 'true'){   //是 true
@@ -35,16 +36,14 @@ Page({
       }
     })
     if(app.globalData.isLogin === 3){
-      this.setData({ isLogin: app.globalData.isLogin });
+      this.setData({ isLogin: app.globalData.isLogin , semicircleState: true});
       this.getStepRunData();
     }
     this.homePageInit();
     this.userLevel();
   },
   onShow: function () {
-    this.setData({
-      active: 0
-    })
+    this.setData({ active: 0 ,semicircleState: true});
   },
   onPullDownRefresh: function () {
     let that = this;
@@ -135,7 +134,7 @@ Page({
           that.stepRunState();
         }else{
           //拒绝授权
-          that.setData({ showDialog: true, rejectRun:true });
+          that.setData({ showDialog: true, rejectRun:true, semicircleState : false});
         }
     })
   },
@@ -220,10 +219,16 @@ Page({
     })
   },
 closeModal: function() {
-    this.setData({showDialog: false});
+    this.setData({showDialog: false, semicircleState : true });
 },
-callback: function() {
-    this.setData({showDialog: false});
+// callback: function() {
+//     this.setData({showDialog: false, semicircleState : true});
+// },
+cancelModal:function(){
+   this.setData({ semicircleState : true });
+},
+confirmModal:function(){
+  this.setData({ semicircleState : true });
 },
 homePageInit: function () {
   let that = this;
@@ -239,10 +244,11 @@ homePageInit: function () {
           console.log('res.data=====',res.data.data)
           res.data.data.activity = res.data.data.activity.map((item,index) =>{
              return {
-               ...item,
-              //  coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
-              coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
-               createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
+                ...item,
+                title: index === 0 ? '每日步数挑战' : '健康知识问答王者',
+                //coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+                coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
+                createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
              }
           });
           res.data.data.article = res.data.data.article.map(item =>{
@@ -278,10 +284,10 @@ membership:function(){
   if(app.globalData.isLogin !== 3){
       return;
   }
-   this.setData({ membershipModal:true });
+  this.setData({ membershipModal:true, semicircleState : false});
 },
 closeModal:function(){
-   this.setData({ membershipModal:false });
+   this.setData({ membershipModal:false, semicircleState : true});
 },
 listClick(e){
     let goodsId = e.currentTarget.dataset.id;      
@@ -291,9 +297,6 @@ listClick(e){
 },
 listChange(e){
     let {type,id,title} = e.currentTarget.dataset.item;
-  /*   wx.navigateTo({
-      url: '../mine/index'
-    }) */
    if(type === '1'){
       wx.navigateTo({
         url: '../activityDetail/index?id=' + id + '&title=' + title

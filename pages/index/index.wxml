@@ -25,16 +25,16 @@
 </view>
 <collectionOption  wx:if="{{successFlg}}" id="filterCmp"  bind:parentReceive="parentCallBack" /> -->
 
-<view class="main-content {{successFlg ? 'successsSty':''}}" wx:if="{{!successFlg}}">
+<view class="main-content {{successFlg ? 'successsSty':''}}"  wx:if="{{!successFlg}}">
     <view class="topBlock"  wx:if="{{isLogin !== 3}}">
         <view class="topBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/index/landing-page-image@3x.png"/></view>
         <view class="topBlock-text">
           <view class="topBlock-text1">每日万步 即得奖励</view>
           <view class="topBlock-text2">登录后查看更多，一起动起来吧！</view>
-          <view class="topBlock-btn"> <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">未授权</button></view>
+          <view class="topBlock-btn"> <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button></view>
         </view>
     </view>
-    <view class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
+    <view class="topSetting" wx:if="{{ semicircleState && isLogin === 3}}"  bindtap="navigateToStep">
        <view class="imageRight" ><image src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png" /></view>
         <view class="miniprogress"><miniprogress stepNum="{{ stepsNum.todaySteps }}" /></view>
         <view class="topSetting-text">
@@ -61,7 +61,7 @@
              <view class="threesBlock-right">更多</view>
          </view>
          <view class="threesBlock-item">
-           <view class="threesBlock-itemCher" wx:for="{{homeAllData.article}}" wx:key="{{item.id}}" bindtap="listClick" data-id="{{item.id}}">
+           <view class="threesBlock-itemCher" wx:for="{{homeAllData.article}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}">
                 <view class="threesBlock-itemText">
                   <view class="threesBlockText1">{{item.title}}</view>
                   <view class="threesBlock-itemTime">{{item.inputtime}}</view>
@@ -81,7 +81,7 @@
              <view class="threesBlock-right">更多</view>
          </view>
          <view class="iamgeAll">
-            <view class="iamgeAllTop" wx:for="{{homeAllData.activity}}"  wx:key="{{item.id}}"  bindtap="listChange" data-item="{{item}}">
+            <view class="iamgeAllTop" wx:for="{{homeAllData.activity}}"  wx:key="index"  bindtap="listChange" data-item="{{item}}">
                 <!-- <image wx:if="{{item.coverImage === ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/>
                 <image wx:if="{{item.coverImage !== ''}}" src='http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png'/> -->
               <image wx:if="{{item.coverImage !== ''}}" src='{{item.coverImage}}'/>
@@ -92,7 +92,7 @@
             </view>
          </view>
      </view>
-    <modalView  show="{{showDialog}}"  single='{{false}}' rejectBtn="{{true}}"  bindcancel="cancel" bindconfirm='confirm' title="提示">
+    <modalView  show="{{showDialog}}"  single='{{false}}' rejectBtn="{{true}}"  bindcancel="cancelModal" bindconfirm='confirmModal' title="提示">
     <view class='modal-content'>
       <scroll-view scroll-y class='contentText'>
         <view class="content">今日步数需要微信步数授权</view>
