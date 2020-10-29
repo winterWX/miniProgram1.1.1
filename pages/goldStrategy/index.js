@@ -7,7 +7,8 @@ Page({
     copyWriting:[],
     enjoyCopywriting:[],
     tierInfo:{},
-    hideModal: true    //模态框的状态  true-隐藏  false-显示
+    hideModal: true,    //模态框的状态  true-隐藏  false-显示
+    whatHangsheng:false
   },
 
   /**
@@ -95,7 +96,7 @@ Page({
   },
   btnNetoPage:function(){
     wx.navigateTo({
-      url: '../../pages/silverDetail/index',
+      url: '../../pages/membership/index',
     })
   },
   activePage:function(){
@@ -103,17 +104,15 @@ Page({
       url: '../../pages/challenge/index',
     })
   },
-  hangshengPage:function(){
-    // wx.navigateTo({
-    //   url: '../../pages/silverDetail/index',
-    // })
-  },
-  textShowMain:function () {
-      var that = this;
-      that.setData({
-        hideModal: false
-      })
-      var animation = wx.createAnimation({
+  textShowMain:function (e) {
+      let that = this;
+      if(e.currentTarget.dataset.show === 'text'){
+          that.setData({whatHangsheng: true});
+      }else{
+          that.setData({whatHangsheng: false});
+      }
+      that.setData({ hideModal: false })
+      let animation = wx.createAnimation({
         duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
         timingFunction: 'ease',//动画的效果 默认值是linear
       })

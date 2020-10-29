@@ -95,7 +95,7 @@ Page({
   },
   btnNetoPage:function(){
     wx.redirectTo({
-      url: '../../pages/silverDetail/index',
+      url: '../../pages/membership/index',
     })
   },
   goldPage:function(){
@@ -108,11 +108,6 @@ Page({
       url: '../../pages/challenge/index',
     })
   },
-  // hangshengPage:function(){
-  //   // wx.navigateTo({
-  //   //   url: '../../pages/silverDetail/index',
-  //   // })
-  // },
   textShowMain:function (e) {
       let that = this;
       if(e.currentTarget.dataset.show === 'text'){

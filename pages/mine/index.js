@@ -20,6 +20,8 @@ Page({
     avatar: 13,
     color: 'copper',
     activityCount: 0,
+    hideModal: true,  //模态框的状态  true-隐藏  false-显示
+    titleText:false,
     avatarObjList: [
       {
         url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
@@ -70,8 +72,8 @@ Page({
   onLoad: function (options) {
     let that = this;
     that.checkIsAppUser();
-    this.getMyprofileInfo();
-    this.getActivityList();
+    that.getMyprofileInfo();
+    that.getActivityList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -81,8 +83,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this;
     let complete = wx.getStorageSync('complete');
-    this.setData({complete, active: 2 });
+    that.setData({complete, active: 2 });
+    that.checkIsAppUser();
+    that.getMyprofileInfo();
+    that.getActivityList();
   },
 
   /**
@@ -301,8 +307,6 @@ callback: function() {
 },
 getMyprofileInfo: function () {
   let that = this;
-  console.log('>>>>>>>>>>>>???????????????')
-  console.log(app.globalData.token)
   let colorMap = {
     1: 'copper',
     2: 'silver',
@@ -365,4 +369,50 @@ getActivityList: function () {
     }
   })
 },
+textShowMain:function (e) {
+  let that = this;
+  if(e.currentTarget.dataset.flag === 'about'){
+    that.setData({titleText: true});
+  }else{
+      that.setData({titleText: false});
+  }
+  that.setData({ hideModal: false })
+  let animation = wx.createAnimation({
+    duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
+    timingFunction: 'ease',//动画的效果 默认值是linear
+  })
+  this.animation = animation
+  setTimeout(function () {
+    that.fadeIn();  //调用显示动画
+  }, 100)
+},
+// 隐藏遮罩层
+hideModal: function () {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,  //动画的持续时间 默认800ms   数值越大，动画越慢   数值越小，动画越快
+      timingFunction: 'ease',  //动画的效果 默认值是linear
+    })
+    this.animation = animation
+    that.fadeDown();//调用隐藏动画   
+    setTimeout(function () {
+      that.setData({ hideModal: true })
+    }, 100)  //先执行下滑动画，再隐藏模块
+  },
+//动画集
+fadeIn: function () {
+    this.animation.translateY(0).step()
+    this.setData({
+      animationData: this.animation.export()  //动画实例的export方法导出动画数据传递给组件的animation属性
+    })
+  },
+fadeDown: function () {
+    this.animation.translateY(1000).step()
+    this.setData({ animationData: this.animation.export()})
+},
+closePage:function(){
+  let that =this;
+  that.fadeDown();
+  that.setData({ hideModal: true })
+ }
 })
