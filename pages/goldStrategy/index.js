@@ -95,7 +95,7 @@ Page({
     })
   },
   btnNetoPage:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/membership/index',
     })
   },
@@ -113,7 +113,7 @@ Page({
       }
       that.setData({ hideModal: false })
       let animation = wx.createAnimation({
-        duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
+        duration: 100, //动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
         timingFunction: 'ease',//动画的效果 默认值是linear
       })
       this.animation = animation
