@@ -136,7 +136,7 @@
 							<image class="icon" src="../../images/mine/right-direction.png"></image>
 						</view>
 					</view>
-					<view class="item">
+					<view class="item" bindtap="textShowMain" data-flag="about">
 						<view class="left">
 							<image class="icon" src="../../images/mine/about-me.png"></image>
 							<view class="label">
@@ -147,7 +147,7 @@
 							<image class="icon" src="../../images/mine/right-direction.png"></image>
 						</view>
 					</view>
-					<view class="item">
+					<view class="item" bindtap="textShowMain"  data-flag="contact">
 						<view class="left">
 							<image class="icon" src="../../images/mine/contact-us.png"></image>
 							<view class="label">
@@ -159,5 +159,25 @@
 						</view>
 					</view>
 				</view>
+				<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+            <view class="modals-cancel" bindtap="hideModal"></view>
+            <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+                    <view class='msg-box-image' bindtap="closePage">
+												<view class="topTitle" wx:if="{{titleText}}">关于我们</view>
+												<view class="topTitle" wx:if="{{!titleText}}">联系我们</view>
+                        <image src='../../images/mine/close@3x.png'></image>
+                      </view>
+                      <view class='msg-box .msg-box2'>
+                          <view class="itemBlock">
+                            <view class="iphoneBlock">+（86）4001 2082 82</view>
+                            <view class="iphoneBlock-image"><image src="../../images/mine/mask@3x.png" /></view>
+                          </view>
+                          <view class="itemBlock itemBlockBottom">
+                            <view class="iphoneBlock">+（852）28220228</view>
+                            <view class="iphoneBlock-image"><image src="../../images/mine/mask@3x.png" /></view>
+                          </view>
+                    </view>
+            </view>
+        </view> 
 				<footer class="footerContent" wx:if="{{!showDialog}}" active="{{active}}"></footer>
 </view>
