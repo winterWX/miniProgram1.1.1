@@ -22,14 +22,14 @@ Page({
     canReceivedReward: false,
     self: {},
     heroList: [],
-    defaultIcon: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+    defaultIcon: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
     baseUrl: app.globalData.imagesUrl,
     completeChange: false,
     allReward: 0,
     showDialog: false,
     avatarObjList: [
       {
-        url: app.globalData.imagesUrl + '/images/pagePng/icon-defult-touxiang.png',
+        url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
         id: 13
       }, {
         url: app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',

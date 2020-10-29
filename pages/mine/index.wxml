@@ -1,28 +1,14 @@
-<!-- <view>
- <view class="healthBack-main">
-		<view class="healthBack" bindtap="healthPage" >乐健康</view>
-		<view class="healthBack" bindtap="sendFriend" >推荐好友</view>
-		<view class="healthBack healtProson" bindtap="profilePage">
-	    <view class="titleTip">个人信息</view>	
-			<view class="titleRed"><view wx:if="{{!complete}}" class="red"></view></view>
-		</view>
-		<view class="healthBack" bindtap="settingPage">设置	</view>
-	</view>
-	<footer active="{{active}}"></footer>
-</view> -->
+
 <view class="container">
 				<!-- <view class="healthBack-main">
 			<view  class="profile backPro" catchtap="profilePage"></view>
-			<view  class="activity" catchtap="navigateMyActivity"></view>
 			<view  class="sport backTop" catchtap="healthPage"></view>
-			<view  class="silverDetail silverDetailers" catchtap="silverDetail"></view>
 			<view  class="recommend backRemon" catchtap="sendFriend"></view>
 			<view  class="addFriend addFriendSty" catchtap="addFriend"></view>
 			<image class="mine-image" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine.png"></image>
 			<view  wx:if="{{showDialog}}" class="modal-mianConten" style="height:{{windowHeight}}rpx;"></view>
 		</view>
 		<view class="bottom-box">
-			<view class="setting back" catchtap="settingPage"></view>
 			<image src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/mine-bottom.png"></image>
 		</view>
 		<!-- <view wx:if="{{showDialog}}" class="modal-body">
@@ -34,32 +20,34 @@
 				</view>
 		</view> -->
 				<view class="header">
-					<view class="tip-box">
+					<view class="tip-box" wx:if="{{userInfo.completedCount !== 6}}">
 						<image class="bg" src="../../images/mine/background@2x.png"></image>
-						<view class="profile-tip">20%个人信息尚未完善，<text class="link">完成即可获得100积分</text>。</view>
+						<view class="profile-tip">{{userInfo.completedCount}}/6个人信息尚未完善，<text class="link" catchtap="silverDetail">完成即可获得100积分</text>。</view>
 					</view>
-					<view class="portrait">
+					<view class="portrait" catchtap="profilePage">
 						<view class="header-box">
 							<image class="circle" src="../../images/mine/oval@2x.png"></image>
-							<image class="avatar" src="../../images/mine/group-27@2x.png"></image>
+							<image class="avatar" src="{{avatarObjList[avatar].url}}"></image>
+							<image class="edit-icon" src="../../images/mine/edit.png"></image>
 						</view>
 						<view class="name">
-							刘雅丽
+							{{userInfo.nickname}}
 						</view>
 					</view>
 					<view class="info">
 						<view class="item">
 							<view class="num">
-								1650
+								{{userInfo.integral}}
 							</view>
 							<view class="tip">
 								积分
+								<image class="icon" src="../../images/mine/fruit-icon.png"></image>
 							</view>
 						</view>
 						<view class="dividing-line"></view>
 						<view class="item">
 							<view class="num">
-								30
+								{{userInfo.couponNumber}}
 							</view>
 							<view class="tip">
 								优惠券
@@ -67,17 +55,27 @@
 						</view>
 					</view>
 					<view class="member-info">
-						<image class="img" src="../../images/mine/gold-member.png"></image>
-						<view class="level">
+						<image class="img" wx:if="{{userInfo.level === 3}}" src="../../images/mine/gold-member.png"></image>
+						<image class="img" wx:if="{{userInfo.level === 2}}" src="../../images/mine/silver-bg@2x.png"></image>
+						<image class="img" wx:if="{{userInfo.level === 1}}" src="../../images/mine/copper-member.png"></image>
+						<image class="lever-icon" wx:if="{{userInfo.level === 1}}" src="../../images/mine/copper.png"></image>
+						<image class="lever-icon" wx:if="{{userInfo.level === 2}}" src="../../images/mine/silver.png"></image>
+						<view class="level gold" wx:if="{{userInfo.level === 3}}">
 							金会员
 						</view>
-						<view class="guide">
+						<view class="level silver" wx:if="{{userInfo.level === 2}}">
+							银会员
+						</view>
+						<view class="level copper" wx:if="{{userInfo.level === 1}}">
+							铜会员
+						</view>
+						<view class="guide {{color}}" catchtap="silverDetail">
 							查看会员权益
 						</view>
 					</view>
 				</view>
 				<view class="guider-box">
-					<view class="item">
+					<view class="item" catchtap="navigateMyActivity">
 						<view class="left">
 							<image class="icon" src="../../images/mine/balloon.png"></image>
 							<view class="label">
@@ -86,12 +84,12 @@
 						</view>
 						<view class="right">
 							<view class="label">
-								3
+								{{activityCount}}
 							</view>
 							<image class="icon" src="../../images/mine/right-direction.png"></image>
 						</view>
 					</view>
-				 	<view class="item">
+				 	<view class="item" catchtap="messageCenter">
 						<view class="left">
 							<image class="icon" src="../../images/mine/message-icon.png"></image>
 							<view class="label">
@@ -103,7 +101,7 @@
 							<image class="icon" src="../../images/mine/right-direction.png"></image>
 						</view>
 					</view>
-					<view class="item">
+					<view class="item" catchtap="addFriend">
 						<view class="left">
 							<image class="icon" src="../../images/mine/friend-icon.png"></image>
 							<view class="label">
@@ -114,7 +112,7 @@
 							<image class="icon" src="../../images/mine/right-direction.png"></image>
 						</view>
 					</view>
-					<view class="item">
+					<view class="item" bindtap="sendFriend">
 						<view class="left">
 							<image class="icon" src="../../images/mine/gift.png"></image>
 							<view class="label">
@@ -127,7 +125,7 @@
 					</view>
 				</view>
 				<view class="guider-box">
-					<view class="item">
+					<view class="item" catchtap="settingPage">
 						<view class="left">
 							<image class="icon" src="../../images/mine/setting.png"></image>
 							<view class="label">

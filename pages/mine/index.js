@@ -15,7 +15,53 @@ Page({
     isAppData: false,  //判断是不是app用户
     typeFlg:'',
     showDialog:false,
-    windowHeight: wx.getSystemInfoSync().windowHeight *2
+    userInfo: {},
+    windowHeight: wx.getSystemInfoSync().windowHeight *2,
+    avatar: 13,
+    color: 'copper',
+    activityCount: 0,
+    avatarObjList: [
+      {
+        url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
+        id: 13
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
+        id: 1
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconNiu.png',
+        id: 2
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
+        id: 3
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
+        id: 4
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconLong.png',
+        id: 5
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconShe.png',
+        id: 6
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconMa.png',
+        id: 7
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconYang.png',
+        id: 8
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
+        id: 9
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconJi.png',
+        id: 10
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconGou.png',
+        id: 11
+      }, {
+        url: app.globalData.imagesUrl + '/images/icon/iconZhu.png',
+        id: 12
+      }
+    ]
   },
 
   /**
@@ -24,6 +70,8 @@ Page({
   onLoad: function (options) {
     let that = this;
     that.checkIsAppUser();
+    this.getMyprofileInfo();
+    this.getActivityList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -136,9 +184,15 @@ Page({
       url: '../../pages/addFriend/index'
     })
   },
+  // 积分页面
   silverDetail: function () {
     wx.navigateTo({
       url: '../../pages/silverDetail/index'
+    })
+  },
+  messageCenter: function() {
+    wx.navigateTo({
+      url: '../messageCenter/index'
     })
   },
   //最近上传数据时间查询(query- queryLatestime)|移动端
@@ -166,7 +220,6 @@ Page({
                       steps: item.step
                    }
               });
-              console.log('resultsresults+=====',results);
               that.getUploaddata(results);
               // let time = res.data.data;
               // const runArray = that.runArray(runData,time);
@@ -245,5 +298,71 @@ closeModal: function() {
   },
 callback: function() {
     this.setData({showDialog: false});
-}
+},
+getMyprofileInfo: function () {
+  let that = this;
+  console.log('>>>>>>>>>>>>???????????????')
+  console.log(app.globalData.token)
+  let colorMap = {
+    1: 'copper',
+    2: 'silver',
+    3: 'gold'
+  }
+  wx.request({
+    url: app.globalData.baseUrl + '/myprofile/homepage/search',
+    method: "GET",
+    header: {
+      'Content-Type': 'application/json',
+      "token": app.globalData.token
+    },
+    success: function (res) {
+      if (res.data.code == 200) {
+        console.log(res.data.data);
+        let userInfo = res.data.data;
+        userInfo.level = 2;
+        let color = colorMap[userInfo.level]
+        let avatar = userInfo.avatar || 13;
+        that.setData({userInfo, avatar, color});
+      } 
+    },
+    fail: function (res) {
+      console.log('.........fail..........');
+    }
+  })
+},
+getActivityList: function () {
+  let that = this;
+  // wx.showToast({ title: '加载中', icon: 'loading' });
+  wx.request({
+    url: app.globalData.baseUrl + '/remote/myactivity/list',
+    method: "POST",
+    header: {
+      'Content-Type': 'application/json',
+      "token": app.globalData.token
+    },
+    data: {
+      currentPage: 1,
+      pageSize: 10,
+      "status": [
+        {
+          "status": 1
+        },
+        {
+          "status": 2
+        }
+      ]
+    },
+    success: function (res) {
+      // wx.hideToast();
+      if (res.data.code == 200) {
+        let activityCount = res.data.totalCount;
+        that.setData({ activityCount});
+
+      }
+    },
+    fail: function (res) {
+      // wx.hideToast();
+    }
+  })
+},
 })
