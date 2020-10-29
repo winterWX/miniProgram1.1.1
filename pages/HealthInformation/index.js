@@ -290,7 +290,7 @@ Page({
         that.setData({
           deleteTagArray:[]
         })
-        let myTagFilterNewArray = myTagFilter.filter(item => item.tag !==                                                     that.data.myTagData[clickIndex].tag);
+        let myTagFilterNewArray = myTagFilter.filter(item => item.tag !== that.data.myTagData[clickIndex].tag);
         that.setData({
           myTagData: myTagFilterNewArray
         })
