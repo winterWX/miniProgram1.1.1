@@ -89,15 +89,14 @@
 							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
-				 	<view class="item" catchtap="messageCenter">
+					<view class="item" bindtap="sendFriend">
 						<view class="left">
-							<image class="icon" src="{{baseUrl + '/images/mine/message-icon.png'}}"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/gift.png'}}"></image>
 							<view class="label">
-								消息中心
+								推荐有礼
 							</view>
 						</view>
 						<view class="right">
-							<!-- <view class="tip"></view> -->
 							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
@@ -112,14 +111,15 @@
 							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
-					<view class="item" bindtap="sendFriend">
+				 	<view class="item" catchtap="messageCenter">
 						<view class="left">
-							<image class="icon" src="{{baseUrl + '/images/mine/gift.png'}}"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/message-icon.png'}}"></image>
 							<view class="label">
-								推荐有礼
+								消息中心
 							</view>
 						</view>
 						<view class="right">
+							<!-- <view class="tip"></view> -->
 							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
