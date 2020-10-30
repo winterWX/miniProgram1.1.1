@@ -14,8 +14,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-     this.initPage(options.levelParam);
+  onLoad: function () {
+     this.initPage();
   },
 
   /**
@@ -76,8 +76,8 @@ Page({
         "token": app.globalData.token
       },
       data:{
-          flag : param === '2' ? 3 : 0, 
-          level : param === '2' ?  5 : 0
+          flag : 3, 
+          level : 5
       },
       success: function (res) {
         if(res.data.code === 200){

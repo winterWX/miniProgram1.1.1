@@ -55,21 +55,21 @@
 						</view>
 					</view>
 					<view class="member-info">
-						<image class="img" wx:if="{{userInfo.level === 3}}" src="{{baseUrl + '/images/mine/gold-member.png'}}"></image>
-						<image class="img" wx:if="{{userInfo.level === 2}}" src="{{baseUrl + '/images/mine/silver-bg@2x.png'}}"></image>
+						<image class="img" wx:if="{{userInfo.level === 3 || userInfo.level === 5}}" src="{{baseUrl + '/images/mine/gold-member.png'}}"></image>
+						<image class="img" wx:if="{{userInfo.level === 2 || userInfo.level === 4}}" src="{{baseUrl + '/images/mine/silver-bg@2x.png'}}"></image>
 						<image class="img" wx:if="{{userInfo.level === 1}}" src="{{baseUrl + '/images/mine/copper-member.png'}}"></image>
 						<image class="lever-icon" wx:if="{{userInfo.level === 1}}" src="{{baseUrl + '/images/mine/copper.png'}}"></image>
-						<image class="lever-icon" wx:if="{{userInfo.level === 2}}" src="{{baseUrl + '/images/mine/silver.png'}}"></image>
-						<view class="level gold" wx:if="{{userInfo.level === 3}}">
+						<image class="lever-icon" wx:if="{{userInfo.level === 2 || userInfo.level === 4}}" src="{{baseUrl + '/images/mine/silver.png'}}"></image>
+						<view class="level gold" wx:if="{{userInfo.level === 3 || userInfo.level === 5}}">
 							金会员
 						</view>
-						<view class="level silver" wx:if="{{userInfo.level === 2}}">
+						<view class="level silver" wx:if="{{userInfo.level === 2 || userInfo.level === 4}}">
 							银会员
 						</view>
 						<view class="level copper" wx:if="{{userInfo.level === 1}}">
 							铜会员
 						</view>
-						<view class="guide {{color}}" catchtap="silverDetail">
+						<view class="guide {{color}} {{ (userInfo.level === 3 || userInfo.level === 5) ? 'goldBlock' : ''}}" catchtap="silverDetail">
 							查看会员权益
 						</view>
 					</view>
@@ -170,11 +170,11 @@
                       <view class='msg-box .msg-box2'>
                           <view class="itemBlock">
                             <view class="iphoneBlock">+（86）4001 2082 82</view>
-                            <view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
+                            <!-- <view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view> -->
                           </view>
                           <view class="itemBlock itemBlockBottom">
                             <view class="iphoneBlock">+（852）28220228</view>
-                            <view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
+                            <!-- <view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view> -->
                           </view>
                     </view>
             </view>

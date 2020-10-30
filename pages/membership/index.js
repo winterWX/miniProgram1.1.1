@@ -130,5 +130,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/silverDetail/index',
     })
+  },
+  //查看优惠券
+  myCouponsFun:function(){
+    wx.navigateTo({
+      url: '../../pages/myCoupons/index',
+    })
   }
 })
