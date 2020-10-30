@@ -35,7 +35,7 @@
 						</view>
 					</view>
 					<view class="info">
-						<view class="item">
+						<view class="item" catchtap="integralDetails">
 							<view class="num">
 								{{userInfo.integral}}
 							</view>
@@ -45,7 +45,7 @@
 							</view>
 						</view>
 						<view class="dividing-line"></view>
-						<view class="item">
+						<view class="item" catchtap="navigateCoupons">
 							<view class="num">
 								{{userInfo.couponNumber}}
 							</view>
@@ -83,9 +83,9 @@
 							</view>
 						</view>
 						<view class="right">
-							<view class="label">
+							<!-- <view class="label">
 								{{activityCount}}
-							</view>
+							</view> -->
 							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
