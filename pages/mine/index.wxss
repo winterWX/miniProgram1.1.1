@@ -53,8 +53,8 @@ page {
   width: 176rpx;
   height: 176rpx;
   position: absolute;
-  top: 12rpx;
-  left: 12rpx;
+  top: 14rpx;
+  left: 14rpx;
 }
 .container .portrait .header-box .edit-icon {
   width: 68rpx;

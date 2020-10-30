@@ -22,12 +22,12 @@
 				<view class="header">
 					<view class="tip-box" wx:if="{{userInfo.completedCount !== 6}}">
 						<image class="bg" src="{{baseUrl + '/images/mine/background@2x.png'}}"></image>
-						<view class="profile-tip">{{userInfo.completedCount}}/6个人信息尚未完善，<text class="link" catchtap="integralDetails">完成即可获得100积分</text>。</view>
+						<view class="profile-tip">{{6 - userInfo.completedCount}}/6个人信息尚未完善，<text class="link" catchtap="integralDetails">完成即可获得100积分</text>。</view>
 					</view>
 					<view class="portrait" catchtap="profilePage">
 						<view class="header-box">
 							<image class="circle" src="{{baseUrl + '/images/mine/oval@2x.png'}}"></image>
-							<image class="avatar" src="{{avatarObjList[avatar].url}}"></image>
+							<image class="avatar" src="{{avatarObjList[avatar].url ? avatarObjList[avatar].url : avatarObjList[0].url }}"></image>
 							<image class="edit-icon" src="{{baseUrl + '/images/mine/edit.png'}}"></image>
 						</view>
 						<view class="name">

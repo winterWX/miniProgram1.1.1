@@ -326,7 +326,6 @@ getMyprofileInfo: function () {
     success: function (res) {
       if (res.data.code == 200) {
         let userInfo = res.data.data;
-        userInfo.level = 2;
         let color = colorMap[userInfo.level]
         let avatar = userInfo.avatar || 13;
         that.setData({userInfo, avatar, color});
