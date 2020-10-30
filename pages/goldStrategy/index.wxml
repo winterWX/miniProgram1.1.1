@@ -64,7 +64,7 @@
                 <view wx:if="{{whatHangsheng}}" class="msg-box-imageBlock">
                     <view class='msg-box-image' bindtap="closePage">
                         <view class="topTitle">什么是尊享码</view>
-                        <image src='../../images/mine/close@3x.png'></image>
+                        <image src='http://106.54.73.125:8104/images/miniprogram/images/mine/close@3x.png'></image>
                       </view>
                       <view class='msg-box'>
                           恒生尊享码为恒生客户专有的一串？数字？。在开户成功或者保险购买成功后就可以获得相应的尊享码。每次开户成功或者购买保险成功，均可以获得新的尊享码。若你忘记或者找不到你的尊享码，可以联系你的客户经理找回你的尊享码。
@@ -72,17 +72,17 @@
                 </view>
                 <view wx:if="{{!whatHangsheng}}">
                     <view class='msg-box-image' bindtap="closePage">
-                        <view class="topTitle">联系我们</view>
-                        <image src='../../images/mine/close@3x.png'></image>
+                        <view class="topTitle">了解恒生保险</view>
+                        <image src='http://106.54.73.125:8104/images/miniprogram/images/mine/close@3x.png'></image>
                       </view>
                       <view class='msg-box .msg-box2'>
                           <view class="itemBlock">
                             <view class="iphoneBlock">+（86）4001 2082 82</view>
-                            <view class="iphoneBlock-image"><image src="../../images/mine/mask@3x.png" /></view>
+                            <view class="iphoneBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/mine/mask@3x.png" /></view>
                           </view>
                           <view class="itemBlock itemBlockBottom">
                             <view class="iphoneBlock">+（852）28220228</view>
-                            <view class="iphoneBlock-image"><image src="../../images/mine/mask@3x.png" /></view>
+                            <view class="iphoneBlock-image"><image src="http://106.54.73.125:8104/images/miniprogram/images/mine/mask@3x.png" /></view>
                           </view>
                     </view>
                 </view>
