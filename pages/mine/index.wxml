@@ -26,9 +26,9 @@
 					</view>
 					<view class="portrait" catchtap="profilePage">
 						<view class="header-box">
-							<image class="circle" src="../../images/mine/oval@2x.png"></image>
+							<image class="circle" src="{{baseUrl + '/images/mine/oval@2x.png'}}"></image>
 							<image class="avatar" src="{{avatarObjList[avatar].url}}"></image>
-							<image class="edit-icon" src="../../images/mine/edit.png"></image>
+							<image class="edit-icon" src="{{baseUrl + '/images/mine/edit.png'}}"></image>
 						</view>
 						<view class="name">
 							{{userInfo.nickname}}
@@ -41,7 +41,7 @@
 							</view>
 							<view class="tip">
 								积分
-								<image class="icon" src="../../images/mine/fruit-icon.png"></image>
+								<image class="icon" src="{{baseUrl + '/images/mine/fruit-icon.png'}}"></image>
 							</view>
 						</view>
 						<view class="dividing-line"></view>
@@ -55,11 +55,11 @@
 						</view>
 					</view>
 					<view class="member-info">
-						<image class="img" wx:if="{{userInfo.level === 3}}" src="../../images/mine/gold-member.png"></image>
-						<image class="img" wx:if="{{userInfo.level === 2}}" src="../../images/mine/silver-bg@2x.png"></image>
-						<image class="img" wx:if="{{userInfo.level === 1}}" src="../../images/mine/copper-member.png"></image>
-						<image class="lever-icon" wx:if="{{userInfo.level === 1}}" src="../../images/mine/copper.png"></image>
-						<image class="lever-icon" wx:if="{{userInfo.level === 2}}" src="../../images/mine/silver.png"></image>
+						<image class="img" wx:if="{{userInfo.level === 3}}" src="{{baseUrl + '/images/mine/gold-member.png'}}"></image>
+						<image class="img" wx:if="{{userInfo.level === 2}}" src="{{baseUrl + '/images/mine/silver-bg@2x.png'}}"></image>
+						<image class="img" wx:if="{{userInfo.level === 1}}" src="{{baseUrl + '/images/mine/copper-member.png'}}"></image>
+						<image class="lever-icon" wx:if="{{userInfo.level === 1}}" src="{{baseUrl + '/images/mine/copper.png'}}"></image>
+						<image class="lever-icon" wx:if="{{userInfo.level === 2}}" src="{{baseUrl + '/images/mine/silver.png'}}"></image>
 						<view class="level gold" wx:if="{{userInfo.level === 3}}">
 							金会员
 						</view>
@@ -77,7 +77,7 @@
 				<view class="guider-box">
 					<view class="item" catchtap="navigateMyActivity">
 						<view class="left">
-							<image class="icon" src="../../images/mine/balloon.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/balloon.png'}}"></image>
 							<view class="label">
 								我的活动
 							</view>
@@ -86,76 +86,76 @@
 							<view class="label">
 								{{activityCount}}
 							</view>
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 				 	<view class="item" catchtap="messageCenter">
 						<view class="left">
-							<image class="icon" src="../../images/mine/message-icon.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/message-icon.png'}}"></image>
 							<view class="label">
 								消息中心
 							</view>
 						</view>
 						<view class="right">
 							<!-- <view class="tip"></view> -->
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 					<view class="item" catchtap="addFriend">
 						<view class="left">
-							<image class="icon" src="../../images/mine/friend-icon.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/friend-icon.png'}}"></image>
 							<view class="label">
 								我的好友
 							</view>
 						</view>
 						<view class="right">
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 					<view class="item" bindtap="sendFriend">
 						<view class="left">
-							<image class="icon" src="../../images/mine/gift.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/gift.png'}}"></image>
 							<view class="label">
 								推荐有礼
 							</view>
 						</view>
 						<view class="right">
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 				</view>
 				<view class="guider-box">
 					<view class="item" catchtap="settingPage">
 						<view class="left">
-							<image class="icon" src="../../images/mine/setting.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/setting.png'}}"></image>
 							<view class="label">
 								设置
 							</view>
 						</view>
 						<view class="right">
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 					<view class="item" bindtap="textShowMain" data-flag="about">
 						<view class="left">
-							<image class="icon" src="../../images/mine/about-me.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/about-me.png'}}"></image>
 							<view class="label">
 								关于我们
 							</view>
 						</view>
 						<view class="right">
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 					<view class="item" bindtap="textShowMain"  data-flag="contact">
 						<view class="left">
-							<image class="icon" src="../../images/mine/contact-us.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/contact-us.png'}}"></image>
 							<view class="label">
 								联系我们
 							</view>
 						</view>
 						<view class="right">
-							<image class="icon" src="../../images/mine/right-direction.png"></image>
+							<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 						</view>
 					</view>
 				</view>
@@ -165,16 +165,16 @@
                     <view class='msg-box-image' bindtap="closePage">
 												<view class="topTitle" wx:if="{{titleText}}">关于我们</view>
 												<view class="topTitle" wx:if="{{!titleText}}">联系我们</view>
-                        <image src='../../images/mine/close@3x.png'></image>
+                        <image src="{{baseUrl + '/images/mine/close@3x.png'}}"></image>
                       </view>
                       <view class='msg-box .msg-box2'>
                           <view class="itemBlock">
                             <view class="iphoneBlock">+（86）4001 2082 82</view>
-                            <view class="iphoneBlock-image"><image src="../../images/mine/mask@3x.png" /></view>
+                            <view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
                           </view>
                           <view class="itemBlock itemBlockBottom">
                             <view class="iphoneBlock">+（852）28220228</view>
-                            <view class="iphoneBlock-image"><image src="../../images/mine/mask@3x.png" /></view>
+                            <view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
                           </view>
                     </view>
             </view>
