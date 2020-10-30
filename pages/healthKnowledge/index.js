@@ -12,7 +12,8 @@ Page({
     questionNumber: 0,
     participated: false,
     id: '',
-    isEnds: 1
+    isEnds: 1,
+    reward: 0
   },
   getUserInfo(e) { //获取用户信息
     if (e.detail.userInfo) {
@@ -153,7 +154,7 @@ Page({
       },
       success: function (res) {
         if(res.data.code === 200) {
-          let { bannerUrl, title, content, questionNumber, quizResult, isEnds } = res.data.data;
+          let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
           let info = content.replace(/<[^>]+>/g,"");
           let participated = quizResult !== null;
           that.setData({
@@ -162,7 +163,8 @@ Page({
             content: info,
             questionNumber,
             participated,
-            isEnds
+            isEnds,
+            reward
           })
         }
       },

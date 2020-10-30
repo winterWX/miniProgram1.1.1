@@ -4,10 +4,6 @@
 			<image class="img" src="{{activity.coverImageLocation}}" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}"></image>
 			<view class="activity-content" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
 				<text class="title">{{activity.title}}</text>
-			<!-- 	<view class="remain-days" wx:if="{{activity.status === 2}}">
-					<image class="time-icon" src="http://106.54.73.125:8104/images/miniprogram/images/pagePng/icon-left-time.png"></image>
-					<text>剩余{{activity.remainDays}}天</text>
-				</view> -->
 			</view>
 			<view class="activity-desc" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
 				<text>{{activity.description}}</text>
