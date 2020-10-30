@@ -69,7 +69,7 @@
                 <view class="text4-main">
                   <van-button type="primary" size="large" bindtap="bindEmail">继续</van-button>
                 </view>
-                <view class="text5-main">查看的我的优惠券</view>
+                <view class="text5-main" bindtap="myCouponsFun">查看我的优惠券</view>
             </view>
            </view>
            <!-- <view class="bottomBlock" bindtap="closeBlock">

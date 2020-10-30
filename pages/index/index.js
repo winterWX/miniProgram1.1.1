@@ -15,8 +15,9 @@ Page({
     runDataText: 0,
     rejectRun: false, //拒绝授权
     showDialog: false,
-    membershipModal: false,
-    semicircleState: false //控制半圆的显示，因为canves 半圆层级比较高
+    semicircleState: false, //控制半圆的显示，因为canves 半圆层级比较高
+    levelNum:0,
+    levelNumShow:true
   },
   onLoad: function (options) {
     if (options.flag === 'true'){   //是 true
@@ -246,6 +247,7 @@ homePageInit: function () {
              return {
                 ...item,
                 title: index === 0 ? '每日步数挑战' : '健康知识问答王者',
+                description: index === 0 ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
                 //coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
                 coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
                 createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
@@ -274,20 +276,30 @@ userLevel:function(){
     },
     success: (res) => {
       if (res.data.code === 200) {
-          this.setData({levelNum:res.data.data});
+            that.setData({levelNum:res.data.data});
+          if(res.data.data === 3 || res.data.data === 5){
+             that.setData({levelNumShow : false});
+          }
           console.log('res.data.data',res.data.data);
       }
     }
   })
 },
 membership:function(){
+  let that = this;
   if(app.globalData.isLogin !== 3){
       return;
+  }else{
+     if(that.data.levelNum === 1){
+        wx.navigateTo({
+          url: '../../pages/strategy/index'
+        })
+     }else if(that.data.levelNum === 2 || that.data.levelNum === 4){
+        wx.navigateTo({
+          url: '../../pages/goldStrategy/index'
+        })
+     }
   }
-  this.setData({ membershipModal:true, semicircleState : false});
-},
-closeModal:function(){
-   this.setData({ membershipModal:false, semicircleState : true});
 },
 listClick(e){
     let goodsId = e.currentTarget.dataset.id;      
