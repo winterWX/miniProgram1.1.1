@@ -180,11 +180,5 @@ Page({
         })
       }
     })
-  },
-  navigateDetail: function() {
-    let { activityId } = this.data;
-    wx.navigateTo({
-      url: '../healthKnowledge/index?id=' + activityId,
-    })
   }
 })
