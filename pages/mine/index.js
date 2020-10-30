@@ -89,7 +89,7 @@ Page({
     that.setData({complete, active: 2 });
     that.checkIsAppUser();
     that.getMyprofileInfo();
-    that.getActivityList();
+    // that.getActivityList();
   },
 
   /**
@@ -205,6 +205,11 @@ Page({
   messageCenter: function() {
     wx.navigateTo({
       url: '../messageCenter/index'
+    })
+  },
+  navigateCoupons: function() {
+    wx.navigateTo({
+      url: '../myCoupons/index'
     })
   },
   //最近上传数据时间查询(query- queryLatestime)|移动端
