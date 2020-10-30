@@ -48,13 +48,16 @@ page {
 .container .portrait .header-box .circle {
   width: 200rpx;
   height: 200rpx;
+  position: absolute;
+  left: 0rpx;
+  top: 0rpx;
 }
 .container .portrait .header-box .avatar {
   width: 176rpx;
   height: 176rpx;
   position: absolute;
-  top: 14rpx;
-  left: 14rpx;
+  top: 13rpx;
+  left: 13rpx;
 }
 .container .portrait .header-box .edit-icon {
   width: 68rpx;
