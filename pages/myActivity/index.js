@@ -127,18 +127,24 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          let { status } = res.data.data;
+          let { status, type } = res.data.data;
+          let url = '';
+          console.log(type);
           let detail = {
             ...res.data.data,
             content: res.data.data.content,
             ruledescription: res.data.data.ruledescription
           };
-
-          let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
-          let url = success || status === 3 ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
+          if (type === '2') {
+            url = '../changeQAResult/index?id=' + id;
+          } else {
+            let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
+            url = success || status === 3 ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
+          }
           wx.navigateTo({
             url
           })
+      
         }
       },
       fail: function (res) {
