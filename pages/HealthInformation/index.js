@@ -80,7 +80,7 @@ Page({
      data:{
       "currentPage": 1,
       "pageSize": 10,
-      "topic": parase !== undefined ? parase : ''
+      "topic": parase !== undefined ?  parase : '热门推荐'
     },
     method:"POST",
     header:{

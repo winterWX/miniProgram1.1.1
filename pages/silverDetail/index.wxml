@@ -1,5 +1,5 @@
 <view>
-    <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}"  bind:parentLevel="parentCallBack" />
+    <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}" showCarkBlock ="{{showCarkBlock}}" bind:parentLevel="parentCallBack" />
     <view wx:if="{{activeData.level === 1 && LockFlg}}">
         <view class="integralAct-main">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
@@ -15,8 +15,8 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
+                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
+                    <view><image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /></view> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
                         <view class="minText">{{item.couponCategory}}</view>
@@ -96,7 +96,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
+                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
@@ -182,7 +182,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
+                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
@@ -264,7 +264,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
+                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view>
@@ -339,7 +339,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop">
+                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image  wx:if="{{item.received !==2}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <image  wx:if="{{item.received === 2}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3x.png" />
                     <view class="blockText">

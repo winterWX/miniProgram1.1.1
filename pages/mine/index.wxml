@@ -34,7 +34,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="member-info">
+		<view class="member-info" catchtap="silverDetail">
 			<image class="img" wx:if="{{userInfo.level === 3 || userInfo.level === 5}}" src="{{baseUrl + '/images/mine/gold-member.png'}}"></image>
 			<image class="img" wx:if="{{userInfo.level === 2 || userInfo.level === 4}}" src="{{baseUrl + '/images/mine/silver-bg@2x.png'}}"></image>
 			<image class="img" wx:if="{{userInfo.level === 1}}" src="{{baseUrl + '/images/mine/copper-member.png'}}"></image>
@@ -49,7 +49,7 @@
 			<view class="level copper" wx:if="{{userInfo.level === 1}}">
 				铜会员
 			</view>
-			<view class="guide {{color}} {{ (userInfo.level === 3 || userInfo.level === 5) ? 'goldBlock' : ''}}" catchtap="silverDetail">
+			<view class="guide {{color}} {{ (userInfo.level === 3 || userInfo.level === 5) ? 'goldBlock' : ''}}">
 				查看会员权益
 			</view>
 		</view>

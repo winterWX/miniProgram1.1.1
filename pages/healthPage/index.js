@@ -176,26 +176,15 @@ Page({
     })
   },
   todayIntegral(data){  //组件中领取今天的积分
-    var that=this
-    that.setData({
-      anBackShow: true
-    })
-    that.setData({
-      btnStatus: 2,
-      stepsNum: {
-        todaySteps: 10000,
-        receiveStatus: 1,
-        isDone: 1,
-        integral: 10
-      }
-    })
-    that.setData({ forceNum: true })       
+    let that = this;
+    that.settingDataBtn();
+    that.setData({ anBackShow: true ,forceNum: true })       
   },
   yesterdayIntegral(){  //领取昨天的积分
     this.setData({ anBackShow: true })
   },
   settingDataBtn(){
-    var that = this;
+    let that = this;
     app.healthStep.SynchronousData = true;
     app.globalData.isWeRunStepsFail = true;
     that.getQueryintegral();
@@ -209,35 +198,10 @@ Page({
       data:{ souce:'string', type:'MINIP' },
       success: function (res) {
           if(res.data.code === 200){
-             let targetStepsNum = 10000;
-             let todayStepsInit = 0;
-             if(res.data.data.todaySteps === null){
-                res.data.data.todaySteps = todayStepsInit;
-             }else{
-                todayStepsInit = res.data.data.todaySteps;
-             }
-             that.setData({ stepsNum: res.data.data });
-             if(todayStepsInit < 10000){
-                  that.setData({ startStep : targetStepsNum - todayStepsInit, btnStatus: 0});
-              }else if(todayStepsInit >= 10000){
-                  if(app.globalData.isReceiveStatus){
-                      //返回乐健康，第二次进来，默认已选的状态
-                      that.setData({ btnStatus: 2, isDone:1 });
-                      that.setData({
-                        stepsNum: {     
-                          todaySteps: todayStepsInit,   
-                          receiveStatus: 1,	           
-                          isDone: 1,	
-                          integral: 10	
-                        }
-                      })
-              }else{
-                  that.setData({ btnStatus: 1, isDone:1 });
-              }
-          }
-          that.setData({ startStatus: false });
-          }else{
-            that.setData({ startStep: 10000, btnStatus: 0,startStatus: false })
+              that.setData({ stepsNum: res.data.data });
+            if(res.data.data.todaySteps < 10000){
+              that.setData({ startStep : 10000 - res.data.data.todaySteps});
+            }
           }
       },
       fail: function (res) {
@@ -247,7 +211,6 @@ Page({
   },
   integralBtn:function(){
     let that = this;
-    if(that.data.btnStatus === 1){
       wx.request({
         url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
         method: "GET",
@@ -257,24 +220,14 @@ Page({
         },
         success: function (res) {
         if(res.data.code === 200){
-            that.setData({ anBackShow:true, btnStatus: 2 })
-            app.globalData.isReceiveStatus = true;  // 标记第二次进来
-            that.setData({
-              stepsNum: {
-                todaySteps: 10000,           
-                receiveStatus: 1,	           
-                isDone: 1,	
-                integral: 10	
-              }
-            })
-            that.setData({ forceNum: true })
+            that.settingDataBtn();
+            that.setData({ forceNum: true , anBackShow:true});
           }          
         },
         fail: function (res) {
           console.log('.........fail..........');
         }
       });
-    }
   },
   healthEveryday:function(){
     var that = this;

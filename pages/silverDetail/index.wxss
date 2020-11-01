@@ -39,6 +39,7 @@
   margin-top:20rpx;
   padding: 30rpx;
   position: relative;
+  z-index: -1;
 }
 .integralActTitle{
   font-size: 32rpx;
@@ -73,7 +74,6 @@
   color: rgb(51,51,51);
 }
 .progressBlockPosee{
-  width: 100%;
   height: 20rpx;
   background-color: rgb(237,237,237);
   border-radius: 50rpx;
@@ -135,11 +135,12 @@
   margin-top: 8rpx;
 }
 .progressCark image{
-    width: 138rpx;
+    width: 126rpx;
     height: 158rpx;
 }
 .blockText{
-  width: 126rpx;
+  /* width: 126rpx; */
+  width: 100%;
   height: 158rpx;
   text-align: center;
 }
@@ -148,12 +149,14 @@
   font-size: 28rpx;
   margin-bottom: 10rpx;
   margin-top: 5rpx;
+  width: 100%;
 }
 .minText{
   color: rgb(102,102,102);
   font-size: 20rpx;
-  margin-bottom: 15rpx;
+  margin-bottom: 20rpx;
   height: 25rpx;
+  width: 100%;
 }
 .bottomTextTop{
   font-size: 24rpx;
@@ -161,6 +164,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 .bottomText{
   font-size: 24rpx;
@@ -178,11 +182,12 @@
 }
 .blockTextTop{
   position: relative;
+  text-align: center;
 }
 .blockText{
   position: absolute;
-  top: 18rpx;
-  left: 6rpx;
+  top: 12rpx;
+  /* left: 22rpx; */
 }
 .progressBlockText1{
   font-size: 24rpx;
@@ -427,7 +432,7 @@
   width: 650rpx;
   height: 550rpx;
   background-color: #ffffff;
-  top:230rpx;
+  top:330rpx;
   z-index: 12;
 }
 .bottomBlock image{
