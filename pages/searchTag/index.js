@@ -65,7 +65,6 @@ Page({
   },
   onChange: function (e){
     let that = this;
-    console.log('e.detail.value', e,e.detail.value)
     var inputVal = e.detail.replace(/^\s+|\s+$/g, "");
     wx.request({
       url: app.globalData.baseUrl + '/remote/article/filter/query',
@@ -74,7 +73,11 @@ Page({
         'Content-Type': 'application/json',
         "token": app.globalData.token
       },
-      data:{value : inputVal},
+      data:{
+        currentPage: 1,
+        pageSize: 10,
+        value : inputVal
+      },
       success: function (res) {
         if(res.data.code === 200){
           res.data.data = res.data.data.map(item=>{

@@ -1,4 +1,4 @@
-<view class="imageBalock" >
+<view class="imageBalock {{showCarkBlock === true ? 'imageBalock2' :''}}" >
       <view class="topLeftBlock topLeftFrist" style="width:{{windowWidth}};" wx:if="{{activeData.level === 1}}">
          <swiper class="swiperItem" duration="{{duration}}"  bindchange="cardChange" current="{{currentNum}}">
             <swiper-item class="{{fristCaredShow ? 'afterBalck' :''}} {{secondeCardShow ? 'secondeCardShow1' : ''}}">

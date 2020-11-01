@@ -1,4 +1,3 @@
-<!--components/challenge/index.wxml-->
 <view class="challenge">
   <view class="title">
     <view class="title_dt">连续挑战</view>
@@ -15,9 +14,9 @@
       </view>
     </view>
     <view class="steps_list">
-      <view class="step_item"  class="{{item.receiveStatus == 1 || item.reward == 0 || item.receiveStatus == 3 ? 'disable step_item' : ((item.receiveStatus == 2 &&item.reward != 0 && item.dayName =='昨天') || (item.isdone==1 && item.receiveStatus == 2)?'active step_item':'step_item')}}" wx:for="{{ list }}" wx:key="index">
+      <view class="step_item"  class="{{item.receiveStatus == 1 || item.reward == 0 || item.receiveStatus == 3 ? 'disable step_item' : ((item.receiveStatus == 2 &&item.reward != 0 && item.dayName =='昨天') || (item.isdone==1 && item.receiveStatus == 2) ? 'active step_item' : 'step_item')}}" wx:for="{{ list }}" wx:key="index">
         <view class="step_item_top" bindtap="receiveIntegral" data-item="{{item}}" data-index="{{index}}">
-          <view class="item_info">{{item.receiveStatus == 1 ||item.receiveStatus == 3 ? '已领' : (item.reward == 0 ? '过期' : (item.receiveStatus == 2 && item.reward != 0 && item.dayName =='昨天'  ? '补领' : '+'+item.reward))}}</view>
+          <view class="item_info">{{item.receiveStatus == 1 || item.receiveStatus == 3 ? '已领' : (item.reward == 0 ? '过期' : (item.receiveStatus == 2 && item.reward != 0 && item.dayName =='昨天'  ? '补领' : '+'+item.reward))}}</view>
           <view class="item_image">
             <image src="{{item.iconPath }}" mode="widthFix"/>            
           </view>

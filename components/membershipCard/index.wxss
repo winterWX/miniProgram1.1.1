@@ -6,6 +6,9 @@ page{
   height: 318rpx;
   overflow: hidden;
 }
+.imageBalock2{
+  z-index: -1;
+}
 .topLeftBlock{
    display: flex;
    align-items: center;

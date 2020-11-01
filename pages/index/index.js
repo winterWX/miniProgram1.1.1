@@ -242,7 +242,6 @@ homePageInit: function () {
     },
     success: (res) => {
       if (res.data.code === 200) {
-          console.log('res.data=====',res.data.data)
           res.data.data.activity = res.data.data.activity.map((item,index) =>{
              return {
                 ...item,

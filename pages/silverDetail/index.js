@@ -104,51 +104,76 @@ Page({
             that.setData({
                 activeData : res.data.data,
                 activeNum : sercode,
-                bluPosse : that.bluPosse(sercode,res.data.data),
+                bluPosse : that.bluPosse(res.data.data),
                 couponTypes : couponType === 1 ? '折' : '',
                 couponTypeAfter : couponType === 1 ? '' : '$',
                 couponTypeText: couponType === 1 ? '折扣券' : '现金券'
             })
-            console.log('activeData++==',that.data.activeData);
             that.secoreFun();
         }
       },
-      fail: function (res) {
+      fail:function (res) {
         console.log('.........fail..........');
       }
     })
   },
-  bluPosse:function(sercode,data){
-      let numarry = [1.8,1.3,1.2,1.13,1.1];
-      let num = 0;
-      if(data.mileStones.length > 0 ){
-        if(parseFloat(data.integral) <= 1000  && parseFloat(data.integral) >= 0){
-              num  = numarry[0];
-        }else if(parseFloat(data.integral) <=2000  && parseFloat(data.integral) >= 1000){
-              num  = numarry[1];
-        }else if(parseFloat(data.integral) <=3000  && parseFloat(data.integral) >= 2000){
-              num  = numarry[2];
-        }else if(parseFloat(data.integral) <=4000  && parseFloat(data.integral) >= 3000){
-              num  = numarry[3];
-        }else if(parseFloat(data.integral) <=5000  && parseFloat(data.integral) >= 4000){
-              num  = numarry[4];
-        }
-        if(parseFloat(data.integral) >= 5000){
-            return 100;
-        }else{
-            let  targetIntegral = Number(data.mileStones[sercode-1].targetIntegral)*num;
-            let  bluNum = (100 / Number(targetIntegral));
-            return (Number(bluNum) * Number(data.integral)).toFixed(1);
-        }
-    }
-  },
+
   secoreFun:function(){
     let that = this;
     let activeNum = that.data.activeNum;
-    that.setData({
-      secoreNun :  (100 / Number(activeNum)).toFixed(5)
-    })
+    that.setData({ secoreNun : (100 / Number(activeNum)).toFixed(2)})
   },
+
+  bluPosse:function(data){
+      let lengthNum = data.mileStones.length;
+      let numData = (100 / Number(lengthNum)).toFixed(5);
+      let indexFlg = -1;
+      let arryNum = [];
+      let betweenNum = 0; 
+      if(data.mileStones.length > 0 ){
+          if(data.integral >= data.mileStones[lengthNum-1].targetIntegral){
+               return 100;
+          }else{
+              //每个区间的数值
+              data.mileStones.forEach((item,index)=>{
+                  arryNum.push(index === 0 ? item.targetIntegral : item.targetIntegral - data.mileStones[index-1].targetIntegral);
+              });
+
+              //在那个区间
+              for(let i = 0 ; data.mileStones.length > 0 ; i ++){
+                  if(data.integral <= data.mileStones[i].targetIntegral){
+                      indexFlg = i;
+                      if(indexFlg === 0){
+                          betweenNum = data.integral === data.mileStones[indexFlg].targetIntegral ? data.mileStones[indexFlg].targetIntegral : data.integral;
+                      }else{
+                          betweenNum = data.integral - data.mileStones[i-1].targetIntegral;
+                      }
+                      break;
+                  }
+              }
+
+              // 区间内 每积分所占的 份额
+              const secodeDta = arryNum.slice(0,indexFlg+1).map((item,index) =>{
+                    return index === 0 ? (numData / 2) / item : numData / item;
+              });
+
+              let newArryNum = secodeDta.map((item,index) =>{
+                    if(secodeDta.length -1 === index){
+                       return item * betweenNum;
+                    }else{
+                       return item * arryNum[index];
+                    }
+              });
+
+              //连加值
+              const total = newArryNum.reduce(function(a, b) {
+                    return a + b;
+              });
+              return total;
+          }
+    }
+  },
+
   receivedFun:function(e){
     let that = this;
     let indexNum = e.currentTarget.dataset.index;
@@ -172,6 +197,7 @@ Page({
       }
     })
   },
+
   parentCallBack:function(event){
     let that = this;
     if(that.data.activeData.level === 1){
