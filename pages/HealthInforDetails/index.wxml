@@ -3,12 +3,12 @@
     <view class="mainContent">
        <view class="mainContent-title">{{contentAll.title}}</view>
        <view class="main-gitPic">
-            <view class="gitPic">
+            <!-- <view class="gitPic">
                 <image src='{{contentAll.avatar}}'></image>
-            </view>
+            </view> -->
             <view class="details-tipContent">
                 <view class="details-tip">
-                        <view class="details-tipTitle">{{contentAll.author}}</view>
+                        <!-- <view class="details-tipTitle">{{contentAll.author}}</view> -->
                         <view class="details-tipTime">{{contentAll.createTime}}</view>
                 </view>
                 <!-- <view class="details-tag">

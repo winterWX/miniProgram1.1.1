@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/medicalServices/index",
     "pages/healthPage/index",
     "pages/mine/index",
     "pages/login/index",
