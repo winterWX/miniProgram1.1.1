@@ -74,43 +74,24 @@ Page({
   BMIleftAnmation:function(num){
     let that = this;
     let numData = Number(num).toFixed(1);
-    if(parseFloat(16.0) <= parseFloat(numData) && parseFloat(numData) < parseFloat(18.5)){
-        let s1 =  (parseFloat(18.5) - parseFloat(numData)) * parseFloat(6.0);
-        let BMIleft = parseFloat(15.0) - parseFloat(s1)
-        console.log('BMIleft',BMIleft);
-        that.setData({
-          background: '#9B7C56'
-        })
-        that.setData({
-          BMIleft
-        })
-    }else if(parseFloat(18.5) <= parseFloat(numData) && parseFloat(numData) < parseFloat(25.0)){
-       let s1 = (parseFloat(25.0) - parseFloat(numData)) * parseFloat(4.3);
-       let BMIleft = parseFloat(43.0) - parseFloat(s1);
-        that.setData({
-          background: '#34A344'
-        })
-        that.setData({
-          BMIleft
-        })
-    }else if(parseFloat(25.0) <= parseFloat(numData) && parseFloat(numData) < parseFloat(35.0)){
-        let s1 = (parseFloat(35.0) - parseFloat(numData)) * parseFloat(2.2);
+    if(parseFloat(11.83) <= parseFloat(numData) && parseFloat(numData) < parseFloat(18.50)){
+        let s1 =  (parseFloat(18.50) - parseFloat(numData)) * parseFloat(2.248);
+        let BMIleft = parseFloat(15.0) - parseFloat(s1);
+        that.setData({ background: '#9B7C56',BMIleft });
+    }else if(parseFloat(18.5) <= parseFloat(numData) && parseFloat(numData) < parseFloat(22.9)){
+        let s1 = (parseFloat(22.9) - parseFloat(numData)) * parseFloat(6.36);
+        let BMIleft = parseFloat(43.0) - parseFloat(s1);
+        that.setData({ background: '#34A344',BMIleft });
+    }else if(parseFloat(23) <= parseFloat(numData) && parseFloat(numData) < parseFloat(24.9)){
+        let s1 = (parseFloat(24.9) - parseFloat(numData)) * parseFloat(11.57);
         let BMIleft = parseFloat(65.0) - parseFloat(s1);
-        that.setData({
-          background: '#EDAE26'
-        })
-        that.setData({
-          BMIleft
-        })
-    }else if(parseFloat(numData) >= parseFloat(35.0)){
-        let s1 = (parseFloat(numData) - parseFloat(35.0)) * parseFloat(0.52);
+        that.setData({ background: '#EDAE26',BMIleft });
+    }else if(parseFloat(25.0) <= parseFloat(numData) &&  parseFloat(numData) < parseFloat(27.5)){
+        let s1 = (parseFloat(numData) - parseFloat(25.0)) * parseFloat(14);
         let BMIleft = parseFloat(65.0) + parseFloat(s1);
-        that.setData({
-          background: '#B10D19'
-        })
-        that.setData({
-          BMIleft
-        })
+        that.setData({ background: '#B10D19',BMIleft });
+    }else if( parseFloat(numData) >= parseFloat(27.5)){
+        that.setData({ background: '#B10D19',BMIleft : 98});
     }
   }
 })
