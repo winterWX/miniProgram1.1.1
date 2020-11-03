@@ -16,13 +16,6 @@ Component({
     infoLevel: {
       type: Object,
       observer(value) {}
-    },
-    showCarkBlock:{
-      type: String,
-      value: false,
-      observer(value) {
-        console.log('value==',value);
-      }
     }
   },
 

@@ -33,12 +33,12 @@
         isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
             <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
-            <van-button  wx:if='{{ stepsNum.isDone === "2" }}'>还差{{startStep}}步</van-button>
-            <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1"}}' class="topSetting-vanBtn"  bindtap="integralBtn">领取{{stepsNum.integral}}积分奖励</van-button>
-            <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1"}}'>已领取</van-button>
+            <van-button  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>还差{{startStep}}步</van-button>
+            <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}' class="topSetting-vanBtn"  bindtap="integralBtn">领取{{stepsNum.integral}}积分奖励</van-button>
+            <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>已领取</van-button>
         </view>   
         <view class="topSetting-text">
-            <view class="topSett-disp"  wx:if='{{ stepsNum.isDone === "2" }}'>每日完成10,000步即可领10积分</view>
+            <view class="topSett-disp"  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>每日完成10,000步即可领10积分</view>
             <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}'>你真棒！今日已达标～</view>
             <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>积分已入账，明天再接再厉！</view>
         </view>    

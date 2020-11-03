@@ -3,7 +3,7 @@ Page({
   data: {
       winWidth: 0,
       winHeight: 0,
-      currentTab: 0,
+      currentTab: '0',
       type:1,
       detailArray:[]
  },
@@ -28,11 +28,6 @@ Page({
           that.setData({currentTab: e.target.dataset.current });
           that.myCoupons(Number(that.data.currentTab) +1);
       }
-  },
-  bindChange: function( e ) {
-      var that = this;
-      that.setData( { currentTab: e.detail.current });
-      that.myCoupons(Number(that.data.currentTab) +1);
   },
   myCoupons:function(type){
     let that = this;

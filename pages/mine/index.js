@@ -16,6 +16,7 @@ Page({
     typeFlg:'',
     showDialog:false,
     userInfo: {},
+    countNum: '0%',
     windowHeight: wx.getSystemInfoSync().windowHeight *2,
     avatar: 13,
     color: 'copper',
@@ -197,9 +198,14 @@ Page({
       url: '../../pages/silverDetail/index'
     })
   },
+  myProfilerEdit: function () {
+    wx.navigateTo({
+      url: '../../pages/profile/index'
+    })
+  },
   integralDetails: function () {
     wx.navigateTo({
-      url: '../integralDetails/index'
+      url: '../../pages/integralDetails/index'
     })
   },
   messageCenter: function() {
@@ -334,6 +340,7 @@ getMyprofileInfo: function () {
         let color = colorMap[userInfo.level]
         let avatar = userInfo.avatar || 13;
         that.setData({userInfo, avatar, color});
+        that.setData({countNum: res.data.data.completedCount === 6 ? 100 + '%' : parseInt((6-res.data.data.completedCount) * (100/6)) + '%'})
       } 
     },
     fail: function (res) {

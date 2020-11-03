@@ -2,7 +2,7 @@
 	<view class="header">
 		<view class="tip-box" wx:if="{{userInfo.completedCount !== 6}}">
 			<image class="bg" src="{{baseUrl + '/images/mine/background@2x.png'}}"></image>
-			<view class="profile-tip">{{6 - userInfo.completedCount}}/6个人信息尚未完善，<text class="link" catchtap="integralDetails">完成即可获得100积分</text>。</view>
+			<view class="profile-tip">{{ countNum }}个人信息尚未完善，<text class="link" catchtap="myProfilerEdit">完成即可获得100积分</text>。</view>
 		</view>
 		<view class="portrait" catchtap="profilePage">
 			<view class="header-box">
