@@ -3,7 +3,7 @@ page{
 }
 .main-top{
   background-color: #ffffff;
-  height: 658rpx;
+  height: 620rpx;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);
   padding: 30rpx 30rpx 0rpx 30rpx;
 }
@@ -82,8 +82,11 @@ page{
    font-size: 24rpx;
 }
 .derlopent{
-  height: 188rpx;
+  height: 150rpx;
   border-top: 1rpx solid #EEEEEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .main-TextBlock{
   color: rgb(51,51,51);

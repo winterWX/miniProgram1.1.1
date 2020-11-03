@@ -21,20 +21,20 @@
          </view>
       </view>
       <view class="derlopent">
-         <view class="derlopent-title">建议：体重过轻，不适合减脂，试试增肌吧</view>
+         <!-- <view class="derlopent-title">建议：体重过轻，不适合减脂，试试增肌吧</view> -->
          <view class="health-block">
             <view class="flagColor" style="background:{{background}};left:{{BMIleft}}%;"></view>
             <view class="health-item1">
                <view class="healthColor1"></view>
-               <view class="healthText">偏瘦</view>
+               <view class="healthText">过轻</view>
             </view>
             <view class="health-item2"> 
                <view class="healthColor2"></view>
-               <view class="healthText">正常</view>
+               <view class="healthText">适中</view>
             </view>
             <view class="health-item3">
                <view class="healthColor3"></view>
-               <view class="healthText">偏胖</view>
+               <view class="healthText">过重</view>
             </view>
             <view class="health-item4">
                <view class="healthColor4"></view>
@@ -44,7 +44,10 @@
       </view>
    </view>
   <view class="main-bottom">
-      <view class="main-TextBlock">关于质量指数BMI</view>
-      <view class="mainBlocks">身体质量指数（简称体质指数又称体重指数，英文为Body Mass Index，简称BMI），是用体重公斤数除以身高米数平方得出的数字，是国际上常用的衡量人体胖瘦程度以及是否健康的一个标准。</view>
+      <view class="main-TextBlock">关于体重指标BMI</view>
+      <view class="mainBlocks">
+         <view>体重指标（英文为Body Mass Index，简称BMI），是用来分析体重是否适中的最常用方法。</view>
+         <view>资料来源：香港特别行政区卫生署卫生防护中心。</view>
+      </view>
   </view>
 </view>

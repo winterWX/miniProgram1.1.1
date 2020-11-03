@@ -16,7 +16,8 @@
       <view class="order">
         <view class="nickname">{{hero.nickname}}</view>
         <!-- <view class="rank" wx:if="{{hero.completeTime}}">{{hero.completeTime}}</view> -->
-        <view class="rank">累计积分{{hero.totalIntegral}}分</view>
+        <!-- <view class="rank">累计积分{{hero.totalIntegral}}分</view> -->
+        <view class="rank">连续{{hero.continueDays}}天达标</view>
       </view>
     </view>
     <view class="step-show">{{hero.actualTotalSteps}}<text>步</text></view>

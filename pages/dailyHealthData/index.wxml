@@ -54,9 +54,7 @@
       <view class="panel_body">
         <view class="item itemflex">
           <view class="item_top"><text class="num">{{health.bmi}}</text><text class="numTxt">公斤/平方</text></view>
-          <view class="item_bottom">{{health.bmi<18.5?'建议：体重过轻，不适合减脂，试试增肌吧':health.bmi<24?'建议：体重在正常范围，继续保持吧':'建议：体重过重，适合减脂，试试减肌吧'}}</view>
         </view>
-      
       </view>
     </view>
 
