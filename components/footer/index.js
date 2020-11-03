@@ -26,13 +26,14 @@ Component({
         "url": "../index/index",
         "requiredLogin": false
       },
-      {
-        "text": "理财健康",
-        "iconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry_default.png",
-        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry.png",
-        "url": "../medicalServices/index",
-        "requiredLogin": true
-      },
+      // {
+      //   "text": "理财健康",
+      //   "iconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry_default.png",
+      //   "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry.png",
+      //   "url": "../medicalServices/index",
+      //   "requiredLogin": true
+      // },
+      //  app.json 需加      "pages/medicalServices/index",
       {
         "text": "我的",
         "iconPath": app.globalData.imagesUrl + "/images/tabBar/mine_default.png",

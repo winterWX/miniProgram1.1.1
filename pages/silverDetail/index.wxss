@@ -155,9 +155,12 @@
 .minText{
   color: rgb(102,102,102);
   font-size: 20rpx;
-  margin-bottom: 20rpx;
-  height: 25rpx;
-  width: 100%;
+  margin-bottom: 5rpx;
+  height: 95rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0rpx 120rpx;
 }
 .bottomTextTop{
   font-size: 24rpx;

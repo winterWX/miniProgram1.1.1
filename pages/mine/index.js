@@ -9,7 +9,7 @@ Page({
     allowTo: 'allowTo',
     refusedTo: 'refusedTo',  
     complete: false,
-    active: 2,  //下标
+    active: 1,  //下标
     //activeFooter: 2, //选中下标
     runData:[],
     isAppData: false,  //判断是不是app用户
@@ -87,7 +87,7 @@ Page({
   onShow: function () {
     let that = this;
     let complete = wx.getStorageSync('complete');
-    that.setData({complete, active: 2 });
+    that.setData({complete, active: 1 });
     that.checkIsAppUser();
     that.getMyprofileInfo();
     // that.getActivityList();

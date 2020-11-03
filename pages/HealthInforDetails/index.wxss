@@ -20,7 +20,8 @@
     border-radius: 50%;
 }
 .main-gitPic{
-  margin-top: 32rpx;
+  /* margin-top: 32rpx; */
+  margin-top: 10rpx;
   display: flex;
 }
 .details-tip{
@@ -89,10 +90,10 @@ details-intall{
     font-size: 20rpx;
     font-weight: 300;
     color: #929292;
-    margin-left: 20rpx;
+    /* margin-left: 20rpx; */
 }
 .details-tipContent{
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
   margin-top: 10rpx;
 }
 .artContent{
