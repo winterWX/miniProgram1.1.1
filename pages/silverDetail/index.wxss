@@ -39,7 +39,7 @@
   margin-top:20rpx;
   padding: 30rpx;
   position: relative;
-  z-index: -1;
+  /* z-index: -1; */
 }
 .integralActTitle{
   font-size: 32rpx;
@@ -135,7 +135,8 @@
   margin-top: 8rpx;
 }
 .progressCark image{
-    width: 126rpx;
+    /* width: 126rpx; */
+    width: 145rpx;
     height: 158rpx;
 }
 .blockText{
@@ -396,9 +397,6 @@
   margin-top: 10rpx;
 }
 
-
-
-
 .carkBlock{
   top: 0;
   left: 0;
@@ -406,6 +404,7 @@
   bottom: 0;
   position: fixed;
   background-color: rgba(0,0 ,0, 0.5);
+  z-index: 10;
 }
 .topImage1{
   width: 288rpx;

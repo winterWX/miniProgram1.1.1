@@ -73,9 +73,9 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
-          res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
-          res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
-          that.setData({couponDetail: res.data.data});
+            res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
+            res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
+            that.setData({couponDetail: res.data.data});
         }
       },
       fail: function (res) {
@@ -92,33 +92,22 @@ Page({
   },
   texteCopy:function(){
     let that = this;
-    // if(this.data.copyCode){
-    //     return;
-    // }else{
-    //     that.setData({copyCode:true});
-    //     wx.showToast({
-    //       title: '复制成功',
-    //     })
-    // }
-    wx.showToast({
-      title: '复制成功',
-    });
     wx.setClipboardData({
       data: that.data.couponDetail.code,
       success (res) {
         wx.getClipboardData({
           success (res) {
-            console.log('res.data',res.data)    // data
+              wx.showToast({
+                title: '已复制'
+              });
+              console.log('res.data',res.data)    // data
           }
         })
       }
     })
   },
   handleFell:function(){
-     this.setData({showLink :true})
-    //  let link = that.data.couponDetail.thirdPartyUrl;
-    //  wx.navigateTo({
-    //    url: '../../pages/externalLinks/index?link='+ link,
-    //  })
+     let that = this;
+     that.setData({showLink :true})
   }
 })

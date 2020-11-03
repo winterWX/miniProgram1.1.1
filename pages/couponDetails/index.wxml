@@ -7,23 +7,17 @@
     </view>
     <view class="texteContent1">优惠码</view>
     <view class="texteContent2">{{couponDetail.code}}</view>
-    <!-- <view class="texteContent3" wx:if="{{couponDetail.useTime === 0}}"><view class="texteContent30  {{!copyCode ? 'texteCopy' : ''}}" bindtap="texteCopy">复制</view></view>   -->
     <view class="texteContent3" wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}"><view class="texteContent30 texteCopy" bindtap="texteCopy">复制</view></view> 
     <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 1}}"><view class="texteContent30">已过期</view></view> 
     <view class="texteContent3" wx:if="{{couponDetail.useTime !== 0}}"><view class="texteContent30">已使用</view></view>
     <view class="texteContent4">有效期至{{couponDetail.expiryTime}}</view>
   </view>
   <view class="textContent">
+    <view class="textContent-titl">描述：</view>
     <htmlView  class="textContentText" detail ="{{couponDetail.description}}"/>
-    <htmlView  class="textContentText" detail ="{{couponDetail.remark}}"/>
-    <htmlView  class="textContentText" detail ="{{couponDetail.rules}}"/>
   </view>
   <view class="bottomBtn">
-      <!-- <van-button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="save-btn" bindtap="handleFell" type="primary" size="large">立即使用</van-button>
-      <van-button wx:if="{{couponDetail.useTime !== 0}}"  disabled="{{couponDetail.useTime !== 0}}"  class="save-btn" type="primary" size="large">已使用</van-button>
-      <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button> 
-      <van-button wx:if="{{couponDetail.isExpiry === 1}}"  disabled="{{couponDetail.isExpiry === 1}}"  class="save-btn" type="primary" size="large">已过期</van-button> -->
-      <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="bottomBtnColor">立即使用</button>
+      <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>
       <button wx:if="{{couponDetail.useTime !== 0}}"   class="btnSty">已使用</button>
       <button wx:if="{{couponDetail.isExpiry === 1}}"  class="btnSty">已过期</button>
   </view>
