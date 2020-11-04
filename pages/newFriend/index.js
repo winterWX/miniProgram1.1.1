@@ -9,7 +9,7 @@ Page({
      friendList:[],
      listHiden: false,
      userInfoData:{},
-     redirectToUrl:'pageTag', //调转的标记
+     redirectToUrl:'pageTag', //跳转的标记
      avatarObjList: [
       {
         url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
@@ -62,7 +62,6 @@ Page({
   onLoad: function (options) {
     if(options.userInfoData){
       let userInfoData = JSON.parse(options.userInfoData);
-      console.log('来自邀请人的数据', userInfoData);
       app.globalData.invitationCode = userInfoData.invitationCode;
       this.setData({
         userInfoData : userInfoData

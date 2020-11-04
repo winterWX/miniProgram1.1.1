@@ -163,7 +163,6 @@ Page({
                       steps: item.step
                    }
               });
-              console.log('resultsresults+=====',results);
               that.getUploaddata(results);
           }
         }
