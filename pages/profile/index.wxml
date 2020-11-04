@@ -101,9 +101,9 @@
 
 	<!-- gender modal  -->
 	<view class="modal modal-bottom-dialog" hidden="{{hideFlag}}">
-		<view class="modal-cancel" bindtap="hideModal" data-name='gender'></view>
+		<view class="modal-cancel"></view>
 		<view class="bottom-dialog-body" animation="{{animationData}}">
-			<view class='Mcancel' bindtap='mCancel' data-name='gender'>
+			<view class='Mcancel' catchtap='mCancel' data-name='gender'>
 				<image class="icon-close" catchtap='mCancel' data-name='gender' src="http://106.54.73.125:8104/images/miniprogram/images/icon-close.png"></image>
 				<text class="gender-title">选择性别</text>
 			</view>
@@ -119,9 +119,9 @@
 
 	<!-- avatar edit modal  -->
 	<view class="modal modal-bottom-dialog" hidden="{{hideAvatarFlag}}">
-		<view class="modal-cancel" bindtap="hideModal" data-name='avatar'></view>
+		<view class="modal-cancel"></view>
 		<view class="bottom-dialog-body" animation="{{animationData}}">
-			<view class='Mcancel' bindtap='mCancel' data-name='avatar'>
+			<view class='Mcancel' catchtap='mCancel' data-name='avatar'>
 				<image class="icon-close" catchtap='mCancel' data-name='avatar' src="http://106.54.73.125:8104/images/miniprogram/images/icon-close.png"></image>
 				<text class="gender-title">选择头像</text>
 			</view>
