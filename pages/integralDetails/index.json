@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "integralAmation": "../../components/integralAmation/index"
+  },
   "navigationBarTitleText": "积分详情"
 }

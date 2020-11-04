@@ -12,7 +12,8 @@ Page({
     questionAnalysis: [],
     id: '',
     baseUrl: app.globalData.imagesUrl,
-    bannerUrl: ''
+    bannerUrl: '',
+    integral: 0
   },
 
   /**
@@ -48,7 +49,7 @@ Page({
       },
       success: function (res) {
         if(res.data.code === 200) {
-          let {quizResult: {correct, wrong, questionAnalysis, rate, status}, bannerUrl} = res.data.data;
+          let {quizResult: {correct, wrong, questionAnalysis, rate, status}, bannerUrl, reward} = res.data.data;
           let all = correct + wrong;
           that.setData({
             all,
@@ -56,7 +57,8 @@ Page({
             questionAnalysis,
             rate,
             success: status === 1,
-            bannerUrl
+            bannerUrl,
+            integral: reward
           })
         }
       },
