@@ -45,13 +45,9 @@ Component({
             // 外层圆环
             context.beginPath()
             context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, 2 * Math.PI,true)
-            context.setLineWidth(12)
+            context.setLineWidth(10)
             context.setLineCap('round')
             context.setStrokeStyle('#ebeeeb')
-            context.textAlign = 'center' //文字居中
-            context.font = '16px Arial'
-            context.fillStyle = '#7D7D7D' //字体颜色
-            context.fillText('今日步数',width / 2,22)
             context.stroke()
             context.draw()
         },
@@ -61,11 +57,11 @@ Component({
             let num = 0;
             let angle = 0;
             timer = setInterval(() => {
-                if(Math.abs(num - stepNum) < 20){    // 这里的清除订时器的条件需要改一下
+                if(Math.abs(num - stepNum) < 50){    // 这里的清除订时器的条件需要改一下
                     num = stepNum;
                     clearInterval(timer);
                 }else{
-                    num += 20 ;
+                    num += 50;
                     //外层进度圆环
                     if(num >= 10000){
                         angle = 100;
@@ -76,7 +72,7 @@ Component({
                 angle = angle === 0 ? 1 : angle;
                 context.beginPath()
                 context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
-                context.setLineWidth(12)
+                context.setLineWidth(10)
                 context.setLineCap('round')
                 context.setStrokeStyle('#00a865')
                 this.setData({ numStep:num });
@@ -90,11 +86,11 @@ Component({
                 const xAxis = Math.cos(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
                 const yAxis = Math.sin(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
                 context.beginPath()
-                context.arc(width / 2 + xAxis, 40 + yAxis, 12, 0, 2 * Math.PI,true)
+                context.arc(width / 2 + xAxis, 40 + yAxis, 10, 0, 2 * Math.PI,true)
                 context.setFillStyle('#CCFFEB')
                 context.fill()
                 context.beginPath()
-                context.arc(width / 2 + xAxis, 40 + yAxis, 6, 0, 2 * Math.PI,true)
+                context.arc(width / 2 + xAxis, 40 + yAxis, 4, 0, 2 * Math.PI,true)
                 context.setFillStyle('#00a865')
                 context.fill()
                 context.draw()

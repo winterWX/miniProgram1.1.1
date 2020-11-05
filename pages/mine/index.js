@@ -1,20 +1,12 @@
 const app = getApp();
-const util = require('../../utils/util');
-const authorizeRun = require('../../utils/authorizeRun.js');
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    allowTo: 'allowTo',
-    refusedTo: 'refusedTo',  
     complete: false,
     active: 1,  //下标
-    //activeFooter: 2, //选中下标
-    runData:[],
-    isAppData: false,  //判断是不是app用户
     typeFlg:'',
-    showDialog:false,
     userInfo: {},
     countNum: '0%',
     windowHeight: wx.getSystemInfoSync().windowHeight *2,
@@ -22,7 +14,7 @@ Page({
     color: 'copper',
     activityCount: 0,
     hideModal: true,  //模态框的状态  true-隐藏  false-显示
-    titleText:false,
+    titleText: false,
     baseUrl: app.globalData.imagesUrl,
     avatarObjList: [
       {
@@ -73,7 +65,6 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    that.checkIsAppUser();
     that.getMyprofileInfo();
     that.getActivityList();
   },
@@ -88,9 +79,7 @@ Page({
     let that = this;
     let complete = wx.getStorageSync('complete');
     that.setData({complete, active: 1 });
-    that.checkIsAppUser();
     that.getMyprofileInfo();
-    // that.getActivityList();
   },
 
   /**
@@ -126,50 +115,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  healthPage: function () {
-    let that = this;
-    if(that.data.isAppData){
-      that.carryAPPData();
-    }else{
-      if (app.globalData.loginSuccess && app.globalData.isWeRunSteps) {
-        that.healthSccuss();
-      } else {
-        authorizeRun.getWxRunData(function(result){
-            if(result.length > 0){
-              //授权成功跳转获取步数
-              app.globalData.runData = result;
-              app.globalData.isWeRunSteps = true; //标志授权成功
-              that.getQueryLatestime(result);
-            }else{
-              //拒绝授权
-              that.setData({showDialog: true});
-              //that.healthFail();
-            }
-        })
-      }
-    }
-  },
   sendFriend: function () {
     wx.navigateTo({
       url: '../../pages/recommend/index'
-    })
-  },
-  carryAPPData:function(){
-    wx.navigateTo({
-      url: '../../pages/healthPage/index?id=' + 'carryAPPData'
-    })
-  },
-  healthSccuss:function(){
-    let that = this;
-    wx.navigateTo({
-      url: '../../pages/healthPage/index?id=' + that.data.allowTo
-    })
-    app.healthStep.SynchronousData = true;  //每日健康页面不需要授权
-  },
-  healthFail:function(){
-    let that = this;
-    wx.navigateTo({
-      url: '../../pages/healthPage/index?flg=' + that.data.refusedTo
     })
   },
   profilePage: function () {
@@ -218,108 +166,6 @@ Page({
       url: '../myCoupons/index'
     })
   },
-  //最近上传数据时间查询(query- queryLatestime)|移动端
-  getQueryLatestime: function (runData) {
-      let that = this;
-      wx.request({
-        method: 'GET',
-        url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
-        },
-        success: (res) => {
-          if (res.data.code === 200) {
-              //最后上传时间戳 和 当前时间戳进行比较
-              let time = util.formatTime(new Date(Number(res.data.data)));
-              let latestTime = time.split(' ')[0];
-              let result = runData.find(item => item.date === latestTime);
-              let index = runData.indexOf(result);
-              let results = runData.splice(0, index + 1).map(item=>{
-                   return {
-                      startTime: item.timestamp + '',
-                      endTime: item.timestamp + '',
-                      steps: item.step
-                   }
-              });
-              that.getUploaddata(results);
-              // let time = res.data.data;
-              // const runArray = that.runArray(runData,time);
-              // that.getUploaddata(runArray);
-          }
-        }
-      })
-  },
-  //运动数据同步上传
-  getUploaddata: function (runData) {
-    let that = this;
-    wx.request({
-      method: 'POST',
-      url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
-      },
-      data:{
-        bpm: 0,
-        source :'string',
-        type : 'MINIP',
-        lastTime: new Date().getTime() + '',
-        stepsDataModelList: runData,
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-            that.healthSccuss();
-        }
-      }
-    })
-  },
-checkIsAppUser:function(){
-  let that = this;
-  wx.request({
-    method: 'GET',
-    url: app.globalData.baseUrl + '/remote/health/data/ensure/user',
-    header: {
-      "Content-Type": "application/json;charset=UTF-8",
-      "token": app.globalData.token
-    },
-    success: (res) => {
-      if (res.data.code === 200) {
-          // 2 app 用户，1 mini用户
-          that.setData({
-            isAppData: res.data.data === 2 ? true : false
-          })
-          //数据源
-          app.healthStep.dataCource = res.data.data;
-      }
-    }
-  })
-},
-runArray:function(array,lastTime){
-    let that = this;
-    let runDataArray = [];
-    array.forEach((item)=>{
-      runDataArray.push({
-          endTime:  item.timestamp + '',
-          startTime: item.timestamp + '' ,
-          steps: item.step
-        })
-    })
-    const indexs = runDataArray.findIndex(item =>{
-      return util.timestampToTime(new Date(item.endTime * 1000)) === util.timestampToTime(new Date(lastTime));
-    })
-    if(indexs > -1){
-      return runDataArray.splice(0,indexs+1)
-    }
-    return runDataArray;
-},
-closeModal: function() {
-    this.setData({showDialog: false});
-    this.healthFail();
-  },
-callback: function() {
-    this.setData({showDialog: false});
-},
 getMyprofileInfo: function () {
   let that = this;
   let colorMap = {

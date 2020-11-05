@@ -9,48 +9,45 @@ Page({
     active: 0,
     successFlg: false,
     allowTo: 'allowTo',
+    refusedTo:'refusedTo',
+    carryAPPData:'carryAPPData',
     indexStep: true,
     redirectToUrl: '', //调转的标记
     stepsNum:{},
     runDataText: 0,
     rejectRun: false, //拒绝授权
     showDialog: false,
-    semicircleState: false, //控制半圆的显示，因为canves 半圆层级比较高
+    //semicircleState: false, //控制半圆的显示，因为canves 半圆层级比较高
     levelNum:0,
-    levelNumShow:true
+    levelNumShow:true,
+    isAppData:false  //是否是APP用户
   },
   onLoad: function (options) {
+    let that = this;
     if (options.flag === 'true'){   //是 true
-        this.setData({ successFlg: true })
-        this.selectComponent('#filterCmp').restFilterDatas();
-        console.log('新用户是否邀请成功',options.flag);
+      that.setData({ successFlg: true })
+      that.selectComponent('#filterCmp').restFilterDatas();
     }
-    wx.showModal({
-      title: '提示',
-      content: options.id,
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
     if(app.globalData.isLogin === 3){
-      this.setData({ isLogin: app.globalData.isLogin , semicircleState: true});
-      this.getStepRunData();
+      that.setData({ isLogin: app.globalData.isLogin });   //, semicircleState: true
+      that.checkIsAppUser();  //调用数据源，App数据优先；
+      if(!that.data.isAppData){
+        that.getStepRunData();
+      }else{
+        that.stepRunState();
+      }
     }
-    this.homePageInit();
-    this.userLevel();
+    that.homePageInit();
+    that.userLevel();
   },
   onShow: function () {
-    this.setData({ active: 0 ,semicircleState: true});
+    let that = this;
+    that.setData({ active: 0 });  //, semicircleState: true
   },
   onPullDownRefresh: function () {
     let that = this;
     if(app.globalData.isLogin === 3){
         wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
-        console.log('app.globalData.isWeRunSteps',app.globalData.isWeRunSteps);
         if(app.globalData.isWeRunSteps){
           that.calloutfun();
         }
@@ -89,12 +86,29 @@ Page({
     })
   },
   onShareAppMessage: function () {},
+  checkIsAppUser:function(){
+    let that = this;
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/health/data/ensure/user',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+            // 2 app 用户，1 mini用户
+            that.setData({ isAppData: res.data.data === 2 ? true : false });
+            //数据源
+            app.healthStep.dataCource = res.data.data;
+        }
+      }
+    })
+  },
   parentCallBack: function (event){
      let that = this;
     if (event.detail.handleSuccess){
-      that.setData({
-        successFlg: false
-      })
+      that.setData({ successFlg: false });
     }
   },
   myfindPage:function(){
@@ -108,8 +122,32 @@ Page({
     })
   },
   navigateToStep: function() {
+    let that = this;
+    if(that.data.isAppData){
+      that.carryAPPData();
+    }else{
+      if (app.globalData.isWeRunSteps) {
+        that.healthSccuss();
+      } else {
+        that.healthFail();
+      }
+    }
+  },
+  carryAPPData:function(){
     wx.navigateTo({
-      url: '../healthPage/index?id=' + this.data.allowTo
+      url: '../../pages/healthPage/index?id=' + that.data.carryAPPData
+    })
+  },
+  healthSccuss:function(){
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/healthPage/index?id=' + that.data.allowTo
+    })
+  },
+  healthFail:function(){
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/healthPage/index?flg=' + that.data.refusedTo
     })
   },
   getUserInfo:function(e) { //获取用户信息
@@ -135,7 +173,8 @@ Page({
           that.stepRunState();
         }else{
           //拒绝授权
-          that.setData({ showDialog: true, rejectRun:true, semicircleState : false});
+          that.setData({ rejectRun: true }); 
+          that.setWerunStep();
         }
     })
   },
@@ -163,7 +202,6 @@ Page({
                       steps: item.step
                    }
               });
-              console.log('resultsresults+=====',results);
               that.getUploaddata(results);
           }
         }
@@ -195,8 +233,6 @@ Page({
   },
   stepRunState:function(){
     let that = this;
-    app.healthStep.SynchronousData = true;
-    app.globalData.isWeRunStepsFail = true;
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
       method: "POST",
@@ -207,7 +243,6 @@ Page({
       data:{ souce:'string', type:'MINIP'},
       success: function (res) {
           if(res.data.code === 200){
-              console.log('res.data.data',res.data.data);
               that.setData({
                 stepsNum: res.data.data,
                 runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)
@@ -219,103 +254,113 @@ Page({
       }
     })
   },
-closeModal: function() {
-    this.setData({showDialog: false, semicircleState : true });
-},
-// callback: function() {
-//     this.setData({showDialog: false, semicircleState : true});
-// },
-cancelModal:function(){
-   this.setData({ semicircleState : true });
-},
-confirmModal:function(){
-  this.setData({ semicircleState : true });
-},
-homePageInit: function () {
-  let that = this;
-  wx.request({
-    method: 'GET',
-    url: app.globalData.baseUrl + '/remote/homePage/homePageActivitys',
-    header: {
-      "Content-Type": "application/json;charset=UTF-8",
-      "token": app.globalData.token
-    },
-    success: (res) => {
-      if (res.data.code === 200) {
-          res.data.data.activity = res.data.data.activity.map((item,index) =>{
-             return {
+  homePageInit: function () {
+    let that = this;
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/homePage/homePageActivitys',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+            res.data.data.activity = res.data.data.activity.map((item,index) =>{
+              return {
+                  ...item,
+                  title: index === 0 ? '每日步数挑战' : '健康知识问答王者',
+                  description: index === 0 ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
+                  //coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
+                  coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
+                  createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
+              }
+            });
+            res.data.data.article = res.data.data.article.map(item =>{
+              return {
                 ...item,
-                title: index === 0 ? '每日步数挑战' : '健康知识问答王者',
-                description: index === 0 ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
-                //coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
-                coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
-                createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
-             }
+                thumb: typeof item.thumb == 'number' ? '' : item.thumb,
+                inputtime : item.inputtime ? util.timestampToTimeHM(item.inputtime) : ''
+              }
           });
-          res.data.data.article = res.data.data.article.map(item =>{
-            return {
-              ...item,
-              thumb: typeof item.thumb == 'number' ? '' : item.thumb,
-              inputtime : item.inputtime ? util.timestampToTimeHM(item.inputtime) : ''
-            }
-         });
-        this.setData({homeAllData: res.data.data});
+          this.setData({homeAllData: res.data.data});
+        }
       }
-    }
-  })
-},
-userLevel:function(){
-  let that = this;
-  wx.request({
-    method: 'GET',
-    url: app.globalData.baseUrl + '/remote/homePage/userlevel',
-    header: {
-      "Content-Type": "application/json;charset=UTF-8",
-      "token": app.globalData.token
-    },
-    success: (res) => {
-      if (res.data.code === 200) {
-            that.setData({levelNum:res.data.data});
-          if(res.data.data === 3 || res.data.data === 5){
-             that.setData({levelNumShow : false});
-          }
-          console.log('res.data.data',res.data.data);
-      }
-    }
-  })
-},
-membership:function(){
-  let that = this;
-  if(app.globalData.isLogin !== 3){
-      return;
-  }else{
-     if(that.data.levelNum === 1){
-        wx.navigateTo({
-          url: '../../pages/strategy/index'
-        })
-     }else if(that.data.levelNum === 2 || that.data.levelNum === 4){
-        wx.navigateTo({
-          url: '../../pages/goldStrategy/index'
-        })
-     }
-  }
-},
-listClick(e){
-    let goodsId = e.currentTarget.dataset.id;      
-    wx.navigateTo({                                 
-      url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
     })
-},
-listChange(e){
-    let {type,id,title} = e.currentTarget.dataset.item;
-   if(type === '1'){
-      wx.navigateTo({
-        url: '../activityDetail/index?id=' + id + '&title=' + title
-      })
+  },
+  userLevel:function(){
+    let that = this;
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/homePage/userlevel',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+              that.setData({levelNum:res.data.data});
+            if(res.data.data === 3 || res.data.data === 5){
+              that.setData({levelNumShow : false});
+            }
+            console.log('res.data.data',res.data.data);
+        }
+      }
+    })
+  },
+  membership:function(){
+    let that = this;
+    if(app.globalData.isLogin !== 3){
+        return;
     }else{
-      wx.navigateTo({                                 
-        url: '../../pages/healthKnowledge/index?id=' + id
-      })
+      if(that.data.levelNum === 1){
+          wx.navigateTo({
+            url: '../../pages/strategy/index'
+          })
+      }else if(that.data.levelNum === 2 || that.data.levelNum === 4){
+          wx.navigateTo({
+            url: '../../pages/goldStrategy/index'
+          })
+      }
     }
-}
+  },
+  listClick(e){
+      let goodsId = e.currentTarget.dataset.id;      
+      wx.navigateTo({                                 
+        url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
+      })
+  },
+  listChange(e){
+      let {type,id,title} = e.currentTarget.dataset.item;
+    if(type === '1'){
+        wx.navigateTo({
+          url: '../activityDetail/index?id=' + id + '&title=' + title
+        })
+      }else{
+        wx.navigateTo({                                 
+          url: '../../pages/healthKnowledge/index?id=' + id
+        })
+      }
+  },
+  setWerunStep:function(){
+    let that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (!res.authSetting['scope.werun']) {
+          wx.showModal({
+            title: '提示',
+            content: '今日步数需要微信步数授权',
+            success: function (res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success: function (res) {
+                    that.getStepRunData();  //开启后 重新获取微信运动步数；
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  }
 })
