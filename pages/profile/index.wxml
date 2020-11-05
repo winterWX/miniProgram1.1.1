@@ -36,9 +36,9 @@
 				<image class="userinfo-item-value__icon" src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
 		</view>
-		<view class="userinfo-item-container" catchtap="showModal" data-name='gender'>
+		<view class="userinfo-item-container">
 			<text class="userinfo-item-label">性别</text>
-			<view catchtap="showModal" data-name='gender'>
+			<view>
 				<text class="userinfo-item-value__label">{{ userInfo.gender }}</text>
 				<image class="userinfo-item-value__icon" catchtap="showModal" data-name='gender' src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
