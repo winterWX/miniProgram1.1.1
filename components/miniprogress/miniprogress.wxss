@@ -10,6 +10,11 @@
    position: absolute;
    top:0;
 }
+.progress-bottom-image{
+  position: absolute;
+  top:0;
+  left: 0;
+}
 .stepnNums{
   position: absolute;
   top: 38px;
@@ -18,4 +23,11 @@
   font-size: 65rpx;
   color: rgb(51,51,51);
 }
-
+.topText{
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: rgb(102,102,102);
+}

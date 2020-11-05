@@ -156,7 +156,7 @@ page{
 }
 .topSetting-btn{
   width: 100%;
-  margin-top: 40rpx;
+  margin-top: 10rpx;
   text-align: center;
 }
 .topSetting-btn .van-button{
@@ -372,4 +372,10 @@ padding: 30rpx;
 }
 .noshadow{
     hover-class:none;
+}
+.miniprogress{
+  padding: 0 10%;
+  background: #ffffff;
+  height: 280rpx;
+  margin-top: 30rpx;
 }
