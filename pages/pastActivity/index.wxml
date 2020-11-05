@@ -1,12 +1,12 @@
 <view class="container" wx:if="{{activityList.length > 0}}">
 	<view wx:for="{{activityList}}" wx:for-item="activity" wx:key="id" class="activity-box">
-		<image class="img" src="{{activity.coverImageLocation}}" bindtap="navigatorDetail" data-id="{{activity.id}}"
+		<image class="img" src="{{activity.coverImageLocation}}" bindtap="navigatorDetail" data-id="{{activity.id}}" data-type="{{activity.type}}"
 			data-title="{{activity.title}}"></image>
 		<view class="activity-content">
-			<text class="title" bindtap="navigatorDetail" data-id="{{activity.id}}"
+			<text class="title" bindtap="navigatorDetail" data-id="{{activity.id}}" data-type="{{activity.type}}"
 				data-title="{{activity.title}}">{{activity.title}}</text>
 		</view>
-		<view class="activity-desc" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}">
+		<view class="activity-desc" bindtap="navigatorDetail" data-id="{{activity.id}}" data-title="{{activity.title}}" data-type="{{activity.type}}">
 			<text>{{activity.description}}</text>
 		</view>
 		<view class="remain-days">

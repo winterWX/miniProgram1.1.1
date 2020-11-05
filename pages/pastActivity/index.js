@@ -114,9 +114,12 @@ Page({
     })
   },
   navigatorDetail: function(e) {
-    let {title,id } = e.currentTarget.dataset;
+    console.log(e);
+    let {title,id, type } = e.currentTarget.dataset;
+    let url = type === '2' ? '../healthKnowledge/index?id=' + id : '../activityDetail/index?id=' + id + '&title=' + title;
+    console.log(url)
     wx.navigateTo({
-      url: '../activityDetail/index?id=' + id + '&title=' + title,
+      url
     })
   }
 })
