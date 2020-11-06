@@ -147,7 +147,7 @@ Page({
   healthFail:function(){
     let that = this;
     wx.navigateTo({
-      url: '../../pages/healthPage/index?flg=' + that.data.refusedTo
+      url: '../../pages/healthPage/index?id=' + that.data.refusedTo
     })
   },
   getUserInfo:function(e) { //获取用户信息

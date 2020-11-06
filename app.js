@@ -25,9 +25,7 @@ App({
     isReceiveStatus:false,
     invitationCode:''  //邀请码
   },
-  firstInit:{
-    bootImage: true
-  },
+  firstInit:{ bootImage: true },
   //健康资讯全局变变量的设置
   healthInforData:{
     findMore: true    //发现更多 close按钮的设置
@@ -35,6 +33,6 @@ App({
   healthStep:{
     SynchronousData :false,  // 是否已经立即授过权 同步数据
     integralRecord :false,   //标记是否领取
-    dataCource: 0  //数据源 1.APP  2.miniPro
+    dataCource: 0   // 2 app 用户， 1 mini用户
   }
 })
