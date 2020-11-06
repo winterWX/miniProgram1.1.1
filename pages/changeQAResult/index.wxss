@@ -84,8 +84,8 @@ page {
     padding: 30rpx 0;
 }
 .container .main .question-info .question-item .answer {
-    display: flex;
-    align-items: center;
+   /*  display: flex;
+    align-items: center; */
     font-size: 28rpx;
 }
 .container .main .question-info .question-item .answer .error-answer {
