@@ -27,8 +27,8 @@
             <view class="question-item" wx:for="{{questionAnalysis}}" wx:key="id" wx:for-item="question">
                 <view class="question">{{question.question}}</view>
                 <view class="answer">
-                    <view>正确答案：{{question.correctAnswer}}</view>
-                    <view class="error-answer ml5" wx:if="{{question.isCorrect === 2}}">({{question.answer}})</view>
+                    <view style="display: inline-block;">正确答案：{{question.correctAnswer}}</view>
+                    <view style="display: inline-block;" class="error-answer ml5" wx:if="{{question.isCorrect === 2}}">({{question.answer}})</view>
                 </view>
                 <view class="result {{ question.isCorrect === 1 ? 'correct' : 'error'}}">{{question.isCorrect === 1 ? '回答正确' : '回答错误'}}</view>
              </view>
