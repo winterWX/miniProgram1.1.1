@@ -82,8 +82,6 @@ page {
 .container .main .answer-box .qa .options .option {
     color: #333;
     font-size: 32rpx;
-    /* height: 90rpx;
-    line-height: 90rpx; */
     padding: 25rpx 0 25rpx 0;
     text-align: center;
     background-color: #f7f7f7;
