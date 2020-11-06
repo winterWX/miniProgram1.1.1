@@ -103,7 +103,7 @@
 	<view class="modal modal-bottom-dialog" hidden="{{hideFlag}}">
 		<view class="modal-cancel"></view>
 		<view class="bottom-dialog-body" animation="{{animationData}}">
-			<view class='Mcancel' catchtap='mCancel' data-name='gender'>
+			<view class='Mcancel'>
 				<image class="icon-close" catchtap='mCancel' data-name='gender' src="http://106.54.73.125:8104/images/miniprogram/images/icon-close.png"></image>
 				<text class="gender-title">选择性别</text>
 			</view>
