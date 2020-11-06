@@ -159,5 +159,5 @@
 			</view>
 		</view>
     </view> 
-	<footer class="footerContent" wx:if="{{!showDialog}}" active="{{active}}"></footer>
+	<footer class="footerContent" active="{{active}}"></footer>
 </view>

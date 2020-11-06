@@ -26,14 +26,16 @@
    <view class="topSetting PageBackColor" style="padding-top:30rpx;">
        <view class="imageLeft"><image src='http://106.54.73.125:8104/images/miniprogram/images/icon-guideline.png'></image></view>
        <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='http://106.54.73.125:8104/images/miniprogram/images/icon-right-arrow-12-x-12.png'></image></view>
-        <view style="padding-top:30rpx">
-            <stepAmaition stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
+         <!-- <view style="padding-top:30rpx"> -->
+         <view class="miniprogress">
+            <!-- <stepAmaition stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" /> -->
+            <miniprogress stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
         </view>
         <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)
         isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
             <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
-            <van-button  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>还差{{startStep}}步</van-button>
+            <van-button  wx:if='{{ (stepsNum.isDone === "2" || stepsNum.todaySteps === 0)  && !startStatus}}'>还差{{startStep}}步</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}' class="topSetting-vanBtn"  bindtap="integralBtn">领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>已领取</van-button>
         </view>   

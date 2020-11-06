@@ -5,10 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-     forceNum:false,
-     allowRun:false,
-     startStatus:false,
-     anBackShow:false,
+     forceNum: false,
+     allowRun: false,
+     startStatus: false,
+     anBackShow: false,
      startStep: 10000,
      showAPPData: 0, 
      stepsNum:{
@@ -21,18 +21,17 @@ Page({
         integral: 0	 //	可以领取的积分
      },
      isDone:2,
-     btnStatus: 0,  // 0 还差，1领积分，2已领
      everyDayData:{
         distance: 0,
         calories: 0,
         totalTime: 0,
-        todaySteps:0
+        todaySteps: 0
      }, 
      leftDire: 750/2 + 120,
      topDire: 240 / 2,
-     flag:false,
-     guidance1:false,
-     guidance2:false,
+     flag: false,
+     guidance1: false,
+     guidance2: false,
      firstInitShow: true,  //第一次进来显示
      iconPath:app.globalData.imagesUrl + '/images/icon-10-points@2x.png',
      dataSyn: false //标记数据同步
@@ -41,16 +40,12 @@ Page({
        let that = this;
        that.setData({ showAPPData: app.healthStep.dataCource })
        if(options.id ==='allowTo'){ 
-            that.setData({ flag: true, guidance1: true })
+            that.setData({ flag: true, guidance1: true });
             that.settingDataBtn();
             that.healthEveryday();
             that.getQueryintegral();
         }else if(options.flg ==='refusedTo'){
-            if(app.globalData.isWeRunStepsFail){
-              that.settingDataBtn();
-            }else{
-              that.setData({ btnStatus: -1,startStatus :true })
-            }
+            that.setWerunStep();
             that.healthEveryday();
         }else if(options.flg ==='carryAPPData'){
             that.settingDataBtn();
@@ -123,38 +118,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {},
-  //刷新的时候上传数据
-  getUploaddata: function (runData) {
-    let that = this;
-    wx.request({
-      method: 'POST',
-      url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
-      },
-      data:{
-        bpm: 0,
-        source :'string',
-        type : 'MINIP',
-        lastTime: new Date().getTime() + '',
-        stepsDataModelList: runData,
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-            //数据同步完成再重新加载
-            let options ={id:'allowTo'};
-            that.onLoad(options); //刷新页面
-            that.setData({
-              guidance1: false,
-              guidance2: false,
-              firstInitShow:false
-            })
-            console.log('数据同步成功')
-        }
-      }
-    })
-  },
   guidanceOne:function(){
      let that = this;
      that.setData({
@@ -186,7 +149,7 @@ Page({
   settingDataBtn(){
     let that = this;
     app.healthStep.SynchronousData = true;
-    app.globalData.isWeRunStepsFail = true;
+    app.globalData.isWeRunStepsFail = true;  //表示已经点儿开启数据访问按钮
     that.getQueryintegral();
     wx.request({
       url: app.globalData.baseUrl +'/remote/today/step/enquiry',
@@ -199,9 +162,10 @@ Page({
       success: function (res) {
           if(res.data.code === 200){
               that.setData({ stepsNum: res.data.data });
-            if(res.data.data.todaySteps < 10000){
-              that.setData({ startStep : 10000 - res.data.data.todaySteps});
-            }
+              if(res.data.data.todaySteps < 10000){
+                that.setData({ startStep : 10000 - res.data.data.todaySteps});
+              }
+              that.setData({ startStatus: false });
           }
       },
       fail: function (res) {
@@ -286,10 +250,7 @@ Page({
         },
         success: (res) => {
           if (res.data.code === 200) {
-              that.setData({
-                forceNum : app.healthStep.SynchronousData,
-                allowRun : true 
-              })
+              that.setData({ forceNum : app.healthStep.SynchronousData, allowRun : true });
           }
         }
       })
@@ -298,5 +259,103 @@ Page({
     wx.navigateTo({
       url: '../../pages/rankingList/index',
     })
-  }
+  },
+  setWerunStep:function(){
+    let that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (!res.authSetting['scope.werun']) {
+          wx.showModal({
+            title: '提示',
+            content: '今日步数需要微信步数授权',
+            success: function (res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success: function (res) {
+                    that.getStepRunData();  //开启后 重新获取微信运动步数;
+                  }
+                })
+              } else {
+                //不设置
+                if(app.globalData.isWeRunStepsFail){
+                  that.settingDataBtn();
+                }else{
+                  that.setData({ startStatus :true });
+                }
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  getStepRunData: function () {
+    let that = this;
+    authorizeRun.getWxRunData(function(result){
+        if(result.length > 0){
+          //授权成功跳转获取步数
+          app.globalData.runData = result;
+          app.globalData.isWeRunSteps = true; //标志授权成功
+          that.getQueryLatestime(result);
+          that.settingDataBtn();
+        }
+    })
+  },
+  //最近上传数据时间查询(query- queryLatestime)|移动端
+  getQueryLatestime: function (runData) {
+    let that = this;
+    wx.request({
+      method: 'GET',
+      url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+            //最后上传时间戳 和 当前时间戳进行比较
+            let time = util.formatTime(new Date(Number(res.data.data)));
+            let latestTime = time.split(' ')[0];
+            let result = runData.find(item => item.date === latestTime);
+            let index = runData.indexOf(result);
+            let results = runData.splice(0, index + 1).map(item=>{
+                 return {
+                    startTime: item.timestamp + '',
+                    endTime: item.timestamp + '',
+                    steps: item.step
+                 }
+            });
+            that.getUploaddata(results);
+        }
+      }
+    })
+  },
+    //刷新的时候上传数据
+    getUploaddata: function (runData) {
+      let that = this;
+      wx.request({
+        method: 'POST',
+        url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "token": app.globalData.token
+        },
+        data:{
+          bpm: 0,
+          source :'string',
+          type : 'MINIP',
+          lastTime: new Date().getTime() + '',
+          stepsDataModelList: runData,
+        },
+        success: (res) => {
+          if (res.data.code === 200) {
+              //数据同步完成再重新加载
+              // let options ={ id:'allowTo'};
+              // that.onLoad(options); //刷新页面
+              that.setData({ guidance1: false, guidance2: false, firstInitShow:false })
+              console.log('数据同步成功')
+          }
+        }
+      })
+    },
 })

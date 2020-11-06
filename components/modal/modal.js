@@ -46,6 +46,16 @@ Component({
         this.triggerEvent('cancel')  //triggerEvent触发事件
       },
       // 点击确定按钮的回调函数
+      confirmSetting(e) {
+        if(!e.detail.authSetting['scope.werun']){
+          this.setData({ show: false });
+          this.triggerEvent('confirm');
+        }else{
+          this.setData({ show: false });
+          this.triggerEvent('confirm', { werunStep: true}, {} );
+        }
+      },
+      // 点击确定按钮的回调函数
       confirm() {
         this.setData({ show: false })
         this.triggerEvent('confirm')
