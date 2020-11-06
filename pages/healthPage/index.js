@@ -1,9 +1,6 @@
 const app = getApp();
 const authorizeRun = require('../../utils/authorizeRun.js');
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
      forceNum: false,
      allowRun: false,
@@ -34,26 +31,17 @@ Page({
      guidance2: false,
      firstInitShow: true,  //第一次进来显示
      iconPath:app.globalData.imagesUrl + '/images/icon-10-points@2x.png',
-     dataSyn: false //标记数据同步
+     dataSyn: false,   //标记数据同步
+     optionsFlg:'' // 标识 options id
   },
   onLoad:function (options) {
        let that = this;
-       that.setData({ showAPPData: app.healthStep.dataCource })
-       if(options.id ==='allowTo'){ 
-            that.setData({ flag: true, guidance1: true });
-            that.settingDataBtn();
-            that.healthEveryday();
-            that.getQueryintegral();
-        }else if(options.flg ==='refusedTo'){
-            that.setWerunStep();
-            that.healthEveryday();
-        }else if(options.flg ==='carryAPPData'){
-            that.settingDataBtn();
-            that.healthEveryday();
-            //判断是否有app数据
-            if(that.data.stepsNum.todaySteps === 0 && that.data.totalTime === 0){
-                that.setData({ startStatus :true })
-            }
+       that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
+                      firstInitShow :  app.firstInit.bootImage });
+       if(!app.firstInit.bootImage){
+          that.linkToPage(options.id);
+       }else{
+          that.setData({ flag: true, guidance1:true });
         }
   },
   onReady: function () {
@@ -61,24 +49,12 @@ Page({
   onShow: function () {
       let that = this;
       that.setData({ firstInitShow: app.firstInit.bootImage });
+      if( !app.firstInit.bootImage ){
+        that.linkToPage(that.data.optionsFlg);
+      }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  onHide: function () {},
+  onUnload: function () {},
   onPullDownRefresh: function () {
     let that = this;
     wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
@@ -110,28 +86,30 @@ Page({
         console.log('数据下拉更新',resultData[0].steps)
     })
   },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {},
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {},
+  linkToPage:function(id){
+      let that = this;
+      if(id ==='allowTo'){ 
+          that.settingDataBtn();
+          that.healthEveryday();
+          that.getQueryintegral();
+      }else if(id ==='refusedTo'){
+          that.setWerunStep();
+      }else if(id ==='carryAPPData'){
+          that.settingDataBtn();
+          that.healthEveryday();
+      }
+  },
   guidanceOne:function(){
      let that = this;
-     that.setData({
-         guidance1: false,
-         guidance2: true
-     })
+     that.setData({ guidance1: false, guidance2: true });
   },
   guidanceTwo:function(){
       let that = this;
-      that.setData({
-        guidance2: false,
-        flag: false
-      })
+      that.setData({ guidance2: false, flag: false, firstInitShow:false});
       app.firstInit.bootImage = false;
+      that.linkToPage(that.data.optionsFlg);
   },
   healthShow:function(){
     wx.navigateTo({
@@ -273,9 +251,10 @@ Page({
                 wx.openSetting({
                   success: function (res) {
                     that.getStepRunData();  //开启后 重新获取微信运动步数;
+                    that.healthEveryday();
                   }
                 })
-              } else {
+              }else {
                 //不设置
                 if(app.globalData.isWeRunStepsFail){
                   that.settingDataBtn();
@@ -330,8 +309,8 @@ Page({
       }
     })
   },
-    //刷新的时候上传数据
-    getUploaddata: function (runData) {
+  //刷新的时候上传数据
+  getUploaddata: function (runData) {
       let that = this;
       wx.request({
         method: 'POST',
@@ -345,17 +324,13 @@ Page({
           source :'string',
           type : 'MINIP',
           lastTime: new Date().getTime() + '',
-          stepsDataModelList: runData,
+          stepsDataModelList: runData
         },
         success: (res) => {
           if (res.data.code === 200) {
-              //数据同步完成再重新加载
-              // let options ={ id:'allowTo'};
-              // that.onLoad(options); //刷新页面
               that.setData({ guidance1: false, guidance2: false, firstInitShow:false })
-              console.log('数据同步成功')
           }
         }
       })
-    },
+  }
 })

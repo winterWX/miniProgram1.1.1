@@ -125,7 +125,7 @@ dt:first-child {
 .dt.time{
   height: 36rpx;
   font-family: Flama;
-  font-size: 28rpx; 
+  font-size: 24rpx; 
   line-height: 1.29; 
   color: #929292;
 }

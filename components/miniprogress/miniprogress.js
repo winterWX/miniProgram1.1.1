@@ -1,8 +1,5 @@
 var timer = null;
 Component({
-    /**
-     * 组件的属性列表
-     */
     properties: {
         stepNum: {
             type: Number,
@@ -13,12 +10,10 @@ Component({
         },
     },
 
-    /**
-     * 组件的初始数据
-     */
     data: {
        numStep :0
     },
+    
     ready: function () {
         const query = this.createSelectorQuery()
         query.select('#ringTop').boundingClientRect(res => {
@@ -26,9 +21,6 @@ Component({
         }).exec()
     },
 
-    /**
-     * 组件的方法列表
-     */
     methods: {
         createQueryFun:function(value){
             clearInterval(timer);
@@ -76,10 +68,6 @@ Component({
                 context.setLineCap('round')
                 context.setStrokeStyle('#00a865')
                 this.setData({ numStep:num });
-                // context.textAlign = 'center' //文字居中
-                // context.font = '40px Arial'
-                // context.fillStyle = '#333333' //字体颜色
-                // context.fillText( num +'' , width / 2,72);
                 context.stroke()
 
                 // 指示器

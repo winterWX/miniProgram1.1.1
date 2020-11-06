@@ -29,13 +29,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    that.setData({
-      showAPPData: app.healthStep.dataCource
-    })
+    that.setData({ showAPPData: app.healthStep.dataCource });
     if(app.healthStep.SynchronousData){
-        that.setData({
-          tipUpdate : app.healthStep.SynchronousData
-        })
+        that.setData({ tipUpdate : app.healthStep.SynchronousData });
         this.getHealthData();
         this.getHeightWeight();  //身高体重
         that.getQueryintegral();

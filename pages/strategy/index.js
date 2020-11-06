@@ -104,7 +104,7 @@ Page({
     })
   },
   activePage:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/challenge/index',
     })
   },
