@@ -65,7 +65,7 @@ Page({
   onShareAppMessage: function () { },
   nameChange: function(e) {
     this.setData({
-      nickName: e.detail.value.replace(/\s+/g, '')
+      nickName: e.detail.value.replace(/\s+/g, '') === '' ? '' : e.detail.value
     })
   },
   submitHnadle() {

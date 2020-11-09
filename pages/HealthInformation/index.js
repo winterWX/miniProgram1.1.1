@@ -3,6 +3,8 @@ var x, y, x1, y1, x2, y2, lastX = 0, lastY = 0;
 Page({
   data: {
     listData:[],
+    totalPage: 0,
+    onPullNun: 1,
     timeData:[],
     inputSearchData:'',
     tabCur: 0, //默认选中
@@ -53,17 +55,39 @@ Page({
     let that = this;
     that.mytagSearch();
   },
+  onPullDownRefresh: function () {
+    let that = this;
+    that.setData({onPullNun : that.data.onPullNun -= 1});
+    wx.showNavigationBarLoading();   //在当前页面显示导航条加载动画
+    if(that.data.onPullNun >= 1){
+        that.searchSend(that.data.researchTag,that.data.onPullNun);
+    }else{
+        return;
+    }
+    setTimeout(function(){
+        wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
+        wx.stopPullDownRefresh(); //停止下拉动作
+    },1000)
+  },
+  onReachBottom: function () {
+      let that = this;
+      that.setData({onPullNun : that.data.onPullNun += 1});
+      wx.showNavigationBarLoading();   //在当前页面显示导航条加载动画
+      if(that.data.onPullNun <= that.data.totalPage){
+          that.searchSend(that.data.researchTag,that.data.onPullNun);
+      }else{
+          return;
+      }
+      setTimeout(function(){
+          wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
+          wx.stopPullDownRefresh(); //停止下拉动作
+      },1000)
+  },
   //选择条目
   tabSelect(e) {
-      var that = this;
-      that.setData({
-          tabCur: e.currentTarget.dataset.id,
-          scrollLeft: (e.currentTarget.dataset.id - 2) * 200
-      })
-      that.setData({
-         researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag
-      })
-      console.log('researchTag', that.data.researchTag);
+      let that = this;
+      that.setData({ tabCur: e.currentTarget.dataset.id,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
+      that.setData({ researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag });
       that.searchSend(that.data.researchTag);
   },
   listClick(e){
@@ -73,12 +97,12 @@ Page({
       })
   },
   //文章列表接口
-  searchSend(parase){
+  searchSend(parase,num){
     var that = this;
     wx.request({
      url: app.globalData.baseUrl + '/remote/article/query/list',
      data:{
-      "currentPage": 1,
+      "currentPage": num !== undefined ?  num : 1,
       "pageSize": 10,
       "topic": parase !== undefined ?  parase : ''
     },
@@ -93,7 +117,7 @@ Page({
          res.data.data.articles.forEach((item)=>{
             item.inputtime = that.timestampToTime(item.inputtime)
          })
-         that.setData({ listData: res.data.data })
+         that.setData({ totalPage: res.data.totalPage, listData: res.data.data });
        }
     },
     fail: function (res) {
@@ -203,7 +227,7 @@ Page({
         console.log('.........fail..........');
       }
       })
-    },
+  },
   //查询我的话题  
   mytagSearch:function () {
       var that = this;
@@ -252,7 +276,7 @@ Page({
         console.log('.........fail..........');
       }
       })
-    },
+  },
   //批量更新tag  
   refreTagList:function(listNum){
             var that = this;
@@ -272,7 +296,7 @@ Page({
                 console.log('.........fail..........');
               }
       })
-    },
+  },
   myTagItemFun:function (e) {
       let that = this;
       let clickIndex = e.currentTarget.dataset.index;
@@ -296,7 +320,7 @@ Page({
         })
       }
       that.dargLonad();
-    },
+  },
   addTagBbtn:function(e){
       let that = this;
       let clickIndex = e.currentTarget.dataset.index;
@@ -320,7 +344,7 @@ Page({
         })
       }
       that.dargLonad();
-    },
+  },
     // 隐藏遮罩层
   hideModal: function () {
       var that = this;
@@ -335,15 +359,15 @@ Page({
           hideModal: true
         })
       }, 100)  //先执行下滑动画，再隐藏模块
-    },
-    //动画集
-    fadeIn: function () {
+  },
+  //动画集
+  fadeIn: function () {
       this.animation.translateY(0).step()
       this.setData({
         animationData: this.animation.export()  //动画实例的export方法导出动画数据传递给组件的animation属性
       })
-    },
-    fadeDown: function () {
+  },
+  fadeDown: function () {
       this.animation.translateY(1000).step()
       this.setData({
         animationData: this.animation.export(),
@@ -354,28 +378,28 @@ Page({
       this.setData({
         editSwith: true
       })
-    },
-    closePage:function(){
+  },
+  closePage:function(){
       var that =this;
       that.fadeDown();
       that.setData({
          hideModal: true
       })
-    },
-    searchBlock:function(){
+  },
+  searchBlock:function(){
       wx.navigateTo({
         url: '../../pages/searchTag/index',
       })
-    },
-    topTipImageColse:function(){
+  },
+  topTipImageColse:function(){
       let that = this;
       app.healthInforData.findMore = false;
       let topTipShowFlg = app.healthInforData.findMore = false
       that.setData({
         topTipShow: topTipShowFlg
       })
-    },
-    timestampToTime :function (timestamp){
+  },
+  timestampToTime :function (timestamp){
         var date = new Date(timestamp * 1000);  //时间戳为10位需*1000，时间戳为13位的话不需乘1000
       var Y = date.getFullYear() + '-';
       var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -384,8 +408,8 @@ Page({
       var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
       var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
       return Y + M + D + '，' + h + m;
-    },
-    dargLonad:function(){
+  },
+  dargLonad:function(){
       var self = this;
       wx.getSystemInfo({
         success: function (res) {
@@ -417,8 +441,8 @@ Page({
           console.log('myArr',self.data.myTagData);
         }
       });
-    },
-    movestart: function (e) {
+  },
+  movestart: function (e) {
       x = e.touches[0].clientX;
       y = e.touches[0].clientY;
       x1 = e.currentTarget.offsetLeft;
@@ -430,8 +454,8 @@ Page({
         move_x: x1,
         move_y: y1
       });
-    },
-    move: function (e) {
+  },
+  move: function (e) {
       if(e.currentTarget.dataset.index !== 0){
         var self = this, _x = e.touches[0].clientX, _y = e.touches[0].clientY;
         x2 = _x - x + x1;
@@ -454,13 +478,13 @@ Page({
           move_y: y2
         });
       }
-    },
-    moveend: function (e) {
+  },
+  moveend: function (e) {
       this.setData({
         current: -1,
       })
-    },
-    changeArrayData: function (arr, i1, i2) {
+  },
+  changeArrayData: function (arr, i1, i2) {
       console.log('changeArrayData')
       var temp = arr[i1];
       arr[i1] = arr[i2];
@@ -477,8 +501,8 @@ Page({
       arr[i2].left = left;
       arr[i2].top = top;
   
-    },
-    getCurrnetUnderIndex: function (endx, endy) {//获取当前移动下方index
+  },
+  getCurrnetUnderIndex: function (endx, endy) {//获取当前移动下方index
       var endx = x2 + this.data.u_w / 2,
         endy = y2 + this.data.u_h / 2;
       var v_judge = false, h_judge = false, column_num = Math.ceil((this.data.all_width - this.data.s_h) / (this.data.s_h + this.data.u_w));
@@ -504,5 +528,5 @@ Page({
       } else {
         return null;
       }
-    }
+  }
 })

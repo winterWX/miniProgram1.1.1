@@ -9,18 +9,17 @@ Page({
     active: 0,
     successFlg: false,
     allowTo: 'allowTo',
-    refusedTo:'refusedTo',
-    carryAPPData:'carryAPPData',
+    refusedTo: 'refusedTo',
+    carryAPPData: 'carryAPPData',
     indexStep: true,
     redirectToUrl: '', //调转的标记
     stepsNum:{},
     runDataText: 0,
     rejectRun: false, //拒绝授权
     showDialog: false,
-    //semicircleState: false, //控制半圆的显示，因为canves 半圆层级比较高
-    levelNum:0,
-    levelNumShow:true,
-    isAppData:false  //是否是APP用户
+    levelNum: 0,
+    levelNumShow: true,
+    isAppData: false  //是否是APP用户
   },
   onLoad: function (options) {
     let that = this;
@@ -29,20 +28,15 @@ Page({
       that.selectComponent('#filterCmp').restFilterDatas();
     }
     if(app.globalData.isLogin === 3){
-      that.setData({ isLogin: app.globalData.isLogin });   //, semicircleState: true
+      that.setData({ isLogin: app.globalData.isLogin });
       that.checkIsAppUser();  //调用数据源，App数据优先；
-      if(!that.data.isAppData){
-        that.getStepRunData();
-      }else{
-        that.stepRunState();
-      }
     }
     that.homePageInit();
     that.userLevel();
   },
   onShow: function () {
     let that = this;
-    that.setData({ active: 0 });  //, semicircleState: true
+    that.setData({ active: 0 });
   },
   onPullDownRefresh: function () {
     let that = this;
@@ -97,10 +91,13 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
-            // 2 app 用户，1 mini用户
-            that.setData({ isAppData: res.data.data === 2 ? true : false });
-            //数据源
-            app.healthStep.dataCource = res.data.data;
+            that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
+            app.healthStep.dataCource = res.data.data;    // 数据源
+            if(!that.data.isAppData){
+              that.getStepRunData();
+            }else{
+              that.stepRunState();
+            }
         }
       }
     })
@@ -134,21 +131,22 @@ Page({
     }
   },
   carryAPPData:function(){
-    wx.navigateTo({
-      url: '../../pages/healthPage/index?id=' + that.data.carryAPPData
-    })
+      let that = this;
+      wx.navigateTo({
+        url: '../../pages/healthPage/index?id=' + that.data.carryAPPData
+      })
   },
   healthSccuss:function(){
-    let that = this;
-    wx.navigateTo({
-      url: '../../pages/healthPage/index?id=' + that.data.allowTo
-    })
+      let that = this;
+      wx.navigateTo({
+        url: '../../pages/healthPage/index?id=' + that.data.allowTo
+      })
   },
   healthFail:function(){
-    let that = this;
-    wx.navigateTo({
-      url: '../../pages/healthPage/index?id=' + that.data.refusedTo
-    })
+      let that = this;
+      wx.navigateTo({
+        url: '../../pages/healthPage/index?id=' + that.data.refusedTo
+      })
   },
   getUserInfo:function(e) { //获取用户信息
     let that = this;
