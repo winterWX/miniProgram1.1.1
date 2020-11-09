@@ -159,7 +159,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 13%;
 }
 .bottomTextTop{
   font-size: 24rpx;
@@ -607,4 +606,7 @@
 .firstNum{
   margin-top: -20rpx;
   font-size: 60rpx;
+}
+.minTextAfter{
+  width: 100rpx;
 }

@@ -19,7 +19,7 @@
                     <view><image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /></view> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}" >已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}" >未达成</view>
@@ -100,7 +100,9 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText">
+                            <view class="minTextAfter">{{item.couponName}}</view>
+                        </view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -186,7 +188,7 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -268,7 +270,7 @@
                     <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
@@ -344,7 +346,7 @@
                     <image  wx:if="{{item.received === 2}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3x.png" />
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
-                        <view class="minText">{{item.couponName}}</view>
+                        <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
                         <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
                         <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                         <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
