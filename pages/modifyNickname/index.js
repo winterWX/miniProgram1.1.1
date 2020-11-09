@@ -5,17 +5,15 @@ Page({
    */
   data: {
     id: '',
-    nickName: ''
+    nickName: '',
+    btnNickName:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData ({
-      nickName: options.nickName,
-      id: options.id
-    })
+    this.setData ({ nickName: options.nickName, btnNickName: options.nickName, id: options.id });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -65,12 +63,13 @@ Page({
   onShareAppMessage: function () { },
   nameChange: function(e) {
     this.setData({
-      nickName: e.detail.value.replace(/\s+/g, '') === '' ? '' : e.detail.value
+        nickName: e.detail.value,
+        btnNickName: e.detail.value.replace(/\s+/g, '') === '' ? '' : e.detail.value
     })
   },
   submitHnadle() {
-    if (!this.data.nickName) {
-      return;
+    if (!this.data.btnNickName) {
+        return;
     }
     wx.request({
       url: app.globalData.baseUrl + '/remote/myProfile/edit',
