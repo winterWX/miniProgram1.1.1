@@ -112,12 +112,14 @@ Page({
        'native-app':'mini'
      },
     success: function (res) {
-       if(res.data.data !== null){
+       if(res.data.code === 200){
         //that.collectionQueryCounts();  // 赋值前调用
          res.data.data.articles.forEach((item)=>{
             item.inputtime = that.timestampToTime(item.inputtime)
          })
-         that.setData({ totalPage: res.data.totalPage, listData: res.data.data });
+         const listData = that.data.listData.length === 0 ? res.data.data.articles : [...that.data.listData,...res.data.data.articles];
+         console.log('listData====++++',listData);
+         that.setData({ totalPage: res.data.totalPage, listData });
        }
     },
     fail: function (res) {
