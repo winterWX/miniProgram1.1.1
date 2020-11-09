@@ -8,7 +8,7 @@
                <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
             </view>
          </view>
-         <view class="mask-guidance2"  wx:if='{{guidance2}}'  bindtap="guidanceTwo">
+         <view class="mask-guidance2"  wx:if='{{guidance2}}'>
                <image src='http://106.54.73.125:8104/images/miniprogram/images/pic-guidance-2.png'></image>
                <view class="contutionText">
                      <view class="picBottomText-main">
