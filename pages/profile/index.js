@@ -14,7 +14,7 @@ Page({
     hideFlag: true,//true-隐藏  false-显示
     hideAvatarFlag: true,//true-隐藏  false-显示
     selectedAvatarId: '',
-    requiredInput: 6,
+    requiredInput: 5,
     inputedInfoNum: 2,
     optionList: [{
       label: '男',
@@ -239,14 +239,15 @@ Page({
     })
   },
   getPercentage: function (userInfo, flag) {
+    let {email, ...userInfoItem } = userInfo;
     let keysWithValue = 0;
-    let keys = Object.keys(userInfo).filter(item => {
+    let keys = Object.keys(userInfoItem).filter(item => {
       return !['id', 'percentage'].includes(item);
     });
     let allKeys = keys.length;
     const invalidValue = ['--', '未绑定', '暂不选择', '保密'];
     for (let key of keys) {
-      if (userInfo[key] && !invalidValue.includes(userInfo[key])) {
+      if (userInfoItem[key] && !invalidValue.includes(userInfoItem[key])) {
         if (flag && key === 'avatarUrl') {
           continue;
         } else {

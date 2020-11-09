@@ -60,7 +60,7 @@
 				<text class="userinfo-item-value__label">{{ userInfo.phone }}</text>
 			</view>
 		</view>
-		<view class="userinfo-item-container" style="border-bottom: none;" bindtap="emaidEdit">
+		<view class="userinfo-item-container" wx:if="{{false}}" style="border-bottom: none;" bindtap="emaidEdit">
 			<text class="userinfo-item-label">邮箱地址</text>
 			<view>
 				<text wx:if="{{ userInfo.email !== '未绑定'}}" class="userinfo-item-value__label">{{ userInfo.email }}</text>

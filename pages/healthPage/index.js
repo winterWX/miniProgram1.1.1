@@ -37,21 +37,15 @@ Page({
   onLoad:function (options) {
        let that = this;
        that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
-                      firstInitShow :  app.firstInit.bootImage });
-       if(!app.firstInit.bootImage){
-          that.linkToPage(options.id);
-       }else{
+                      firstInitShow : app.firstInit.bootImage });
+       if(app.firstInit.bootImage){
           that.setData({ flag: true, guidance1:true });
-        }
+       }
   },
-  onReady: function () {
-  },
+  onReady: function () {},
   onShow: function () {
       let that = this;
       that.setData({ firstInitShow: app.firstInit.bootImage });
-      if( !app.firstInit.bootImage ){
-        that.linkToPage(that.data.optionsFlg);
-      }
   },
   onHide: function () {},
   onUnload: function () {},
@@ -88,6 +82,16 @@ Page({
   },
   onReachBottom: function () {},
   onShareAppMessage: function () {},
+  guidanceOne:function(){
+    let that = this;
+    that.setData({ guidance1: false, guidance2: true });
+ },
+ guidanceTwo:function(){
+     let that = this;
+     that.setData({ guidance2: false, flag: false, firstInitShow:false});
+     app.firstInit.bootImage = false;
+     that.linkToPage(that.data.optionsFlg);
+ },
   linkToPage:function(id){
       let that = this;
       if(id ==='allowTo'){ 
@@ -100,16 +104,6 @@ Page({
           that.settingDataBtn();
           that.healthEveryday();
       }
-  },
-  guidanceOne:function(){
-     let that = this;
-     that.setData({ guidance1: false, guidance2: true });
-  },
-  guidanceTwo:function(){
-      let that = this;
-      that.setData({ guidance2: false, flag: false, firstInitShow:false});
-      app.firstInit.bootImage = false;
-      that.linkToPage(that.data.optionsFlg);
   },
   healthShow:function(){
     wx.navigateTo({
@@ -239,6 +233,7 @@ Page({
     })
   },
   setWerunStep:function(){
+    console.log('====+++')
     let that = this;
     wx.getSetting({
       success: function (res) {
