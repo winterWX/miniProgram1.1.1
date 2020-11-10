@@ -83,10 +83,15 @@ page {
     color: #333;
     font-size: 32rpx;
     padding: 25rpx 72rpx 25rpx 72rpx;
-    text-align: center;
+    /* text-align: center; */
     background-color: #f7f7f7;
     margin-bottom: 30rpx;
     position: relative;
+}
+.itemText{
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 .container .main .answer-box .qa .options .option .icon {
     width: 36rpx;
