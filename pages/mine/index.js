@@ -186,7 +186,7 @@ getMyprofileInfo: function () {
         let color = colorMap[userInfo.level]
         let avatar = userInfo.avatar || 13;
         that.setData({userInfo, avatar, color});
-        that.setData({countNum: res.data.data.completedCount === 6 ? 100 + '%' : parseInt((6-res.data.data.completedCount) * (100/6)) + '%'})
+        that.setData({countNum: res.data.data.completedCount === 5 ? 100 + '%' : parseInt((5-res.data.data.completedCount) * (100/5)) + '%'})
       } 
     },
     fail: function (res) {
