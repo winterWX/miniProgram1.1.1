@@ -269,7 +269,7 @@ Page({
                   title: index === 0 ? '每日步数挑战' : '健康知识问答王者',
                   description: index === 0 ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
                   //coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
-                  coverImage: index === 0 ? 'http://106.54.73.125:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://106.54.73.125:8104/images/miniprogram/images/index/banner-3@3x.png',
+                  coverImage: index === 0 ? 'http://81.69.44.222:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://81.69.44.222:8104/images/miniprogram/images/index/banner-3@3x.png',
                   createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
               }
             });

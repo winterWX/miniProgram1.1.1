@@ -14,8 +14,8 @@ App({
       phoneNumber: ''
     },
     runData: null,
-    baseUrl:'http://106.54.73.125:8104',
-    imagesUrl: 'http://106.54.73.125:8104/images/miniprogram',
+    baseUrl:'http://81.69.44.222:8104',
+    imagesUrl: 'http://81.69.44.222:8104/images/miniprogram',
     token: '',
     phoneNumber: '',
     isLogin : 0,  //未登录

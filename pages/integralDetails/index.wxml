@@ -3,7 +3,7 @@
         <view class="blueBlock">
            <view class="blueBlockNum">{{integral}}</view>
            <view class="blueBlockLeft">
-              <image class="blueBlockLeft-image" src="http://106.54.73.125:8104/images/miniprogram/images/myCounty/oval-2@3x.png" />
+              <image class="blueBlockLeft-image" src="http://81.69.44.222:8104/images/miniprogram/images/myCounty/oval-2@3x.png" />
               <view class="blueBlockLeftText" catchtap="integralRules">积分规则</view>
            </view>
         </view>

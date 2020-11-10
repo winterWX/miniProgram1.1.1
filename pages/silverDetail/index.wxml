@@ -16,7 +16,7 @@
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
-                    <view><image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /></view> 
+                    <view><image src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-39@3x.png" /></view> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
                         <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
@@ -33,9 +33,9 @@
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
                                     <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
+                                        <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
                                         <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
                                         <view class="progressBlockText2">立即查看</view>
                                     </view>
@@ -43,7 +43,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">银会员积分x2升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
@@ -52,7 +52,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">金会员积分x5升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
@@ -70,7 +70,7 @@
                     <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
                     <view class="bottomTextSecondeBlock2">实物健康产品、现金券积分兑换活动、免费视像会诊</view>
                 </view>
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img@3x.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img@3x.png"/>
             </view>
         </view>
     </view>
@@ -97,7 +97,7 @@
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
                         <view class="minText">
@@ -116,9 +116,9 @@
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
                                     <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
+                                        <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
                                         <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
                                         <view class="progressBlockText2">立即查看</view>
                                     </view>
@@ -126,7 +126,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">金会员积分x5升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
@@ -142,11 +142,11 @@
             <view class="bouttomTitlr">可享限时优惠</view>
                 <view class="insrusBlock">
                 <view class="insrusBlock1">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
                     <view class="insrusImage1">保费折扣优惠</view>
                 </view>
                 <view class="insrusBlock12">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
                     <view class="insrusImageText1">「易安康」癌症保障</view>
                     <view class="insrusImageText2">免保费一年保障</view>
                 </view>
@@ -156,7 +156,7 @@
                     <view class="bottomText1">健康服务消费优惠券</view>
                     <view class="bottomText2">中大/卓健提供</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
                 </view>
         </view>
         <view class="bottomTextSeconde bottomTextSecondeLeva2">
@@ -165,7 +165,7 @@
                     <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
                     <view class="bottomTextSecondeBlock2">实物健康产品、现金券积分兑换活动、免费视像会诊</view>
                 </view>
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img@3x.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img@3x.png"/>
             </view>
         </view>
     </view>
@@ -185,7 +185,7 @@
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
                         <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
@@ -200,11 +200,11 @@
             <view class="bouttomTitlr">已享限时优惠</view>
             <view class="insrusBlock">
               <view class="insrusBlock1">
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
                 <view class="insrusImage1">保费折扣优惠</view>
               </view>
               <view class="insrusBlock12">
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
                 <view class="insrusImageText1">「易安康」癌症保障</view>
                 <view class="insrusImageText2">免保费一年保障</view>
               </view>
@@ -214,14 +214,14 @@
                   <view class="bottomText1">健康服务消费优惠券</view>
                   <view class="bottomText2">中大/卓健提供</view>
                 </view>
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
             </view>
             <view class="bottomTextSeconde">
                 <view class="bottomTextSecondeBlock">
                     <view class="bottomTextSecondeBlock1">在线健康论坛</view>
                     <view class="bottomTextSecondeBlock2">卓健/中大健康论坛门票</view>
                 </view>
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/online@3x.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/online@3x.png"/>
             </view>
         </view>
         <view class="glodBottom" style="width:{{windowWidth}}rpx;">
@@ -232,14 +232,14 @@
                         <view class="glodBottomText1">积分翻倍</view>
                         <view class="glodBottomText2">银会员2倍活动积分</view>
                      </view>
-                     <view class="glodBottomImage"><image src='http://106.54.73.125:8104/images/miniprogram/images/otherCarde/goldimg1.PNG' /></view>
+                     <view class="glodBottomImage"><image src='http://81.69.44.222:8104/images/miniprogram/images/otherCarde/goldimg1.PNG' /></view>
                 </view>
                 <view class="glodBottomItem">
                      <view class="glodBottomText glodBottomPind">
                         <view class="glodBottomText1">会员特权专享</view>
                         <view class="glodBottomText2">银会员专享内容</view>
                      </view>
-                     <view class="glodBottomImage"><image src='http://106.54.73.125:8104/images/miniprogram/images/otherCarde/goldimg2.PNG' /></view>
+                     <view class="glodBottomImage"><image src='http://81.69.44.222:8104/images/miniprogram/images/otherCarde/goldimg2.PNG' /></view>
                 </view>
             </view>
         </view>
@@ -267,7 +267,7 @@
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
                         <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
@@ -284,7 +284,7 @@
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">金会员积分x5升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
@@ -301,11 +301,11 @@
             <view class="bouttomTitlr">已享限时优惠</view>
                 <view class="insrusBlock">
                 <view class="insrusBlock1">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
                     <view class="insrusImage1">保费折扣优惠</view>
                 </view>
                 <view class="insrusBlock12">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
                     <view class="insrusImageText1">「易安康」癌症保障</view>
                     <view class="insrusImageText2">免保费一年保障</view>
                 </view>
@@ -315,7 +315,7 @@
                     <view class="bottomText1">健康服务消费优惠券</view>
                     <view class="bottomText2">中大/卓健提供</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
                 </view>
         </view>
     </view>
@@ -342,8 +342,8 @@
             </view>
             <view class="progressCark">
                 <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
-                    <image  wx:if="{{item.received !==2}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
-                    <image  wx:if="{{item.received === 2}}" src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3x.png" />
+                    <image  wx:if="{{item.received !==2}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-39@3x.png" /> 
+                    <image  wx:if="{{item.received === 2}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3x.png" />
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
                         <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
@@ -358,11 +358,11 @@
             <view class="bouttomTitlr">已享限时优惠</view>
             <view class="insrusBlock">
               <view class="insrusBlock1">
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
                 <view class="insrusImage1">保费折扣优惠</view>
               </view>
               <view class="insrusBlock12">
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
                 <view class="insrusImageText1">「易安康」癌症保障</view>
                 <view class="insrusImageText2">免保费一年保障</view>
               </view>
@@ -372,7 +372,7 @@
                   <view class="bottomText1">健康服务消费优惠券</view>
                   <view class="bottomText2">中大/卓健提供</view>
                 </view>
-                <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
+                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
             </view>
         </view>
     </view>
@@ -384,25 +384,25 @@
                     <view class="bottomText1">X2倍积分</view>
                     <view class="bottomText2">银会员享2倍会员活动积分</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/x-2-point@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/x-2-point@3x.png"/>
                 </view>
                 <view class="bottomBlockGold">
                     <view class="bottomText">
                     <view class="bottomText1">尊享银会员视频文章</view>
                     <view class="bottomText2">实时获得专业权威资讯</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/selier.PNG"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/otherCarde/selier.PNG"/>
                 </view>
         </view>
         <view class="bouttomImage">
             <view class="bouttomTitlr">银会员专享限时优惠</view>
                 <view class="insrusBlock">
                 <view class="insrusBlock1">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
                     <view class="insrusImage1">保费折扣优惠</view>
                 </view>
                 <view class="insrusBlock12">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
                     <view class="insrusImageText1">「易安康」癌症保障</view>
                     <view class="insrusImageText2">免保费一年保障</view>
                 </view>
@@ -412,7 +412,7 @@
                     <view class="bottomText1">健康服务消费优惠券</view>
                     <view class="bottomText2">中大/卓健提供</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
                 </view>
         </view>
         <view class="bouttomImage">
@@ -423,9 +423,9 @@
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
                                     <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
+                                        <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
                                         <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
                                         <view class="progressBlockText2">立即查看</view>
                                     </view>
@@ -433,7 +433,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">银会员积分x2升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
@@ -442,7 +442,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">金会员积分x5升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
@@ -458,7 +458,7 @@
                     <view class="bottomText1">尊享码升级会员独家礼遇</view>
                     <view class="bottomText2">实物健康产品、现金券积分兑换活动、免费视像会诊</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img@3x.png"/>
                 </view>
         </view>
     </view>
@@ -470,25 +470,25 @@
                         <view class="bottomText1">X5倍积分</view>
                         <view class="bottomText2">金会员享5倍会员活动积分</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/x-5-point@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/x-5-point@3x.png"/>
                 </view>
                 <view class="bottomBlockGold">
                     <view class="bottomText">
                         <view class="bottomText1">畅享所有视频文章</view>
                         <view class="bottomText2">海量专业视频文章任你挑选</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/glogs.PNG"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/otherCarde/glogs.PNG"/>
                 </view>
         </view>
         <view class="bouttomImage">
             <view class="bouttomTitlr">金会员专享限时优惠</view>
                 <view class="insrusBlock">
                 <view class="insrusBlock1">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@3gx.png"/>
                     <view class="insrusImage1">保费折扣优惠</view>
                 </view>
                 <view class="insrusBlock12">
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group@3gx.png"/>
                     <view class="insrusImageText1">「易安康」癌症保障</view>
                     <view class="insrusImageText2">免保费一年保障</view>
                 </view>
@@ -498,14 +498,14 @@
                     <view class="bottomText1">健康服务消费优惠券</view>
                     <view class="bottomText2">中大/卓健提供</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img-hospital@3x.png"/>
                 </view>
                 <view class="bottomBlockGold">
                     <view class="bottomText">
                     <view class="bottomText1">在线健康论坛</view>
                     <view class="bottomText2">卓健/中大健康论坛门票</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/online@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/online@3x.png"/>
                 </view>
         </view>
         <view class="bouttomImage">
@@ -516,9 +516,9 @@
                             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-12@3x.png"/>
                                     <view class="progressBlockText">
-                                        <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
+                                        <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/group-2@t3x.png"/>
                                         <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
                                         <view class="progressBlockText2">立即查看</view>
                                     </view>
@@ -526,7 +526,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/otherCarde/bg-x-2@t3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">银会员积分x2升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
@@ -535,7 +535,7 @@
                             </swiper-item>
                             <swiper-item>
                                 <view class="progressBlockImage">
-                                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
+                                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/bg-x-5@3x.png"/>
                                     <view class="progressBlockText glodBlock">
                                         <view class="progressBlockText20">金会员积分x5升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
@@ -551,20 +551,20 @@
                     <view class="bottomText1">尊享码升级会员独家礼遇</view>
                     <view class="bottomText2">实物健康产品、现金券积分兑换活动、免费视像会诊</view>
                     </view>
-                    <image src="http://106.54.73.125:8104/images/miniprogram/images/silver/img@3x.png"/>
+                    <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/img@3x.png"/>
                 </view>
         </view>
     </view>
     <view class="carkBlock" wx:if="{{showCarkBlock}}">
        <view class="carkBlock-main">
            <view class="carkBlock-allMain">
-                <image class="carkBlockMainImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group@3x.png" />
-                <view class="carkBlockClose"><image  bindtap="closeBolck"  src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/coupon-pop-up@3x.png" /></view>
+                <image class="carkBlockMainImage" src="http://81.69.44.222:8104/images/miniprogram/images/couponDetails/group@3x.png" />
+                <view class="carkBlockClose"><image  bindtap="closeBolck"  src="http://81.69.44.222:8104/images/miniprogram/images/couponDetails/coupon-pop-up@3x.png" /></view>
                 <view class="carkBlockTitle">恭喜你获得以下奖励</view>
                 <view class="carkSeconde">
-                    <image class="carkBlockAfter" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-3@2x.png"/>
+                    <image class="carkBlockAfter" src="http://81.69.44.222:8104/images/miniprogram/images/couponDetails/group-3@2x.png"/>
                     <view class="aboutBlock">
-                        <image class="tenImage"  src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/coupon@3x.png"/>
+                        <image class="tenImage"  src="http://81.69.44.222:8104/images/miniprogram/images/couponDetails/coupon@3x.png"/>
                         <view class="leftContent">
                             <view class="firstFlg">¥</view>
                             <view class="firstNum">{{activeData.mileStones[indexNum].couponValue}}</view>

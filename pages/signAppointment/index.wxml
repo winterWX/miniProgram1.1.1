@@ -1,6 +1,6 @@
 <view class="container">
     <view class="header">
-        <image class="head-bgimg" src="http://106.54.73.125:8104/images/miniprogram/images/medical/banner-2@2x.png"></image>
+        <image class="head-bgimg" src="http://81.69.44.222:8104/images/miniprogram/images/medical/banner-2@2x.png"></image>
     </view>
     <view class="info">
         <view class="title">门诊赴约签到得积分</view>
@@ -10,7 +10,7 @@
         </view>
     </view>
     <view class="member">
-        <image class="title" src="http://106.54.73.125:8104/images/miniprogram/images/medical/member-icon.png"></image>
+        <image class="title" src="http://81.69.44.222:8104/images/miniprogram/images/medical/member-icon.png"></image>
         <view class="member-info">银会员20积分，金会员50积分</view>
     </view>
     <view class="activity">
@@ -35,21 +35,21 @@
     </view>
     <view class="appointment-process">
         <view class="item">
-            <image class="item-img" src="http://106.54.73.125:8104/images/miniprogram/images/medical/mobile.png" lazy-load="true"></image>
+            <image class="item-img" src="http://81.69.44.222:8104/images/miniprogram/images/medical/mobile.png" lazy-load="true"></image>
             <view class="tip">
                 网上预约门诊
             </view>
         </view>
-        <image class="to" src="http://106.54.73.125:8104/images/miniprogram/images/medical/dianer@2x.png" lazy-load="true"></image>
+        <image class="to" src="http://81.69.44.222:8104/images/miniprogram/images/medical/dianer@2x.png" lazy-load="true"></image>
         <view class="item">
-            <image class="item-img" src="http://106.54.73.125:8104/images/miniprogram/images/medical/siginin.png" lazy-load="true"></image>
+            <image class="item-img" src="http://81.69.44.222:8104/images/miniprogram/images/medical/siginin.png" lazy-load="true"></image>
             <view class="tip">
                 完成赴约扫描签到
             </view>
         </view>
-        <image class="to" src="http://106.54.73.125:8104/images/miniprogram/images/medical/dianer@2x.png" lazy-load="true"></image>
+        <image class="to" src="http://81.69.44.222:8104/images/miniprogram/images/medical/dianer@2x.png" lazy-load="true"></image>
         <view class="item">
-            <image class="item-img" src="http://106.54.73.125:8104/images/miniprogram/images/medical/getreward.png" lazy-load="true"></image>
+            <image class="item-img" src="http://81.69.44.222:8104/images/miniprogram/images/medical/getreward.png" lazy-load="true"></image>
             <view class="tip">
                 5个工作日获取积分
             </view>

@@ -14,10 +14,10 @@
 				<view class="progress-bar">
 					<progress border-radius="8" percent="{{ userInfo.percentage }}" active-color="#00A865" active active-mode="forwards" stroke-width="10" />
 				</view>
-				<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="http://106.54.73.125:8104/images/miniprogram/images/gift_d.png"></image>
-				<image wx:if="{{ userInfo.percentage === 100 && received }}" class="gift" src="http://106.54.73.125:8104/images/miniprogram/images/gift.png"></image>
+				<image wx:if="{{ userInfo.percentage !== 100 }}" class="gift" src="http://81.69.44.222:8104/images/miniprogram/images/gift_d.png"></image>
+				<image wx:if="{{ userInfo.percentage === 100 && received }}" class="gift" src="http://81.69.44.222:8104/images/miniprogram/images/gift.png"></image>
 				<view wx:if="{{ userInfo.percentage === 100 && !received }}" catchtap="rewardIntegral">
-					<image class="animation-gift" src="http://106.54.73.125:8104/images/miniprogram/images/box/gift.gif"></image>
+					<image class="animation-gift" src="http://81.69.44.222:8104/images/miniprogram/images/box/gift.gif"></image>
 				</view>
 			</view>
 		</block>
@@ -25,22 +25,22 @@
 			<text class="userinfo-item-label">头像</text>
 			<view class="userinfo-item-value" bindtap="showModal" data-name='avatar'>
 				<image wx:if="{{userInfo.avatarUrl}}" bindtap="showModal" data-name='avatar' style="vertical-align: middle;" class="avatar" src="{{userInfo.avatarUrl}}"></image>
-				<image wx:if="{{!userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="http://106.54.73.125:8104/images/miniprogram/images/iconDefultTouxiang.png"></image>
-				<image class="userinfo-item-value__icon" src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
+				<image wx:if="{{!userInfo.avatarUrl}}" style="vertical-align: middle;" class="avatar" src="http://81.69.44.222:8104/images/miniprogram/images/iconDefultTouxiang.png"></image>
+				<image class="userinfo-item-value__icon" src="http://81.69.44.222:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
 		</view>
 		<view class="userinfo-item-container" catchtap="nickNameChange">
 			<text class="userinfo-item-label">昵称</text>
 			<view>
 				<text class="userinfo-item-value__label">{{ userInfo.nickName }}</text>
-				<image class="userinfo-item-value__icon" src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
+				<image class="userinfo-item-value__icon" src="http://81.69.44.222:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
 		</view>
 		<view class="userinfo-item-container">
 			<text class="userinfo-item-label">性别</text>
 			<view>
 				<text class="userinfo-item-value__label">{{ userInfo.gender }}</text>
-				<image class="userinfo-item-value__icon" catchtap="showModal" data-name='gender' src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
+				<image class="userinfo-item-value__icon" catchtap="showModal" data-name='gender' src="http://81.69.44.222:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
 		</view>
 		<view class="userinfo-item-container">
@@ -49,7 +49,7 @@
 				<picker mode="date" value="{{date}}" start="1920-01-01" end="{{ currentDate }}" bindchange="bindDateChange">
 					<view class="picker">
 						<text>{{userInfo.birthday}}</text>
-						<image class="userinfo-item-value__icon" src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
+						<image class="userinfo-item-value__icon" src="http://81.69.44.222:8104/images/miniprogram/images/back@2x.png"></image>
 					</view>
 				</picker>
 			</view>
@@ -65,7 +65,7 @@
 			<view>
 				<text wx:if="{{ userInfo.email !== '未绑定'}}" class="userinfo-item-value__label">{{ userInfo.email }}</text>
 				<text wx:if="{{ userInfo.email === '未绑定'}}" class="userinfo-item-value__label disabled-color">{{ userInfo.email }}</text>
-				<image class="userinfo-item-value__icon" src="http://106.54.73.125:8104/images/miniprogram/images/back@2x.png"></image>
+				<image class="userinfo-item-value__icon" src="http://81.69.44.222:8104/images/miniprogram/images/back@2x.png"></image>
 			</view>
 		</view>
 		<view wx:if="{{false}}">
@@ -89,7 +89,7 @@
 			<view class="userinfo-item-container" style="border-bottom: none;">
 				<view class="userinfo-item-label" style="vertical-align: middle">
 					<text>恒生会员码</text>
-					<image src="http://106.54.73.125:8104/images/miniprogram/images/icon-bubble.png" style="vertical-align: middle;width: 36rpx;height: 36rpx;margin-left: 20rpx"></image>
+					<image src="http://81.69.44.222:8104/images/miniprogram/images/icon-bubble.png" style="vertical-align: middle;width: 36rpx;height: 36rpx;margin-left: 20rpx"></image>
 				</view>
 				<view>
 					<text class="userinfo-item-value__label disabled-color">未绑定</text>
@@ -104,13 +104,13 @@
 		<view class="modal-cancel"></view>
 		<view class="bottom-dialog-body" animation="{{animationData}}">
 			<view class='Mcancel'>
-				<image class="icon-close" catchtap='mCancel' data-name='gender' src="http://106.54.73.125:8104/images/miniprogram/images/icon-close.png"></image>
+				<image class="icon-close" catchtap='mCancel' data-name='gender' src="http://81.69.44.222:8104/images/miniprogram/images/icon-close.png"></image>
 				<text class="gender-title">选择性别</text>
 			</view>
 			<view class='Mselect'>
 				<view class="gender-content" wx:for="{{optionList}}" wx:key="unique" data-value='{{item.id}}' bindtap='getOption'>
 					<text>{{item.label}}</text>
-					<image wx:if="{{ item.label === userInfo.gender}}" class="select-icon" src="http://106.54.73.125:8104/images/miniprogram/images/btn-selection-control-cell-tick.png"></image>
+					<image wx:if="{{ item.label === userInfo.gender}}" class="select-icon" src="http://81.69.44.222:8104/images/miniprogram/images/btn-selection-control-cell-tick.png"></image>
 				</view>
 			</view>
 			<view></view>
@@ -122,14 +122,14 @@
 		<view class="modal-cancel"></view>
 		<view class="bottom-dialog-body" animation="{{animationData}}">
 			<view class='Mcancel' catchtap='mCancel' data-name='avatar'>
-				<image class="icon-close" catchtap='mCancel' data-name='avatar' src="http://106.54.73.125:8104/images/miniprogram/images/icon-close.png"></image>
+				<image class="icon-close" catchtap='mCancel' data-name='avatar' src="http://81.69.44.222:8104/images/miniprogram/images/icon-close.png"></image>
 				<text class="gender-title">选择头像</text>
 			</view>
 			<view class='Mselect flex'>
 				<view class="option-label" style="border-bottom: none;" wx:for="{{avatarObjList}}" wx:key="unique" data-value='{{item.id}}' bindtap='getAvatarOption'>
 					<view class="icon-container">
 						<image class="icon-animal" src="{{item.url}}"></image>
-						<image wx:if="{{selectedAvatarId === item.id}}" class="active" src="http://106.54.73.125:8104/images/miniprogram/images/green.png"></image>
+						<image wx:if="{{selectedAvatarId === item.id}}" class="active" src="http://81.69.44.222:8104/images/miniprogram/images/green.png"></image>
 					</view>
 				</view>
 			</view>
