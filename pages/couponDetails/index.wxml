@@ -1,6 +1,6 @@
 <view class="allContent">
   <view class="topMainContent">
-    <image  class="topMainContentImage" src="http://106.54.73.125:8104/images/miniprogram/images/couponDetails/group-3@3x.png" />
+    <image  class="topMainContentImage" src="http://81.69.44.222:8104/images/miniprogram/images/couponDetails/group-3@3x.png" />
     <view class="secondeMainConten">
         <image class="arultImage" src="{{couponDetail.attachmentUrl}}" />
         <view class="textBottom">{{couponDetail.name}}</view>

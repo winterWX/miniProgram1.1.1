@@ -1,6 +1,6 @@
 <view>
   <view class="blockShow">
-    <image src="http://106.54.73.125:8104/images/miniprogram/images/success.png"/>
+    <image src="http://81.69.44.222:8104/images/miniprogram/images/success.png"/>
   </view>
   <view class="blockShowText">添加成功</view>
 </view>

@@ -216,7 +216,7 @@ Page({
           deleteString = res.data.data.tags.replaceAll('#', '');
           res.data.data.tags = deleteString;
 
-          var baseUrl = 'http://106.54.73.125:8104/upload';
+          var baseUrl = 'http://81.69.44.222:8104/upload';
           String.prototype.replaceAll = function (FindText, RepText) {
             return this.replace(new RegExp(FindText, "g"), RepText);
           }
