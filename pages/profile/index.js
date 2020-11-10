@@ -504,6 +504,7 @@ Page({
         method: "GET",
         header: {
           'Content-Type': 'application/json',
+          'native-app': 'mini',
           "token": app.globalData.token
         },
         success: function (res) {
