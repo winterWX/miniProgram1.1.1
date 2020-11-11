@@ -191,7 +191,8 @@ Page({
       method:"GET",
        header:{
          'Content-Type':'application/json',
-         'token':app.globalData.token
+         'token': app.globalData.token,
+         "native-app": "mini"
        },
        success: function (res) {
         let searchAllTopicArray =[];
@@ -228,7 +229,8 @@ Page({
       method:"GET",
        header:{
          'Content-Type':'application/json',
-         'token':app.globalData.token
+         'token': app.globalData.token,
+         "native-app": "mini"
        },
        success: function (res) {
          if (res.data.data !== null){
@@ -278,7 +280,8 @@ Page({
               data:{list: listNum},
               header:{
                 'Content-Type':'application/json',
-                'token':app.globalData.token
+                'token': app.globalData.token,
+                "native-app": "mini"
               },
               success: function (res) {
                 that.mytagSearch(); //批量编辑成功后刷新顶部导航

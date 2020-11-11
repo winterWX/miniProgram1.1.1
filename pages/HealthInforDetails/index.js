@@ -103,7 +103,8 @@ Page({
         method: "POST",
         header: {
           'Content-Type': 'application/json',
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         data: {
           "points": '10',
@@ -128,7 +129,8 @@ Page({
         method: "GET",
         header: {
           'Content-Type': 'application/json',
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         success: function (res) {
           if (res.data.code == 200) {
@@ -149,7 +151,8 @@ Page({
           method: "POST",
           header: {
             'Content-Type': 'application/json',
-            "token": app.globalData.token
+            "token": app.globalData.token,
+            "native-app": "mini"
           },
           data:{
             "articleId": that.data.articleId
@@ -177,7 +180,8 @@ Page({
         method: "DELETE",
         header: {
           'Content-Type': 'application/json',
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         data: {
           "articleId": that.data.articleId
@@ -204,7 +208,8 @@ Page({
     method: "GET",
     header:{
       'Content-Type':'application/json',
-      "token": app.globalData.token
+      "token": app.globalData.token,
+      "native-app": "mini"
     },
     success: function (res) {
       if(res.data.data !== null){
@@ -314,7 +319,8 @@ Page({
       method: 'post',
       url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
       header: {
-        "Content-Type": "application/json;charset=UTF-8"
+        "Content-Type": "application/json;charset=UTF-8",
+        "native-app": "mini"
       },
       data: parms,
       success: (res) => {

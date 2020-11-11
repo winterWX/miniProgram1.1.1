@@ -94,7 +94,8 @@ Component({
         url: app.globalData.baseUrl + '/remote/challenge/currentList',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         data: {
           "currentTime": Date.parse(new Date()) / 1000      
@@ -253,7 +254,8 @@ Component({
           url: app.globalData.baseUrl + '/remote/today/receiveIntegral',
           header: {
             "Content-Type": "application/json;charset=UTF-8",
-            "token": app.globalData.token
+            "token": app.globalData.token,
+            "native-app": "mini"
           },        
           success: (res) => {
             if (res.data.code === 200) {
@@ -291,7 +293,8 @@ Component({
         url: app.globalData.baseUrl + '/remote/challenge/makeup',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         data: parms,
         success: (res) => {

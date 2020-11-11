@@ -1,5 +1,5 @@
 const app = getApp();
-const authorizeRun = require('../../utils/authorizeRun.js');
+const authorizeRun = require("../../utils/authorizeRun.js");
 Page({
   data: {
      forceNum: false,
@@ -47,73 +47,74 @@ Page({
   },
   onReady: function () {},
   onShow: function () {
-      let that = this;
-      that.setData({ firstInitShow: app.firstInit.bootImage });
+    let that = this;
+    that.setData({ firstInitShow: app.firstInit.bootImage });
   },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {
     let that = this;
-    wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
-    if(app.globalData.isWeRunSteps){
+    wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
+    if (app.globalData.isWeRunSteps) {
       that.calloutfun();
     }
-    setTimeout(function(){
-        wx.hideNavigationBarLoading();    //在当前页面隐藏导航条加载动画
-        wx.stopPullDownRefresh();    //停止下拉动作
-    },1000)
+    setTimeout(function () {
+      wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
+      wx.stopPullDownRefresh(); //停止下拉动作
+    }, 1000);
   },
   //调用微信运动数据
-  calloutfun:function(){
-      let that = this;
-      let resultData = [];
-      authorizeRun.getWxRunData(function(result){
-        if(result.length > 0){
-            resultData = result.splice(0,1).map(item=>{
-                return {
-                    endTime: item.timestamp + '',
-                    startTime: item.timestamp + '',
-                    steps: item.step
-                }
-            })
-        }else{
-          resultData = [];
-        }
-        that.getUploaddata(resultData);
-        console.log('数据下拉更新',resultData[0].steps)
-    })
+  calloutfun: function () {
+    let that = this;
+    let resultData = [];
+    authorizeRun.getWxRunData(function (result) {
+      if (result.length > 0) {
+        resultData = result.splice(0, 1).map((item) => {
+          return {
+            endTime: item.timestamp + "",
+            startTime: item.timestamp + "",
+            steps: item.step,
+          };
+        });
+      } else {
+        resultData = [];
+      }
+      that.getUploaddata(resultData);
+      console.log("数据下拉更新", resultData[0].steps);
+    });
   },
   onReachBottom: function () {},
   onShareAppMessage: function () {},
-  guidanceOne:function(){
+  guidanceOne: function () {
     let that = this;
     that.setData({ guidance1: false, guidance2: true });
- },
- guidanceTwo:function(){
-     let that = this;
-     that.setData({ guidance2: false, flag: false, firstInitShow:false});
-     app.firstInit.bootImage = false;
-     that.linkToPage(that.data.optionsFlg);
- },
-  linkToPage:function(id){
-      let that = this;
-      if(id ==='allowTo'){ 
-          that.settingDataBtn();
-          that.healthEveryday();
-          that.getQueryintegral();
-      }else if(id ==='refusedTo'){
-          that.setWerunStep();
-      }else if(id ==='carryAPPData'){
-          that.settingDataBtn();
-          that.healthEveryday();
-      }
   },
-  healthShow:function(){
+  guidanceTwo: function () {
+    let that = this;
+    that.setData({ guidance2: false, flag: false, firstInitShow: false });
+    app.firstInit.bootImage = false;
+    that.linkToPage(that.data.optionsFlg);
+  },
+  linkToPage: function (id) {
+    let that = this;
+    if (id === "allowTo") {
+      that.settingDataBtn();
+      that.healthEveryday();
+      that.getQueryintegral();
+    } else if (id === "refusedTo") {
+      that.setWerunStep();
+    } else if (id === "carryAPPData") {
+      that.settingDataBtn();
+      that.healthEveryday();
+    }
+  },
+  healthShow: function () {
     wx.navigateTo({
-      url: '../../pages/dailyHealthData/index',
-    })
+      url: "../../pages/dailyHealthData/index",
+    });
   },
-  todayIntegral(data){  //组件中领取今天的积分
+  todayIntegral(data) {
+    //组件中领取今天的积分
     let that = this;
     that.settingDataBtn();  //更新状态
     that.setData({ forceNum: true })   ///  - anBackShow: true ,        
@@ -123,34 +124,35 @@ Page({
     let that = this;
     that.settingDataBtn(); //更新状态
   },
-  settingDataBtn(){
+  settingDataBtn() {
     let that = this;
     app.healthStep.SynchronousData = true;
-    app.globalData.isWeRunStepsFail = true;  //表示已经点儿开启数据访问按钮
+    app.globalData.isWeRunStepsFail = true; //表示已经点儿开启数据访问按钮
     that.getQueryintegral();
     wx.request({
-      url: app.globalData.baseUrl +'/remote/today/step/enquiry',
+      url: app.globalData.baseUrl + "/remote/today/step/enquiry",
       method: "POST",
-      header:{
-          "Content-Type":"application/json;charset=UTF-8",
-          "token": app.globalData.token
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        token: app.globalData.token,
+        "native-app": "mini",
       },
-      data:{ souce:'string', type:'MINIP' },
+      data: { souce: "string", type: "MINIP" },
       success: function (res) {
-          if(res.data.code === 200){
-              that.setData({ stepsNum: res.data.data });
-              if(res.data.data.todaySteps < 10000){
-                that.setData({ startStep : 10000 - res.data.data.todaySteps});
-              }
-              that.setData({ startStatus: false });
+        if (res.data.code === 200) {
+          that.setData({ stepsNum: res.data.data });
+          if (res.data.data.todaySteps < 10000) {
+            that.setData({ startStep: 10000 - res.data.data.todaySteps });
           }
+          that.setData({ startStatus: false });
+        }
       },
       fail: function (res) {
-          console.log('--------------');
-      }
-    })
+        console.log("--------------");
+      },
+    });
   },
-  integralBtn:function(){
+  integralBtn: function () {
     let that = this;
       wx.request({
         url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
@@ -168,105 +170,115 @@ Page({
         fail: function (res) {
           console.log('.........fail..........');
         }
-      });
+      },
+      fail: function (res) {
+        console.log(".........fail..........");
+      },
+    });
   },
-  healthEveryday:function(){
+  healthEveryday: function () {
     var that = this;
     wx.request({
-      url: app.globalData.baseUrl +'/remote/health/data/everyday',
-      method:"POST",
-      header:{
-          "Content-Type":"application/json;charset=UTF-8",
-          "token": app.globalData.token
+      url: app.globalData.baseUrl + "/remote/health/data/everyday",
+      method: "POST",
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        token: app.globalData.token,
+        "native-app": "mini",
       },
-      data:{
-        date: new Date().getTime() + '',
+      data: {
+        date: new Date().getTime() + "",
       },
       success: function (res) {
-        if(res.data.code === 200){
-            that.setData({ everyDayData : res.data.data });
+        if (res.data.code === 200) {
+          that.setData({ everyDayData: res.data.data });
         }
       },
       fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+        console.log(".........fail..........");
+      },
+    });
   },
-  gotoDailyHeathdata(){
+  gotoDailyHeathdata() {
     wx.navigateTo({
-      url: '../dailyHealthData/index',
-    })
+      url: "../dailyHealthData/index",
+    });
   },
   //查询用户是否已经获取步数积分
   getQueryintegral: function () {
-      let that= this;
-      wx.request({
-        method: 'GET',
-        url: app.globalData.baseUrl + '/remote/integral/queryReceivedStatus',
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
-        },
-        success: (res) => {
-          // 100412--已经领取积分  200--未领取积分
-          if (res.data.code === 200) {
-              that.getintegral();
-          }
+    let that = this;
+    wx.request({
+      method: "GET",
+      url: app.globalData.baseUrl + "/remote/integral/queryReceivedStatus",
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        token: app.globalData.token,
+        "native-app": "mini",
+      },
+      success: (res) => {
+        // 100412--已经领取积分  200--未领取积分
+        if (res.data.code === 200) {
+          that.getintegral();
         }
-      })
+      },
+    });
   },
   //领取积分
   getintegral: function () {
-      let that= this;
-      wx.request({
-        method: 'GET',
-        url: app.globalData.baseUrl + '/remote/integral/stepAuth',
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
-        },
-        success: (res) => {
-          if (res.data.code === 200) {
-              that.setData({ forceNum : app.healthStep.SynchronousData, allowRun : true });
-          }
+    let that = this;
+    wx.request({
+      method: "GET",
+      url: app.globalData.baseUrl + "/remote/integral/stepAuth",
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        token: app.globalData.token,
+        "native-app": "mini"
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          that.setData({
+            forceNum: app.healthStep.SynchronousData,
+            allowRun: true,
+          });
         }
-      })
+      },
+    });
   },
-  stepRunSorce:function(){
+  stepRunSorce: function () {
     wx.navigateTo({
-      url: '../../pages/rankingList/index',
-    })
+      url: "../../pages/rankingList/index",
+    });
   },
-  setWerunStep:function(){
-    console.log('====+++')
+  setWerunStep: function () {
+    console.log("====+++");
     let that = this;
     wx.getSetting({
       success: function (res) {
-        if (!res.authSetting['scope.werun']) {
+        if (!res.authSetting["scope.werun"]) {
           wx.showModal({
-            title: '提示',
-            content: '今日步数需要微信步数授权',
+            title: "提示",
+            content: "今日步数需要微信步数授权",
             success: function (res) {
               if (res.confirm) {
                 wx.openSetting({
                   success: function (res) {
-                    that.getStepRunData();  //开启后 重新获取微信运动步数;
+                    that.getStepRunData(); //开启后 重新获取微信运动步数;
                     that.healthEveryday();
-                  }
-                })
-              }else {
+                  },
+                });
+              } else {
                 //不设置
-                if(app.globalData.isWeRunStepsFail){
+                if (app.globalData.isWeRunStepsFail) {
                   that.settingDataBtn();
-                }else{
-                  that.setData({ startStatus :true });
+                } else {
+                  that.setData({ startStatus: true });
                 }
               }
-            }
-          })
+            },
+          });
         }
-      }
-    })
+      },
+    });
   },
   getStepRunData: function () {
     let that = this;
@@ -283,30 +295,31 @@ Page({
   getQueryLatestime: function (runData) {
     let that = this;
     wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
+      method: "GET",
+      url: app.globalData.baseUrl + "/remote/health/data/query/latestime",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        token: app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         if (res.data.code === 200) {
-            //最后上传时间戳 和 当前时间戳进行比较
-            let time = util.formatTime(new Date(Number(res.data.data)));
-            let latestTime = time.split(' ')[0];
-            let result = runData.find(item => item.date === latestTime);
-            let index = runData.indexOf(result);
-            let results = runData.splice(0, index + 1).map(item=>{
-                 return {
-                    startTime: item.timestamp + '',
-                    endTime: item.timestamp + '',
-                    steps: item.step
-                 }
-            });
-            that.getUploaddata(results);
+          //最后上传时间戳 和 当前时间戳进行比较
+          let time = util.formatTime(new Date(Number(res.data.data)));
+          let latestTime = time.split(" ")[0];
+          let result = runData.find((item) => item.date === latestTime);
+          let index = runData.indexOf(result);
+          let results = runData.splice(0, index + 1).map((item) => {
+            return {
+              startTime: item.timestamp + "",
+              endTime: item.timestamp + "",
+              steps: item.step,
+            };
+          });
+          that.getUploaddata(results);
         }
-      }
-    })
+      },
+    });
   },
   //刷新的时候上传数据
   getUploaddata: function (runData) {
@@ -331,6 +344,7 @@ Page({
               that.settingDataBtn();
           }
         }
-      })
-  }
-})
+      },
+    });
+  },
+});
