@@ -31,7 +31,8 @@ Page({
       method: "GET",
       header: {
         'Content-Type': 'application/json',
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: function (res) {
         if (res.data.code == 200) {

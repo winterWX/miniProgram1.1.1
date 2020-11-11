@@ -107,7 +107,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/health/data/everyday',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       data: parms,
       success: (res) => {
@@ -188,7 +189,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/bodyData/search',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         if (res.data.data !== null) {
@@ -225,7 +227,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/integral/queryReceivedStatus',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         // 100412--已经领取积分  200--未领取积分
@@ -243,7 +246,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/integral/stepAuth',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         if (res.data.code === 200) {

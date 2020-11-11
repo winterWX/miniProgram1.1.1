@@ -88,7 +88,8 @@ Page({
       method: 'post',
       url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
       header: {
-        "Content-Type": "application/json;charset=UTF-8"
+        "Content-Type": "application/json;charset=UTF-8",
+        "native-app": "mini"
       },
       data: parms,
       success: (res) => {
@@ -150,7 +151,8 @@ Page({
       method: "GET",
       header: {
         'Content-Type': 'application/json',
-        "token": token
+        "token": token,
+        "native-app": "mini"
       },
       success: function (res) {
         if(res.data.code === 200) {

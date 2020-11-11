@@ -94,7 +94,8 @@ Page({
       method: 'post',
       url: app.globalData.baseUrl + '/remote/register/miniProgram/add',
       header: {
-        "Content-Type": "application/json;charset=UTF-8"
+        "Content-Type": "application/json;charset=UTF-8",
+        "native-app": "mini"
       },
       data: parms,
       success: (res) => {

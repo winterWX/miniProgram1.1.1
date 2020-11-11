@@ -125,7 +125,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/challenge/historyList',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       data: {
         currentTime: Date.parse(new Date()) / 1000,
@@ -211,7 +212,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/challenge/makeup',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       data: parms,
       success: (res) => {
