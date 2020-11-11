@@ -50,7 +50,8 @@ function miniproLogin(code, enData, ivData, result) {
       method: 'POST',
       url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
       header: {
-         "Content-Type": "application/json;charset=UTF-8"
+         "Content-Type": "application/json;charset=UTF-8",
+         "native-app": "mini"
       },
       data: parms,
       success: (res) => {
@@ -68,7 +69,8 @@ function wxAuthorizedTime() {
          method: "GET",
          header: {
             'Content-Type': 'application/json',
-            "token": app.globalData.token
+            "token": app.globalData.token,
+            "native-app": "mini"
          },
          success: function (res) {
             resolve(res);
@@ -90,7 +92,8 @@ function postFirstAuthorizedTime() {
       method: "post",
       header: {
          'Content-Type': 'application/json',
-         "token": app.globalData.token
+         "token": app.globalData.token,
+         "native-app": "mini"
       },
       data: {
          lastTime,
@@ -117,7 +120,8 @@ function getAllWeRunData(sessionkey, result) {
             method: 'POST',
             header: {
                'Content-Type': 'application/json',
-               "token": app.globalData.token
+               "token": app.globalData.token,
+               "native-app": "mini"
             },
             data: {
                encryptedData: resRun.encryptedData,

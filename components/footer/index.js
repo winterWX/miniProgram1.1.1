@@ -168,7 +168,8 @@ Component({
         method: 'post',
         url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
         header: {
-          "Content-Type": "application/json;charset=UTF-8"
+          "Content-Type": "application/json;charset=UTF-8",
+          "native-app": "mini"
         },
         data: parms,
         success: (res) => {

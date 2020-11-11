@@ -216,7 +216,8 @@ Page({
         method: "POST",
         header: {
           'Content-Type': 'application/json',
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         data: {
           startTime,

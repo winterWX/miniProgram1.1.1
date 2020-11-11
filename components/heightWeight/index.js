@@ -88,7 +88,8 @@ Component({
           url: that.data.valueData !== true ? editUrl : addUrl,
           header: {
             "Content-Type": "application/json;charset=UTF-8",
-            "token": app.globalData.token
+            "token": app.globalData.token,
+            "native-app": "mini"
           },
           data:{
             weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',

@@ -87,7 +87,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/health/data/ensure/user',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         if (res.data.code === 200) {
@@ -184,7 +185,8 @@ Page({
         url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
         header: {
           "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
+          "token": app.globalData.token,
+          "native-app": "mini"
         },
         success: (res) => {
           if (res.data.code === 200) {
@@ -213,7 +215,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       data:{
         bpm: 0,
@@ -236,7 +239,8 @@ Page({
       method: "POST",
       header:{
           "Content-Type":"application/json;charset=UTF-8",
-          "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       data:{ souce:'string', type:'MINIP'},
       success: function (res) {
@@ -259,7 +263,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/homePage/homePageActivitys',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         if (res.data.code === 200) {
@@ -292,7 +297,8 @@ Page({
       url: app.globalData.baseUrl + '/remote/homePage/userlevel',
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token
+        "token": app.globalData.token,
+        "native-app": "mini"
       },
       success: (res) => {
         if (res.data.code === 200) {
