@@ -31,7 +31,7 @@
               <text>步数{{item.actualSteps}}</text>
               <text> 积分+{{item.integral}}</text>
             </view>
-            <view class="ft {{item.isDone==2?' disable':''}}">
+            <view class="ft {{item.isDone ==2 ? 'disable' : ''}}">
               {{ item.isDone == 2 ? '未达标': '已达标'}}
             </view>
           </view>
@@ -40,7 +40,7 @@
               {{item.date}}
             </view>
             <view class="ft" bindtap="yesterdayIntegral" data-key="{{key}}" data-ind="{{a}}"  data-index="{{index}}" data-item="{{item}}" wx:if="{{item.isDone==1 && item.date==yeseterDate && isReceive==true &&item.receiveStatus== 2}}">
-              {{ item.receiveStatus== 2?'补领积分':''}}
+              {{ item.receiveStatus == 2 ? '补领积分' : ''}}
             </view>
           </view>
         </view>

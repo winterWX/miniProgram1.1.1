@@ -83,7 +83,6 @@ Component({
       //当天时间截止的时间戳
       const h2 = new Date(new Date().setHours(23, 59, 59, 999))/1000
       console.log(h1,h2)
-
     },
     getCurrentList(){//获取打卡列表
       // wx.showLoading({
@@ -116,10 +115,6 @@ Component({
               continuousComplianceDays: continuousComplianceDays
             })
             
-            //var index = this.data.continuousComplianceDays % 7
-            // if (this.data.continuousComplianceDays==0){
-            //   index=1
-            // }  
             var index=len%7
             var k = parseInt(len / 7)*7
             var list=[]    
@@ -192,7 +187,6 @@ Component({
                 dayName = "昨天"
                 if (Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60) {
                     if(item.receiveStatus == 2){
-                      //iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points@2x.png'
                         iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'    
                     }                 
                 } else {

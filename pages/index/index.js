@@ -169,7 +169,6 @@ Page({
           app.globalData.runData = result;
           app.globalData.isWeRunSteps = true; //标志授权成功
           that.getQueryLatestime(result);
-          that.stepRunState();
         }else{
           //拒绝授权
           that.setData({ rejectRun: true }); 
@@ -228,6 +227,7 @@ Page({
       success: (res) => {
         if (res.data.code === 200) {
             console.log('数据同步成功')
+            that.stepRunState();   //刷新步数接口
         }
       }
     })

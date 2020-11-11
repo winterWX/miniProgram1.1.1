@@ -83,43 +83,36 @@ Page({
   },
   //选择条目
   tabSelect(e) {
-    let that = this;
-    that.setData({
-      tabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 2) * 200,
-    });
-    that.setData({
-      researchTag:
-        that.data.tabLists[e.currentTarget.dataset.id].tag === "热门推荐"
-          ? ""
-          : that.data.tabLists[e.currentTarget.dataset.id].tag,
-    });
-    that.setData({ listData: [], onPullNun: 1 }); //清空数组
-    that.searchSend(that.data.researchTag);
+      let that = this;
+      that.setData({ tabCur: e.currentTarget.dataset.id,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
+      that.setData({ researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag === '热门推荐' ? '热门推荐' : that.data.tabLists[e.currentTarget.dataset.id].tag});
+      that.setData({ listData: [] , onPullNun:1 });  //清空数组
+      that.searchSend(that.data.researchTag);
   },
-  listClick(e) {
-    let goodsId = e.currentTarget.dataset.itemid;
-    wx.navigateTo({
-      url: "../../pages/HealthInforDetails/index?goodsId=" + goodsId,
-    });
+  listClick(e){
+     let goodsId = e.currentTarget.dataset.itemid;      
+      wx.navigateTo({                                 
+        url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
+      })
   },
   //文章列表接口
   searchSend(parase, num) {
     var that = this;
     wx.request({
-      url: app.globalData.baseUrl + "/remote/article/query/list",
-      data: {
-        currentPage: num !== undefined ? num : 1,
-        pageSize: 10,
-        topic: parase !== undefined ? parase : "",
-      },
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        "native-app": "mini",
-      },
-      success: function (res) {
-        if (res.data.code === 200) {
+     url: app.globalData.baseUrl + '/remote/article/query/list',
+     data:{
+      "currentPage": num !== undefined ?  num : 1,
+      "pageSize": 10,
+      "topic": parase !== undefined ?  parase : '热门推荐'  //热门推荐
+    },
+    method:"POST",
+    header:{
+       'Content-Type':'application/json',
+       'token':app.globalData.token,
+       'native-app':'mini'
+     },
+    success: function (res) {
+       if(res.data.code === 200){
           //that.collectionQueryCounts();  // 赋值前调用
           res.data.data.articles = res.data.data.articles.map((item) => {
             return {

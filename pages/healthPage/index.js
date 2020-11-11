@@ -2,48 +2,47 @@ const app = getApp();
 const authorizeRun = require("../../utils/authorizeRun.js");
 Page({
   data: {
-    forceNum: false,
-    allowRun: false,
-    startStatus: false,
-    anBackShow: false,
-    startStep: 10000,
-    showAPPData: 0,
-    stepsNum: {
-      todaySteps: 0, //今日步数
-      targetSteps: 0, //	目标步数
-      receiveStatus: 0, //领取状态(1:已领,2:未领,3:补领)
-      receiveStatusName: 0, //	领取描述
-      isDone: 0, //	完成状态(1:完成,2:未完成)
-      isDoneName: 0, //	完成描述
-      integral: 0, //	可以领取的积分
-    },
-    isDone: 2,
-    everyDayData: {
-      distance: 0,
-      calories: 0,
-      totalTime: 0,
-      todaySteps: 0,
-    },
-    leftDire: 750 / 2 + 120,
-    topDire: 240 / 2,
-    flag: false,
-    guidance1: false,
-    guidance2: false,
-    firstInitShow: true, //第一次进来显示
-    iconPath: app.globalData.imagesUrl + "/images/icon-10-points@2x.png",
-    dataSyn: false, //标记数据同步
-    optionsFlg: "", // 标识 options id
+     forceNum: false,
+     allowRun: false,
+     startStatus: false,
+     //anBackShow: false,
+     startStep: 10000,
+     showAPPData: 0, 
+     stepsNum:{
+        todaySteps: 0,	 //今日步数
+        targetSteps: 0,	 //	目标步数
+        receiveStatus: 0,	 //领取状态(1:已领,2:未领,3:补领)
+        receiveStatusName: 0,	 //	领取描述
+        isDone: 0,	 //	完成状态(1:完成,2:未完成)
+        isDoneName: 0,	 //	完成描述
+        integral: 0	 //	可以领取的积分
+     },
+     isDone:2,
+     everyDayData:{
+        distance: 0,
+        calories: 0,
+        totalTime: 0,
+        todaySteps: 0
+     }, 
+     leftDire: 750/2 + 120,
+     topDire: 240 / 2,
+     flag: false,
+     guidance1: false,
+     guidance2: false,
+     firstInitShow: true,  //第一次进来显示
+     iconPath:app.globalData.imagesUrl + '/images/icon-10-points@2x.png',
+     dataSyn: false,   //标记数据同步
+     optionsFlg:'' // 标识 options id
   },
-  onLoad: function (options) {
-    let that = this;
-    that.setData({
-      showAPPData: app.healthStep.dataCource,
-      optionsFlg: options.id,
-      firstInitShow: app.firstInit.bootImage,
-    });
-    if (app.firstInit.bootImage) {
-      that.setData({ flag: true, guidance1: true });
-    }
+  onLoad:function (options) {
+      let that = this;
+      that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
+                      firstInitShow : app.firstInit.bootImage });
+      if(app.firstInit.bootImage){
+          that.setData({ flag: true, guidance1:true });
+      }else{
+          that.linkToPage(options.id);
+      }
   },
   onReady: function () {},
   onShow: function () {
@@ -116,12 +115,13 @@ Page({
   todayIntegral(data) {
     //组件中领取今天的积分
     let that = this;
-    that.settingDataBtn();
-    that.setData({ anBackShow: true, forceNum: true });
+    that.settingDataBtn();  //更新状态
+    that.setData({ forceNum: true })   ///  - anBackShow: true ,        
   },
-  yesterdayIntegral() {
-    //领取昨天的积分
-    this.setData({ anBackShow: true });
+  yesterdayIntegral(){  //领取昨天的积分
+    //this.setData({ anBackShow: true })
+    let that = this;
+    that.settingDataBtn(); //更新状态
   },
   settingDataBtn() {
     let that = this;
@@ -133,7 +133,7 @@ Page({
       method: "POST",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini",
       },
       data: { souce: "string", type: "MINIP" },
@@ -153,23 +153,22 @@ Page({
   },
   integralBtn: function () {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/today/receiveIntegral",
-      method: "GET",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      success: function (res) {
-        if (res.data.code === 200) {
-          that.settingDataBtn();
-          that.setData({ forceNum: true, anBackShow: true });
+      wx.request({
+        url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
+        method: "GET",
+        header:{
+            "Content-Type":"application/json;charset=UTF-8",
+            "token": app.globalData.token
+        },
+        success: function (res) {
+          if(res.data.code === 200){
+              that.settingDataBtn();
+              that.setData({ forceNum: true }); // - anBackShow:true
+            }          
+        },
+        fail: function (res) {
+          console.log('.........fail..........');
         }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
     });
   },
   healthEveryday: function () {
@@ -179,7 +178,7 @@ Page({
       method: "POST",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini",
       },
       data: {
@@ -208,7 +207,7 @@ Page({
       url: app.globalData.baseUrl + "/remote/integral/queryReceivedStatus",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini",
       },
       success: (res) => {
@@ -227,7 +226,7 @@ Page({
       url: app.globalData.baseUrl + "/remote/integral/stepAuth",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini"
       },
       success: (res) => {
@@ -246,7 +245,6 @@ Page({
     });
   },
   setWerunStep: function () {
-    console.log("====+++");
     let that = this;
     wx.getSetting({
       success: function (res) {
@@ -278,15 +276,14 @@ Page({
   },
   getStepRunData: function () {
     let that = this;
-    authorizeRun.getWxRunData(function (result) {
-      if (result.length > 0) {
-        //授权成功跳转获取步数
-        app.globalData.runData = result;
-        app.globalData.isWeRunSteps = true; //标志授权成功
-        that.getQueryLatestime(result);
-        that.settingDataBtn();
-      }
-    });
+    authorizeRun.getWxRunData(function(result){
+        if(result.length > 0){
+          //授权成功跳转获取步数
+          app.globalData.runData = result;
+          app.globalData.isWeRunSteps = true; //标志授权成功
+          that.getQueryLatestime(result);
+        }
+    })
   },
   //最近上传数据时间查询(query- queryLatestime)|移动端
   getQueryLatestime: function (runData) {
@@ -296,7 +293,7 @@ Page({
       url: app.globalData.baseUrl + "/remote/health/data/query/latestime",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini"
       },
       success: (res) => {
@@ -320,31 +317,27 @@ Page({
   },
   //刷新的时候上传数据
   getUploaddata: function (runData) {
-    let that = this;
-    wx.request({
-      method: "POST",
-      url: app.globalData.baseUrl + "/remote/health/data/uploaddata",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        bpm: 0,
-        source: "string",
-        type: "MINIP",
-        lastTime: new Date().getTime() + "",
-        stepsDataModelList: runData,
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-          that.setData({
-            guidance1: false,
-            guidance2: false,
-            firstInitShow: false,
-          });
+      let that = this;
+      wx.request({
+        method: 'POST',
+        url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "token": app.globalData.token
+        },
+        data:{
+          bpm: 0,
+          source :'string',
+          type : 'MINIP',
+          lastTime: new Date().getTime() + '',
+          stepsDataModelList: runData
+        },
+        success: (res) => {
+            if (res.data.code === 200) {
+                that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
+                that.settingDataBtn();
+            }
         }
-      },
-    });
-  },
-});
+      })
+    }
+})
