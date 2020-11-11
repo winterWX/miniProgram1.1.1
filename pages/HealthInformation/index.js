@@ -43,37 +43,23 @@ Page({
     let that = this;
     // 控制close按钮，页面初始的时候
     let topTipShowFlg = app.healthInforData.findMore
-    that.setData({
-      topTipShow: topTipShowFlg
-    })
+    that.setData({ topTipShow: topTipShowFlg })
     that.mytagSearch();
     that.searchSend(options.inputVal);
-      //查询所有话题
+    //查询所有话题
     that.searchAllTopic();
   },
   onShow: function () {
     let that = this;
     that.mytagSearch();
   },
-  onPullDownRefresh: function () {
-    let that = this;
-    that.setData({onPullNun : that.data.onPullNun -= 1});
-    wx.showNavigationBarLoading();   //在当前页面显示导航条加载动画
-    if(that.data.onPullNun >= 1){
-        that.searchSend(that.data.researchTag,that.data.onPullNun);
-    }else{
-        return;
-    }
-    setTimeout(function(){
-        wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
-        wx.stopPullDownRefresh(); //停止下拉动作
-    },1000)
-  },
+  onPullDownRefresh: function () {},
   onReachBottom: function () {
       let that = this;
       that.setData({onPullNun : that.data.onPullNun += 1});
-      wx.showNavigationBarLoading();   //在当前页面显示导航条加载动画
       if(that.data.onPullNun <= that.data.totalPage){
+          wx.showNavigationBarLoading();   //在当前页面显示导航条加载动画
+          console.log('that.data.onPullNun====+====',that.data.onPullNun);          
           that.searchSend(that.data.researchTag,that.data.onPullNun);
       }else{
           return;
@@ -87,7 +73,8 @@ Page({
   tabSelect(e) {
       let that = this;
       that.setData({ tabCur: e.currentTarget.dataset.id,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
-      that.setData({ researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag });
+      that.setData({ researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag === '热门推荐' ? '' : that.data.tabLists[e.currentTarget.dataset.id].tag});
+      that.setData({ listData: [] , onPullNun:1 });  //清空数组
       that.searchSend(that.data.researchTag);
   },
   listClick(e){
@@ -113,13 +100,15 @@ Page({
      },
     success: function (res) {
        if(res.data.code === 200){
-        //that.collectionQueryCounts();  // 赋值前调用
-         res.data.data.articles.forEach((item)=>{
-            item.inputtime = that.timestampToTime(item.inputtime)
-         })
-         const listData = that.data.listData.length === 0 ? res.data.data.articles : [...that.data.listData,...res.data.data.articles];
-         console.log('listData====++++',listData);
-         that.setData({ totalPage: res.data.totalPage, listData });
+          //that.collectionQueryCounts();  // 赋值前调用
+          res.data.data.articles = res.data.data.articles.map(item =>{
+              return{
+                  ...item,
+                  inputtime: item.inputtime ? that.timestampToTime(item.inputtime) : ''
+              }
+          })
+          const listData = that.data.listData.length === 0 ? res.data.data.articles : [...that.data.listData,...res.data.data.articles];
+          that.setData({ totalPage: res.data.totalPage, listData });
        }
     },
     fail: function (res) {
