@@ -35,7 +35,6 @@ Page({
      optionsFlg:'' // 标识 options id
   },
   onLoad:function (options) {
-      console.log('optionsoptionsoptions====',options);
       let that = this;
       that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
                       firstInitShow : app.firstInit.bootImage });
@@ -134,7 +133,7 @@ Page({
       method: "POST",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini",
       },
       data: { souce: "string", type: "MINIP" },
@@ -162,18 +161,14 @@ Page({
             "token": app.globalData.token
         },
         success: function (res) {
-        if(res.data.code === 200){
-            that.settingDataBtn();
-            that.setData({ forceNum: true }); // - anBackShow:true
-          }          
+          if(res.data.code === 200){
+              that.settingDataBtn();
+              that.setData({ forceNum: true }); // - anBackShow:true
+            }          
         },
         fail: function (res) {
           console.log('.........fail..........');
         }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
     });
   },
   healthEveryday: function () {
@@ -183,7 +178,7 @@ Page({
       method: "POST",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini",
       },
       data: {
@@ -212,7 +207,7 @@ Page({
       url: app.globalData.baseUrl + "/remote/integral/queryReceivedStatus",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini",
       },
       success: (res) => {
@@ -231,7 +226,7 @@ Page({
       url: app.globalData.baseUrl + "/remote/integral/stepAuth",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini"
       },
       success: (res) => {
@@ -250,7 +245,6 @@ Page({
     });
   },
   setWerunStep: function () {
-    console.log("====+++");
     let that = this;
     wx.getSetting({
       success: function (res) {
@@ -299,7 +293,7 @@ Page({
       url: app.globalData.baseUrl + "/remote/health/data/query/latestime",
       header: {
         "Content-Type": "application/json;charset=UTF-8",
-        token: app.globalData.token,
+        "token": app.globalData.token,
         "native-app": "mini"
       },
       success: (res) => {
@@ -339,12 +333,11 @@ Page({
           stepsDataModelList: runData
         },
         success: (res) => {
-          if (res.data.code === 200) {
-              that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
-              that.settingDataBtn();
-          }
+            if (res.data.code === 200) {
+                that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
+                that.settingDataBtn();
+            }
         }
-      },
-    });
-  },
-});
+      })
+    }
+})
