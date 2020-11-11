@@ -5,7 +5,7 @@ Page({
      forceNum: false,
      allowRun: false,
      startStatus: false,
-     anBackShow: false,
+     //anBackShow: false,
      startStep: 10000,
      showAPPData: 0, 
      stepsNum:{
@@ -35,12 +35,15 @@ Page({
      optionsFlg:'' // 标识 options id
   },
   onLoad:function (options) {
-       let that = this;
-       that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
+      console.log('optionsoptionsoptions====',options);
+      let that = this;
+      that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
                       firstInitShow : app.firstInit.bootImage });
-       if(app.firstInit.bootImage){
+      if(app.firstInit.bootImage){
           that.setData({ flag: true, guidance1:true });
-       }
+      }else{
+          that.linkToPage(options.id);
+      }
   },
   onReady: function () {},
   onShow: function () {
@@ -112,11 +115,13 @@ Page({
   },
   todayIntegral(data){  //组件中领取今天的积分
     let that = this;
-    that.settingDataBtn();
-    that.setData({ anBackShow: true ,forceNum: true })       
+    that.settingDataBtn();  //更新状态
+    that.setData({ forceNum: true })   ///  - anBackShow: true ,        
   },
   yesterdayIntegral(){  //领取昨天的积分
-    this.setData({ anBackShow: true })
+    //this.setData({ anBackShow: true })
+    let that = this;
+    that.settingDataBtn(); //更新状态
   },
   settingDataBtn(){
     let that = this;
@@ -157,7 +162,7 @@ Page({
         success: function (res) {
         if(res.data.code === 200){
             that.settingDataBtn();
-            that.setData({ forceNum: true , anBackShow:true});
+            that.setData({ forceNum: true }); // - anBackShow:true
           }          
         },
         fail: function (res) {
@@ -271,7 +276,6 @@ Page({
           app.globalData.runData = result;
           app.globalData.isWeRunSteps = true; //标志授权成功
           that.getQueryLatestime(result);
-          that.settingDataBtn();
         }
     })
   },
@@ -323,7 +327,8 @@ Page({
         },
         success: (res) => {
           if (res.data.code === 200) {
-              that.setData({ guidance1: false, guidance2: false, firstInitShow:false })
+              that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
+              that.settingDataBtn();
           }
         }
       })

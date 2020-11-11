@@ -1,11 +1,5 @@
-// pages/history/index.js
 const app = getApp();
-
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     scrollH:300,    
     detail: {
@@ -94,21 +88,6 @@ Page({
     }).exec()
   },
   bindscrolltolower(e){
-    console.log(e)    
-   // this.historyList()
-  //  setTimeout(()=>{
-  //    wx.createSelectorQuery().in(this).select('.history').boundingClientRect((rects) => {
-  //      console.log(rects.height)
-  //      if (e.detail.scrollHeight > (rects.height-200) && this.data.isLoad==true) {
-  //        this.setData({
-  //          isLoad:false
-  //        })
-  //        this.historyList()
-  //      }
-
-  //    }).exec()
-  //  },500)
-   
     if (this.data.isLoad == true){
              this.setData({
            isLoad:false
@@ -141,12 +120,6 @@ Page({
                 maxContinuousDays: res.data.data.maxContinuousDays                
               }
             })
-            // if (res.data.data.monthsList.length>0){
-            //   this.setData({
-            //     history: {},
-               
-            //   })
-            // }
           }
           const data = res.data.data.monthsList
           for (var i = 0; i < data.length; i++){
@@ -193,7 +166,7 @@ Page({
       isReceive: isReceive
     })
   },
-  yesterdayIntegral(e) {//补领积分  
+  yesterdayIntegral(e) {  //补领积分  
     const key = e.currentTarget.dataset.key 
     const i = e.currentTarget.dataset.ind   
     const index = e.currentTarget.dataset.index  
