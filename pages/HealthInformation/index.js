@@ -53,12 +53,12 @@ Page({
     that.setData({ topTipShow: topTipShowFlg });
     that.searchSend(options.inputVal);
     //查询所有话题
-    this.getTagList();
+    that.getTagList();
   },
   onShow: function () {
     let that = this;
     // that.mytagSearch();
-    this.getTagList();
+    that.getTagList();
   },
   onPullDownRefresh: function () {},
   getTagList: function () {
@@ -108,7 +108,7 @@ Page({
     method:"POST",
     header:{
        'Content-Type':'application/json',
-       'token':app.globalData.token,
+       'token': app.globalData.token,
        'native-app':'mini'
      },
     success: function (res) {
@@ -316,7 +316,7 @@ Page({
       },
       success: function (res) {
         // that.mytagSearch(); //批量编辑成功后刷新顶部导航
-        this.getTagList();
+        that.getTagList();
         that.closePage(); //关闭编辑页面
       },
       fail: function (res) {
