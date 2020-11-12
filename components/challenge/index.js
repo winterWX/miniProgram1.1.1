@@ -242,7 +242,7 @@ Component({
       const index = e.currentTarget.dataset.index      
       if (item.receiveStatus === '2' && item.isdone ==='1' && item.dayName === '今日'){
         this.todayIntegral(item, index)
-      } else if (item.receiveStatus === '2' && item.isdone === '1' && item.dayName === '昨天' && item.reward !=0){
+      } else if (item.receiveStatus === '3' && item.isdone === '1' && item.dayName === '昨天' && item.reward !=0){
         this.yesterdayIntegral(item,index)
       }
     },
