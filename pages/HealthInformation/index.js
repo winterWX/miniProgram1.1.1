@@ -45,6 +45,7 @@ Page({
     speed: 2, //>1,交换的速度
     move_x: "",
     move_y: "",
+    baseUrl: app.globalData.imagesUrl
   },
   onLoad: function (options) {
     let that = this;
