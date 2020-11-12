@@ -185,10 +185,11 @@ Component({
                  
               } else if ((h1 - 24 * 60 * 60) <= item.createTime && item.createTime <h1) {
                 dayName = "昨天"
-                if (Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60) {
+                if (Date.parse(new Date()) / 1000 < h1 + 24 * 60 * 60) {   // Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60
                     if(item.receiveStatus == 2){
-                        iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'    
-                    }                 
+                        //iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'     
+                        iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points@2x.png'
+                    }              
                 } else {
                   iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points-black@2x.png'
                   reward = 0
@@ -239,9 +240,9 @@ Component({
     receiveIntegral(e){
       const item = e.currentTarget.dataset.item
       const index = e.currentTarget.dataset.index      
-      if (item.receiveStatus == 2 && item.isdone ==1 && item.dayName=='今日'){
+      if (item.receiveStatus === '2' && item.isdone ==='1' && item.dayName === '今日'){
         this.todayIntegral(item, index)
-      } else if (item.receiveStatus == 2 && item.isdone == 1 && item.dayName == '昨天' && item.reward !=0){
+      } else if (item.receiveStatus === '2' && item.isdone === '1' && item.dayName === '昨天' && item.reward !=0){
         this.yesterdayIntegral(item,index)
       }
     },
