@@ -108,7 +108,7 @@ page{
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  height: 83.2rpx;
+  height: 84rpx;
 }
 .info .description_text{
   font-size: 32rpx;
