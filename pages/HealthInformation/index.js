@@ -58,8 +58,12 @@ Page({
   },
   onShow: function () {
     let that = this;
-    // that.mytagSearch();
     that.getTagList();
+  },
+  onHide: function() {
+    this.setData({
+      hideModal: true
+    })
   },
   onPullDownRefresh: function () {},
   getTagList: function () {
