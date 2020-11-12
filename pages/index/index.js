@@ -247,7 +247,8 @@ Page({
           if(res.data.code === 200){
               that.setData({
                 stepsNum: res.data.data,
-                runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)
+                runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
+                rejectRun: false
               });
           }
       },
@@ -268,17 +269,17 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
-            res.data.data.activity = res.data.data.activity.map((item,index) =>{
-              return {
-                  ...item,
-                  title: index === 0 ? '每日步数挑战' : '健康知识问答王者',
-                  description: index === 0 ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
-                  //coverImage: typeof item.coverImage == 'number' ? '': item.coverImage,
-                  coverImage: index === 0 ? 'http://81.69.44.222:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://81.69.44.222:8104/images/miniprogram/images/index/banner-3@3x.png',
-                  createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
-              }
-            });
-            res.data.data.article = res.data.data.article.map(item =>{
+          res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
+            return {
+                ...item,
+                title: item.type === '1' ? '每日步数挑战' : '健康知识问答王者',
+                description: item.type === '1' ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
+                coverImage: item.type === '1' ? 'http://81.69.44.222:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://81.69.44.222:8104/images/miniprogram/images/index/banner-3@3x.png',
+                createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
+            }
+          });
+          console.log(res.data.data.activity);
+          res.data.data.article = res.data.data.article.map(item =>{
               return {
                 ...item,
                 thumb: typeof item.thumb == 'number' ? '' : item.thumb,

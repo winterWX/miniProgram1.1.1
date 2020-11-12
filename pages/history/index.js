@@ -12,16 +12,18 @@ Page({
     num:0,
     yeseterDate: '',
     isReceive: false,
-    isLoad:true
+    isLoad:true,
+    dayTime: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getTopHeight()
-    this.isReceiveFun()
-    this.historyList()
+    this.dayTimeFun();
+    this.getTopHeight();
+    this.isReceiveFun();
+    this.historyList();
   },
 
   /**
@@ -74,10 +76,14 @@ Page({
   },
   formatDate(value){
     let date = new Date(value * 1000);
-    let y = date.getFullYear();// 年
-    let MM = date.getMonth() + 1;// 月   
-    let d = date.getDate();// 日
+    let y = date.getFullYear();  // 年
+    let MM = date.getMonth() + 1; // 月   
+    let d = date.getDate();  // 日
     return MM+'月'+d+'日'
+  },
+  dayTimeFun(){
+    let dayTime = new Date().getTime();
+    this.setData({ dayTime : this.formatDate(dayTime) })
   },
   getTopHeight(){
     wx.createSelectorQuery().in(this).select('.headFix').boundingClientRect((rects) => {    
@@ -177,8 +183,8 @@ Page({
       title: 'loading...',
     })
     const parms = {
-      challengeId: item.id,
-      receivePoints:'10'
+      challengeId:  item.id,
+      receivePoints: '10'
     }
     wx.request({
       method: 'post',
@@ -198,6 +204,7 @@ Page({
           this.setData({
             history: history
           })
+          console.log('historyhistoryhistory',this.data.history);
           
         } else {
           wx.showModal({
