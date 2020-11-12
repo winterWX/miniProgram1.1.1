@@ -460,7 +460,7 @@ page{
 }
 .viewBtnBoxint{
   position: relative;
-  padding: 12rpx 9.5rpx;
+  padding: 12rpx 8rpx;
 }
 .viewBtnBoxint image{
   width: 28rpx;
