@@ -82,8 +82,11 @@ Page({
     return MM+'月'+d+'日'
   },
   dayTimeFun(){
-    let dayTime = new Date().getTime();
-    this.setData({ dayTime : this.formatDate(dayTime) })
+    let dayTime = new Date();
+    let MM = dayTime.getMonth() + 1; // 月   
+    let d = dayTime.getDate();  // 日
+    this.setData({ dayTime : MM+'月'+d+'日'});
+    console.log('dayTimedayTime',this.data.dayTime);
   },
   getTopHeight(){
     wx.createSelectorQuery().in(this).select('.headFix').boundingClientRect((rects) => {    
@@ -142,7 +145,7 @@ Page({
             year:this.data.year-1,
             isLoad:true
           })
-          console.log(this.data.history)
+          console.log('育龙 育龙 ==>>>>',this.data.history)
         } else {
           wx.showModal({
             showCancel: false,
@@ -172,6 +175,7 @@ Page({
       yeseterDate: yeseterDate,
       isReceive: isReceive
     })
+    console.log('yeseterDate',this.data.yeseterDate);
   },
   yesterdayIntegral(e) {  //补领积分  
     const key = e.currentTarget.dataset.key 
@@ -205,7 +209,6 @@ Page({
             history: history
           })
           console.log('historyhistoryhistory',this.data.history);
-          
         } else {
           wx.showModal({
             showCancel: false,
