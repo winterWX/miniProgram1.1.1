@@ -51,7 +51,7 @@
                             <view class="myTagList-title">我关注的话题</view>
                             <view class="myTagRight">(拖拽标签可排序)</view>
                         </view>
-                        <view class="searchList">
+                        <view class="searchList" wx:if="{{myTagData.length > 0}}">
                             <view class='item_container' wx:for='{{myTagData}}' wx:key="index">
                                 <view class="item {{index==current?'moving':'normal'}}" style="left:{{index==current?move_x:item.left}}px;top:{{index==current?move_y:item.top}}px;width:{{u_w}}px;" catchtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" bindtap="myTagItemFun" data-index="{{index}}">
                                     {{item.tag}}
