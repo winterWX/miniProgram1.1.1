@@ -71,7 +71,6 @@ Page({
           resultData = [];
         }
         that.getUploaddata(resultData);
-        console.log('数据下拉更新',resultData[0].steps)
     })
   },
   prograNum:function(){
@@ -226,7 +225,6 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
-            console.log('数据同步成功')
             that.stepRunState();   //刷新步数接口
         }
       }
@@ -278,7 +276,6 @@ Page({
                 createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
             }
           });
-          console.log(res.data.data.activity);
           res.data.data.article = res.data.data.article.map(item =>{
               return {
                 ...item,
