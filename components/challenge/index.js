@@ -74,8 +74,10 @@ Component({
             
           }
         }
+        
         timeOut = setInterval(countTime, 500)
       }    
+      console.log('this.data.listthis.data.listthis.data.listthis.data.list',this.data.list);
     },
     formateTime(value) {
       //当天凌晨的时间戳

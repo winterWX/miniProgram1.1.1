@@ -14,10 +14,10 @@
       </view>
     </view>
     <view class="steps_list">
-      <view class="step_item"  class="{{item.receiveStatus == 1 || item.reward == 0 || item.receiveStatus == 3 ? 'disable step_item' : ((item.receiveStatus == 3 && item.reward != 0 && item.dayName =='昨天') || (item.isdone == 1 && item.receiveStatus == 2) || (item.receiveStatus == 2 && item.reward !== 0 && item.dayName == '今日') ? 'active step_item' : 'step_item')}}" wx:for="{{ list }}" wx:key="index">
+      <view class="step_item"  class="{{item.receiveStatus == 1 || item.reward == 0 || item.receiveStatus == 3 ? 'disable step_item' : ((item.receiveStatus == 3 && item.reward != 0 && item.isdone == 1 && item.dayName =='昨天') || (item.isdone == 1 && item.receiveStatus == 2) || (item.receiveStatus == 2 && item.reward !== 0 && item.isdone == 1 && item.dayName == '今日') ? 'active step_item' : 'step_item')}}" wx:for="{{ list }}" wx:key="index">
         <view class="step_item_top" bindtap="receiveIntegral" data-item="{{item}}" data-index="{{index}}">
           <!-- <view class="item_info">{{item.receiveStatus == 1 || item.receiveStatus == 3 ? '已领' : (item.reward == 0 ? '过期' : (item.receiveStatus == 2 && item.reward != 0 && item.dayName =='昨天'  ? '补领' : '+'+item.reward))}}</view> -->
-          <view class="item_info">{{item.receiveStatus == 1 || item.receiveStatus == 3 ? '已领' : (item.reward == 0 ? '过期' : (item.receiveStatus == 3 && item.reward != 0 && item.dayName == '昨天' ? '补领' : ((item.receiveStatus == 2 && item.reward !== 0 && item.dayName == '今日') ? '领取' : '+' +item.reward)))}}</view>
+          <view class="item_info">{{item.receiveStatus == 1 || item.receiveStatus == 3 ? '已领' : (item.reward == 0 ? '过期' : (item.receiveStatus == 3 && item.reward != 0 && item.isdone == 1 && item.dayName == '昨天' ? '补领' : ((item.receiveStatus == 2 && item.reward !== 0 && item.isdone == 1 && item.dayName == '今日') ? '领取' : '+' +item.reward)))}}</view>
           <view class="item_image">
             <image src="{{item.iconPath }}" mode="widthFix"/>            
           </view>
