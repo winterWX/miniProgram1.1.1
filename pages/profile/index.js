@@ -123,10 +123,6 @@ Page({
       birthday = "",
       avatarUrl = "",
     } = app.globalData.userInfoDetail;
-    console.log(
-      "app.globalData.userInfoDetail原始数据",
-      app.globalData.userInfoDetail
-    );
     const userInfo = {
       nickName,
       avatarUrl,
@@ -239,13 +235,17 @@ Page({
           let selectedAvatar = that.data.avatarObjList.find(
             (item) => item.id === avatar
           );
-          console.log(selectedAvatar);
-          let poneeNumber = mobile || phoneNumber;
-          let [a, b, c, d, e, f, g, h, i, j, k] = poneeNumber;
+          let phoneNumber = mobile || phoneNumber;
+          let [a, b, c, d, e, f, g, h, i, j, k] = phoneNumber;
+          let HKMobile = '00000000';
+          if(phoneNumber.startsWith('+852') || phoneNumber.length === 12 || phoneNumber.length === 13 || phoneNumber.length === 8) {
+          HKMobile = phoneNumber.slice(-8);
+          };
+          let [l, m, n, o, p, q, r, s] = HKMobile;
           let newMobile =
-            poneeNumber.length === 11
+            phoneNumber.length === 11 && !phoneNumber.startsWith('+85')
               ? `${a}${b}${c}****${h}${i}${j}${k}`
-              : `${a}${b}****${g}${h}`;
+              : `${l}${m}****${r}${s}`;
           selectedAvatarId = (selectedAvatar && selectedAvatar.id) || "";
           received = receive;
           wx.setStorageSync("received", received);
