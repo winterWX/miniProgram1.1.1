@@ -40,7 +40,7 @@
               {{item.date}}
             </view>
             <!--wx add-->
-            <view class="ft" bindtap="yesterdayIntegral" data-key="{{key}}" data-ind="{{a}}"  data-index="{{index}}" data-item="{{item}}" wx:if="{{item.isDone == 1 && item.date === dayTime && item.receiveStatus == 2}}">
+            <view class="ft" bindtap="todayIntegral" data-key="{{key}}" data-ind="{{a}}"  data-index="{{index}}" data-item="{{item}}" wx:if="{{item.isDone == 1 && item.date === dayTime && item.receiveStatus == 2}}">
               {{ item.receiveStatus == 2 ? '领取' : ''}}
             </view>
              <!-- old  code-->
@@ -60,3 +60,4 @@
     </view>
   </scroll-view>
 </view>
+<integralAmation integral="{{integralData}}" wx:if="{{forceNum}}"/>

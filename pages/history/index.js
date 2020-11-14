@@ -13,7 +13,9 @@ Page({
     yeseterDate: '',
     isReceive: false,
     isLoad:true,
-    dayTime: ''
+    dayTime: '',
+    forceNum:false,
+    integralData:10
   },
 
   /**
@@ -205,11 +207,11 @@ Page({
           var history = this.data.history
           history[key][i].historyList[index].receiveStatus = 1
           history[key][i].historyList[index].integral = 10
-          this.setData({
-            history: history
-          })
-          console.log('historyhistoryhistory',this.data.history);
+          this.setData({ integralData : 10 });
+          this.setData({forceNum : true, history: history });
+          this.onLoad();
         } else {
+          console.log('fail--------')
           wx.showModal({
             showCancel: false,
             content: res.message,
@@ -218,7 +220,41 @@ Page({
         }       
       }
     })
-
-
   },
+  todayIntegral(e){  //领取积分
+    const key = e.currentTarget.dataset.key; 
+    const i = e.currentTarget.dataset.ind;
+    const index = e.currentTarget.dataset.index; 
+    const item = e.currentTarget.dataset.item;  
+    
+    
+    wx.showLoading({
+      title: 'loading...',
+    })       
+    wx.request({
+      method: 'get',
+      url: app.globalData.baseUrl + '/remote/today/receiveIntegral',
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token,
+        "native-app": "mini"
+      },        
+      success: (res) => {
+        if (res.data.code === 200) {
+            var history = this.data.history
+            history[key][i].historyList[index].receiveStatus = 1;
+            history[key][i].historyList[index].integral = 10;
+            this.setData({forceNum : true, integralData : 10 });
+            this.onLoad();
+        } else {
+            wx.showModal({
+              showCancel: false,
+              content: res.data.message,
+              success: (res) => { }
+            })
+        }
+        wx.hideLoading()
+      }
+    })  
+  }
 })

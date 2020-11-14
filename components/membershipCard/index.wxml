@@ -70,6 +70,7 @@
                         <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会员永久有效</view>
                         <view class="imageBottom">
                            <view class="imageBottom1" wx:if="{{activeData.level === 2 || activeData.level === 4}}">积分{{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}升级</view>
+                           <view class="imageBottom2">当前等级</view>
                         </view>
                   </view>
                </swiper-item>
@@ -105,6 +106,7 @@
                <view class="imageBottom3">
                   <view class="imageBottom13" wx:if="{{activeData.level === 3}}">积分 {{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}续会籍一年</view>
                   <view class="imageBottom13" wx:if="{{activeData.level === 5}}">积分 {{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}</view>
+                  <view class="imageBottom2 imageBottomColor">当前等级</view>
                </view>
                </view>
       </view>

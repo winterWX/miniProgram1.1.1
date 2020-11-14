@@ -50,7 +50,8 @@
     "pages/strategy/index",
     "pages/goldStrategy/index",
     "pages/rankingList/index",
-    "pages/messageCenter/index"
+    "pages/messageCenter/index",
+    "pages/aboutUs/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

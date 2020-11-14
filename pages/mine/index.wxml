@@ -116,7 +116,7 @@
 				<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 			</view>
 		</view>
-		<view class="item" bindtap="textShowMain" data-flag="about">
+		<view class="item" bindtap="aboutUser" data-flag="about">
 			<view class="left">
 				<image class="icon" src="{{baseUrl + '/images/mine/about-me.png'}}"></image>
 				<view class="label">

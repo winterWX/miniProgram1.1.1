@@ -166,6 +166,12 @@ Page({
       url: '../myCoupons/index'
     })
   },
+  aboutUser: function() {
+    wx.navigateTo({
+      url: '../aboutUs/index'
+    })
+  },
+  
 getMyprofileInfo: function () {
   let that = this;
   let colorMap = {
