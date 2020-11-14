@@ -290,7 +290,7 @@ Component({
       const parms = {
         challengeId: item.id,
         receivePoints:item.reward
-         }
+      }
       wx.request({
         method: 'post',
         url: app.globalData.baseUrl + '/remote/challenge/makeup',

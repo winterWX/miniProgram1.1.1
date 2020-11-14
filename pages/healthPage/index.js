@@ -48,6 +48,7 @@ Page({
   onShow: function () {
     let that = this;
     that.setData({ firstInitShow: app.firstInit.bootImage });
+    that.linkToPage(that.data.optionsFlg);
   },
   onHide: function () {},
   onUnload: function () {},

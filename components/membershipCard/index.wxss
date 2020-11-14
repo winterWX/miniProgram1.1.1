@@ -201,6 +201,9 @@ page{
   font-size: 24rpx;
   font-family: PingFangSC-Regular;
 }
+.imageBottomColor{
+  color: rgb(255,212,120) !important;
+}
 .imageBottoFu{
   color: rgb(253,224,188);
 }

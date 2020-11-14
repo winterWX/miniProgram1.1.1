@@ -91,6 +91,7 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
+            console.log('数据源，1--mini, 2-app',res.data);
             that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
             app.healthStep.dataCource = res.data.data;    // 数据源
             if(!that.data.isAppData){
