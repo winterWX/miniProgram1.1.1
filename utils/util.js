@@ -48,7 +48,7 @@ const wxAjax = (method, url, data = {}) => {
         "native-app": "mini"
       },
       success: (res) => {
-        if(res.data.code !== 200) {
+        if(res.data.code === 200) {
           resolve(res);
         } else if (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994) {
           wx.showModal({
