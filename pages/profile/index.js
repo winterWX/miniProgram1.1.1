@@ -1,4 +1,4 @@
-import { formatNumber, formatTime } from "../../utils/util";
+import { formatNumber, formatTime, wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
   /**
@@ -185,7 +185,106 @@ Page({
 
   getMyprofileInfo: function () {
     let that = this;
-    wx.request({
+    let url =  app.globalData.baseUrl + "/myprofile/homepage/search";
+    wxAjax('GET', url).then((res) => {
+      const {
+        nickName,
+        gender,
+        avatarUrl = "",
+        phoneNumber,
+      } = app.globalData.userInfoDetail;
+      let sex = app.globalData.userInfoDetail.gender === 1 ? "男" : "女";
+      let userInfo = {};
+      let selectedAvatarId = "";
+      let received = that.data.received;
+      if (res.data.code == 200) {
+        const {
+          data: {
+            data: {
+              avatar,
+              birthday,
+              email,
+              gender,
+              mobile = "",
+              completedCount,
+              nickname,
+              id,
+              receive,
+            },
+          },
+        } = res;
+        let formateDate = birthday
+          ? formatTime(new Date(parseInt(birthday) * 1000))
+              .split(" ")[0]
+              .split("/")
+              .join("-")
+          : "--";
+        let displayDate = "--";
+        if (formateDate !== "--") {
+          let [a, b, c, d, e, f, g, h, i] = formateDate;
+          displayDate = `${a}${b}${c}${d}-${f}${g}-**`;
+        }
+
+        let selectedAvatar = that.data.avatarObjList.find(
+          (item) => item.id === avatar
+        );
+        let phoneNumber = mobile || phoneNumber;
+        let [a, b, c, d, e, f, g, h, i, j, k] = phoneNumber;
+        let HKMobile = '00000000';
+        if(phoneNumber.startsWith('+852') || phoneNumber.length === 12 || phoneNumber.length === 13 || phoneNumber.length === 8) {
+        HKMobile = phoneNumber.slice(-8);
+        };
+        let [l, m, n, o, p, q, r, s] = HKMobile;
+        let newMobile =
+          phoneNumber.length === 11 && phoneNumber.startsWith('1')
+            ? `${a}${b}${c}****${h}${i}${j}${k}`
+            : `${l}${m}****${r}${s}`;
+        selectedAvatarId = (selectedAvatar && selectedAvatar.id) || "";
+        received = receive;
+        wx.setStorageSync("received", received);
+        if (completedCount === 6) {
+          that.setData({
+            compelete: true,
+          });
+          if (!receive) {
+            that.setData({
+              showAnimation: true,
+            });
+          }
+        }
+        userInfo = {
+          nickName: nickname || nickName,
+          gender: that.data.genderMap[gender] || sex,
+          birthday: displayDate,
+          avatarUrl: (selectedAvatar && selectedAvatar.url) || avatarUrl,
+          phone: newMobile || "未绑定",
+          email: email || "未绑定",
+          id: id,
+        };
+      } else {
+        userInfo = {
+          nickName: nickName,
+          gender: gender === 1 ? "男" : "女",
+          birthday: "--",
+          avatarUrl: avatarUrl,
+          phone: phoneNumber || "未绑定",
+          email: "未绑定",
+        };
+      }
+      let percentage =
+        selectedAvatarId === 13
+          ? that.getPercentage(userInfo, true)
+          : that.getPercentage(userInfo);
+      userInfo.percentage = percentage;
+      wx.setStorageSync("complete", percentage === 100);
+      that.setData({
+        userInfo: userInfo,
+        selectedAvatarId,
+        received,
+        complete: percentage === 100,
+      });
+    });
+    /* wx.request({
       url: app.globalData.baseUrl + "/myprofile/homepage/search",
       method: "GET",
       header: {
@@ -294,7 +393,7 @@ Page({
       fail: function (res) {
         console.log(".........fail..........");
       },
-    });
+    }); */
   },
   getPercentage: function (userInfo, flag) {
     let { email, ...userInfoItem } = userInfo;

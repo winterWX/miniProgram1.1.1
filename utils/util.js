@@ -1,3 +1,4 @@
+let app = getApp();
 const formatTime = (date, flag = false) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -36,9 +37,48 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+const wxAjax = (method, url, data = {}) => {
+  return new Promise((resolve, reject) => {
+    let params = {
+      method: method,
+      url: url,
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token,
+        "native-app": "mini"
+      },
+      success: (res) => {
+        if(res.data.code !== 200) {
+          resolve(res);
+        } else if (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994) {
+          wx.showModal({
+            title: '提示',
+            content: '登入状态已失效，请重新再试',
+            confirmText: '确认',
+            success: () => {
+              wx.reLaunch({
+                url: '../index/index'
+              })
+            }
+          })
+        }
+      },
+      fail: (error) => {
+        reject(error);
+      }
+    };
+    if (method === 'POST') {
+      params.data = {
+        ...data
+      }
+    };
+    wx.request(params);
+  });
+}
 
 module.exports = {
   formatTime: formatTime,
   timestampToTime : timestampToTime,
-  timestampToTimeHM : timestampToTimeHM
+  timestampToTimeHM : timestampToTimeHM,
+  wxAjax: wxAjax
 }
