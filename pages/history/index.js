@@ -56,7 +56,7 @@ Page({
          this.historyList()
    }
   },
-  historyList() {//领取积分      
+  historyList() { //领取积分      
     let url = app.globalData.baseUrl + '/remote/challenge/historyList';
     let data = {
       currentTime: Date.parse(new Date()) / 1000,
@@ -131,7 +131,7 @@ Page({
       wx.hideLoading()
         if (res.data.code === 200) {
           var history = this.data.history
-          history[key][i].historyList[index].receiveStatus = 1;
+          history[key][i].historyList[index].receiveStatus = 3;
           history[key][i].historyList[index].integral = 10;
           this.setData({ integralData : 10 });
           this.setData({forceNum : true, history: history });

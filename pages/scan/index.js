@@ -93,15 +93,9 @@ Page({
           duration: 2000
          })
         isScan = true;
-        wx.request({
-          url: app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result,
-          method: "GET",
-          header: {
-            'Content-Type': 'application/json',
-            "token": app.globalData.token,
-            "native-app": "mini"
-          },
-          success: function (res) {
+        let url =  app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result;
+        let method = 'GET';
+        util.wxAjax(method,url).then(res=>{
             if(res.data.data) {
               let { integral, bankInfoEntities = [] } = res.data.data;
               let hospitalInfo = bankInfoEntities.map((item) => {
@@ -119,14 +113,44 @@ Page({
               url = '../signFail/index?repeat=false&invalid=true';
             }
             wx.redirectTo({url});
-          },
-          fail: function (res) {
+        }).catch( res=>{
             wx.redirectTo({
               url: '../signFail/index',
             })
-          }
         })
-        
+        // wx.request({
+        //   url: app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result,
+        //   method: "GET",
+        //   header: {
+        //     'Content-Type': 'application/json',
+        //     "token": app.globalData.token,
+        //     "native-app": "mini"
+        //   },
+        //   success: function (res) {
+        //     if(res.data.data) {
+        //       let { integral, bankInfoEntities = [] } = res.data.data;
+        //       let hospitalInfo = bankInfoEntities.map((item) => {
+        //         let { bankName, bankAddress} = item;
+        //         return {
+        //           name: bankName,
+        //           address: bankAddress
+        //         }
+        //       });
+        //       wx.setStorageSync('hospitalInfo', JSON.stringify(hospitalInfo));
+        //       url = '../signSuccess/index?integral=' + integral;
+        //     } else if(res.data.code === 100709) {
+        //       url = '../signFail/index?repeat=true&invalid=false';
+        //     } else {
+        //       url = '../signFail/index?repeat=false&invalid=true';
+        //     }
+        //     wx.redirectTo({url});
+        //   },
+        //   fail: function (res) {
+        //     wx.redirectTo({
+        //       url: '../signFail/index',
+        //     })
+        //   }
+        // })
       }
       return;
     }

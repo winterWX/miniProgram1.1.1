@@ -1,4 +1,4 @@
-// components/heightWeight/index.js
+const util = require('../../utils/util');
 const app = getApp();
 Component({
   /**
@@ -83,27 +83,41 @@ Component({
       }else{
         let addUrl = app.globalData.baseUrl + '/remote/bodyData/add';
         let editUrl = app.globalData.baseUrl + '/remote/bodyData/edit';
-        wx.request({
-          method: 'POST',
-          url: that.data.valueData !== true ? editUrl : addUrl,
-          header: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "token": app.globalData.token,
-            "native-app": "mini"
-          },
-          data:{
-            weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
-            height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
-          },
-          success: (res) => {
+        let url = that.data.valueData !== true ? editUrl : addUrl;
+        let method = 'POST';
+        const params = {
+          weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
+          height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
+        };
+        util.wxAjax(method,url,params).then(res=>{
             if (res.data.code === 200) {
-                wx.showToast({
-                  title: '保存成功',
-                })
-                that.closeBalck()
+              wx.showToast({
+                title: '保存成功',
+              })
+              that.closeBalck()
             }
-          }
-        })
+        });
+        // wx.request({
+        //   method: 'POST',
+        //   url: that.data.valueData !== true ? editUrl : addUrl,
+        //   header: {
+        //     "Content-Type": "application/json;charset=UTF-8",
+        //     "token": app.globalData.token,
+        //     "native-app": "mini"
+        //   },
+        //   data:{
+        //     weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
+        //     height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
+        //   },
+        //   success: (res) => {
+        //     if (res.data.code === 200) {
+        //         wx.showToast({
+        //           title: '保存成功',
+        //         })
+        //         that.closeBalck()
+        //     }
+        //   }
+        // })
       }
     },
     closeBalck(){
