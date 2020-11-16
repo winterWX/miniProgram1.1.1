@@ -69,7 +69,6 @@ Component({
               this.setData({
                 list: this.data.list
               })
-              console.log(this.data.list)
             }
             
           }
@@ -77,14 +76,12 @@ Component({
         
         timeOut = setInterval(countTime, 500)
       }    
-      console.log('this.data.listthis.data.listthis.data.listthis.data.list',this.data.list);
     },
     formateTime(value) {
       //当天凌晨的时间戳
       const h1 = new Date(new Date().setHours(0, 0, 0, 0)) / 1000 
       //当天时间截止的时间戳
       const h2 = new Date(new Date().setHours(23, 59, 59, 999))/1000
-      console.log(h1,h2)
     },
     getCurrentList(){  //获取打卡列表
       // wx.showLoading({
@@ -129,7 +126,6 @@ Component({
             }
            
            // var list = res.data.data.splice(len-index)
-            console.log(list)
             var lastTime=0
             var newList=[]
             for (var i=0; i<7; i++) {
@@ -223,7 +219,6 @@ Component({
               item = { ...item, ...otherItem}
               newList.push(item)
             }
-            console.log('列表数据', newList)
             this.setData({
               list: newList
             })

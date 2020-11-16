@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
 
@@ -34,89 +35,29 @@ Page({
   onLoad: function (options) {
     this.tierMytier();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   tierMytier:function(){
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/tier/mytier',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-            let sercode = res.data.data.mileStones.length;
-            let couponType = res.data.data.tierInfo.couponType;
-            res.data.data.mileStones = res.data.data.mileStones.map(item=>{
-                  return {
-                      ...item,
-                      expiryTime: item.expiryTime ? that.cardDayShow(item.expiryTime) :''
-                  }
-            })
-            that.setData({
-                activeData : res.data.data,
-                activeNum : sercode,
-                bluPosse : that.bluPosse(res.data.data),
-                couponTypes : couponType === 1 ? '折' : '',
-                couponTypeAfter : couponType === 1 ? '' : '$',
-                couponTypeText: couponType === 1 ? '折扣券' : '现金券'
-            })
-            that.secoreFun();
-        }
-      },
-      fail:function (res) {
-        console.log('.........fail..........');
-      }
+    let url = app.globalData.baseUrl + '/remote/tier/mytier';
+    wxAjax('GET', url).then(res => {
+      if (res.data.code == 200) {
+        let sercode = res.data.data.mileStones.length;
+        let couponType = res.data.data.tierInfo.couponType;
+        res.data.data.mileStones = res.data.data.mileStones.map(item=>{
+              return {
+                  ...item,
+                  expiryTime: item.expiryTime ? that.cardDayShow(item.expiryTime) :''
+              }
+        })
+        that.setData({
+            activeData : res.data.data,
+            activeNum : sercode,
+            bluPosse : that.bluPosse(res.data.data),
+            couponTypes : couponType === 1 ? '折' : '',
+            couponTypeAfter : couponType === 1 ? '' : '$',
+            couponTypeText: couponType === 1 ? '折扣券' : '现金券'
+        })
+        that.secoreFun();
+    }
     })
   },
 
@@ -181,24 +122,13 @@ Page({
     let indexNum = e.currentTarget.dataset.index;
     let idCode = that.data.activeData.mileStones[indexNum].id;
     that.setData({indexNum:indexNum});
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-              that.tierMytier();
-              that.setData({showCarkBlock:true,receiveId:res.data.data});
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let url = app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode;
+    wxAjax('GET', url).then((res) => {
+      if (res.data.code == 200) {
+        that.tierMytier();
+        that.setData({showCarkBlock:true,receiveId:res.data.data});
       }
-    })
+    });
   },
 
   parentCallBack:function(event){
