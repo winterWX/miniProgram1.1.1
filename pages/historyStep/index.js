@@ -1,5 +1,6 @@
 //logs.js
-const util = require('../../utils/util.js')
+import { wxAjax } from "../../utils/util";
+const util = require('../../utils/util.js');
 let app = getApp();
 Page({
   data: {
@@ -24,31 +25,16 @@ Page({
     let endTime = parseInt(time.getTime() / 1000);
     let time2 = new Date(year-1, month, date);
     let startTime = parseInt(time2.getTime() / 1000);
-    let currentMonth = `${year}年${month > 10 ? month : '0' + month}月`
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/health/data/query/history/steps',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        startTime,
-        endTime
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let stepInfo = that.operateData(res.data.data);
-          that.setData({
-            currentMonth,
-            stepInfo,
-            noData: false
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let currentMonth = `${year}年${month > 10 ? month : '0' + month}月`;
+    let url = app.globalData.baseUrl + '/remote/health/data/query/history/steps';
+    wxAjax('POST', url, {startTime, endTime}).then(res => {
+      if (res.data.code == 200) {
+        let stepInfo = that.operateData(res.data.data);
+        that.setData({
+          currentMonth,
+          stepInfo,
+          noData: false
+        })
       }
     })
   },
