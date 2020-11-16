@@ -1,4 +1,5 @@
 
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
 
