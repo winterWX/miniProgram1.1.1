@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -122,23 +123,13 @@ Page({
       })
   },
   hasAddFriend:function(){
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/friend',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-          if(res.data.code === 200){
-            let friendArrayData = that.arryFriend(res.data.data);
-            that.setData({friendArrayData:friendArrayData})
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let that = this;
+    let url = app.globalData.baseUrl + '/remote/friend';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
+      if(res.data.code === 200){
+        let friendArrayData = that.arryFriend(res.data.data);
+        that.setData({friendArrayData:friendArrayData})
       }
     })
   },

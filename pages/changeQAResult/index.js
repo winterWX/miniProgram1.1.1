@@ -1,9 +1,6 @@
 let app = getApp();
+const util = require('../../utils/util');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     rate: 0,
     success: true,
@@ -39,16 +36,10 @@ Page({
 
   },
   getQuestion: function(id) {
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
+    let method = 'GET';
+    util.wxAjax(method,url).then(res =>{
         if(res.data.code === 200) {
           let {quizResult: {correct, wrong, questionAnalysis, rate, status}, bannerUrl, reward} = res.data.data;
           let all = correct + wrong;
@@ -62,14 +53,10 @@ Page({
             integral: reward
           })
         }
-      },
-      fail: function (res) {
-      }
     })
   },
   backToDetail: function() {
     let { id } = this.data;
-    // 
     wx.navigateTo({
       url: '../healthKnowledge/index?id=' + id,
     })

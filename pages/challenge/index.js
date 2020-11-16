@@ -1,4 +1,5 @@
 let app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -70,27 +71,10 @@ Page({
     let that = this;
     wx.showToast({title: '加载中', icon: 'loading'});
     this.setData({loadingFinish: false});
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/activity/list',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        currentPage: page,
-        pageSize: 10,
-        "status": [
-          {
-            "status": 1
-          },
-          {
-            "status": 2
-          }
-        ]
-      },
-      success: function (res) {
+    let url =  app.globalData.baseUrl + '/remote/activity/list';
+    let method = 'POST';
+    const data = { currentPage: page, pageSize: 10,"status": [{"status": 1},{"status": 2 }]};
+    util.wxAjax(method,url,data).then(res =>{
         wx.hideToast();
         if (res.data.code == 200) {
           let list = that.data.activityList;
@@ -100,12 +84,10 @@ Page({
         } else {
           that.setData({loadingFinish: true});
         }
-      },
-      fail: function (res) {
+    }).catch(err => {
         that.setData({loadingFinish: true, page});
         wx.stopPullDownRefresh();
         wx.hideToast();
-      }
     })
   },
   navigatorDetail: function(e) {

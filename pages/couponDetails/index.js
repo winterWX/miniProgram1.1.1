@@ -63,25 +63,15 @@ Page({
    */
   onShareAppMessage: function () {},
   couponDetail:function(id){
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/tier/coupon/detail?id='+ id,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
+    let that = this;
+    let url = app.globalData.baseUrl + '/remote/tier/coupon/detail?id='+ id;
+    let method = 'GET';
+    util.wxAjax(method,url).then(res =>{
         if (res.data.code == 200) {
-            res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
-            res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
-            that.setData({couponDetail: res.data.data});
+          res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
+          res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
+          that.setData({couponDetail: res.data.data});
         }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
     })
   },
   cardDayShow:function(value){

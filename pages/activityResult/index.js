@@ -1,4 +1,5 @@
 let app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -112,27 +113,17 @@ Page({
     
   },
   getActivityInfo: function(id) {
-    let that = this;
-      wx.showToast({ title: '加载中', icon: 'loading' });
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id,
-        method: "POST",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        success: function (res) {
-          wx.hideToast();
-          if (res.data.code == 200) {
-            let { self } = res.data.data;
-            that.setData({self});
-          }
-        },
-        fail: function (res) {
-          wx.hideToast();
-        }
-      })
+    let that = this;
+    wx.showToast({ title: '加载中', icon: 'loading' });
+    let url =  app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id;
+    let method = 'POST';
+    util.wxAjax(method,url).then(res=>{
+      wx.hideToast();
+      if (res.data.code == 200) {
+        let { self } = res.data.data;
+        that.setData({self});
+      }
+    });
   },
   navigateDetail: function() {
     let { id } = this.data;

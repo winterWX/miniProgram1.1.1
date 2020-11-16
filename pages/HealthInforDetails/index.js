@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 Page({
   /**
    * 页面的初始数据
@@ -95,151 +96,90 @@ Page({
   },
   //读文章领取积分
   everyDayIntegral:function(){
-    console.log('//读文章领取积分');
-    let that = this;
+    let that = this;
+    let url = app.globalData.baseUrl + '/remote/article/collection/getArticlePoint';
+    let method = 'POST';
+    const data = {"points": '10',"articleId": that.data.articleId };
     if (that.data.isLogin === 3) {
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/article/collection/getArticlePoint',
-        method: "POST",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        data: {
-          "points": '10',
-          "articleId": that.data.articleId
-        },
-        success: function (res) {
-          if (res.data.code == 200) {
-            that.recordIntegral()
-          }
-        },
-        fail: function (res) {
-          console.log('.........fail..........');
+      util.wxAjax(method,url,data).then(res =>{
+        if (res.data.code == 200) {
+          that.recordIntegral();
         }
-      })
+      });
     }
   },
   //阅读记录
   recordIntegral: function () {
-    let that = this;
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/article/collection/storageRecord?articleId=' + that.data.articleId,
-        method: "GET",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        success: function (res) {
-          if (res.data.code == 200) {
-              that.setData({ integraFlg: true, integralNum: 10 });
-          }
-        },
-        fail: function (res) {
-          console.log('.........fail..........');
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/article/collection/storageRecord?articleId=' + that.data.articleId;
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
+        if (res.data.code == 200) {
+          that.setData({ integraFlg: true, integralNum: 10 });
         }
-      })
+    })
   },
   //收藏接口
   colletArtDaitle:function(){
-      let that = this;
+      let that = this;
+      let url =  app.globalData.baseUrl + '/remote/article/collection/add';
+      let method = 'POST';
+      const data = {"articleId": that.data.articleId };
       if (that.data.isLogin === 3){
-        wx.request({
-          url: app.globalData.baseUrl + '/remote/article/collection/add',
-          method: "POST",
-          header: {
-            'Content-Type': 'application/json',
-            "token": app.globalData.token,
-            "native-app": "mini"
-          },
-          data:{
-            "articleId": that.data.articleId
-          },
-          success: function (res) {
-            console.log('app.globalData.token', app.globalData.token);
-            if (res.data.code == 200) {
-              that.setData({
-                colletArt: '1' //表示收藏成功
-              })
-            }
-          },
-          fail: function (res) {
-            console.log('.........fail..........');
+        util.wxAjax(method, url, data).then(res =>{
+          if (res.data.code == 200) {
+              that.setData({ colletArt: '1' //表示收藏成功
+            })
           }
         })
       }
   },
   //取消收藏接口
   cancelColletArtDaitle: function () {
-    let that = this;
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/article/collection/delete';
+    let method = 'DELETE';
+    const data = { "articleId": that.data.articleId };
     if (that.data.isLogin === 3) {
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/article/collection/delete',
-        method: "DELETE",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        data: {
-          "articleId": that.data.articleId
-        },
-        success: function (res) {
-          console.log('app.globalData.token', app.globalData.token);
+      util.wxAjax(method, url, data).then(res=>{
           if (res.data.code == 200) {
-            that.setData({
-              colletArt: '2'  //表示取消收藏
-            })
+              that.setData({
+                colletArt: '2'  //表示取消收藏
+              })
           }
-        },
-        fail: function (res) {
-          console.log('.........fail..........');
-        }
       })
     }
   },
   //文章详情接口
   articleDetail:function(listNum){
-    var that = this;
-    wx.request({
-    url: app.globalData.baseUrl + '/remote/article/collection/detail?id='+listNum,
-    method: "GET",
-    header:{
-      'Content-Type':'application/json',
-      "token": app.globalData.token,
-      "native-app": "mini"
-    },
-    success: function (res) {
-      if(res.data.data !== null){
-          res.data.data.createTime = that.timestampToTime(res.data.data.createTime);
-          var deleteString = '';
-          String.prototype.replaceAll = function (FindText, RepText) {
-            return this.replace(new RegExp(FindText, "g"), RepText);
-          }
-          deleteString = res.data.data.tags.replaceAll('#', '');
-          res.data.data.tags = deleteString;
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/article/collection/detail?id='+listNum;
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
+          if(res.data.data !== null){
+            res.data.data.createTime = that.timestampToTime(res.data.data.createTime);
+            var deleteString = '';
+            String.prototype.replaceAll = function (FindText, RepText) {
+              return this.replace(new RegExp(FindText, "g"), RepText);
+            }
+            deleteString = res.data.data.tags.replaceAll('#', '');
+            res.data.data.tags = deleteString;
 
-          var baseUrl = 'http://81.69.44.222:8104/upload';
-          String.prototype.replaceAll = function (FindText, RepText) {
-            return this.replace(new RegExp(FindText, "g"), RepText);
-          }
-          console.log('res.data.data.content===',res.data.data.content);
-          if(res.data.data.content.indexOf('../upload') > -1){
-            res.data.data.content = res.data.data.content.replaceAll('../upload', baseUrl);
-          }
-          that.setData({
-             contentAll : res.data.data,
-             colletArt: res.data.data.isCollect   //收藏状态
-          })
-          console.log('colletArtcolletArtcolletArt',that.data.colletArt)
-      }
-    },
-    fail: function (res) {
-      console.log('.........fail..........');
-    }
-  })
+            var baseUrl = 'http://81.69.44.222:8104/upload';
+            String.prototype.replaceAll = function (FindText, RepText) {
+              return this.replace(new RegExp(FindText, "g"), RepText);
+            }
+            console.log('res.data.data.content===',res.data.data.content);
+            if(res.data.data.content.indexOf('../upload') > -1){
+              res.data.data.content = res.data.data.content.replaceAll('../upload', baseUrl);
+            }
+            that.setData({
+              contentAll : res.data.data,
+              colletArt: res.data.data.isCollect   //收藏状态
+            })
+            console.log('colletArtcolletArtcolletArt',that.data.colletArt)
+        }
+    })
   },
   //检测是否已经授权  
   checkAuthorization() {     
@@ -307,32 +247,23 @@ Page({
     }
   },
   userLogin(data) {
+    let that = this;
     wx.showLoading({
       title: 'loading...',
     })
+    let url =  app.globalData.baseUrl + '/remote/oauth/minipro/login';
+    let method = 'POST';
     const parms = {
-      code: this.data.code,
+      code: that.data.code,
       encrypteData: data.encryptedData,
       iv: data.iv
     }
-    wx.request({
-      method: 'post',
-      url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "native-app": "mini"
-      },
-      data: parms,
-      success: (res) => {
+    util.wxAjax(method,url,parms).then(res =>{
         if (res.data.code === 200) {
           app.globalData.userInfo = res.data.data
-          this.setData({
-            isLogin: 1
-          })
-          let urlBase = '../HealthInforDetails/index/#' + this.data.contentAll.id;
-          wx.redirectTo({
-            url: '../login/index?url=' + urlBase,
-          })
+          that.setData({ isLogin: 1 });
+          let urlBase = '../HealthInforDetails/index/#' + that.data.contentAll.id;
+          wx.redirectTo({ url: '../login/index?url=' + urlBase });
         } else {
           wx.showModal({
             showCancel: false,
@@ -341,9 +272,7 @@ Page({
           })
         }
         wx.hideLoading()
-      }
     })
-
   },
   
   timestampToTime: function (timestamp) {

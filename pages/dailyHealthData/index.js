@@ -1,4 +1,4 @@
-const util = require('../../utils/util')
+const util = require('../../utils/util');
 const app = getApp();
 Page({
   /**
@@ -90,51 +90,42 @@ Page({
     that.setData({
       tipUpdate : app.healthStep.SynchronousData
     })
-    this.getHealthData();
-    this.getHeightWeight();  //身高体重
+    that.getHealthData();
+    that.getHeightWeight();  //身高体重
     that.getQueryintegral();
   },
   getHealthData() {
-    let that = this;
+    let that = this;
+    let url = app.globalData.baseUrl + '/remote/health/data/everyday';
+    let method = 'POST';
     wx.showLoading({
       title: 'loading...',
     })
     const parms = {
       date: Date.parse(new Date()) / 1000
     }
-    wx.request({
-      method: 'post',
-      url: app.globalData.baseUrl + '/remote/health/data/everyday',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data: parms,
-      success: (res) => {
-        if (res.data.code === 200 &&  res.data.data !== null) {
-          const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
-          if(weight > 0 && height > 0){
-              let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2);
-              res.data.data.bmi = Number(bmiNum.toFixed(1));
-          }else{
-               res.data.data.bmi = that.data.health.bmi;
-          }
-          res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
-          res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
-          res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
-          that.setData({health: res.data.data});
-        } else {
-          wx.showModal({
-            showCancel: false,
-            content: res.message,
-            success: (res) => { }
-          })
+    util.wxAjax(method,url,parms).then(res =>{
+      if (res.data.code === 200 &&  res.data.data !== null) {
+        const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
+        if(weight > 0 && height > 0){
+            let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2);
+            res.data.data.bmi = Number(bmiNum.toFixed(1));
+        }else{
+             res.data.data.bmi = that.data.health.bmi;
         }
-        wx.hideLoading()
+        res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
+        res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
+        res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
+        that.setData({health: res.data.data});
+      } else {
+        wx.showModal({
+          showCancel: false,
+          content: res.message,
+          success: (res) => { }
+        })
       }
+      wx.hideLoading()
     })
-
   },
   nagigateStep: function() {
     if(!app.healthStep.SynchronousData){
@@ -183,32 +174,25 @@ Page({
       }
   },
   getHeightWeight:function(){
-    let that = this;
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/bodyData/search',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/bodyData/search';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res =>{
         if (res.data.data !== null) {
-            const {weight , height} =  res.data.data;
-            if(weight> 0  &&  height> 0){
-                let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2); 
-                res.data.data.bmi = bmiNum.toFixed(1);
-            }else{
-                 res.data.data.bmi = that.data.health.bmi;
-            }
-            res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
-            res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
-            that.setData({
-                 health: Object.assign(this.data.health,res.data.data)
-            })
-        }
+          const {weight , height} =  res.data.data;
+          if(weight> 0  &&  height> 0){
+              let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2); 
+              res.data.data.bmi = bmiNum.toFixed(1);
+          }else{
+              res.data.data.bmi = that.data.health.bmi;
+          }
+          res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
+          res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
+          that.setData({
+              health: Object.assign(this.data.health,res.data.data)
+          })
       }
-    })
+    });
   },
   closeBalck:function(event){
   let that = this;
@@ -221,40 +205,26 @@ Page({
   },
   //查询用户是否已经获取步数积分
   getQueryintegral: function () {
-    let that= this;
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/integral/queryReceivedStatus',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        // 100412--已经领取积分  200--未领取积分
-        if (res.data.code === 200) {
-            that.getintegral();
-        }
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/integral/queryReceivedStatus';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res =>{
+      // 100412--已经领取积分  200--未领取积分
+      if (res.data.code === 200) {
+        that.getintegral();
       }
     })
   },
   //领取积分
   getintegral: function () {
-    let that= this;
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/integral/stepAuth',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-            that.setData({
-              integralBlock: app.healthStep.SynchronousData 
-            })
-        }
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/integral/stepAuth';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
+      if (res.data.code === 200) {
+        that.setData({
+          integralBlock: app.healthStep.SynchronousData 
+        })
       }
     })
   }

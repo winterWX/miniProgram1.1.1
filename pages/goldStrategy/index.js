@@ -1,4 +1,5 @@
 let app = getApp();
+const util = require('../../utils/util');
 Page({
   /**
    * 页面的初始数据
@@ -67,20 +68,11 @@ Page({
 
   },
   initPage: function (param){
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/copywriting/findMemberCopy',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-          flag : 3, 
-          level : 5
-      },
-      success: function (res) {
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/copywriting/findMemberCopy';
+    let method = 'POST';
+    const data = {flag : 3, level:5 };
+    util.wxAjax(method,url,data).then(res=>{
         if(res.data.code === 200){
           that.setData({
               copyWriting : res.data.data.copyWriting,
@@ -88,10 +80,6 @@ Page({
               tierInfo : res.data.data.tierInfo
           })
         }
-      },
-      fail: function (res) {
-          console.log('---------------');
-      }
     })
   },
   btnNetoPage:function(){
