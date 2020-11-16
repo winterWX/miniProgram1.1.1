@@ -89,9 +89,9 @@ Page({
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
           app.healthStep.dataCource = res.data.data;    // 数据源
           if(!that.data.isAppData){
-            that.getStepRunData();
+             that.getStepRunData();
           }else{
-            that.stepRunState();
+             that.stepRunState();
           }
         }
     });
@@ -209,16 +209,16 @@ Page({
   },
   stepRunState:function(){
     let that = this;
-    let method = 'POST';
+    let method ='POST';
     let url = app.globalData.baseUrl +'/remote/today/step/enquiry';
     const data = {souce:'string', type:'MINIP'};
     util.wxAjax(method,url,data).then(res =>{
         if(res.data.code === 200){
-          that.setData({
-            stepsNum: res.data.data,
-            runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
-            rejectRun: false
-          });
+            that.setData({
+              stepsNum: res.data.data,
+              runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
+              rejectRun: false
+            });
         }
     })
   },
