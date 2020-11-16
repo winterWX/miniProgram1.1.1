@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 Component({
   /**
    * 组件的属性列表
@@ -105,23 +106,30 @@ Component({
     // },
     infoLevel:function(level){
       let that = this;
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/tier/info?level='+ level,
-        method: "GET",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        success: function (res) {
+      let url =  app.globalData.baseUrl + '/remote/tier/info?level='+ level;
+      let method = 'GET';
+      util.wxAjax(method,url).then(res=>{
           if (res.data.code == 200) {
-              that.setData({infoLevelObj:res.data.data})
-           }
-        },
-        fail: function (res) {
-          console.log('.........fail..........');
-        }
-      })
+            that.setData({infoLevelObj:res.data.data})
+          }
+      });
+      // wx.request({
+      //   url: app.globalData.baseUrl + '/remote/tier/info?level='+ level,
+      //   method: "GET",
+      //   header: {
+      //     'Content-Type': 'application/json',
+      //     "token": app.globalData.token,
+      //     "native-app": "mini"
+      //   },
+      //   success: function (res) {
+      //     if (res.data.code == 200) {
+      //         that.setData({infoLevelObj:res.data.data})
+      //      }
+      //   },
+      //   fail: function (res) {
+      //     console.log('.........fail..........');
+      //   }
+      // })
     },
     intergRalDatails:function(){
         wx.navigateTo({
