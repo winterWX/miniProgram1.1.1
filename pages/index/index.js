@@ -81,27 +81,20 @@ Page({
   onShareAppMessage: function () {},
   checkIsAppUser:function(){
     let that = this;
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/health/data/ensure/user',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
+    let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
-            console.log('数据源，1--mini, 2-app',res.data);
-            that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
-            app.healthStep.dataCource = res.data.data;    // 数据源
-            if(!that.data.isAppData){
-              that.getStepRunData();
-            }else{
-              that.stepRunState();
-            }
+          console.log('数据源，1--mini, 2-app',res.data);
+          that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
+          app.healthStep.dataCource = res.data.data;    // 数据源
+          if(!that.data.isAppData){
+            that.getStepRunData();
+          }else{
+            that.stepRunState();
+          }
         }
-      }
-    })
+    });
   },
   parentCallBack: function (event){
      let that = this;
@@ -179,15 +172,9 @@ Page({
   //最近上传数据时间查询(query- queryLatestime)|移动端
   getQueryLatestime: function (runData) {
       let that = this;
-      wx.request({
-        method: 'GET',
-        url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        success: (res) => {
+      let url =  app.globalData.baseUrl + '/remote/health/data/query/latestime';
+      let method = 'GET';
+      util.wxAjax(method,url).then(res =>{
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
               let time = util.formatTime(new Date(Number(res.data.data)));
@@ -195,80 +182,53 @@ Page({
               let result = runData.find(item => item.date === latestTime);
               let index = runData.indexOf(result);
               let results = runData.splice(0, index + 1).map(item=>{
-                   return {
+                  return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
                       steps: item.step
-                   }
+                  }
               });
               that.getUploaddata(results);
           }
-        }
       })
   },
   //运动数据同步上传
   getUploaddata: function (runData) {
     let that = this;
-    wx.request({
-      method: 'POST',
-      url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-        bpm: 0,
-        source :'string',
-        type : 'MINIP',
-        lastTime: new Date().getTime() + '',
-        stepsDataModelList: runData,
-      },
-      success: (res) => {
+    let url =  app.globalData.baseUrl + '/remote/health/data/uploaddata';
+    const data = { bpm: 0,source :'string',
+          type : 'MINIP',lastTime: new Date().getTime() + '',
+          stepsDataModelList: runData
+        };
+    let method = 'POST';
+    util.wxAjax(method,url,data).then(res =>{
         if (res.data.code === 200) {
             that.stepRunState();   //刷新步数接口
         }
-      }
-    })
+    });
   },
   stepRunState:function(){
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/today/step/enquiry',
-      method: "POST",
-      header:{
-          "Content-Type":"application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{ souce:'string', type:'MINIP'},
-      success: function (res) {
-          if(res.data.code === 200){
-              that.setData({
-                stepsNum: res.data.data,
-                runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
-                rejectRun: false
-              });
-          }
-      },
-      fail: function (res) {
-          console.log('--------------');
-      }
+    let method = 'POST';
+    let url = app.globalData.baseUrl +'/remote/today/step/enquiry';
+    const data = {souce:'string', type:'MINIP'};
+    util.wxAjax(method,url,data).then(res =>{
+        if(res.data.code === 200){
+          that.setData({
+            stepsNum: res.data.data,
+            runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
+            rejectRun: false
+          });
+        }
     })
   },
   homePageInit: function () {
     let that = this;
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/homePage/homePageActivitys',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-          res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
+    let method = 'GET';
+    let url = app.globalData.baseUrl +'/remote/homePage/homePageActivitys';
+    util.wxAjax(method,url).then(res =>{
+      if (res.data.code === 200) {
+        res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
             return {
                 ...item,
                 title: item.type === '1' ? '每日步数挑战' : '健康知识问答王者',
@@ -276,37 +236,29 @@ Page({
                 coverImage: item.type === '1' ? 'http://81.69.44.222:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://81.69.44.222:8104/images/miniprogram/images/index/banner-3@3x.png',
                 createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
             }
-          });
-          res.data.data.article = res.data.data.article.map(item =>{
-              return {
-                ...item,
-                thumb: typeof item.thumb == 'number' ? '' : item.thumb,
-                inputtime : item.inputtime ? util.timestampToTimeHM(item.inputtime) : ''
-              }
-          });
-          this.setData({homeAllData: res.data.data});
-        }
+        });
+        res.data.data.article = res.data.data.article.map(item =>{
+            return {
+              ...item,
+              thumb: typeof item.thumb == 'number' ? '' : item.thumb,
+              inputtime : item.inputtime ? util.timestampToTimeHM(item.inputtime) : ''
+            }
+        });
+        that.setData({homeAllData: res.data.data});
       }
     })
   },
   userLevel:function(){
     let that = this;
-    wx.request({
-      method: 'GET',
-      url: app.globalData.baseUrl + '/remote/homePage/userlevel',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-              that.setData({levelNum:res.data.data});
-            if(res.data.data === 3 || res.data.data === 5){
-              that.setData({levelNumShow : false});
-            }
-            console.log('res.data.data',res.data.data);
+    let method = 'GET';
+    let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
+    util.wxAjax(method,url).then(res =>{
+      if (res.data.code === 200) {
+          that.setData({levelNum:res.data.data});
+        if(res.data.data === 3 || res.data.data === 5){
+          that.setData({levelNumShow : false});
         }
+        console.log('res.data.data',res.data.data);
       }
     })
   },
@@ -316,13 +268,9 @@ Page({
         return;
     }else{
       if(that.data.levelNum === 1){
-          wx.navigateTo({
-            url: '../../pages/strategy/index'
-          })
+          wx.navigateTo({ url: '../../pages/strategy/index'});
       }else if(that.data.levelNum === 2 || that.data.levelNum === 4){
-          wx.navigateTo({
-            url: '../../pages/goldStrategy/index'
-          })
+          wx.navigateTo({ url: '../../pages/goldStrategy/index'});
       }
     }
   },
