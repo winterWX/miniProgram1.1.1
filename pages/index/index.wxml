@@ -1,6 +1,6 @@
 <view class="main-content {{successFlg ? 'successsSty':''}}"  wx:if="{{!successFlg}}">
     <view class="topBlock"  wx:if="{{isLogin !== 3}}">
-        <view class="topBlock-image"><image src="http://81.69.44.222:8104/images/miniprogram/images/index/landing-page-image@3x.png"/></view>
+        <view class="topBlock-image"><image src="{{imagesUrl + '/images/index/landing-page-image@3x.png'}}"/></view>
         <view class="topBlock-text">
           <view class="topBlock-text1">每日万步 即得奖励</view>
           <view class="topBlock-text2">登录后查看更多，一起动起来吧！</view>
@@ -8,7 +8,7 @@
         </view>
     </view>
     <view class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
-       <view class="imageRight" ><image src="http://81.69.44.222:8104/images/miniprogram/images/back@2x.png" /></view>
+       <view class="imageRight" ><image src="{{imagesUrl + '/images/back@2x.png'}}" /></view>
         <view class="miniprogress">
            <miniprogress  stepNum="{{ stepsNum.todaySteps }}" />
         </view>
@@ -21,11 +21,11 @@
         </view>    
     </view>
     <view class="secondeBlock" bindtap="membership" wx:if="{{levelNumShow}}">
-        <view class="secondeBlock-image"><image src="http://81.69.44.222:8104/images/miniprogram/images/index/banner-1@3x.png"/></view>
+        <view class="secondeBlock-image"><image src="{{imagesUrl + '/images/index/banner-1@3x.png'}}"/></view>
         <view class="secondeBlock-text">
           <view class="secondeBlock-text1">恒生保险  独家优惠码</view>
           <view class="secondeBlock-text2">升级金银会员享更多好礼</view>
-          <view class="secondeBlock-btn"><image src="http://81.69.44.222:8104/images/miniprogram/images/index/icon-circle@3x.png" /></view>
+          <view class="secondeBlock-btn"><image src="{{imagesUrl + '/images/index/icon-circle@3x.png'}}" /></view>
         </view>
      </view>
      <view class="threesBlock">

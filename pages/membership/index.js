@@ -8,7 +8,8 @@ Page({
     errorTip:false,
     errorTipThree:false,
     errorSeconeTip:false,
-    tierCode:{}
+    tierCode:{},
+    imagesUrl: app.globalData.imagesUrl,
   },
 
   nameChange:function(e){

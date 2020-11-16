@@ -11,7 +11,9 @@ Page({
     colletArt: '', //收藏状态
     articleId: -1,
     integralNum: 0, //积分
-    integraFlg:false
+    integraFlg:false,
+    imagesUrl: app.globalData.imagesUrl,
+    baseUrl: app.globalData.baseUrl
   },
 
   /**
@@ -155,30 +157,31 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/article/collection/detail?id='+listNum;
     let method = 'GET';
+    let { baseUrl } = this.data;
     util.wxAjax(method,url).then(res=>{
-          if(res.data.data !== null){
-            res.data.data.createTime = that.timestampToTime(res.data.data.createTime);
-            var deleteString = '';
-            String.prototype.replaceAll = function (FindText, RepText) {
-              return this.replace(new RegExp(FindText, "g"), RepText);
-            }
-            deleteString = res.data.data.tags.replaceAll('#', '');
-            res.data.data.tags = deleteString;
-
-            var baseUrl = 'http://81.69.44.222:8104/upload';
-            String.prototype.replaceAll = function (FindText, RepText) {
-              return this.replace(new RegExp(FindText, "g"), RepText);
-            }
-            console.log('res.data.data.content===',res.data.data.content);
-            if(res.data.data.content.indexOf('../upload') > -1){
-              res.data.data.content = res.data.data.content.replaceAll('../upload', baseUrl);
-            }
-            that.setData({
-              contentAll : res.data.data,
-              colletArt: res.data.data.isCollect   //收藏状态
-            })
-            console.log('colletArtcolletArtcolletArt',that.data.colletArt)
+      if(res.data.data !== null){
+        res.data.data.createTime = that.timestampToTime(res.data.data.createTime);
+        var deleteString = '';
+        String.prototype.replaceAll = function (FindText, RepText) {
+          return this.replace(new RegExp(FindText, "g"), RepText);
         }
+        deleteString = res.data.data.tags.replaceAll('#', '');
+        res.data.data.tags = deleteString;
+
+        var baseUrl = `${baseUrl}/upload`;
+        String.prototype.replaceAll = function (FindText, RepText) {
+          return this.replace(new RegExp(FindText, "g"), RepText);
+        }
+        console.log('res.data.data.content===',res.data.data.content);
+        if(res.data.data.content.indexOf('../upload') > -1){
+          res.data.data.content = res.data.data.content.replaceAll('../upload', baseUrl);
+        }
+        that.setData({
+          contentAll : res.data.data,
+          colletArt: res.data.data.isCollect   //收藏状态
+        })
+        console.log('colletArtcolletArtcolletArt',that.data.colletArt)
+      }
     })
   },
   //检测是否已经授权  

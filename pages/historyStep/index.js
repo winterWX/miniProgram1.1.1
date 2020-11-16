@@ -6,7 +6,8 @@ Page({
   data: {
     noData: true,
     currentMonth: '',
-    stepInfo: []
+    stepInfo: [],
+    imagesUrl: app.globalData.imagesUrl
   },
   onLoad: function () {
     this.getHistoryStep();

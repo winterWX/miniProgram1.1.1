@@ -53,6 +53,7 @@ Page({
       percentage: 0,
       id: "",
     },
+    imagesUrl: app.globalData.imagesUrl,
     avatarObjList: [
       {
         url: app.globalData.imagesUrl + "/images/icon/icon-defult-touxiang.png",

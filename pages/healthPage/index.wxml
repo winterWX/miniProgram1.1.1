@@ -2,14 +2,14 @@
    <view  class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flag}}"></view>
          <view class="mask-guidance1"  wx:if='{{guidance1}}'>
-            <image src='http://81.69.44.222:8104/images/miniprogram/images/pic-guidance.png'></image>
+            <image src='{{imagesUrl + '/images/pic-guidance.png'}}'></image>
             <view class="picBottom">
                <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
                <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
             </view>
          </view>
          <view class="mask-guidance2"  wx:if='{{guidance2}}'>
-               <image src='http://81.69.44.222:8104/images/miniprogram/images/pic-guidance-2.png'></image>
+               <image src='{{imagesUrl + '/images/pic-guidance-2.png'}}'></image>
                <view class="contutionText">
                      <view class="picBottomText-main">
                         <view class="picBottomText">
@@ -24,8 +24,8 @@
          </view>
    </view>
    <view  class="topSetting PageBackColor" style="padding-top:30rpx;">
-       <view class="imageLeft"><image src='http://81.69.44.222:8104/images/miniprogram/images/icon-guideline.png'></image></view>
-       <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='http://81.69.44.222:8104/images/miniprogram/images/icon-right-arrow-12-x-12.png'></image></view>
+       <view class="imageLeft"><image src='{{imagesUrl + "/images/icon-guideline.png"}}'></image></view>
+       <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='{{imagesUrl + "/images/icon-right-arrow-12-x-12.png"}}'></image></view>
          <view class="{{firstInitShow ? 'firstInitShow': 'miniprogress'}}">
             <miniprogress wx:if="{{!firstInitShow}}" stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
             <image wx:else class="miniprogressImage"  src="../../images/group@3x.png" />
@@ -53,7 +53,7 @@
                <view  class="bottom-main">挑战胜利积分翻倍</view>
          </view>
          <view class="illustration3x">
-            <image src='http://81.69.44.222:8104/images/miniprogram/images/illustration.png'></image>
+            <image src='{{imagesUrl + "/images/illustration.png"}}'></image>
          </view>
    </view>
    <view  class="sendBlock PageBackColor" bindtap="healthShow">
@@ -61,8 +61,6 @@
                <view class="sendBlock-main">
                   <view class="sendBlock-title">每日健康数据</view>
                   <view class="sendBlockBack" ></view>
-                  <!-- <view class="back" bindtap="healthShow"><image   src = 'http://81.69.44.222:8104/images/miniprogram/images/back.png'></image></view> -->
-                  <!-- <view class="sendBlockBack" bindtap="healthShow" bindtap="gotoDailyHeathdata"></view> -->
                </view>
                <view  class="sendBlock-bottom" wx:if="{{showAPPData === 2}}">
                   <view class="sendBlock-Balck" style="padding-left:20rpx">

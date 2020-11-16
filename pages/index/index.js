@@ -19,7 +19,8 @@ Page({
     showDialog: false,
     levelNum: 0,
     levelNumShow: true,
-    isAppData: false  //是否是APP用户
+    isAppData: false,  //是否是APP用户
+    imagesUrl: app.globalData.imagesUrl
   },
   onLoad: function (options) {
     let that = this;
@@ -226,6 +227,7 @@ Page({
     let that = this;
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/homePageActivitys';
+    let { imagesUrl } = this.data;
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
         res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
@@ -233,7 +235,7 @@ Page({
                 ...item,
                 title: item.type === '1' ? '每日步数挑战' : '健康知识问答王者',
                 description: item.type === '1' ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
-                coverImage: item.type === '1' ? 'http://81.69.44.222:8104/images/miniprogram/images/index/rectangle@3x.png' : 'http://81.69.44.222:8104/images/miniprogram/images/index/banner-3@3x.png',
+                coverImage: item.type === '1' ? `${imagesUrl}/images/index/rectangle@3x.png` : `${imagesUrl}/images/index/banner-3@3x.png`,
                 createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
             }
         });
@@ -258,7 +260,6 @@ Page({
         if(res.data.data === 3 || res.data.data === 5){
           that.setData({levelNumShow : false});
         }
-        console.log('res.data.data',res.data.data);
       }
     })
   },

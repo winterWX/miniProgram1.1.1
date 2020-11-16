@@ -21,8 +21,7 @@ Page({
     canReceivedReward: false,
     self: {},
     heroList: [],
-    defaultIcon:
-      app.globalData.imagesUrl + "/images/icon/icon-defult-touxiang.png",
+    defaultIcon: app.globalData.imagesUrl + "/images/icon/icon-defult-touxiang.png",
     baseUrl: app.globalData.imagesUrl,
     completeChange: false,
     allReward: 0,

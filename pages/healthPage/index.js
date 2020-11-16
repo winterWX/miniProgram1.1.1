@@ -33,7 +33,8 @@ Page({
      firstInitShow: true,  //第一次进来显示
      iconPath:app.globalData.imagesUrl + '/images/icon-10-points@2x.png',
      dataSyn: false,   //标记数据同步
-     optionsFlg:'' // 标识 options id
+     optionsFlg:'', // 标识 options id
+     imagesUrl: app.globalData.imagesUrl
   },
   onLoad:function (options) {
       let that = this;

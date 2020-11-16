@@ -8,6 +8,7 @@ Page({
   data: {
     friend: [],
     self: {},
+    imagesUrl: app.globalData.imagesUrl,
     defaultIcon: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
     avatarObjList: [
       {

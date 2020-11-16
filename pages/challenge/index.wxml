@@ -18,7 +18,7 @@
 </view>
 <view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">
 	<view>
-		<image class="icon" src="http://81.69.44.222:8104/images/miniprogram/images/pagePng/search-result.png"></image>
+		<image class="icon" src="{{baseUrl + '/images/pagePng/search-result.png'}}"></image>
 		<view class="no-data">暂无活动</view>
 	</view>
 </view>

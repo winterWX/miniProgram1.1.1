@@ -16,7 +16,8 @@ Page({
     isLoad:true,
     dayTime: '',
     forceNum:false,
-    integralData:10
+    integralData:10,
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**
