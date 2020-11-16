@@ -86,7 +86,7 @@ Component({
       const h2 = new Date(new Date().setHours(23, 59, 59, 999))/1000
       console.log(h1,h2)
     },
-    getCurrentList(){//获取打卡列表
+    getCurrentList(){  //获取打卡列表
       // wx.showLoading({
       //   title: 'loading...',
       // })
@@ -223,7 +223,7 @@ Component({
               item = { ...item, ...otherItem}
               newList.push(item)
             }
-            console.log(newList)
+            console.log('列表数据', newList)
             this.setData({
               list: newList
             })

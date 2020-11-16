@@ -180,10 +180,10 @@ Page({
     console.log('yeseterDate',this.data.yeseterDate);
   },
   yesterdayIntegral(e) {  //补领积分  
-    const key = e.currentTarget.dataset.key 
-    const i = e.currentTarget.dataset.ind   
-    const index = e.currentTarget.dataset.index  
-    const item = e.currentTarget.dataset.item  
+    const key = e.currentTarget.dataset.key; 
+    const i = e.currentTarget.dataset.ind;   
+    const index = e.currentTarget.dataset.index;  
+    const item = e.currentTarget.dataset.item;
     
     wx.showLoading({
       title: 'loading...',
@@ -205,8 +205,8 @@ Page({
         wx.hideLoading()
         if (res.data.code === 200) {
           var history = this.data.history
-          history[key][i].historyList[index].receiveStatus = 1
-          history[key][i].historyList[index].integral = 10
+          history[key][i].historyList[index].receiveStatus = 1;
+          history[key][i].historyList[index].integral = 10;
           this.setData({ integralData : 10 });
           this.setData({forceNum : true, history: history });
           this.onLoad();
