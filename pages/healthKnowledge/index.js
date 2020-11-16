@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
 
@@ -79,40 +80,33 @@ Page({
     wx.showLoading({
       title: 'loading...',
     })
-    const parms = {
+    const params = {
       code: this.data.code,
       encrypteData: data.encryptedData,
       iv: data.iv
     }
-    wx.request({
-      method: 'post',
-      url: app.globalData.baseUrl + '/remote/oauth/minipro/login',
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "native-app": "mini"
-      },
-      data: parms,
-      success: (res) => {
-        if (res.data.code === 200) {
-          app.globalData.userInfo = res.data.data
-          that.setData({
-            isLogin: 1
-          })
-          let urlBase = '../healthKnowledge/index/#' + that.data.id;
-          wx.redirectTo({
-            url: '../login/index?url=' + urlBase,
-          })
-        } else {
-          wx.showModal({
-            showCancel: false,
-            content: res.message,
-            success: (res) => { }
-          })
-        }
-        wx.hideLoading()
+    let url = app.globalData.baseUrl + '/remote/oauth/minipro/login';
+    wxAjax('POST', url, params).then(res => {
+      console.log('>>>>>>>>>>>>>>>>>>>>')
+      console.log(res)
+      if (res.data.code === 200) {
+        app.globalData.userInfo = res.data.data
+        that.setData({
+          isLogin: 1
+        })
+        let urlBase = '../healthKnowledge/index/#' + that.data.id;
+        wx.redirectTo({
+          url: '../login/index?url=' + urlBase,
+        })
+      } else {
+        wx.showModal({
+          showCancel: false,
+          content: res.message,
+          success: (res) => { }
+        })
       }
+      wx.hideLoading()
     })
-
   },
   goToAnswer: function() {
     let { id } = this.data;
@@ -146,31 +140,22 @@ Page({
   getQuestion: function(id) {
     let that = this;
     let token = app.globalData.token || '';
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        if(res.data.code === 200) {
-          let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
-          let info = content.replace(/<[^>]+>/g,"");
-          let participated = quizResult !== null;
-          that.setData({
-            bannerUrl,
-            title,
-            content: info,
-            questionNumber,
-            participated,
-            isEnds,
-            reward
-          })
-        }
-      },
-      fail: function (res) {
+    let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
+    wxAjax('GET', url).then(res => {
+      if(res.data.code === 200) {
+        console.log('获取文章详情');
+        let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
+        let info = content.replace(/<[^>]+>/g,"");
+        let participated = quizResult !== null;
+        that.setData({
+          bannerUrl,
+          title,
+          content: info,
+          questionNumber,
+          participated,
+          isEnds,
+          reward
+        })
       }
     })
   }

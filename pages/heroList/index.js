@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
 
@@ -88,26 +89,19 @@ Page({
   },
   getHeroList: function(id) {
     let that = this;
-      wx.showToast({ title: '加载中', icon: 'loading' });
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id,
-        method: "POST",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        success: function (res) {
-          wx.hideToast();
-          if (res.data.code == 200) {
-            console.log(res.data.data);
-            let { friend, self } = res.data.data;
-            that.setData({friend, self})
-          }
-        },
-        fail: function (res) {
-          wx.hideToast();
-        }
-      })
+    let url = app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id;
+    wx.showToast({ title: '加载中', icon: 'loading' });
+    wxAjax('POST', url).then(res => {
+      wx.hideToast();
+      if (res.data.code == 200) {
+        console.l.og('好友排行榜')
+        console.log(res.data.data);
+        let { friend, self } = res.data.data;
+        that.setData({friend, self})
+      }
+    })
+    .catch(res => {
+      wx.hideToast();
+    })
   }
 })

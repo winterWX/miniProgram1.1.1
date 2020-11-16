@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 const authorizeRun = require("../../utils/authorizeRun.js");
 Page({
@@ -129,70 +130,37 @@ Page({
     app.healthStep.SynchronousData = true;
     app.globalData.isWeRunStepsFail = true; //表示已经点儿开启数据访问按钮
     that.getQueryintegral();
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/today/step/enquiry",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini",
-      },
-      data: { souce: "string", type: "MINIP" },
-      success: function (res) {
-        if (res.data.code === 200) {
-          that.setData({ stepsNum: res.data.data });
-          if (res.data.data.todaySteps < 10000) {
-            that.setData({ startStep: 10000 - res.data.data.todaySteps });
-          }
-          that.setData({ startStatus: false });
+    let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
+    let data = { souce: "string", type: "MINIP" };
+    wxAjax('POST', url, data).then(res => {
+      if (res.data.code === 200) {
+        that.setData({ stepsNum: res.data.data });
+        if (res.data.data.todaySteps < 10000) {
+          that.setData({ startStep: 10000 - res.data.data.todaySteps });
         }
-      },
-      fail: function (res) {
-        console.log("--------------");
-      },
+        that.setData({ startStatus: false });
+      }
     });
   },
   integralBtn: function () {
     let that = this;
-      wx.request({
-        url: app.globalData.baseUrl +'/remote/today/receiveIntegral',
-        method: "GET",
-        header:{
-            "Content-Type":"application/json;charset=UTF-8",
-            "token": app.globalData.token
-        },
-        success: function (res) {
-          if(res.data.code === 200){
-              that.settingDataBtn();
-              that.setData({ forceNum: true }); // - anBackShow:true
-            }          
-        },
-        fail: function (res) {
-          console.log('.........fail..........');
-        }
-    });
+    let url = app.globalData.baseUrl +'/remote/today/receiveIntegral';
+    wxAjax('GET', url).then(res => {
+      if(res.data.code === 200){
+        that.settingDataBtn();
+        that.setData({ forceNum: true }); // - anBackShow:true
+      } 
+    })
   },
   healthEveryday: function () {
     var that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/health/data/everyday",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini",
-      },
-      data: {
-        date: new Date().getTime() + "",
-      },
-      success: function (res) {
-        if (res.data.code === 200) {
-          that.setData({ everyDayData: res.data.data });
-        }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
+    let url = app.globalData.baseUrl + "/remote/health/data/everyday";
+    wxAjax('POST', url, {date: new Date().getTime() + ""}).then(res => {
+      if (res.data.code === 200) {
+        console.log('乐健康')
+          console.log('/remote/health/data/everyday');
+        that.setData({ everyDayData: res.data.data });
+      }
     });
   },
   gotoDailyHeathdata() {
@@ -203,41 +171,27 @@ Page({
   //查询用户是否已经获取步数积分
   getQueryintegral: function () {
     let that = this;
-    wx.request({
-      method: "GET",
-      url: app.globalData.baseUrl + "/remote/integral/queryReceivedStatus",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini",
-      },
-      success: (res) => {
-        // 100412--已经领取积分  200--未领取积分
-        if (res.data.code === 200) {
-          that.getintegral();
-        }
-      },
-    });
+    let url = app.globalData.baseUrl + "/remote/integral/queryReceivedStatus";
+    wxAjax('GET', url).then(res => {
+      // 100412--已经领取积分  200--未领取积分
+      if (res.data.code === 200) {
+        that.getintegral();
+      }
+    })
   },
   //领取积分
   getintegral: function () {
     let that = this;
-    wx.request({
-      method: "GET",
-      url: app.globalData.baseUrl + "/remote/integral/stepAuth",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-          that.setData({
-            forceNum: app.healthStep.SynchronousData,
-            allowRun: true,
-          });
-        }
-      },
+    let url = app.globalData.baseUrl + "/remote/integral/stepAuth";
+    wxAjax('GET', url).then(res => {
+      if (res.data.code === 200) {
+        console.log('乐健康')
+        console.log('/remote/integral/stepAuth');
+        that.setData({
+          forceNum: app.healthStep.SynchronousData,
+          allowRun: true,
+        });
+      }
     });
   },
   stepRunSorce: function () {
@@ -289,56 +243,41 @@ Page({
   //最近上传数据时间查询(query- queryLatestime)|移动端
   getQueryLatestime: function (runData) {
     let that = this;
-    wx.request({
-      method: "GET",
-      url: app.globalData.baseUrl + "/remote/health/data/query/latestime",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-          //最后上传时间戳 和 当前时间戳进行比较
-          let time = util.formatTime(new Date(Number(res.data.data)));
-          let latestTime = time.split(" ")[0];
-          let result = runData.find((item) => item.date === latestTime);
-          let index = runData.indexOf(result);
-          let results = runData.splice(0, index + 1).map((item) => {
-            return {
-              startTime: item.timestamp + "",
-              endTime: item.timestamp + "",
-              steps: item.step,
-            };
-          });
-          that.getUploaddata(results);
-        }
-      },
-    });
+    let url = app.globalData.baseUrl + "/remote/health/data/query/latestime";
+    wxAjax('GET', url).then(res => {
+      if (res.data.code === 200) {
+        //最后上传时间戳 和 当前时间戳进行比较
+        let time = util.formatTime(new Date(Number(res.data.data)));
+        let latestTime = time.split(" ")[0];
+        let result = runData.find((item) => item.date === latestTime);
+        let index = runData.indexOf(result);
+        let results = runData.splice(0, index + 1).map((item) => {
+          return {
+            startTime: item.timestamp + "",
+            endTime: item.timestamp + "",
+            steps: item.step,
+          };
+        });
+        that.getUploaddata(results);
+      }
+    })
   },
   //刷新的时候上传数据
   getUploaddata: function (runData) {
       let that = this;
-      wx.request({
-        method: 'POST',
-        url: app.globalData.baseUrl + '/remote/health/data/uploaddata',
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "token": app.globalData.token
-        },
-        data:{
-          bpm: 0,
-          source :'string',
-          type : 'MINIP',
-          lastTime: new Date().getTime() + '',
-          stepsDataModelList: runData
-        },
-        success: (res) => {
-            if (res.data.code === 200) {
-                that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
-                that.settingDataBtn();
-            }
+      let url = app.globalData.baseUrl + '/remote/health/data/uploaddata';
+      let data = {
+        bpm: 0,
+        source :'string',
+        type : 'MINIP',
+        lastTime: new Date().getTime() + '',
+        stepsDataModelList: runData
+      };
+      wxAjax('POST', url, data).then(res => {
+        if (res.data.code === 200) {
+          that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
+          that.settingDataBtn();
         }
-      })
+      });
     }
 })
