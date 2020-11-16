@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
   /**
@@ -18,47 +19,6 @@ Page({
      this.initPage();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享
@@ -68,29 +28,17 @@ Page({
   },
   initPage: function (param){
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/copywriting/findMemberCopy',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-          flag : 2,
-          level : 4
-      },
-      success: function (res) {
-        if(res.data.code === 200){
-          that.setData({
-              copyWriting : res.data.data.copyWriting,
-              enjoyCopywriting : res.data.data.enjoyCopywriting,
-              tierInfo : res.data.data.tierInfo
-          })
-        }
-      },
-      fail: function (res) {
-          console.log('---------------');
+    let url = app.globalData.baseUrl + '/remote/copywriting/findMemberCopy';
+    wxAjax('POST', url, {
+      flag : 2,
+      level : 4
+    }).then(res => {
+      if(res.data.code === 200){
+        that.setData({
+            copyWriting : res.data.data.copyWriting,
+            enjoyCopywriting : res.data.data.enjoyCopywriting,
+            tierInfo : res.data.data.tierInfo
+        })
       }
     })
   },

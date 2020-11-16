@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp()
 Page({
 
@@ -75,59 +76,33 @@ Page({
   //邀请码  
   recommendNum: function () {
     var that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/invite/invitationcode',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-          if(res.data.code === 200){
-              that.setData({ invitData: res.data.data }); 
-              //添加邀请码到 userInfo
-              app.globalData.invitationCode = res.data.data.invitationCode;
-              if(res.data.data.invitationList.length > 0){
-                  res.data.data.invitationList.forEach( v => {
-                      let reg = /^(\d{3})\d{4}(\d{4})$/;
-                      v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
-                  })
-                  res.data.data.personNum = res.data.data.invitationList.length;
-                  that.setData({ invitData: res.data.data, recommendFlg: true})
-              }else{
-                  that.setData({recommendFlg: false });
-              }
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+    let url = app.globalData.baseUrl + '/remote/invite/invitationcode';
+    wxAjax('GET', url).then(res => {
+      if(res.data.code === 200){
+        that.setData({ invitData: res.data.data }); 
+        //添加邀请码到 userInfo
+        app.globalData.invitationCode = res.data.data.invitationCode;
+        if(res.data.data.invitationList.length > 0){
+            res.data.data.invitationList.forEach( v => {
+                let reg = /^(\d{3})\d{4}(\d{4})$/;
+                v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
+            })
+            res.data.data.personNum = res.data.data.invitationList.length;
+            that.setData({ invitData: res.data.data, recommendFlg: true})
+        }else{
+            that.setData({recommendFlg: false });
+        }
+    }
+    });
   },
   //小程序码
   forShareNum: function () {
     var that = this;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode',
-      method: "POST",
-      data:{
-        path: '',
-        width: 88
-      },
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-          if(res.data.code == 200){
-             console.log('res',res);
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
+    let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
+    wxAjax('POST', url, {path: '',width: 88}).then(res => {
+      if(res.data.code == 200){
+        console.log('res',res);
+     }
     })
   },
   

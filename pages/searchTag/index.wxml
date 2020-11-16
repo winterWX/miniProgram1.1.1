@@ -11,7 +11,7 @@
         />
         </view>
         <view class="info-main">
-            <view class="info"  wx:for="{{listData}}" wx:key="{{item.id}}">
+            <view class="info"  wx:for="{{listData}}" wx:key="id">
             <view class="top-block"  bindtap="listClick" data-itemid="{{item.id}}">
                 <view class="title">
                     <view class="mainText mainTextHidden">{{item.title}}</view>

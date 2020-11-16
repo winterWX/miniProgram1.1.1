@@ -1,5 +1,5 @@
 import * as echarts from '../../components/ec-canvas/echarts';
-import { formatTime } from '../../utils/util';
+import { formatTime,  wxAjax } from '../../utils/util';
 const app = getApp();
 let tabsWithDay = [
   //{ name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
@@ -20,11 +20,6 @@ let checkName = '';
 let currentTab = '';
 var option = {
   color: ['#00A865'],
- /*  position: function(point, params) {
-    console.log(point[0])
-    console.log(params)
-    return [point[0], -20]
-  }, */
   tooltip: {
     trigger: 'axis',
     axisPointer: {
@@ -213,63 +208,53 @@ Page({
     let { currentTabId } = this.data;
     this.setData({ showSelectedDate: false });
     let initData = this.initDisplayData(startTime, demension);
+    let url = app.globalData.baseUrl + '/remote/health/data/query/histogram';
     let that = this;
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
-        method: "POST",
-        header: {
-          'Content-Type': 'application/json',
-          "token": app.globalData.token,
-          "native-app": "mini"
-        },
-        data: {
-          startTime,
-          endTime,
-          demension,
-          features: 'steps'
-        },
-        success: function (res) {
-          if (res.data.code == 200) {
-            let { dataList = [], stepData, type } = res.data.data;
-            if (dataList.length === 0) {
-              that.setData({ stepData: 0, noData: !dataList.length });
-              return;
-            };
-            that.setData({
-              stepData,
-              tabs: type === 'MINIP' ? tabs : tabsWithDay,
-              noData: !dataList.length
-            });
-            let displayDataMap = {};
-            dataList.forEach(item => {
-              let t = formatTime(new Date(item.dataTime * 1000));
-              let dateArr = that.foramteDate(t);
-              let [year, month, day] = dateArr;
-              // dateMap[day] = `${month}月${day}日`;
-              let key = currentTabId === 'month' ? `${t.split(" ")[0].split('/')[2]}日` : that.getDisplayWeek(new Date(item.dataTime * 1000));
-              if (currentTabId === 'week') {
-                weekDateMap[key] = `${month}月${day}日`;
-              }
-              displayDataMap[key] = item.steps;
-            });
-            // 重置echarts样式
-            option.series[0].barWidth = currentTabId !== 'month' ? 14 : 6;
-            option.color = ['#00A865'],
-            option.xAxis.axisLabel.interval = demension === 'month' ? 6 : 'auto';
-            option.series[0].itemStyle.normal.barBorderRadius = demension === 'month' ? [3,3,0,0] : [10,10,0,0];
-            let displayData =  Object.assign(initData, displayDataMap);
-            option.xAxis.data = Object.keys(displayData);
-            option.series[0].data = Object.values(displayData);
-            chart && chart.setOption(option);
+    wxAjax('POST', url, {
+      startTime,
+      endTime,
+      demension,
+      features: 'steps'
+    }).then(res => {
+      if (res.data.code == 200) {
+        let { dataList = [], stepData, type } = res.data.data;
+        if (dataList.length === 0) {
+          that.setData({ stepData: 0, noData: !dataList.length });
+          return;
+        };
+        that.setData({
+          stepData,
+          tabs: type === 'MINIP' ? tabs : tabsWithDay,
+          noData: !dataList.length
+        });
+        let displayDataMap = {};
+        dataList.forEach(item => {
+          let t = formatTime(new Date(item.dataTime * 1000));
+          let dateArr = that.foramteDate(t);
+          let [year, month, day] = dateArr;
+          let key = currentTabId === 'month' ? `${t.split(" ")[0].split('/')[2]}日` : that.getDisplayWeek(new Date(item.dataTime * 1000));
+          if (currentTabId === 'week') {
+            weekDateMap[key] = `${month}月${day}日`;
           }
-        },
-        fail: function (res) {
-          option.xAxis.data = [];
-          option.series[0].data = [];
-          chart && chart.setOption(option);
-          that.setData({ stepData: 0, noData: true });
-        }
-      })
+          displayDataMap[key] = item.steps;
+        });
+        // 重置echarts样式
+        option.series[0].barWidth = currentTabId !== 'month' ? 14 : 6;
+        option.color = ['#00A865'],
+        option.xAxis.axisLabel.interval = demension === 'month' ? 6 : 'auto';
+        option.series[0].itemStyle.normal.barBorderRadius = demension === 'month' ? [3,3,0,0] : [10,10,0,0];
+        let displayData =  Object.assign(initData, displayDataMap);
+        option.xAxis.data = Object.keys(displayData);
+        option.series[0].data = Object.values(displayData);
+        chart && chart.setOption(option);
+      }
+    })
+    .catch(() => {
+      option.xAxis.data = [];
+      option.series[0].data = [];
+      chart && chart.setOption(option);
+      that.setData({ stepData: 0, noData: true });
+    });
   },
   initDisplayData: function(startTime, type) {
     let results = {};

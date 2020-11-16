@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
 
@@ -72,16 +73,9 @@ Page({
   },
   getRankList: function() {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/leaderboard/friend/board',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        wx.hideToast();
+    let url = app.globalData.baseUrl + '/remote/leaderboard/friend/board';
+    wxAjax('GET', url).then(res => {
+      wx.hideToast();
         if (res.data.code == 200) {
           let { myBoardVo, friendLeaderBoardVo} = res.data.data;
           that.setData({
@@ -89,10 +83,6 @@ Page({
             friend: friendLeaderBoardVo
           })
         }
-      },
-      fail: function (res) {
-        
-      }
-    })
+    });
   }
 })
