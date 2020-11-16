@@ -225,8 +225,7 @@ Page({
     const key = e.currentTarget.dataset.key; 
     const i = e.currentTarget.dataset.ind;
     const index = e.currentTarget.dataset.index; 
-    const item = e.currentTarget.dataset.item;  
-    
+    const item = e.currentTarget.dataset.item;
     
     wx.showLoading({
       title: 'loading...',

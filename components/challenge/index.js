@@ -188,7 +188,8 @@ Component({
               } else if ((h1 - 24 * 60 * 60) <= item.createTime && item.createTime <h1) {
                 dayName = "昨天"
                 if (Date.parse(new Date()) / 1000 < h1 + 24 * 60 * 60) {   // Date.parse(new Date()) / 1000 < h1 + 10 * 60 * 60
-                    if(item.receiveStatus == 2){
+                    // if(item.receiveStatus == 2){
+                    if(item.receiveStatus == 3){
                         //iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'     
                         iconPath =  app.globalData.imagesUrl + '/images/icon-' + reward + '-points@2x.png'
                     }              
