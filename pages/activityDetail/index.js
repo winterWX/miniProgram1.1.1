@@ -104,30 +104,18 @@ Page({
     this.getWxRunData();
   },
   // 上传步数
-  uploadStep: function (stepList) {
+  uploadStep: function (stepList){
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/health/data/uploaddata",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      data: {
-        bpm: 0,
-        source: "string",
-        type: "MINIP",
-        // lastTime: parseInt(new Date().getTime() / 1000) + '',
-        lastTime: new Date().getTime() + "",
-        stepsDataModelList: stepList,
-      },
-      success: function (res) {
-        let { activityId } = that.data;
-        that.getActivityDetail(activityId);
-      },
-      fail: function (res) {},
-    });
+    let url =  app.globalData.baseUrl + '/remote/health/data/uploaddata';
+    let method = 'POST';
+    const data = { bpm: 0,source: "string",type: "MINIP",
+      lastTime: new Date().getTime() + "",
+      stepsDataModelList: stepList,
+    }
+    Utils.wxAjax(method,url,data).then(res=>{
+      let { activityId } = that.data;
+      that.getActivityDetail(activityId);
+    })
   },
   getWxRunData: function () {
     step.getWxRunData((data) => {
@@ -141,15 +129,9 @@ Page({
   // 获取最近上传步数的时间
   getLatestUploadTime: function (data) {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/health/data/query/latestime",
-      method: "GET",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      success: function (res) {
+    let url =  app.globalData.baseUrl + '/remote/health/data/query/latestime';
+    let method = 'GET';
+    Utils.wxAjax(method,url).then(res=>{
         if (res.data.code == 200) {
           var time = Utils.formatTime(new Date(Number(res.data.data)));
           let latestTime = time.split(" ")[0];
@@ -165,32 +147,17 @@ Page({
           });
           stepsDataModelList.length && that.uploadStep(stepsDataModelList);
         }
-      },
-      fail: function (res) {
-        console.log("获取更新时间失败");
-      },
     });
   },
   getUseType: function () {
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/health/data/ensure/user",
-      method: "GET",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          // 1 微信用户 2 APP用户
-          if (res.data.data === 1) {
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
+    let method = 'GET';
+    Utils.wxAjax(method,url).then(res=>{
+        if (res.data.data === 1) {
             that.getWxStepAndUplod();
-          }
         }
-      },
-      fail: function (res) {},
-    });
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -210,48 +177,40 @@ Page({
   },
 
   getActivityDetail: function (id, goodsId = "") {
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myactivity/detail/" + id,
-      method: "GET",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let detail = {
-            ...res.data.data,
-            content: res.data.data.content,
-            ruledescription: res.data.data.ruledescription,
-          };
-          detail.mileStoneVo.unshift({
-            reward: 0,
-            mileStoneTarget: 0,
-            received: 5,
-          });
-          // 判断挑战是否完成并且领取积分
-          let completeChange =
-            detail.mileStoneVo[detail.mileStoneVo.length - 1].received === 1;
-          if (detail.friendRank) {
-            let { self = {}, friend = [] } = detail.friendRank;
-            let currentStep = detail.friendRank.self.steps;
-            that.calcPercent(currentStep, detail.mileStoneVo);
-            that.getCanReceiveReward(currentStep, detail.mileStoneVo);
-            that.judgeReceivedStatus(detail.mileStoneVo);
-            let heroList = that.operateHeroData(friend);
-            that.setData({ self, heroList });
-          }
-          let isJoin = detail.isJoinStatus === "2";
-          that.setData({ detail, isJoin, showDetail: !isJoin, completeChange });
-          if (!isJoin && goodsId) {
-            that.joinActivity();
-          }
+    let that = this;
+    let url = app.globalData.baseUrl + "/remote/myactivity/detail/" + id;
+    let method = 'GET';
+    Utils.wxAjax(method,url).then(res=>{
+    if (res.data.code == 200) {
+        let detail = {
+          ...res.data.data,
+          content: res.data.data.content,
+          ruledescription: res.data.data.ruledescription,
+        };
+        detail.mileStoneVo.unshift({
+          reward: 0,
+          mileStoneTarget: 0,
+          received: 5,
+        });
+        // 判断挑战是否完成并且领取积分
+        let completeChange =
+          detail.mileStoneVo[detail.mileStoneVo.length - 1].received === 1;
+        if (detail.friendRank) {
+          let { self = {}, friend = [] } = detail.friendRank;
+          let currentStep = detail.friendRank.self.steps;
+          that.calcPercent(currentStep, detail.mileStoneVo);
+          that.getCanReceiveReward(currentStep, detail.mileStoneVo);
+          that.judgeReceivedStatus(detail.mileStoneVo);
+          let heroList = that.operateHeroData(friend);
+          that.setData({ self, heroList });
         }
-      },
-      fail: function (res) {},
-    });
+        let isJoin = detail.isJoinStatus === "2";
+        that.setData({ detail, isJoin, showDetail: !isJoin, completeChange });
+        if (!isJoin && goodsId) {
+          that.joinActivity();
+        }
+      }
+    })
   },
   calcActivityAllReward: function (arr) {
     let result = 0;
@@ -271,20 +230,11 @@ Page({
   // 领取积分
   receiveReward: function () {
     let that = this;
-    let { reward, activityId, detail } = this.data;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myactivity/integral/receive",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        activityId,
-        integral: reward,
-      },
-      success: function (res) {
+    let { reward, activityId, detail } = that.data;
+    let url = app.globalData.baseUrl + '/remote/myactivity/integral/receive';
+    let method = 'POST';
+    const data = { activityId,integral: reward};
+    Utils.wxAjax(method,url,data).then(res=>{
         if (res.data.code == 200) {
           let mileStoneVos = that.updateTargetStatus(detail.mileStoneVo);
           detail.mileStoneVo = mileStoneVos;
@@ -306,9 +256,7 @@ Page({
             });
           }
         }
-      },
-      fail: function (res) {},
-    });
+    })
   },
   // 领取积分之后更新数据的领取状态
   updateTargetStatus: function (arr) {
@@ -367,15 +315,9 @@ Page({
       encrypteData: data.encryptedData,
       iv: data.iv,
     };
-    wx.request({
-      method: "post",
-      url: app.globalData.baseUrl + "/remote/oauth/minipro/login",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "native-app": "mini"
-      },
-      data: parms,
-      success: (res) => {
+    let url =  app.globalData.baseUrl + '/remote/oauth/minipro/login';
+    let method ='POST';
+    Utils.wxAjax(method,url,parms).then(res=>{
         if (res.data.code === 200) {
           app.globalData.userInfo = res.data.data;
           that.setData({
@@ -393,8 +335,7 @@ Page({
           });
         }
         wx.hideLoading();
-      },
-    });
+    })
   },
   checkAuthorization() {
     wx.getSetting({
@@ -460,36 +401,24 @@ Page({
   },
   joinActivity: function (e) {
     let that = this;
-    let { activityId } = this.data;
+    let { activityId } = that.data;
     let id = (e && e.currentTarget && e.currentTarget.dataset.id) || activityId;
     wx.showToast({ title: "加载中", icon: "loading" });
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myactivity/add",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        activityId: id,
-      },
-      success: function (res) {
-        wx.hideToast();
-        if (res.data.code == 200) {
-          let { activityId } = that.data;
-          that.setData({ isJoin: true, showDetail: false });
-          that.getActivityDetail(activityId);
-          wx.showToast({
-            title: "参与成功",
-            icon: "successS",
-          });
-        }
-      },
-      fail: function (res) {
-        wx.hideToast();
-      },
-    });
+    let url =  app.globalData.baseUrl + '/remote/myactivity/add';
+    let method = 'POST';
+    const data = {activityId: id};
+    Utils.wxAjax(method,url,data).then(res=>{
+      wx.hideToast();
+      if (res.data.code == 200) {
+        let { activityId } = that.data;
+        that.setData({ isJoin: true, showDetail: false });
+        that.getActivityDetail(activityId);
+        wx.showToast({
+          title: "参与成功",
+          icon: "successS",
+        });
+      }
+    })
   },
   operateHeroData: function (arr) {
     return arr.map((item) => {
