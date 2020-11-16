@@ -56,10 +56,11 @@ const wxAjax = (method, url, data = {}) => {
             content: '登入状态已失效，请重新再试',
             confirmText: '确认',
             success: () => {
+              app.globalData.isLogin = 0;
               wx.reLaunch({
-                url: '../index/index'
-              })
-            }
+                  url: '../index/index'
+                })
+              }
           })
         }
       },
