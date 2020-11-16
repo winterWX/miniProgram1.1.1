@@ -9,7 +9,8 @@ Page({
     enjoyCopywriting:[],
     tierInfo:{},
     hideModal: true,  //模态框的状态  true-隐藏  false-显示
-    whatHangsheng:false
+    whatHangsheng:false,
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**

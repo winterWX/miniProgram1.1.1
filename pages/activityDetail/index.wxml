@@ -1,6 +1,6 @@
 <view class="container">
 	<view wx:if="{{detail.status === 3}}" class="disable-tip">
-		<image class="disable-icon" src="http://81.69.44.222:8104/images/miniprogram/images/pagePng/circle-info.png">
+		<image class="disable-icon" src="{{baseUrl + '/images/pagePng/circle-info.png'}}">
 		</image>
 		<text>活动已结束</text>
 	</view>
@@ -40,7 +40,7 @@
 						<view class="cell" wx:for="{{detail.mileStoneVo}}" wx:key="id" wx:for-item="step">
 							<view class="active-item" wx:if="{{step.received === 1}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}};z-index: 5;"></view>
-							<image src="http://81.69.44.222:8104/images/miniprogram/images/otherCarde/star.png" class="item"
+							<image src="{{baseUrl + '/images/otherCarde/star.png'}}" class="item"
 								wx:if="{{step.reward !==0 && (step.received === 2 || step.received === 3)}}"
 								style="left: {{ (100 / (detail.mileStoneVo.length-1)) * index + '%'}}"></image>
 							<view wx:if="{{step.reward !==0}}" class="reward"

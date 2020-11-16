@@ -65,7 +65,7 @@
                         <view class="intringData">
                             <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="index" data-index="{{index}}">
                                 <view class="viewBtn">{{item.tag}}</view>
-                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="http://81.69.44.222:8104/images/miniprogram/images/healthInfo/icon-add.png"></image>
+                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/healthInfo/icon-add.png'}}"></image>
                             </view>
                         </view>
                     </view>

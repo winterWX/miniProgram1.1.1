@@ -157,11 +157,11 @@ Page({
   onShareAppMessage: function (options) {
     app.globalData.userInfo.invitationCode = this.data.invitData.invitationCode;
     let userInfoData = JSON.stringify(app.globalData.userInfo);
-    console.log('userInfoData---------',userInfoData);
+    let { baseUrl } = this.data;
     let shareObj = {
   　　　　title: "邀请好友注册领好礼",
   　　　　path: "/pages/newFriend/index?userInfoData="+ userInfoData,
-         imageUrl: "http://81.69.44.222:8104/images/miniprogram/images/addFriend/img@3x.png",
+         imageUrl: `${baseUrl}/images/addFriend/img@3x.png`,
   　　}
   　　// 来自页面内的按钮的转发
   　　if (options.from == "button") {

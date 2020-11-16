@@ -21,7 +21,8 @@ Page({
     integral:100,
     integralBlock : false,
     tipUpdate: false,  //同步数据
-    showAPPData: 0
+    showAPPData: 0,
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**

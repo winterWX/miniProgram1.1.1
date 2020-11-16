@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl,
+    baseUrl: app.globalData.baseUrl,
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**
@@ -69,12 +70,13 @@ Page({
   },
   pdfFun:function(id){
     let url = '';
+    let { baseUrl } = this.data;
     if(id == 1){
-       url = 'http://81.69.44.222:8104/images/User-Agreements.pdf';
+       url = `${baseUrl}/images/User-Agreements.pdf`;
     }else if(id == 2){
-       url = 'http://81.69.44.222:8104/images/Privacy-Statement.pdf';
+       url = `${baseUrl}/images/Privacy-Statement.pdf`;
     }else{
-       url = 'http://81.69.44.222:8104/images/Cookies-Policy.pdf';
+       url = `${baseUrl}/images/Cookies-Policy.pdf`;
     }
     // User Agreements
     // Privacy Statement

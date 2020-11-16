@@ -53,7 +53,7 @@
       </view>
       <block wx:if="{{history == null}}">
         <view class="empty">
-          <image src="http://81.69.44.222:8104/images/miniprogram/images/icn-empty-history@2x.png" mode="aspectFit" />
+          <image src="{{imagesUrl +'/images/icn-empty-history@2x.png'}}" mode="aspectFit" />
         </view>
         <text class="emptyText">暂无数据</text>
       </block>

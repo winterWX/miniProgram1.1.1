@@ -1,24 +1,24 @@
 <view>
     <view class="topImage">
-      <view class="groupBlock"><image src="http://81.69.44.222:8104/images/miniprogram/images/silver/group@3x.png" /></view>
+      <view class="groupBlock"><image src="{{imagesUrl + '/images/silver/group@3x.png'}}" /></view>
       <view class="topImage-main">
           <view class="topBlocks1">
             <view class="topBlocksLeft">
                 <view><text>恒生银行</text>尊享码</view>
-                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/combined-shape@3x.png"/>
+                <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}"/>
             </view>
             <view class="topBlocksRight">
-                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/silver@3x.png"/>
+                <image src="{{imagesUrl + '/images/silver/silver@3x.png'}}"/>
                 <view>永恒白银会员+尊享好礼</view>
             </view>
           </view>
           <view class="topBlocks12">
             <view class="topBlocksLeft">
                 <view><text>恒生保险</text>尊享码</view>
-                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/combined-shape@3x.png" />
+                <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}" />
             </view>
             <view class="topBlocksRight">
-                <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png" />
+                <image src="{{imagesUrl + '/images/silver/qingtong-2-copy-5@3x.png'}}" />
                 <view>一年黄金会员+尊享好礼</view>
             </view>
           </view>
@@ -31,19 +31,19 @@
           <input class="input-name" value="{{ nickName }}" bindfocus='nameChangeFocus'  bindinput="nameChange"></input>
           <view class="line {{showTip ? 'lineRed' : ''}}"></view>
           <view class='tip' wx:if="{{showTip && nickName.length !==0}}">
-              <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/red@3x.png" />
+              <image src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
               <text>输入的恒生尊享码无效，请确认有效性并重新输入。</text>
           </view>
           <view class='tip' wx:if="{{errorTip && nickName.length !==0}}">
-              <image  src="http://81.69.44.222:8104/images/miniprogram/images/silver/red@3x.png" />
+              <image  src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
               <text>输入的恒生尊享码已被使用，请确认有效性并重新输入。</text>
           </view>
           <view class='tip' wx:if="{{errorTipThree && nickName.length !==0}}">
-              <image  src="http://81.69.44.222:8104/images/miniprogram/images/silver/red@3x.png" />
+              <image  src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
               <text>输入的恒生尊享码已经输错3次，24小时内不能再尝试。</text>
           </view>
           <view class='tip' wx:if="{{errorSeconeTip && nickName.length !==0}}">
-              <image  src="http://81.69.44.222:8104/images/miniprogram/images/silver/red@3x.png" />
+              <image  src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
               <text>输入的恒生尊享码有误，请确认后重新输入。</text>
           </view>
         </view>
@@ -51,13 +51,13 @@
     </view>
     <view class="carkBlock" wx:if="{{showCarkBlock}}">
        <view class="carkBlock-main">
-          <image class="topImage1" wx:if="{{tierCode.resultCode === 3}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-02@3x.png" />
-           <image class="topImage1" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-2@3x.png" />
-           <image class="topImage2" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-4@3x.png" />
-           <image class="topImage1" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-02@3x.png" />
-           <image class="topImage2" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}" src="http://81.69.44.222:8104/images/miniprogram/images/silver/group-25-copy-19@3x.png" />
+          <image class="topImage1" wx:if="{{tierCode.resultCode === 3}}" src="{{imagesUrl + '/images/silver/group-02@3x.png'}}" />
+           <image class="topImage1" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}" src="{{imagesUrl + '/images/silver/group-2@3x.png'}}" />
+           <image class="topImage2" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}" src="{{imagesUrl + '/images/silver/group-4@3x.png'}}" />
+           <image class="topImage1" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}" src="{{imagesUrl + '/images/silver/group-02@3x.png'}}" />
+           <image class="topImage2" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}" src="{{imagesUrl + '/images/silver/group-25-copy-19@3x.png'}}" />
            <view class="carkBlock-allMain">
-              <image class="imageBottom" src="http://81.69.44.222:8104/images/miniprogram/images/silver/rectangle@3x.png" />
+              <image class="imageBottom" src="{{imagesUrl + '/images/silver/rectangle@3x.png'}}" />
               <view class="text-main">
                 <view class="text1-main">恭喜你成功升级为</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode === 3}}">尊享好礼</view>
@@ -72,9 +72,6 @@
                 <view class="text5-main" bindtap="myCouponsFun">查看我的优惠券</view>
             </view>
            </view>
-           <!-- <view class="bottomBlock" bindtap="closeBlock">
-             <image  src="http://81.69.44.222:8104/images/miniprogram/images/silver/clear@3x.png" />
-           </view> -->
        </view>
     </view>
 </view>

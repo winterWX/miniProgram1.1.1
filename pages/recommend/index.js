@@ -9,7 +9,8 @@ Page({
     isCanDraw: false,
     userInfoData:{},
     invitData:{},
-    recommendFlg: false
+    recommendFlg: false,
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**

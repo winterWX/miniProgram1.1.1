@@ -7,7 +7,8 @@ Page({
   data: {
     couponDetail:{},
     copyCode: false,
-    showLink: false
+    showLink: false,
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**

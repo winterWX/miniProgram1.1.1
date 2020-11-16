@@ -7,7 +7,8 @@ Page({
    */
   data: {
     url: '',
-    urlTag:''
+    urlTag:'',
+    imagesUrl: app.globalData.imagesUrl
   },
 
   /**
