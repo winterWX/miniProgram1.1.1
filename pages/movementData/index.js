@@ -1,5 +1,5 @@
 import * as echarts from '../../components/ec-canvas/echarts';
-import { formatTime } from '../../utils/util';
+import { formatTime,  wxAjax  } from '../../utils/util';
 const app = getApp();
 let tabsWithDay = [
   { name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
@@ -210,8 +210,60 @@ Page({
     let { currentTabId } = this.data;
     this.setData({ showSelectedDate: false });
     let that = this;
-    option.color = ['#00A865'],
-      wx.request({
+    option.color = ['#00A865'];
+    let url = app.globalData.baseUrl + '/remote/health/data/query/histogram';
+    let data = {
+      startTime,
+      endTime,
+      demension,
+      features: 'sports',
+      type:'APP'
+    };
+    wxAjax('POST', url, data).then(res => {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+      if (res.data.code == 200) {
+        let { dataList = [], timeData, type, caloriesData, distanceData} = res.data.data;
+        if (dataList.length === 0) {
+          that.setData({ timeData: 0,caloriesData :0,distanceData :0, noData: !dataList.length });
+          return;
+        };
+        // 返回日期重新排序
+        dataList.sort((a, b) => {
+          return a.dataTime - b.dataTime
+        });
+        that.setData({
+          timeData,
+          caloriesData,
+          distanceData, 
+          tabs: type === 'MINIP' ? tabs : tabsWithDay,
+          noData: !dataList.length
+        });
+        let xData = [];
+        let yData = [];
+        dateMap = {};
+        weekDateMap = {};
+        dataList.forEach(item => {
+          let t = formatTime(new Date(item.dataTime * 1000));
+          let dateArr = that.foramteDate(t);
+          let [year, month, day] = dateArr;
+          dateMap[day] = `${month}月${day}日`;
+          if (currentTabId !== 'week') {
+            currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
+          } else {
+            let week = that.getDisplayWeek(new Date(item.dataTime * 1000));
+            xData.push(week);
+            weekDateMap[week] =  `${month}月${day}日`;
+          }
+          
+          option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
+          yData.push(item.consumTime);
+        });
+        option.xAxis.data = xData;
+        option.series[0].data = yData;
+        chart && chart.setOption(option);
+      }
+    })
+    /*   wx.request({
         url: app.globalData.baseUrl + '/remote/health/data/query/histogram',
         method: "POST",
         header: {
@@ -272,7 +324,7 @@ Page({
         fail: function (res) {
           console.log('.........fail..........');
         }
-      })
+      }) */
   },
   getDisplayWeek: function(date) {
     let weekMap = {

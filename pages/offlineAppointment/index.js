@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
 
@@ -40,25 +41,11 @@ Page({
 
   getTransactionid: function(mobile) {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/interrogation/cumc/findinter',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        mobile: mobile
-      },
-      success: function (res) {      
-        let { membershipid, transationid } = res.data.data;
-        let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=${membershipid}&tid=${transationid}&mti=E-booking`
-        that.setData({url});
-      },
-      fail: function (res) {
-        reject(false);
-      }
+    let url = app.globalData.baseUrl + '/remote/interrogation/cumc/findinter';
+    wxAjax('GET', url, {mobile}).then(res => {
+      let { membershipid, transationid } = res.data.data;
+      let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=${membershipid}&tid=${transationid}&mti=E-booking`
+      that.setData({url});
     })
   },
   copyData: function() {

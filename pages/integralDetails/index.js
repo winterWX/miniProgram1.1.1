@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 import { formatNumber, formatTime } from '../../utils/util';
 Page({
@@ -36,54 +37,6 @@ Page({
     this.initPage();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   integralRules:function(){
     wx.navigateTo({
         url: '../../pages/integralRules/index',
@@ -91,36 +44,24 @@ Page({
   },
   initPage:function(){
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/integral/detail',
-      method: "GET",
-      header: {
-          'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        if(res.data.code === 200){
-           let {integral,expiryTime,detail} = res.data.data;
-           const detailArray = detail.map(item=>{
-              return {
-                    createTime : that.timestampToTime(item.createTime),
-                    integral: item.integral,
-                    type : that.data.typeList[item.type- 1]
-                }
-            })
-            that.setData({
-              integral,
-              expiryTime: that.cardDayShow(expiryTime),
-              detailArray : detailArray
-           });
-            console.log('detailArraydetailArray.detailArray.detailArray====',that.data.detailArray);
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+    let url = app.globalData.baseUrl + '/remote/integral/detail';
+    wxAjax('GET', url).then(res => {
+      if(res.data.code === 200){
+        let {integral,expiryTime,detail} = res.data.data;
+        const detailArray = detail.map(item=>{
+           return {
+                 createTime : that.timestampToTime(item.createTime),
+                 integral: item.integral,
+                 type : that.data.typeList[item.type- 1]
+             }
+         })
+         that.setData({
+           integral,
+           expiryTime: that.cardDayShow(expiryTime),
+           detailArray : detailArray
+        });
+     }
+    });
   },
   cardDayShow:function(value){
       const date = new Date(value * 1000); 

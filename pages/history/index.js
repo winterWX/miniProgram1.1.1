@@ -88,11 +88,9 @@ Page({
     let MM = dayTime.getMonth() + 1; // 月   
     let d = dayTime.getDate();  // 日
     this.setData({ dayTime : MM+'月'+d+'日'});
-    console.log('dayTimedayTime',this.data.dayTime);
   },
   getTopHeight(){
     wx.createSelectorQuery().in(this).select('.headFix').boundingClientRect((rects) => {    
-      console.log(wx.getSystemInfoSync().windowHeight,rects.height) 
       this.setData({
         scrollH: wx.getSystemInfoSync().windowHeight - rects.height-30
       })
@@ -147,7 +145,6 @@ Page({
             year:this.data.year-1,
             isLoad:true
           })
-          console.log('育龙 育龙 ==>>>>',this.data.history)
         } else {
           wx.showModal({
             showCancel: false,

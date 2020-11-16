@@ -1,3 +1,5 @@
+
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
 
@@ -18,35 +20,6 @@ Page({
   onLoad: function (options) {
     this.getActivityList(1);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -70,28 +43,21 @@ Page({
     let that = this;
     wx.showToast({ title: '加载中', icon: 'loading' });
     this.setData({ loadingFinish: false });
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/myactivity/list',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        currentPage: page,
-        pageSize: 10,
-        "status": [
-          {
-            "status": 1
-          },
-          {
-            "status": 2
-          }
-        ]
-      },
-      success: function (res) {
-        wx.hideToast();
+    let url = app.globalData.baseUrl + '/remote/myactivity/list';
+    let data = {
+      currentPage: page,
+      pageSize: 10,
+      "status": [
+        {
+          "status": 1
+        },
+        {
+          "status": 2
+        }
+      ]
+    }
+    wxAjax('POST', url, data).then(res => {
+      wx.hideToast();
         if (res.data.code == 200) {
           let list = that.data.activityList;
           let totalPage = res.data.totalPage;
@@ -100,12 +66,11 @@ Page({
         } else {
           that.setData({ loadingFinish: true });
         }
-      },
-      fail: function (res) {
-        that.setData({ loadingFinish: true, page });
-        wx.stopPullDownRefresh();
-        wx.hideToast();
-      }
+    })
+    .catch(() => {
+      that.setData({ loadingFinish: true, page });
+      wx.stopPullDownRefresh();
+      wx.hideToast();
     })
   },
   navigateList: function () {
@@ -119,39 +84,29 @@ Page({
   },
   getActivityDetail: function (id) {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/myactivity/detail/' + id,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let { status, type } = res.data.data;
-          let url = '';
-          console.log(type);
-          let detail = {
-            ...res.data.data,
-            content: res.data.data.content,
-            ruledescription: res.data.data.ruledescription
-          };
-          if (type === '2') {
-            url = '../changeQAResult/index?id=' + id;
-          } else {
-            let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
-            url = success || status === 3 ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
-          }
-          wx.navigateTo({
-            url
-          })
-      
+    let url = app.globalData.baseUrl + '/remote/myactivity/detail/' + id;
+    wxAjax('GET', url).then(res => {
+      if (res.data.code == 200) {
+        let { status, type } = res.data.data;
+        let url = '';
+        console.log(type);
+        let detail = {
+          ...res.data.data,
+          content: res.data.data.content,
+          ruledescription: res.data.data.ruledescription
+        };
+        if (type === '2') {
+          url = '../changeQAResult/index?id=' + id;
+        } else {
+          let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
+          url = success || status === 3 ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
         }
-      },
-      fail: function (res) {
+        wx.navigateTo({
+          url
+        })
+    
       }
-    })
+    });
   },
   judgeReceivedRewardStatus: function (arr) {
     let success = true;

@@ -1,3 +1,5 @@
+const { wxAjax } = require("../../utils/util");
+
 const app = getApp();
 Page({
   data: {
@@ -31,30 +33,19 @@ Page({
   },
   myCoupons:function(type){
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/tier/coupon/list?type='+type,
-      method: "GET",
-      header: {
-          'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        if(res.data.code === 200){
-             const detailArray = res.data.data.map(item=>{
-                    return {
-                        attachmentUrl : item.attachmentUrl,
-                        expiryTime : that.cardDayShow(item.expiryTime),
-                        name : item.name,
-                        useTime : item.useTime,
-                        id : item.id
-                    }
-            })
-            that.setData({detailArray : detailArray});
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let url = app.globalData.baseUrl + '/remote/tier/coupon/list?type='+type;
+    wxAjax('GET', url).then(res => {
+      if(res.data.code === 200){
+        const detailArray = res.data.data.map(item=>{
+          return {
+            attachmentUrl : item.attachmentUrl,
+            expiryTime : that.cardDayShow(item.expiryTime),
+            name : item.name,
+            useTime : item.useTime,
+            id : item.id
+          }
+       })
+       that.setData({detailArray : detailArray});
       }
     })
   },
