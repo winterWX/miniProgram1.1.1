@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
   /**
@@ -179,61 +180,38 @@ getMyprofileInfo: function () {
     2: 'silver',
     3: 'gold'
   }
-  wx.request({
-    url: app.globalData.baseUrl + '/myprofile/homepage/search',
-    method: "GET",
-    header: {
-      'Content-Type': 'application/json',
-      "token": app.globalData.token,
-      "native-app": "mini"
-    },
-    success: function (res) {
-      if (res.data.code == 200) {
-        let userInfo = res.data.data;
-        let color = colorMap[userInfo.level]
-        let avatar = userInfo.avatar || 13;
-        that.setData({userInfo, avatar, color});
-        that.setData({countNum: res.data.data.completedCount === 5 ? 100 + '%' : parseInt((5-res.data.data.completedCount) * (100/5)) + '%'})
-      } 
-    },
-    fail: function (res) {
-      console.log('.........fail..........');
-    }
+  let url = app.globalData.baseUrl + '/myprofile/homepage/search';
+  wxAjax('GET', url).then(res => {
+    if (res.data.code == 200) {
+      let userInfo = res.data.data;
+      let color = colorMap[userInfo.level]
+      let avatar = userInfo.avatar || 13;
+      that.setData({userInfo, avatar, color});
+      that.setData({countNum: res.data.data.completedCount === 5 ? 100 + '%' : parseInt((5-res.data.data.completedCount) * (100/5)) + '%'})
+    } 
   })
 },
 getActivityList: function () {
   let that = this;
   // wx.showToast({ title: '加载中', icon: 'loading' });
-  wx.request({
-    url: app.globalData.baseUrl + '/remote/myactivity/list',
-    method: "POST",
-    header: {
-      'Content-Type': 'application/json',
-      "token": app.globalData.token,
-      "native-app": "mini"
-    },
-    data: {
-      currentPage: 1,
-      pageSize: 10,
-      "status": [
-        {
-          "status": 1
-        },
-        {
-          "status": 2
-        }
-      ]
-    },
-    success: function (res) {
-      // wx.hideToast();
-      if (res.data.code == 200) {
-        let activityCount = res.data.totalCount;
-        that.setData({ activityCount});
-
+  let url = app.globalData.baseUrl + '/remote/myactivity/list';
+  let data = {
+    currentPage: 1,
+    pageSize: 10,
+    "status": [
+      {
+        "status": 1
+      },
+      {
+        "status": 2
       }
-    },
-    fail: function (res) {
-      // wx.hideToast();
+    ]
+  };
+  wxAjax('POST', url, data).then(res => {
+    if (res.data.code == 200) {
+      let activityCount = res.data.totalCount;
+      that.setData({ activityCount});
+
     }
   })
 },

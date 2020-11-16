@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
   /**
@@ -15,11 +16,6 @@ Page({
   onLoad: function (options) {
     this.setData ({ nickName: options.nickName, btnNickName: options.nickName, id: options.id });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -28,33 +24,6 @@ Page({
     this.setData({
       active: 4
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**
@@ -71,44 +40,31 @@ Page({
     if (!this.data.btnNickName) {
         return;
     }
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/myProfile/edit',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-        "nickname": this.data.nickName,
-        "id": this.data.id
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          wx.showToast({
-            titel: '服务繁忙， 请稍后重试。',
-            icon: 'loading'
-          })
-          wx.navigateBack({
-            url: '../profile/index',
-            success: function(res) {
-                wx.showToast({
-                  title: '修改成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-            }
-          });
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-        wx.showToast({
-          titel: '服务繁忙， 请稍后重试。',
-          icon: 'loading'
-        })
+    let url = app.globalData.baseUrl + '/remote/myProfile/edit';
+    let data = {
+      "nickname": this.data.nickName,
+      "id": this.data.id
+    };
+    wxAjax('POST', url, data).then(res => {
+      if (res.data.code == 200) {
+        wx.navigateBack({
+          url: '../profile/index',
+          success: function(res) {
+              wx.showToast({
+                title: '修改成功',
+                icon: 'success',
+                duration: 2000
+              })
+          }
+        });
       }
     })
+    .catch(() => {
+      wx.showToast({
+        titel: '服务繁忙， 请稍后重试。',
+        icon: 'loading'
+      })
+    });
   }
 
 })

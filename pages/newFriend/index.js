@@ -1,3 +1,4 @@
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 const userLogin = require('../../utils/userLogin.js');
 Page({
@@ -77,36 +78,7 @@ Page({
     }else{
         this.newFriendList();
         this.setData( {listHiden:true} );
-        console.log('刷新功能');
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   },
 
   /**
@@ -135,62 +107,37 @@ Page({
   onShareAppMessage: function () {},
   newFriendList:function(){
     var that = this;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/friend/apply',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-          if(res.data.code === 200){
-            let friendList = that.arryFriend(res.data.data);
-            that.setData({ friendList : friendList});
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let url = app.globalData.baseUrl +'/remote/friend/apply';
+    wxAjax('GET', url).then(res => {
+      if(res.data.code === 200){
+        let friendList = that.arryFriend(res.data.data);
+        that.setData({ friendList : friendList});
       }
     })
   },
   addNewBtn:function(option){
     var that = this;
     let arrayNum = option.currentTarget.dataset.index;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/friend/accept',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-        uid: that.data.friendList[arrayNum].uid
-      },
-      success: function (res) {
-          if(res.data.code == 200){
-              let clickList = [];
-              that.data.friendList.forEach((element,index) => {
-                 if(index === arrayNum){
-                    element.showFlg = true;
-                    clickList.push(element);
-                 }else{
-                    clickList.push(element);
-                 }
-              });
-              that.setData({ friendList: clickList });
-              wx.showToast({
-                title: '添加成功',
-                icon: 'succes',  
-                duration: 1500
-              });
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let url = app.globalData.baseUrl +'/remote/friend/accept';
+    wxAjax('POST', url, {uid: that.data.friendList[arrayNum].uid}).then(res => {
+      if(res.data.code == 200){
+        let clickList = [];
+        that.data.friendList.forEach((element,index) => {
+           if(index === arrayNum){
+              element.showFlg = true;
+              clickList.push(element);
+           }else{
+              clickList.push(element);
+           }
+        });
+        that.setData({ friendList: clickList });
+        wx.showToast({
+          title: '添加成功',
+          icon: 'succes',  
+          duration: 1500
+        });
       }
-    })
+    });
   },
   getUserInfo:function(e) { //获取用户信息
     let that = this;
@@ -212,7 +159,6 @@ Page({
           showFlg: false
         }
     })
-    console.log("lastArryData+=====",lastArryData);
     return lastArryData;
 },
 avatarSelect:function(avatar,avatarUrl){
