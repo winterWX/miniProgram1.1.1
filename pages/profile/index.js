@@ -284,116 +284,6 @@ Page({
         complete: percentage === 100,
       });
     });
-    /* wx.request({
-      url: app.globalData.baseUrl + "/myprofile/homepage/search",
-      method: "GET",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      success: function (res) {
-        const {
-          nickName,
-          gender,
-          avatarUrl = "",
-          phoneNumber,
-        } = app.globalData.userInfoDetail;
-        let sex = app.globalData.userInfoDetail.gender === 1 ? "男" : "女";
-        let userInfo = {};
-        let selectedAvatarId = "";
-        let received = that.data.received;
-        if (res.data.code == 200) {
-          const {
-            data: {
-              data: {
-                avatar,
-                birthday,
-                email,
-                gender,
-                mobile = "",
-                completedCount,
-                nickname,
-                id,
-                receive,
-              },
-            },
-          } = res;
-          let formateDate = birthday
-            ? formatTime(new Date(parseInt(birthday) * 1000))
-                .split(" ")[0]
-                .split("/")
-                .join("-")
-            : "--";
-          let displayDate = "--";
-          if (formateDate !== "--") {
-            let [a, b, c, d, e, f, g, h, i] = formateDate;
-            displayDate = `${a}${b}${c}${d}-${f}${g}-**`;
-          }
-
-          let selectedAvatar = that.data.avatarObjList.find(
-            (item) => item.id === avatar
-          );
-          let phoneNumber = mobile || phoneNumber;
-          let [a, b, c, d, e, f, g, h, i, j, k] = phoneNumber;
-          let HKMobile = '00000000';
-          if(phoneNumber.startsWith('+852') || phoneNumber.length === 12 || phoneNumber.length === 13 || phoneNumber.length === 8) {
-          HKMobile = phoneNumber.slice(-8);
-          };
-          let [l, m, n, o, p, q, r, s] = HKMobile;
-          let newMobile =
-            phoneNumber.length === 11 && phoneNumber.startsWith('1')
-              ? `${a}${b}${c}****${h}${i}${j}${k}`
-              : `${l}${m}****${r}${s}`;
-          selectedAvatarId = (selectedAvatar && selectedAvatar.id) || "";
-          received = receive;
-          wx.setStorageSync("received", received);
-          if (completedCount === 6) {
-            that.setData({
-              compelete: true,
-            });
-            if (!receive) {
-              that.setData({
-                showAnimation: true,
-              });
-            }
-          }
-          userInfo = {
-            nickName: nickname || nickName,
-            gender: that.data.genderMap[gender] || sex,
-            birthday: displayDate,
-            avatarUrl: (selectedAvatar && selectedAvatar.url) || avatarUrl,
-            phone: newMobile || "未绑定",
-            email: email || "未绑定",
-            id: id,
-          };
-        } else {
-          userInfo = {
-            nickName: nickName,
-            gender: gender === 1 ? "男" : "女",
-            birthday: "--",
-            avatarUrl: avatarUrl,
-            phone: phoneNumber || "未绑定",
-            email: "未绑定",
-          };
-        }
-        let percentage =
-          selectedAvatarId === 13
-            ? that.getPercentage(userInfo, true)
-            : that.getPercentage(userInfo);
-        userInfo.percentage = percentage;
-        wx.setStorageSync("complete", percentage === 100);
-        that.setData({
-          userInfo: userInfo,
-          selectedAvatarId,
-          received,
-          complete: percentage === 100,
-        });
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
-    }); */
   },
   getPercentage: function (userInfo, flag) {
     let { email, ...userInfoItem } = userInfo;
@@ -426,43 +316,28 @@ Page({
     let birthdayStr = new Date(birthday).getTime() / 1000;
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myProfile/edit",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      data: {
-        birthday: birthdayStr,
-        id: this.data.userInfo.id,
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let [a, b, c, d, f, g, h] = e.detail.value;
-          let userInfo = {
-            ...that.data.userInfo,
-            birthday: `${a}${b}${c}${d}${f}${g}${h}-**`,
-          };
-          let percentage =
-            selectedAvatarId === 13
-              ? that.getPercentage(userInfo, true)
-              : that.getPercentage(userInfo);
-          userInfo.percentage = percentage;
-          let showAnimation = percentage == 100;
-          wx.setStorageSync("complete", showAnimation);
-          that.setData({
-            userInfo,
-            showAnimation,
-            complete: showAnimation,
-          });
-        }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
-    });
+    let url = app.globalData.baseUrl + "/remote/myProfile/edit";
+    wxAjax('POST', url, {birthday: birthdayStr,id: this.data.userInfo.id,}).then((res) => {
+      if (res.data.code == 200) {
+        let [a, b, c, d, f, g, h] = e.detail.value;
+        let userInfo = {
+          ...that.data.userInfo,
+          birthday: `${a}${b}${c}${d}${f}${g}${h}-**`,
+        };
+        let percentage =
+          selectedAvatarId === 13
+            ? that.getPercentage(userInfo, true)
+            : that.getPercentage(userInfo);
+        userInfo.percentage = percentage;
+        let showAnimation = percentage == 100;
+        wx.setStorageSync("complete", showAnimation);
+        that.setData({
+          userInfo,
+          showAnimation,
+          complete: showAnimation,
+        });
+      }
+    })
   },
   /* 编辑内容的弹框 */
   // 编辑性别
@@ -478,50 +353,37 @@ Page({
     let gender = genderValueMap[propValue];
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myProfile/edit",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      data: {
-        gender: gender,
-        id: this.data.userInfo.id,
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let userInfo = {
-            ...that.data.userInfo,
-            gender: that.data.genderMap[e.currentTarget.dataset.value],
-          };
-          let percentage =
-            selectedAvatarId === 13
-              ? that.getPercentage(userInfo, true)
-              : that.getPercentage(userInfo);
-          userInfo.percentage = percentage;
-          let showAnimation = percentage === 100;
-          wx.setStorageSync("complete", showAnimation);
-          that.setData({
-            userInfo: userInfo,
-            hideFlag: true,
-            showAnimation,
-            complete: showAnimation,
-          });
-        } else {
-          that.setData({
-            hideFlag: true,
-          });
-        }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-        this.setData({
+    let url = app.globalData.baseUrl + "/remote/myProfile/edit";
+    wxAjax('POST', url, {gender: gender,id: this.data.userInfo.id}).then(res => {
+      if (res.data.code == 200) {
+        let userInfo = {
+          ...that.data.userInfo,
+          gender: that.data.genderMap[e.currentTarget.dataset.value],
+        };
+        let percentage =
+          selectedAvatarId === 13
+            ? that.getPercentage(userInfo, true)
+            : that.getPercentage(userInfo);
+        userInfo.percentage = percentage;
+        let showAnimation = percentage === 100;
+        wx.setStorageSync("complete", showAnimation);
+        that.setData({
+          userInfo: userInfo,
+          hideFlag: true,
+          showAnimation,
+          complete: showAnimation,
+        });
+      } else {
+        that.setData({
           hideFlag: true,
         });
-      },
-    });
+      }
+    })
+    .catch(() => {
+      this.setData({
+        hideFlag: true,
+      });
+    })
   },
   // 点击选项
   getAvatarOption: function (e) {
@@ -529,56 +391,43 @@ Page({
     let id = e.currentTarget.dataset.value;
     let avatar = this.data.avatarObjList.find((item) => item.id === id);
     let that = this;
+    let url = app.globalData.baseUrl + "/remote/myProfile/edit";
     wx.showToast({
       icon: "loading",
     });
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myProfile/edit",
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      data: {
-        avatar: id,
-        id: this.data.userInfo.id,
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          let userInfo = {
-            ...that.data.userInfo,
-            avatarUrl: avatar.url,
-          };
-          let percentage =
-            avatar.id === 13
-              ? that.getPercentage(userInfo, true)
-              : that.getPercentage(userInfo);
-          let showAnimation = percentage === 100;
-          wx.setStorageSync("complete", showAnimation);
-          userInfo.percentage = percentage;
-          that.setData({
-            userInfo: userInfo,
-            hideAvatarFlag: true,
-            selectedAvatarId: avatar.id,
-            showAnimation,
-            complete: showAnimation,
-          });
-          wx.showToast({
-            title: "头像修改成功",
-          });
-        } else {
-          that.setData({
-            hideAvatarFlag: true,
-          });
-        }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-        this.setData({
+    wxAjax('POST', url, {avatar: id,id: this.data.userInfo.id}).then((res) => {
+      if (res.data.code == 200) {
+        let userInfo = {
+          ...that.data.userInfo,
+          avatarUrl: avatar.url,
+        };
+        let percentage =
+          avatar.id === 13
+            ? that.getPercentage(userInfo, true)
+            : that.getPercentage(userInfo);
+        let showAnimation = percentage === 100;
+        wx.setStorageSync("complete", showAnimation);
+        userInfo.percentage = percentage;
+        that.setData({
+          userInfo: userInfo,
+          hideAvatarFlag: true,
+          selectedAvatarId: avatar.id,
+          showAnimation,
+          complete: showAnimation,
+        });
+        wx.showToast({
+          title: "头像修改成功",
+        });
+      } else {
+        that.setData({
           hideAvatarFlag: true,
         });
-      },
+      }
+    })
+    .catch(() => {
+      this.setData({
+        hideAvatarFlag: true,
+      });
     });
   },
   //取消
@@ -669,27 +518,16 @@ Page({
   // 领取积分
   rewardIntegral: function () {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myprofile/homepage/rewardIntegral",
-      method: "GET",
-      header: {
-        "Content-Type": "application/json",
-        "native-app": "mini",
-        token: app.globalData.token,
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          that.setData({
-            received: true,
-            isGetReword: true,
-            showAnimation: true,
-          });
-          wx.setStorageSync("received", true);
-        }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
-    });
+    let url = app.globalData.baseUrl + "/remote/myprofile/homepage/rewardIntegral";
+    wxAjax('GET', url).then(res => {
+      if (res.data.code == 200) {
+        that.setData({
+          received: true,
+          isGetReword: true,
+          showAnimation: true,
+        });
+        wx.setStorageSync("received", true);
+      }
+    })
   },
 });
