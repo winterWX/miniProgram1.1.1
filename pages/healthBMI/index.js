@@ -1,4 +1,4 @@
-// pages/healthBMI/index.js
+const util = require('../../utils/util');
 Page({
   /**
    * 页面的初始数据
@@ -13,14 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log('optionsoptions',options)
       let that = this;
-      let BMIData = JSON.parse(options.initData)
-      that.setData({
-         BMIData
-      })
-      that.BMIleftAnmation(that.data.BMIData.bmi)
-      console.log('BMIDataBMIData',that.data.BMIData)
+      let BMIData = JSON.parse(options.initData);
+      that.setData({ BMIData });
+      that.BMIleftAnmation(that.data.BMIData.bmi);
   },
 
   /**

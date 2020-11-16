@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 import pinyin from "wl-pinyin"
 Page({
 
@@ -131,34 +132,24 @@ Page({
   },
   //邀请码  
   inviteCode: function () {
-      let that = this;
-      wx.request({
-        url: app.globalData.baseUrl + '/remote/invite/invitationcode',
-        method: "GET",
-        header: {
-          'Content-Type': 'application/json',
-          'token': app.globalData.token,
-          "native-app": "mini"
-        },
-        success: function (res) {
-            if(res.data.code === 200){
-                if(res.data.data.invitationList.length > 0){
-                    res.data.data.invitationList.forEach( v => {
-                        let reg = /^(\d{3})\d{4}(\d{4})$/;
-                        v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
-                    })
-                    res.data.data.personNum = res.data.data.invitationList.length;
-                }
-                app.globalData.invitationCode = res.data.data.invitationCode;
-                that.setData({  
-                  invitData: res.data.data
+      let that = this;
+      let url =  app.globalData.baseUrl + '/remote/invite/invitationcode';
+      let method = 'GET';
+      util.wxAjax(method,url).then(res=>{
+          if(res.data.code === 200){
+            if(res.data.data.invitationList.length > 0){
+                res.data.data.invitationList.forEach( v => {
+                    let reg = /^(\d{3})\d{4}(\d{4})$/;
+                    v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
                 })
+                res.data.data.personNum = res.data.data.invitationList.length;
             }
-        },
-        fail: function (res) {
-          console.log('.........fail..........');
+            app.globalData.invitationCode = res.data.data.invitationCode;
+            that.setData({  
+              invitData: res.data.data
+            })
         }
-      })
+      });
   },
     /**
    * 用户点击右上角分享
@@ -191,47 +182,27 @@ Page({
     })
   },
   hasAddFriend:function(){
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/friend',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-          if(res.data.code === 200){
-            let friendArrayData = that.arryFriend(res.data.data);
-            that.setData({friendArrayData:friendArrayData})
-            that.setList(that.formatList(that.data.friendArrayData));
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-      }
-    })
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/friend';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
+        if(res.data.code === 200){
+          let friendArrayData = that.arryFriend(res.data.data);
+          that.setData({friendArrayData:friendArrayData})
+          that.setList(that.formatList(that.data.friendArrayData));
+        }
+    });
   },
   //新的好友
   newFriendList:function(){
-    var that = this;
-    wx.request({
-      url: app.globalData.baseUrl +'/remote/friend/apply',
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        'token': app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-          if(res.data.code === 200){
-            let numlength = res.data.data.length;
-            that.setData({ redTagShow: numlength > 0 ? true : false});
-            that.setData({ redTag: numlength });
-          }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
+    let that = this;
+    let url = app.globalData.baseUrl + '/remote/friend/apply';
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
+      if(res.data.code === 200){
+        let numlength = res.data.data.length;
+        that.setData({ redTagShow: numlength > 0 ? true : false});
+        that.setData({ redTag: numlength });
       }
     })
   },

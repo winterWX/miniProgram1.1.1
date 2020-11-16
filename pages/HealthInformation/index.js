@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 var x,
   y,
   x1,
@@ -102,22 +103,16 @@ Page({
   },
   //文章列表接口
   searchSend(parase, num) {
-    var that = this;
-    wx.request({
-     url: app.globalData.baseUrl + '/remote/article/query/list',
-     data:{
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/article/query/list';
+    let method = 'POST';
+    const data = {
       "currentPage": num !== undefined ?  num : 1,
       "pageSize": 10,
       "topic": parase !== undefined ?  parase : '热门推荐'  //热门推荐
-    },
-    method:"POST",
-    header:{
-       'Content-Type':'application/json',
-       'token': app.globalData.token,
-       'native-app':'mini'
-     },
-    success: function (res) {
-       if(res.data.code === 200){
+    };
+    util.wxAjax(method,url,data).then(res=>{
+        if(res.data.code === 200){
           //that.collectionQueryCounts();  // 赋值前调用
           res.data.data.articles = res.data.data.articles.map((item) => {
             return {
@@ -133,11 +128,7 @@ Page({
               : [...that.data.listData, ...res.data.data.articles];
           that.setData({ totalPage: res.data.totalPage, listData });
         }
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
-    });
+    })
   },
   collectionImageShare: function (e) {
     var that = this;
@@ -205,24 +196,10 @@ Page({
   },
   //查询所有话题
   searchAllTopic: function () {
-    var that = this;
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: app.globalData.baseUrl + "/remote/myTopic/searchAllTopic",
-        method: "GET",
-        header: {
-          "Content-Type": "application/json",
-          token: app.globalData.token,
-          "native-app": "mini",
-        },
-        success: function (res) {
-          resolve(res);
-        },
-        fail: function (res) {
-          reject(res);
-        },
-      });
-    });
+    let that = this;
+    let url =  app.globalData.baseUrl + "/remote/myTopic/searchAllTopic";
+    let method = 'GET';
+    return util.wxAjax(method,url);
   },
   operaterAllTopic: function (res) {
     let searchAllTopicArray = [];
@@ -254,24 +231,10 @@ Page({
   },
   //查询我的话题
   mytagSearch: function () {
-    var that = this;
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: app.globalData.baseUrl + "/remote/myTopic/search",
-        method: "GET",
-        header: {
-          "Content-Type": "application/json",
-          token: app.globalData.token,
-          "native-app": "mini",
-        },
-        success: function (res) {
-          resolve(res);
-        },
-        fail: function (res) {
-          reject(res);
-        },
-      });
-    });
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/myTopic/search';
+    let method = 'GET';
+    return util.wxAjax(method,url);
   },
   operateMyTag: function (res) {
     if (res.data.data !== null) {
@@ -309,24 +272,14 @@ Page({
   },
   //批量更新tag
   refreTagList: function (listNum) {
-    var that = this;
-    wx.request({
-      url: app.globalData.baseUrl + "/remote/myTopic/batchUpdateMyTopic",
-      method: "POST",
-      data: { list: listNum },
-      header: {
-        "Content-Type": "application/json",
-        token: app.globalData.token,
-        "native-app": "mini",
-      },
-      success: function (res) {
+    let that = this;
+    let url =  app.globalData.baseUrl + '/remote/myTopic/batchUpdateMyTopic';
+    let method = 'POST';
+    const data = { list: listNum };
+    util.wxAjax(method, url, data).then(res=>{
         // that.mytagSearch(); //批量编辑成功后刷新顶部导航
         that.getTagList();
         that.closePage(); //关闭编辑页面
-      },
-      fail: function (res) {
-        console.log(".........fail..........");
-      },
     });
   },
   myTagItemFun: function (e) {

@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 Page({
   /**
    * 页面的初始数据
@@ -88,51 +89,29 @@ Page({
         })
         return;
     }
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/email/send',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-        "email": this.data.email
-      },
-      success: function (res) {
-        if (res.data.code == 200) {
-          that.setData({
-            emailEDit:false
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-        wx.showToast({
-          titel: '服务繁忙， 请稍后重试。',
-          icon: 'loading'
-        })
+    let url =  app.globalData.baseUrl + '/remote/email/send';
+    let method = 'POST';
+    const data = { "email": this.data.email };
+    util.wxAjax(method,url,data).then(res=>{
+      if (res.data.code == 200) {
+        that.setData({ emailEDit:false });
       }
+    }).catch(res=>{
+      console.log('.........fail..........');
+      wx.showToast({
+        titel: '服务繁忙， 请稍后重试。',
+        icon: 'loading'
+      })
     })
   },
   //绑定邮箱
   bindEmail() {
     let that = this;
-    if(!that.data.codeNum){
-        return;
-    }
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/email/bind',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data:{
-        code: that.data.codeNum
-      },
-      success: function (res) {
+    if(!that.data.codeNum){ return; }
+    let url =  app.globalData.baseUrl + '/remote/email/bind';
+    let method = 'POST';
+    const pamars = { code: that.data.codeNum };
+    util.wxAjax(method,url,pamars).then(res =>{
         if (res.data.code == 200) {
           console.log(res.data.message);
           wx.showToast({
@@ -150,18 +129,14 @@ Page({
             }
           });
         }else{
-          that.setData({
-            showErroe:true
-          })
+          that.setData({ showErroe:true })
         }
-      },
-      fail: function (res) {
-        console.log('.........fail..........');
-        wx.showToast({
-          titel: '服务繁忙， 请稍后重试。',
-          icon: 'loading'
-        })
-      }
+    }).catch(res=>{
+      console.log('.........fail..........');
+      wx.showToast({
+        titel: '服务繁忙， 请稍后重试。',
+        icon: 'loading'
+      })
     })
   }
 })

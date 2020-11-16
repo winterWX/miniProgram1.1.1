@@ -1,4 +1,5 @@
 let app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -51,23 +52,13 @@ Page({
     });
   },
   submit: function() {
-    let { activityId, answers } = this.data;
-    wx.showLoading({
-      title: 'loading...',
-    })
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/health/quiz/answer',
-      method: "POST",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      data: {
-        id: activityId,
-        answers
-      },
-      success: function (res) {
+    let that = this;
+    let { activityId, answers } = that.data;
+    wx.showLoading({ title: 'loading...' });
+    let url =  app.globalData.baseUrl + '/remote/health/quiz/answer';
+    let method = 'POST';
+    const pamars = { id: activityId, answers };
+    util.wxAjax(method,url,pamars).then(res=>{
         wx.hideLoading()
         if(res.data.code === 200) {
           let { rate, status } = res.data.data;
@@ -81,13 +72,6 @@ Page({
             content: '服务器异常'
           })
         }
-      },
-      fail: function (res) {
-        wx.showModal({
-          showCancel: false,
-          content: '服务器异常'
-        })
-      }
     })
   },
   /**
@@ -149,33 +133,20 @@ Page({
 
   },
   getQuestion: function(id) {
-    let { quesIndex } = this.data;
-    let that = this;
+    let that = this;
+    let { quesIndex } = that.data;
     wx.showLoading({
       title: 'loading...',
     })
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
-        wx.hideLoading()
-        if(res.data.code === 200) {
-          let { questions, bannerUrl } = res.data.data;
-          let currentQ = questions[quesIndex];
-          that.setData({questions, currentQ, bannerUrl});
-        } else {
-          wx.showModal({
-            showCancel: false,
-            content: '获取数据失败'
-          })
-        }
-      },
-      fail: function (res) {
+    let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
+    let method = 'GET';
+    util.wxAjax(method,url).then(res =>{
+      wx.hideLoading()
+      if(res.data.code === 200) {
+        let { questions, bannerUrl } = res.data.data;
+        let currentQ = questions[quesIndex];
+        that.setData({questions, currentQ, bannerUrl});
+      } else {
         wx.showModal({
           showCancel: false,
           content: '获取数据失败'

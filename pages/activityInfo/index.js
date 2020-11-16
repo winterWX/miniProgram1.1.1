@@ -1,4 +1,5 @@
 let app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -26,15 +27,9 @@ Page({
   },
   getActivityDetail: function (id) {
     let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/remote/myactivity/detail/' + id,
-      method: "GET",
-      header: {
-        'Content-Type': 'application/json',
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: function (res) {
+    let url =  app.globalData.baseUrl + '/remote/myactivity/detail/' + id;
+    let method = 'GET';
+    util.wxAjax(method,url).then(res=>{
         if (res.data.code == 200) {
           let detail = {
             ...res.data.data,
@@ -49,9 +44,6 @@ Page({
           let isJoin = detail.isJoinStatus === '2';
           that.setData({ detail, isJoin });
         }
-      },
-      fail: function (res) {
-      }
-    })
+    });
   }
 })
