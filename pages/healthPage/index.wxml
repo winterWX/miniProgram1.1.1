@@ -2,14 +2,14 @@
    <view  class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flag}}"></view>
          <view class="mask-guidance1"  wx:if='{{guidance1}}'>
-            <image src='{{imagesUrl + '/images/pic-guidance.png'}}'></image>
+            <image src="{{imagesUrl + '/images/pic-guidance.png'}}"></image>
             <view class="picBottom">
                <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
                <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
             </view>
          </view>
          <view class="mask-guidance2"  wx:if='{{guidance2}}'>
-               <image src='{{imagesUrl + '/images/pic-guidance-2.png'}}'></image>
+               <image src="{{imagesUrl + '/images/pic-guidance-2.png'}}"></image>
                <view class="contutionText">
                      <view class="picBottomText-main">
                         <view class="picBottomText">
