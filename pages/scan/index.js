@@ -93,9 +93,9 @@ Page({
           duration: 2000
          })
         isScan = true;
-        let url =  app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result;
+        let requestUrl = app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result;
         let method = 'GET';
-        util.wxAjax(method,url).then(res=>{
+        util.wxAjax(method,requestUrl).then(res=>{
             if(res.data.data) {
               let { integral, bankInfoEntities = [] } = res.data.data;
               let hospitalInfo = bankInfoEntities.map((item) => {
