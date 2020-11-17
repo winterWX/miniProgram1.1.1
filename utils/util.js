@@ -126,5 +126,6 @@ module.exports = {
   formatTime: formatTime,
   timestampToTime : timestampToTime,
   timestampToTimeHM : timestampToTimeHM,
-  wxAjax: wxAjax
+  wxAjax: wxAjax,
+  wxAjaxWithNoModal: wxAjaxWithNoModal
 }
