@@ -52,7 +52,7 @@ const wxAjax = (method, url, data = {}) => {
         if(res.data.code === 200) {
           resolve(res);
         } else if (!sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
-          wx.setStorageSync('sessionFail', true);
+          // wx.setStorageSync('sessionFail', true);
           wx.showModal({
             title: '提示',
             content: '登入状态已失效，请重新再试',
