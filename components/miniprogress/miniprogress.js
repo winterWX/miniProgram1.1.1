@@ -49,11 +49,11 @@ Component({
             let num = 0;
             let angle = 0;
             timer = setInterval(() => {
-                if(Math.abs(num - stepNum) < 50){    // 这里的清除订时器的条件需要改一下
+                if(Math.abs(num - stepNum) < 100){    // 这里的清除订时器的条件需要改一下
                     num = stepNum;
                     clearInterval(timer);
                 }else{
-                    num += 50;
+                    num += 100;
                     //外层进度圆环
                     if(num >= 10000){
                         angle = 100;
