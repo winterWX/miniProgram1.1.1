@@ -90,16 +90,10 @@ Page({
         let { status, type } = res.data.data;
         let url = '';
         console.log(type);
-        let detail = {
-          ...res.data.data,
-          content: res.data.data.content,
-          ruledescription: res.data.data.ruledescription
-        };
         if (type === '2') {
-          url = '../changeQAResult/index?id=' + id;
+          url = '../healthKnowledge/index?id=' + id;
         } else {
-          let success = that.judgeReceivedRewardStatus(detail.mileStoneVo);
-          url = success || status === 3 ? '../activityResult/index?id=' + id + "&success=" + success : '../activityDetail/index?id=' + id;
+          url = '../activityDetail/index?id=' + id;
         }
         wx.navigateTo({
           url
