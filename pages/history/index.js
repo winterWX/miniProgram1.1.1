@@ -5,8 +5,8 @@ Page({
     scrollH:300,    
     detail: {
       continuousComplianceDays: 0,
-      totalIntegral:0,
-      maxContinuousDays:0
+      totalIntegral: 0,
+      maxContinuousDays: 0
     },
     history:{},
     year: new Date().getFullYear(),
@@ -51,13 +51,11 @@ Page({
   },
   bindscrolltolower(e){
     if (this.data.isLoad == true){
-             this.setData({
-           isLoad:false
-         })
-         this.historyList()
+        this.setData({ isLoad:false });
+        this.historyList();
    }
   },
-  historyList() { //领取积分      
+  historyList() {  //查询挑战历史积分
     let url = app.globalData.baseUrl + '/remote/challenge/historyList';
     let data = {
       currentTime: Date.parse(new Date()) / 1000,
@@ -65,15 +63,22 @@ Page({
     };
     wxAjax('POST', url, data).then(res => {
       if (res.data.code === 200) {        
-        if (this.data.year == new Date().getFullYear()){
-          this.setData({
+        // if (this.data.year == new Date().getFullYear()){
+        //   this.setData({
+        //       detail: {
+        //         continuousComplianceDays: res.data.data.continuousComplianceDays,
+        //         totalIntegral: res.data.data.totalIntegral,
+        //         maxContinuousDays: res.data.data.maxContinuousDays                
+        //       }
+        //   })
+        // }
+        this.setData({
             detail: {
               continuousComplianceDays: res.data.data.continuousComplianceDays,
               totalIntegral: res.data.data.totalIntegral,
               maxContinuousDays: res.data.data.maxContinuousDays                
             }
-          })
-        }
+        })
         const data = res.data.data.monthsList
         for (var i = 0; i < data.length; i++){
           for (var k = 0; k < data[i].historyList.length; k++) {
@@ -136,7 +141,7 @@ Page({
           history[key][i].historyList[index].integral = 10;
           this.setData({ integralData : 10 });
           this.setData({forceNum : true, history: history });
-          this.onLoad();
+          this.historyList();
         } else {
           wx.showModal({
             showCancel: false,
@@ -162,7 +167,7 @@ Page({
         history[key][i].historyList[index].receiveStatus = 1;
         history[key][i].historyList[index].integral = 10;
         this.setData({forceNum : true, integralData : 10 });
-        this.onLoad();
+        this.historyList();
       } else {
           wx.showModal({
             showCancel: false,
