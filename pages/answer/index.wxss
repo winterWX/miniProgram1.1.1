@@ -83,7 +83,6 @@ page {
     color: #333;
     font-size: 32rpx;
     padding: 25rpx 72rpx 25rpx 30rpx;
-    /* text-align: center; */
     background-color: #f7f7f7;
     margin-bottom: 30rpx;
     position: relative;
