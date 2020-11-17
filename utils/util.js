@@ -38,6 +38,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 const wxAjax = (method, url, data = {}) => {
+  let sessionFail = wx.getStorageSync('sessionFail') || false;
   return new Promise((resolve, reject) => {
     let params = {
       method: method,
@@ -50,13 +51,15 @@ const wxAjax = (method, url, data = {}) => {
       success: (res) => {
         if(res.data.code === 200) {
           resolve(res);
-        } else if (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994) {
+        } else if (!sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
+          wx.setStorageSync('sessionFail', true);
           wx.showModal({
             title: '提示',
             content: '登入状态已失效，请重新再试',
             confirmText: '确认',
             success: () => {
               app.globalData.isLogin = 0;
+              wx.clearStorageSync('sessionFail');
               wx.reLaunch({
                   url: '../index/index'
                 })
@@ -76,7 +79,49 @@ const wxAjax = (method, url, data = {}) => {
     wx.request(params);
   });
 }
-
+const wxAjaxWithNoModal = (method, url, data = {}) => {
+  return new Promise((resolve, reject) => {
+    let params = {
+      method: method,
+      url: url,
+      header: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "token": app.globalData.token,
+        "native-app": "mini"
+      },
+      success: (res) => {
+        if(res.data.code === 200) {
+          resolve(res);
+        } else {
+          reject(res)
+        }
+        /* else if (!sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
+          wx.setStorageSync('sessionFail', true);
+          wx.showModal({
+            title: '提示',
+            content: '登入状态已失效，请重新再试',
+            confirmText: '确认',
+            success: () => {
+              app.globalData.isLogin = 0;
+              wx.reLaunch({
+                  url: '../index/index'
+                })
+              }
+          })
+        } */
+      },
+      fail: (error) => {
+        reject(error);
+      }
+    };
+    if (method === 'POST' || Object.keys(data) > 0) {
+      params.data = {
+        ...data
+      }
+    };
+    wx.request(params);
+  });
+}
 module.exports = {
   formatTime: formatTime,
   timestampToTime : timestampToTime,
