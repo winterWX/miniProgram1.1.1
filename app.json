@@ -51,7 +51,10 @@
     "pages/goldStrategy/index",
     "pages/rankingList/index",
     "pages/messageCenter/index",
-    "pages/aboutUs/index"
+    "pages/aboutUs/index",
+    "pages/textUserAgreements/index",
+    "pages/textPrivacyStatement/index",
+    "pages/textCookiesPolicy/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -72,10 +72,13 @@ Page({
     let url = '';
     let { baseUrl } = this.data;
     if(id == 1){
+       wx.navigateTo({ url: '../../pages/textUserAgreements/index' })
        url = `${baseUrl}/images/User-Agreements.pdf`;
     }else if(id == 2){
+       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' })
        url = `${baseUrl}/images/Privacy-Statement.pdf`;
     }else{
+       wx.navigateTo({ url: '../../pages/textCookiesPolicy/index' })
        url = `${baseUrl}/images/Cookies-Policy.pdf`;
     }
     // User Agreements
@@ -86,6 +89,7 @@ Page({
       success(res){
         console.log(res)
         let data = res.tempFilePath;
+        debugger
         wx.openDocument({
           filePath:data,
           fileType:'pdf'
