@@ -55,7 +55,7 @@ function userLogin(result, data, code, redirectToUrl) {
       if (res.data.code === 200) {
         newState.newUserInfo = res.data.data;
         newState.isLoginState = 1;
-        wx.setStorageSync('sessionFail', true);
+        wx.clearStorageSync('sessionFail');
         result(newState);
         let url = "";
         if (redirectToUrl !== "") {

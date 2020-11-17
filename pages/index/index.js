@@ -84,7 +84,7 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
     let method = 'GET';
-    util.wxAjaxWithNoModal(method,url).then(res=>{
+    util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
           console.log('数据源，1--mini, 2-app',res.data);
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
@@ -175,7 +175,7 @@ Page({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/health/data/query/latestime';
       let method = 'GET';
-      util.wxAjaxWithNoModal(method,url).then(res =>{
+      util.wxAjax(method,url).then(res =>{
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
               let time = util.formatTime(new Date(Number(res.data.data)));
@@ -202,7 +202,7 @@ Page({
           stepsDataModelList: runData
         };
     let method = 'POST';
-    util.wxAjaxWithNoModal(method,url,data).then(res =>{
+    util.wxAjax(method,url,data).then(res =>{
         if (res.data.code === 200) {
             that.stepRunState();   //刷新步数接口
         }
@@ -213,7 +213,7 @@ Page({
     let method ='POST';
     let url = app.globalData.baseUrl +'/remote/today/step/enquiry';
     const data = {souce:'string', type:'MINIP'};
-    util.wxAjaxWithNoModal(method,url,data).then(res =>{
+    util.wxAjax(method,url,data).then(res =>{
         if(res.data.code === 200){
             that.setData({
               stepsNum: res.data.data,
@@ -228,7 +228,7 @@ Page({
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/homePageActivitys';
     let { imagesUrl } = this.data;
-    util.wxAjaxWithNoModal(method,url).then(res =>{
+    util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
         res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
             return {
@@ -254,7 +254,7 @@ Page({
     let that = this;
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
-    util.wxAjaxWithNoModal(method,url).then(res =>{
+    util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
           that.setData({levelNum:res.data.data});
         if(res.data.data === 3 || res.data.data === 5){
