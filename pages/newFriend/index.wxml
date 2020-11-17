@@ -13,7 +13,7 @@
     </view>
     <view class="initFriend" wx:if="{{!listHiden}}">
        <view class="topBlock">
-           <view class="topBlock_image2hang"><image class="topBlock_image2"  src="http://81.69.44.222:8104/images/miniprogram/images/addFriend/invalid-name@2x.png" /></view>
+           <view class="topBlock_image2hang"><image class="topBlock_image2"  src="https://wellness.hangseng.com/images/miniprogram/images/addFriend/invalid-name@2x.png" /></view>
           <view class="topBlock_image1hang"><image class="topBlock_image1"  src="{{userInfoData.avatarUrl}}"/></view>
           <view class="topBlock_name" >{{userInfoData.nickName}}</view>
           <view class="topBlock_text1" >邀请你成为ta的好友</view>
@@ -21,12 +21,12 @@
           <view class="topBlock_btnTom"><van-button type="primary" width="400rpx" 
           open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即添加</van-button></view>
           <!-- <view class="bottom-image">
-              <image class="topBlock_image2"  src="http://81.69.44.222:8104/images/miniprogram/images/addFriend/icon-close@2x.png" />
+              <image class="topBlock_image2"  src="https://wellness.hangseng.com/images/miniprogram/images/addFriend/icon-close@2x.png" />
           </view> -->
        </view>
     </view>
     <view wx:if="{{friendList.length === 0 && listHiden}}" class="imageShow">
-        <view class="imageShowBottomAfter"><image class="imageShowBottom" src="http://81.69.44.222:8104/images/miniprogram/images/addFriend/search-result@3x.png" /></view>
+        <view class="imageShowBottomAfter"><image class="imageShowBottom" src="https://wellness.hangseng.com/images/miniprogram/images/addFriend/search-result@3x.png" /></view>
         <view class="imageShowBottomText" >暂无好友</view>
     </view>
     <!-- <showToast /> -->

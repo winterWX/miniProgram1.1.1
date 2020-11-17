@@ -21,6 +21,6 @@
       </view>
     </view>
     <view class="step-show">{{hero.actualTotalSteps}}<text>步</text></view>
-    <!-- <image src="http://81.69.44.222:8104/images/miniprogram/images/silver/newImage/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image> -->
+    <!-- <image src="https://wellness.hangseng.com/images/miniprogram/images/silver/newImage/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image> -->
   </view>
 </view>

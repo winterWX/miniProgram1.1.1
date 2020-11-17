@@ -1,12 +1,12 @@
 <view class="miain successsSty">   
   <view class="miainContent">
         <view class="miainImage">
-            <image  class="miainImage0" src="http://81.69.44.222:8104/images/miniprogram/images/recommend/img_0.png"></image>
-            <image  class="miainImage1" src="http://81.69.44.222:8104/images/miniprogram/images/recommend/img_1.png"></image>
-            <image  animation="{{aniLeft}}" class="miainImage2" src="http://81.69.44.222:8104/images/miniprogram/images/recommend/img_2.png"></image>
-            <image  animation="{{ani}}" class="miainImage3" src="http://81.69.44.222:8104/images/miniprogram/images/recommend/img_3.png"></image>
-            <image animation="{{aniLe4}}" class="miainImage4" src="http://81.69.44.222:8104/images/miniprogram/images/recommend/img_4.png"></image>
-            <image animation="{{aniLe5}}"  class="miainImage4" src="http://81.69.44.222:8104/images/miniprogram/images/recommend/img_5.png"></image>
+            <image  class="miainImage0" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_0.png"></image>
+            <image  class="miainImage1" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_1.png"></image>
+            <image  animation="{{aniLeft}}" class="miainImage2" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_2.png"></image>
+            <image  animation="{{ani}}" class="miainImage3" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_3.png"></image>
+            <image animation="{{aniLe4}}" class="miainImage4" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_4.png"></image>
+            <image animation="{{aniLe5}}"  class="miainImage4" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_5.png"></image>
         </view>
         <view class="miainNum">+50积分</view>
         <view class="miainText">恭喜注册领取成功，50积分入账</view>
