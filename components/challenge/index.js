@@ -373,7 +373,7 @@ Component({
       const index = e.currentTarget.dataset.index      
       if (item.receiveStatus === '2' && item.isdone ==='1' && item.dayName === '今日'){
         this.todayIntegral(item, index)
-      } else if (item.receiveStatus === '3' && item.isdone === '1' && item.dayName === '昨天' && item.reward !=0){
+      } else if (item.receiveStatus === '2' && item.isdone === '1' && item.dayName === '昨天' && item.reward !=0){
         this.yesterdayIntegral(item,index)
       }
     },
@@ -436,8 +436,8 @@ Component({
         title: 'loading...',
       })
       const parms = {
-        challengeId: item.id,
-        receivePoints:item.reward
+        challengeId:  item.id +'',
+        receivePoints: item.reward +''
       }
       let url =  app.globalData.baseUrl + '/remote/challenge/makeup';
       let method = 'POST';
@@ -445,7 +445,7 @@ Component({
           if (res.data.code === 200) {
             var list = this.data.list
             list[i].receiveStatus = 3;    // 3 补领后
-            this.data.list[i].iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
+            this.data.list[i].iconPath = app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
             this.setData({
               list: list,
               integral: list[i].reward

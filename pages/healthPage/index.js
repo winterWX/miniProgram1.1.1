@@ -51,6 +51,7 @@ Page({
     let that = this;
     that.setData({ firstInitShow: app.firstInit.bootImage });
     that.linkToPage(that.data.optionsFlg);
+    that.selectComponent('#challengeId').getCurrentList();  //重新刷状态
   },
   onHide: function () {},
   onUnload: function () {},
@@ -119,10 +120,9 @@ Page({
     //组件中领取今天的积分
     let that = this;
     that.settingDataBtn();  //更新状态
-    that.setData({ forceNum: true })   ///  - anBackShow: true ,        
+    that.setData({ forceNum: true });          
   },
   yesterdayIntegral(){  //领取昨天的积分
-    //this.setData({ anBackShow: true })
     let that = this;
     that.settingDataBtn(); //更新状态
   },

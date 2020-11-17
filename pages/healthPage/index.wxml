@@ -45,7 +45,7 @@
         </view>    
    </view>
    <view  class="speedBlock PageBackColor" style="height:auto; box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);">
-      <challenge receiveStatus="{{stepsNum.receiveStatus}}" isDone="{{stepsNum.isDone}}"  bind:todayIntegral="todayIntegral" bind:yesterdayIntegral="yesterdayIntegral"></challenge>
+      <challenge receiveStatus="{{stepsNum.receiveStatus}}" isDone="{{stepsNum.isDone}}"  bind:todayIntegral="todayIntegral" bind:yesterdayIntegral="yesterdayIntegral" id="challengeId"></challenge>
    </view>
    <view  class="headLeBlock PageBackColor">
          <view class="headLeBlock-top">
