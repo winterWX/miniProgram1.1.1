@@ -7,7 +7,7 @@
   class="hase_tabbar"
 >
 <block  wx:for="{{ menu }}" wx:key="index">
-  <van-tabbar-item class="{{((isLogin===0 ||isLogin===1 ) && (item.requiredLogin=== true))?'tabbar-item-login':''}}">
+  <van-tabbar-item class="{{((isLogin===0 || isLogin ===1 ) && (item.requiredLogin=== true))?'tabbar-item-login':''}}">
         <image
           slot="icon"
           src="{{ item.iconPath }}"

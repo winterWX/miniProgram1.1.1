@@ -174,6 +174,7 @@ Component({
         data: parms,
         success: (res) => {
           if (res.data.code === 200) {
+            wx.clearStorageSync('sessionFail');
             app.globalData.userInfo = res.data.data
             app.globalData.userInfoDetail = data.userInfo || res.data.data;
             this.setData({

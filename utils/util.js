@@ -52,18 +52,15 @@ const wxAjax = (method, url, data = {}) => {
         if(res.data.code === 200) {
           resolve(res);
         } else if (!sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
-          // wx.setStorageSync('sessionFail', true);
+          wx.setStorageSync('sessionFail', true);
+          app.globalData.userInfo = null;
+          app.globalData.token = '';
+          app.globalData.isLogin = 0;
           wx.showModal({
             title: '提示',
             content: '登入状态已失效，请重新再试',
             confirmText: '确认',
-            success: () => {
-              app.globalData.isLogin = 0;
-              wx.clearStorageSync('sessionFail');
-              wx.reLaunch({
-                  url: '../index/index'
-                })
-              }
+            success: () => { wx.reLaunch({url: '../index/index' }) }
           })
         }
       },
@@ -95,20 +92,6 @@ const wxAjaxWithNoModal = (method, url, data = {}) => {
         } else {
           reject(res)
         }
-        /* else if (!sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
-          wx.setStorageSync('sessionFail', true);
-          wx.showModal({
-            title: '提示',
-            content: '登入状态已失效，请重新再试',
-            confirmText: '确认',
-            success: () => {
-              app.globalData.isLogin = 0;
-              wx.reLaunch({
-                  url: '../index/index'
-                })
-              }
-          })
-        } */
       },
       fail: (error) => {
         reject(error);
