@@ -62,16 +62,18 @@ Page({
     that.getTagList();
   },
   onHide: function() {
-    this.setData({
-      hideModal: true
-    })
+    this.setData({ hideModal: true })
   },
   onPullDownRefresh: function () {},
   getTagList: function () {
-    Promise.all([this.mytagSearch(), this.searchAllTopic()]).then((data) => {
-      this.operateMyTag(data[0]);
-      this.operaterAllTopic(data[1]);
-    });
+    if(app.globalData.isLogin === 0){
+       this.defaultLabel();
+    }else{
+      Promise.all([this.mytagSearch(), this.searchAllTopic()]).then((data) => {
+        this.operateMyTag(data[0]);
+        this.operaterAllTopic(data[1]);
+      });
+    }
   },
   onReachBottom: function () {
     let that = this;
@@ -199,7 +201,11 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + "/remote/myTopic/searchAllTopic";
     let method = 'GET';
-    return util.wxAjax(method,url);
+    return new Promise((resolve, reject) => {
+      util.wxAjax(method,url).then(res =>{
+          resolve(res);
+      })
+    })
   },
   operaterAllTopic: function (res) {
     let searchAllTopicArray = [];
@@ -229,12 +235,26 @@ Page({
       });
     }
   },
+  //查询我的话题(游客)
+  defaultLabel: function () {
+    console.log('1111111')
+      let that = this;
+      let url =  app.globalData.baseUrl + '/remote/myTopic/search';
+      let method = 'GET';
+      util.wxAjax(method, url).then(res=>{
+          that.operateMyTag(res);
+      });
+    },
   //查询我的话题
   mytagSearch: function () {
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/myTopic/search';
     let method = 'GET';
-    return util.wxAjax(method,url);
+    return new Promise((resolve, reject) => {
+      util.wxAjax(method,url).then(res =>{
+          resolve(res);
+      })
+    })
   },
   operateMyTag: function (res) {
     if (res.data.data !== null) {

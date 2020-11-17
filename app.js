@@ -14,8 +14,8 @@ App({
       phoneNumber: ''
     },
     runData: null,
-    baseUrl:'http://81.69.44.222:8104',
-    imagesUrl: 'http://81.69.44.222:8104/images/miniprogram',
+    baseUrl:'https://wellness.hangseng.com',
+    imagesUrl: 'https://wellness.hangseng.com/images/miniprogram',
     token: '',
     phoneNumber: '',
     isLogin : 0,  //未登录
