@@ -192,8 +192,7 @@ Page({
           received: 5,
         });
         // 判断挑战是否完成并且领取积分
-        let completeChange =
-          detail.mileStoneVo[detail.mileStoneVo.length - 1].received === 1;
+        let completeChange = detail.mileStoneVo[detail.mileStoneVo.length - 1].received === 1;
         if (detail.friendRank) {
           let { self = {}, friend = [] } = detail.friendRank;
           let currentStep = detail.friendRank.self.steps;
@@ -240,23 +239,36 @@ Page({
           let completeChange =
             mileStoneVos[mileStoneVos.length - 1].received === 1;
           that.setData({ detail, completeChange, canReceivedReward: false });
-          //领取积分之后需要刷排行榜 
-          that.getActivityDetail(activityId);
           if (!completeChange) {
             that.setData({ showAnimation: true });
+            that.refreshReward(activityId); //领取积分之后需要刷排行榜 
           }
           if (completeChange) {
             that.setData({ showAnimation: false });
             let allReward = that.calcActivityAllReward(mileStoneVos);
             wx.navigateTo({
-              url:
-                "../challengeComplete/index?id=" +
-                activityId +
-                "&reward=" +
-                allReward,
+              url: "../challengeComplete/index?id=" + activityId + "&reward=" + allReward,
             });
           }
         }
+    })
+  },
+  // 领取积分之后刷新排行榜积分id
+  refreshReward: function(id) {
+    let that = this;
+    let url = app.globalData.baseUrl + "/remote/myactivity/detail/" + id;
+    let method = 'GET';
+    Utils.wxAjax(method,url).then(res=>{
+    if (res.data.code == 200) {
+        let detail = {
+          ...res.data.data,
+        };
+        if (detail.friendRank) {
+          let { self = {}, friend = [] } = detail.friendRank;
+          let heroList = that.operateHeroData(friend);
+          that.setData({ self, heroList });
+        }
+      }
     })
   },
   // 领取积分之后更新数据的领取状态
