@@ -1,4 +1,4 @@
-import { wxAjax } from "../../utils/util";
+import { wxAjax, wxAjaxWithNoModal } from "../../utils/util";
 const app = getApp()
 Page({
 
@@ -100,7 +100,7 @@ Page({
   forShareNum: function () {
     var that = this;
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
-    wxAjax('POST', url, {path: '',width: 88}).then(res => {
+    wxAjaxWithNoModal('POST', url, {path: '',width: 88}).then(res => {
       if(res.data.code == 200){
         console.log('res',res);
      }

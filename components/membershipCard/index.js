@@ -96,14 +96,10 @@ Component({
     },
     searchLeve:function(level){
         this.infoLevel(level);
-        //this.setData({seliverBlockShow: true});
         this.triggerEvent('parentLevel', {
             LockLevel: level
         }, {});
     },
-    // seliverBlockShow:function(){
-
-    // },
     infoLevel:function(level){
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/tier/info?level='+ level;
@@ -113,23 +109,6 @@ Component({
             that.setData({infoLevelObj:res.data.data})
           }
       });
-      // wx.request({
-      //   url: app.globalData.baseUrl + '/remote/tier/info?level='+ level,
-      //   method: "GET",
-      //   header: {
-      //     'Content-Type': 'application/json',
-      //     "token": app.globalData.token,
-      //     "native-app": "mini"
-      //   },
-      //   success: function (res) {
-      //     if (res.data.code == 200) {
-      //         that.setData({infoLevelObj:res.data.data})
-      //      }
-      //   },
-      //   fail: function (res) {
-      //     console.log('.........fail..........');
-      //   }
-      // })
     },
     intergRalDatails:function(){
         wx.navigateTo({

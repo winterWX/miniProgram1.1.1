@@ -1,4 +1,4 @@
-import { wxAjax } from "../../utils/util";
+import { wxAjaxWithNoModal } from "../../utils/util";
 const app = getApp();
 Page({
 
@@ -38,7 +38,7 @@ Page({
   tierMytier:function(){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
-    wxAjax('GET', url).then(res => {
+    wxAjaxWithNoModal('GET', url).then(res => {
       if (res.data.code == 200) {
         let sercode = res.data.data.mileStones.length;
         let couponType = res.data.data.tierInfo.couponType;
@@ -123,7 +123,7 @@ Page({
     let idCode = that.data.activeData.mileStones[indexNum].id;
     that.setData({indexNum:indexNum});
     let url = app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode;
-    wxAjax('GET', url).then((res) => {
+    wxAjaxWithNoModal('GET', url).then((res) => {
       if (res.data.code == 200) {
         that.tierMytier();
         that.setData({showCarkBlock:true,receiveId:res.data.data});

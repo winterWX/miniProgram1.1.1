@@ -220,7 +220,6 @@ Page({
       type:'APP'
     };
     wxAjax('POST', url, data).then(res => {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
       if (res.data.code == 200) {
         let { dataList = [], timeData, type, caloriesData, distanceData} = res.data.data;
         if (dataList.length === 0) {
