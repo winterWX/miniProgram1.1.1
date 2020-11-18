@@ -76,7 +76,7 @@ page {
     position: relative;
     border-radius: 10rpx;
     background-color: #fff;
-    padding: 20rpx 30rpx 30rpx 30rpx;
+    padding: 20rpx 30rpx 50rpx 30rpx;
     margin-bottom: 20rpx;
 }
 .container .main .question-info .question-item .question {
