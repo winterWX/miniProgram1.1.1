@@ -240,6 +240,8 @@ Page({
           let completeChange =
             mileStoneVos[mileStoneVos.length - 1].received === 1;
           that.setData({ detail, completeChange, canReceivedReward: false });
+          //领取积分之后需要刷排行榜 
+          that.getActivityDetail(activityId);
           if (!completeChange) {
             that.setData({ showAnimation: true });
           }

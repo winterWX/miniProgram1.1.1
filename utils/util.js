@@ -38,7 +38,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 const wxAjax = (method, url, data = {}) => {
-  let sessionFail = wx.getStorageSync('sessionFail') || false;
+  //let sessionFail = wx.getStorageSync('sessionFail') || false;
   return new Promise((resolve, reject) => {
     let params = {
       method: method,
@@ -51,8 +51,9 @@ const wxAjax = (method, url, data = {}) => {
       success: (res) => {
         if(res.data.code === 200) {
           resolve(res);
-        } else if (!sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
-          wx.setStorageSync('sessionFail', true);
+        } else if (!app.globalData.sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
+          //wx.setStorageSync('sessionFail', true);
+          app.globalData.sessionFail = true; //标记已经被逼下线
           app.globalData.userInfo = null;
           app.globalData.token = '';
           app.globalData.isLogin = 0;
