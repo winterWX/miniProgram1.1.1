@@ -42,7 +42,8 @@ Page({
     util.wxAjax(method,url).then(res =>{
         if(res.data.code === 200) {
           let {quizResult: {correct, wrong, questionAnalysis, rate, status}, bannerUrl, reward} = res.data.data;
-          let all = correct + wrong;
+          //let all = correct + wrong;
+          let all = correct;
           that.setData({
             all,
             wrong,
