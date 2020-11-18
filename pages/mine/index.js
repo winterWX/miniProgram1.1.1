@@ -67,7 +67,7 @@ Page({
   onLoad: function (options) {
     let that = this;
     that.getMyprofileInfo();
-    // that.getActivityList();
+    that.getActivityList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

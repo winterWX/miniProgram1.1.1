@@ -174,7 +174,8 @@ Component({
         data: parms,
         success: (res) => {
           if (res.data.code === 200) {
-            wx.clearStorageSync('sessionFail');
+            //wx.clearStorageSync('sessionFail');
+            app.globalData.sessionFail = false;  //标记是否被逼下线
             app.globalData.userInfo = res.data.data
             app.globalData.userInfoDetail = data.userInfo || res.data.data;
             this.setData({

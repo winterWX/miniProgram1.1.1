@@ -1,4 +1,4 @@
-import { formatNumber, formatTime, wxAjax, wxAjaxWithNoModal } from "../../utils/util";
+import { formatNumber, formatTime, wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
   /**
@@ -318,7 +318,7 @@ Page({
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";
-    wxAjaxWithNoModal('POST', url, {birthday: birthdayStr,id: this.data.userInfo.id,}).then((res) => {
+    wxAjax('POST', url, {birthday: birthdayStr,id: this.data.userInfo.id,}).then((res) => {
       if (res.data.code == 200) {
         let [a, b, c, d, f, g, h] = e.detail.value;
         let userInfo = {
@@ -355,7 +355,7 @@ Page({
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";
-    wxAjaxWithNoModal('POST', url, {gender: gender,id: this.data.userInfo.id}).then(res => {
+    wxAjax('POST', url, {gender: gender,id: this.data.userInfo.id}).then(res => {
       if (res.data.code == 200) {
         let userInfo = {
           ...that.data.userInfo,
@@ -396,7 +396,7 @@ Page({
     wx.showToast({
       icon: "loading",
     });
-    wxAjaxWithNoModal('POST', url, {avatar: id,id: this.data.userInfo.id}).then((res) => {
+    wxAjax('POST', url, {avatar: id,id: this.data.userInfo.id}).then((res) => {
       if (res.data.code == 200) {
         let userInfo = {
           ...that.data.userInfo,
@@ -520,7 +520,7 @@ Page({
   rewardIntegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/myprofile/homepage/rewardIntegral";
-    wxAjaxWithNoModal('GET', url).then(res => {
+    wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
         that.setData({
           received: true,

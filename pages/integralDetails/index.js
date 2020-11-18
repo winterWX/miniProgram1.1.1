@@ -1,6 +1,5 @@
-import { wxAjax } from "../../utils/util";
+import { formatNumber, formatTime , wxAjax  } from '../../utils/util';
 const app = getApp();
-import { formatNumber, formatTime } from '../../utils/util';
 Page({
 
   /**

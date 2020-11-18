@@ -23,7 +23,8 @@ App({
     isWeRunSteps:false,
     isWeRunStepsFail:false,
     isReceiveStatus:false,
-    invitationCode:''  //邀请码
+    invitationCode:'',  //邀请码
+    sessionFail:false
   },
   firstInit:{ bootImage: true },
   //健康资讯全局变变量的设置
