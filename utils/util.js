@@ -66,7 +66,7 @@ const wxAjax = (method, url, data = {}) => {
         }
       },
       fail: (error) => {
-        reject(error);
+        // reject(error);
       }
     };
     if (method === 'POST' || Object.keys(data) > 0) {
