@@ -1,4 +1,4 @@
-import { wxAjax } from "../../utils/util";
+import { wxAjax, wxAjaxWithNoModal  } from "../../utils/util";
 const app = getApp();
 const userLogin = require('../../utils/userLogin.js');
 Page({
@@ -119,7 +119,7 @@ Page({
     var that = this;
     let arrayNum = option.currentTarget.dataset.index;
     let url = app.globalData.baseUrl +'/remote/friend/accept';
-    wxAjax('POST', url, {uid: that.data.friendList[arrayNum].uid}).then(res => {
+    wxAjaxWithNoModal('POST', url, {uid: that.data.friendList[arrayNum].uid}).then(res => {
       if(res.data.code == 200){
         let clickList = [];
         that.data.friendList.forEach((element,index) => {

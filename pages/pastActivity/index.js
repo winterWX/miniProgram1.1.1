@@ -1,4 +1,4 @@
-import { wxAjax } from "../../utils/util";
+import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
 
