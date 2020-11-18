@@ -1,4 +1,4 @@
-import { wxAjax } from "../../utils/util";
+import { wxAjaxWithNoModal } from "../../utils/util";
 const app = getApp();
 const authorizeRun = require("../../utils/authorizeRun.js");
 Page({
@@ -133,7 +133,7 @@ Page({
     that.getQueryintegral();
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
     let data = { souce: "string", type: "MINIP" };
-    wxAjax('POST', url, data).then(res => {
+    wxAjaxWithNoModal ('POST', url, data).then(res => {
       if (res.data.code === 200) {
         that.setData({ stepsNum: res.data.data });
         if (res.data.data.todaySteps < 10000) {
@@ -146,7 +146,7 @@ Page({
   integralBtn: function () {
     let that = this;
     let url = app.globalData.baseUrl +'/remote/today/receiveIntegral';
-    wxAjax('GET', url).then(res => {
+    wxAjaxWithNoModal ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
         that.setData({ forceNum: true }); // - anBackShow:true
@@ -156,7 +156,7 @@ Page({
   healthEveryday: function () {
     var that = this;
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
-    wxAjax('POST', url, {date: new Date().getTime() + ""}).then(res => {
+    wxAjaxWithNoModal ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
         console.log('乐健康')
           console.log('/remote/health/data/everyday');
@@ -173,7 +173,7 @@ Page({
   getQueryintegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/integral/queryReceivedStatus";
-    wxAjax('GET', url).then(res => {
+    wxAjaxWithNoModal ('GET', url).then(res => {
       // 100412--已经领取积分  200--未领取积分
       if (res.data.code === 200) {
         that.getintegral();
@@ -184,7 +184,7 @@ Page({
   getintegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/integral/stepAuth";
-    wxAjax('GET', url).then(res => {
+    wxAjaxWithNoModal ('GET', url).then(res => {
       if (res.data.code === 200) {
         console.log('乐健康')
         console.log('/remote/integral/stepAuth');
@@ -245,7 +245,7 @@ Page({
   getQueryLatestime: function (runData) {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/health/data/query/latestime";
-    wxAjax('GET', url).then(res => {
+    wxAjaxWithNoModal ('GET', url).then(res => {
       if (res.data.code === 200) {
         //最后上传时间戳 和 当前时间戳进行比较
         let time = util.formatTime(new Date(Number(res.data.data)));
@@ -274,7 +274,7 @@ Page({
         lastTime: new Date().getTime() + '',
         stepsDataModelList: runData
       };
-      wxAjax('POST', url, data).then(res => {
+      wxAjaxWithNoModal ('POST', url, data).then(res => {
         if (res.data.code === 200) {
           that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
           that.settingDataBtn();
