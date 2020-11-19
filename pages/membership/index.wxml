@@ -40,7 +40,7 @@
           </view>
           <view class='tip' wx:if="{{errorTipThree && nickName.length !==0}}">
               <image  src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
-              <text>输入的恒生尊享码已经输错3次，24小时内不能再尝试。</text>
+              <text>输入的恒生尊享码已经输错3次，1小时内不能再尝试。</text>
           </view>
           <view class='tip' wx:if="{{errorSeconeTip && nickName.length !==0}}">
               <image  src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
