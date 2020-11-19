@@ -143,7 +143,6 @@ Page({
     let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200) {
-        console.log('获取文章详情');
         let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
         let info = content.replace(/<[^>]+>/g,"");
         let participated = quizResult !== null;

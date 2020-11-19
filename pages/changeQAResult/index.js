@@ -10,15 +10,16 @@ Page({
     id: '',
     baseUrl: app.globalData.imagesUrl,
     bannerUrl: '',
-    integral: 0
+    integral: 0,
+    isSubmit: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { rate, success, id } = options;
-    this.setData({rate, success: success === 'true', id });
+    let { rate, success, id, submit } = options;
+    this.setData({rate, success: success === 'true', id, isSubmit: submit === 'true' });
     this.getQuestion(id);
   },
 

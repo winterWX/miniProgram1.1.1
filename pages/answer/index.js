@@ -64,7 +64,7 @@ Page({
           let { rate, status } = res.data.data;
           let success = status === 1;
           wx.navigateTo({
-            url: '../changeQAResult/index?rate=' + rate + '&success=' + success + '&id=' + activityId,
+            url: '../changeQAResult/index?rate=' + rate + '&success=' + success + '&id=' + activityId + '&submit=' + true,
           })
         } else {
           wx.showModal({
