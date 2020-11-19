@@ -214,16 +214,11 @@ Page({
             },
           },
         } = res;
-        let formateDate = birthday
-          ? formatTime(new Date(parseInt(birthday) * 1000))
-              .split(" ")[0]
-              .split("/")
-              .join("-")
-          : "--";
+        let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(" ")[0].split("/").join("-") : "--";
         let displayDate = "--";
         if (formateDate !== "--") {
           let [a, b, c, d, e, f, g, h, i] = formateDate;
-          displayDate = `${a}${b}${c}${d}-${f}${g}-**`;
+          displayDate = `${a}${b}${c}${d}-${f}${g}`;
         }
 
         let selectedAvatar = that.data.avatarObjList.find(
@@ -320,15 +315,11 @@ Page({
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";
     wxAjax('POST', url, {birthday: birthdayStr,id: this.data.userInfo.id,}).then((res) => {
       if (res.data.code == 200) {
-        let [a, b, c, d, f, g, h] = e.detail.value;
         let userInfo = {
           ...that.data.userInfo,
-          birthday: `${a}${b}${c}${d}${f}${g}${h}-**`,
+          birthday: e.detail.value,
         };
-        let percentage =
-          selectedAvatarId === 13
-            ? that.getPercentage(userInfo, true)
-            : that.getPercentage(userInfo);
+        let percentage = selectedAvatarId === 13 ? that.getPercentage(userInfo, true) : that.getPercentage(userInfo);
         userInfo.percentage = percentage;
         let showAnimation = percentage == 100;
         wx.setStorageSync("complete", showAnimation);
