@@ -233,8 +233,8 @@ Page({
         res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
             return {
                 ...item,
-                title: item.type === '1' ? '每日步数挑战' : '健康知识问答王者',
-                description: item.type === '1' ? '连续挑战赢取积分大礼包' : '参与答题赢取积分好礼',
+                title: item.type === '1' ? '步数挑战赛' : '健康知识王者赛',
+                description: item.type === '1' ? '完成挑战轻松赢取积分' : '参与答题赢取积分好礼',
                 coverImage: item.type === '1' ? `${imagesUrl}/images/index/rectangle@3x.png` : `${imagesUrl}/images/index/banner-3@3x.png`,
                 createTime : item.createTime ? util.timestampToTimeHM(item.createTime) : ''
             }
