@@ -96,6 +96,7 @@ Page({
     }
     });
   },
+  
   //小程序码
   forShareNum: function () {
     var that = this;

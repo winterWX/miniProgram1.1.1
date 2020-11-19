@@ -49,9 +49,7 @@ const wxAjax = (method, url, data = {}) => {
         "native-app": "mini"
       },
       success: (res) => {
-        if(res.data.code === 200) {
-          resolve(res);
-        } else if (!app.globalData.sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
+       if (!app.globalData.sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
           //wx.setStorageSync('sessionFail', true);
           app.globalData.sessionFail = true; //标记已经被逼下线
           app.globalData.userInfo = null;
@@ -62,11 +60,13 @@ const wxAjax = (method, url, data = {}) => {
             content: '登入状态已失效，请重新再试',
             confirmText: '确认',
             success: () => { wx.reLaunch({url: '../index/index' }) }
-          })
+          });
+          return;
         }
+        resolve(res);
       },
       fail: (error) => {
-        // reject(error);
+        reject(error);
       }
     };
     if (method === 'POST' || Object.keys(data) > 0) {
