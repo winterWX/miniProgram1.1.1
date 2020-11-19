@@ -70,11 +70,13 @@
 		<view wx:if="{{showDetail}}">
 			<view class="activity-info">
 				<view class="info-title">活动详情</view>
-        <rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
+				<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
+				<!-- <htmlView detail="{{detail.content}}"/> -->
 			</view>
 			<view class="activity-info">
 				<view class="info-title">活动规则及声明</view>
 				<rich-text class="content" type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
+				<!-- <htmlView detail="{{detail.ruledescription}}"/> -->
 			</view>
 			<view class="btn-box">
 				<button wx:if="{{isLogin === 0 && detail.status ===2 && !isJoin}}" class="btn" type="primary" size="large"

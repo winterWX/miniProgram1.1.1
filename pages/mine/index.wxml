@@ -63,9 +63,6 @@
 				</view>
 			</view>
 			<view class="right">
-				<!-- <view class="label">
-					{{activityCount}}
-				</view> -->
 				<image class="icon" src="{{baseUrl + '/images/mine/right-direction.png'}}"></image>
 			</view>
 		</view>

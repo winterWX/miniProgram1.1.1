@@ -149,7 +149,7 @@ page{
 .secondeBlock-text{
      position: absolute;
      height: 162rpx;
-     padding: 70rpx 312rpx 56rpx 40rpx;
+     padding: 70rpx 278rpx 56rpx 40rpx;
      top:0
   }
 .secondeBlock-text1{
