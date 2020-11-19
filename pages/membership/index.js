@@ -39,19 +39,18 @@ Page({
   membershipCode:function(){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/code';
-    wxAjax('POST', url, { "membershipCode": this.data.nickName}).then(res => {
+    wxAjax('POST', url, {"membershipCode": that.data.nickName}).then(res=> {
       if (res.data.code === 200) {
         that.setData({tierCode: res.data.data});
         that.setData({showCarkBlock: true, nickName : ''});
       }else if(res.data.code === 100804){
-          that.setData({errorTip:true, errorTipThree : false, showTip:false, errorSeconeTip:false});
+        that.setData({errorTip:true, errorTipThree : false, showTip:false, errorSeconeTip:false});
       }else if(res.data.code === 100802){
-          that.setData({errorTipThree:true, errorTip : false, showTip:false, errorSeconeTip:false});
+        that.setData({errorTipThree:true, errorTip : false, showTip:false, errorSeconeTip:false});
       }else if(res.data.code === 100803){
         that.setData({errorSeconeTip:true, errorTipThree:false, errorTip : false, showTip:false});
       }
-    })
-    .catch(() => {
+    }).catch(()=> {
       wx.showToast({
         title: '服务繁忙， 请稍后重试。',
         icon: 'loading'
