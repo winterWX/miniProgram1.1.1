@@ -1,11 +1,10 @@
-// pages/textCookiesPolicy/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    cookieNoticeShow: false
   },
 
   /**
@@ -40,7 +39,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.setData({ cookieNoticeShow: false });
   },
 
   /**
@@ -62,5 +61,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  cookieNotice:function(){
+    this.setData({ cookieNoticeShow: true });
   }
 })
