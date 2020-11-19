@@ -40,4 +40,4 @@
         <button class="btn-lg btn-primary" catchtap="backToDetail">返回</button>
     </view>
 </view>
-<integralAmation integral="{{integral}}" wx:if="{{integral !=0}}"/>
+<integralAmation integral="{{integral}}" wx:if="{{integral !=0 && isSubmit}}"/>
