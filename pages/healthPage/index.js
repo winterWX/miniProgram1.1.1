@@ -83,7 +83,6 @@ Page({
         resultData = [];
       }
       that.getUploaddata(resultData);
-      console.log("数据下拉更新", resultData[0].steps);
     });
   },
   onReachBottom: function () {},
@@ -158,8 +157,6 @@ Page({
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
-        console.log('乐健康')
-          console.log('/remote/health/data/everyday');
         that.setData({ everyDayData: res.data.data });
       }
     });
@@ -186,8 +183,6 @@ Page({
     let url = app.globalData.baseUrl + "/remote/integral/stepAuth";
     wxAjax ('GET', url).then(res => {
       if (res.data.code === 200) {
-        console.log('乐健康')
-        console.log('/remote/integral/stepAuth');
         that.setData({
           forceNum: app.healthStep.SynchronousData,
           allowRun: true,
