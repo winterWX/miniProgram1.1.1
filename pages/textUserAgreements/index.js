@@ -1,4 +1,4 @@
-// pages/textUserAgreements/index.js
+
 Page({
 
   /**

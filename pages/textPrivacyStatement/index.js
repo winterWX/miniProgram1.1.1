@@ -1,4 +1,4 @@
-// pages/textPrivacyStatement/index.js
+
 Page({
 
   /**
