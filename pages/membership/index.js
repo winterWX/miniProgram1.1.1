@@ -24,17 +24,17 @@ Page({
     if (!this.data.nickName) {
         return;
     }else{
-      if(/^(?=.*[A-Z])(?=.*[0-9])[A-Z-0-9]{2,}$/.test(this.data.nickName)){
-          this.setData({showTip : false});
-          this.membershipCode();
-      }else{
-            this.setData({showTip : true, errorTip : false, errorTipThree : false, errorSeconeTip:false});
-      }
+      this.membershipCode();
+      // if(/^(?=.*[A-Z])(?=.*[0-9])[A-Z-0-9]{2,}$/.test(this.data.nickName)){
+      //     this.setData({showTip : false});
+      //     this.membershipCode();
+      // }else{
+      //       this.setData({showTip : true, errorTip : false, errorTipThree : false, errorSeconeTip:false});
+      // }
     }
   },
   nameChangeFocus:function(e){
       this.setData({showTip:false});
-      console.log('e foe',e);
   },
   membershipCode:function(){
     let that = this;
@@ -49,6 +49,8 @@ Page({
         that.setData({errorTipThree:true, errorTip : false, showTip:false, errorSeconeTip:false});
       }else if(res.data.code === 100803){
         that.setData({errorSeconeTip:true, errorTipThree:false, errorTip : false, showTip:false});
+      }else{
+        this.setData({showTip:true, errorTip : false, errorTipThree : false, errorSeconeTip:false});
       }
     }).catch(()=> {
       wx.showToast({
