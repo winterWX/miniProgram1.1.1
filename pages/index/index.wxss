@@ -1,83 +1,3 @@
-/* page{
-   height: 100%;
-}
-.container{
-  position: relative;
-}
-.successsSty{
-   height: 100%;
-   background-color: rgba(0,0,0, 0.62);
-}
-.header-main{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 100%;
-}
-.header-mainItem{
-   background-color: #00a865;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 200rpx;
-   width: 33.33%;
-   border: 1rpx solid #cccccc;
-} */
-
-
-
-/* .top-box {
-   position: relative;
-}
-.top-box .back-icon {
-   width: 680rpx;
-   height: 260rpx;
-   position: absolute;
-   top: 18rpx;
-   right: 30rpx;
-   opacity: 0.2;
-}
-.top-box .active-title {
-   position: absolute;
-   width: 100%;
-   top: 300rpx;
-}
-.top-box .active-title .item {
-   font-size: 0;
-   width: 50%;
-   display: inline-block;
-   height: 175rpx;
-   flex: 1;
-}
-.top {
-   width: 750rpx;
-   height: 1280rpx;
-}
-.bottom {
-   width: 750rpx;
-   height: 340rpx;
-}
-.hot-active {
-   width: 695rpx;
-   height: 460rpx;
-   position: absolute;
-   top: 830rpx;
-   right: 30rpx;
-}
-.bottom-box {
-   margin-bottom: 90rpx;
-   position: relative;
-}
-.bottom-box .health-more {
-   width: 750rpx;
-   height: 270rpx;
-   position: absolute;
-   top: 32rpx;
-} */
-
-
-
-
 page{
    background-color: rgb(242,242,242);
 }
@@ -120,11 +40,11 @@ page{
    margin-bottom: 40rpx;
 }
 .topBlock-btn{
-   width: 140rpx;
+   width: 234rpx;
    height: 48rpx;
 }
 .topBlock-btn button{
-   width: 140rpx;
+   /* width: 140rpx; */
    height: 48rpx;
    background-color: rgb(0,168,101);
    font-size: 24rpx;

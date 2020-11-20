@@ -12,15 +12,12 @@
   <view class="member-box pl0" wx:if="{{friend.length}}" wx:for="{{friend}}" wx:for-item="hero" wx:key="id">
     <view class="member-info">
       <view class="index {{ index <= 2 ? 'active' : ''}}">{{ index + 1}}</view>
-      <image class="header" src="{{avatarObjList[hero.avatar] ? avatarObjList[hero.avatar].url : (hero.avatarUrl ? hero.avatarUrl : defaultIcon)}}"></image>
+      <image class="header" src="{{avatarObjList[hero.avatar] ? avatarObjList[hero.avatar].url : defaultIcon}}"></image>
       <view class="order">
         <view class="nickname">{{hero.nickname}}</view>
-        <!-- <view class="rank" wx:if="{{hero.completeTime}}">{{hero.completeTime}}</view> -->
-        <!-- <view class="rank">累计积分{{hero.totalIntegral}}分</view> -->
         <view class="rank">连续{{hero.continueDays}}天达标</view>
       </view>
     </view>
     <view class="step-show">{{hero.actualTotalSteps}}<text>步</text></view>
-    <!-- <image src="https://wellness.hangseng.com/images/miniprogram/images/silver/newImage/medal.png" class="medal" wx:if="{{hero.completeTime}}"></image> -->
   </view>
 </view>

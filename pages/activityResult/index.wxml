@@ -1,6 +1,6 @@
 <view class="activity-result">
   <view class="activity {{ success ? 'success-color' : 'fail-color' }}" catchtap="navigateDetail">活动详情</view>
-  <image class="header" src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : (self.avatarUrl ? self.avatarUrl : defaultIcon)}}"></image>
+  <image class="header" src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : defaultIcon}}"></image>
   <image class="result-pic"  wx:if="{{success}}" src="{{ baseUrl  + '/images/challenge/success.png'}}"></image>
   <image class="result-pic"  wx:if="{{!success}}" src="{{ baseUrl  + '/images/challenge/fail.png'}}"></image>
   <view class="rank-info">

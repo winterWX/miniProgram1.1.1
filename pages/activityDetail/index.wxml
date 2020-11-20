@@ -92,7 +92,7 @@
 			<view class="member-box">
 				<view class="member-info">
 					<image class="header"
-						src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : (self.avatarUrl ? self.avatarUrl : defaultIcon)}}">
+						src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : defaultIcon}}">
 					</image>
 					<view class="order">
 						<view class="nickname">{{self.nickname}}（我自己）</view>
