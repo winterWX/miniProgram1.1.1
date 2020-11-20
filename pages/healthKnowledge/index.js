@@ -87,8 +87,6 @@ Page({
     }
     let url = app.globalData.baseUrl + '/remote/oauth/minipro/login';
     wxAjax('POST', url, params).then(res => {
-      console.log('>>>>>>>>>>>>>>>>>>>>')
-      console.log(res)
       if (res.data.code === 200) {
         app.globalData.userInfo = res.data.data
         that.setData({

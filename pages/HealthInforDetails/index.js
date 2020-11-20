@@ -37,7 +37,6 @@ Page({
     let that = this;
     if (that.data.isLogin === 3) {  //已经登录，可以领取积分
       that.everyDayIntegral();
-      console.log('触摸领取积分')
     }
   },
 
@@ -172,7 +171,6 @@ Page({
         String.prototype.replaceAll = function (FindText, RepText) {
           return this.replace(new RegExp(FindText, "g"), RepText);
         }
-        console.log('res.data.data.content===',res.data.data.content);
         if(res.data.data.content.indexOf('../upload') > -1){
           res.data.data.content = res.data.data.content.replaceAll('../upload', baseUrl);
         }
@@ -180,7 +178,6 @@ Page({
           contentAll : res.data.data,
           colletArt: res.data.data.isCollect   //收藏状态
         })
-        console.log('colletArtcolletArtcolletArt',that.data.colletArt)
       }
     })
   },
@@ -217,7 +214,6 @@ Page({
     wx.login({
       success: (res) => {
         wx.hideLoading()
-        console.log("res", res)
         if (res.code) {
           //发起网络请求
           this.setData({
@@ -244,7 +240,6 @@ Page({
     })
   },
   getUserInfo(e) { //获取用户信息
-    console.log(e)
     if (e.detail.userInfo) {
       this.onLogin(e.detail)
     }
@@ -313,7 +308,6 @@ Page({
     　　// 来自页面内的按钮的转发
     　　if (options.from == 'button') {
       let eData = options.target.dataset;
-      　　　　console.log(eData.name);     // shareBtn
       　　　　// 此处可以修改 shareObj 中的内容
       　　　　shareObj.path = '/pages/btnname/btnname?btn_name=' + eData.name;
     　　}

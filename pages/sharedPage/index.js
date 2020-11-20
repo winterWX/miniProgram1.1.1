@@ -16,7 +16,6 @@ Page({
    */
   onLoad: function (options) {
     let userInfoData = JSON.parse(options.userInfoData);
-    console.log('来自转发的数据', userInfoData);
     app.globalData.invitationCode = userInfoData.invitationCode;
     this.setData({
       userInfoData : userInfoData
@@ -56,7 +55,6 @@ Page({
     wx.login({
       success: (res) => {
         wx.hideLoading()
-        console.log("res", res)
         if (res.code) {
           //发起网络请求
           this.setData({

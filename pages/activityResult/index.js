@@ -87,7 +87,7 @@ Page({
   navigateDetail: function() {
     let { id } = this.data;
     wx.navigateTo({
-      url: '../activityDetail/index?id=' + id
+      url: '../activityInfo/index?id=' + id
     })
   }
 })

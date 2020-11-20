@@ -54,8 +54,6 @@ Page({
     wxAjax('POST', url).then(res => {
       wx.hideToast();
       if (res.data.code == 200) {
-        console.l.og('好友排行榜')
-        console.log(res.data.data);
         let { friend, self } = res.data.data;
         that.setData({friend, self})
       }

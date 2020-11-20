@@ -74,7 +74,6 @@ Component({
         } catch (e) {
           const error = `Painter get system info failed, ${JSON.stringify(e)}`;
           that.triggerEvent('imgErr', { error: error });
-          console.log(error);
           return;
         }
       }
@@ -183,7 +182,6 @@ Component({
         success: (infoRes) => {
           if (that.paintCount > MAX_PAINT_COUNT) {
             const error = `The result is always fault, even we tried ${MAX_PAINT_COUNT} times`;
-            console.log(error);
             that.triggerEvent('imgErr', { error: error });
             return;
           }

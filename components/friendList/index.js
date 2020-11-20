@@ -163,7 +163,6 @@ Component({
 				this.setData({list: []});
 				return;
 			}
-			console.log('this.data.listData',this.data.listData);
 			let list = this.data.listData.map((item, index) => {
 				item.data = item.data.map((chItem, chIndex) => {
 					return {

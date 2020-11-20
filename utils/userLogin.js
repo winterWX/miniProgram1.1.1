@@ -12,7 +12,6 @@ function onLogin(result, data, isLogin, redirectToUrl) {
   wx.login({
     success: (res) => {
       wx.hideLoading();
-      console.log("res", res);
       if (res.code) {
         //发起网络请求
         if (isLogin === 0) {

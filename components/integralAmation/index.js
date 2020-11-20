@@ -7,7 +7,6 @@ Component({
     integral: {
       type: Number,
       observer(value) {
-        console.log('积分', value);
         var numberAarry=[];
         // var result = value / 10 + 1;
       /*   if(value === 100){

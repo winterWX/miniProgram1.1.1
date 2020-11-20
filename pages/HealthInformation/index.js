@@ -237,7 +237,6 @@ Page({
   },
   //查询我的话题(游客)
   defaultLabel: function () {
-    console.log('1111111')
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/myTopic/search';
       let method = 'GET';

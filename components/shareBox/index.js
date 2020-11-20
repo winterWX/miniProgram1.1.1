@@ -26,7 +26,6 @@ Component({
       })
     },
     drawPic() {
-      console.log('app.globData.userInfo.avatarUrl', app.globalData)
       if (this.data.sharePath) { //如果已经绘制过了本地保存有图片不需要重新绘制
         this.setData({
           visible: true

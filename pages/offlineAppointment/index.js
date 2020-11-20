@@ -53,13 +53,10 @@ Page({
     wx.setClipboardData({
       data: url,
       success: (res) => {
-        console.log('success');
       },
       fail: (res) => {
-        console.log('fail');
       },
       complete: () => {
-        console.log('complete');
       }
     })
   }

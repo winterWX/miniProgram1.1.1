@@ -93,7 +93,6 @@ Page({
               wx.showToast({
                 title: '已复制'
               });
-              console.log('res.data',res.data)    // data
           }
         })
       }

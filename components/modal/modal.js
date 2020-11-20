@@ -36,7 +36,6 @@ Component({
     methods: {
       // 点击modal的回调函数
       clickMask() {
-          console.log('mask')
         // 点击modal背景关闭遮罩层，如果不需要注释掉即可
         this.setData({show: false})
       },

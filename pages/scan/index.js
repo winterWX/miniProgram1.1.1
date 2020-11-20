@@ -54,14 +54,12 @@ Page({
       showCancel: false,
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
             success: (res) => {
               if (!res.authSetting['scope.camera']) {
                 wx.authorize({
                   scope: 'scope.camera',
                   success() {
-                    console.log('相机授权成功了');
                     that.setData({show: true})
                   }
                 })
