@@ -29,7 +29,7 @@ App({
     avatarObjList: [
       {
         url: imagesUrl + "/images/icon/icon-defult-touxiang.png",
-        id: 13,
+        id: 0,
       },
       {
         url: imagesUrl + "/images/icon/icon-laoshu.png",

@@ -135,39 +135,19 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + "/myprofile/homepage/search";
     wxAjax('GET', url).then((res) => {
-      const {
-        nickName,
-        gender,
-        avatarUrl = "",
-        phoneNumber,
-      } = app.globalData.userInfoDetail;
+      const { nickName, gender, phoneNumber} = app.globalData.userInfoDetail;
       let sex = app.globalData.userInfoDetail.gender === 1 ? "男" : "女";
       let userInfo = {};
       let selectedAvatarId = "";
       let received = that.data.received;
       if (res.data.code == 200) {
-        const {
-          data: {
-            data: {
-              avatar,
-              birthday,
-              email,
-              gender,
-              mobile = "",
-              completedCount,
-              nickname,
-              id,
-              receive,
-            },
-          },
-        } = res;
+        const { data: { data: { avatar, birthday, email, gender, mobile = "", completedCount, nickname, id, receive } } } = res;
         let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(" ")[0].split("/").join("-") : "--";
         let displayDate = "--";
         if (formateDate !== "--") {
           let [a, b, c, d, e, f, g, h, i] = formateDate;
           displayDate = `${a}${b}${c}${d}-${f}${g}`;
         }
-
         let selectedAvatar = that.data.avatarObjList.find(
           (item) => item.id === avatar
         );
@@ -175,7 +155,7 @@ Page({
         let [a, b, c, d, e, f, g, h, i, j, k] = phoneNumber;
         let HKMobile = '00000000';
         if(phoneNumber.startsWith('+852') || phoneNumber.length === 12 || phoneNumber.length === 13 || phoneNumber.length === 8) {
-        HKMobile = phoneNumber.slice(-8);
+          HKMobile = phoneNumber.slice(-8);
         };
         let [l, m, n, o, p, q, r, s] = HKMobile;
         let newMobile =
@@ -199,7 +179,7 @@ Page({
           nickName: nickname || nickName,
           gender: that.data.genderMap[gender] || sex,
           birthday: displayDate,
-          avatarUrl: (selectedAvatar && selectedAvatar.url) || avatarUrl,
+          avatarUrl: (selectedAvatar && selectedAvatar.url),
           phone: newMobile || "未绑定",
           email: email || "未绑定",
           id: id,
