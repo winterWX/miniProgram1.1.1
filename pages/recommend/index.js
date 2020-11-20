@@ -103,7 +103,6 @@ Page({
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
     wxAjax('POST', url, {path: '',width: 88}).then(res => {
       if(res.data.code == 200){
-        console.log('res',res);
      }
     })
   },
@@ -113,14 +112,12 @@ Page({
    */
   onShareAppMessage: function (options) {
     app.globalData.userInfo.invitationCode = this.data.invitData.invitationCode;
-    console.log('app.globalData.userInfo',app.globalData.userInfo);
     let userInfoData = JSON.stringify(app.globalData.userInfo);
     let shareObj = {
 　　　　title: "邀请好友注册领好礼",
 　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
        imageUrl: '/image/addFriend/image@2x.png'
 　　}
-    console.log('分享参数',userInfoData);
 　　// 来自页面内的按钮的转发
 　　if (options.from == 'button') {
   　　　return shareObj;

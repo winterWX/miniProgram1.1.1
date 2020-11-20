@@ -38,7 +38,6 @@ Component({
       var timer = null;
       let progress = 100
       const rate = this.data.stepNum / this.data.targetSteps * 100
-      console.log(rate)
       var counterNumber = () => {
         if (progress > rate) {
           clearInterval(timer)

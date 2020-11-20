@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('optionsoptions',options)
     if (options.url && options.url.indexOf('/#') > -1) {
       let baseUrlNum = ''
       let startStr = options.url.substr(0, options.url.indexOf('/#'));
@@ -29,7 +28,6 @@ Page({
         url: options.url
       })
     }
-    console.log(options)
   },
   phoneNumberLogin (data) {
     const parms = {
@@ -39,14 +37,12 @@ Page({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       invitationCode: app.globalData.invitationCode
     }
-    console.log('parms注册的信息',parms);
     wx.showLoading({
       title: 'loading...',
     });
     let url = app.globalData.baseUrl + '/remote/register/miniProgram/add';
     wxAjax('POST', url, parms).then(res => {
         if (res.data.code === 200) {
-            console.log('所有的返回信息',res);
             const { data: { data: { token, phoneNumber,integral={},isFriend}}} = res;
             app.globalData.isLogin = 3;  //登录成功
             app.globalData.token = token;
@@ -55,7 +51,6 @@ Page({
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
                 wx.redirectTo({ url: '../index/index?flag='+ integralFlg });
             }else if((this.data.urlTag === 'pageTag' && integralFlg === '') && !isFriend){
-                console.log('新的好友列表 urlTag  integralFlg  ！isFriend', this.data.urlTag,integralFlg,!isFriend);
                 let addSuccess = 'addSuccess';
                 wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
             }else if(this.data.urlTag === 'pageTag' && isFriend){

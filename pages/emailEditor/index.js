@@ -113,7 +113,6 @@ Page({
     const pamars = { code: that.data.codeNum };
     util.wxAjax(method,url,pamars).then(res =>{
         if (res.data.code == 200) {
-          console.log(res.data.message);
           wx.showToast({
             titel: '服务繁忙， 请稍后重试。',
             icon: 'loading'

@@ -89,7 +89,6 @@ Page({
       if (res.data.code == 200) {
         let { status, type } = res.data.data;
         let url = '';
-        console.log(type);
         if (type === '2') {
           url = '../healthKnowledge/index?id=' + id;
         } else {

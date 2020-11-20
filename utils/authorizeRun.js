@@ -26,7 +26,6 @@ function restLogin(result) {
                            miniproLogin(res.code, res.encryptedData, res.iv, result)
                         },
                         fail: () => {
-                           console.log('---------------')
                         }
                      })
                   }
@@ -67,23 +66,6 @@ function wxAuthorizedTime() {
     let url =  app.globalData.baseUrl + '/remote/health/data/query/latestime';
     let method = 'GET';
     return util.wxAjax(method,url);
-   // return new Promise((resolve) => {
-   //    wx.request({
-   //       url: app.globalData.baseUrl + '/remote/health/data/query/latestime',
-   //       method: "GET",
-   //       header: {
-   //          'Content-Type': 'application/json',
-   //          "token": app.globalData.token,
-   //          "native-app": "mini"
-   //       },
-   //       success: function (res) {
-   //          resolve(res);
-   //       },
-   //       fail: function (res) {
-   //          console.log('.........fail..........');
-   //       }
-   //    })
-   // })
 };
 // 上传初次授权时间
 function postFirstAuthorizedTime() {
@@ -94,25 +76,6 @@ function postFirstAuthorizedTime() {
     let lastTime = t.getTime();
     const data = { lastTime, source: 'MINIP' };
     util.wxAjax(method,url,data).then(res=>{});
-   // wx.request({
-   //    url: app.globalData.baseUrl + '/remote/data/authorize',
-   //    method: "post",
-   //    header: {
-   //       'Content-Type': 'application/json',
-   //       "token": app.globalData.token,
-   //       "native-app": "mini"
-   //    },
-   //    data: {
-   //       lastTime,
-   //       source: 'MINIP'
-   //    },
-   //    success: function (res) {
-
-   //    },
-   //    fail: function (res) {
-   //       console.log('.........fail..........');
-   //    }
-   // })
 };
 function getAllWeRunData(sessionkey, result) {
    // 微信授权之后看是否是第一次授权
@@ -140,36 +103,6 @@ function getAllWeRunData(sessionkey, result) {
                   result(runData.stepInfoList)
                }
          });
-         //   wx.request({
-         //    url: app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData',
-         //    method: 'POST',
-         //    header: {
-         //       'Content-Type': 'application/json',
-         //       "token": app.globalData.token,
-         //       "native-app": "mini"
-         //    },
-         //    data: {
-         //       encryptedData: resRun.encryptedData,
-         //       iv: resRun.iv,
-         //       sessionkey: sessionkey
-         //    },
-         //    success: function (resDecrypt) {
-         //       // 微信授权成功
-         //       if (resDecrypt.data.data.length > 0) {
-         //          let runData = JSON.parse(resDecrypt.data.data);
-         //          if (runData.stepInfoList.length > 0) {
-         //             runData.stepInfoList = runData.stepInfoList.reverse()
-         //             for (var i in runData.stepInfoList) {
-         //                runData.stepInfoList[i].date = util.formatTime(new Date(runData.stepInfoList[i].timestamp * 1000)).split(' ')[0]
-         //             }
-         //          }
-         //          result(runData.stepInfoList)
-         //       }
-         //    },
-         //    fail: function () {
-         //       console.log('----------')
-         //    }
-         // });
       },
       fail: function () {
          result({authorize:false});  //拒绝授权
