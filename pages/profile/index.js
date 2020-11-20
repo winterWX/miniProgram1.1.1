@@ -141,6 +141,8 @@ Page({
       let selectedAvatarId = "";
       let received = that.data.received;
       if (res.data.code == 200) {
+        console.log('获取信息')
+        console.log(res.data.data)
         const { data: { data: { avatar, birthday, email, gender, mobile = "", completedCount, nickname, id, receive } } } = res;
         let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(" ")[0].split("/").join("-") : "--";
         let displayDate = "--";
@@ -236,7 +238,7 @@ Page({
   /* 编辑生日 */
   bindDateChange: function (e) {
     let birthday = e.detail.value.split("-").join("/") || "";
-    let birthdayStr = new Date(birthday).getTime() / 1000;
+    let birthdayStr = new Date(birthday + '/1').getTime() / 1000;
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";

@@ -40,7 +40,7 @@ page{
    margin-bottom: 40rpx;
 }
 .topBlock-btn{
-   width: 234rpx;
+   width: 240rpx;
    height: 48rpx;
 }
 .topBlock-btn button{
