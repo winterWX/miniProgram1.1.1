@@ -38,7 +38,7 @@ Page({
   },
   onLoad:function (options) {
       let that = this;
-      that.setData({ showAPPData: app.healthStep.dataCource , optionsFlg : options.id,
+      that.setData({ showAPPData: app.healthStep.dataCource, optionsFlg : options.id,
                       firstInitShow : app.firstInit.bootImage });
       if(app.firstInit.bootImage){
           that.setData({ flag: true, guidance1:true });
