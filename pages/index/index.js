@@ -20,7 +20,8 @@ Page({
     levelNum: 0,
     levelNumShow: true,
     isAppData: false,  //是否是APP用户
-    imagesUrl: app.globalData.imagesUrl
+    imagesUrl: app.globalData.imagesUrl,
+    forceNum: app.healthStep.SynchronousData  //是否已经领过积分
   },
   onLoad: function (options) {
     let that = this;
