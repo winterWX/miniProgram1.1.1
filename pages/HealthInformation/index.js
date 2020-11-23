@@ -1,15 +1,16 @@
 const app = getApp();
 const util = require('../../utils/util');
 var x,
-  y,
-  x1,
-  y1,
-  x2,
-  y2,
-  lastX = 0,
-  lastY = 0;
+    y,
+    x1,
+    y1,
+    x2,
+    y2,
+    lastX = 0,
+    lastY = 0;
 Page({
   data: {
+    ipaState:false,
     listData: [],
     totalPage: 0,
     onPullNun: 1,
@@ -35,6 +36,7 @@ Page({
     deleteTagArray: [],
     addTagArray: [],
     listId: [],
+    switchTag: false,
     //拖拽效果
     current: -1,
     s_v: 10,
@@ -62,13 +64,13 @@ Page({
     that.getTagList();
   },
   onHide: function() {
-    this.setData({ hideModal: true })
+    this.setData({ hideModal: true });
   },
   onPageScroll:function(e){
       let that = this;
       if (e.scrollTop > 0 ){
           that.setData({ onPullNun: (that.data.onPullNun += 1) });
-          if (that.data.onPullNun <= that.data.totalPage && that.data.researchTag !== '热门推荐') {
+          if (that.data.onPullNun <= that.data.totalPage) {
             that.searchSend(that.data.researchTag, that.data.onPullNun);
           } else {
             return;
@@ -102,9 +104,11 @@ Page({
   //选择条目
   tabSelect(e) {
       let that = this;
+      if(that.data.ipaState){ return; }
+      that.setData({ ipaState : true});
       that.setData({ tabCur: e.currentTarget.dataset.id,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
       that.setData({ researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag === '热门推荐' ? '热门推荐' : that.data.tabLists[e.currentTarget.dataset.id].tag});
-      that.setData({ listData: [] , onPullNun:1 });  //清空数组
+      that.setData({ listData: [], onPullNun : 1, switchTag: true});  //清空数组,  switchTag(标记切换的动作)
       that.searchSend(that.data.researchTag);
   },
   listClick(e){
@@ -114,32 +118,31 @@ Page({
       })
   },
   //文章列表接口
-  searchSend(parase, num) {
+  searchSend(parase,num) {
     let that = this;
-    let url =  app.globalData.baseUrl + '/remote/article/query/list';
+    wx.showLoading({
+      title: 'loading...'
+    })
+    let url = app.globalData.baseUrl + '/remote/article/query/list';
     let method = 'POST';
     const data = {
-      "currentPage": num !== undefined ?  num : 1,
+      "currentPage": num !== undefined ? num : 1,
       "pageSize": 10,
-      "topic": parase !== undefined ?  parase : '热门推荐'  //热门推荐
+      "topic": parase !== undefined ? parase : '热门推荐'  //热门推荐
     };
     util.wxAjax(method,url,data).then(res=>{
         if(res.data.code === 200){
           //that.collectionQueryCounts();  // 赋值前调用
           res.data.data.articles = res.data.data.articles.map((item) => {
             return {
-              ...item,
-              inputtime: item.inputtime
-                ? that.timestampToTime(item.inputtime)
-                : "",
+                ...item,
+                inputtime: item.inputtime  ? that.timestampToTime(item.inputtime) : ""
             };
           });
-          const listData =
-            that.data.listData.length === 0
-              ? res.data.data.articles
-              : [...that.data.listData, ...res.data.data.articles];
-          that.setData({ totalPage: res.data.totalPage, listData });
+          that.setData({ totalPage: res.data.totalPage, listData : [...that.data.listData,...res.data.data.articles]});
         }
+        that.setData({ ipaState : false});
+        wx.hideLoading();
     })
   },
   collectionImageShare: function (e) {
