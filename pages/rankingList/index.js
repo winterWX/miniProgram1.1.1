@@ -43,5 +43,10 @@ Page({
           })
         }
     });
+  },
+  moreFriend:function(){
+    wx.navigateTo({
+      url: '../../pages/addFriend/index',
+    })
   }
 })

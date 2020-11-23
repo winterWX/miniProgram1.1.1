@@ -49,7 +49,7 @@ const wxAjax = (method, url, data = {}) => {
         "native-app": "mini"
       },
       success: (res) => {
-       if (!app.globalData.sessionFail && (res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
+       if (!app.globalData.sessionFail && (res.data.code === 999988 || res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
           //wx.setStorageSync('sessionFail', true);
           app.globalData.sessionFail = true; //标记已经被逼下线
           app.globalData.userInfo = null;

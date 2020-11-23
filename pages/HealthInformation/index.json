@@ -3,6 +3,5 @@
       "van-button": "vant-weapp/button/index"
   },
   "navigationBarTitleText": "健康头条",
-  "navigationBarTextStyle": "black",
-  "enablePullDownRefresh": true  
+  "navigationBarTextStyle": "black"
 }

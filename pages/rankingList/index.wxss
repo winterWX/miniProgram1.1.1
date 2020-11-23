@@ -72,3 +72,11 @@ page {
   .active {
     color: #00A865!important;
   }
+  .bottom-text{
+    width: 100%;
+    text-align: center;
+    margin-top: 80rpx;
+    font-size: 28rpx;
+    text-decoration: underline;
+    color: rgb(102,102,102);
+  }

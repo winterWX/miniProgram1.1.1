@@ -20,4 +20,5 @@
     </view>
     <view class="step-show">{{hero.actualTotalSteps}}<text>步</text></view>
   </view>
+  <view class="bottom-text" bindtap="moreFriend">添加更多通讯录好友</view>
 </view>
