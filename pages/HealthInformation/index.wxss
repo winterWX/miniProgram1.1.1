@@ -226,6 +226,7 @@ page{
   left: 0rpx;
   padding-left: 10rpx;
   padding-right: 160rpx;
+  top: 0;
 }
 .nav-item {
   padding-left: 21rpx;
@@ -266,6 +267,7 @@ page{
   align-items: center;
   background-color: #ffffff;
   justify-content: center;
+  top: 0;
 }
 .liebiao-leftImg image{
     height: 36rpx;

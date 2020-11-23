@@ -64,7 +64,17 @@ Page({
   onHide: function() {
     this.setData({ hideModal: true })
   },
-  onPullDownRefresh: function () {},
+  onPageScroll:function(e){
+      let that = this;
+      if (e.scrollTop > 0 ){
+          that.setData({ onPullNun: (that.data.onPullNun += 1) });
+          if (that.data.onPullNun <= that.data.totalPage && that.data.researchTag !== '热门推荐') {
+            that.searchSend(that.data.researchTag, that.data.onPullNun);
+          } else {
+            return;
+          }
+      }
+  },
   getTagList: function () {
     if(app.globalData.isLogin === 0){
        this.defaultLabel();
@@ -75,20 +85,20 @@ Page({
       });
     }
   },
-  onReachBottom: function () {
-    let that = this;
-    that.setData({ onPullNun: (that.data.onPullNun += 1) });
-    if (that.data.onPullNun <= that.data.totalPage) {
-      wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
-      that.searchSend(that.data.researchTag, that.data.onPullNun);
-    } else {
-      return;
-    }
-    setTimeout(function () {
-      wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
-      wx.stopPullDownRefresh(); //停止下拉动作
-    }, 1000);
-  },
+  // onReachBottom: function () {
+  //   let that = this;
+  //   that.setData({ onPullNun: (that.data.onPullNun += 1) });
+  //   if (that.data.onPullNun <= that.data.totalPage) {
+  //     //wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
+  //     that.searchSend(that.data.researchTag, that.data.onPullNun);
+  //   } else {
+  //     return;
+  //   }
+  //   // setTimeout(function () {
+  //   //   wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
+  //   //   wx.stopPullDownRefresh(); //停止下拉动作
+  //   // }, 100);
+  // },
   //选择条目
   tabSelect(e) {
       let that = this;
@@ -237,7 +247,6 @@ Page({
   },
   //查询我的话题(游客)
   defaultLabel: function () {
-    console.log('1111111')
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/myTopic/search';
       let method = 'GET';
