@@ -1,9 +1,8 @@
 .challenge{
   box-sizing: border-box;
-  overflow: hidden;
   border-radius: 2px;
   background-color: #ffffff;
-  height: 396rpx;
+  height: auto;
   margin: 30rpx;
 }
 .title{
@@ -113,7 +112,9 @@
   margin-top: 25rpx;
   font-size: 24rpx; 
   color: #929292;
-  text-align: center;
+  text-align: left;
+  word-break: break-all;
+  padding-bottom: 30rpx;
 }
 .reward_tips{
  float: right;

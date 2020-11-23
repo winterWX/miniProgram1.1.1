@@ -13,10 +13,10 @@
                <view class="contutionText">
                      <view class="picBottomText-main">
                         <view class="picBottomText">
-                           <view class="picBottomText-top">1. 连续<view class="textShow">7天达标</view>可享<view class="textShow">50积分</view></view>
+                           <view class="picBottomText-top">1. 连续<view class="textShow">7天达标</view>可领取<view class="textShow">50积分</view></view>
                         </view>
                         <view class="picBottomText">
-                           <view class="picBottomText-top">2. 连续<view class="textShow">28天达标</view>可享<view class="textShow">100积分</view></view>
+                           <view class="picBottomText-top">2. 连续<view class="textShow">28天达标</view>可领取<view class="textShow">100积分</view></view>
                         </view>
                      </view>
                   <van-button class="guidanceTwoBtn vanBtn" bindtap="guidanceTwo">开始记录</van-button>
@@ -34,12 +34,12 @@
         isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
             <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
-            <van-button  wx:if='{{ (stepsNum.isDone === "2" || stepsNum.todaySteps === 0)  && !startStatus}}'>还差{{startStep}}步</van-button>
-            <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}' class="topSetting-vanBtn"  bindtap="integralBtn">领取{{stepsNum.integral}}积分奖励</van-button>
+            <van-button  wx:if='{{ (stepsNum.isDone === "2" || stepsNum.todaySteps === 0)  && !startStatus}}'>还差{{startStep}}步即可领10积分</van-button>
+            <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}' class="topSetting-vanBtn"  bindtap="integralBtn">马上领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>已领取</van-button>
         </view>   
         <view class="topSetting-text">
-            <view class="topSett-disp"  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>每日完成10,000步即可领10积分</view>
+            <view class="topSett-disp"  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>每日步数达1万步，当日可获10积分。</view>
             <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}'>你真棒！今日已达标～</view>
             <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>积分已入账，明天再接再厉！</view>
         </view>    
@@ -50,7 +50,7 @@
    <view  class="headLeBlock PageBackColor">
          <view class="headLeBlock-top">
                <view  class="left-main">邀请好友一起走</view>
-               <view  class="bottom-main">挑战胜利积分翻倍</view>
+               <view  class="bottom-main">成功邀请立享积分奖赏</view>
          </view>
          <view class="illustration3x">
             <image src='{{imagesUrl + "/images/illustration.png"}}'></image>
@@ -62,7 +62,7 @@
                   <view class="sendBlock-title">每日健康数据</view>
                   <view class="sendBlockBack" ></view>
                </view>
-               <view  class="sendBlock-bottom" wx:if="{{showAPPData === 2}}">
+               <view  class="sendBlock-bottom">
                   <view class="sendBlock-Balck" style="padding-left:20rpx">
                      <view class="health-item health-itemOhter"><view class="health-num">{{everyDayData.totalTime}}</view><view class="health-text">分钟</view></view>
                      <view class="health-bottom">总运动时间</view>
