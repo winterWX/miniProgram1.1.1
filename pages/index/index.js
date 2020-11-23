@@ -35,10 +35,11 @@ Page({
     }
     that.homePageInit();
     that.userLevel();
+
   },
   onShow: function () {
     let that = this;
-    that.setData({ active: 0 });
+    that.setData({ active: 0, forceNum: app.healthStep.SynchronousData});
   },
   onPullDownRefresh: function () {
     let that = this;
