@@ -6,8 +6,8 @@
                 <view class="nameText">{{item.nickname}}</view>
             </view>
             <view class="rightBlock">
-                <view  wx:if="{{item.showFlg}}">已添加</view>
-                <view  class="btnSty" wx:if="{{!item.showFlg}}" bindtap="addNewBtn" data-index="{{index}}">同意添加</view>
+                <view  wx:if="{{item.showFlg}}">已新增</view>
+                <view  class="btnSty" wx:if="{{!item.showFlg}}" bindtap="addNewBtn" data-index="{{index}}">接受</view>
             </view>
         </view>
     </view>

@@ -3,5 +3,5 @@
     "footer": "../../components/footer/index",
     "modalView": "../../components/modal/modal"
   },
-  "navigationBarTitleText": "个人信息"
+  "navigationBarTitleText": "我的"
 }

@@ -112,8 +112,7 @@
   margin-top: 25rpx;
   font-size: 24rpx; 
   color: #929292;
-  text-align: left;
-  word-break: break-all;
+  text-align: center;
   padding-bottom: 30rpx;
 }
 .reward_tips{
