@@ -46,7 +46,7 @@ Page({
     userInfo: {
       nickName: "",
       gender: "",
-      birthday: "--",
+      birthday: "不提供",
       avatarUrl: "",
       phone: "",
       email: "未绑定",
@@ -141,12 +141,10 @@ Page({
       let selectedAvatarId = "";
       let received = that.data.received;
       if (res.data.code == 200) {
-        console.log('获取信息')
-        console.log(res.data.data)
         const { data: { data: { avatar, birthday, email, gender, mobile = "", completedCount, nickname, id, receive } } } = res;
-        let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(" ")[0].split("/").join("-") : "--";
-        let displayDate = "--";
-        if (formateDate !== "--") {
+        let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(" ")[0].split("/").join("-") : "未选择";
+        let displayDate = "未选择";
+        if (formateDate !== "未选择") {
           let [a, b, c, d, e, f, g, h, i] = formateDate;
           displayDate = `${a}${b}${c}${d}-${f}${g}`;
         }
@@ -217,7 +215,7 @@ Page({
       return !["id", "percentage"].includes(item);
     });
     let allKeys = keys.length;
-    const invalidValue = ["--", "未绑定", "暂不选择", "保密"];
+    const invalidValue = ["未选择", "未绑定", "暂不选择", "保密"];
     for (let key of keys) {
       if (userInfoItem[key] && !invalidValue.includes(userInfoItem[key])) {
         if (flag && key === "avatarUrl") {

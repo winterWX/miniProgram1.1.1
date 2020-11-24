@@ -11,50 +11,8 @@ Page({
      listHiden: false,
      userInfoData:{},
      redirectToUrl:'pageTag', //跳转的标记
-     avatarObjList: [
-      {
-        url:  app.globalData.imagesUrl + '/images/icon/icon-laoshu.png',
-        id: 1
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconNiu.png',
-        id: 2
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconLaohu.png',
-        id: 3
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconTuzi.png',
-        id: 4
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconLong.png',
-        id: 5
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconShe.png',
-        id: 6
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconMa.png',
-        id: 7
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconYang.png',
-        id: 8
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconHouzi.png',
-        id: 9
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconJi.png',
-        id: 10
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconGou.png',
-        id: 11
-      }, {
-        url:  app.globalData.imagesUrl + '/images/icon/iconZhu.png',
-        id: 12
-      },
-      {
-        url: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
-        id: 13
-      }, 
-    ],
-    friendFlg:false,
+     avatarObjList: app.globalData.avatarObjList,
+     friendFlg:false,
   },
 
   /**
@@ -163,7 +121,7 @@ Page({
 },
 avatarSelect:function(avatar,avatarUrl){
     if(avatar !==''){
-        return this.data.avatarObjList[Number(avatar)-Number(1)].url;
+        return this.data.avatarObjList[Number(avatar)].url;
     }else if(avatar ==='' && avatarUrl !==''){
         return avatarUrl;
     }else{
