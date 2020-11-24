@@ -15,6 +15,6 @@
 		<text class="no-data">暂无历史数据</text>
 	</view>
 	<view class="footer">
-		仅支持查看一年内的数据
+		可查看一年内的数据
 	</view>
 </view>

@@ -50,7 +50,7 @@
 				铜会员
 			</view>
 			<view class="guide {{color}} {{ (userInfo.level === 3 || userInfo.level === 5) ? 'goldBlock' : ''}}">
-				查看会员权益
+				查看会员优惠
 			</view>
 		</view>
 	</view>
@@ -126,9 +126,11 @@
 		</view>
 		<view class="item" bindtap="textShowMain"  data-flag="contact">
 			<view class="left">
+
+			
 				<image class="icon" src="{{baseUrl + '/images/mine/contact-us.png'}}"></image>
 				<view class="label">
-					联系我们
+					联络我们
 				</view>
 			</view>
 			<view class="right">

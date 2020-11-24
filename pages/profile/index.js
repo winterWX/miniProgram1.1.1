@@ -190,7 +190,7 @@ Page({
         userInfo = {
           nickName: nickName,
           gender: gender === 1 ? "男" : "女",
-          birthday: "--",
+          birthday: "未选择",
           avatarUrl: avatarUrl,
           phone: phoneNumber || "未绑定",
           email: "未绑定",
