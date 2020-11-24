@@ -253,7 +253,7 @@ margin-right: 34rpx;
   padding-left: 30rpx;
 }
 .bottom-main{
-  width: 224rpx;
+  /* width: 224rpx; */
   height: 42rpx;
   font-family: PingFangSC;
   font-size: 28rpx;
