@@ -35,7 +35,7 @@
 
   </view>
   <view class="tips">
-    连续7天每日步数达1万步，可于第7天获取50积分；连续28天每日步数若达1万步，可于第28天获取100积分。
+    连续7天当日领取50积分 连续28天当日可领取100积分
   </view>
 </view>
 <integralAmation integral="{{integral}}" wx:if="{{integral !=0}}"/>

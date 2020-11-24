@@ -13,7 +13,7 @@
 			</view>
 	</view>
 	<view class="past-activity">
-		<navigator hover-class="none" url="../pastActivity/index"><text>往期精彩活动</text></navigator>
+		<navigator hover-class="none" url="../pastActivity/index"><text>往期挑战</text></navigator>
 	</view>
 </view>
 <view class="empty-box" wx:if="{{activityList.length === 0 && loadingFinish}}">

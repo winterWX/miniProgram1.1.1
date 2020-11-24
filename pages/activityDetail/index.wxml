@@ -62,7 +62,7 @@
 					</view>
 				</view>
 			</view>
-			<button wx:if="{{isJoin && canReceivedReward && detail.status !== 3 && !completeChange}}" class="reward-btn" catchtap="receiveReward">点击领取{{reward}}积分</button>
+			<button wx:if="{{isJoin && canReceivedReward && detail.status !== 3 && !completeChange}}" class="reward-btn" catchtap="receiveReward">立即领取{{reward}}积分</button>
 			<button wx:if="{{isJoin && !canReceivedReward && !completeChange && detail.status !== 3 }}"
 				class="reward-dis-btn">收起手机，走一走</button>
 			<button wx:if="{{completeChange || (detail.status === 3 && detail.isJoinStatus ==='2')}}" class="reward-btn" catchtap="navigateActivityResult">查看战绩</button>
@@ -71,12 +71,10 @@
 			<view class="activity-info">
 				<view class="info-title">活动详情</view>
 				<rich-text class="content" type="'node'" nodes="{{detail.content}}"></rich-text>
-				<!-- <htmlView detail="{{detail.content}}"/> -->
 			</view>
 			<view class="activity-info">
 				<view class="info-title">活动规则及声明</view>
 				<rich-text class="content" type="'node'" nodes="{{detail.ruledescription}}"></rich-text>
-				<!-- <htmlView detail="{{detail.ruledescription}}"/> -->
 			</view>
 			<view class="btn-box">
 				<button wx:if="{{isLogin === 0 && detail.status ===2 && !isJoin}}" class="btn" type="primary" size="large"
@@ -88,7 +86,7 @@
 			</view>
 		</view>
 		<view wx:if="{{!showDetail}}" class="hero-list">
-			<view class="hero-list-title">好友排行</view>
+			<view class="hero-list-title">好友排名</view>
 			<view class="member-box">
 				<view class="member-info">
 					<image class="header"
