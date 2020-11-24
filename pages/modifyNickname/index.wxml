@@ -1,7 +1,7 @@
 <view>
 	<view class="nick">
 		<view class="nickname">昵称</view>
-		<input class="input-name" value="{{ nickName }}" bindinput="nameChange"></input>
+		<input class="input-name" placeholder="请输入昵称" value="{{ nickName }}" bindinput="nameChange"></input>
 		<view class="line"></view>
 	</view>
 	<view class='tip'>

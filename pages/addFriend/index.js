@@ -117,7 +117,7 @@ Page({
     let userInfoData = JSON.stringify(app.globalData.userInfo);
     let { baseUrl } = this.data;
     let shareObj = {
-  　　　　title: "邀请好友注册领好礼",
+  　　　　title: "邀请你成为[恒生健康]好友",
   　　　　path: "/pages/newFriend/index?userInfoData="+ userInfoData,
          imageUrl: `${baseUrl}/images/addFriend/img@3x.png`,
   　　}

@@ -4,8 +4,8 @@
            <view class="personImgeTop">
                 <image  class="personImge1" src='{{imagesUrl + "/images/recommend/banner@2x.png"}}'></image>
                 <view class="personImgeText">
-                    <view class="image-text1">分享好友 一起赚积分</view>
-                    <view class="image-text2">好友注册成功，双方各得50积分</view>
+                    <view class="image-text1">你有新的好友申请</view>
+                    <!--<view class="image-text2">好友注册成功，双方各得50积分</view> -->
                 </view>
             </view>
             <view class="bomtton-btn1">
