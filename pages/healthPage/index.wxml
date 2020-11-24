@@ -62,7 +62,7 @@
                   <view class="sendBlock-title">每日健康数据</view>
                   <view class="sendBlockBack" ></view>
                </view>
-               <view  class="sendBlock-bottom">
+               <view class="sendBlock-bottom" wx:if="{{showAPPData === 2}}">
                   <view class="sendBlock-Balck" style="padding-left:20rpx">
                      <view class="health-item health-itemOhter"><view class="health-num">{{everyDayData.totalTime}}</view><view class="health-text">分钟</view></view>
                      <view class="health-bottom">总运动时间</view>
