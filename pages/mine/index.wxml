@@ -30,7 +30,7 @@
 					{{userInfo.couponNumber}}
 				</view>
 				<view class="tip">
-					优惠券
+					优惠
 				</view>
 			</view>
 		</view>
@@ -127,7 +127,7 @@
 		<view class="item" bindtap="textShowMain"  data-flag="contact">
 			<view class="left">
 
-			
+
 				<image class="icon" src="{{baseUrl + '/images/mine/contact-us.png'}}"></image>
 				<view class="label">
 					联络我们

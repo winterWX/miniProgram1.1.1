@@ -228,7 +228,8 @@ Page({
      })
   },
 	setList(listData) {
-		let emptyShow = listData.length == 0 ? true : false;
+    let emptyShow = listData.length == 0 ? true : false;
+    conole.log('listData', listData);
 		this.setData({
 			listData: listData,
 			emptyShow: emptyShow
