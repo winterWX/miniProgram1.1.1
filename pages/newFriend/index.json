@@ -4,6 +4,6 @@
       "showToast":"../../components/showToast/showToast"
   },
   "enablePullDownRefresh": true,
-  "navigationBarTitleText": "新的好友",
+  "navigationBarTitleText": "朋友请求",
   "navigationBarTextStyle": "black"
 }

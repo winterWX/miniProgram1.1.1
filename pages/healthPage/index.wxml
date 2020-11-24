@@ -39,8 +39,8 @@
             <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>已领取</van-button>
         </view>   
         <view class="topSetting-text">
-            <view class="topSett-disp"  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>每日步数达1万步，当日可获10积分。</view>
-            <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}'>你真棒！今日已达标～</view>
+            <view class="topSett-disp"  wx:if='{{ stepsNum.isDone === "2" || stepsNum.todaySteps === 0 }}'>每日完成1万步即可领取10积分哦~</view>
+            <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}'>恭喜你！今日的每日步数挑战已达标</view>
             <view class="topSett-disp"  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>积分已入账，明天再接再厉！</view>
         </view>    
    </view>
