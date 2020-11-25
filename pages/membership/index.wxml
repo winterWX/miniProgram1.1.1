@@ -59,11 +59,12 @@
            <view class="carkBlock-allMain">
               <image class="imageBottom" src="{{imagesUrl + '/images/silver/rectangle@3x.png'}}" />
               <view class="text-main">
-                <view class="text1-main">恭喜你成功升级为</view>
-                <view class="text2-main" wx:if="{{tierCode.resultCode === 3}}">尊享好礼</view>
+                <view class="text1-main"  wx:if="{{tierCode.newTier !== 5}}">恭喜你成功升级为</view>
+                <view class="text1-main" wx:if="{{tierCode.newTier === 5}}">恭喜你成功获得</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 3}}">黄金会员</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}">永久银会员</view>
-                <view class="text2-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}">黄金会员</view>
-                <view class="text3-main" wx:if="{{tierCode.resultCode === 3}}">已获得的优惠券已经放置在“我的优惠券”列表中，当前等级仍为黄金，过期后最低将不低于白银会员，可在“会员等级”查看等级及尊享优惠。</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}">尊享礼遇</view>
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 3}}">黃金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。黃金会员有效期为一年，过期后将会成为永久银会员。</view>
                 <view class="text3-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}">你可永久享用银会员尊享礼遇及优惠，详情可于「会员级别」即時查阅。</view>
                 <view class="text3-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}">黃金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。黃金会员有效期为一年，过期后将会成为永久银会员。</view>
                 <view class="text4-main">
