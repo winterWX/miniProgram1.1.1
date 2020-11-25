@@ -183,3 +183,11 @@ page{
   background-color: #ffffff;
   padding: 0rpx 30rpx;
 }
+.foot-tip {
+  position: absolute;
+  bottom: 30rpx;
+  font-size: 24rpx;
+  color: #333333;
+  text-align: center;
+  width: 100%;
+}

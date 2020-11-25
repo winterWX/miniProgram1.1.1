@@ -17,7 +17,7 @@
         <view class="topTipBlock" wx:if="{{topTipShow}}">
             <view class="topSan"></view>
             <view class="topTip">
-                <view class="topTipTiele">在这里关注更多话题。</view>
+                <view class="topTipTiele">设定你喜爱的话题。</view>
                 <image bindtap="topTipImageColse" class="topTipImage" src="{{baseUrl + '/images/healthInfo/icon-close-white@2x.png'}}"></image>
             </view>
         </view>
