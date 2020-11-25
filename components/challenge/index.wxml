@@ -5,7 +5,8 @@
   </view>
   <view class="steps_tips">已连续{{continuousComplianceDays}}天</view>
   <view class="steps">
-    <view class="steps_reward" wx:if="{{days.integral !=='' && list[list.length-1].receiveStatus =='2'}}">
+    <!-- <view class="steps_reward" wx:if="{{days.integral !=='' && list[list.length-1].receiveStatus =='2'}}"> -->
+    <view class="steps_reward">
       <view class="reward_tips" >
         再坚持{{days.day}}天领{{days.integral}}积分
         <view class="popper_arrow">

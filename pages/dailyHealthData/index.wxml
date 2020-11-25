@@ -5,7 +5,7 @@
     </view>
     <view class="containerBtn" bindtap="getWeRunStepsData">立即授权</view>
 </view>
-<view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 2}}">以下数据来自“APP同步数据”。</view>
+<view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 2}}">以下数据来自“{{appName === '' ? 'APP' : appName}}同步数据”。</view>
 <view class="dataOrgin" wx:if="{{tipUpdate && showAPPData === 1}}">以下数据来自“微信运动”。</view>
 <view class="container">
     <view class="panel" catchtap="nagigateStep">
@@ -21,7 +21,7 @@
       </view>
     </view>
 
-    <view class="panel" wx:if="{{stepDataShow === 1}}">
+  <view class="panel" wx:if="{{stepDataShow === 2}}">
       <view class="panel_header" catchtap="movementData">
         <view class="icon"><image src="{{imagesUrl + '/images/icon-sport-data@2x.png'}}" mode="aspectFit"/></view>
         <view class="title title_ft">运动数据</view>      
@@ -31,11 +31,11 @@
           <view class="item_top"><text class="num">{{health.totalTime}}</text><text class="numTxt">分钟</text></view>
           <view class="item_bottom">运动总时间</view>
         </view>
-      <view class="item">
+        <view class="item" wx:if="{{health.source !=='Sensor'}}">
           <view class="item_top"><text class="num">{{health.calories}}</text><text class="numTxt">千卡</text></view>
           <view class="item_bottom">消耗</view>
         </view>
-        <view class="item">
+        <view class="item" wx:if="{{health.source !=='Sensor' && ( health.source !=='HuaWei' || health.source !=='Huawei' )}}">
           <view class="item_top"><text class="num">{{health.distance}}</text><text class="numTxt">公里</text></view>
           <view class="item_bottom">距离</view>
         </view>

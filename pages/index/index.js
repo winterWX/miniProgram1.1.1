@@ -21,7 +21,7 @@ Page({
     levelNumShow: true,
     isAppData: false,  //是否是APP用户
     imagesUrl: app.globalData.imagesUrl,
-    forceNum: app.healthStep.SynchronousData  //是否已经领过积分
+    forceNum: false  //是否已经领过积分
   },
   onLoad: function (options) {
     let that = this;
@@ -33,13 +33,13 @@ Page({
       that.setData({ isLogin: app.globalData.isLogin });
       that.checkIsAppUser();  //调用数据源，App数据优先；
     }
+    that.getQueryintegral();
     that.homePageInit();
     that.userLevel();
-
   },
   onShow: function () {
     let that = this;
-    that.setData({ active: 0, forceNum: app.healthStep.SynchronousData});
+    that.setData({ active: 0 });
   },
   onPullDownRefresh: function () {
     let that = this;
@@ -89,6 +89,7 @@ Page({
     util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
+          //that.setData({ isAppData: res.data.data === 2 ? false : true });   // 2 app 用户，1 mini用户
           app.healthStep.dataCource = res.data.data;    // 数据源
           if(!that.data.isAppData){
              that.getStepRunData();
@@ -264,6 +265,17 @@ Page({
       }
     })
   },
+
+  //查询用户是否已经获取步数积分
+  getQueryintegral: function () {
+    let that = this;
+    let url = app.globalData.baseUrl + "/remote/integral/queryReceivedStatus";
+    util.wxAjax ('GET', url).then(res => {
+      // 100412--已经领取积分  200--未领取积分
+      if (res.data.code === 100412) { that.setData({ forceNum : true}) }
+    })
+  },
+
   membership:function(){
     let that = this;
     if(app.globalData.isLogin !== 3){

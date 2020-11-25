@@ -14,7 +14,8 @@ Page({
       bmi:'--',
       height:'--',  
       weight:'--',
-      bpm:'--'
+      bpm:'--',
+      source:''
     },
     editBlck: false,
     blockForData:{},
@@ -22,7 +23,8 @@ Page({
     integralBlock : false,
     tipUpdate: false,  //同步数据
     showAPPData: 0,
-    imagesUrl: app.globalData.imagesUrl
+    imagesUrl: app.globalData.imagesUrl,
+    appName:''
   },
 
   /**
@@ -112,12 +114,13 @@ Page({
             let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2);
             res.data.data.bmi = Number(bmiNum.toFixed(1));
         }else{
-             res.data.data.bmi = that.data.health.bmi;
+            res.data.data.bmi = that.data.health.bmi;
         }
         res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
         res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
         res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
         that.setData({health: res.data.data});
+        that.appDataText(res.data.data.source);
       } else {
         wx.showModal({
           showCancel: false,
@@ -228,5 +231,27 @@ Page({
         })
       }
     })
+  },
+  appDataText :function(key){
+      switch (key) {
+        case 'HuaWei':
+          this.setData({appName:'华为运动'});
+          break;
+        case 'Sensor':
+          this.setData({appName:'计步器'});
+          break;       
+        case 'iOS':
+          this.setData({appName:'苹果健康'});
+          break;
+        case 'Samsung':
+          this.setData({appName:'三星'});
+          break;
+        case 'Huawei':
+          this.setData({appName:'华为运动'});
+          break;
+        default:
+          break;
+      }
+      console.log('appName',this.data.appName);
   }
 })

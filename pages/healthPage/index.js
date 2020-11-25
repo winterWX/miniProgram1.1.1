@@ -23,7 +23,8 @@ Page({
         distance: 0,
         calories: 0,
         totalTime: 0,
-        todaySteps: 0
+        todaySteps: 0,
+        source:'' //数据源
      }, 
      leftDire: 750/2 + 120,
      topDire: 240 / 2,
@@ -166,6 +167,7 @@ Page({
       url: "../dailyHealthData/index",
     });
   },
+
   //查询用户是否已经获取步数积分
   getQueryintegral: function () {
     let that = this;
@@ -177,6 +179,7 @@ Page({
       }
     })
   },
+  
   //领取积分
   getintegral: function () {
     let that = this;

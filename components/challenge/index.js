@@ -134,7 +134,6 @@ Component({
                   receiveStatus: "2",
                   startTime: lastTime + (24 * 60 * 60) * (i - list.length+1),
                   continuousComplianceDays: -1                 
-
                 }
               }
               //当天凌晨的时间戳
