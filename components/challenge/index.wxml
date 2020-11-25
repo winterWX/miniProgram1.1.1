@@ -8,7 +8,8 @@
     <!-- <view class="steps_reward" wx:if="{{days.integral !=='' && list[list.length-1].receiveStatus =='2'}}"> -->
     <view class="steps_reward">
       <view class="reward_tips" >
-        再坚持{{days.day}}天领{{days.integral}}积分
+        <!-- //再坚持{{days.day}}天领{{days.integral}}积分 -->
+        {{days.day}}{{days.integral}}
         <view class="popper_arrow">
         <image src="https://wellness.hangseng.com/images/miniprogram/images/iconArrow5X5@2x.png" mode="aspectFit" />
         </view>
