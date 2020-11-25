@@ -3,5 +3,5 @@
     "van-button": "vant-weapp/button/index",
     "htmlView":"../../components/htmlView/htmlView"
   },
-  "navigationBarTitleText": "优惠券详情"
+  "navigationBarTitleText": "优惠详情"
 }
