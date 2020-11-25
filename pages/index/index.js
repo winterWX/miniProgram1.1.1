@@ -40,6 +40,7 @@ Page({
   onShow: function () {
     let that = this;
     that.setData({ active: 0 });
+    that.getQueryintegral();
   },
   onPullDownRefresh: function () {
     let that = this;
