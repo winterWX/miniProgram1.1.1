@@ -67,11 +67,11 @@
                      <view class="health-item health-itemOhter"><view class="health-num">{{everyDayData.totalTime}}</view><view class="health-text">分钟</view></view>
                      <view class="health-bottom">总运动时间</view>
                   </view>
-                  <view class="sendBlock-Balck" style="padding-left:20rpx">
+                  <view class="sendBlock-Balck" style="padding-left:20rpx" wx:if="{{ everyDayData.source !=='Sensor'}}">
                      <view class="health-item"><view class="health-num">{{everyDayData.calories}}</view><view class="health-text">千卡</view></view>
                      <view class="health-bottom">消耗</view>
                   </view>
-                  <view class="sendBlock-Balck">
+                  <view class="sendBlock-Balck" wx:if="{{ everyDayData.source !=='Sensor' && (everyDayData.source !=='HuaWei' || everyDayData.source !=='Huawei') }}">
                       <view class="health-item"><view class="health-num">{{everyDayData.distance}}</view><view class="health-text">公里</view></view>
                       <view class="health-bottom">距离</view>
                   </view>
