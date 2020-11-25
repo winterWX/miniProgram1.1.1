@@ -27,8 +27,8 @@
                         </view>
                         <view class="imageTopTextRight"  bindtap="upgradeCard" data-card="image2">立即升级</view>
                      </view>
-                     <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员等级于{{levelExpiryTime}}到期</view>
-                     <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会员永久有效</view>
+                     <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员级别于{{levelExpiryTime}}到期</view>
+                     <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会籍永久有效</view>
                      <view class="silverBgImge" wx:if="{{activeData.level === 1}}"><image class="silver-bgImge" src="https://wellness.hangseng.com/images/miniprogram/images/silver/newImage/silver-lock@3x.png"/></view>
                      <view class="imageBottom">
                         <view class="imageBottom1" wx:if="{{activeData.level === 2 || activeData.level === 4}}">积分{{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}升级</view>
@@ -42,7 +42,7 @@
                      <view  class="imageTopText3">
                         <view class="imageTopTextLeft3">
                            <image  src="https://wellness.hangseng.com/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png"/>
-                           <view class="imageRihtText3">金会员</view>
+                           <view class="imageRihtText3">黄金会员</view>
                         </view>
                         <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">立即升级</view>
                      </view>
@@ -114,7 +114,7 @@
 <view class="seliverBlock" wx:if="{{seliverBlockShow}}">
       <view class="seliverBlockLeft" bindtap="myCoupons">
          <view class="seliverText">
-            <view class="seliverTextLeft">我的优惠券</view>
+            <view class="seliverTextLeft">我的优惠</view>
             <view class="seliverTextLeftBottom">折扣券、现金券</view>
          </view>
          <view class="seliverTextImge">

@@ -28,6 +28,6 @@
         </view>
     </view>
     <button class="btn btn-lg btn-primary" wx:if="{{!complete && isConfirm}}" catchtap="next">下一题</button>
-    <button class="btn btn-lg btn-primary" catchtap="confirm" disabled="{{!selected && !complete}}" wx:if="{{!isConfirm}}">确定</button>
+    <button class="btn btn-lg btn-primary {{!selected && !complete ? 'disabled' : ''}}" catchtap="confirm" disabled="{{!selected && !complete}}" wx:if="{{!isConfirm}}">确定</button>
     <button class="btn btn-lg btn-primary" wx:if="{{complete}}" catchtap="submit">完成</button>
 </view>

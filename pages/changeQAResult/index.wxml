@@ -17,7 +17,7 @@
                     <view class="num">{{wrong}}</view>
                 </view>
                 <view class="item">
-                    <view class="title">通过率</view>
+                    <view class="title">正确率</view>
                     <view class="num pass-rate">{{rate}}%</view>
                 </view>
             </view>
