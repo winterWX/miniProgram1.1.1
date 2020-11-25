@@ -25,7 +25,7 @@
   </view>
   <view class="midden-text" bindtap="goldPage">
       <image src="{{imagesUrl + '/images/strategy/qingtong-2-copy-5@3x.png'}}" />
-      <view class="goldTextLink">查看金会员升级攻略，享尽精彩优惠</view>
+      <view class="goldTextLink">查看金会员升级攻略，享尽精彩星级礼遇</view>
   </view>
   <view class="bottom-main">
     <view class="bottom-mainOut">
@@ -46,7 +46,7 @@
       <view class="listBottom">
          <view class="listBottom-text">
            <image  src="{{imagesUrl + '/images/strategy/group-10.png'}}"/>
-           <view>尊享码尊享好礼</view>
+           <view>尊享码会员独家礼遇</view>
          </view>
          <view class="listItemBottom">
             <view class="everyItem" wx:for="{{enjoyCopywriting}}" wx:key="id">

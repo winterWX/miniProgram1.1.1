@@ -1,9 +1,6 @@
 page{
   background-color: #ededed;
 }
-/* .slierMain{
-  padding-top: 30rpx;
-} */
 .top-mainText{
    display: flex;
    justify-content: center;
@@ -85,7 +82,7 @@ page{
 }
 .btnClass{
   font-size: 28rpx;
-  width: 247rpx;
+  width: 245rpx;
   height: 79rpx;
   line-height: 79rpx;
   border: 1rpx solid rgb(51,51,51);
