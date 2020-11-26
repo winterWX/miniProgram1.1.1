@@ -105,7 +105,8 @@ Page({
       that.healthEveryday();
       that.getQueryintegral();
     } else if (id === "refusedTo") {
-      that.setWerunStep();
+      //that.setWerunStep();
+      that.getStepRunData();
     } else if (id === "carryAPPData") {
       that.settingDataBtn();
       that.healthEveryday();
@@ -210,7 +211,7 @@ Page({
               if (res.confirm) {
                 wx.openSetting({
                   success: function (res) {
-                    that.getStepRunData(); //开启后 重新获取微信运动步数;
+                    that.getStepRunData();   //开启后 重新获取微信运动步数;
                     that.healthEveryday();
                   },
                 });
@@ -236,6 +237,8 @@ Page({
           app.globalData.runData = result;
           app.globalData.isWeRunSteps = true; //标志授权成功
           that.getQueryLatestime(result);
+        }else{
+          that.setWerunStep();
         }
     })
   },

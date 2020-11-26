@@ -175,7 +175,8 @@ page{
   font-style: normal;
   letter-spacing: normal;
   color: #929292;
-  margin-top: 26rpx;
+  /* margin-top: 26rpx; */
+  margin-top: 10rpx;
 }
 .timeText .timeTextLeft{
     /* font-size: 31rpx;

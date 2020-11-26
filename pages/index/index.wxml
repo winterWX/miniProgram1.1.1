@@ -13,12 +13,15 @@
            <miniprogress  stepNum="{{ stepsNum.todaySteps }}" />
         </view>
         <view class="topSetting-text">
-            <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun && !forceNum}}">只差{{runDataText}}步达成今日目标</view>
-            <view class="topSett-disp" wx:if="{{ rejectRun && !forceNum }}">还剩10000步达成今日挑战</view>
-            <view class="topSett-disp" wx:if="{{runDataText === 10000 && stepsNum.todaySteps !== 0 && !forceNum}}">
+            <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun}}">只差{{runDataText}}步达成今日目标</view>
+            <view class="topSett-disp" wx:if="{{ rejectRun }}">还剩10000步达成今日挑战</view>
+            <!-- <view class="topSett-disp" wx:if="{{(runDataText === 10000 && stepsNum.todaySteps !== 0) && !forceNum}}">
+                <view>今日步数已达标,<text class="clickText">立即领取积分</text>！</view>
+            </view> -->
+            <view class="topSett-disp" wx:if="{{(runDataText === 10000 && stepsNum.todaySteps !== 0) && !forceNum}}">
                 <view>今日步数已达标,<text class="clickText">立即领取积分</text>！</view>
             </view>
-            <view class="topSett-disp" wx:if="{{ forceNum }}">恭喜你! 今日的每日步数挑战已达标</view>
+            <view class="topSett-disp" wx:if="{{ forceNum && runDataText >= 10000 && stepsNum.todaySteps !== 0}}">恭喜你！今日的每日步数挑战已标</view>
         </view>    
     </view>
     <view class="secondeBlock" bindtap="membership" wx:if="{{levelNumShow}}">

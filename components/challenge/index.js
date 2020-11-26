@@ -251,7 +251,7 @@ Component({
                       })
                     }
                 }
-              }else if((21 < k < 28 || k > 28) && k !== 21) {
+              }else if( (21 < k && k < 28) || k > 28 ) {
                 if(isDoneState == 1){
                     if (i == 6) {
                       reward = 100;

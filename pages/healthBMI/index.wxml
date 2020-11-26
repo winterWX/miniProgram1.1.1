@@ -3,7 +3,7 @@
   <view class="main-top">
      <view class="main-topTitle">质量指数(BMI)</view>
      <view class="main-topSecode"> 
-        <view  wx:if="{{BMIData.bmi  ==='--'}}" class="mainRight2">{{BMIData.bmi}}</view>
+        <view  wx:if="{{BMIData.bmi ==='--'}}" class="mainRight2">{{BMIData.bmi}}</view>
         <view  wx:if="{{BMIData.bmi !=='--'}}"  class="mainLeft">{{BMIData.bmi}}</view>
         <view class="mainRight">公斤/平方</view>
      </view>
@@ -46,7 +46,7 @@
   <view class="main-bottom">
       <view class="main-TextBlock">关于体重指标BMI</view>
       <view class="mainBlocks">
-         <view>体重指标（英文为Body Mass Index，简称BMI），是用来分析体重是否适中的最常用方法。</view>
+         <view class="mainBlocksBottom">体重指标（英文为Body Mass Index，简称BMI），是用来分析体重是否适中的最常用方法。</view>
          <view>资料来源：香港特别行政区卫生署卫生防护中心。</view>
       </view>
   </view>

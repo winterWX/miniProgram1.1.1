@@ -87,20 +87,6 @@ Page({
       });
     }
   },
-  // onReachBottom: function () {
-  //   let that = this;
-  //   that.setData({ onPullNun: (that.data.onPullNun += 1) });
-  //   if (that.data.onPullNun <= that.data.totalPage) {
-  //     //wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
-  //     that.searchSend(that.data.researchTag, that.data.onPullNun);
-  //   } else {
-  //     return;
-  //   }
-  //   // setTimeout(function () {
-  //   //   wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
-  //   //   wx.stopPullDownRefresh(); //停止下拉动作
-  //   // }, 100);
-  // },
   //选择条目
   tabSelect(e) {
       let that = this;

@@ -89,8 +89,8 @@ Page({
     let method = 'GET';
     util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
-          that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
-          //that.setData({ isAppData: res.data.data === 2 ? false : true });   // 2 app 用户，1 mini用户
+          res.data.data = 1;
+          //that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
           app.healthStep.dataCource = res.data.data;    // 数据源
           if(!that.data.isAppData){
              that.getStepRunData();
@@ -122,9 +122,9 @@ Page({
       that.carryAPPData();
     }else{
       if (app.globalData.isWeRunSteps) {
-        that.healthSccuss();
+          that.healthSccuss();
       } else {
-        that.healthFail();
+          that.healthFail();
       }
     }
   },
