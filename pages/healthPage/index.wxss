@@ -393,3 +393,16 @@ padding: 30rpx;
   height: 230rpx;
   width: 60%;
 }
+.mask {
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.3;
+}
+.mask .content {
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}

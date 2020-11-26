@@ -35,7 +35,8 @@ Page({
      iconPath:app.globalData.imagesUrl + '/images/icon-10-points@2x.png',
      dataSyn: false,   //标记数据同步
      optionsFlg:'', // 标识 options id
-     imagesUrl: app.globalData.imagesUrl
+     imagesUrl: app.globalData.imagesUrl,
+     showModal: false
   },
   onLoad:function (options) {
       let that = this;
@@ -281,5 +282,10 @@ Page({
           that.settingDataBtn();
         }
       });
+    },
+    toggleModal: function() {
+      this.setData({
+        showModal: !this.data.showModal
+      })
     }
 })
