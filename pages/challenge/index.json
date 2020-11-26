@@ -2,7 +2,7 @@
   "usingComponents": {
 
   },
-  "navigationBarTitleText": "热门活动",
+  "navigationBarTitleText": "热门挑战",
   "navigationBarTextStyle": "black",
   "backgroundTextStyle":"dark",
   "onReachBottomDistance":50,

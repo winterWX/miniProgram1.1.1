@@ -92,7 +92,7 @@ Page({
   },
   navigatorDetail: function(e) {
     let {title,id, type } = e.currentTarget.dataset;
-    let url = type === '2' ? '../healthKnowledge/index?id=' + id : '../activityDetail/index?id=' + id + '&title=' + title;
+    let url = type === '2' ? '../healthKnowledge/index?id=' + id  + '&title=' + title : '../activityDetail/index?id=' + id + '&title=' + title;
     wx.navigateTo({
       url
     })
