@@ -122,9 +122,9 @@ Page({
       that.carryAPPData();
     }else{
       if (app.globalData.isWeRunSteps) {
-        that.healthSccuss();
+          that.healthSccuss();
       } else {
-        that.healthFail();
+          that.healthFail();
       }
     }
   },
