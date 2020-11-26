@@ -105,8 +105,8 @@ Page({
       that.healthEveryday();
       that.getQueryintegral();
     } else if (id === "refusedTo") {
-      //that.setWerunStep();
-      that.getStepRunData();
+       //that.setWerunStep();
+        that.getStepRunData();
     } else if (id === "carryAPPData") {
       that.settingDataBtn();
       that.healthEveryday();

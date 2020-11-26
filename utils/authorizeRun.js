@@ -108,7 +108,6 @@ function getAllWeRunData(sessionkey, result) {
       },
       fail: function (e) {
          console.log('e',e);
-         let errMsg = 'getWeRunData:fail 开发者未开通微信运动，请关注“微信运动”公众号后重试';
          let errMsgCancel = 'getWeRunData:fail cancel';
          if(e.errMsg.includes('getWeRunData:fail')){
             wx.getSystemInfo({
