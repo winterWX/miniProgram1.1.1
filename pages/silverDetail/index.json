@@ -4,6 +4,6 @@
     "membership-card":"../../components/membershipCard",
     "van-button": "vant-weapp/button/index"
   },
-  "navigationBarTitleText": "会员等级",
+  "navigationBarTitleText": "会员级别",
   "navigationBarTextStyle": "black"
 }

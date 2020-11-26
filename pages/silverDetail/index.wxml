@@ -4,7 +4,7 @@
         <view class="integralAct-main">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
-                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
+                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
                     <view class="rab-item1"><view class="rabie"></view></view>
                 </view>
@@ -15,7 +15,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
+                <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <view><image src="{{baseUrl + '/images/silver/group-39@3x.png' }}" /></view> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
@@ -36,7 +36,7 @@
                                     <image src="{{baseUrl + '/images/silver/newImage/group-12@3x.png'}}"/>
                                     <view class="progressBlockText">
                                         <image src="{{baseUrl+'/images/silver/newImage/group-2@t3x.png'}}"/>
-                                        <view class="progressBlockText1">尊享码升级会员可享现金券积分兑换活动</view>
+                                        <view class="progressBlockText1">现金券积分兑换 唯尊享码升级会员专享</view>
                                         <view class="progressBlockText2">立即查看</view>
                                     </view>
                                 </view>
@@ -45,7 +45,7 @@
                                 <view class="progressBlockImage">
                                     <image src="{{baseUrl+'/images/otherCarde/bg-x-2@t3x.png'}}"/>
                                     <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">银会员积分x2升级攻略</view>
+                                        <view class="progressBlockText20">银会员X2积分升级攻略</view>
                                         <view class="progressBlockText30">立即查看</view>
                                     </view>
                                 </view>
@@ -54,7 +54,7 @@
                                 <view class="progressBlockImage">
                                     <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                     <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">金会员积分x5升级攻略</view>
+                                        <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
                                     </view>
                                 </view>
@@ -85,7 +85,7 @@
         <view class="integralAct-main">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
-                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
+                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
                     <view class="rab-item1"><view class="rabie"></view></view>
                 </view>
@@ -96,7 +96,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
+                <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image src="{{baseUrl+'/images/silver/group-39@3x.png'}}" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
@@ -173,7 +173,7 @@
         <view class="integralAct-main integralAct-main2">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
-                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
+                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
                     <view class="rab-item1"><view class="rabie"></view></view>
                 </view>
@@ -184,7 +184,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
+                <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
@@ -255,7 +255,7 @@
         <view class="integralAct-main">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
-                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
+                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
                     <view class="rab-item1"><view class="rabie"></view></view>
                 </view>
@@ -266,7 +266,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
+                <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
                     <view class="blockText">
                         <!-- <view class="topText">{{couponTypeAfter}}{{item.couponValue}}{{couponTypes}}</view> -->
@@ -330,7 +330,7 @@
         <view class="integralAct-main" style="height: 275rpx;">
             <view class="integralActTitle">{{couponTypeText}}积分活动</view>
             <view class="progressSecore">
-                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" style="width:{{secoreNun}}%;">
+                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                     <view class="rab-item">{{item.targetIntegral}}</view>
                     <view class="rab-item1"><view class="rabie"></view></view>
                 </view>
@@ -341,7 +341,7 @@
                 </view>
             </view>
             <view class="progressCark">
-                <view wx:for="{{activeData.mileStones}}" class="blockTextTop" style="width:{{secoreNun}}%;">
+                <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                     <image  wx:if="{{item.received !==2}}" src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
                     <image  wx:if="{{item.received === 2}}" src="{{baseUrl + '/images/silver/newImage/group@3x.png'}}" />
                     <view class="blockText">
