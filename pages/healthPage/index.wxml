@@ -1,14 +1,14 @@
 <view class="pageTopPick-main">  
    <view  class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flag}}"></view>
-         <cover-view class="mask-guidance1"  wx:if='{{guidance1}}'>
+         <view class="mask-guidance1"  wx:if='{{guidance1}}'>
             <image src="{{imagesUrl + '/images/pic-guidance.png'}}"></image>
             <view class="picBottom">
                <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
                <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
             </view>
-         </cover-view>
-         <cover-view class="mask-guidance2"  wx:if='{{guidance2}}'>
+         </view>
+         <view class="mask-guidance2"  wx:if='{{guidance2}}'>
                <image src="{{imagesUrl + '/images/pic-guidance-2.png'}}"></image>
                <view class="contutionText">
                      <view class="picBottomText-main">
@@ -21,17 +21,16 @@
                      </view>
                   <van-button class="guidanceTwoBtn vanBtn" bindtap="guidanceTwo">开始记录</van-button>
                </view>
-         </cover-view>
+         </view>
    </view>
    <view  class="topSetting PageBackColor" style="padding-top:30rpx;">
-       <view class="imageLeft" catchtap="toggleModal"><image src='{{imagesUrl + "/images/icon-guideline.png"}}'></image></view>
+       <view class="imageLeft"><image src='{{imagesUrl + "/images/icon-guideline.png"}}'></image></view>
        <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='{{imagesUrl + "/images/icon-right-arrow-12-x-12.png"}}'></image></view>
          <view class="{{firstInitShow ? 'firstInitShow': 'miniprogress'}}">
             <miniprogress wx:if="{{!firstInitShow}}" stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
             <image wx:else class="miniprogressImage"  src="../../images/group@3x.png" />
         </view>
-        <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)
-        isDone	完成状态(1:完成,2:未完成) -->
+        <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)  isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
             <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
             <van-button  wx:if='{{ (stepsNum.isDone === "2" || stepsNum.todaySteps === 0)  && !startStatus}}'>还差{{startStep}}步即可领10积分</van-button>
@@ -84,19 +83,6 @@
 			   </view>
 		 </view>
    </view>
-   <cover-view wx:if="{{showModal}}" class="mask" catchtap = "toggleModal">
-      <cover-view class="content">
-         <cover-view class="item">
-            1.每日步数达1万步，当日可获10积分。
-         </cover-view>
-         <cover-view class="item">
-            2.连续7 天每日步数达1万步，可于第7天获50积分
-         </cover-view>
-         <cover-view class="item">
-            3.连续28 天每日步数若达1万步，可于第28天获100积分。
-         </cover-view>
-      </cover-view>
-   </cover-view>
 </view>
 <!-- <integralAmation integral="{{stepsNum.integral}}" wx:if="{{stepsNum.integral !=0}}"/> -->
 <integralAmation integral="{{allowRun ? 100 : stepsNum.integral}}"  wx:if="{{forceNum}}"/>
