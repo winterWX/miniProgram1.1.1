@@ -1,4 +1,4 @@
-page{
+page {
   background-color: #ededed;
 }
 .top-mainText{
@@ -82,7 +82,7 @@ page{
 }
 .btnClass{
   font-size: 28rpx;
-  width: 245rpx;
+  width: 66%;
   height: 79rpx;
   line-height: 79rpx;
   border: 1rpx solid rgb(51,51,51);
