@@ -110,7 +110,9 @@ Component({
             
             var index=len%7
             var k = parseInt(len / 7)*7
-            var list=[]    
+            var list=[];
+ 
+            let dayText = {};
             if(index ==0){
               list = res.data.data.slice(-7)
               k=k-7           
@@ -118,7 +120,6 @@ Component({
               list = res.data.data.slice(-index)
               k = res.data.data.length - index
             }
-          
           // var list = res.data.data.splice(len-index)
             var lastTime=0
             var newList=[]
@@ -142,27 +143,6 @@ Component({
               //当天时间截止的时间戳
               const h2 = new Date(new Date().setHours(23, 59, 59, 999)) / 1000;
               var reward = 10;
-              // if (this.data.continuousComplianceDays < 8) {
-              //   if (i == 6) {
-              //     reward = 50
-              //     this.setData({
-              //       days: {
-              //         day: 7 - this.data.continuousComplianceDays,
-              //         integral: 50
-              //       }
-              //     })
-              //   }
-              // } else if (this.data.continuousComplianceDays > 21 || this.data.continuousComplianceDays == 21) {
-              //   if (i == 6) {
-              //     reward = 100
-              //     this.setData({
-              //       days: {
-              //         day: 28 - this.data.continuousComplianceDays,
-              //         integral: 100
-              //       }
-              //     })
-              //   }
-              // }
               if (k == 7) {
                   if(isDoneState == 1){
                       if (i == 6) {
@@ -210,11 +190,11 @@ Component({
               }else if( k == 21) {
                 if(isDoneState == 1){
                     if (i == 6) {
-                      reward = 50;
+                      reward = 100;
                       this.setData({
                         days: {
                           day: k -this.data.continuousComplianceDays == 0 ? '再坚持7天' : `再坚持${k -this.data.continuousComplianceDays}天`,
-                          integral: '领' +50 + '积分'
+                          integral: '领' + 100 + '积分'
                         }
                       })
                     }
@@ -229,36 +209,15 @@ Component({
                       })
                     }
                 }
-              }else if(k == 28){
-                if(isDoneState == 1){
-                  if (i == 6) {
-                    reward = 100;
-                    this.setData({
-                      days: {
-                        day:'恭喜连续28天达标',
-                        integral: ''
-                      }
-                    })
-                  }
-                }else{
-                    if (i == 6) {
-                      reward = 100;
-                      this.setData({
-                        days: {
-                          day:'再坚持1天',
-                          integral: '拿' + 100 +'积分'
-                        }
-                      })
-                    }
-                }
-              }else if( (21 < k && k < 28) || k > 28 ) {
+              }else if(21 < k && k <= 28) {
+                let leftData = 28 - this.data.continuousComplianceDays;
                 if(isDoneState == 1){
                     if (i == 6) {
                       reward = 100;
                       this.setData({
                         days: {
-                          day: `再坚持${k -this.data.continuousComplianceDays}天`,
-                          integral: '领' +100 + '积分'
+                          day: leftData > 0 ? `再坚持${leftData}天` : '恭喜连续28天达标',         
+                          integral: leftData > 0  ? '领' +100 + '积分' :  ''
                         }
                       })
                     }
@@ -267,8 +226,8 @@ Component({
                       reward = 100;
                       this.setData({
                         days: {
-                          day: `再坚持${k - (this.data.continuousComplianceDays % k)}天`,
-                          integral: '领' +100 + '积分'
+                            day: leftData > 0 ? `再坚持${leftData}天` : '再坚持1天',         
+                            integral: leftData > 0 ? '领' +100 + '积分' : '拿' + 100 +'积分'
                         }
                       })
                     }
