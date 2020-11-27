@@ -9,7 +9,7 @@
             <image animation="{{aniLe5}}"  class="miainImage4" src="https://wellness.hangseng.com/images/miniprogram/images/recommend/img_5.png"></image>
         </view>
         <view class="miainNum">+50积分</view>
-        <view class="miainText">恭喜注册领取成功，50积分入账</view>
+        <view class="miainText">注册成功，50积分即时入账</view>
         <view class="miainReBtn">
             <van-button class="save-btn" bindtap="handleFell" data-ptpid="4095-16fd-bc97-4868" type="primary" size="large">立即体验</van-button>
         </view>

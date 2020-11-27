@@ -26,8 +26,8 @@ Page({
   onLoad: function (options) {
     let that = this;
     if (options.flag === 'true'){   //是 true
-      that.setData({ successFlg: true })
-      that.selectComponent('#filterCmp').restFilterDatas();
+      console.log('options.flag',options.flag);
+      that.setData({ successFlg: true });
     }
     if(app.globalData.isLogin === 3){
       that.setData({ isLogin: app.globalData.isLogin });

@@ -14,6 +14,11 @@ Component({
     imagesUrl: app.globalData.imagesUrl
   },
 
+  lifetimes: { // 生命周期
+    ready: function () {
+      this.restFilterDatas()
+    },
+  },
   /**
    * 组件的方法列表
    */
