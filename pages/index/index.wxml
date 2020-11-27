@@ -66,9 +66,9 @@
             </view>
          </view>
      </view>
-    <collectionOption  wx:if="{{successFlg}}" id="filterCmp"  bind:parentReceive="parentCallBack" />
-    <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 </view>
+<collectionOption  wx:if="{{successFlg}}" bind:parentReceive="parentCallBack" ></collectionOption>
+<footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 
 
 

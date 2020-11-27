@@ -2,11 +2,7 @@
   "usingComponents": {    
     "footer": "../../components/footer/index",
     "collectionOption": "../../components/collectionOption/index",
-    "integralAmation": "../../components/integralAmation/index",
-    "stepAmaition": "../../components/stepAmaition/index",
-    "miniprogress": "../../components/miniprogress/miniprogress",
-    "modalView": "../../components/modal/modal",
-    "strategyModal" : "../../components/strategyModal/index"
+    "miniprogress": "../../components/miniprogress/miniprogress"
   },
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true  

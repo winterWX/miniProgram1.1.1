@@ -236,8 +236,8 @@ Page({
           timeData,
           caloriesData,
           distanceData, 
-          tabs: type === 'MINIP' ? tabs : tabsWithDay,
-          //tabs: typeState,
+          //tabs: type === 'MINIP' ? tabs : tabsWithDay,
+          tabs: type === 'MINIP' ? tabs : tabs,
           noData: !dataList.length
         });
         let xData = [];

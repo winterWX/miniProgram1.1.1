@@ -48,9 +48,11 @@ Page({
             app.globalData.token = token;
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
+            console.log('------新用户 + this.data.urlTag ', res,this.data.urlTag);
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
                 wx.redirectTo({ url: '../index/index?flag='+ integralFlg });
             }else if((this.data.urlTag === 'pageTag' && integralFlg === '') && !isFriend){
+              
                 let addSuccess = 'addSuccess';
                 wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
             }else if(this.data.urlTag === 'pageTag' && isFriend){
