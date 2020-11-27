@@ -51,13 +51,13 @@ const wxAjax = (method, url, data = {}) => {
       success: (res) => {
        if (!app.globalData.sessionFail && (res.data.code === 999988 || res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
           //wx.setStorageSync('sessionFail', true);
-          app.globalData.sessionFail = true; //标记已经被逼下线
+          app.globalData.sessionFail = true; //标记已经被逼下线   
           app.globalData.userInfo = null;
           app.globalData.token = '';
           app.globalData.isLogin = 0;
           wx.showModal({
             title: '提示',
-            content: '登入状态已失效，请重新再试',
+            content: res.data.code === 999988 ? '你的登录时间已超时，请重新登录' : '登入状态已失效，请重新再试',
             confirmText: '确认',
             success: () => { wx.reLaunch({url: '../index/index' }) }
           });

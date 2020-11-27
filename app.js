@@ -89,6 +89,7 @@ App({
   healthStep:{
     SynchronousData :false,  // 是否已经立即授过权 同步数据
     integralRecord :false,   //标记是否领取
-    dataCource: 0   // 2 app 用户， 1 mini用户
+    dataCource: 0,   // 2 app 用户， 1 mini用户
+    APPSource: ''   //APP 数据源
   }
 })
