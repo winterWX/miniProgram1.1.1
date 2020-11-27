@@ -230,11 +230,14 @@ Page({
         dataList.sort((a, b) => {
           return a.dataTime - b.dataTime
         });
+        //let APPSource = app.healthStep.APPSource;
+        //let typeState = APPSource === 'string' ? tabs : ( APPSource === 'iOS' ? tabs : tabsWithDay);
         that.setData({
           timeData,
           caloriesData,
           distanceData, 
           tabs: type === 'MINIP' ? tabs : tabsWithDay,
+          //tabs: typeState,
           noData: !dataList.length
         });
         let xData = [];

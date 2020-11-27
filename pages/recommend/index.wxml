@@ -17,7 +17,7 @@
          <view class='listPerson'>
                <view class="listPerson-title"> 
                     <view class="listPerson-item">
-                        <view>累计成功推荐(人)</view>
+                        <view>累计成功推荐(名)</view>
                         <view class="numText">{{invitData.personNum}}</view>
                     </view>
                     <view class="listPerson-item">

@@ -58,29 +58,35 @@
    <view  class="sendBlock PageBackColor" bindtap="healthShow">
          <view class="sendBlockBefore">
                <view class="sendBlock-main">
-                  <view class="sendBlock-title">每日健康数据</view>
+                  <view class="sendBlock-title"> {{ everyDayData.source === 'Sensor' ? '每周平均步数' : '每日健康数据' }} </view>
                   <view class="sendBlockBack" ></view>
                </view>
-               <view class="sendBlock-bottom" wx:if="{{showAPPData === 2}}">
-                  <view class="sendBlock-Balck" style="padding-left:20rpx">
+               <view class="sendBlock-bottom" wx:if="{{showAPPData === 2 && everyDayData.source !=='Sensor'}}">
+                  <view class="sendBlock-Balck" style="padding-left:20rpx" wx:if="{{ everyDayData.source !=='HuaWei' && everyDayData.source !== 'Huawei'}}">
                      <view class="health-item health-itemOhter"><view class="health-num">{{everyDayData.totalTime}}</view><view class="health-text">分钟</view></view>
                      <view class="health-bottom">总运动时间</view>
                   </view>
-                  <view class="sendBlock-Balck" style="padding-left:20rpx" wx:if="{{ everyDayData.source !=='Sensor'}}">
+                  <view class="sendBlock-Balck" style="padding-left:20rpx">
                      <view class="health-item"><view class="health-num">{{everyDayData.calories}}</view><view class="health-text">千卡</view></view>
                      <view class="health-bottom">消耗</view>
                   </view>
-                  <view class="sendBlock-Balck" wx:if="{{ everyDayData.source !=='Sensor' && (everyDayData.source !=='HuaWei' || everyDayData.source !=='Huawei') }}">
+                  <view class="sendBlock-Balck">
                       <view class="health-item"><view class="health-num">{{everyDayData.distance}}</view><view class="health-text">公里</view></view>
                       <view class="health-bottom">距离</view>
                   </view>
                </view>
+               <view  class="sendBlock-bottom" wx:if="{{showAPPData === 2 && everyDayData.source === 'Sensor'}}">
+                  <view class="sendBlock-Balck" style="padding-left:20rpx">
+                     <view class="health-item"><view class="health-num">{{everyDayData.todaySteps}}</view><view class="health-text">步</view></view>
+                     <view class="health-bottom">平均步数</view>
+                  </view>
+			      </view>
                <view  class="sendBlock-bottom" wx:if="{{showAPPData === 1}}">
-				   <view class="sendBlock-Balck" style="padding-left:20rpx">
-				      <view class="health-item"><view class="health-num">{{everyDayData.todaySteps}}</view><view class="health-text">步</view></view>
-				      <view class="health-bottom">今日步数</view>
-				   </view>
-			   </view>
+                  <view class="sendBlock-Balck" style="padding-left:20rpx">
+                     <view class="health-item"><view class="health-num">{{everyDayData.todaySteps}}</view><view class="health-text">步</view></view>
+                     <view class="health-bottom">今日步数</view>
+                  </view>
+			      </view>
 		 </view>
    </view>
 </view>

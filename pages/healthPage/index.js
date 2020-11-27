@@ -1,4 +1,4 @@
-import { wxAjax } from "../../utils/util";
+import { formatTime,wxAjax } from "../../utils/util";
 const app = getApp();
 const authorizeRun = require("../../utils/authorizeRun.js");
 Page({
@@ -151,7 +151,7 @@ Page({
     wxAjax ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
-        that.setData({ forceNum: true }); // - anBackShow:true
+        that.setData({ forceNum: true });    // - anBackShow:true
       } 
     })
   },
@@ -160,7 +160,10 @@ Page({
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
+        //res.data.data.source = res.data.data.source !== '' ? toLowerCase(res.data.data.source) :'';
+        app.healthStep.APPSource = res.data.data.source;
         that.setData({ everyDayData: res.data.data });
+        console.log('this.data.everyDayData',this.data.everyDayData);
       }
     });
   },
@@ -250,7 +253,7 @@ Page({
     wxAjax ('GET', url).then(res => {
       if (res.data.code === 200) {
         //最后上传时间戳 和 当前时间戳进行比较
-        let time = util.formatTime(new Date(Number(res.data.data)));
+        let time = formatTime(new Date(Number(res.data.data)));
         let latestTime = time.split(" ")[0];
         let result = runData.find((item) => item.date === latestTime);
         let index = runData.indexOf(result);

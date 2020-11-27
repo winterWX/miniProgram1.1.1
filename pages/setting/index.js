@@ -16,8 +16,24 @@ Page({
       active: 4
     })
   },
+
+  loginOut :function(){
+    let that = this;
+    wx.showModal({
+      title: '是否确认登出恒生健康',
+      content: '登出后不会删除任何历史记录，下次登录依然可以使用本账号。',
+      confirmText: '确认',
+      success (res) {
+        if (res.confirm) {
+          that.loginOutIpa();
+        } else if (res.cancel) {
+          return;
+        }
+      }
+    });
+  },
   // 退出登录
-  loginOut: function() {
+  loginOutIpa: function() {
     wx.request({
       url: app.globalData.baseUrl + '/remote/loginOut',
       method: "GET",
