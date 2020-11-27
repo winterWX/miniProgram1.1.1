@@ -161,9 +161,13 @@ Page({
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
         //res.data.data.source = res.data.data.source !== '' ? toLowerCase(res.data.data.source) :'';
+
         app.healthStep.APPSource = res.data.data.source;
+        res.data.data.distance = res.data.data.distance === '' ?  0 : res.data.data.distance.toFixed(1);
+        res.data.data.calories = res.data.data.calories === '' ?  0 : res.data.data.calories.toFixed(1);
+        res.data.data.totalTime = res.data.data.totalTime === '' ?  0 : res.data.data.totalTime.toFixed(1);
         that.setData({ everyDayData: res.data.data });
-        console.log('this.data.everyDayData',this.data.everyDayData);
+        
       }
     });
   },

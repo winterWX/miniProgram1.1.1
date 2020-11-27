@@ -119,6 +119,10 @@ Page({
         res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
         res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
         res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
+        res.data.data.distance =  res.data.data.distance === 0 ?  '--' : res.data.data.distance.toFixed(1);
+        res.data.data.calories =  res.data.data.calories === 0 ?  '--' : res.data.data.calories.toFixed(1);
+        res.data.data.totalTime =  res.data.data.totalTime === 0 ?  '--' : res.data.data.totalTime.toFixed(1);
+
         that.setData({health: res.data.data});
         that.appDataText(res.data.data.source);
       } else {
@@ -152,12 +156,17 @@ Page({
     }
   },
   movementData:function(){
+    let that = this;
     if(!app.healthStep.SynchronousData){
        return;
     }else{
-      wx.navigateTo({
-        url: '../../pages/movementData/index',
-      })
+        if(that.data.health.source ==='HuaWei' || that.data.health.source === 'Huawei'){
+            return;
+        }else{
+          wx.navigateTo({
+            url: '../../pages/movementData/index',
+          })
+        }
     }
   },
   heightWeightFun:function(e){
@@ -247,8 +256,11 @@ Page({
           this.setData({appName:'三星'});
           break;
         case 'Huawei':
-          this.setData({appName:'华为运动'});
+          this.setData({appName:'华为运动云'});
           break;
+        case 'string':
+            this.setData({appName:'以下数据来自“微信运动”。'});
+            break;
         default:
           break;
       }

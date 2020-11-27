@@ -112,6 +112,16 @@ page{
 .item_top{
   margin-bottom: 10rpx;
 }
+.item_topNum{
+ position: relative;
+}
+.numlast{
+  height: 20rpx;
+  font-size: 18rpx;
+  color: #929292;
+  position: absolute;
+  top: 20rpx;
+}
 .num{
   height: 54rpx;
   font-family: Flama;

@@ -2,6 +2,6 @@
   "usingComponents": {
     "van-button": "vant-weapp/button/index"
   },
-  "navigationBarTitleText": "质量指数",
+  "navigationBarTitleText": "体重指数",
   "navigationBarTextStyle": "black"
 }
