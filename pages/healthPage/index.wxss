@@ -371,7 +371,7 @@ padding: 30rpx;
     width: 180rpx !important;
 }
 .noshadow{
-    hover-class:none;
+  hover-class:none;
 }
 .miniprogress{
   padding: 0 10%;
@@ -405,4 +405,105 @@ padding: 30rpx;
   position: absolute;
   left: 0;
   bottom: 0;
+}
+
+
+/*模态框*/
+.modals {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.modals-cancel {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+.bottom-dialog-body {
+  position: absolute;
+  z-index: 10001;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30rpx 30rpx 0rpx 30rpx;
+  min-height: 260rpx;
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+/*动画前初始位置*/
+.bottom-pos {
+-webkit-transform: translateY(100%);
+transform: translateY(100%);
+}
+.userinfo-avatar{
+width: 60rpx;
+height: 60rpx;  
+margin-top:10rpx ;
+}
+.userinfo-image{
+float: left;
+}
+.text-content{
+padding-left: 10rpx;
+}
+.msg-box{
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: rgb(51,51 ,51)
+}
+.msg-box2{
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: rgb(51,51 ,51)
+}
+.msg-box-image{
+  padding: 5rpx 0rpx 0rpx 0rpx;
+  height: 28rpx;
+}
+.topTitle{
+  width: 95%;
+  font-size: 32rpx;
+  color: rgb(51,51 ,51);
+}
+.msg-box-image image{
+  width: 28rpx;
+  height: 28rpx;
+  float: right;
+}
+.itemBlock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130rpx;
+}
+.itemBlockBottom{
+  border-top: 1rpx solid rgb(215,216,214);
+}
+.iphoneBlock{
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+  width: 90%;
+  width: 95%;
+}
+.iphoneBlock-image{
+  flex: 1;
+}
+.iphoneBlock-image image{
+  width: 44rpx;
+  height: 40rpx;
+}
+.msg-box-imageBlock{
+  padding-bottom: 30rpx !important;
+}
+.textShowBot{
+  color: #6F6F6F;
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
 }

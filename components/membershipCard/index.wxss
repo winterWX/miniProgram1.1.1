@@ -86,14 +86,15 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 218rpx;
+  top: 210rpx;
   padding-left: 30rpx;
 }
 .imageBottom1{
-  width: 490rpx;
+  width: 430rpx;
   color: rgb(51,51,51);
   font-size: 24rpx;
   font-family: PingFangSC-Regular;
+  font-weight: 500;
 }
 .imageBottomText{
   font-size: 28rpx;
@@ -106,6 +107,7 @@ page{
 .imageBottom2{
   color: rgb(51,51,51);
   font-size: 24rpx;
+  padding-left: 45rpx;
 }
 .seliverBlockLeft{
   width: 48%;
@@ -196,7 +198,7 @@ page{
   padding-left: 30rpx;
 }
 .imageBottom13{
-  width: 490rpx;
+  width: 430rpx;
   color: rgb(255,212,120);
   font-size: 24rpx;
   font-family: PingFangSC-Regular;

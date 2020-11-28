@@ -32,6 +32,7 @@
 }
 .integralAct-main2{
   height: 275rpx !important;
+  padding: 30rpx 30rpx 10rpx 30rpx !important;
 }
 .integralAct-main{
   height: 424rpx;
@@ -209,6 +210,12 @@
   padding: 5rpx 10rpx;
   margin-right: 200rpx;
 }
+.progressBlockTextone{
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+  padding: 5rpx 0rpx;
+  margin-right: 185rpx;
+}
 .progressBlockText3{
   font-size: 24rpx;
   color: rgb(151,111,23);
@@ -340,6 +347,12 @@
 .bottomTextSecondeBlock2{
  font-size: 28rpx;
  color: rgb(102,102,102);
+}
+.container-main{
+  background-color: #ffffff;
+}
+.page-body-main{
+ padding:  0rpx  30rpx;
 }
 .container .page-body{
   height: 135rpx;

@@ -28,7 +28,7 @@
     <view class="inputBlock">
         <view class="nick">
           <view class="nickname">恒生尊享码</view>
-          <input class="input-name" value="{{ nickName }}" bindfocus='nameChangeFocus'  bindinput="nameChange"></input>
+          <input class="input-name" value="{{ nickName }}" bindfocus='nameChangeFocus'  bindinput="nameChange" placeholder="请输入尊享码"></input>
           <view class="line {{showTip ? 'lineRed' : ''}}"></view>
           <view class='tip' wx:if="{{showTip && nickName.length !==0}}">
               <image src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
@@ -51,22 +51,38 @@
     </view>
     <view class="carkBlock" wx:if="{{showCarkBlock}}">
        <view class="carkBlock-main">
-          <image class="topImage1" wx:if="{{tierCode.resultCode === 3}}" src="{{imagesUrl + '/images/silver/group-02@3x.png'}}" />
+          <image class="topImage1" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}" src="{{imagesUrl + '/images/silver/group-02@3x.png'}}" />
            <image class="topImage1" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}" src="{{imagesUrl + '/images/silver/group-2@3x.png'}}" />
            <image class="topImage2" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}" src="{{imagesUrl + '/images/silver/group-4@3x.png'}}" />
            <image class="topImage1" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}" src="{{imagesUrl + '/images/silver/group-02@3x.png'}}" />
            <image class="topImage2" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}" src="{{imagesUrl + '/images/silver/group-25-copy-19@3x.png'}}" />
+
            <view class="carkBlock-allMain">
               <image class="imageBottom" src="{{imagesUrl + '/images/silver/rectangle@3x.png'}}" />
               <view class="text-main">
-                <view class="text1-main"  wx:if="{{tierCode.newTier !== 5}}">恭喜你成功升级为</view>
+
+                <!-- <view class="text1-main"  wx:if="{{tierCode.newTier !== 5}}">恭喜你成功升级为</view>
                 <view class="text1-main" wx:if="{{tierCode.newTier === 5}}">恭喜你成功获得</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode === 3}}">黄金会员</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}">永久银会员</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}">尊享礼遇</view>
                 <view class="text3-main" wx:if="{{tierCode.resultCode === 3}}">黃金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。黃金会员有效期为一年，过期后将会成为永久银会员。</view>
                 <view class="text3-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 4}}">你可永久享用银会员尊享礼遇及优惠，详情可于「会员级别」即時查阅。</view>
-                <view class="text3-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}">黃金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。黃金会员有效期为一年，过期后将会成为永久银会员。</view>
+                <view class="text3-main" wx:if="{{tierCode.resultCode !== 3 && tierCode.newTier === 5}}">黃金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。黃金会员有效期为一年，过期后将会成为永久银会员。</view> -->
+
+                <view class="text1-main"  wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 4 || tierCode.resultCode === 5}}">恭喜你成功升级为</view>
+                <view class="text1-main" wx:if="{{tierCode.resultCode === 2}}">恭喜你成功获得</view>
+
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">金会员</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 4}}">永久银会员</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 2}}">专享礼遇</view>
+
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">黃金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。黃金会员有效期为一年，过期后将会成为永久银会员。</view>
+
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 4}}">你可永久享用银会员尊享礼遇及优惠，详情可于「会员级别」即時查阅。</view>
+
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 2}}">你已成功延长一年金会员有效期，尊享礼遇及优惠详情可于「会员级别」中查阅。</view>
+
                 <view class="text4-main">
                   <van-button type="primary" size="large" bindtap="bindEmail">继续</van-button>
                 </view>

@@ -1,8 +1,9 @@
 import * as echarts from '../../components/ec-canvas/echarts';
-import { formatTime,  wxAjax  } from '../../utils/util';
+import { formatTime,  wxAjax } from '../../utils/util';
 const app = getApp();
 let tabsWithDay = [
-  { name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
+  //{ name: '日', id: 'day' }, { name: '周', id: 'week' }, { name: '月', id: 'month' }
+    { name: '周', id: 'week' }, { name: '月', id: 'month' }
 ];
 let tabs = [
   { name: '周', id: 'week' }, { name: '月', id: 'month' }
@@ -19,27 +20,29 @@ let checkName = '';
 let currentTab = '';
 var option = {
   color: ['#00A865'],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'line',
+      lineStyle: {
+        color: '#00A865'
+      }
+    },
+  },
   grid: {
-    left: '8',
+    left: '9',
     right: '50',
     bottom: '30',
     top: '8'
   },
   xAxis: {
     type: 'category',
-    triggerEvent: true,
-    interval: 24*60*60*1000*6,
-    axisLabel: {
-      interval: 6
-    },
-    axisTick: {       //y轴刻度线
-      "show": false
-    },
     axisLine: {       //y轴
       lineStyle: lineStyle
     },
     axisLabel: {
-      textStyle: textStyle
+      textStyle: textStyle,
+      interval: 'auto'
     },
     data: []
   },
@@ -47,7 +50,6 @@ var option = {
     position: 'right',
     type: 'value',
     splitNumber: 2,
-    triggerEvent: true,
     splitArea: {
       show: false
     },
@@ -70,7 +72,7 @@ var option = {
     barWidth: 6,
     itemStyle: {
       normal: {
-        barBorderRadius: [5, 5, 0, 0],
+        barBorderRadius: [3, 3, 0, 0],
         color: function (params) {
           //判断选中的名字改变柱子的颜色样式
           if (checkName === params.name) {
@@ -84,10 +86,11 @@ var option = {
 let chart = null;
 let dateMap = {};
 let weekDateMap = {};
-function initChart(canvas, width, height) {
+function initChart(canvas, width, height, dpr) {
   chart = echarts.init(canvas, null, {
     width: width,
-    height: height
+    height: height,
+    devicepixelratio: dpr
   });
   canvas.setChart(chart);
   chart.setOption(option);
@@ -97,6 +100,7 @@ Page({
   data: {
     currentTabId: 'week',
     preDisplayDate: '',
+    stepData: 0,
     timeData: 0,
     caloriesData :0,
     distanceData :0,
@@ -112,6 +116,7 @@ Page({
     initDate: '',
     currentDate: '',
     tabs: tabsWithDay,
+    initDisplayDate: {},
     ec: {
       onInit: initChart
     },
@@ -124,19 +129,13 @@ Page({
   },
   onLoad: function () {
     let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let endTime = parseInt(date.getTime() / 1000);
-    // let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
-    let initDate = `${year}年${(month < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
+    let {year, month, day} = this.getDateInfo(date);
+    let initDate = `${year}年${(month + 1 < 10 ? ('0' + month) : month)}月${(day < 10 ? ('0' + day) : day)}日`;
     let currentDate = initDate;
-    let nextDisplayDate = initDate;
-    let timeRes = this.getWeek(initDate, 6);
-    let preDisplayDate = timeRes.date;
-    let startTime = timeRes.time;
-    this.getStepInfo(startTime, endTime, 'week');
-    this.sportsText('week');
+    let {firstDay, lastDay, startTime, endTime} = this.initWeekDisplay();
+    let preDisplayDate = firstDay;
+    let nextDisplayDate = lastDay;
+    this.getStepInfo(startTime, endTime, 'week')
     this.setData({
       preDisplayDate,
       nextDisplayDate,
@@ -145,46 +144,51 @@ Page({
     })
   },
   onReady: function () {
-    setTimeout(() => {
-      this.bindEchartsClick();
-    }, 1500)
-  },
-  bindEchartsClick: function () {
-    chart && chart.on('click', (params) => {
-      option.color = ['#55D0A6'];
-      checkName = params.name;
-      chart.setOption(option);
-      if (currentTab !== 'day') {
-        this.setData({
-          selectedDate: currentTab === 'month' ? dateMap[checkName.substring(0, 2)] : weekDateMap[checkName],
-          selectedDateNum: params.value,
-          showSelectedDate: true,
+    let isBindEvent = false;
+    let timer = null;
+    timer = setInterval(() => {
+      if (isBindEvent) {
+        clearInterval(timer);
+        return;
+      }
+      if (chart) {
+        isBindEvent = true;
+        chart.on('click', (params) => {
+          option.color = ['#55D0A6'];
+          checkName = params.name;
+          chart.setOption(option);
+          if (currentTab !== 'day') {
+            this.setData({
+              selectedDate: currentTab === 'month' ? dateMap[checkName] : weekDateMap[checkName],
+              selectedDateNum: params.value,
+              showSelectedDate: true,
+            })
+          }
         })
       }
-    })
+    }, 100)
+  },
+  onUnload: function(){
+    chart = null;
   },
   changTab: function (e) {
     let { initDate } = this.data;
     let currentTabId = e.currentTarget.dataset.props;
     currentTab = currentTabId;
     this.data.currentTabId = currentTabId;
-    let nextDisplayDate = '';
-    let preDisplayDate = '';
-    option.xAxis.data = [];
-    option.series[0].data = [];
+    var nextDisplayDate = '';
+    var preDisplayDate = '';
     if (currentTabId === 'week') {
-      let nextTime = this.getWeek(initDate, 0);
-      let preTime = this.getWeek(initDate, 6);
-      nextDisplayDate = nextTime.date;
-      preDisplayDate = preTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, 'week')
+      let {firstDay, lastDay, startTime, endTime} = this.initWeekDisplay();
+      nextDisplayDate = lastDay;
+      preDisplayDate = firstDay;
+      this.getStepInfo(startTime, endTime, 'week')
       this.sportsText('week');
     } else if (currentTabId === 'month') {
-      let nextTime = this.getNextMonth(initDate, 0);
-      let preTime = this.getPreMonth(initDate, 1);
-      nextDisplayDate = nextTime.date;
-      preDisplayDate = preTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, 'month')
+      let {firstDay, lastDay, startTime, endTime} = this.initMonthDate();
+      nextDisplayDate = lastDay;
+      preDisplayDate = firstDay;
+      this.getStepInfo(startTime, endTime, 'month');
       this.sportsText('month');
     } else {
       let t = new Date();
@@ -192,7 +196,7 @@ Page({
       let month = t.getMonth() + 1;
       let date = t.getDate();
       let endTime = parseInt(t.getTime() / 1000);
-      let currentDate = `${year}年${month > 10 ? month : '0' + month}月${date > 10 ? date : '0' + date}日`;
+      let currentDate = `${year}年${month > 10 ? month : '0' + month}月${date < 10 ? '0' + date : date}日`
       let t1 = new Date(year, month, date);
       let startTime = t1.getTime() / 1000;
       this.setData({ currentDate })
@@ -203,35 +207,29 @@ Page({
       currentTabId,
       clickNum: 0,
       preDisplayDate,
-      nextDisplayDate
+      nextDisplayDate,
+      selectedDate: ''
     })
   },
   getStepInfo: function (startTime, endTime, demension) {
     let { currentTabId } = this.data;
     this.setData({ showSelectedDate: false });
-    let that = this;
-    option.color = ['#00A865'];
+    let initData = this.initDisplayData(startTime, demension);
     let url = app.globalData.baseUrl + '/remote/health/data/query/histogram';
-    let data = {
+    let that = this;
+    wxAjax('POST', url, {
       startTime,
       endTime,
       demension,
       features: 'sports',
       type:'APP'
-    };
-    wxAjax('POST', url, data).then(res => {
+    }).then(res => {
       if (res.data.code == 200) {
-        let { dataList = [], timeData, type, caloriesData, distanceData} = res.data.data;
+        let { dataList = [], timeData, type, caloriesData, distanceData } = res.data.data;
         if (dataList.length === 0) {
-          that.setData({ timeData: 0,caloriesData :0,distanceData :0, noData: !dataList.length });
+          that.setData({ stepData: 0, caloriesData :0,distanceData :0,noData: !dataList.length });
           return;
         };
-        // 返回日期重新排序
-        dataList.sort((a, b) => {
-          return a.dataTime - b.dataTime
-        });
-        //let APPSource = app.healthStep.APPSource;
-        //let typeState = APPSource === 'string' ? tabs : ( APPSource === 'iOS' ? tabs : tabsWithDay);
         that.setData({
           timeData,
           caloriesData,
@@ -240,33 +238,54 @@ Page({
           tabs: type === 'MINIP' ? tabs : tabs,
           noData: !dataList.length
         });
-        let xData = [];
-        let yData = [];
-        dateMap = {};
-        weekDateMap = {};
+        let displayDataMap = {};
         dataList.forEach(item => {
           let t = formatTime(new Date(item.dataTime * 1000));
           let dateArr = that.foramteDate(t);
           let [year, month, day] = dateArr;
-          dateMap[day] = `${month}月${day}日`;
-          if (currentTabId !== 'week') {
-            currentTabId === 'day' ? xData.push(`${t.split(" ")[1].split(':')[0]}时`) : xData.push(`${t.split(" ")[0].split('/')[2]}日`);
-          } else {
-            let week = that.getDisplayWeek(new Date(item.dataTime * 1000));
-            xData.push(week);
-            weekDateMap[week] =  `${month}月${day}日`;
+          let key = currentTabId === 'month' ? `${t.split(" ")[0].split('/')[2]}日` : that.getDisplayWeek(new Date(item.dataTime * 1000));
+          if (currentTabId === 'week') {
+            weekDateMap[key] = `${month}月${day}日`;
           }
-          
-          option.series[0].barWidth = currentTabId !== 'month' ? 10 : 6;
-          yData.push(item.consumTime);
+          displayDataMap[key] = item.steps;
         });
-        option.xAxis.data = xData;
-        option.series[0].data = yData;
+        // 重置echarts样式
+        option.series[0].barWidth = currentTabId !== 'month' ? 14 : 6;
+        option.color = ['#00A865'],
+        option.xAxis.axisLabel.interval = demension === 'month' ? 6 : 'auto';
+        option.series[0].itemStyle.normal.barBorderRadius = demension === 'month' ? [3,3,0,0] : [10,10,0,0];
+        let displayData =  Object.assign(initData, displayDataMap);
+        option.xAxis.data = Object.keys(displayData);
+        option.series[0].data = Object.values(displayData);
         chart && chart.setOption(option);
       }
     })
+    .catch(() => {
+      option.xAxis.data = [];
+      option.series[0].data = [];
+      chart && chart.setOption(option);
+      that.setData({ stepData: 0, noData: true });
+    });
   },
-  getDisplayWeek: function(date) {
+  initDisplayData: function(startTime, type) {
+    let results = {};
+    let t = new Date(startTime * 1000);
+    let {month, days} = this.getDateInfo(t);
+    if (type === 'month') {
+      for (let i=1;i<=days;i++) {
+        let date = `${i < 10 ? '0' + i : i}日`;
+        results[date] = 0;
+        dateMap[date] = `${month < 10 ? '0' + month : month}月${date}`
+      }
+    } else {
+      let weeks = ['周日','周一','周二','周三','周四','周五','周六'];
+      for (let item of weeks) {
+        results[item] = 0;
+      }
+    }
+    return results;
+  },
+  getDisplayWeek: function (date) {
     let weekMap = {
       0: '周日',
       1: '周一',
@@ -290,18 +309,19 @@ Page({
     let preDisplayDate = '';
     let nextTime = null;
     let preTime = null;
+    let monthResult = null;
     if (currentTabId !== 'day') {
       if (currentTabId === 'week') {
         nextTime = this.getWeek(this.data.preDisplayDate, 1);
         preTime = this.getWeek(this.data.preDisplayDate, 7);
-
       } else if (currentTabId === 'month') {
-        nextTime = this.getPreMonth(this.data.nextDisplayDate);
-        preTime = this.getPreMonth(this.data.preDisplayDate);
+        monthResult = this.getMonth(this.data.nextDisplayDate);
       }
-      nextDisplayDate = nextTime.date;
-      preDisplayDate = preTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, currentTabId)
+      nextDisplayDate = currentTabId === 'week' ? nextTime.date : monthResult.nextDisplayDate;
+      preDisplayDate = currentTabId === 'week' ? preTime.date : monthResult.preDisplayDate;
+      let startTime = currentTabId === 'week' ? preTime.time : monthResult.startTime;
+      let endTime = currentTabId === 'week' ? nextTime.time : monthResult.endTime;
+      this.getStepInfo(startTime, endTime, currentTabId)
       this.setData({
         clickNum,
         preDisplayDate,
@@ -317,27 +337,24 @@ Page({
   },
   nextClick: function () {
     let clickNum = this.data.clickNum - 1;
-    let { currentTabId, currentDate } = this.data;
+    let { currentTabId, currentDate, initDate } = this.data;
     let nextDisplayDate = '';
     let preDisplayDate = '';
     let preTime = null;
     let nextTime = null;
+    let monthResult = null;
     if (currentTabId !== 'day') {
       if (currentTabId === 'week') {
         preTime = this.getWeek(this.data.nextDisplayDate, 1, 'next');
         nextTime = this.getWeek(this.data.nextDisplayDate, 7, 'next');
       } else if (currentTabId === 'month') {
-        if (clickNum === 0) {
-          preTime = this.getPreMonth(this.data.initDate, 1);
-          nextTime = this.getNextMonth(this.data.initDate, 0);
-        } else {
-          preTime = this.getNextMonth(this.data.nextDisplayDate, 0);
-          nextTime = this.getNextMonth(this.data.nextDisplayDate, 1);
-        }
+        monthResult = this.getMonth(this.data.nextDisplayDate, true);
       }
-      preDisplayDate = preTime.date;
-      nextDisplayDate = nextTime.date;
-      this.getStepInfo(preTime.time, nextTime.time, currentTabId)
+      nextDisplayDate = currentTabId === 'week' ? nextTime.date : monthResult.nextDisplayDate;
+      preDisplayDate = currentTabId === 'week' ? preTime.date : monthResult.preDisplayDate;
+      let startTime = currentTabId === 'week' ? preTime.time : monthResult.startTime;
+      let endTime = currentTabId === 'week' ? nextTime.time : monthResult.endTime;
+      this.getStepInfo(startTime, endTime, currentTabId);
       this.setData({
         clickNum,
         preDisplayDate,
@@ -351,56 +368,77 @@ Page({
     }
 
   },
-  // 获取前一个月日期
-  getPreMonth: function (formateTime) {
-    let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
-    let [year, month, day] = tmp;
-    var year2 = year;
-    var month2 = parseInt(month) - 1;
-    if (month2 == 0) {
-      year2 = parseInt(year2) - 1;
-      month2 = 12;
-    }
-    let day2 = day;
-    let days2 = new Date(year2, month2, 0);
-    let t = new Date(year2, month2 - 1, day);;
-    let time = parseInt(t.getTime() / 1000);
-    let daysInMonth = days2.getDate();
-    if (day2 > daysInMonth) {
-      day2 = daysInMonth;
-    }
-    if (month2 < 10) {
-      month2 = '0' + month2;
-    }
+  // 切换的tab到月的时候 初始化月份显示时间
+  initMonthDate: function () {
+    let t = new Date();
+    let year = t.getFullYear();
+    let month = t.getMonth();
+    let t2 = new Date(year, month+1, 0);
+    let days = t2.getDate();
+    let first = this.getDateInfo(new Date(year, month, 1));
+    let last = this.getDateInfo(new Date(year, month, days));
     return {
-      date: `${year2}年${month2}月${day2}日`,
-      time
-    };
+      firstDay: `${first.year}年${first.month < 10 ? '0' + first.month : first.month}月${first.day}日`,
+      lastDay: `${last.year}年${last.month < 10 ? '0' + last.month : last.month}月${last.day}日`,
+      startTime: first.tapTime,
+      endTime: last.tapTime
+    }
   },
-  // 获取后一个月日期
-  getNextMonth: function (formateTime, n) {
+  getDateInfo: function(time) {
+    let week = time.getDay();
+    let year = time.getFullYear();
+    let month = time.getMonth() + 1;
+    let day = time.getDate();
+    let days = new Date(year, month, 0).getDate();
+    let tapTime = parseInt(time.getTime() / 1000);
+    return {
+      year, 
+      month,
+      day,
+      week,
+      tapTime,
+      days      // 当前月有多少天
+    }
+  },
+  // 初始化 计算以周围维度的显示时间
+  initWeekDisplay: function() {
+    let time = new Date();
+    let {year, month, day, week} = this.getDateInfo(time);
+    let firstDay = new Date(year, month-1, day-week);
+    let lastDay = new Date(year, month-1, day + 6 - week);
+    let first = this.getDateInfo(firstDay);
+    let last = this.getDateInfo(lastDay);
+    return {
+      firstDay: `${first.year}年${first.month < 10 ? '0' + first.month  : first.month}月${first.day}日`,
+      lastDay: `${last.year}年${last.month < 10 ? '0' + last.month : last.month}月${last.day}日`,
+      startTime: first.tapTime,
+      endTime: last.tapTime
+    }
+  },
+  // 获取前一个月数据
+  getMonth: function (formateTime, flag = false) {
     let tmp = formateTime.replace(/[\u4e00-\u9fa5]/g, '-').split('-');
     let [year, month, day] = tmp;
-    var year2 = year;
-    var month2 = parseInt(month) + n;
-    if (month2 == 13) {
-      year2 = parseInt(year2) + 1;
+    let year2 = year;
+    let month2 = !flag ? parseInt(month) - 1 : parseInt(month) + 1;
+    if (!flag && month2 === 0) {
+      month2 = 12;
+      year2 = parseInt(year) - 1;
+    } else if (flag && month2 === 13) {
+      year2 = parseInt(year) + 1;
       month2 = 1;
-    }
-    var day2 = day;
-    var days2 = new Date(year2, month2, 0);
-    var t = new Date(year2, month2 - 1, day);
-    let time = parseInt(t.getTime() / 1000);
-    days2 = days2.getDate();
-    if (day2 > days2) {
-      day2 = days2;
-    }
-    if (month2 < 10) {
-      month2 = '0' + month2;
-    }
+    };
+    let t = new Date(year2, month2 - 1, 1);
+    let startTime = parseInt(t.getTime() / 1000);
+    let t2 = new Date(year2, month2, 0);
+    let days = t2.getDate();
+    let t3 = new Date(year2, month2 - 1, days);
+    let endTime = parseInt(t3.getTime() / 1000);
     return {
-      date: `${year2}年${month2}月${day2}日`,
-      time
+      startTime,
+      endTime,
+      preDisplayDate: `${year2}年${month2 < 10 ? '0' + month2 : month2}月01日`,
+      nextDisplayDate: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${days}日`
     }
   },
   getWeek: function (formateTime, n, direction = 'pre') {
@@ -434,7 +472,7 @@ Page({
     return {
       startTime,
       endTime,
-      date: `${year2}年${month2 > 10 ? month2 : '0' + month2}月${date2 > 10 ? date2 : '0' + date2}日`
+      date: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${date2 < 10 ? '0' + date2 : date2}日`
     }
   },
   getNextDay: function (formateTime) {
@@ -452,7 +490,7 @@ Page({
     return {
       startTime,
       endTime,
-      date: `${year2}年${month2 > 10 ? month2 : '0' + month2}月${date2 > 10 ? date2 : '0' + date2}日`
+      date: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${date2 < 10 ? '0' + date2 : date2}日`
     }
   },
   sportsText:function(tipChange){

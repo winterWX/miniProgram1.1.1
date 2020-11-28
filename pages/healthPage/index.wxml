@@ -24,7 +24,7 @@
          </view>
    </view>
    <view  class="topSetting PageBackColor" style="padding-top:30rpx;">
-       <view class="imageLeft"><image src='{{imagesUrl + "/images/icon-guideline.png"}}'></image></view>
+       <view class="imageLeft" bindtap="leftBlokShow"><image src='{{imagesUrl + "/images/icon-guideline.png"}}'></image></view>
        <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='{{imagesUrl + "/images/icon-right-arrow-12-x-12.png"}}'></image></view>
          <view class="{{firstInitShow ? 'firstInitShow': 'miniprogress'}}">
             <miniprogress wx:if="{{!firstInitShow}}" stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
@@ -90,6 +90,18 @@
 		 </view>
    </view>
 </view>
-<!-- <integralAmation integral="{{stepsNum.integral}}" wx:if="{{stepsNum.integral !=0}}"/> -->
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+		<view class="modals-cancel" bindtap="hideModal"></view>
+		<view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+			<view class='msg-box-image' bindtap="closePage">
+				<image src="{{imagesUrl + '/images/mine/close@3x.png'}}"></image>
+			</view>
+			<view class='msg-box .msg-box2'>
+            <view class="textShowBot">1.每日步数达1万步，当日可获10积分。</view>
+            <view class="textShowBot">2.连续7 天每日步数达1万步，可于第7天获50积分</view>
+            <view class="textShowBot">3.连续28 天每日步数若达1万步，可于第28天获100积分。</view>
+			</view>
+		</view>
+  </view> 
 <integralAmation integral="{{allowRun ? 100 : stepsNum.integral}}"  wx:if="{{forceNum}}"/>
 

@@ -36,7 +36,8 @@ Page({
      dataSyn: false,   //标记数据同步
      optionsFlg:'', // 标识 options id
      imagesUrl: app.globalData.imagesUrl,
-     showModal: false
+     showModal: false,
+     hideModal: true,  //模态框的状态  true-隐藏  false-显示
   },
   onLoad:function (options) {
       let that = this;
@@ -131,7 +132,7 @@ Page({
   settingDataBtn() {
     let that = this;
     app.healthStep.SynchronousData = true;
-    app.globalData.isWeRunStepsFail = true; //表示已经点儿开启数据访问按钮
+    app.globalData.isWeRunStepsFail = true;   //表示已经点儿开启数据访问按钮
     that.getQueryintegral();
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
     let data = { souce: "string", type: "MINIP" };
@@ -151,7 +152,7 @@ Page({
     wxAjax ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
-        that.setData({ forceNum: true });    // - anBackShow:true
+        that.setData({ forceNum: true }); 
       } 
     })
   },
@@ -160,14 +161,11 @@ Page({
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
-        //res.data.data.source = res.data.data.source !== '' ? toLowerCase(res.data.data.source) :'';
-
         app.healthStep.APPSource = res.data.data.source;
         res.data.data.distance = res.data.data.distance === '' ?  0 : res.data.data.distance.toFixed(1);
         res.data.data.calories = res.data.data.calories === '' ?  0 : res.data.data.calories.toFixed(1);
         res.data.data.totalTime = res.data.data.totalTime === '' ?  0 : res.data.data.totalTime.toFixed(1);
         that.setData({ everyDayData: res.data.data });
-        
       }
     });
   },
@@ -294,5 +292,46 @@ Page({
       this.setData({
         showModal: !this.data.showModal
       })
+    },
+    leftBlokShow:function () {
+      let that = this;
+      that.setData({ hideModal: false })
+      let animation = wx.createAnimation({
+        duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
+        timingFunction: 'ease',//动画的效果 默认值是linear
+      })
+      this.animation = animation
+      setTimeout(function () {
+        that.fadeIn();  //调用显示动画
+      }, 100)
+    },
+    // 隐藏遮罩层
+    hideModal: function () {
+        var that = this;
+        var animation = wx.createAnimation({
+          duration: 100,  //动画的持续时间 默认800ms   数值越大，动画越慢   数值越小，动画越快
+          timingFunction: 'ease',  //动画的效果 默认值是linear
+        })
+        this.animation = animation
+        that.fadeDown();//调用隐藏动画   
+        setTimeout(function () {
+          that.setData({ hideModal: true })
+        }, 100)  //先执行下滑动画，再隐藏模块
+      },
+    //动画集
+    fadeIn: function () {
+        this.animation.translateY(0).step()
+        this.setData({
+          animationData: this.animation.export()  //动画实例的export方法导出动画数据传递给组件的animation属性
+        })
+      },
+    fadeDown: function () {
+        this.animation.translateY(1000).step()
+        this.setData({ animationData: this.animation.export()})
+    },
+    closePage:function(){
+      let that =this;
+      that.fadeDown();
+      that.setData({ hideModal: true })
     }
 })

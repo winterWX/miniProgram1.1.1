@@ -8,7 +8,7 @@
       <view class="header_item">
         <view class="number">{{detail.totalIntegral}}</view>
         <!--<view class="number">0</view>-->
-        <view class="text">竞走积分</view>
+        <view class="text">累计积分</view>
       </view>
       <view class="header_item">
         <view class="number">{{detail.maxContinuousDays}}</view>

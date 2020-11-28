@@ -51,7 +51,7 @@
 			</view>
 	</view>
 	<view class="step-description">
-		<view class="desc-title">关于运动数据</view>
+		<view class="desc-title">关于活动数据</view>
 		<view class="desc-content">
         记录您总的运动时间和您走过的距离长度，以及卡路里信息的信息提供给应用程序。 您可以使用此来查看您近期的运动情况。
 		</view>

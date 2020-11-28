@@ -24,7 +24,7 @@
   <view class="panel" wx:if="{{showAPPData === 2 && health.source !=='Sensor'}}">
       <view class="panel_header" catchtap="movementData">
         <view class="icon"><image src="{{imagesUrl + '/images/icon-sport-data@2x.png'}}" mode="aspectFit"/></view>
-        <view class="title {{(health.source ==='HuaWei' || health.source === 'Huawei') ? '': 'title_ft'}} ">运动数据</view>      
+        <view class="title {{(health.source ==='HuaWei' || health.source === 'Huawei') ? '': 'title_ft'}} ">活动数据</view>      
       </view>
       <view class="panel_body">
         <view class="item"  wx:if="{{ health.source !=='HuaWei' && health.source !== 'Huawei'}}">
