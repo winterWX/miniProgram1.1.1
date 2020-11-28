@@ -100,7 +100,6 @@ Page({
   data: {
     currentTabId: 'week',
     preDisplayDate: '',
-    stepData: 0,
     timeData: 0,
     caloriesData :0,
     distanceData :0,
@@ -142,6 +141,7 @@ Page({
       initDate,
       currentDate
     })
+    this.sportsText('week');
   },
   onReady: function () {
     let isBindEvent = false;
@@ -227,13 +227,13 @@ Page({
       if (res.data.code == 200) {
         let { dataList = [], timeData, type, caloriesData, distanceData } = res.data.data;
         if (dataList.length === 0) {
-          that.setData({ stepData: 0, caloriesData :0,distanceData :0,noData: !dataList.length });
+          that.setData({ caloriesData :0,distanceData :0,noData: !dataList.length });
           return;
         };
         that.setData({
           timeData,
-          caloriesData,
-          distanceData, 
+          caloriesData: caloriesData !== 0 ? caloriesData.toFixed(1) : 0,
+          distanceData: distanceData !== 0 ? distanceData.toFixed(1) : 0, 
           //tabs: type === 'MINIP' ? tabs : tabsWithDay,
           tabs: type === 'MINIP' ? tabs : tabs,
           noData: !dataList.length
@@ -247,7 +247,7 @@ Page({
           if (currentTabId === 'week') {
             weekDateMap[key] = `${month}月${day}日`;
           }
-          displayDataMap[key] = item.steps;
+          displayDataMap[key] = item.consumTime;
         });
         // 重置echarts样式
         option.series[0].barWidth = currentTabId !== 'month' ? 14 : 6;
@@ -264,7 +264,7 @@ Page({
       option.xAxis.data = [];
       option.series[0].data = [];
       chart && chart.setOption(option);
-      that.setData({ stepData: 0, noData: true });
+      that.setData({ noData: true });
     });
   },
   initDisplayData: function(startTime, type) {
@@ -501,14 +501,14 @@ Page({
       distanceText:'今日距离/公里'
     };
     let weekObject = {
-      topTimeText:'平均运动时间',
-      caloriesText:'平均消耗/卡路里',
-      distanceText:'平均距离/公里'
+      topTimeText:'总活动时间',
+      caloriesText:'消耗/千卡',
+      distanceText:'距离/公里'
     };
     let monthObject = {
-      topTimeText:'总运动时间',
-      caloriesText:'日距离/公里',
-      distanceText:'日距离/公里'
+      topTimeText:'总活动时间',
+      caloriesText:'消耗/千卡',
+      distanceText:'距离/公里'
     };
     if(tipChange === 'day'){
        that.setData({
