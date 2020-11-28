@@ -26,7 +26,6 @@ Page({
   onLoad: function (options) {
     let that = this;
     if (options.flag === 'true'){   //是 true
-      console.log('options.flag',options.flag);
       that.setData({ successFlg: true });
     }
     if(app.globalData.isLogin === 3){

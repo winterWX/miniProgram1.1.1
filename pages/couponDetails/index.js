@@ -91,7 +91,7 @@ Page({
         wx.getClipboardData({
           success (res) {
               wx.showToast({
-                title: '已复制'
+                title: '成功复制'
               });
           }
         })
@@ -100,6 +100,17 @@ Page({
   },
   handleFell:function(){
      let that = this;
-     that.setData({showLink :true})
+     wx.showModal({
+       title: '你将被连接到第三方平台',
+       content: '你现在正离开[恒生健康]进入第三方平台,是否继续？',
+       confirmText: '继续',
+       success (res) {
+         if (res.confirm) {
+           that.setData({showLink :true});
+         } else if (res.cancel) {
+           return;
+         }
+       }
+     });
   }
 })

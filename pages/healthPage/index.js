@@ -36,7 +36,8 @@ Page({
      dataSyn: false,   //标记数据同步
      optionsFlg:'', // 标识 options id
      imagesUrl: app.globalData.imagesUrl,
-     showModal: false
+     showModal: false,
+     hideModal: true,  //模态框的状态  true-隐藏  false-显示
   },
   onLoad:function (options) {
       let that = this;
@@ -294,5 +295,46 @@ Page({
       this.setData({
         showModal: !this.data.showModal
       })
+    },
+    leftBlokShow:function () {
+      let that = this;
+      that.setData({ hideModal: false })
+      let animation = wx.createAnimation({
+        duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
+        timingFunction: 'ease',//动画的效果 默认值是linear
+      })
+      this.animation = animation
+      setTimeout(function () {
+        that.fadeIn();  //调用显示动画
+      }, 100)
+    },
+    // 隐藏遮罩层
+    hideModal: function () {
+        var that = this;
+        var animation = wx.createAnimation({
+          duration: 100,  //动画的持续时间 默认800ms   数值越大，动画越慢   数值越小，动画越快
+          timingFunction: 'ease',  //动画的效果 默认值是linear
+        })
+        this.animation = animation
+        that.fadeDown();//调用隐藏动画   
+        setTimeout(function () {
+          that.setData({ hideModal: true })
+        }, 100)  //先执行下滑动画，再隐藏模块
+      },
+    //动画集
+    fadeIn: function () {
+        this.animation.translateY(0).step()
+        this.setData({
+          animationData: this.animation.export()  //动画实例的export方法导出动画数据传递给组件的animation属性
+        })
+      },
+    fadeDown: function () {
+        this.animation.translateY(1000).step()
+        this.setData({ animationData: this.animation.export()})
+    },
+    closePage:function(){
+      let that =this;
+      that.fadeDown();
+      that.setData({ hideModal: true })
     }
 })
