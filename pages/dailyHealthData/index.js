@@ -121,7 +121,6 @@ Page({
         res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
         res.data.data.distance =  res.data.data.distance === 0 ?  '--' : res.data.data.distance.toFixed(1);
         res.data.data.calories =  res.data.data.calories === 0 ?  '--' : res.data.data.calories.toFixed(1);
-        res.data.data.totalTime =  res.data.data.totalTime === 0 ?  '--' : res.data.data.totalTime.toFixed(1);
 
         that.setData({health: res.data.data});
         that.appDataText(res.data.data.source);
