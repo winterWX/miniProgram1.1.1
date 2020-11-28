@@ -1,20 +1,8 @@
 <view>
     <view class="topText">
-      <view class="titleTop">积分有效期</view>
-      <view class="title">1、积分为入账时间，而非积分获取时间</view>
-      <view class="title">2、医疗签到会有延时</view>
-      <view class="title">3、恒生账户开户签到有延时</view>
-      <view class="title"> 4、Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</view>
+      <view class="titleTop">积分有效期计算简介</view>
+      <view class="title">积分有效期与会籍有效期独立计算。积分有效期由会员注册起计一年（如会员注册日为2020年1月1日，积分到期日为2020年12月31日），所有积分将于积分到期日下一个工作日内重新计算而不作另行通知。新积分到期日由现有积分到期日起计算一年（如现有积分到期日为2020年12月31日）。此积分有效期计算方法适用于以下所有会籍。</view>
     </view>
-    <view class="bottomText">
-      <view class="titleTop">如何获得积分</view>
-      <view class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-  </view>
-      <view class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
-  </view>
-      <view class="title  title2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-  </view>
-    </view> 
 </view>
 
 

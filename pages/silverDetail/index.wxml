@@ -126,8 +126,8 @@
                                 <view class="progressBlockImage">
                                     <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                     <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
-                                        <view class="progressBlockText3" >立即查看</view>
+                                        <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
+                                        <view class="progressBlockText3">立即查看</view>
                                     </view>
                                 </view>
                             </swiper-item>
@@ -208,7 +208,7 @@
                                 </view>
                             </view>
                         </swiper-item>
-                        <swiper-item>
+                        <!-- <swiper-item>
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl + '/images/otherCarde/bg-x-2@t3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
@@ -225,7 +225,7 @@
                                     <view class="progressBlockText3" >立即查看</view>
                                 </view>
                             </view>
-                        </swiper-item>
+                        </swiper-item> -->
                     </swiper>
                     </view>
                 </view>
@@ -319,7 +319,7 @@
                                 <view class="progressBlockImage">
                                     <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                     <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
+                                        <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
                                     </view>
                                 </view>
@@ -497,7 +497,7 @@
                                 <view class="progressBlockImage">
                                     <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                     <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
+                                        <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
                                     </view>
                                 </view>
@@ -616,7 +616,7 @@
                                 <view class="progressBlockImage">
                                     <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                     <view class="progressBlockText glodBlock">
-                                        <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
+                                        <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
                                         <view class="progressBlockText3" >立即查看</view>
                                     </view>
                                 </view>

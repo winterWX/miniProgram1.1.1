@@ -2,6 +2,6 @@
   "usingComponents": {
     "ec-canvas": "../../components/ec-canvas/ec-canvas"
   },
-  "navigationBarTitleText": "运动数据",
+  "navigationBarTitleText": "活动数据",
   "navigationBarTextStyle": "black"
 }

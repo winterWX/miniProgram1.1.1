@@ -132,7 +132,7 @@ Page({
   settingDataBtn() {
     let that = this;
     app.healthStep.SynchronousData = true;
-    app.globalData.isWeRunStepsFail = true; //表示已经点儿开启数据访问按钮
+    app.globalData.isWeRunStepsFail = true;   //表示已经点儿开启数据访问按钮
     that.getQueryintegral();
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
     let data = { souce: "string", type: "MINIP" };
@@ -152,7 +152,7 @@ Page({
     wxAjax ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
-        that.setData({ forceNum: true });    // - anBackShow:true
+        that.setData({ forceNum: true }); 
       } 
     })
   },
@@ -161,14 +161,11 @@ Page({
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
-        //res.data.data.source = res.data.data.source !== '' ? toLowerCase(res.data.data.source) :'';
-
         app.healthStep.APPSource = res.data.data.source;
         res.data.data.distance = res.data.data.distance === '' ?  0 : res.data.data.distance.toFixed(1);
         res.data.data.calories = res.data.data.calories === '' ?  0 : res.data.data.calories.toFixed(1);
         res.data.data.totalTime = res.data.data.totalTime === '' ?  0 : res.data.data.totalTime.toFixed(1);
         that.setData({ everyDayData: res.data.data });
-        
       }
     });
   },

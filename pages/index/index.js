@@ -30,16 +30,17 @@ Page({
     }
     if(app.globalData.isLogin === 3){
       that.setData({ isLogin: app.globalData.isLogin });
+      that.getState();
       that.checkIsAppUser();  //调用数据源，App数据优先；
     }
-    that.getQueryintegral();
+
     that.homePageInit();
     that.userLevel();
   },
   onShow: function () {
     let that = this;
     that.setData({ active: 0 });
-    that.getQueryintegral();
+    that.getState();
   },
   onPullDownRefresh: function () {
     let that = this;
@@ -265,14 +266,18 @@ Page({
     })
   },
 
-  //查询用户是否已经获取步数积分
-  getQueryintegral: function () {
+  //领取状态
+  getState: function () {
     let that = this;
-    let url = app.globalData.baseUrl + "/remote/integral/queryReceivedStatus";
-    util.wxAjax ('GET', url).then(res => {
-      // 100412--已经领取积分  200--未领取积分
-      if (res.data.code === 100412) { that.setData({ forceNum : true}) }
-    })
+    let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
+    util.wxAjax ('POST', url, {souce: "string", type: "MINIP"}).then(res => {
+      if (res.data.code === 200) {
+        let {receiveStatus,isDone} = res.data.data;
+        if(receiveStatus == 1 && isDone == 1){
+          that.setData({ forceNum:true });
+        }
+      }
+    });
   },
 
   membership:function(){

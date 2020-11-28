@@ -67,7 +67,7 @@
                            <view class="imageTopTextRight" bindtap="upgradeCard" data-card="image2">立即升级</view>
                         </view>
                         <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员等级于{{levelExpiryTime}}到期</view>
-                        <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会员永久有效</view>
+                        <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会籍永久有效</view>
                         <view class="imageBottom">
                            <view class="imageBottom1" wx:if="{{activeData.level === 2 || activeData.level === 4}}">现有积分{{activeData.integral + ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可升级</view>
                            <view class="imageBottom2">当前等级</view>
