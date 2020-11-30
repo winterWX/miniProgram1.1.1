@@ -33,7 +33,6 @@ Page({
       that.getState();
       that.checkIsAppUser();  //调用数据源，App数据优先；
     }
-
     that.homePageInit();
     that.userLevel();
   },

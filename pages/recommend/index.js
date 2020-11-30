@@ -116,7 +116,7 @@ Page({
     let shareObj = {
 　　　　title: "邀请好友注册领好礼",
 　　　　path: '/pages/sharedPage/index?userInfoData='+ userInfoData,
-       imageUrl: '/image/addFriend/image@2x.png'
+       imageUrl: this.data.imagesUrl + '/images/addFriend/img@3x.png'
 　　}
 　　// 来自页面内的按钮的转发
 　　if (options.from == 'button') {
