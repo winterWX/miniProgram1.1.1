@@ -50,7 +50,7 @@
   align-items: center;
   position: absolute;
   top: 0rpx;
-  width: 100%;
+  width: 97%;
   height: 144rpx;
   padding-left: 20rpx;
 }
@@ -59,8 +59,12 @@
     height: 96rpx;
     border-radius: 50rpx;
 }
+.itemBlock-main{
+  width: 14.35%;
+}
 .itemBlock{
   margin-left: 18rpx;
+  width: 59%;
 }
 .itemBlockText1{
   font-size: 28rpx;
@@ -73,7 +77,9 @@
 }
 .itemBlockTextLast{
   /* margin-left: 130rpx; */
-  margin-left: 22%;
+  /* //margin-left: 22%; */
+  width: 26%;
+  text-align: center;
   color: rgb(155,124,86);
   font-size: 28rpx;
   font-family: PingFangSC-Medium;
