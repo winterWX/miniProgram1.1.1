@@ -70,8 +70,13 @@ Page({
     let method = 'GET';
     util.wxAjax(method,url).then(res =>{
         if (res.data.code == 200) {
-          res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
-          res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
+          res.data.data = res.data.data.map(item =>{
+            return {
+              effectiveDateTime: that.cardDayShow(item.effectiveDateTime), 
+              expiryTime: that.cardDayShow(item.expiryTime),
+              ...item
+            }
+          })
           that.setData({couponDetail: res.data.data});
         }
     })

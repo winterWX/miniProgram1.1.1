@@ -161,10 +161,11 @@ Page({
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
-        app.healthStep.APPSource = res.data.data.source;
-        res.data.data.distance = res.data.data.distance === '' ?  0 : res.data.data.distance.toFixed(1);
-        res.data.data.calories = res.data.data.calories === '' ?  0 : res.data.data.calories.toFixed(1);
-        that.setData({ everyDayData: res.data.data });
+        let { source, distance= 0, calories= 0 } = res.data.data; 
+          app.healthStep.APPSource = source;
+          res.data.data.distance = distance.toFixed(1);
+          res.data.data.calories = calories.toFixed(1);
+          that.setData({ everyDayData: res.data.data });
       }
     });
   },
