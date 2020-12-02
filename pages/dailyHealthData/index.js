@@ -109,21 +109,23 @@ Page({
     }
     util.wxAjax(method,url,parms).then(res =>{
       if (res.data.code === 200 &&  res.data.data !== null) {
-        const {distance,calories,totalTime,bpm,weight,height} = res.data.data;
+        const {distance,calories,totalTime,bpm,weight,height,source} = res.data.data;
+
         if(weight > 0 && height > 0){
             let bmiNum = Number(weight) / Math.pow((Number(height) / 100),2);
             res.data.data.bmi = Number(bmiNum.toFixed(1));
         }else{
             res.data.data.bmi = that.data.health.bmi;
         }
-        res.data.data.weight =  res.data.data.weight === 0 ?  '--' : res.data.data.weight;
-        res.data.data.height =  res.data.data.height === 0 ?  '--' : res.data.data.height;
-        res.data.data.bpm =  res.data.data.bpm === 0 ?  '--' : res.data.data.bpm;
-        res.data.data.distance =  res.data.data.distance === 0 ?  '--' : res.data.data.distance.toFixed(1);
-        res.data.data.calories =  res.data.data.calories === 0 ?  '--' : res.data.data.calories.toFixed(1);
+
+        res.data.data.weight = weight == 0 ? '--' : weight;
+        res.data.data.height = height == 0 ?  '--' : height;
+        res.data.data.bpm = bpm == 0 ?  '--' : bpm;
+        res.data.data.distance = distance == 0 ? '--' : distance.toFixed(1);
+        res.data.data.calories = calories == 0 ? '--' : calories.toFixed(1);
 
         that.setData({health: res.data.data});
-        that.appDataText(res.data.data.source);
+        that.appDataText(source);
       } else {
         wx.showModal({
           showCancel: false,

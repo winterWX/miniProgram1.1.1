@@ -493,35 +493,14 @@ Page({
       date: `${year2}年${month2 < 10 ? '0' + month2 : month2}月${date2 < 10 ? '0' + date2 : date2}日`
     }
   },
-  sportsText:function(tipChange){
-    let that = this;
-    let dayObject = {
-      topTimeText:'今日运动时间',
-      caloriesText:'今日消耗/卡路里',
-      distanceText:'今日距离/公里'
-    };
-    let weekObject = {
-      topTimeText:'总活动时间',
-      caloriesText:'消耗/千卡',
-      distanceText:'距离/公里'
-    };
-    let monthObject = {
-      topTimeText:'总活动时间',
-      caloriesText:'消耗/千卡',
-      distanceText:'距离/公里'
-    };
-    if(tipChange === 'day'){
-       that.setData({
-         textObject : dayObject
-       })
-    }else if(tipChange === 'week'){
+  sportsText:function(tip){
+      let that = this;
       that.setData({
-        textObject : weekObject
+        textObject:{ 
+          textObject : tip === 'day' ? '今日运动时间' : (tip === 'week' || tip === 'month'? '总活动时间' : ''),
+          caloriesText: tip === 'day' ? '今日消耗/卡路里' : (tip === 'week' || tip === 'month'? '消耗/千卡' : ''),
+          distanceText: tip === 'day' ? '今日距离/公里' : (tip === 'week' || tip === 'month'? '距离/公里' : '')
+        }
       })
-    }else if(tipChange === 'month'){
-      that.setData({
-        textObject : monthObject
-      })
-    }
   }
 })
