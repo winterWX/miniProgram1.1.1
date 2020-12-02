@@ -1,2 +1,26 @@
-<!--pages/preferential/index.wxml-->
-<text>pages/preferential/index.wxml</text>
+<view class="container">
+    <view class="main">
+        <view class="header">
+        <view class="bgimg-box">
+            <image class="bg-img" src="../../images/preferential/group-9@2x.png"></image>
+        </view>
+        <view class="tit-box">
+            <view class="title">购买恒生保险即享9折优惠</view>
+            <view class="sub-title">白银及以上等级会员专享优惠</view>
+        </view>
+    </view>
+    <view class="content">
+        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has.
+
+
+        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has.
+    </view>
+    </view>
+    <view class="footer">
+        <button class="btn-primary btn">立即使用</button>
+    </view>
+</view>
