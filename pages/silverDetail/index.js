@@ -175,5 +175,11 @@ Page({
     const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
     const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
     return  Y + M + D;
+  },
+  toPreferentialService: function(e) {
+    console.log('>>>>>>>>>>>>')
+    wx.navigateTo({
+      url: '../preferential/index'
+    })
   }
 })
