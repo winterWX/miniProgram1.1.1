@@ -1,10 +1,6 @@
 const app = getApp();
 const util = require('../../utils/util');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     couponDetail:{},
     copyCode: false,
@@ -64,23 +60,27 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {},
+
   couponDetail:function(id){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/coupon/detail?id='+ id;
     let method = 'GET';
     util.wxAjax(method,url).then(res =>{
         if (res.data.code == 200) {
-          res.data.data = res.data.data.map(item =>{
-            return {
-              effectiveDateTime: that.cardDayShow(item.effectiveDateTime), 
-              expiryTime: that.cardDayShow(item.expiryTime),
-              ...item
-            }
-          })
-          that.setData({couponDetail: res.data.data});
+          if(Array.isArray(res.data.data) && res.data.data.length > 0){
+              res.data.data = res.data.data.map(item =>{
+                return {
+                  effectiveDateTime: that.cardDayShow(item.effectiveDateTime), 
+                  expiryTime: that.cardDayShow(item.expiryTime),
+                  ...item
+                }
+              })
+              that.setData({couponDetail: res.data.data});
+          }
         }
     })
   },
+
   cardDayShow:function(value){
     const date = new Date(value * 1000); 
     const Y = date.getFullYear() + '年';
@@ -88,6 +88,7 @@ Page({
     const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
     return  Y + M + D;
   },
+  
   texteCopy:function(){
     let that = this;
     wx.setClipboardData({
@@ -103,6 +104,7 @@ Page({
       }
     })
   },
+  
   handleFell:function(){
      let that = this;
      wx.showModal({

@@ -194,7 +194,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 218rpx;
+  top: 210rpx;
   padding-left: 30rpx;
 }
 .imageBottom13{

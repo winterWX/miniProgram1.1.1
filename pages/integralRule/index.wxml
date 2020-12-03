@@ -1,0 +1,61 @@
+<view class="topBlock">
+  <view class="topImage">
+    <image src="../../images/integralRule/rectangle@3x.png" />
+  </view>
+  <view class="topImage-text">
+    <view class="tileText1">等级积分规则</view>
+    <view class="tileText2">升级会员即可享积分翻倍</view>
+  </view>
+</view>
+<view class="middenCotent">
+  <view class="titleContent">部分活动可享</view>
+  <view class="middenCotentBlock">
+    <view class="itemCotent">
+      <image class="itemCotent-image" src="../../images/integralRule/points@3x.png"/>
+      <view class="itemCotent-title">白银会员x2倍积分</view>
+      <view class="itemCotent-content">积分达1500或成为恒生银行客户即可升级白银会员</view>
+    </view>
+    <view class="itemCotent">
+      <image class="itemCotent-image" src="../../images/integralRule/points-2@3x.png"/>
+      <view class="itemCotent-title">黄金会员x5倍积分</view>
+      <view class="itemCotent-content">积分达4500或成为恒生保险客户即可升级黄金会员</view>
+    </view>
+  </view>
+</view>
+<view  class="bottom-content">
+ <view class="bottomTitle">参与翻倍积分的活动</view>
+
+    <view class="maddin-content">
+      <view class="itemText">1.在 e-Shop 完成一次在线消费</view>
+      <view class="itemText">2. 在线预约并成功开立恒生银行户口</view>
+      <view class="itemText">3. 在线预约医疗服务并成功签到</view>
+      <view class="itemText">4. 完成一次视像诊疗</view>
+    </view>
+
+    <view class="maddin-BottomContent">
+        <view class="textContent">
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+      </view>
+        <view class="textContent">
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+      </view>
+        <view class="textContent">
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+          Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
+      </view>
+    </view>
+</view>
+
+<view class="topBlock_btnTom">
+  <van-button 
+      type="primary" 
+      size="large"
+      open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      查看永恒白银/黄金会员升级攻略</van-button>
+</view>
+<view class="bottom-textConten">参加活动赚取积分</view>
