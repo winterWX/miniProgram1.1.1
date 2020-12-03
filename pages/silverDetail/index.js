@@ -177,7 +177,6 @@ Page({
     return  Y + M + D;
   },
   toPreferentialService: function(e) {
-    console.log('>>>>>>>>>>>>')
     wx.navigateTo({
       url: '../preferential/index'
     })
