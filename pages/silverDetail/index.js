@@ -41,7 +41,7 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
-          res.data.data.level = 5;
+          res.data.data.level = 1;
           let sercode = res.data.data.mileStones.length;
           let couponType = res.data.data.tierInfo.couponType;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
@@ -216,6 +216,7 @@ Page({
       url: `../../pages/integralRule/index?level=${level}`
     })
   },
+
   //内容特权
   contentPrivilege:function(e){
       let level = e.currentTarget.dataset.level;
@@ -223,9 +224,11 @@ Page({
         url: `../../pages/contentsInterests/index?level=${level}`
       })
   },
+
   toPreferentialService: function(e) {
-    wx.navigateTo({
-      url: '../preferential/index'
-    })
+      let level = e.currentTarget.dataset.level;
+      wx.navigateTo({
+        url: `../preferential/index?level=${level}`
+      })
   }
 })

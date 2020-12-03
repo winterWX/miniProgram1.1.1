@@ -1,10 +1,10 @@
 <view>
     <view class="content-top">
         <view class="content-image1">
-            <image src="../../images/contentInterests/rectangle@3x.png"/>
+            <image src="{{baseUrl + '/images/contentInterests/rectangle@3x.png'}}"/>
         </view>
         <view class="content-image2">
-            <image src="../../images/contentInterests/group-9@3x.png"/>
+            <image src="{{baseUrl + '/images/contentInterests//group-9@3x.png'}}"/>
         </view>
     </view>
     <view class="content-blockMidden">
@@ -13,7 +13,7 @@
         <view class="titleText">金会员畅享平台内所有文章视频。标有金会员标签为金会员独享，同时金会员亦可浏览其他文章视频，包括带有银会员标签的文章视频</view>
        </view>
        <view class="contentImage">
-          <image src="../../images/contentInterests/invalid-name@3x.png" />
+          <image  src="{{baseUrl +'/images/contentInterests/invalid-name@3x.png'}}" />
         </view>
     </view>
     <!-- <view class="content-blockBottom">
@@ -31,7 +31,7 @@
         <view class="titleText">银会员尊享平台内标有银会员标签的内容，同时亦可浏览其他普通文章视频。</view>
        </view>
        <view class="contentImage">
-          <image src="../../images/contentInterests/invalid-name@3x.png" />
+          <image src="{{baseUrl +'/images/contentInterests/invalid-name@3x.png'}}" />
         </view>
     </view>
 </view>
