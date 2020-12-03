@@ -48,22 +48,33 @@ Page({
             app.globalData.token = token;
             app.globalData.phoneNumber = phoneNumber;
             let integralFlg = integral.flag !== undefined ? integral.flag : '';
-            console.log('------新用户 + this.data.urlTag ', res,this.data.urlTag);
+
             if(this.data.urlTag === 'pageTag' && integralFlg === 'true'){
                 wx.redirectTo({ url: '../index/index?flag='+ integralFlg });
             }else if((this.data.urlTag === 'pageTag' && integralFlg === '') && !isFriend){
-              
                 let addSuccess = 'addSuccess';
                 wx.redirectTo({ url: '../newFriend/index?addSuccess='+ addSuccess });
             }else if(this.data.urlTag === 'pageTag' && isFriend){
                 //是否已经互为好友
                 wx.redirectTo({ url: '../addFriend/index' });
             }
+
             wx.reLaunch({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })
-        } else {
+        } else if(res.data.code === 999000){   //白名单
+            wx.showModal({
+              title: '提示',
+              content: '您没有登录权限',
+              showCancel: false,
+              success (res) {
+                if (res.confirm) {
+                  wx.redirectTo({ url: '../index/index'});
+                }
+              }
+            })
+        }else {
             wx.showModal({
               showCancel: false,
               content: res.message,

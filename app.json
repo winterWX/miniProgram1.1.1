@@ -55,6 +55,8 @@
     "pages/textUserAgreements/index",
     "pages/textPrivacyStatement/index",
     "pages/textCookiesPolicy/index",
+    "pages/contentsInterests/index",
+    "pages/integralRule/index",
     "pages/preferential/index"
   ],
   "window": {

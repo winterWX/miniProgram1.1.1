@@ -1,0 +1,49 @@
+
+
+page{
+  height: 100%;
+  background-color: #ededed;
+}
+.content-top{
+  background-color: #ffffff;
+}
+.content-image1 image{
+  width: 100%;
+  height: 288rpx;
+}
+.content-image2{
+  width: 100%;
+  height: 138rpx;
+}
+.content-image2 image{
+  height: 138rpx;
+  width: 100%;
+}
+.content-blockMidden{
+   margin-top: 20rpx;
+   height: 600rpx;
+   padding: 30rpx;
+   background-color: #ffffff;
+}
+
+.bottomContent{
+  height: 500rpx !important;
+}
+
+.titleCotent{
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+  margin-bottom: 18rpx;
+}
+
+.contentImage image{
+  width:690rpx;
+  height:342rpx;
+}
+.titleText{
+  font-size: 28rpx;
+  color: rgb(102,102,102);
+}
+.contentImage{
+  margin-top:20rpx;
+}

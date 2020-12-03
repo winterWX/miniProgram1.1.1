@@ -40,24 +40,25 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
-        let sercode = res.data.data.mileStones.length;
-        let couponType = res.data.data.tierInfo.couponType;
-        res.data.data.mileStones = res.data.data.mileStones.map(item=>{
+          res.data.data.level = 5;
+          let sercode = res.data.data.mileStones.length;
+          let couponType = res.data.data.tierInfo.couponType;
+          res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
                   ...item,
                   expiryTime: item.expiryTime ? that.cardDayShow(item.expiryTime) :''
               }
-        })
-        that.setData({
-            activeData : res.data.data,
-            activeNum : sercode,
-            bluPosse : that.bluPosse(res.data.data),
-            couponTypes : couponType === 1 ? '折' : '',
-            couponTypeAfter : couponType === 1 ? '' : '$',
-            couponTypeText: couponType === 1 ? '折扣券' : '现金券'
-        })
-        that.secoreFun();
-    }
+          })
+          that.setData({
+              activeData : res.data.data,
+              activeNum : sercode,
+              bluPosse : that.bluPosse(res.data.data),
+              couponTypes : couponType === 1 ? '折' : '',
+              couponTypeAfter : couponType === 1 ? '' : '$',
+              couponTypeText: couponType === 1 ? '折扣券' : '现金券'
+          })
+          that.secoreFun();
+      }
     })
   },
 
@@ -175,6 +176,21 @@ Page({
     const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
     const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '日';
     return  Y + M + D;
+  },
+
+  //积分翻倍
+  doubleIntegral:function(e){
+    let level = e.currentTarget.dataset.level;
+    wx.navigateTo({
+      url: `../../pages/integralRule/index?level=${level}`
+    })
+  },
+  //内容特权
+  contentPrivilege:function(e){
+      let level = e.currentTarget.dataset.level;
+      wx.navigateTo({
+        url: `../../pages/contentsInterests/index?level=${level}`
+      })
   },
   toPreferentialService: function(e) {
     wx.navigateTo({

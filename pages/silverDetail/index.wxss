@@ -1,4 +1,3 @@
-
 .vipBlock{
   padding:20rpx 46rpx 0rpx 36rpx;
 }
@@ -203,12 +202,13 @@
   color: rgb(51,51,51);
   border: 2rpx solid rgb(51,51,51);
   padding: 5rpx 10rpx;
+  margin-left: 20rpx;
 }
 .progressBlockText20{
   font-size: 24rpx;
   color: rgb(51,51,51);
   padding: 5rpx 10rpx;
-  margin-right: 200rpx;
+  margin-right: 190rpx;
 }
 .progressBlockTextone{
   font-size: 24rpx;
@@ -444,7 +444,7 @@
 .carkBlock-allMain{
   position: absolute;
   width: 650rpx;
-  height: 550rpx;
+  height: 484rpx;
   background-color: #ffffff;
   top:330rpx;
   z-index: 12;
@@ -479,8 +479,8 @@
   color: rgb(51,51,51);
 }
 .text4-main{
-  padding: 0 70rpx;
-  margin-top: -130rpx;
+  padding: 0 35rpx;
+  margin-top: 225rpx;
 }
 .text5-main{
   text-decoration: underline;
@@ -545,7 +545,7 @@
 }
 .carkBlockMainImage{
   width: 650rpx;
-  height: 550rpx;
+  height: 484rpx;
 }
 .carkBlockClose{
   width: 100%;
@@ -584,20 +584,20 @@
   top: 35rpx;
 }
 .aboutBlock .tenImage{
-  width: 514rpx;
-  height: 148rpx;
+  width: 582rpx;
+  height: 164rpx;
 }
 .textContent{
   position: absolute;
   width: 100%;
   padding-left: 235rpx;
   text-align: left;
-  top: 35rpx;
+  top: 40rpx;
 }
 .textContent1{
   font-size: 28rpx;
   color:rgb(51,51,51);
-  margin-bottom: 10rpx;
+  margin-bottom: 18rpx;
 }
 .textContent2{
   font-size: 24rpx;
@@ -608,9 +608,20 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 62rpx;
-  left: 100rpx;
-  color: rgb(155,124,86);
+  top: 38rpx;
+  left: 75rpx;
+}
+
+.leftContent image{
+  width: 86rpx;
+  height: 102rpx;
+}
+.middenContent image{
+  position: absolute;
+  width: 4rpx;
+  height: 130rpx;
+  top: 18rpx;
+  left: 198rpx;
 }
 .firstFlg{
   margin-right: 10rpx;
