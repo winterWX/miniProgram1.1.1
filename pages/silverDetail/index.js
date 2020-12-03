@@ -185,12 +185,16 @@ Page({
       url: `../../pages/integralRule/index?level=${level}`
     })
   },
-
   //内容特权
   contentPrivilege:function(e){
       let level = e.currentTarget.dataset.level;
       wx.navigateTo({
         url: `../../pages/contentsInterests/index?level=${level}`
       })
+  },
+  toPreferentialService: function(e) {
+    wx.navigateTo({
+      url: '../preferential/index'
+    })
   }
 })

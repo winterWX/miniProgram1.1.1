@@ -148,7 +148,7 @@
                 <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
             </view>
-            <view class="bottomBlockGold">
+            <view class="bottomBlockGold" catchtap="toPreferentialService">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -341,7 +341,7 @@
                 <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
             </view>
-            <view class="bottomBlockGold">
+            <view class="bottomBlockGold" catchtap="toPreferentialService">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
