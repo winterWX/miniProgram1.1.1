@@ -1,14 +1,11 @@
-<view>
-    <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}" bind:parentLevel="parentCallBack" />
-    <button catchtap="toPreferentialService">点击我</button>
-    <view wx:if="{{activeData.level === 1 && LockFlg}}">
-        <view class="integralAct-main">
-            <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
-            <view class="progressSecore">
-                <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
-                    <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
-                    <view class="rab-item1"><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
-                </view>
+<membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}" bind:parentLevel="parentCallBack" />
+<view wx:if="{{activeData.level === 1 && LockFlg}}">
+    <view class="integralAct-main">
+        <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+        <view class="progressSecore">
+            <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
+                <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
+                <view class="rab-item1 "><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
             </view>
         </view>
         <view class="progressBlock">
@@ -140,18 +137,18 @@
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-            <!-- <view class="insrusBlock">
-                <view class="insrusBlock1">
-                    <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
-                    <view class="insrusImage1">保险申请礼遇</view>
-                </view>
-                <view class="insrusBlock12">
-                    <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
-                    <view class="insrusImageText1">10个月免费癌症</view>
-                    <view class="insrusImageText2" style="left:32rpx;">保障</view>
-                </view> 
-            </view> -->
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="insrusBlock">
+            <view class="insrusBlock1">
+                <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
+                <view class="insrusImage1">保险申请礼遇</view>
+            </view>
+            <view class="insrusBlock12">
+                <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
+                <view class="insrusImageText1">10个月免费癌症</view>
+                <view class="insrusImageText2" style="left:32rpx;">保障</view>
+            </view>
+            </view>
+            <view class="bottomBlockGold" catchtap="toPreferentialService">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -174,7 +171,7 @@
         <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
-                <!--<view class="rab-item">{{item.targetIntegral}}</view> -->
+                <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
                 <view class="rab-item1"><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
             </view>
         </view>
@@ -234,7 +231,7 @@
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-        <!-- <view class="insrusBlock">
+        <view class="insrusBlock">
             <view class="insrusBlock1">
             <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
             <view class="insrusImage1">保险申请礼遇</view>
@@ -244,15 +241,15 @@
             <view class="insrusImageText1">10个月免费癌症</view>
             <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
-        </view> -->
-        <view class="bottomBlockGold"  bindtap="toPreferentialService"  data-level="{{activeData.level}}">
+        </view>
+        <view class="bottomBlockGold">
             <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
         </view>
-        <view class="bottomTextSeconde" bindtap="toPreferentialService" data-level="{{activeData.level}}">
+        <view class="bottomTextSeconde">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">免费网上健康讲座</view>
                 <view class="bottomTextSecondeBlock2">由中大医院/卓健提供</view>
@@ -333,7 +330,7 @@
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-            <!-- <view class="insrusBlock">
+            <view class="insrusBlock">
             <view class="insrusBlock1">
                 <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
                 <view class="insrusImage1">保险申请礼遇</view>
@@ -343,8 +340,8 @@
                 <view class="insrusImageText1">10个月免费癌症</view>
                 <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
-            </view> -->
-            <view class="bottomBlockGold" catchtap="toPreferentialService"  data-level="{{activeData.level}}">
+            </view>
+            <view class="bottomBlockGold" catchtap="toPreferentialService">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -408,18 +405,18 @@
     </view>
     <view  class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-        <!-- <view class="insrusBlock">
+        <view class="insrusBlock">
             <view class="insrusBlock1">
-                <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
-                <view class="insrusImage1">保险申请礼遇</view>
+            <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
+            <view class="insrusImage1">保险申请礼遇</view>
             </view>
             <view class="insrusBlock12">
-                <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
-                <view class="insrusImageText1">10个月免费癌症</view>
-                <view class="insrusImageText2" style="left:32rpx;">保障</view>
+            <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
+            <view class="insrusImageText1">10个月免费癌症</view>
+            <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
-        </view> -->
-        <view class="bottomBlockGold"  bindtap="toPreferentialService" data-level="{{activeData.level}}">
+        </view>
+        <view class="bottomBlockGold">
             <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -466,25 +463,25 @@
             </view> -->
             <view style="margin-top: 40rpx;">
                 <view class="bouttomTitlr">银会员专享限时优惠</view>
-                <!-- <view class="insrusBlock">
-                    <view class="insrusBlock1">
-                        <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
-                        <view class="insrusImage1">保险申请礼遇</view>
-                    </view>
-                    <view class="insrusBlock12">
-                        <image src="{{baseUrl+'/images/silver/newImage/group@3gx.png'}}"/>
-                        <view class="insrusImageText1">10个月免费癌症</view>
-                        <view class="insrusImageText2" style="left:32rpx;">保障</view>
-                    </view>
-                </view> -->
-            </view>
-            <view class="bottomBlockGold" bindtap="toPreferentialService" data-level="{{activeData.level}}">
-                <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
-                <view class="bottomText2">由健康伙伴提供</view>
+                <view class="insrusBlock">
+                <view class="insrusBlock1">
+                    <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
+                    <view class="insrusImage1">保险申请礼遇</view>
                 </view>
-                <image src="{{baseUrl+'/images/silver/img-hospital@3x.png'}}"/>
+                <view class="insrusBlock12">
+                    <image src="{{baseUrl+'/images/silver/newImage/group@3gx.png'}}"/>
+                    <view class="insrusImageText1">10个月免费癌症</view>
+                    <view class="insrusImageText2" style="left:32rpx;">保障</view>
+                </view>
+                </view>
             </view>
+                <view class="bottomBlockGold">
+                    <view class="bottomText">
+                    <view class="bottomText1">医健服务优惠</view>
+                    <view class="bottomText2">由健康伙伴提供</view>
+                    </view>
+                    <image src="{{baseUrl+'/images/silver/img-hospital@3x.png'}}"/>
+                </view>
     </view>
     <!-- <view class="bouttomImage">
         <view class="bouttomTitlr">银会员专享限时优惠</view>
@@ -572,7 +569,7 @@
                 <image src="{{baseUrl+'/images/otherCarde/glogs.PNG'}}"/>
             </view> -->
             <view class="bouttomTitlr" style="margin-top: 40rpx;">金会员专享限时优惠</view>
-            <!-- <view class="insrusBlock">
+            <view class="insrusBlock">
                 <view class="insrusBlock1">
                     <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
                     <view class="insrusImage1">保险申请礼遇</view>
@@ -582,15 +579,15 @@
                     <view class="insrusImageText1">10个月免费癌症</view>
                     <view class="insrusImageText2" style="left:32rpx;">保障</view>
                 </view>
-            </view> -->
-            <view class="bottomBlockGold" bindtap="toPreferentialService" data-level="{{activeData.level}}">
+            </view>
+            <view class="bottomBlockGold">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
             </view>
-            <view class="bottomBlockGold" bindtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="bottomBlockGold">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>
@@ -655,7 +652,7 @@
                 <!-- <image class="carkBlockAfter" src="{{baseUrl+'/images/couponDetails/group-3@2x.png'}}"/> -->
                 <view class="aboutBlock">
                     <!-- <image class="tenImage"  src="{{baseUrl + '/images/couponDetails/coupon@3x.png'}}"/> -->
-                    <image class="tenImage" src="{{baseUrl+'/images/silver/invalid-name@3x.png'}}"/>
+                    <image class="tenImage"  src="../../images/invalid-name@3x.png"/>
                     <view class="leftContent">
                         <!-- <view class="firstFlg">¥</view>
                         <view class="firstNum">{{activeData.mileStones[indexNum].couponValue}}</view> -->
@@ -663,7 +660,7 @@
                         <image src="{{activeData.mileStones[indexNum].attachmentUrl}}"/>
                     </view>
                     <view class="middenContent">
-                        <image src="{{baseUrl+'/images/silver/invalid-name@2x.png'}}"/>
+                        <image src="../../images/invalid-name@2x.png"/>
                     </view>
                     <view class="textContent">
                         <view class="textContent1">{{activeData.mileStones[indexNum].couponName}}</view>

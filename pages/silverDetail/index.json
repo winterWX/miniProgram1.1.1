@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "discountAct：":"../../components/discountAct",
     "membership-card":"../../components/membershipCard",
     "van-button": "vant-weapp/button/index"
   },
