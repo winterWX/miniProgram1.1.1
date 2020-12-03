@@ -1,11 +1,12 @@
-// pages/integralRule/index.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    level:0
+    level: 0,
+    baseUrl: app.globalData.imagesUrl
   },
 
   /**

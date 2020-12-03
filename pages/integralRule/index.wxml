@@ -1,6 +1,6 @@
 <view class="topBlock">
   <view class="topImage">
-    <image src="../../images/integralRule/rectangle@3x.png" />
+    <image src="{{baseUrl + '/integralRule/rectangle@3x.png'}}" />
   </view>
   <view class="topImage-text">
     <view class="tileText1">等级积分规则</view>
@@ -11,12 +11,12 @@
   <view class="titleContent">部分活动可享</view>
   <view class="middenCotentBlock">
     <view class="itemCotent">
-      <image class="itemCotent-image" src="../../images/integralRule/points@3x.png"/>
+      <image class="itemCotent-image" src="{{baseUrl + '/integralRule/points@3x.png'}}"/>
       <view class="itemCotent-title">白银会员x2倍积分</view>
       <view class="itemCotent-content">积分达1500或成为恒生银行客户即可升级白银会员</view>
     </view>
     <view class="itemCotent">
-      <image class="itemCotent-image" src="../../images/integralRule/points-2@3x.png"/>
+      <image class="itemCotent-image" src="{{baseUrl + '/integralRule/points-2@3x.png'}}"/>
       <view class="itemCotent-title">黄金会员x5倍积分</view>
       <view class="itemCotent-content">积分达4500或成为恒生保险客户即可升级黄金会员</view>
     </view>

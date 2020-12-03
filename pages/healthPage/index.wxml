@@ -28,7 +28,7 @@
        <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='{{imagesUrl + "/images/icon-right-arrow-12-x-12.png"}}'></image></view>
          <view class="{{firstInitShow ? 'firstInitShow': 'miniprogress'}}">
             <miniprogress wx:if="{{!firstInitShow}}" stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
-            <image wx:else class="miniprogressImage"  src="../../images/group@3x.png" />
+            <image wx:else class="miniprogressImage"  src="{{imagesUrl + '/images/group@3x.png'}}"/>
         </view>
         <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)  isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
