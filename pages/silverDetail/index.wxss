@@ -108,17 +108,23 @@
   z-index: 10;
 }
 .rabie{
-  background-color: rgb(255,255,255);
+  /* background-color: rgb(255,255,255);
   border-radius: 50%;
   width: 16rpx;
-  height: 16rpx;
+  height: 16rpx; */
   /* z-index: 11; */
+  height: 20rpx;
+  line-height: 20rpx;
+  font-size: 20rpx;
+  color: #333;
 }
 .progressSecore .itemBlock{
   /* display: flex;
   align-items: center;
   justify-content: center; */
   text-align: center;
+  height: 24rpx;
+  line-height: 24rpx;
 }
 .rab-item{
   height: 40rpx;
@@ -127,7 +133,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10rpx;
+  margin-top: 6rpx;
 }
 .progressCark{
   display: flex;
@@ -622,4 +628,7 @@
 }
 .minTextAfter{
   width: 100rpx;
+}
+.active-color {
+  color: #fff;
 }

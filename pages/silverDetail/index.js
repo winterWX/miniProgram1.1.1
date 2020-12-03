@@ -26,7 +26,8 @@ Page({
     couponTypeAfter:'',
     showCarkBlock:false,
     indexNum:-1,
-    receiveId: -1
+    receiveId: -1,
+    integral: 0
   },
 
   /**
@@ -67,7 +68,7 @@ Page({
     that.setData({ secoreNun : (100 / Number(activeNum)).toFixed(2)})
   },
 
-  bluPosse:function(data){
+/*   bluPosse:function(data){
       let lengthNum = data.mileStones.length;
       let numData = (100 / Number(lengthNum)).toFixed(5);
       let indexFlg = -1;
@@ -115,8 +116,38 @@ Page({
               return total;
           }
     }
+  }, */
+  bluPosse:function(data){
+      let { integral, mileStones } = data;
+      let mileStonesIntegral = mileStones.map (item => {
+        return item.targetIntegral;
+      });
+      this.setData({integral});
+      let originData = JSON.parse(JSON.stringify(mileStonesIntegral));
+      let min = Math.min(...mileStonesIntegral);
+      let max = Math.max(...mileStonesIntegral);
+      let result = 0;
+      if (integral < min) {
+        result = 5;
+      } else if (integral > max) {
+        result = 100;
+      } else {
+        let index;
+        
+        if(originData.includes(integral)) {
+          index = originData.indexOf(integral) + 1;
+          result = (index / originData.length).toFixed(2) * 100;
+        } else {
+          mileStonesIntegral.push(integral);
+          mileStonesIntegral.sort((a, b) => {
+              return a - b;
+          });
+          index = mileStonesIntegral.indexOf(integral);
+          result = (index / originData.length).toFixed(2) * 100;
+        }
+      }
+      return result;
   },
-
   receivedFun:function(e){
     let that = this;
     let indexNum = e.currentTarget.dataset.index;

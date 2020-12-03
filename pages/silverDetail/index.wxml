@@ -6,8 +6,8 @@
             <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
             <view class="progressSecore">
                 <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
-                    <view class="rab-item">{{item.targetIntegral}}</view>
-                    <view class="rab-item1"><view class="rabie"></view></view>
+                    <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
+                    <view class="rab-item1"><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
                 </view>
             </view>
             <view class="progressBlock">
