@@ -84,6 +84,7 @@ Component({
         }
       }
     },
+    
     checkAuthorization() { //检测是否已经授权      
       wx.getSetting({
         success: (setingres) => {
@@ -109,7 +110,6 @@ Component({
 
         }
       })
-
     },
 
     onLogin(data) { //登录
@@ -143,8 +143,8 @@ Component({
           })
         }
       })
-
     },
+
     getUserInfo(e) { //获取用户信息
       if (e.detail.userInfo) {
         this.onLogin(e.detail)

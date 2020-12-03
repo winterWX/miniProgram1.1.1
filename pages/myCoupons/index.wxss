@@ -61,6 +61,7 @@
 }
 .itemBlock-main{
   width: 14.35%;
+  margin-top: 15rpx;
 }
 .itemBlock{
   margin-left: 18rpx;
