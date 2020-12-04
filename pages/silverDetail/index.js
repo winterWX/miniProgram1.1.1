@@ -27,7 +27,9 @@ Page({
     showCarkBlock:false,
     indexNum:-1,
     receiveId: -1,
-    integral: 0
+    integral: 0,
+    showModal: false,
+    modalContent: {}
   },
 
   /**
@@ -230,5 +232,12 @@ Page({
       wx.navigateTo({
         url: `../preferential/index?level=${level}`
       })
+  },
+  openCardModial: function(e) {
+    let {dataset: { prop }} = e.currentTarget
+    this.setData({showModal: true, modalContent: prop});
+  },
+  closeModal: function() {
+    this.setData({showModal: false});
   }
 })

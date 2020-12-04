@@ -14,16 +14,13 @@
         </view>
         <view class="progressCark">
              <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-            <!--<view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop"> -->
                 <view class="card">
-                    <!-- <image src="{{baseUrl + '/images/silver/group-39@3x.png' }}" /> -->
-                    <image src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
                     <view class="content">
-                        <!-- <view class="title">{{item.couponCategory}}</view>
-                        <view class="sub-title">{{item.couponName}}</view> -->
                         <view class="flex">
-                            <view class="title">体验</view>
-                            <view class="sub-title">银行服务保险业务</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
                         </view>
                     </view>
                     <view class="status">
@@ -32,12 +29,6 @@
                         <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                     </view>
                 </view> 
-                <!-- <view class="blockText">
-                    <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 1}}" >已领取</view>
-                    <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 3}}" >未达成</view>
-                </view> -->
             </view>
         </view>
         <view class="container">
@@ -690,4 +681,15 @@
         </view>
     </view>
 </view>
-
+<view class="carkBlock" wx:if="{{showModal}}">
+    <view class="modal">
+        <view class="main">
+            <view class="title">{{modalContent.couponCategory}}
+            </view>
+            <view class="content">{{modalContent.couponName}}</view>
+        </view>
+        <view class="footer">
+            <button class="btn-primary btn" catchtap="closeModal">我知道了</button>
+        </view>
+    </view>
+</view>
