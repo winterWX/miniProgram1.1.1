@@ -13,14 +13,31 @@
             </view>
         </view>
         <view class="progressCark">
-            <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <view><image src="{{baseUrl + '/images/silver/group-39@3x.png' }}" /></view> 
-                <view class="blockText">
+             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
+            <!--<view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop"> -->
+                <view class="card">
+                    <!-- <image src="{{baseUrl + '/images/silver/group-39@3x.png' }}" /> -->
+                    <image src="../../images/bg-point-shadow@2x.png" />
+                    <view class="content">
+                        <!-- <view class="title">{{item.couponCategory}}</view>
+                        <view class="sub-title">{{item.couponName}}</view> -->
+                        <view class="flex">
+                            <view class="title">体验</view>
+                            <view class="sub-title">银行服务保险业务</view>
+                        </view>
+                    </view>
+                    <view class="status">
+                        <view wx:if="{{item.received === 1}}" >已领取</view>
+                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                    </view>
+                </view> 
+                <!-- <view class="blockText">
                     <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
                     <view class="bottomTextTop" wx:if="{{item.received === 1}}" >已领取</view>
                     <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                     <view class="bottomTextTop" wx:if="{{item.received === 3}}" >未达成</view>
-                </view>
+                </view> -->
             </view>
         </view>
         <view class="container">
