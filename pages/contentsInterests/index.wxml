@@ -31,7 +31,7 @@
         <view class="titleText">银会员尊享平台内标有银会员标签的内容，同时亦可浏览其他普通文章视频。</view>
        </view>
        <view class="contentImage">
-          <image src="{{baseUrl +'/images/contentInterests/invalid-name@3x.png'}}" />
+          <image style="height:282rpx;" src="{{baseUrl + '/images/contentInterests/2@2x.png'}}" />
         </view>
     </view>
 </view>
