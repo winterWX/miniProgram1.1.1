@@ -156,7 +156,7 @@
   width: 110rpx;
   position: absolute;
   left: 0rpx;
-  bottom: 16rpx;
+  bottom: 20rpx;
   text-align: center;
   display: flex;
   align-items: center;
@@ -180,7 +180,7 @@
   height: 100%;
 }
 .progressCark .card .content .title{
-  color: #9b7c56;
+  color: rgba(155, 124, 86, 0.5);
   font-size: 24rpx;
   font-weight: 500;
   text-align: center;
@@ -191,12 +191,15 @@
   font-weight: 300;
   text-align: center;
   font-size: 20rpx;
-  color: #333;
+  color: rgba(51, 51, 51, 0.7);
   width: 100rpx;
-  padding: 0 4rpx;
+  padding: 0rpx 6rpx;
   box-sizing: border-box;
   line-height: 22rpx;
-} 
+}
+.progressCark .card .content .sub-title:hover {
+  text-decoration: underline;
+}
 .blockText{
   /* width: 126rpx; */
   width: 100%;
@@ -695,5 +698,56 @@
   width: 100rpx;
 }
 .active-color {
+  color: #fff;
+}
+.title-avtive-color {
+  color: #9b7c56;
+}
+.sub-title-avtive-color {
+  color: #333;
+}
+
+
+
+.main-content .content {
+  color: #333;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  word-break: break-all;
+} 
+.main-content .content .rule {
+  border-bottom: 2rpx solid #333;
+}
+.mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5E5E5E;
+}
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 10rpx;
+}
+.modal .main .title {
+  text-align: center;
+  font-size: 36rpx;
+  padding: 10rpx 0;
+}
+.modal .main .content {
+  min-height: 260rpx;
+  overflow-y: auto;
+  color: #666;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+}
+.modal .footer .btn {
   color: #fff;
 }
