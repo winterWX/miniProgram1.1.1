@@ -4,7 +4,6 @@
         <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
-                <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
                 <view class="rab-item1 "><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
             </view>
         </view>
@@ -43,7 +42,7 @@
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl+'/images/silver/newImage/group-2@t3x.png'}}"/>
                                     <view class="progressBlockText1">现金券积分兑换 唯尊享码升级会员专享</view>
-                                    <view class="progressBlockText2">立即查看</view>
+                                    <view class="progressBlockText2" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -52,7 +51,7 @@
                                 <image src="{{baseUrl+'/images/otherCarde/bg-x-2@t3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockText20">银会员X2积分升级攻略</view>
-                                    <view class="progressBlockText30">立即查看</view>
+                                    <view class="progressBlockText30" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -61,7 +60,7 @@
                                 <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
-                                    <view class="progressBlockText3">立即查看</view>
+                                    <view class="progressBlockText3" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -132,7 +131,7 @@
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl+'/images/silver/newImage/group-2@t3x.png'}}"/>
                                     <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
-                                    <view class="progressBlockText2">立即查看</view>
+                                    <view class="progressBlockText2" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -141,7 +140,7 @@
                                 <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
-                                    <view class="progressBlockText3">立即查看</view>
+                                    <view class="progressBlockText3" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -152,18 +151,18 @@
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-            <view class="insrusBlock">
-            <view class="insrusBlock1">
-                <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
-                <view class="insrusImage1">保险申请礼遇</view>
-            </view>
-            <view class="insrusBlock12">
-                <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
-                <view class="insrusImageText1">10个月免费癌症</view>
-                <view class="insrusImageText2" style="left:32rpx;">保障</view>
-            </view>
-            </view>
-            <view class="bottomBlockGold" catchtap="toPreferentialService">
+            <!-- <view class="insrusBlock">
+                <view class="insrusBlock1">
+                    <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
+                    <view class="insrusImage1">保险申请礼遇</view>
+                </view>
+                <view class="insrusBlock12">
+                    <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
+                    <view class="insrusImageText1">10个月免费癌症</view>
+                    <view class="insrusImageText2" style="left:32rpx;">保障</view>
+                </view>
+            </view> -->
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -226,7 +225,7 @@
                             <view class="progressBlockText">
                                 <image src="{{baseUrl + '/images/silver/newImage/group-2@t3x.png'}}"/>
                                 <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
-                                <view class="progressBlockText2">立即查看</view>
+                                <view class="progressBlockText2" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                             </view>
                         </view>
                     </swiper-item>
@@ -254,25 +253,25 @@
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-        <view class="insrusBlock">
+        <!-- <view class="insrusBlock">
             <view class="insrusBlock1">
-            <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
-            <view class="insrusImage1">保险申请礼遇</view>
+                <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
+                <view class="insrusImage1">保险申请礼遇</view>
             </view>
             <view class="insrusBlock12">
-            <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
-            <view class="insrusImageText1">10个月免费癌症</view>
-            <view class="insrusImageText2" style="left:32rpx;">保障</view>
+                <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
+                <view class="insrusImageText1">10个月免费癌症</view>
+                <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
-        </view>
-        <view class="bottomBlockGold">
+        </view> -->
+        <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
             <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
         </view>
-        <view class="bottomTextSeconde">
+        <view class="bottomTextSeconde" catchtap="toPreferentialService" data-level="{{activeData.level}}">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">免费网上健康讲座</view>
                 <view class="bottomTextSecondeBlock2">由中大医院/卓健提供</view>
@@ -350,7 +349,7 @@
                                 <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
-                                    <view class="progressBlockText3" >立即查看</view>
+                                    <view class="progressBlockText3" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -361,18 +360,18 @@
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-            <view class="insrusBlock">
-            <view class="insrusBlock1">
-                <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
-                <view class="insrusImage1">保险申请礼遇</view>
-            </view>
-            <view class="insrusBlock12">
-                <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
-                <view class="insrusImageText1">10个月免费癌症</view>
-                <view class="insrusImageText2" style="left:32rpx;">保障</view>
-            </view>
-            </view>
-            <view class="bottomBlockGold" catchtap="toPreferentialService">
+            <!-- <view class="insrusBlock">
+                <view class="insrusBlock1">
+                    <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
+                    <view class="insrusImage1">保险申请礼遇</view>
+                </view>
+                <view class="insrusBlock12">
+                    <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
+                    <view class="insrusImageText1">10个月免费癌症</view>
+                    <view class="insrusImageText2" style="left:32rpx;">保障</view>
+                </view>
+            </view> -->
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -443,18 +442,18 @@
     </view>
     <view  class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
-        <view class="insrusBlock">
+        <!-- <view class="insrusBlock">
             <view class="insrusBlock1">
-            <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
-            <view class="insrusImage1">保险申请礼遇</view>
+                <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
+                <view class="insrusImage1">保险申请礼遇</view>
             </view>
             <view class="insrusBlock12">
-            <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
-            <view class="insrusImageText1">10个月免费癌症</view>
-            <view class="insrusImageText2" style="left:32rpx;">保障</view>
+                <image src="{{baseUrl + '/images/silver/newImage/group@3gx.png'}}"/>
+                <view class="insrusImageText1">10个月免费癌症</view>
+                <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
-        </view>
-        <view class="bottomBlockGold">
+        </view> -->
+        <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
             <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -501,25 +500,25 @@
             </view> -->
             <view style="margin-top: 40rpx;">
                 <view class="bouttomTitlr">银会员专享限时优惠</view>
-                <view class="insrusBlock">
-                <view class="insrusBlock1">
-                    <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
-                    <view class="insrusImage1">保险申请礼遇</view>
-                </view>
-                <view class="insrusBlock12">
-                    <image src="{{baseUrl+'/images/silver/newImage/group@3gx.png'}}"/>
-                    <view class="insrusImageText1">10个月免费癌症</view>
-                    <view class="insrusImageText2" style="left:32rpx;">保障</view>
-                </view>
-                </view>
-            </view>
-                <view class="bottomBlockGold">
-                    <view class="bottomText">
-                    <view class="bottomText1">医健服务优惠</view>
-                    <view class="bottomText2">由健康伙伴提供</view>
+                <!-- <view class="insrusBlock">
+                    <view class="insrusBlock1">
+                        <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
+                        <view class="insrusImage1">保险申请礼遇</view>
                     </view>
-                    <image src="{{baseUrl+'/images/silver/img-hospital@3x.png'}}"/>
+                    <view class="insrusBlock12">
+                        <image src="{{baseUrl+'/images/silver/newImage/group@3gx.png'}}"/>
+                        <view class="insrusImageText1">10个月免费癌症</view>
+                        <view class="insrusImageText2" style="left:32rpx;">保障</view>
+                    </view>
+                </view> -->
+            </view>
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+                <view class="bottomText">
+                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText2">由健康伙伴提供</view>
                 </view>
+                <image src="{{baseUrl+'/images/silver/img-hospital@3x.png'}}"/>
+            </view>
     </view>
     <!-- <view class="bouttomImage">
         <view class="bouttomTitlr">银会员专享限时优惠</view>
@@ -554,7 +553,7 @@
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl+'/images/silver/newImage/group-2@t3x.png'}}"/>
                                     <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
-                                    <view class="progressBlockText2">立即查看</view>
+                                    <view class="progressBlockText2"  bindtap="doubleIntegral"  data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -563,7 +562,7 @@
                                 <image src="{{baseUrl+'/images/otherCarde/bg-x-2@t3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockText20">银会员X2积分升级攻略</view>
-                                    <view class="progressBlockText30">立即查看</view>
+                                    <view class="progressBlockText30"  bindtap="doubleIntegral"  data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -572,7 +571,7 @@
                                 <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
-                                    <view class="progressBlockText3" >立即查看</view>
+                                    <view class="progressBlockText3"   bindtap="doubleIntegral"  data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -607,7 +606,7 @@
                 <image src="{{baseUrl+'/images/otherCarde/glogs.PNG'}}"/>
             </view> -->
             <view class="bouttomTitlr" style="margin-top: 40rpx;">金会员专享限时优惠</view>
-            <view class="insrusBlock">
+            <!-- <view class="insrusBlock">
                 <view class="insrusBlock1">
                     <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
                     <view class="insrusImage1">保险申请礼遇</view>
@@ -617,15 +616,15 @@
                     <view class="insrusImageText1">10个月免费癌症</view>
                     <view class="insrusImageText2" style="left:32rpx;">保障</view>
                 </view>
-            </view>
-            <view class="bottomBlockGold">
+            </view> -->
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
             </view>
-            <view class="bottomBlockGold">
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>
@@ -645,7 +644,7 @@
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl + '/images/silver/newImage/group-2@t3x.png'}}"/>
                                     <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
-                                    <view class="progressBlockText2">立即查看</view>
+                                    <view class="progressBlockText2" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -654,7 +653,7 @@
                                 <image src="{{baseUrl + '/images/otherCarde/bg-x-2@t3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockText20">银会员X2积分升级攻略</view>
-                                    <view class="progressBlockText30">立即查看</view>
+                                    <view class="progressBlockText30" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -663,7 +662,7 @@
                                 <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
                                     <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
-                                    <view class="progressBlockText3" >立即查看</view>
+                                    <view class="progressBlockText3" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
