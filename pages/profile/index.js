@@ -140,6 +140,7 @@ Page({
       let userInfo = {};
       let selectedAvatarId = "";
       let received = that.data.received;
+      let { avatarObjList } = this.data;
       if (res.data.code == 200) {
         const { data: { data: { avatar, birthday, email, gender, mobile = "", completedCount, nickname, id, receive } } } = res;
         let formateDate = birthday ? formatTime(new Date(parseInt(birthday) * 1000)).split(" ")[0].split("/").join("-") : "未选择";
@@ -189,7 +190,7 @@ Page({
           nickName: nickName,
           gender: gender === 1 ? "男" : "女",
           birthday: "未选择",
-          avatarUrl: avatarUrl,
+          avatarUrl: avatarObjList[0].url,
           phone: phoneNumber || "未绑定",
           email: "未绑定",
         };

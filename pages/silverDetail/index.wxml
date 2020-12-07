@@ -89,6 +89,7 @@
     </view>
     <view class="integralAct-main">
         <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+        
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -102,14 +103,20 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <image src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
-                <view class="blockText">
-                    <view class="minText">
-                        <view class="minTextAfter">{{item.couponName}}</view>
+                <view class="card">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                    <view class="content">
+                        <view class="flex">
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
+                        </view>
                     </view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                    <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
+                    <view class="status">
+                        <view wx:if="{{item.received === 1}}" >已领取</view>
+                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                    </view>
                 </view>
             </view>
         </view>
@@ -189,12 +196,20 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <image src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
-                <view class="blockText">
-                    <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                    <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
+                <view class="card">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                    <view class="content">
+                        <view class="flex">
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
+                        </view>
+                    </view>
+                    <view class="status">
+                        <view wx:if="{{item.received === 1}}" >已领取</view>
+                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                    </view>
                 </view>
             </view>
         </view>
@@ -307,13 +322,21 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <image src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
-                <view class="blockText">
-                    <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                    <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
-                </view>
+                <view class="card">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                    <view class="content">
+                        <view class="flex">
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
+                        </view>
+                    </view>
+                    <view class="status">
+                        <view wx:if="{{item.received === 1}}" >已领取</view>
+                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                    </view>
+                </view>>
             </view>
         </view>
         <view class="container">
@@ -399,13 +422,20 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <image  wx:if="{{item.received !==2}}" src="{{baseUrl + '/images/silver/group-39@3x.png'}}" /> 
-                <image  wx:if="{{item.received === 2}}" src="{{baseUrl + '/images/silver/newImage/group@3x.png'}}" />
-                <view class="blockText">
-                    <view class="minText"><view class="minTextAfter">{{item.couponName}}</view></view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 1}}">已领取</view>
-                    <view class="bottomTextTop textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
-                    <view class="bottomTextTop" wx:if="{{item.received === 3}}">未达成</view>
+                <view class="card">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                    <view class="content">
+                        <view class="flex">
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
+                        </view>
+                    </view>
+                    <view class="status">
+                        <view wx:if="{{item.received === 1}}" >已领取</view>
+                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                    </view>
                 </view>
             </view>
         </view>
