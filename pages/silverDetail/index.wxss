@@ -148,7 +148,6 @@
 .progressCark .card {
   position: relative;
   width: 110rpx;
-  left: 12rpx;
 }
 .progressCark .card .status {
   height: 54rpx;
@@ -244,10 +243,14 @@
   color: rgb(102,102,102);
 }
 .blockTextTop{
-  position: relative;
-  text-align: center;
+  /* position: relative;
+  text-align: center; */
 /*   display: flex;
   justify-content: space-between; */
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .blockText{
   position: absolute;
