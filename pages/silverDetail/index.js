@@ -43,7 +43,6 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
-          res.data.data.level = 1;
           let sercode = res.data.data.mileStones.length;
           let couponType = res.data.data.tierInfo.couponType;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
@@ -58,7 +57,8 @@ Page({
               bluPosse : that.bluPosse(res.data.data),
               couponTypes : couponType === 1 ? '折' : '',
               couponTypeAfter : couponType === 1 ? '' : '$',
-              couponTypeText: couponType === 1 ? '折扣券' : '现金券'
+              // couponTypeText: couponType === 1 ? '折扣券' : '现金券'
+              couponTypeText: ''
           })
           that.secoreFun();
       }
