@@ -1,7 +1,7 @@
 <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}" bind:parentLevel="parentCallBack" />
 <view wx:if="{{activeData.level === 1 && LockFlg}}">
     <view class="integralAct-main">
-        <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+        <view class="integralActTitle">积分兑换</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <view class="rab-item1 "><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
@@ -88,7 +88,7 @@
         <!-- <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> -->
     </view>
     <view class="integralAct-main">
-        <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+        <view class="integralActTitle">积分兑换</view>
         
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
@@ -181,8 +181,8 @@
     </view>
 </view>
 <view wx:if="{{activeData.level === 3 && LockFlg}}">
-    <view class="integralAct-main integralAct-main2">
-        <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+    <view class="integralAct-main">
+        <view class="integralActTitle">积分兑换</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -213,43 +213,43 @@
                 </view>
             </view>
         </view>
-    </view>
-    <view class="container container-main">
-        <view class="page-body page-body-main">
-                <view class="page-section page-section-spacing swiper">
-                <swiper indicator-dots="{{indicatorDots}}"
-                    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                    <swiper-item>
-                        <view class="progressBlockImage">
-                            <image src="{{baseUrl+'/images/silver/newImage/group-12@3x.png'}}"/>
-                            <view class="progressBlockText">
-                                <image src="{{baseUrl + '/images/silver/newImage/group-2@t3x.png'}}"/>
-                                <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
-                                <view class="progressBlockText2" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
+        <view class="container">
+            <view class="page-body">
+                    <view class="page-section page-section-spacing swiper">
+                    <swiper indicator-dots="{{indicatorDots}}"
+                        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
+                        <swiper-item>
+                            <view class="progressBlockImage">
+                                <image src="{{baseUrl+'/images/silver/newImage/group-12@3x.png'}}"/>
+                                <view class="progressBlockText">
+                                    <image src="{{baseUrl + '/images/silver/newImage/group-2@t3x.png'}}"/>
+                                    <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
+                                    <view class="progressBlockText2" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
+                                </view>
                             </view>
-                        </view>
-                    </swiper-item>
-                    <!-- <swiper-item>
-                        <view class="progressBlockImage">
-                            <image src="{{baseUrl + '/images/otherCarde/bg-x-2@t3x.png'}}"/>
-                            <view class="progressBlockText glodBlock">
-                                <view class="progressBlockText20">银会员X2积分升级攻略</view>
-                                <view class="progressBlockText30">立即查看</view>
+                        </swiper-item>
+                        <!-- <swiper-item>
+                            <view class="progressBlockImage">
+                                <image src="{{baseUrl + '/images/otherCarde/bg-x-2@t3x.png'}}"/>
+                                <view class="progressBlockText glodBlock">
+                                    <view class="progressBlockText20">银会员X2积分升级攻略</view>
+                                    <view class="progressBlockText30">立即查看</view>
+                                </view>
                             </view>
-                        </view>
-                    </swiper-item>
-                    <swiper-item>
-                        <view class="progressBlockImage">
-                            <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
-                            <view class="progressBlockText glodBlock">
-                                <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
-                                <view class="progressBlockText3" >立即查看</view>
+                        </swiper-item>
+                        <swiper-item>
+                            <view class="progressBlockImage">
+                                <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
+                                <view class="progressBlockText glodBlock">
+                                    <view class="progressBlockText20">黃金会员X5积分升级攻略</view>
+                                    <view class="progressBlockText3" >立即查看</view>
+                                </view>
                             </view>
-                        </view>
-                    </swiper-item> -->
-                </swiper>
+                        </swiper-item> -->
+                    </swiper>
+                    </view>
                 </view>
-            </view>
+        </view>
     </view>
     <view class="bouttomImage">
         <view class="bouttomTitlr">可享限时优惠</view>
@@ -308,7 +308,7 @@
         <!-- <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> -->
     </view>
     <view class="integralAct-main">
-        <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+        <view class="integralActTitle">积分兑换</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -336,7 +336,7 @@
                         <view wx:if="{{item.received === 3}}" >未达成</view>
                         <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
                     </view>
-                </view>>
+                </view>
             </view>
         </view>
         <view class="container">
@@ -408,7 +408,7 @@
         <view class="vipBottomBlock" >恒生保险客户尊享升级，礼遇更多</view>
     </view>
     <view class="integralAct-main" style="height: 275rpx;">
-        <view class="integralActTitle">{{couponTypeText}}积分兑换</view>
+        <view class="integralActTitle">积分兑换</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->

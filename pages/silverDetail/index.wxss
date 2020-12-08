@@ -1,6 +1,7 @@
 .vipBlock{
   padding:20rpx 46rpx 0rpx 36rpx;
 }
+
 .vipTopBlock{
     position:relative;
     height:132rpx;
@@ -11,52 +12,60 @@
     font-size:28rpx;
     line-height: 190rpx;
 }
+
 .vipBottomBlock{
-    height:66rpx;
+    height: 66rpx;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20rpx;
-    background-color:rgb(0,0,0);
-    color:rgb(255,255,255);
+    background-color: rgb(0,0,0);
+    color: rgb(255,255,255);
 }
+
 .creRight{
-  position:absolute;
-  height:68rpx;
-  width:68rpx;
+  position: absolute;
+  height: 68rpx;
+  width: 68rpx;
   background-color:rgb(128,128,128);
-  border-radius:50rpx;
+  border-radius: 50rpx;
   left: 560rpx;
   top: 60rpx;
 }
+
 .integralAct-main2{
   height: 275rpx !important;
   padding: 30rpx 30rpx 10rpx 30rpx !important;
 }
+
 .integralAct-main{
-  height: 424rpx;
+  height: 400rpx;
   background-color: #ffffff;
   margin-top:20rpx;
   padding: 30rpx;
   position: relative;
-  /* z-index: -1; */
 }
+
 .integralActTitle{
   font-size: 32rpx;
   font-family: PingFang-SC-Bold;
 }
+
 .progressBlockImage image{
   height: 100rpx;
   width: 100%;
 }
+
 .progressBlockText image{
   width: 92rpx;
   height: 80rpx;
 }
+
 .progressBlockImage{
   margin-top: 20rpx;
   position: relative;
 }
+
 .progressBlockText{
   position: absolute;
   display: flex;
@@ -65,6 +74,7 @@
   top: 0;
   height: 100rpx;
 }
+
 .progressSecore{
   display: flex;
   align-items: center;
@@ -73,6 +83,7 @@
   font-size: 24rpx;
   color: rgb(51,51,51);
 }
+
 .progressBlockPosee{
   height: 20rpx;
   background-color: rgb(237,237,237);
@@ -81,13 +92,16 @@
   z-index: 1;
   margin-top: -18rpx;
 }
+
 .progressBlock{
   margin-top: -10rpx;
   /* position: relative; */
 }
+
 .glodBlock{
   left: 95rpx;
 }
+
 /* .progressBlockBlue{
     position: absolute;
     top: 145rpx;
@@ -138,7 +152,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin-top: 8rpx;
+  margin-top: 18rpx;
 }
 .progressCark image{
     /* width: 126rpx; */
@@ -352,10 +366,12 @@
   width: 330rpx;
   height: 148rpx;
 }
+
 .insrusBlock{
   display: flex;
   align-items: center;
 }
+
 .bottomBlockGold{
   height: 132rpx;
   background-color: rgba(95,95,95,0.05);
@@ -363,11 +379,13 @@
   display: flex;
   margin-top: 15rpx;
 }
+
 .bottomBlockGold image{
   width: 162rpx;
   height: 146rpx;
   margin-left: 30rpx;
 }
+
 .bottomTextSecondeLeva2{
    background-color: #ffffff !important;
    height: 195rpx !important;
@@ -375,6 +393,7 @@
    align-items: center;
    justify-content: center;
 }
+
 .bottomAfter{
   height: 194rpx;
   width: 690rpx;
@@ -383,6 +402,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .textReck{
   color: rgb(51,51,51) !important;
   font-weight: 600 !important;
@@ -395,34 +415,43 @@
   display: flex;
   margin-top: 20rpx;
 }
+
 .bottomTextSeconde image{
   width: 162rpx;
   height: 146rpx;
   margin-left: 30rpx;
 }
+
 .bottomTextSecondeBlock{
   font-size: 24rpx;
   color: rgb(102,102,102);
   width: 475rpx;
 }
+
 .bottomTextSecondeBlock1{
   font-size: 32rpx;
   color: rgb(155,124,86);
   margin-bottom: 20rpx;
 }
+
 .bottomTextSecondeBlock2{
  font-size: 28rpx;
  color: rgb(102,102,102);
 }
+
 .container-main{
   background-color: #ffffff;
 }
+
 .page-body-main{
- padding:  0rpx  30rpx;
+ padding: 0rpx 30rpx;
 }
+
 .container .page-body{
   height: 135rpx;
+  margin-top: -10rpx;
 }
+
 .page-body swiper{
   height: 135rpx;
 }
