@@ -20,12 +20,8 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 500,
-    windowWidth: wx.getSystemInfoSync().windowWidth*2,
-    couponTypeText:'',
-    couponTypes:'',
-    couponTypeAfter:'',
     showCarkBlock:false,
-    indexNum:-1,
+    indexNum: -1,
     receiveId: -1,
     integral: 0,
     showModal: false,
@@ -38,13 +34,13 @@ Page({
   onLoad: function (options) {
     this.tierMytier();
   },
+
   tierMytier:function(){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
           let sercode = res.data.data.mileStones.length;
-          let couponType = res.data.data.tierInfo.couponType;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
                   ...item,
@@ -52,26 +48,22 @@ Page({
               }
           })
           that.setData({
-              activeData : res.data.data,
-              activeNum : sercode,
+              activeData :  res.data.data,
+              activeNum :  sercode,
               bluPosse : that.bluPosse(res.data.data),
-              couponTypes : couponType === 1 ? '折' : '',
-              couponTypeAfter : couponType === 1 ? '' : '$',
-              // couponTypeText: couponType === 1 ? '折扣券' : '现金券'
-              couponTypeText: ''
+              secoreNun : (100 / Number(sercode)).toFixed(2)
           })
-          that.secoreFun();
       }
     })
   },
 
-  secoreFun:function(){
-    let that = this;
-    let activeNum = that.data.activeNum;
-    that.setData({ secoreNun : (100 / Number(activeNum)).toFixed(2)})
-  },
+  // secoreFun:function(){
+  //   let that = this;
+  //   let activeNum = that.data.activeNum;
+  //   that.setData({ secoreNun : (100 / Number(activeNum)).toFixed(2)})
+  // },
 
-/*   bluPosse:function(data){
+/*bluPosse:function(data){
       let lengthNum = data.mileStones.length;
       let numData = (100 / Number(lengthNum)).toFixed(5);
       let indexFlg = -1;
@@ -151,6 +143,7 @@ Page({
       }
       return result;
   },
+
   receivedFun:function(e){
     let that = this;
     let indexNum = e.currentTarget.dataset.index;
@@ -159,8 +152,8 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode;
     wxAjax('GET', url).then((res) => {
       if (res.data.code == 200) {
-        that.tierMytier();
-        that.setData({showCarkBlock:true,receiveId:res.data.data});
+          that.tierMytier();
+          that.setData({showCarkBlock:true,receiveId:res.data.data});
       }
     });
   },
@@ -175,6 +168,7 @@ Page({
         that.lockLeveLast(event);
     }
   },
+
   lockLevelFirst:function(event){
       let that = this;
       if (event.detail.LockLevel === 1){
@@ -185,6 +179,7 @@ Page({
           that.setData({glodLevel: true, silverLevel: false, LockFlg: false });
       }
   },
+
   lockLeveLast:function(event){
     let that = this;
     if (event.detail.LockLevel === 2){
@@ -193,16 +188,19 @@ Page({
         that.setData({glodLevel: true, silverLevel: false, LockFlg: false });
     }
   },
+
   bindEmail:function(){
       let that = this;
       wx.navigateTo({
         url: '../../pages/couponDetails/index?id='+ that.data.receiveId,
       })
   },
+
   closeBolck:function(){
     let that = this;
     that.setData({showCarkBlock: false});
   },
+
   cardDayShow:function(value){
     const date = new Date(value * 1000); 
     const Y = date.getFullYear() + '年';
@@ -233,10 +231,12 @@ Page({
         url: `../preferential/index?level=${level}`
       })
   },
+
   openCardModial: function(e) {
     let {dataset: { prop }} = e.currentTarget
     this.setData({showModal: true, modalContent: prop});
   },
+
   closeModal: function() {
     this.setData({showModal: false});
   }
