@@ -766,7 +766,7 @@
   width: 80%;
   background: #fff;
   padding: 30rpx;
-  border-radius: 10rpx;
+  /* border-radius: 10rpx; */
 }
 .modal .main .title {
   text-align: center;
@@ -779,8 +779,14 @@
   overflow-y: auto;
   color: #666;
   font-size: 28rpx;
-  padding: 20rpx 0;
+  padding: 0rpx 30rpx;
+  margin: 30rpx 0rpx 40rpx 0rpx;
+  text-align: center;
 }
 .modal .footer .btn {
   color: #fff;
+}
+.btn-primary {
+  background-color: #00A865 !important;
+  border-radius: 5rpx !important;
 }
