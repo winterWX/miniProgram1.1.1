@@ -745,7 +745,8 @@
   padding: 10rpx 0;
 }
 .modal .main .content {
-  min-height: 260rpx;
+  min-height: 200rpx;
+  max-height: 260rpx;
   overflow-y: auto;
   color: #666;
   font-size: 28rpx;
