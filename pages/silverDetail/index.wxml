@@ -19,7 +19,7 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.shortName}}</view>
                             <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
                         </view>
                     </view>
@@ -108,7 +108,7 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.shortName}}</view>
                             <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
                         </view>
                     </view>
@@ -201,7 +201,7 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.shortName}}</view>
                             <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
                         </view>
                     </view>
@@ -327,7 +327,7 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.shortName}}</view>
                             <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
                         </view>
                     </view>
@@ -427,7 +427,7 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.shortName}}</view>
                             <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.couponName}}</view>
                         </view>
                     </view>
