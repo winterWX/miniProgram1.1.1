@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -63,6 +64,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  async membership(){
+    let userLevel = await util.wxAjax('GET', app.globalData.baseUrl +'/remote/homePage/userlevel');
+    let { data : { data } } = userLevel;
+    if(data == 1){
+        wx.navigateTo({ url: '../../pages/strategy/index'});
+    }else if(data == 2 || data == 4){
+        wx.navigateTo({ url: '../../pages/goldStrategy/index'});
+    }
+  },
+
+  moreActiveLink: function(){
+      wx.navigateTo({ url: '../../pages/challenge/index'});
   }
-  
 })
