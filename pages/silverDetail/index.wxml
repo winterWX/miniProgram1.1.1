@@ -484,7 +484,7 @@
 <view  wx:if="{{silverLevel}}">
     <view class="bouttomImage noCardShow">
         <view class="bouttomTitlr">会员礼遇</view>
-            <view class="bottomBlockGold">
+            <view class="bottomBlockGold"  bindtap="doubleIntegral">
                 <view class="bottomText">
                 <view class="bottomText1">X2倍积分</view>
                 <view class="bottomText2">银会员享2倍活动积分</view>
@@ -591,7 +591,7 @@
 <view  wx:if="{{glodLevel}}">
     <view class="bouttomImage noCardShow">
         <view class="bouttomTitlr">会员礼遇</view>
-            <view class="bottomBlockGold">
+            <view class="bottomBlockGold" bindtap="doubleIntegral">
                 <view class="bottomText">
                     <view class="bottomText1">X5倍积分</view>
                     <view class="bottomText2">金会员享5倍会员活动积分</view>
