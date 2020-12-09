@@ -708,8 +708,9 @@
 }
 
 .leftContent image{
-  width: 86rpx;
-  height: 102rpx;
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50rpx;
 }
 .middenContent image{
   position: absolute;
