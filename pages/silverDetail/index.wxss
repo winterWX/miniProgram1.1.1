@@ -210,9 +210,9 @@
   box-sizing: border-box;
   line-height: 22rpx;
 }
-.progressCark .card .content .sub-title:hover {
+/* .progressCark .card .content .sub-title:hover {
   text-decoration: underline;
-}
+} */
 .blockText{
   /* width: 126rpx; */
   width: 100%;
@@ -489,8 +489,8 @@
   padding-right: 20rpx;
 }
 .glodBottomImage image{
- height: 76rpx;
- width: 76rpx;
+ height: 80rpx;
+ width: 80rpx;
 }
 .glodBottomPind{
   padding-left: 30rpx;
@@ -739,7 +739,10 @@
 .sub-title-avtive-color {
   color: #333;
 }
-
+.sub-title-underline{
+  color: #333 !important;
+  text-decoration: underline !important;
+}
 
 
 .main-content .content {

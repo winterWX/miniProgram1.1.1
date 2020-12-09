@@ -114,7 +114,7 @@ Page({
     const data = {
       "currentPage": num !== undefined ? num : 1,
       "pageSize": 10,
-      "topic": parase !== undefined ? parase : '热门推荐'  //热门推荐
+      //"topic": parase !== undefined ? parase : '热门推荐'  //热门推荐
     };
     util.wxAjax(method,url,data).then(res=>{
         if(res.data.code === 200){
@@ -245,7 +245,6 @@ Page({
     },
   //查询我的话题
   mytagSearch: function () {
-    let that = this;
     let url =  app.globalData.baseUrl + '/remote/myTopic/search';
     let method = 'GET';
     return new Promise((resolve, reject) => {

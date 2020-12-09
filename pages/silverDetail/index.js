@@ -40,7 +40,6 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
-          res.data.data.level = 1 
           let sercode = res.data.data.mileStones.length;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
@@ -145,9 +144,23 @@ Page({
       return result;
   },
 
-  receivedFun:function(e){
+  cardClick:function(e){
     let that = this;
-    let indexNum = e.currentTarget.dataset.index;
+    let {dataset: { index, prop}} = e.currentTarget;
+      if(prop.received == 1){
+         wx.navigateTo({
+            url: `../../pages/couponDetails/index?id=${prop.id}`,
+         })
+      }else if(prop.received == 2){
+         that.receivedFun(index);
+      }else{
+         that.openCardModial(prop);
+      }
+  },
+
+  receivedFun:function(indexNum){
+    let that = this;
+    //let indexNum = e.currentTarget.dataset.index;
     let idCode = that.data.activeData.mileStones[indexNum].id;
     that.setData({indexNum:indexNum});
     let url = app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode;
@@ -157,6 +170,11 @@ Page({
           that.setData({showCarkBlock:true,receiveId:res.data.data});
       }
     });
+  },
+
+  openCardModial: function(prop) {
+    //let {dataset: { prop }} = e.currentTarget
+    this.setData({showModal: true, modalContent: prop});
   },
 
   parentCallBack:function(event){
@@ -235,11 +253,6 @@ Page({
       wx.navigateTo({
         url: `../preferential/index?params=${sendData}`
       })
-  },
-
-  openCardModial: function(e) {
-    let {dataset: { prop }} = e.currentTarget
-    this.setData({showModal: true, modalContent: prop});
   },
 
   closeModal: function() {
