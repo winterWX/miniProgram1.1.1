@@ -162,7 +162,7 @@
                     <view class="insrusImageText2" style="left:32rpx;">保障</view>
                 </view>
             </view> -->
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="bottomBlockGold" catchtap="toPreferentialService"  data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -264,14 +264,14 @@
                 <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
         </view> -->
-        <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+        <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
             <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
         </view>
-        <view class="bottomTextSeconde" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+        <view class="bottomTextSeconde" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">免费网上健康讲座</view>
                 <view class="bottomTextSecondeBlock2">由中大医院/卓健提供</view>
@@ -371,7 +371,7 @@
                     <view class="insrusImageText2" style="left:32rpx;">保障</view>
                 </view>
             </view> -->
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3"  data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -453,7 +453,7 @@
                 <view class="insrusImageText2" style="left:32rpx;">保障</view>
             </view>
         </view> -->
-        <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+        <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3"  data-level="{{activeData.level}}">
             <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -512,7 +512,7 @@
                     </view>
                 </view> -->
             </view>
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
@@ -617,14 +617,14 @@
                     <view class="insrusImageText2" style="left:32rpx;">保障</view>
                 </view>
             </view> -->
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
             </view>
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-level="{{activeData.level}}">
+            <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>

@@ -40,6 +40,7 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
+          res.data.data.level = 1 
           let sercode = res.data.data.mileStones.length;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
@@ -226,9 +227,13 @@ Page({
   },
 
   toPreferentialService: function(e) {
-      let level = e.currentTarget.dataset.level;
+      let params = {
+          level: e.currentTarget.dataset.level,
+          type: e.currentTarget.dataset.type
+      }
+      let sendData = JSON.stringify(params);
       wx.navigateTo({
-        url: `../preferential/index?level=${level}`
+        url: `../preferential/index?params=${sendData}`
       })
   },
 
