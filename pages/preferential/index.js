@@ -1,4 +1,5 @@
 
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
 
@@ -6,14 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl
+    baseUrl: app.globalData.imagesUrl,
+    type: '',
+    level: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 银 2 
+    let {level, type} = options;
+    this.setData({level, type})
+    this.getCouponInfo();
   },
 
   /**
@@ -63,5 +69,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getCouponInfo: function () {
+    let that = this;
+    let { level, type} = this.data;
+    let url = app.globalData.baseUrl + "/remote/discount/timeLimit";
+    wxAjax('GET', url, {type: 2}).then((res) => {
+      console.log(res.data.data);
+    });
+  },
 })

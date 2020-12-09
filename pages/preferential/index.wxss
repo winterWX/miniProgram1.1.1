@@ -53,4 +53,5 @@ page .container {
     color: #fff;
     font-size: 32rpx;
     height: 90rpx;
+    line-height: 90rpx;
 }

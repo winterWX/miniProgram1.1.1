@@ -43,6 +43,7 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
+          //res.data.data.level = 2;
           let sercode = res.data.data.mileStones.length;
           let couponType = res.data.data.tierInfo.couponType;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
