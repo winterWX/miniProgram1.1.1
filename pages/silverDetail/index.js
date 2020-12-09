@@ -40,7 +40,6 @@ Page({
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
-          res.data.data.level = 1 
           let sercode = res.data.data.mileStones.length;
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
@@ -124,7 +123,7 @@ Page({
       let max = Math.max(...mileStonesIntegral);
       let result = 0;
       if (integral < min) {
-        result = 5;
+        result = 2.5;
       } else if (integral > max) {
         result = 100;
       } else {
