@@ -1,4 +1,5 @@
 
+import { wxAjax } from "../../utils/util";
 const app = getApp();
 Page({
 
@@ -6,63 +7,49 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: app.globalData.imagesUrl
+    baseUrl: app.globalData.imagesUrl,
+    type: '',
+    level: '',
+    imagineLink: '',
+    firstTitleCn: '',
+    secondTitleCn: '',
+    descriptionCn: '',
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let sendData = JSON.parse(options.params);
-    console.log('sendData',sendData);
+    // 银 2 
+    let {level, type} = JSON.parse(options.params);
+    this.setData({level, type})
+    this.getCouponInfo();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getCouponInfo: function () {
+    let that = this;
+    let { level, type} = this.data;
+    let url = app.globalData.baseUrl + "/remote/discount/timeLimit";
+    wxAjax('GET', url, {type: 2}).then((res) => {
+      if (res.data.code === 200 && res.data.data) {
+        let { imagineLink, firstTitleCn, secondTitleCn, descriptionCn, id } = res.data.data;
+        that.setData({
+          imagineLink,
+          firstTitleCn,
+          secondTitleCn,
+          descriptionCn,
+          id
+        })
+      }
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  goStrategy: function() {
+    wx.navigateTo({ url: '../../pages/strategy/index'});
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goDetail: function(e) {
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../../pages/couponDetails/index?id='+ id,
+    })
   }
 })

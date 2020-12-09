@@ -5,22 +5,17 @@
             <image class="bg-img" src="{{baseUrl + '/images/preferential/group-9@2x.png'}}"></image>
         </view>
         <view class="tit-box">
-            <view class="title">购买恒生保险即享9折优惠</view>
-            <view class="sub-title">白银及以上等级会员专享优惠</view>
+            <view class="title">{{firstTitleCn}}</view>
+            <view class="sub-title">{{secondTitleCn}}</view>
         </view>
     </view>
     <view class="content">
-        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
-        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
-        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has.
-
-
-        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
-        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has. 
-        Lorem ipsum dolor sit amet, ei est dico omnium urbanitas, te nam alia postea ocurreret. Fugit altera honestatis mel ei, liber forensibus vis id, at equidem percipit inciderint has.
+        {{descriptionCn}}
     </view>
     </view>
     <view class="footer">
-        <button class="btn-primary btn">立即使用</button>
+        <button class="btn-primary btn" wx:if="{{level == 1 && (type == 3 || type == 4) }}" catchtap="goStrategy">立即升级获取权益</button>
+        <button class="btn-primary btn" wx:if="{{(level == 2 || level == 4) && type == 3 }}" catchtap="goDetail" data-id="{{id}}">立即查看我的优惠券</button>
+        <button class="btn-primary btn" wx:if="{{(level == 3 || level == 5) && (type == 3 || type == 4)}}" data-id="{{id}}" catchtap="goDetail">立即查看我的优惠券</button>
     </view>
 </view>

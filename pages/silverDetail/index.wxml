@@ -742,7 +742,7 @@
 <view class="carkBlock" wx:if="{{showModal}}">
     <view class="modal">
         <view class="main">
-            <view class="title">{{modalContent.couponCategory}}
+            <view class="title">{{modalContent.couponName}}
             </view>
             <view class="content">{{modalContent.description}}</view>
         </view>

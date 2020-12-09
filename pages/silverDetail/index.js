@@ -123,7 +123,7 @@ Page({
       let max = Math.max(...mileStonesIntegral);
       let result = 0;
       if (integral < min) {
-        result = 5;
+        result = 2.5;
       } else if (integral > max) {
         result = 100;
       } else {
