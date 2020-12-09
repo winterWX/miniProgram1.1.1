@@ -14,19 +14,19 @@
         </view>
         <view class="progressCark">
              <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <view class="card">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.shortName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
                         </view>
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
                         <view wx:if="{{item.received === 3}}" >未达成</view>
-                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
             </view>
@@ -103,21 +103,21 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <view class="card">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.shortName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
                         </view>
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
                         <view wx:if="{{item.received === 3}}" >未达成</view>
-                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
-                </view>
+                </view> 
             </view>
         </view>
         <view class="container">
@@ -170,6 +170,25 @@
                 <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
             </view>
     </view>
+    <view class="glodBottom" style="margin-top:20rpx;">
+        <view class="glodBottomTitle">会员礼遇</view>
+        <view class="glodBottomBlock">
+            <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
+                    <view class="glodBottomText">
+                    <view class="glodBottomText1">积分翻倍</view>
+                    <view class="glodBottomText2">银会员2倍活动积分</view>
+                    </view>
+                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
+            </view>
+            <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
+                    <view class="glodBottomText glodBottomPind">
+                    <view class="glodBottomText1">会员特权专享</view>
+                    <view class="glodBottomText2">银会员专享内容</view>
+                    </view>
+                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
+            </view>
+        </view>
+    </view>
     <view class="bottomTextSeconde bottomTextSecondeLeva2">
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
@@ -196,21 +215,21 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <view class="card">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.shortName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
                         </view>
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
                         <view wx:if="{{item.received === 3}}" >未达成</view>
-                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
-                </view>
+                </view> 
             </view>
         </view>
         <view class="container">
@@ -287,15 +306,24 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">银会员2倍活动积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='{{baseUrl + "/images/otherCarde/goldimg1.PNG"}}' /></view>
+                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}"> 
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='{{baseUrl + "/images/otherCarde/goldimg2.PNG"}}' /></view>
+                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
             </view>
+        </view>
+    </view>
+    <view class="bottomTextSeconde bottomTextSecondeLeva2">
+        <view class="bottomAfter">
+            <view class="bottomTextSecondeBlock">
+                <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+            </view>
+            <image src="{{baseUrl + '/images/silver/img@3x.png'}}"/>
         </view>
     </view>
 </view>
@@ -322,21 +350,21 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <view class="card">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.shortName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
                         </view>
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
                         <view wx:if="{{item.received === 3}}" >未达成</view>
-                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
-                </view>
+                </view> 
             </view>
         </view>
         <view class="container">
@@ -387,14 +415,14 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">银会员2倍活动积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='{{baseUrl + "/images/otherCarde/goldimg1.PNG"}}' /></view>
+                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='{{baseUrl + "/images/otherCarde/goldimg2.PNG"}}' /></view>
+                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
             </view>
         </view>
     </view>
@@ -422,21 +450,21 @@
         </view>
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
-                <view class="card">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/bg-point-shadow@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/group@2x.png" />
+                <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
+                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
+                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : ''}}" catchtap="openCardModial" data-prop="{{item}}">{{item.shortName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
                         </view>
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
                         <view wx:if="{{item.received === 3}}" >未达成</view>
-                        <view class="textReck" wx:if="{{item.received === 2}}" bindtap="receivedFun" data-index="{{index}}">领取</view>
+                        <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
-                </view>
+                </view> 
             </view>
         </view>
     </view>
@@ -469,14 +497,14 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">银会员2倍活动积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='{{baseUrl + "/images/otherCarde/goldimg1.PNG"}}' /></view>
+                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='{{baseUrl + "/images/otherCarde/goldimg2.PNG"}}' /></view>
+                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
             </view>
         </view>
     </view>
@@ -491,13 +519,13 @@
                 </view>
                 <image src="{{baseUrl + '/images/silver/newImage/x-2-point@3x.png'}}"/>
             </view>
-            <!-- <view class="bottomBlockGold">
+            <view class="bottomBlockGold" bindtap="contentPrivilege">
                 <view class="bottomText">
                 <view class="bottomText1">尊享银会员视频文章</view>
                 <view class="bottomText2">实时获得专业权威资讯</view>
                 </view>
-                <image src="{{baseUrl+'/images/otherCarde/selier.PNG'}}"/>
-            </view> -->
+                <image src="../../images/group-2@2x.png"/>
+            </view>
             <view style="margin-top: 40rpx;">
                 <view class="bouttomTitlr">银会员专享限时优惠</view>
                 <!-- <view class="insrusBlock">
@@ -547,7 +575,7 @@
                     <view class="page-section page-section-spacing swiper">
                     <swiper indicator-dots="{{indicatorDots}}"
                         autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                        <swiper-item>
+                        <!-- <swiper-item>
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl+'/images/silver/newImage/group-12@3x.png'}}"/>
                                 <view class="progressBlockText">
@@ -556,7 +584,7 @@
                                     <view class="progressBlockText2"  bindtap="doubleIntegral"  data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
-                        </swiper-item>
+                        </swiper-item> -->
                         <swiper-item>
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl+'/images/otherCarde/bg-x-2@t3x.png'}}"/>
@@ -598,13 +626,13 @@
                 </view>
                 <image src="{{baseUrl+'/images/silver/newImage/x-5-point@3x.png'}}"/>
             </view>
-            <!-- <view class="bottomBlockGold">
+            <view class="bottomBlockGold"  bindtap="contentPrivilege">
                 <view class="bottomText">
                     <view class="bottomText1">畅享所有视频文章</view>
                     <view class="bottomText2">海量专业视频文章任你挑选</view>
                 </view>
-                <image src="{{baseUrl+'/images/otherCarde/glogs.PNG'}}"/>
-            </view> -->
+                <image src="../../images/group-2@2x.png"/>
+            </view>
             <view class="bouttomTitlr" style="margin-top: 40rpx;">金会员专享限时优惠</view>
             <!-- <view class="insrusBlock">
                 <view class="insrusBlock1">
@@ -638,7 +666,7 @@
                     <view class="page-section page-section-spacing swiper">
                     <swiper indicator-dots="{{indicatorDots}}"
                         autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActive}}">
-                        <swiper-item>
+                        <!-- <swiper-item>
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl+'/images/silver/newImage/group-12@3x.png'}}"/>
                                 <view class="progressBlockText">
@@ -656,7 +684,7 @@
                                     <view class="progressBlockText30" bindtap="doubleIntegral" data-level="{{activeData.level}}">立即查看</view>
                                 </view>
                             </view>
-                        </swiper-item>
+                        </swiper-item> -->
                         <swiper-item>
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
@@ -689,7 +717,7 @@
                 <!-- <image class="carkBlockAfter" src="{{baseUrl+'/images/couponDetails/group-3@2x.png'}}"/> -->
                 <view class="aboutBlock">
                     <!-- <image class="tenImage"  src="{{baseUrl + '/images/couponDetails/coupon@3x.png'}}"/> -->
-                    <image class="tenImage"  src="../../images/invalid-name@3x.png"/>
+                    <image class="tenImage" src="{{baseUrl + '/images/silver/invalid-name@3x.png'}}"/>
                     <view class="leftContent">
                         <!-- <view class="firstFlg">¥</view>
                         <view class="firstNum">{{activeData.mileStones[indexNum].couponValue}}</view> -->
@@ -697,7 +725,7 @@
                         <image src="{{activeData.mileStones[indexNum].attachmentUrl}}"/>
                     </view>
                     <view class="middenContent">
-                        <image src="../../images/invalid-name@2x.png"/>
+                        <image src="{{baseUrl + '/images/silver/invalid-name@2x.png'}}"/>
                     </view>
                     <view class="textContent">
                         <view class="textContent1">{{activeData.mileStones[indexNum].couponName}}</view>
