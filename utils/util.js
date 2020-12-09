@@ -38,7 +38,6 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 const wxAjax = (method, url, data = {}) => {
-  //let sessionFail = wx.getStorageSync('sessionFail') || false;
   return new Promise((resolve, reject) => {
     let params = {
       method: method,
@@ -46,11 +45,11 @@ const wxAjax = (method, url, data = {}) => {
       header: {
         "Content-Type": "application/json;charset=UTF-8",
         "token": app.globalData.token,
-        "native-app": "mini"
+        "native-app": "mini",
+        "app-language": "zh-Hans"
       },
       success: (res) => {
        if (!app.globalData.sessionFail && (res.data.code === 999988 || res.data.code === 999997 || res.data.code === 999995 || res.data.code === 999994)) {
-          //wx.setStorageSync('sessionFail', true);
           app.globalData.sessionFail = true; //标记已经被逼下线   
           app.globalData.userInfo = null;
           app.globalData.token = '';
@@ -69,10 +68,11 @@ const wxAjax = (method, url, data = {}) => {
         reject(error);
       }
     };
-    if (method === 'POST' || Object.keys(data) > 0) {
+    if (method === 'POST' || Object.keys(data).length > 0) {
       params.data = {
         ...data
       }
+      console.log(params)
     };
     wx.request(params);
   });
