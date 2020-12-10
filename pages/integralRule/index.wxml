@@ -22,9 +22,8 @@
     </view>
   </view>
 </view>
-<view  class="bottom-content">
+<view  class="bottom-content {{ !showBtn ? 'bottom-contentLink':'' }}">
  <view class="bottomTitle">参与翻倍积分的活动</view>
-
     <view class="maddin-content">
       <view class="itemText">1.在 e-Shop 完成一次在线消费</view>
       <view class="itemText">2. 在线预约并成功开立恒生银行户口</view>
@@ -59,4 +58,4 @@
       {{level == 1 ? '查看永恒白银会员升级攻略' : '查看黄金会员升级攻略'}}
     </van-button>
 </view>
-<view class="bottom-textConten" bindtap="moreActiveLink"  wx:if="{{!showBtn}}">参加活动赚取积分</view>
+<view class="bottom-textConten" bindtap="moreActiveLink">参加活动赚取积分</view>

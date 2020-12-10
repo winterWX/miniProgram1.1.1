@@ -304,7 +304,7 @@
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
                     <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">银会员2倍活动积分</view>
+                    <view class="glodBottomText2">x5倍积分</view>
                     </view>
                     <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
             </view>
@@ -328,12 +328,21 @@
     </view>
 </view>
 <view wx:if="{{activeData.level === 4 && LockFlg}}">
-    <view class="vipBlock">
+    <!-- <view class="vipBlock">
         <view class="vipTopBlock">
             <view>我的尊享专区</view>
             <view class="creRight"></view>
         </view>
-        <!-- <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> -->
+         <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> 
+    </view>-->
+    <view class="vipContent">
+        <view class="bottomBlockGold">
+            <view class="bottomText">
+            <view class="bottomText1">我的尊享专区</view>
+            <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
+            </view>
+            <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
+        </view>
     </view>
     <view class="integralAct-main">
         <view class="integralActTitle">积分兑换</view>
@@ -495,7 +504,7 @@
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
                     <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">银会员2倍活动积分</view>
+                    <view class="glodBottomText2">x5倍积分</view>
                     </view>
                     <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
             </view>

@@ -89,7 +89,9 @@ page{
 .bottom-content{
     background-color: #ffffff;
     padding: 30rpx 30rpx 10rpx 30rpx;
-    margin-bottom: 52rpx;
+}
+.bottom-contentLink{
+  margin-bottom: 52rpx;
 }
 
 .bottomTitle{

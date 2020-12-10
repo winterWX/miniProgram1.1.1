@@ -308,13 +308,21 @@
   border: 2rpx solid rgb(7,56,36);
   padding: 5rpx 10rpx;
 }
+
 .bouttomImage{
   background-color: #ffffff;
   margin-top: 20rpx;
   padding: 30rpx;
 }
+
 .noCardShow{
   margin-top: 0rpx !important;
+}
+
+.vipContent{
+  background-color: #ffffff;
+  padding: 30rpx;
+  border-top: 1rpx solid #EDEDED;
 }
 .bouttomTitlr{
   font-size: 32rpx;
