@@ -247,8 +247,9 @@ Page({
   toPreferentialService: function(e) {
       let params = {
           level: e.currentTarget.dataset.level,
-          type: e.currentTarget.dataset.type
-      }
+          type: e.currentTarget.dataset.type,
+          lockFlg: this.data.LockFlg
+      } 
       let sendData = JSON.stringify(params);
       wx.navigateTo({
         url: `../preferential/index?params=${sendData}`
