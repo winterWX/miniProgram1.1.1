@@ -14,14 +14,16 @@ Page({
     firstTitleCn: '',
     secondTitleCn: '',
     descriptionCn: '',
-    id: ''
+    id: '',
+    lockFlg: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let {level, type} = JSON.parse(options.params);
+    let {level, type, lockFlg} = JSON.parse(options.params);
+    console.log(typeof lockFlg);
     let titleMap = {
       3: '由健康伙伴提供',
       4: '由中大医院/卓健提供'
@@ -29,12 +31,12 @@ Page({
     wx.setNavigationBarTitle({
       title: titleMap[type]
     });
-    this.setData({level, type})
+    this.setData({level, type, lockFlg})
     this.getCouponInfo();
   },
   getCouponInfo: function () {
     let that = this;
-    let { level, type} = this.data;
+    let { level, type } = this.data;
     let url = app.globalData.baseUrl + "/remote/discount/timeLimit";
     wxAjax('GET', url, {type}).then((res) => {
       if (res.data.code === 200 && res.data.data) {
@@ -50,7 +52,12 @@ Page({
     });
   },
   goStrategy: function() {
-    wx.navigateTo({ url: '../../pages/strategy/index'});
+    let { level } = this.data;
+    let url = '../../pages/strategy/index';
+    if (level == 2) {
+      url = '../../pages/goldStrategy/index';
+    }
+    wx.navigateTo({ url });
   },
   goDetail: function(e) {
     let id = e.currentTarget.dataset.id;

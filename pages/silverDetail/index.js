@@ -149,7 +149,7 @@ Page({
     let {dataset: { index, prop}} = e.currentTarget;
       if(prop.received == 1){
          wx.navigateTo({
-            url: `../../pages/couponDetails/index?id=${prop.id}`,
+            url: `../../pages/couponDetails/index?id=${prop.couponId}`,
          })
       }else if(prop.received == 2){
          that.receivedFun(index);
