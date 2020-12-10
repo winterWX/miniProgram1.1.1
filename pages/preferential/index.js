@@ -40,13 +40,13 @@ Page({
     let url = app.globalData.baseUrl + "/remote/discount/timeLimit";
     wxAjax('GET', url, {type}).then((res) => {
       if (res.data.code === 200 && res.data.data) {
-        let { imagineLink, firstTitleCn, secondTitleCn, descriptionCn, couponId } = res.data.data;
+        let { imagineLink, firstTitleCn, secondTitleCn, descriptionCn, id } = res.data.data;
         that.setData({
           imagineLink,
           firstTitleCn,
           secondTitleCn,
           descriptionCn: descriptionCn.replace(/<[^>]+>/g,""),
-          id: couponId
+          id
         })
       }
     });

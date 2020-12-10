@@ -15,7 +15,7 @@
     </view>
     <view class="footer">
         <button class="btn-primary btn" wx:if="{{level == 1 && (type == 3 || type == 4) || (level == 2 && type == 4 || !lockFlg) }}" catchtap="goStrategy">立即升级获取权益</button>
-        <button class="btn-primary btn" wx:if="{{(level == 2 || level == 4) && type == 3 }}" catchtap="goDetail" data-id="{{id}}">立即查看我的优惠券</button>
+        <button class="btn-primary btn" wx:if="{{(level == 2 || level == 4) && type == 3 && lockFlg }}" catchtap="goDetail" data-id="{{id}}">立即查看我的优惠券</button>
         <button class="btn-primary btn" wx:if="{{(level == 3 || level == 5) && (type == 3 || type == 4)}}" data-id="{{id}}" catchtap="goDetail">立即查看我的优惠券</button>
     </view>
 </view>
