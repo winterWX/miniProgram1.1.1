@@ -255,6 +255,12 @@ Page({
       })
   },
 
+  upgradePage:function(){
+      wx.navigateTo({
+        url: '../../pages/membership/index',
+      })
+  },
+
   closeModal: function() {
     this.setData({showModal: false});
   }
