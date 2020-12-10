@@ -2,7 +2,7 @@
     <!-- 导航栏 -->
     <view class="scrollView">
         <scroll-view scroll-x class="navbar" scroll-with-animation scroll-left="{{scrollLeft}}rpx">
-            <view class="nav-item" wx:for="{{tabLists}}" wx:key="id" bindtap="tabSelect" data-id="{{index}}">
+            <view class="nav-item" wx:for="{{tabLists}}" wx:key="id" bindtap="tabSelect" data-index="{{index}}">
                 <view class="nav-text {{index==tabCur?'tab-on':''}}">{{item.tag}}</view>
             </view>
         </scroll-view>
