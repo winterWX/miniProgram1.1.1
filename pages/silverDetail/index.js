@@ -41,7 +41,6 @@ Page({
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
           let sercode = res.data.data.mileStones.length;
-          res.data.data.level = 2
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
                   ...item,
@@ -231,10 +230,16 @@ Page({
 
   //积分翻倍
   doubleIntegral:function(e){
-    let level = e.currentTarget.dataset.level;
-    wx.navigateTo({
-      url: `../../pages/integralRule/index?level=${level}`
-    })
+      let { dataset :{ level, flg } } = e.currentTarget;
+      let data = {
+          level: level === undefined ? '' : level,
+          flg: flg === undefined ? '' : flg
+      }
+      let params = JSON.stringify(data);
+      console.log('params',params);
+      wx.navigateTo({
+        url: `../../pages/integralRule/index?params=${params}`
+      })
   },
 
   //内容特权

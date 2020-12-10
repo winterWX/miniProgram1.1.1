@@ -55,7 +55,7 @@
       type="primary" 
       size="large"
       bindtap="membership">
-      {{level == 1 ? '查看永恒白银会员升级攻略' : '查看黄金会员升级攻略'}}
+      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看永恒白银会员升级攻略' : '查看黄金会员升级攻略'}}
     </van-button>
 </view>
 <view class="bottom-textConten" bindtap="moreActiveLink">参加活动赚取积分</view>
