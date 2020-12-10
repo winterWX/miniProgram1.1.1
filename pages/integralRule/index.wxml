@@ -51,11 +51,12 @@
     </view>
 </view>
 
-<view class="topBlock_btnTom">
+<view class="topBlock_btnTom" wx:if="{{!showBtn}}">
   <van-button 
       type="primary" 
       size="large"
       bindtap="membership">
-      查看永恒白银/黄金会员升级攻略</van-button>
+      {{level == 1 ? '查看永恒白银会员升级攻略' : '查看黄金会员升级攻略'}}
+    </van-button>
 </view>
-<view class="bottom-textConten" bindtap="moreActiveLink">参加活动赚取积分</view>
+<view class="bottom-textConten" bindtap="moreActiveLink"  wx:if="{{!showBtn}}">参加活动赚取积分</view>
