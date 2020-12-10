@@ -336,12 +336,12 @@
          <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> 
     </view>-->
     <view class="vipContent">
-        <view class="bottomBlockGold">
+        <view class="vipBottomBlockGold">
             <view class="bottomText">
             <view class="bottomText1">我的尊享专区</view>
             <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
             </view>
-            <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
+            <image src="../../images/vip@2x.png"/>
         </view>
     </view>
     <view class="integralAct-main">
@@ -437,12 +437,21 @@
     </view>
 </view>
 <view wx:if="{{activeData.level === 5 && LockFlg}}">
-    <view class="vipBlock" >
+    <!-- <view class="vipBlock" >
         <view class="vipTopBlock">
             <view>我的尊享(VIP)专区</view>
             <view class="creRight"></view>
         </view>
         <view class="vipBottomBlock" >恒生保险客户尊享升级，礼遇更多</view>
+    </view> -->
+    <view class="vipContent">
+        <view class="vipBottomBlockGold">
+            <view class="bottomText">
+            <view class="bottomText1">我的尊享专区</view>
+            <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
+            </view>
+            <image src="../../images/vip@2x.png"/>
+        </view>
     </view>
     <view class="integralAct-main" style="height: 275rpx;">
         <view class="integralActTitle">积分兑换</view>
@@ -496,6 +505,13 @@
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img-hospital@3x.png'}}"/>
+        </view>
+        <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
+                <view class="bottomText">
+                <view class="bottomText1">免费网上健康讲座</view>
+                <view class="bottomText2">由中大医院/卓健提供</view>
+                </view>
+                <image src="{{baseUrl + '/images/silver/online@3x.png'}}"/>
         </view>
     </view>
     <view  class="glodBottom">
