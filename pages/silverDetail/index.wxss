@@ -394,6 +394,17 @@
   margin-left: 30rpx;
 }
 
+.vipBottomBlockGold{
+  height: 135rpx;
+  padding: 10rpx;
+  display: flex;
+}
+.vipBottomBlockGold image{
+  width: 162rpx;
+  height: 146rpx;
+  margin-left: 30rpx;
+}
+
 .bottomTextSecondeLeva2{
    background-color: #ffffff !important;
    height: 195rpx !important;

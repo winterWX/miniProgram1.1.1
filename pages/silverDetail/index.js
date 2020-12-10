@@ -48,7 +48,7 @@ Page({
               }
           })
           that.setData({
-              activeData :  res.data.data,
+              activeData : res.data.data,
               activeNum :  sercode,
               bluPosse : that.bluPosse(res.data.data),
               secoreNun : (100 / Number(sercode)).toFixed(2)
