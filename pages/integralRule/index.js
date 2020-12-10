@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    level: 0,
+    paramsData: {},
     baseUrl: app.globalData.imagesUrl,
     showBtn: false
   },
@@ -15,9 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ level:options.level });
-    if(options.level == 3 || options.level == 5){
-      this.setData({ showBtn: true });
+    this.setData({ paramsData : JSON.parse(options.params) });
+    let { level ,flg } = this.data.paramsData;
+    if((level == 3 || level == 5) && flg === ''){
+        this.setData({ showBtn: true });
     }
   },
 
@@ -70,15 +71,16 @@ Page({
 
   },
 
-  membership: function(){
-    if(this.data.level == 1){
-        wx.navigateTo({ url: '../../pages/strategy/index'});
-    }else if(this.data.level == 2 || this.data.level == 4){
-        wx.navigateTo({ url: '../../pages/goldStrategy/index'});
-    }
+  membership : function(){
+      let { level, flg } = this.data.paramsData;
+      if(level == 1 || flg === 'X2'){
+          wx.navigateTo({ url: '../../pages/strategy/index'});
+      }else if(level == 2 || level == 4 || flg === 'X5'){
+          wx.navigateTo({ url: '../../pages/goldStrategy/index'});
+      }
   },
 
   moreActiveLink: function(){
-      wx.navigateTo({ url: '../../pages/challenge/index'});
+      wx.reLaunch({ url: '../../pages/challenge/index'});
   }
 })

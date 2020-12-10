@@ -170,6 +170,7 @@ Page({
     let that = this;
     let listParas = [];
     if (that.data.myTagData.length > 0) {
+      console.log('that.data.myTagData',that.data.myTagData);
       that.data.myTagData.forEach((item, index) => {
         listParas.push({
           order: parseInt(index + 1) + "",
@@ -257,6 +258,7 @@ Page({
     })
   },
   operateMyTag: function (res) {
+    console.log('res.data.data',res.data.data);
     if (res.data.data !== null) {
       if (Array.isArray(res.data.data) && res.data.data.length > 0) {
         let tabListsArray = [];
@@ -265,6 +267,7 @@ Page({
         res.data.data.forEach((item) => {
           tabListsArray.push({
             tag: item.topic,
+            id: tem.id
           });
         });
         tabListsArray.forEach((item) => {
@@ -278,9 +281,11 @@ Page({
         this.setData({
           tabLists: [...firstSortArray, ...lastSortArray],
         });
+
         this.setData({
           myTagData: [...firstSortArray, ...lastSortArray], //我关注的话题
         });
+
       } else {
         let tabListsArray = [{ tag: "热门推荐" }];
         this.setData({
@@ -328,13 +333,16 @@ Page({
     }
     that.dargLonad();
   },
+
   addTagBbtn: function (e) {
     let that = this;
     let clickIndex = e.currentTarget.dataset.index;
     let addBtn = that.data.forYouData;
+    console.log('addBtn',addBtn);
     if (addBtn[clickIndex] && addBtn[clickIndex].tag !== "热门推荐") {
       that.data.addTagArray.push(addBtn[clickIndex]);
       let arrayOld = [...that.data.myTagData, ...that.data.addTagArray];
+      console.log('arrayOld+++==arrayOld',arrayOld);
       let ccArray = arrayOld.reduce((acc, cur) => {
         !acc.some((v) => v.tag === cur.tag) && acc.push(cur);
         return acc;
