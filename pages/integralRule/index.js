@@ -70,7 +70,7 @@ Page({
 
   },
 
-  async membership(){
+  membership: function(){
     if(this.data.level == 1){
         wx.navigateTo({ url: '../../pages/strategy/index'});
     }else if(this.data.level == 2 || this.data.level == 4){

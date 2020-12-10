@@ -90,10 +90,12 @@ Page({
   //选择条目
   tabSelect(e) {
       let that = this;
+      let selectId = e.currentTarget.dataset.index;
       if(that.data.ipaState){ return; }
       that.setData({ ipaState : true});
-      that.setData({ tabCur: e.currentTarget.dataset.id,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
-      that.setData({ researchTag: that.data.tabLists[e.currentTarget.dataset.id].tag === '热门推荐' ? '热门推荐' : that.data.tabLists[e.currentTarget.dataset.id].tag});
+      that.setData({ tabCur: selectId,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
+      //that.setData({ researchTag: that.data.tabLists[selectId].tag === '热门推荐' ? '热门推荐' : that.data.tabLists[selectId].tag});
+      that.setData({ researchTag: that.data.tabLists[selectId].id});
       that.setData({ listData: [], onPullNun : 1, switchTag: true});  //清空数组,  switchTag(标记切换的动作)
       that.searchSend(that.data.researchTag);
   },
@@ -115,6 +117,7 @@ Page({
       "currentPage": num !== undefined ? num : 1,
       "pageSize": 10,
       //"topic": parase !== undefined ? parase : '热门推荐'  //热门推荐
+      "topic": parase
     };
     util.wxAjax(method,url,data).then(res=>{
         if(res.data.code === 200){

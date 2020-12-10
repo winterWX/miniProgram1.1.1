@@ -1,7 +1,7 @@
 <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}" bind:parentLevel="parentCallBack" />
 <view wx:if="{{activeData.level === 1 && LockFlg}}">
     <view class="integralAct-main">
-        <view class="integralActTitle">积分兑换</view>
+        <view class="integralActTitle">积分奖赏</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <view class="rab-item1 "><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
@@ -201,7 +201,7 @@
 </view>
 <view wx:if="{{activeData.level === 3 && LockFlg}}">
     <view class="integralAct-main">
-        <view class="integralActTitle">积分兑换</view>
+        <view class="integralActTitle">积分奖赏</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -345,7 +345,7 @@
         </view>
     </view>
     <view class="integralAct-main">
-        <view class="integralActTitle">积分兑换</view>
+        <view class="integralActTitle">积分奖赏</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -454,7 +454,7 @@
         </view>
     </view>
     <view class="integralAct-main" style="height: 275rpx;">
-        <view class="integralActTitle">积分兑换</view>
+        <view class="integralActTitle">积分奖赏</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
