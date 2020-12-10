@@ -88,7 +88,7 @@
         <!-- <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> -->
     </view>
     <view class="integralAct-main">
-        <view class="integralActTitle">积分兑换</view>
+        <view class="integralActTitle">积分奖赏</view>
         
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
