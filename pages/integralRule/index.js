@@ -7,7 +7,8 @@ Page({
    */
   data: {
     level: 0,
-    baseUrl: app.globalData.imagesUrl
+    baseUrl: app.globalData.imagesUrl,
+    showBtn: false
   },
 
   /**
@@ -15,6 +16,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ level:options.level });
+    if(options.level == 3 || options.level == 5){
+      this.setData({ showBtn: true });
+    }
   },
 
   /**
@@ -67,11 +71,9 @@ Page({
   },
 
   async membership(){
-    let userLevel = await util.wxAjax('GET', app.globalData.baseUrl +'/remote/homePage/userlevel');
-    let { data : { data } } = userLevel;
-    if(data == 1){
+    if(this.data.level == 1){
         wx.navigateTo({ url: '../../pages/strategy/index'});
-    }else if(data == 2 || data == 4){
+    }else if(this.data.level == 2 || this.data.level == 4){
         wx.navigateTo({ url: '../../pages/goldStrategy/index'});
     }
   },
