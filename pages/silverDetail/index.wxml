@@ -19,8 +19,8 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.shortName}}</view>
                         </view>
                     </view>
                     <view class="status">
@@ -108,8 +108,8 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.shortName}}</view>
                         </view>
                     </view>
                     <view class="status">
@@ -220,8 +220,8 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.shortName}}</view>
                         </view>
                     </view>
                     <view class="status">
@@ -355,8 +355,8 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.shortName}}</view>
                         </view>
                     </view>
                     <view class="status">
@@ -455,8 +455,8 @@
                     <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
                     <view class="content">
                         <view class="flex">
-                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.couponCategory}}</view>
-                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.couponName}}</view>
+                            <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
+                            <view class="sub-title {{item.received === 1 ? 'sub-title-avtive-color' : (item.received === 3 ? 'sub-title-underline' : '')}}">{{item.shortName}}</view>
                         </view>
                     </view>
                     <view class="status">

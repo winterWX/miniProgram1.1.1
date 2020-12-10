@@ -72,7 +72,6 @@ const wxAjax = (method, url, data = {}) => {
       params.data = {
         ...data
       }
-      console.log(params)
     };
     wx.request(params);
   });
