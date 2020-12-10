@@ -21,8 +21,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 银 2 
     let {level, type} = JSON.parse(options.params);
+    let titleMap = {
+      3: '由健康伙伴提供',
+      4: '由中大医院/卓健提供'
+    };
+    wx.setNavigationBarTitle({
+      title: titleMap[type]
+    });
     this.setData({level, type})
     this.getCouponInfo();
   },

@@ -2,7 +2,7 @@
     <view class="main">
         <view class="header">
         <view class="bgimg-box">
-            <image class="bg-img" src="{{baseUrl + '/images/preferential/group-9@2x.png'}}"></image>
+            <image class="bg-img" src="{{imagineLink}}"></image>
         </view>
         <view class="tit-box">
             <view class="title">{{firstTitleCn}}</view>
