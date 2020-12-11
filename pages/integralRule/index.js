@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paramsData: {},
-    baseUrl: app.globalData.imagesUrl,
-    showBtn: false
+      paramsData: {},
+      baseUrl: app.globalData.imagesUrl,
+      showBtn: false
   },
 
   /**
