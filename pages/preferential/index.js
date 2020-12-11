@@ -56,10 +56,10 @@ Page({
     }
     wx.navigateTo({ url });
   },
-  goDetail: function(e) {
+  goLIst: function(e) {
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../../pages/couponDetails/index?id='+ id,
+      url: '../../pages/myCoupons/index',
     })
   }
 })
