@@ -2,7 +2,8 @@
   "usingComponents": {
     "membership-card":"../../components/membershipCard",
     "van-button": "vant-weapp/button/index",
-    "modalView": "../../components/modal/modal"
+    "modalView": "../../components/modal/modal",
+    "htmlView": "../../components/htmlView/htmlView"
   },
   "navigationBarTitleText": "会员级别",
   "navigationBarTextStyle": "black"

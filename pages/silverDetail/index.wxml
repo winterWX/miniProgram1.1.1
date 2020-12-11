@@ -766,7 +766,8 @@
         <view class="main">
             <view class="title">{{modalContent.couponName}}
             </view>
-            <view class="content">{{modalContent.description}}</view>
+            <!-- <view class="content">{{modalContent.description}}</view> -->
+            <view class="content"><htmlView detail ="{{modalContent.description}}"/></view>
         </view>
         <view class="footer">
             <button class="btn-primary btn" catchtap="closeModal">我知道了</button>
