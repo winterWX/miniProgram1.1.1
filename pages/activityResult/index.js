@@ -19,6 +19,7 @@ Page({
    */
   onLoad: function (options) {
     let { id, success } = options;
+    console.log(success)
     this.setData({id, success: success === 'true'});
     this.getActivityInfo(id);
   },

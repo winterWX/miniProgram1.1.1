@@ -392,9 +392,9 @@ Page({
   },
   // 跳转到挑战结果页面
   navigateActivityResult: function () {
-    let { activityId } = this.data;
+    let { activityId, completeChange } = this.data;
     wx.navigateTo({
-      url: "../activityResult/index?id=" + activityId + "&success=" + true,
+      url: "../activityResult/index?id=" + activityId + "&success=" + completeChange,
     });
   },
   closeModal: function () {
