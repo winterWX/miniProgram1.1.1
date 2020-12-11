@@ -42,6 +42,8 @@ Page({
       if (res.data.code == 200) {
           let sercode = res.data.data.mileStones.length;
           res.data.data.level = 4;
+          res.data.data.integral = 500
+          res.data.data.mileStones[0].received = 1
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
                   ...item,
@@ -150,7 +152,7 @@ Page({
     let {dataset: { index, prop}} = e.currentTarget;
       if(prop.received == 1){
          wx.navigateTo({
-            url: `../../pages/couponDetails/index?id=${prop.couponId}`,
+            url: `../../pages/couponDetails/index?id=${prop.id}&flag=1`,
          })
       }else if(prop.received == 2){
          that.receivedFun(index);

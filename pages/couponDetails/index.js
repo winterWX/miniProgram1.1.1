@@ -13,8 +13,8 @@ Page({
    */
   onLoad: function (options) {
       let that = this;
-      let {id} = options;
-      that.couponDetail(id);
+      let {id, flag=null} = options;
+      that.couponDetail(id, flag);
   },
 
   /**
@@ -61,9 +61,9 @@ Page({
    */
   onShareAppMessage: function () {},
 
-  couponDetail:function(id){
+  couponDetail:function(id, flag){
     let that = this;
-    let url = app.globalData.baseUrl + '/remote/tier/coupon/detail?id='+ id;
+    let url = flag ? app.globalData.baseUrl + '/remote/tier/coupon/milestone/detail?id='+ id : app.globalData.baseUrl + '/remote/tier/coupon/detail?id='+ id;
     let method = 'GET';
     util.wxAjax(method,url).then(res =>{
         if (res.data.code == 200 && res.data.data !== null) {
