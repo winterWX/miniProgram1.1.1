@@ -23,14 +23,6 @@ Page({
    */
   onLoad: function (options) {
     let {level, type, lockFlg} = JSON.parse(options.params);
-    console.log(typeof lockFlg);
-    let titleMap = {
-      3: '由健康伙伴提供',
-      4: '由中大医院/卓健提供'
-    };
-    wx.setNavigationBarTitle({
-      title: titleMap[type]
-    });
     this.setData({level, type, lockFlg})
     this.getCouponInfo();
   },
@@ -41,6 +33,9 @@ Page({
     wxAjax('GET', url, {type}).then((res) => {
       if (res.data.code === 200 && res.data.data) {
         let { imagineLink, firstTitleCn, secondTitleCn, descriptionCn, id } = res.data.data;
+        wx.setNavigationBarTitle({
+          title: firstTitleCn
+        })
         that.setData({
           imagineLink,
           firstTitleCn,
