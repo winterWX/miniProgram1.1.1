@@ -107,9 +107,9 @@ Page({
     })
   },
   goToAnswer: function() {
-    let { id } = this.data;
+    let { id, title } = this.data;
     wx.navigateTo({
-      url: '../answer/index?id=' + id,
+      url: '../answer/index?id=' + id + '&title=' + title,
     })
   },
   /**

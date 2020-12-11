@@ -53,7 +53,7 @@ Page({
   },
   submit: function() {
     let that = this;
-    let { activityId, answers } = that.data;
+    let { activityId, answers, title } = that.data;
     wx.showLoading({ title: 'loading...' });
     let url =  app.globalData.baseUrl + '/remote/health/quiz/answer';
     let method = 'POST';
@@ -64,7 +64,7 @@ Page({
           let { rate, status } = res.data.data;
           let success = status === 1;
           wx.navigateTo({
-            url: '../changeQAResult/index?rate=' + rate + '&success=' + success + '&id=' + activityId + '&submit=' + true,
+            url: '../changeQAResult/index?rate=' + rate + '&success=' + success + '&id=' + activityId + '&submit=' + true + '&title=' + title,
           })
         } else {
           wx.showModal({
@@ -78,9 +78,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { id, goodsId} = options;
+    let { id, goodsId, title} = options;
     let activityId = id || goodsId;
-    this.setData({activityId});
+    wx.setNavigationBarTitle({ title });
+    this.setData({activityId, title});
     this.getQuestion(activityId);
   },
 
