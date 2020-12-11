@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     let { rate, success, id, submit, title } = options;
     wx.setNavigationBarTitle({ title });
-    this.setData({rate, success: success === 'true', id, isSubmit: submit === 'true' });
+    this.setData({rate, success: success === 'true', id, isSubmit: submit === 'true', title });
     this.getQuestion(id);
   },
 
@@ -59,9 +59,9 @@ Page({
     })
   },
   backToDetail: function() {
-    let { id } = this.data;
+    let { id, title } = this.data;
     wx.navigateTo({
-      url: '../healthKnowledge/index?id=' + id,
+      url: '../healthKnowledge/index?id=' + id + '&title' + title,
     })
   }
 })
