@@ -13,6 +13,7 @@ Page({
     imagineLink: '',
     firstTitleCn: '',
     secondTitleCn: '',
+    thirdTitleCn: '',
     descriptionCn: '',
     id: '',
     lockFlg: true
@@ -32,7 +33,7 @@ Page({
     let url = app.globalData.baseUrl + "/remote/discount/timeLimit";
     wxAjax('GET', url, {type}).then((res) => {
       if (res.data.code === 200 && res.data.data) {
-        let { imagineLink, firstTitleCn, secondTitleCn, descriptionCn, id } = res.data.data;
+        let { imagineLink, firstTitleCn, secondTitleCn, thirdTitleCn, descriptionCn, id } = res.data.data;
         wx.setNavigationBarTitle({
           title: firstTitleCn
         })
@@ -40,6 +41,7 @@ Page({
           imagineLink,
           firstTitleCn,
           secondTitleCn,
+          thirdTitleCn,
           descriptionCn: descriptionCn.replace(/<[^>]+>/g,""),
           id
         })

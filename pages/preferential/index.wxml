@@ -5,8 +5,8 @@
             <image class="bg-img" src="{{imagineLink}}"></image>
         </view>
         <view class="tit-box">
-            <view class="title">{{firstTitleCn}}</view>
-            <view class="sub-title">{{secondTitleCn}}</view>
+            <view class="title">{{secondTitleCn}}</view>
+            <view class="sub-title">{{thirdTitleCn}}</view>
         </view>
     </view>
     <view class="content">
