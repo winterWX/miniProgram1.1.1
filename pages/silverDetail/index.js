@@ -41,9 +41,6 @@ Page({
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
           let sercode = res.data.data.mileStones.length;
-          res.data.data.level = 4;
-          res.data.data.integral = 500
-          res.data.data.mileStones[0].received = 1
           res.data.data.mileStones = res.data.data.mileStones.map(item=>{
               return {
                   ...item,
