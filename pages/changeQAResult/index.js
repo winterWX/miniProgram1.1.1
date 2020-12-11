@@ -18,7 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { rate, success, id, submit } = options;
+    let { rate, success, id, submit, title } = options;
+    wx.setNavigationBarTitle({ title });
     this.setData({rate, success: success === 'true', id, isSubmit: submit === 'true' });
     this.getQuestion(id);
   },

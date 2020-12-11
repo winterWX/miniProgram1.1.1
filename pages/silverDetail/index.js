@@ -34,7 +34,9 @@ Page({
   onLoad: function (options) {
     this.tierMytier();
   },
-
+  onHide: function() {
+    this.setData({showCarkBlock: false});
+  },
   tierMytier:function(){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/mytier';

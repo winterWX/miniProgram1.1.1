@@ -87,10 +87,10 @@ Page({
     let url = app.globalData.baseUrl + '/remote/myactivity/detail/' + id;
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
-        let { status, type } = res.data.data;
+        let { status, type, title } = res.data.data;
         let url = '';
         if (type === '2') {
-          url = '../healthKnowledge/index?id=' + id;
+          url = '../healthKnowledge/index?id=' + id + '&title=' + title;
         } else {
           url = '../activityDetail/index?id=' + id;
         }

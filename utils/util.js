@@ -38,7 +38,6 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 const wxAjax = (method, url, data = {}) => {
-  console.log(url)
   return new Promise((resolve, reject) => {
     let params = {
       method: method,

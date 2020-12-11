@@ -119,7 +119,7 @@ Page({
     let { id, goodsId, title } = options;
     let activityId = id || goodsId;
     wx.setNavigationBarTitle({ title });
-    this.setData({id: activityId});
+    this.setData({id: activityId, title});
     this.getQuestion(activityId);
   },
 
@@ -131,9 +131,9 @@ Page({
     this.setData({isLogin});
   },
   goResult: function() {
-    let { id } = this.data;
+    let { id, title } = this.data;
     wx.navigateTo({
-      url: '../changeQAResult/index?id=' + id,
+      url: '../changeQAResult/index?id=' + id + '&title=' + title,
     })
   },
   getQuestion: function(id) {
