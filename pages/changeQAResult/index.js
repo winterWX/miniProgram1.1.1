@@ -61,7 +61,7 @@ Page({
   backToDetail: function() {
     let { id, title } = this.data;
     wx.navigateTo({
-      url: '../healthKnowledge/index?id=' + id + '&title' + title,
+      url: '../healthKnowledge/index?id=' + id + '&title=' + title,
     })
   }
 })
