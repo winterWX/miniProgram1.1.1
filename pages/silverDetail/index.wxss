@@ -385,7 +385,7 @@
   background-color: rgba(95,95,95,0.05);
   padding: 30rpx;
   display: flex;
-  margin-top: 15rpx;
+  margin-top: 30rpx;
 }
 
 .bottomBlockGold image{
