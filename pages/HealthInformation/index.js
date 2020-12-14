@@ -25,6 +25,7 @@ Page({
     sizeData: 4,
     myTagData: [], //我关注的话题
     forYouData: [], //全部话题
+    defaultArray:[],  // 热门推荐单组件 
     editSwith: true,
     editStute: false,
     dataItemTag: [],
@@ -37,6 +38,7 @@ Page({
     addTagArray: [],
     listId: [],
     switchTag: false,
+    tagDefault: '热门推荐',
     //拖拽效果
     current: -1,
     s_v: 10,
@@ -87,6 +89,7 @@ Page({
       });
     }
   },
+
   //选择条目
   tabSelect(e) {
       let that = this;
@@ -94,17 +97,18 @@ Page({
       if(that.data.ipaState){ return; }
       that.setData({ ipaState : true});
       that.setData({ tabCur: selectId,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
-      //that.setData({ researchTag: that.data.tabLists[selectId].tag === '热门推荐' ? '热门推荐' : that.data.tabLists[selectId].tag});
       that.setData({ researchTag: that.data.tabLists[selectId].id});
       that.setData({ listData: [], onPullNun : 1, switchTag: true});  //清空数组,  switchTag(标记切换的动作)
       that.searchSend(that.data.researchTag);
   },
+
   listClick(e){
      let goodsId = e.currentTarget.dataset.itemid;      
       wx.navigateTo({                                 
         url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
       })
   },
+
   //文章列表接口
   searchSend(parase,num) {
     let that = this;
@@ -116,9 +120,9 @@ Page({
     const data = {
       "currentPage": num !== undefined ? num : 1,
       "pageSize": 10,
-      //"topic": parase !== undefined ? parase : '热门推荐'  //热门推荐
       "topic": parase
     };
+
     util.wxAjax(method,url,data).then(res=>{
         if(res.data.code === 200){
           //that.collectionQueryCounts();  // 赋值前调用
@@ -134,6 +138,7 @@ Page({
         wx.hideLoading();
     })
   },
+
   collectionImageShare: function (e) {
     var that = this;
     var articleId = e.currentTarget.dataset.id;
@@ -145,41 +150,46 @@ Page({
         topTitleIndex: node,
       });
     }
-    if (!that.data.listData[node].isCollect) {
+    if (!that.data.listData[node].isCollect) { 
       that.collectionAdd(articleId);
     } else {
       that.collectionDetele(articleId);
     }
   },
+
   editActList: function () {
     var that = this;
     that.setData({
       editStute: true,
-    });
-    that.setData({
-      editSwith: false,
+      editSwith: false
     });
   },
+
   canlenBtn: function () {
     var that = this;
-    that.setData({
-      editStute: false,
-    });
+    that.setData({ editStute: false });
   },
+
   editTagDone: function () {
     let that = this;
-    let listParas = [];
+    let num = that.data.defaultArray.length;
     if (that.data.myTagData.length > 0) {
-      console.log('that.data.myTagData',that.data.myTagData);
-      that.data.myTagData.forEach((item, index) => {
-        listParas.push({
-          order: parseInt(index + 1) + "",
-          topic: item.tag,
-        });
-      });
+          that.data.myTagData.forEach((item, index) => {
+            if(item.name === that.data.tagDefault){
+                item.id = num > 0 ? that.data.defaultArray[0].id : '';
+                item.name = num > 0 ? that.data.defaultArray[0].name : '';
+            }
+          });
+          that.data.myTagData = that.data.myTagData.map((item,index)=>{
+              return {
+                  order : parseInt(index + 1) + "",
+                  topic: item.id
+              }
+          })
+          that.refreTagList(that.data.myTagData);
     }
-    that.refreTagList(listParas); //批量编辑
   },
+
   //展示tag标签
   tagsShare: function () {
     var that = this;
@@ -199,10 +209,10 @@ Page({
     });
     that.dargLonad();
   },
+
   //查询所有话题
   searchAllTopic: function () {
-    let that = this;
-    let url =  app.globalData.baseUrl + "/remote/myTopic/searchAllTopic";
+    let url = app.globalData.baseUrl + "/remote/myTopic/searchAllTopic";
     let method = 'GET';
     return new Promise((resolve, reject) => {
       util.wxAjax(method,url).then(res =>{
@@ -210,34 +220,24 @@ Page({
       })
     })
   },
+
   operaterAllTopic: function (res) {
-    let searchAllTopicArray = [];
-    let allTopicArray = [];
-    let allTopicLastArray = [];
-    let { myTagData } = this.data;
-    let myTagList = myTagData.map((item) => {
-      return item.tag;
-    });
-    if (res.data.data !== null) {
-      res.data.data.forEach((item) => {
-        if (!myTagList.includes(item.name)) {
-          searchAllTopicArray.push({
-            tag: item.name,
-          });
+     if(res.data.data !== null){
+        let forYouData = [];
+        let defaultArray = [];
+        res.data.data.forEach( item=>{
+           item.name === this.data.tagDefault ? defaultArray.push({topic:item.name,id:item.id}) : forYouData.push(item);
+        })
+        this.setData({ forYouData, defaultArray});
+        if(this.data.myTagData.length > 0){
+            this.data.myTagData = this.data.myTagData.filter(item => item.topic !== this.data.tagDefault );
+            this.setData({ myTagData: [...defaultArray,...this.data.myTagData]});
+        }else{
+            this.setData({ myTagData: [...defaultArray]});
         }
-      });
-      searchAllTopicArray.forEach((item) => {
-        if (item.tag === "热门推荐") {
-          allTopicArray.push(item);
-        } else {
-          allTopicLastArray.push(item);
-        }
-      });
-      this.setData({
-        forYouData: [...allTopicArray, ...allTopicLastArray],
-      });
-    }
+     }
   },
+
   //查询我的话题(游客)
   defaultLabel: function () {
       let that = this;
@@ -246,7 +246,8 @@ Page({
       util.wxAjax(method, url).then(res=>{
           that.operateMyTag(res);
       });
-    },
+  },
+
   //查询我的话题
   mytagSearch: function () {
     let url =  app.globalData.baseUrl + '/remote/myTopic/search';
@@ -257,111 +258,69 @@ Page({
       })
     })
   },
+
   operateMyTag: function (res) {
-    console.log('res.data.data',res.data.data);
     if (res.data.data !== null) {
       if (Array.isArray(res.data.data) && res.data.data.length > 0) {
-        let tabListsArray = [];
-        let firstSortArray = [];
-        let lastSortArray = [];
-        res.data.data.forEach((item) => {
-          tabListsArray.push({
-            tag: item.topic,
-            id: tem.id
-          });
-        });
-        tabListsArray.forEach((item) => {
-          if (item.tag === "热门推荐") {
-            firstSortArray.push(item);
-          } else {
-            lastSortArray.push(item);
-          }
-        });
-
-        this.setData({
-          tabLists: [...firstSortArray, ...lastSortArray],
-        });
-
-        this.setData({
-          myTagData: [...firstSortArray, ...lastSortArray], //我关注的话题
-        });
-
-      } else {
-        let tabListsArray = [{ tag: "热门推荐" }];
-        this.setData({
-          tabLists: tabListsArray,
-          myTagData: tabListsArray, //我关注的话题
-        });
-      }
+        this.setData({ tabLists: res.data.data ,myTagData : res.data.data});
+      } 
     }
   },
+
   //批量更新tag
   refreTagList: function (listNum) {
     let that = this;
-    let url =  app.globalData.baseUrl + '/remote/myTopic/batchUpdateMyTopic';
-    let method = 'POST';
-    const data = { list: listNum };
-    util.wxAjax(method, url, data).then(res=>{
+    util.wxAjax('POST', app.globalData.baseUrl + '/remote/myTopic/batchUpdateMyTopic', { list: listNum }).then(res=>{
         // that.mytagSearch(); //批量编辑成功后刷新顶部导航
         that.getTagList();
         that.closePage(); //关闭编辑页面
     });
   },
+
   myTagItemFun: function (e) {
     let that = this;
-    let clickIndex = e.currentTarget.dataset.index;
-    let myTagFilter = that.data.myTagData;
-    if (myTagFilter[clickIndex] && myTagFilter[clickIndex].tag !== "热门推荐") {
-      that.data.deleteTagArray.push(myTagFilter[clickIndex]);
-      let conceArray = [...that.data.forYouData, ...that.data.deleteTagArray];
-      let curArray = conceArray.reduce((acc, cur) => {
-        !acc.some((v) => v.tag === cur.tag) && acc.push(cur);
-        return acc;
-      }, []);
-      that.setData({
-        forYouData: curArray,
-      });
-      that.setData({
-        deleteTagArray: [],
-      });
-      let myTagFilterNewArray = myTagFilter.filter(
-        (item) => item.tag !== that.data.myTagData[clickIndex].tag
-      );
-      that.setData({
-        myTagData: myTagFilterNewArray,
-      });
+    let index = e.currentTarget.dataset.index;
+    let deteleItem = that.data.myTagData;
+    
+    if (deteleItem[index] && deteleItem[index].topic !== that.data.tagDefault) {
+        console.log('deteleItem[index]====',deteleItem[index])
+
+        let obj = { name: deteleItem[index].topic, id: deteleItem[index].id };
+        that.data.deleteTagArray.push(obj);
+        let conceArray = [...that.data.forYouData, ...that.data.deleteTagArray];
+        let curArray = conceArray.reduce((acc, cur) => {
+          !acc.some((v) => v.id === cur.id) && acc.push(cur);
+          return acc;
+        }, []);
+        that.setData({ forYouData: curArray });
+        that.setData({ deleteTagArray: [] });
+        let newArray = deteleItem.filter(
+          (item) => item.id !== that.data.myTagData[index].id
+        );
+        that.setData({ myTagData: newArray });
     }
     that.dargLonad();
   },
 
   addTagBbtn: function (e) {
     let that = this;
-    let clickIndex = e.currentTarget.dataset.index;
+    let index = e.currentTarget.dataset.index;
     let addBtn = that.data.forYouData;
-    console.log('addBtn',addBtn);
-    if (addBtn[clickIndex] && addBtn[clickIndex].tag !== "热门推荐") {
-      that.data.addTagArray.push(addBtn[clickIndex]);
-      let arrayOld = [...that.data.myTagData, ...that.data.addTagArray];
-      console.log('arrayOld+++==arrayOld',arrayOld);
-      let ccArray = arrayOld.reduce((acc, cur) => {
-        !acc.some((v) => v.tag === cur.tag) && acc.push(cur);
-        return acc;
-      }, []);
-      that.setData({
-        myTagData: ccArray,
-      });
-      that.setData({
-        addTagArray: [],
-      });
-      let addBtnNewArray = addBtn.filter(
-        (item) => item.tag !== that.data.forYouData[clickIndex].tag
-      );
-      that.setData({
-        forYouData: addBtnNewArray,
-      });
+    if (addBtn[index]) {
+        let obj = { topic: addBtn[index].name, id: addBtn[index].id };
+        that.data.addTagArray.push(obj);
+        let arrayOld = [...that.data.myTagData, ...that.data.addTagArray];
+        let ccArray = arrayOld.reduce((acc, cur) => {
+          !acc.some((v) => v.id === cur.id) && acc.push(cur);
+          return acc;
+        }, []);
+        that.setData({ myTagData: ccArray,addTagArray: [] });
+        let addBtnNewArray = addBtn.filter( (item) => item.id !== that.data.forYouData[index].id);
+        that.setData({ forYouData: addBtnNewArray });
     }
     that.dargLonad();
   },
+
   // 隐藏遮罩层
   hideModal: function () {
     var that = this;
@@ -377,6 +336,7 @@ Page({
       });
     }, 100); //先执行下滑动画，再隐藏模块
   },
+
   //动画集
   fadeIn: function () {
     this.animation.translateY(0).step();
@@ -384,6 +344,7 @@ Page({
       animationData: this.animation.export(), //动画实例的export方法导出动画数据传递给组件的animation属性
     });
   },
+
   fadeDown: function () {
     this.animation.translateY(1000).step();
     this.setData({
@@ -396,6 +357,7 @@ Page({
       editSwith: true,
     });
   },
+
   closePage: function () {
     var that = this;
     that.fadeDown();
@@ -403,11 +365,13 @@ Page({
       hideModal: true,
     });
   },
+
   searchBlock: function () {
     wx.navigateTo({
       url: "../../pages/searchTag/index",
     });
   },
+
   topTipImageColse: function () {
     let that = this;
     app.healthInforData.findMore = false;
@@ -416,6 +380,7 @@ Page({
       topTipShow: topTipShowFlg,
     });
   },
+
   timestampToTime: function (timestamp) {
     var date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
     var Y = date.getFullYear() + "-";
@@ -432,6 +397,7 @@ Page({
       date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     return Y + M + D + "，" + h + m;
   },
+
   dargLonad: function () {
     var self = this;
     wx.getSystemInfo({
@@ -465,6 +431,7 @@ Page({
       },
     });
   },
+
   movestart: function (e) {
     x = e.touches[0].clientX;
     y = e.touches[0].clientY;
@@ -478,6 +445,7 @@ Page({
       move_y: y1,
     });
   },
+
   move: function (e) {
     if (e.currentTarget.dataset.index !== 0) {
       var self = this,
@@ -509,11 +477,13 @@ Page({
       });
     }
   },
+
   moveend: function (e) {
     this.setData({
       current: -1,
     });
   },
+
   changeArrayData: function (arr, i1, i2) {
     var temp = arr[i1];
     arr[i1] = arr[i2];
@@ -532,6 +502,7 @@ Page({
     arr[i2].left = left;
     arr[i2].top = top;
   },
+
   getCurrnetUnderIndex: function (endx, endy) {
     //获取当前移动下方index
     var endx = x2 + this.data.u_w / 2,

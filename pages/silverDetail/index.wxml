@@ -15,8 +15,8 @@
         <view class="progressCark">
              <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                 <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received !== 1}}" src="{{baseUrl + '/images/lastimage/group@2x.png'}}" />
+                    <image wx:if="{{item.received === 1}}" src="{{baseUrl + '/images/lastimage/bg-point-shadow@2x.png'}}" />
                     <view class="content">
                         <view class="flex">
                             <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
@@ -104,8 +104,8 @@
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                 <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received !== 1}}" src="{{baseUrl + '/images/lastimage/group@2x.png'}}"/>
+                    <image wx:if="{{item.received === 1}}" src="{{baseUrl + '/images/lastimage/bg-point-shadow@2x.png'}}"/>
                     <view class="content">
                         <view class="flex">
                             <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
@@ -167,7 +167,7 @@
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
-                <image src="../../images/img-hospital22-2@3x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
             </view>
     </view>
     <view class="glodBottom" style="margin-top:20rpx;">
@@ -178,14 +178,14 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">银会员2倍活动积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}"/></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
+                    <view class="glodBottomImage"><image  src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
         </view>
     </view>
@@ -216,8 +216,8 @@
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                 <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received !== 1}}" src="{{baseUrl + '/images/lastimage/group@2x.png'}}"/>
+                    <image wx:if="{{item.received === 1}}" src="{{baseUrl + '/images/lastimage/bg-point-shadow@2x.png'}}"/>
                     <view class="content">
                         <view class="flex">
                             <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
@@ -287,14 +287,14 @@
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
-            <image src="../../images/img-hospital22-2@3x.png"/>
+            <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
         </view>
         <view class="bottomTextSeconde" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">免费网上健康讲座</view>
                 <view class="bottomTextSecondeBlock2">由中大医院/卓健提供</view>
             </view>
-            <image src="../../images/online-new@2x.png"/>
+            <image src="{{baseUrl + '/images/lastimage/online-new@2x.png'}}"/>
         </view>
     </view>
     <view class="glodBottom">
@@ -305,14 +305,14 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">x5倍积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}"> 
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
         </view>
     </view>
@@ -340,7 +340,7 @@
             <view class="bottomText1">我的尊享专区</view>
             <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
             </view>
-            <image src="../../images/vip@2x.png"/>
+            <image src="{{baseUrl + '/images/lastimage/vip@2x.png'}}"/>
         </view>
     </view>
     <view class="integralAct-main">
@@ -359,8 +359,8 @@
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                 <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received !== 1}}" src="{{baseUrl + '/images/lastimage/group@2x.png'}}"/>
+                    <image wx:if="{{item.received === 1}}" src="{{baseUrl + '/images/lastimage/bg-point-shadow@2x.png'}}"/>
                     <view class="content">
                         <view class="flex">
                             <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
@@ -411,7 +411,7 @@
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
-                <image src="../../images/img-hospital22-2@3x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
             </view>
     </view>
     <view class="glodBottom">
@@ -422,14 +422,14 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">银会员2倍活动积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
         </view>
     </view>
@@ -448,7 +448,7 @@
             <view class="bottomText1">我的尊享专区</view>
             <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
             </view>
-            <image src="../../images/vip@2x.png"/>
+            <image src="{{baseUrl + '/images/lastimage/vip@2x.png'}}"/>
         </view>
     </view>
     <view class="integralAct-main" style="height: 275rpx;">
@@ -467,8 +467,8 @@
         <view class="progressCark">
             <view wx:for="{{activeData.mileStones}}" wx:key="id" class="blockTextTop" style="width:{{secoreNun}}%;">
                 <view class="card" bindtap="cardClick" data-index="{{index}}" data-prop="{{item}}">
-                    <image wx:if="{{item.received !== 1}}" src="../../images/group@2x.png" />
-                    <image wx:if="{{item.received === 1}}" src="../../images/bg-point-shadow@2x.png" />
+                    <image wx:if="{{item.received !== 1}}" src="{{baseUrl + '/images/lastimage/group@2x.png'}}"/>
+                    <image wx:if="{{item.received === 1}}" src="{{baseUrl + '/images/lastimage/bg-point-shadow@2x.png'}}"/>
                     <view class="content">
                         <view class="flex">
                             <view class="title {{item.received === 1 ? 'title-avtive-color' : ''}}">{{item.title}}</view>
@@ -502,14 +502,14 @@
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
-            <image src="../../images/img-hospital22-2@3x.png"/>
+            <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
         </view>
         <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>
                 </view>
-                <image src="../../images/online-new@2x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/online-new@2x.png'}}"/>
         </view>
     </view>
     <view  class="glodBottom">
@@ -520,14 +520,14 @@
                     <view class="glodBottomText1">积分翻倍</view>
                     <view class="glodBottomText2">x5倍积分</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-8@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
                     <view class="glodBottomText1">会员特权专享</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
-                    <view class="glodBottomImage"><image src='../../images/group-2@2x.png' /></view>
+                    <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
         </view>
     </view>
@@ -547,7 +547,7 @@
                 <view class="bottomText1">尊享银会员视频文章</view>
                 <view class="bottomText2">实时获得专业权威资讯</view>
                 </view>
-                <image src="../../images/group-2@2x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" />
             </view>
             <view style="margin-top: 40rpx;">
                 <view class="bouttomTitlr">银会员专享限时优惠</view>
@@ -568,7 +568,7 @@
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
-                <image src="../../images/img-hospital22-2@3x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
             </view>
     </view>
     <!-- <view class="bouttomImage">
@@ -654,7 +654,7 @@
                     <view class="bottomText1">畅享所有视频文章</view>
                     <view class="bottomText2">海量专业视频文章任你挑选</view>
                 </view>
-                <image src="../../images/group-2@2x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" />
             </view>
             <view class="bouttomTitlr" style="margin-top: 40rpx;">金会员专享限时优惠</view>
             <!-- <view class="insrusBlock">
@@ -673,14 +673,14 @@
                 <view class="bottomText1">医健服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
-                <image src="../../images/img-hospital22-2@3x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
             </view>
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>
                 </view>
-                <image src="../../images/online-new@2x.png"/>
+                <image src="{{baseUrl + '/images/lastimage/online-new@2x.png'}}"/>
             </view>
     </view>
     <view class="bouttomImage">
