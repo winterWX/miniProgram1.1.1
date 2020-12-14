@@ -21,23 +21,23 @@ Component({
   data: {
     menu: [{
         "text": "首页",
-        "iconPath": app.globalData.imagesUrl + '/images/tabBar/index_on@3x.png',
-        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/index_on.png",
+        "iconPath": app.globalData.imagesUrl + '/images/tabBar/icon-control-home@2x.png',
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/icon-control-home-filled-black@2x.png",
         "url": "../index/index",
         "requiredLogin": false
       },
       // {
       //   "text": "理财健康",
-      //   "iconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry_default.png",
-      //   "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/inquiry.png",
+      //   "iconPath": app.globalData.imagesUrl + "/images/tabBar/invalid-name@2x.png",
+      //   "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/combined-shape@2x.png",
       //   "url": "../medicalServices/index",
       //   "requiredLogin": true
       // },
       //  app.json 需加      "pages/medicalServices/index",
       {
         "text": "我的",
-        "iconPath": app.globalData.imagesUrl + "/images/tabBar/mine_default.png",
-        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/mine.png",
+        "iconPath": app.globalData.imagesUrl + "/images/tabBar/icons-system-icons-user@2x.png",
+        "activeIconPath": app.globalData.imagesUrl + "/images/tabBar/system-icons-user-active@2x.png",
         "url": "../mine/index",
         "requiredLogin": true
       }

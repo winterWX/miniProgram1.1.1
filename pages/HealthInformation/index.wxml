@@ -3,7 +3,7 @@
     <view class="scrollView">
         <scroll-view scroll-x class="navbar" scroll-with-animation scroll-left="{{scrollLeft}}rpx">
             <view class="nav-item" wx:for="{{tabLists}}" wx:key="id" bindtap="tabSelect" data-index="{{index}}">
-                <view class="nav-text {{index==tabCur?'tab-on':''}}">{{item.tag}}</view>
+                <view class="nav-text {{index == tabCur ? 'tab-on':''}}">{{item.topic}}</view>
             </view>
         </scroll-view>
         <view class="liebiao-img">
@@ -54,8 +54,8 @@
                         <view class="searchList">
                             <view class='item_container' wx:for='{{myTagData}}' wx:key="index">
                                 <view class="item {{index==current?'moving':'normal'}}" style="left:{{index==current?move_x:item.left}}px;top:{{index==current?move_y:item.top}}px;width:{{u_w}}px;" catchtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" bindtap="myTagItemFun" data-index="{{index}}">
-                                    {{item.tag}}
-                                    <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src='{{baseUrl + "/images/healthInfo/icon-clear.png"}}'></image>
+                                    {{item.topic}}
+                                    <image wx:if="{{editStute && item.topic !=='热门推荐'}}" src='{{baseUrl + "/images/healthInfo/icon-clear.png"}}'></image>
                                 </view>
                             </view>
                         </view>
@@ -63,17 +63,15 @@
                     <view class="bottomTage">
                         <view class="bottomTage-title">全部话题</view>
                         <view class="intringData">
-                            <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="index" data-index="{{index}}">
-                                <view class="viewBtn">{{item.tag}}</view>
+                            <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="{{item.id}}" data-index="{{index}}">
+                                <view class="viewBtn">{{item.name}}</view>
                                 <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/healthInfo/icon-add.png'}}"></image>
                             </view>
                         </view>
                     </view>
                 </view>
                 <view class="tagBtn">
-                    <van-button type="primary" size="large" color="#00a865" bindtap="editTagDone">
-                        完 成
-                    </van-button>
+                    <van-button type="primary" size="large" color="#00a865" bindtap="editTagDone">完 成</van-button>
                 </view>
             </view>
         </view>
