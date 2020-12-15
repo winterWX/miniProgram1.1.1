@@ -16,8 +16,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ paramsData : JSON.parse(options.params) });
-    let { level ,flg } = this.data.paramsData;
-    if((level == 3 || level == 5) && flg === ''){
+    let { level, flg } = this.data.paramsData;
+    if((level == 2 || level == 3 || level == 4 || level == 5 ) && flg === ''){
         this.setData({ showBtn: true });
     }
   },

@@ -82,7 +82,7 @@
 <view wx:if="{{activeData.level === 2 && LockFlg}}">
     <view class="vipBlock" wx:if="{{activeData.level === 5}}">
         <view class="vipTopBlock">
-            <view>我的尊享专区</view>
+            <view>我的尊享区</view>
             <view class="creRight"></view>
         </view>
         <!-- <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> -->
@@ -182,7 +182,7 @@
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员特权专享</view>
+                    <view class="glodBottomText1">会员尊享优惠</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
                     <view class="glodBottomImage"><image  src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
@@ -309,7 +309,7 @@
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}"> 
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员特权专享</view>
+                    <view class="glodBottomText1">会员尊享优惠</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
@@ -337,8 +337,8 @@
     <view class="vipContent">
         <view class="vipBottomBlockGold">
             <view class="bottomText">
-            <view class="bottomText1">我的尊享专区</view>
-            <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
+            <view class="bottomText1">我的尊享区</view>
+            <view class="bottomText2">领取恒生客户尊享礼遇</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/vip@2x.png'}}"/>
         </view>
@@ -426,7 +426,7 @@
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员特权专享</view>
+                    <view class="glodBottomText1">会员尊享优惠</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
@@ -445,8 +445,8 @@
     <view class="vipContent">
         <view class="vipBottomBlockGold">
             <view class="bottomText">
-            <view class="bottomText1">我的尊享专区</view>
-            <view class="bottomText2">恒生客户尊享好礼等你来领取</view>
+            <view class="bottomText1">我的尊享区</view>
+            <view class="bottomText2">领取恒生客户尊享礼遇</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/vip@2x.png'}}"/>
         </view>
@@ -524,7 +524,7 @@
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员特权专享</view>
+                    <view class="glodBottomText1">会员尊享优惠</view>
                     <view class="glodBottomText2">银会员专享内容</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>

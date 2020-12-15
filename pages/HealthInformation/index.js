@@ -95,10 +95,8 @@ Page({
       let that = this;
       let selectId = e.currentTarget.dataset.index;
       if(that.data.ipaState){ return; }
-      that.setData({ ipaState : true});
-      that.setData({ tabCur: selectId,scrollLeft: (e.currentTarget.dataset.id - 2) * 200 });
-      that.setData({ researchTag: that.data.tabLists[selectId].id});
-      that.setData({ listData: [], onPullNun : 1, switchTag: true});  //清空数组,  switchTag(标记切换的动作)
+      that.setData({ ipaState : true ,tabCur: selectId,scrollLeft: (selectId - 2) * 200 ,researchTag: that.data.tabLists[selectId].id });
+      that.setData({ listData: [], onPullNun : 1, switchTag: true });  //清空数组,  switchTag(标记切换的动作)
       that.searchSend(that.data.researchTag);
   },
 
@@ -225,16 +223,24 @@ Page({
      if(res.data.data !== null){
         let forYouData = [];
         let defaultArray = [];
-        res.data.data.forEach( item=>{
+        let filterAllTopic = [];
+        res.data.data.forEach(item=>{
            item.name === this.data.tagDefault ? defaultArray.push({topic:item.name,id:item.id}) : forYouData.push(item);
         })
-        this.setData({ forYouData, defaultArray});
+        this.setData({ defaultArray });
+
         if(this.data.myTagData.length > 0){
-            this.data.myTagData = this.data.myTagData.filter(item => item.topic !== this.data.tagDefault );
+            this.data.myTagData = this.data.myTagData.filter(item => item.topic !== this.data.tagDefault);
             this.setData({ myTagData: [...defaultArray,...this.data.myTagData]});
         }else{
             this.setData({ myTagData: [...defaultArray]});
         }
+
+        let idList = this.data.myTagData.map((item) => { return item.id });
+        forYouData.forEach((item) => {
+            if (!idList.includes(item.id)) { filterAllTopic.push( item )};
+        });
+        this.setData({ forYouData: filterAllTopic});
      }
   },
 
@@ -281,10 +287,7 @@ Page({
     let that = this;
     let index = e.currentTarget.dataset.index;
     let deteleItem = that.data.myTagData;
-    
     if (deteleItem[index] && deteleItem[index].topic !== that.data.tagDefault) {
-        console.log('deteleItem[index]====',deteleItem[index])
-
         let obj = { name: deteleItem[index].topic, id: deteleItem[index].id };
         that.data.deleteTagArray.push(obj);
         let conceArray = [...that.data.forYouData, ...that.data.deleteTagArray];
