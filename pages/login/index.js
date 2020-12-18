@@ -15,18 +15,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.url && options.url.indexOf('/#') > -1) {
+    let { url, pageTag } = options;
+    if (url && url.indexOf('/#') > -1) {
       let baseUrlNum = ''
-      let startStr = options.url.substr(0, options.url.indexOf('/#'));
-      let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length - 1);
+      let startStr = url.substr(0, url.indexOf('/#'));
+      let endStr = url.substr(url.indexOf('/#') + 2, url.length - 1);
       baseUrlNum = startStr + '?goodsId=' + endStr;
-      this.setData({ url: baseUrlNum })
-    }else if(options.pageTag === 'pageTag'){
-      this.setData({ urlTag: 'pageTag' })
+      this.setData({ url: baseUrlNum });
+    }else if(pageTag === 'pageTag'){
+      this.setData({ urlTag: 'pageTag' });
     }else {
-      this.setData({
-        url: options.url
-      })
+      this.setData({ url });
     }
   },
   phoneNumberLogin (data) {
