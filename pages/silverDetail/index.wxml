@@ -289,13 +289,13 @@
             </view>
             <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
         </view>
-        <view class="bottomTextSeconde" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
+        <!-- <view class="bottomTextSeconde" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">免费网上健康讲座</view>
                 <view class="bottomTextSecondeBlock2">由中大医院/卓健提供</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/online-new@2x.png'}}"/>
-        </view>
+        </view> -->
     </view>
     <view class="glodBottom">
         <view class="glodBottomTitle">会员礼遇</view>
@@ -504,13 +504,13 @@
             </view>
             <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
         </view>
-        <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
+        <!-- <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/online-new@2x.png'}}"/>
-        </view>
+        </view> -->
     </view>
     <view  class="glodBottom">
         <view class="glodBottomTitle">会员礼遇</view>
@@ -675,13 +675,13 @@
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
             </view>
-            <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
+            <!-- <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="4" data-level="{{activeData.level}}">
                 <view class="bottomText">
                 <view class="bottomText1">免费网上健康讲座</view>
                 <view class="bottomText2">由中大医院/卓健提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/online-new@2x.png'}}"/>
-            </view>
+            </view> -->
     </view>
     <view class="bouttomImage">
             <view class="container">

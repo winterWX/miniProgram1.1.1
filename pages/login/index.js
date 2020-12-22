@@ -36,9 +36,9 @@ Page({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       invitationCode: app.globalData.invitationCode
     }
-    wx.showLoading({
-      title: 'loading...',
-    });
+    // wx.showLoading({
+    //   title: 'loading...',
+    // });
     let url = app.globalData.baseUrl + '/remote/register/miniProgram/add';
     wxAjax('POST', url, parms).then(res => {
         if (res.data.code === 200) {
@@ -62,10 +62,11 @@ Page({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })
-        } else if(res.data.code === 999000){   //白名单
+        } else if(res.data.code === 999000 || res.data.code === 999888){   //白名单(999000)  , 999888 ---用户注销
+            //wx.hideLoading();
             wx.showModal({
               title: '提示',
-              content: '您没有登录权限',
+              content: res.data.code === 999000 ? '您没有登录权限':( res.data.code === 999888 ? '登录资料错误' :''),
               showCancel: false,
               success (res) {
                 if (res.confirm) {
@@ -80,7 +81,7 @@ Page({
               success: (res) => { }
             })
         }
-        wx.hideLoading()
+        //wx.hideLoading()
     });
   },
   getPhoneNumber (e) { //获取电话信息     

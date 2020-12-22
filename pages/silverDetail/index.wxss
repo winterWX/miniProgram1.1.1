@@ -478,7 +478,8 @@
   height: 135rpx;
 }
 .glodBottom{
-  width: 100%;
+  /* width: 100%; */
+  width: 92%;
   height: 190rpx;
   background-color: #ffffff;
   padding: 30rpx;
