@@ -15,18 +15,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.url && options.url.indexOf('/#') > -1) {
+    let { url, pageTag } = options;
+    if (url && url.indexOf('/#') > -1) {
       let baseUrlNum = ''
-      let startStr = options.url.substr(0, options.url.indexOf('/#'));
-      let endStr = options.url.substr(options.url.indexOf('/#') + 2, options.url.length - 1);
+      let startStr = url.substr(0, url.indexOf('/#'));
+      let endStr = url.substr(url.indexOf('/#') + 2, url.length - 1);
       baseUrlNum = startStr + '?goodsId=' + endStr;
-      this.setData({ url: baseUrlNum })
-    }else if(options.pageTag === 'pageTag'){
-      this.setData({ urlTag: 'pageTag' })
+      this.setData({ url: baseUrlNum });
+    }else if(pageTag === 'pageTag'){
+      this.setData({ urlTag: 'pageTag' });
     }else {
-      this.setData({
-        url: options.url
-      })
+      this.setData({ url });
     }
   },
   phoneNumberLogin (data) {
@@ -37,9 +36,9 @@ Page({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       invitationCode: app.globalData.invitationCode
     }
-    wx.showLoading({
-      title: 'loading...',
-    });
+    // wx.showLoading({
+    //   title: 'loading...',
+    // });
     let url = app.globalData.baseUrl + '/remote/register/miniProgram/add';
     wxAjax('POST', url, parms).then(res => {
         if (res.data.code === 200) {
@@ -63,10 +62,11 @@ Page({
               url: this.data.url + '?flag=' + integralFlg,
               complete: () => {}
             })
-        } else if(res.data.code === 999000){   //白名单
+        } else if(res.data.code === 999000 || res.data.code === 999888){   //白名单(999000)  , 999888 ---用户注销
+            //wx.hideLoading();
             wx.showModal({
               title: '提示',
-              content: '您没有登录权限',
+              content: res.data.code === 999000 ? '您没有登录权限':( res.data.code === 999888 ? '登录资料错误' :''),
               showCancel: false,
               success (res) {
                 if (res.confirm) {
@@ -81,7 +81,7 @@ Page({
               success: (res) => { }
             })
         }
-        wx.hideLoading()
+        //wx.hideLoading()
     });
   },
   getPhoneNumber (e) { //获取电话信息     

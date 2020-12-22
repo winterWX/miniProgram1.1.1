@@ -12,9 +12,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -26,23 +24,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -69,12 +61,9 @@ Page({
     this.pdfFun(id);
   },
   pdfFun:function(id){
-    if(id == 1){
-       wx.navigateTo({ url: '../../pages/textUserAgreements/index' })
-    }else if(id == 2){
-       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' })
-    }else{
-       wx.navigateTo({ url: '../../pages/textCookiesPolicy/index' })
-    }
+    let textUrl1 = '../../pages/textUserAgreements/index'; 
+    let textUrl2 = '../../pages/textPrivacyStatement/index'; 
+    let textUrl3 = '../../pages/textCookiesPolicy/index'; 
+    wx.navigateTo({ url: id == 1 ? textUrl1: ( id == 2 ? textUrl2 : textUrl3) });
   }
 })

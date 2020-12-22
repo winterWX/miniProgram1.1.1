@@ -59,61 +59,6 @@ Page({
     })
   },
 
-  // secoreFun:function(){
-  //   let that = this;
-  //   let activeNum = that.data.activeNum;
-  //   that.setData({ secoreNun : (100 / Number(activeNum)).toFixed(2)})
-  // },
-
-/*bluPosse:function(data){
-      let lengthNum = data.mileStones.length;
-      let numData = (100 / Number(lengthNum)).toFixed(5);
-      let indexFlg = -1;
-      let arryNum = [];
-      let betweenNum = 0; 
-      if(data.mileStones.length > 0 ){
-          if(data.integral >= data.mileStones[lengthNum-1].targetIntegral){
-               return 100;
-          }else{
-              //每个区间的数值
-              data.mileStones.forEach((item,index)=>{
-                  arryNum.push(index === 0 ? item.targetIntegral : item.targetIntegral - data.mileStones[index-1].targetIntegral);
-              });
-
-              //在那个区间
-              for(let i = 0 ; data.mileStones.length > 0 ; i ++){
-                  if(data.integral <= data.mileStones[i].targetIntegral){
-                      indexFlg = i;
-                      if(indexFlg === 0){
-                          betweenNum = data.integral === data.mileStones[indexFlg].targetIntegral ? data.mileStones[indexFlg].targetIntegral : data.integral;
-                      }else{
-                          betweenNum = data.integral - data.mileStones[i-1].targetIntegral;
-                      }
-                      break;
-                  }
-              }
-
-              // 区间内 每积分所占的 份额
-              const secodeDta = arryNum.slice(0,indexFlg+1).map((item,index) =>{
-                    return index === 0 ? (numData / 2) / item : numData / item;
-              });
-
-              let newArryNum = secodeDta.map((item,index) =>{
-                    if(secodeDta.length -1 === index){
-                       return item * betweenNum;
-                    }else{
-                       return item * arryNum[index];
-                    }
-              });
-
-              //连加值
-              const total = newArryNum.reduce(function(a, b) {
-                    return a + b;
-              });
-              return total;
-          }
-    }
-  }, */
   bluPosse:function(data){
       let { integral, mileStones } = data;
       let mileStonesIntegral = mileStones.map (item => {

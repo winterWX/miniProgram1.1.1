@@ -23,9 +23,7 @@ Page({
      let that = this;
      that.tokenOnLoad();
      that.articleDetail(options.goodsId);
-     that.setData({
-       articleId: options.goodsId
-     })
+     that.setData({ articleId: options.goodsId });
   },
 
   /**
@@ -283,35 +281,18 @@ Page({
     var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     return  Y + M + D + '，' + h + m;
   },
-  onShareAppMessage: function (options) {
-    let shareObj = {
-      　　　　title: "",
-      path: '../../ pages/HealthInforDetails/index',
-      imageUrl: '/images/tabBar/timg.jpg',
-      　　　　success: function (res) {
-        　　　　　　// 转发成功之后的回调
-        　　　　　　if (res.errMsg == 'shareAppMessage:ok') {
-        　　　　　　}
-      　　　　},
-      　　　　fail: function () {
-        　　　　　　// 转发失败之后的回调
-        　　　　　　if (res.errMsg == 'shareAppMessage:fail cancel') {
-          　　　　　　　　// 用户取消转发
-        　　　　　　} else if (res.errMsg == 'shareAppMessage:fail') {
-          　　　　　　　　// 转发失败，其中 detail message 为详细失败信息
-        　　　　　　}
-      　　　　}
-      // 　complete:fucntion(){
-      // 　// 转发结束之后的回调（转发成不成功都会执行）
-      // 　}
-    　　}
-    　　// 来自页面内的按钮的转发
-    　　if (options.from == 'button') {
-      let eData = options.target.dataset;
-      　　　　// 此处可以修改 shareObj 中的内容
-      　　　　shareObj.path = '/pages/btnname/btnname?btn_name=' + eData.name;
-    　　}
-    　　// 返回shareObj
-    　　return shareObj;
-  },
+
+  // onShareAppMessage: function (options) {
+  //     let shareObj = {
+  //       //path: '../index/index?articleId='+ this.data.articleId,
+  //       path: '../HealthInforDetails/index?goodsId=' + this.data.articleId
+  //     }
+  //     return shareObj;
+  // }
+
+  onShareAppMessage: function () {
+      return {
+          path: '/pages/HealthInforDetails/index?goodsId='+ this.data.articleId
+      }
+   }
 })

@@ -4,6 +4,7 @@ const newState = {
   newUserInfo: null,
   isLoginState: 0,
 };
+
 function onLogin(result, data, isLogin, redirectToUrl) {
   //登录
   wx.showLoading({
@@ -15,7 +16,7 @@ function onLogin(result, data, isLogin, redirectToUrl) {
       if (res.code) {
         //发起网络请求
         if (isLogin === 0) {
-          checkAuthorization(result, res.code, redirectToUrl);
+          checkAuthorization(result, res.code, redirectToUrl); 
         } else if (isLogin === 1) {
           userLogin(result, data, res.code, redirectToUrl);
         }
@@ -33,6 +34,7 @@ function onLogin(result, data, isLogin, redirectToUrl) {
     },
   });
 }
+
 function userLogin(result, data, code, redirectToUrl) {
   wx.showLoading({
     title: "loading...",
@@ -57,12 +59,13 @@ function userLogin(result, data, code, redirectToUrl) {
         
         app.globalData.sessionFail = false;  //标记是否被逼下线
         result(newState);
-        let url = "";
+        let url = "../login/index?url=" + "../index/index"; //首页授权跳转;
         if (redirectToUrl !== "") {
-          url = "../login/index?pageTag=" + redirectToUrl;
-        } else {
-          url = "../login/index?url=" + "../index/index"; //首页授权跳转
+           url = "../login/index?pageTag=" + redirectToUrl;
         }
+        // else {
+        //   url = "../login/index?url=" + "../index/index"; //首页授权跳转
+        // }
         wx.redirectTo({ url: url });
       } else {
         wx.showModal({
@@ -75,6 +78,7 @@ function userLogin(result, data, code, redirectToUrl) {
     },
   });
 }
+
 //检测是否已经授权
 function checkAuthorization(result, code, redirectToUrl) {
   wx.getSetting({
