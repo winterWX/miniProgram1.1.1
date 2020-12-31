@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "integralAmation": "../../components/integralAmation/index"
+    "integralAmation": "../../components/integralAmation/index",
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "活动详情"
 }

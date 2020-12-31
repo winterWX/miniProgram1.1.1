@@ -101,14 +101,16 @@ Page({
     let that = this;
     let url = app.globalData.baseUrl + '/remote/health/data/everyday';
     let method = 'POST';
-    wx.showLoading({
-      title: 'loading...',
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
     const parms = {
       date: Date.parse(new Date()) / 1000
     }
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,parms).then(res =>{
       if (res.data.code === 200 &&  res.data.data !== null) {
+        that.selectComponent("#loading").hide();
         const {distance,calories,totalTime,bpm,weight,height,source} = res.data.data;
 
         if(weight > 0 && height > 0){
@@ -127,13 +129,14 @@ Page({
         that.setData({health: res.data.data});
         that.appDataText(source);
       } else {
+        that.selectComponent("#loading").hide();
         wx.showModal({
           showCancel: false,
           content: res.message,
           success: (res) => { }
         })
       }
-      wx.hideLoading()
+      //wx.hideLoading()
     })
   },
   nagigateStep: function() {
@@ -191,6 +194,7 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/bodyData/search';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
         if (res.data.data !== null) {
           const {weight , height} =  res.data.data;
@@ -206,6 +210,7 @@ Page({
               health: Object.assign(this.data.health,res.data.data)
           })
       }
+      that.selectComponent("#loading").hide();
     });
   },
   closeBalck:function(event){
@@ -222,11 +227,13 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/integral/queryReceivedStatus';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       // 100412--已经领取积分  200--未领取积分
       if (res.data.code === 200) {
         that.getintegral();
       }
+      that.selectComponent("#loading").hide();
     })
   },
   //领取积分
@@ -234,12 +241,14 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/integral/stepAuth';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
       if (res.data.code === 200) {
         that.setData({
           integralBlock: app.healthStep.SynchronousData 
         })
       }
+      that.selectComponent("#loading").hide();
     })
   },
   appDataText :function(key){
@@ -265,6 +274,5 @@ Page({
         default:
           break;
       }
-      console.log('appName',this.data.appName);
   }
 })

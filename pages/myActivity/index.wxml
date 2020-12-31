@@ -22,3 +22,4 @@
 	</view>
 	<button class="my-activity-btn" catchtap="navigateList">去逛逛</button>
 </view>
+<rwj-loading id="loading"></rwj-loading>

@@ -9,3 +9,4 @@
 	</view>
 	<button disabled="{{ btnNickName.length === 0 }}" class="btn-finish" catchtap="submitHnadle">完成</button>
 </view>
+<rwj-loading id="loading"></rwj-loading>

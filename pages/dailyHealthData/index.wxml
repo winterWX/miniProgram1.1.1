@@ -99,3 +99,4 @@
   weight='{{(health.weight === "--" || health.weight === 0) ?  "" : health.weight}}'
   bind:closeBalck="closeBalck" />
   <integralAmation integral="{{integral}}"  wx:if="{{integralBlock}}"/>
+  <rwj-loading id="loading"></rwj-loading>

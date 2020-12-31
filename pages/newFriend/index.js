@@ -66,19 +66,23 @@ Page({
   newFriendList:function(){
     var that = this;
     let url = app.globalData.baseUrl +'/remote/friend/apply';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200){
         let friendList = that.arryFriend(res.data.data);
         that.setData({ friendList : friendList});
       }
+      that.selectComponent("#loading").hide();
     })
   },
   addNewBtn:function(option){
     var that = this;
     let arrayNum = option.currentTarget.dataset.index;
     let url = app.globalData.baseUrl +'/remote/friend/accept';
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {uid: that.data.friendList[arrayNum].uid}).then(res => {
       if(res.data.code == 200){
+        that.selectComponent("#loading").hide();
         let clickList = [];
         that.data.friendList.forEach((element,index) => {
            if(index === arrayNum){
@@ -99,12 +103,14 @@ Page({
   },
   getUserInfo:function(e) { //获取用户信息
     let that = this;
+    that.selectComponent("#loading").show();
     if (e.detail.userInfo) {
         userLogin.onLogin(function(result){
           that.data.isLogin = result.isLoginState;
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
           app.globalData.userInfoDetail = result.newUserInfo;
+          that.selectComponent("#loading").hide();
         },e.detail,that.data.isLogin,that.data.redirectToUrl)
     }
   },

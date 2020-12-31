@@ -22,6 +22,7 @@ const timestampToTime = date => {
   const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
   return  Y + M + D;
 }
+
 const timestampToTimeHM = (timestamp) =>{
     const date = new Date(timestamp * 1000);  
     const Y = date.getFullYear() + '-';
@@ -76,39 +77,9 @@ const wxAjax = (method, url, data = {}) => {
     wx.request(params);
   });
 }
-const wxAjaxWithNoModal = (method, url, data = {}) => {
-  return new Promise((resolve, reject) => {
-    let params = {
-      method: method,
-      url: url,
-      header: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "token": app.globalData.token,
-        "native-app": "mini"
-      },
-      success: (res) => {
-        if(res.data.code === 200) {
-          resolve(res);
-        } else {
-          reject(res)
-        }
-      },
-      fail: (error) => {
-        reject(error);
-      }
-    };
-    if (method === 'POST' || Object.keys(data) > 0) {
-      params.data = {
-        ...data
-      }
-    };
-    wx.request(params);
-  });
-}
 module.exports = {
   formatTime: formatTime,
   timestampToTime : timestampToTime,
   timestampToTimeHM : timestampToTimeHM,
-  wxAjax: wxAjax,
-  wxAjaxWithNoModal: wxAjaxWithNoModal
+  wxAjax: wxAjax
 }

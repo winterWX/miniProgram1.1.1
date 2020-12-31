@@ -136,6 +136,7 @@ Page({
     that.getQueryintegral();
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
     let data = { souce: "string", type: "MINIP" };
+    that.selectComponent("#loading").show();
     wxAjax ('POST', url, data).then(res => {
       if (res.data.code === 200) {
         that.setData({ stepsNum: res.data.data });
@@ -144,21 +145,25 @@ Page({
         }
         that.setData({ startStatus: false });
       }
+      that.selectComponent("#loading").hide();
     });
   },
   integralBtn: function () {
     let that = this;
     let url = app.globalData.baseUrl +'/remote/today/receiveIntegral';
+    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
         that.setData({ forceNum: true }); 
-      } 
+      }
+      that.selectComponent("#loading").hide(); 
     })
   },
   healthEveryday: function () {
     var that = this;
     let url = app.globalData.baseUrl + "/remote/health/data/everyday";
+    that.selectComponent("#loading").show();
     wxAjax ('POST', url, {date: new Date().getTime() + ""}).then(res => {
       if (res.data.code === 200) {
         let { source, distance= 0, calories= 0 } = res.data.data; 
@@ -167,6 +172,7 @@ Page({
           res.data.data.calories = calories.toFixed(1);
           that.setData({ everyDayData: res.data.data });
       }
+      that.selectComponent("#loading").hide();
     });
   },
   gotoDailyHeathdata() {
@@ -179,11 +185,13 @@ Page({
   getQueryintegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/integral/queryReceivedStatus";
+    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       // 100412--已经领取积分  200--未领取积分
       if (res.data.code === 200) {
         that.getintegral();
       }
+      that.selectComponent("#loading").hide();
     })
   },
   
@@ -191,6 +199,7 @@ Page({
   getintegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/integral/stepAuth";
+    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       if (res.data.code === 200) {
         that.setData({
@@ -198,6 +207,7 @@ Page({
           allowRun: true,
         });
       }
+      that.selectComponent("#loading").hide();
     });
   },
   stepRunSorce: function () {
@@ -252,6 +262,7 @@ Page({
   getQueryLatestime: function (runData) {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/health/data/query/latestime";
+    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       if (res.data.code === 200) {
         //最后上传时间戳 和 当前时间戳进行比较
@@ -268,6 +279,7 @@ Page({
         });
         that.getUploaddata(results);
       }
+      that.selectComponent("#loading").hide();
     })
   },
   //刷新的时候上传数据
@@ -281,11 +293,13 @@ Page({
         lastTime: new Date().getTime() + '',
         stepsDataModelList: runData
       };
+      that.selectComponent("#loading").show();
       wxAjax ('POST', url, data).then(res => {
         if (res.data.code === 200) {
           that.setData({ guidance1: false, guidance2: false, firstInitShow:false });
           that.settingDataBtn();
         }
+        that.selectComponent("#loading").hide();
       });
     },
     toggleModal: function() {

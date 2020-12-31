@@ -57,7 +57,9 @@
     "pages/textCookiesPolicy/index",
     "pages/contentsInterests/index",
     "pages/integralRule/index",
-    "pages/preferential/index"
+    "pages/preferential/index",
+    "pages/userAgreement/index",
+    "pages/privacyAgreement/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

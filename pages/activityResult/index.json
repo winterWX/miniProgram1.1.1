@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "周周步数挑战赛"
+  "navigationBarTitleText": "周周步数挑战赛",
+  "rwj-loading": "../../components/loading/index"
 }

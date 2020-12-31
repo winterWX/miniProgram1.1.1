@@ -104,4 +104,4 @@
 		</view>
   </view> 
 <integralAmation integral="{{allowRun ? 100 : stepsNum.integral}}"  wx:if="{{forceNum}}"/>
-
+<rwj-loading id="loading"></rwj-loading>

@@ -78,6 +78,7 @@ Page({
   recommendNum: function () {
     var that = this;
     let url = app.globalData.baseUrl + '/remote/invite/invitationcode';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200){
         that.setData({ invitData: res.data.data }); 
@@ -94,6 +95,7 @@ Page({
             that.setData({recommendFlg: false });
         }
     }
+    that.selectComponent("#loading").hide();
     });
   },
   
@@ -101,9 +103,11 @@ Page({
   forShareNum: function () {
     var that = this;
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {path: '',width: 88}).then(res => {
       if(res.data.code == 200){
-     }
+      }
+     that.selectComponent("#loading").hide();
     })
   },
   

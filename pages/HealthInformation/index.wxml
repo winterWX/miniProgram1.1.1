@@ -63,7 +63,7 @@
                     <view class="bottomTage">
                         <view class="bottomTage-title">全部话题</view>
                         <view class="intringData">
-                            <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="{{item.id}}" data-index="{{index}}">
+                            <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="id" data-index="{{index}}">
                                 <view class="viewBtn">{{item.name}}</view>
                                 <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/healthInfo/icon-add.png'}}"></image>
                             </view>
@@ -77,3 +77,4 @@
         </view>
     </view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

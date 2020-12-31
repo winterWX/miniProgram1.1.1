@@ -69,25 +69,29 @@ Page({
   },
   getActivityList: function(page) {
     let that = this;
-    wx.showToast({title: '加载中', icon: 'loading'});
+    //wx.showToast({title: '加载中', icon: 'loading'});
     this.setData({loadingFinish: false});
     let url =  app.globalData.baseUrl + '/remote/activity/list';
     let method = 'POST';
     const data = { currentPage: page, pageSize: 10,"status": [{"status": 1},{"status": 2 }]};
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res =>{
-        wx.hideToast();
+        //wx.hideToast();
         if (res.data.code == 200) {
+          that.selectComponent("#loading").hide();
           let list = that.data.activityList;
           let totalPage = res.data.totalPage;
           that.setData({activityList: [...list,...res.data.data], loadingFinish: true, page, totalPage});
           wx.stopPullDownRefresh();
         } else {
+          that.selectComponent("#loading").hide();
           that.setData({loadingFinish: true});
         }
     }).catch(err => {
         that.setData({loadingFinish: true, page});
         wx.stopPullDownRefresh();
-        wx.hideToast();
+        //wx.hideToast();
+        that.selectComponent("#loading").hide();
     })
   },
   navigatorDetail: function(e) {

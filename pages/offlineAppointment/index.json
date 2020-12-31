@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "rwj-loading": "../../components/loading/index"
+  },
   "navigationBarTitleText": "中大预约线下门诊"
 }

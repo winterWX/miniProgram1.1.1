@@ -84,11 +84,13 @@ Page({
     let that = this;
     let url = app.globalData.baseUrl + '/remote/friend';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
       if(res.data.code === 200){
         let friendArrayData = that.arryFriend(res.data.data);
         that.setData({friendArrayData:friendArrayData})
       }
+      that.selectComponent("#loading").hide();
     })
   },
   arryFriend:function(allData){

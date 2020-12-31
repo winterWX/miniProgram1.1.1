@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+    "ec-canvas": "../../components/ec-canvas/ec-canvas",
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "步行数据"
 }

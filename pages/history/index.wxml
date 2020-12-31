@@ -61,3 +61,4 @@
   </scroll-view>
 </view>
 <integralAmation integral="{{integralData}}" wx:if="{{forceNum}}"/>
+<rwj-loading id="loading"></rwj-loading>

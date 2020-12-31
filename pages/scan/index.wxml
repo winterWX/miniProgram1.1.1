@@ -19,3 +19,4 @@
     <cover-view class=" mask mask-right"></cover-view>
   </view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

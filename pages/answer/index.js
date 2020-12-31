@@ -54,23 +54,26 @@ Page({
   submit: function() {
     let that = this;
     let { activityId, answers, title } = that.data;
-    wx.showLoading({ title: 'loading...' });
+    //wx.showLoading({ title: 'loading...' });
     let url =  app.globalData.baseUrl + '/remote/health/quiz/answer';
     let method = 'POST';
     const pamars = { id: activityId, answers };
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,pamars).then(res=>{
-        wx.hideLoading()
+        //wx.hideLoading()
         if(res.data.code === 200) {
+          that.selectComponent("#loading").hide();
           let { rate, status } = res.data.data;
           let success = status === 1;
           wx.navigateTo({
             url: '../changeQAResult/index?rate=' + rate + '&success=' + success + '&id=' + activityId + '&submit=' + true + '&title=' + title,
           })
         } else {
-          wx.showModal({
-            showCancel: false,
-            content: '服务器异常'
-          })
+            that.selectComponent("#loading").hide();
+            wx.showModal({
+              showCancel: false,
+              content: '服务器异常'
+            })
         }
     })
   },
@@ -136,18 +139,21 @@ Page({
   getQuestion: function(id) {
     let that = this;
     let { quesIndex } = that.data;
-    wx.showLoading({
-      title: 'loading...',
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
     let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
-      wx.hideLoading()
+      //wx.hideLoading()
       if(res.data.code === 200) {
+        that.selectComponent("#loading").hide();
         let { questions, bannerUrl } = res.data.data;
         let currentQ = questions[quesIndex];
         that.setData({questions, currentQ, bannerUrl});
       } else {
+        that.selectComponent("#loading").hide();
         wx.showModal({
           showCancel: false,
           content: '获取数据失败'

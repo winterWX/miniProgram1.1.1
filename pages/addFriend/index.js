@@ -93,6 +93,7 @@ Page({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/invite/invitationcode';
       let method = 'GET';
+      that.selectComponent("#loading").show();
       util.wxAjax(method,url).then(res=>{
           if(res.data.code === 200){
             if(res.data.data.invitationList.length > 0){
@@ -107,6 +108,7 @@ Page({
               invitData: res.data.data
             })
         }
+        that.selectComponent("#loading").hide();
       });
   },
     /**
@@ -143,12 +145,14 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/friend';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if(res.data.code === 200){
           let friendArrayData = that.arryFriend(res.data.data);
           that.setData({friendArrayData:friendArrayData})
           that.setList(that.formatList(that.data.friendArrayData));
         }
+        that.selectComponent("#loading").hide();
     });
   },
   //新的好友
@@ -156,12 +160,14 @@ Page({
     let that = this;
     let url = app.globalData.baseUrl + '/remote/friend/apply';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
       if(res.data.code === 200){
         let numlength = res.data.data.length;
         that.setData({ redTagShow: numlength > 0 ? true : false});
         that.setData({ redTag: numlength });
       }
+      that.selectComponent("#loading").hide();
     })
   },
   //排序代码

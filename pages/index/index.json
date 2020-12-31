@@ -2,7 +2,8 @@
   "usingComponents": {    
     "footer": "../../components/footer/index",
     "collectionOption": "../../components/collectionOption/index",
-    "miniprogress": "../../components/miniprogress/miniprogress"
+    "miniprogress": "../../components/miniprogress/miniprogress",
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true  

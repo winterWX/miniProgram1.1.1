@@ -1,7 +1,8 @@
 {
   "usingComponents": {
       "van-button": "vant-weapp/button/index",
-      "showToast":"../../components/showToast/showToast"
+      "showToast":"../../components/showToast/showToast",
+      "rwj-loading": "../../components/loading/index"
   },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "朋友请求",

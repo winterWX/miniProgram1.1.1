@@ -104,10 +104,12 @@ Component({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/tier/info?level='+ level;
       let method = 'GET';
+      that.selectComponent("#loading").show();
       util.wxAjax(method,url).then(res=>{
           if (res.data.code == 200) {
             that.setData({infoLevelObj:res.data.data})
           }
+          that.selectComponent("#loading").hide();
       });
     },
     intergRalDatails:function(){

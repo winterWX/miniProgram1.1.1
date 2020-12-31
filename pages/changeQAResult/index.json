@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "integralAmation": "../../components/integralAmation/index"
+    "integralAmation": "../../components/integralAmation/index",
+    "rwj-loading": "../../components/loading/index"
   }
 }

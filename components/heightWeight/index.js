@@ -89,35 +89,16 @@ Component({
           weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
           height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
         };
+        that.selectComponent("#loading").show();
         util.wxAjax(method,url,params).then(res=>{
             if (res.data.code === 200) {
+              that.selectComponent("#loading").hide();
               wx.showToast({
                 title: '保存成功',
               })
               that.closeBalck()
             }
         });
-        // wx.request({
-        //   method: 'POST',
-        //   url: that.data.valueData !== true ? editUrl : addUrl,
-        //   header: {
-        //     "Content-Type": "application/json;charset=UTF-8",
-        //     "token": app.globalData.token,
-        //     "native-app": "mini"
-        //   },
-        //   data:{
-        //     weight: this.data.blockForData.titleTop === '记录体重' ? that.data.numData: '',
-        //     height: this.data.blockForData.titleTop === '记录身高' ? that.data.numData: ''
-        //   },
-        //   success: (res) => {
-        //     if (res.data.code === 200) {
-        //         wx.showToast({
-        //           title: '保存成功',
-        //         })
-        //         that.closeBalck()
-        //     }
-        //   }
-        // })
       }
     },
     closeBalck(){

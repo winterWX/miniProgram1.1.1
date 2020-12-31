@@ -100,10 +100,12 @@ Page({
     let method = 'POST';
     const data = {"points": '10',"articleId": that.data.articleId };
     if (that.data.isLogin === 3) {
+      that.selectComponent("#loading").show();
       util.wxAjax(method,url,data).then(res =>{
         if (res.data.code == 200) {
           that.recordIntegral();
         }
+        that.selectComponent("#loading").hide();
       });
     }
   },
@@ -112,10 +114,12 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/article/collection/storageRecord?articleId=' + that.data.articleId;
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if (res.data.code == 200) {
           that.setData({ integraFlg: true, integralNum: 10 });
         }
+        that.selectComponent("#loading").hide();
     })
   },
   //收藏接口
@@ -125,11 +129,13 @@ Page({
       let method = 'POST';
       const data = {"articleId": that.data.articleId };
       if (that.data.isLogin === 3){
+        that.selectComponent("#loading").show();
         util.wxAjax(method, url, data).then(res =>{
           if (res.data.code == 200) {
               that.setData({ colletArt: '1' //表示收藏成功
             })
           }
+          that.selectComponent("#loading").hide();
         })
       }
   },
@@ -140,12 +146,14 @@ Page({
     let method = 'DELETE';
     const data = { "articleId": that.data.articleId };
     if (that.data.isLogin === 3) {
+      that.selectComponent("#loading").show();
       util.wxAjax(method, url, data).then(res=>{
           if (res.data.code == 200) {
               that.setData({
                 colletArt: '2'  //表示取消收藏
               })
           }
+          that.selectComponent("#loading").hide();
       })
     }
   },
@@ -155,6 +163,7 @@ Page({
     let url =  app.globalData.baseUrl + '/remote/article/collection/detail?id='+listNum;
     let method = 'GET';
     let { baseUrl } = this.data;
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
       if(res.data.data !== null){
         res.data.data.createTime = that.timestampToTime(res.data.data.createTime);
@@ -177,13 +186,14 @@ Page({
           colletArt: res.data.data.isCollect   //收藏状态
         })
       }
+      that.selectComponent("#loading").hide();
     })
   },
   //检测是否已经授权  
   checkAuthorization() {     
       wx.getSetting({
         success: (setingres) => {
-          wx.hideLoading()
+          this.selectComponent("#loading").hide();
           if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
             wx.getUserInfo({
               success: (res) => {
@@ -206,12 +216,14 @@ Page({
       })
     },
   onLogin(data) { //登录
-    wx.showLoading({
-      title: 'loading...',
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
+    that.selectComponent("#loading").show();
     wx.login({
       success: (res) => {
-        wx.hideLoading()
+        //wx.hideLoading()
+        that.selectComponent("#loading").hide();
         if (res.code) {
           //发起网络请求
           this.setData({
@@ -254,20 +266,23 @@ Page({
       encrypteData: data.encryptedData,
       iv: data.iv
     }
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,parms).then(res =>{
         if (res.data.code === 200) {
           app.globalData.userInfo = res.data.data
           that.setData({ isLogin: 1 });
           let urlBase = '../HealthInforDetails/index/#' + that.data.contentAll.id;
           wx.redirectTo({ url: '../login/index?url=' + urlBase });
+          that.selectComponent("#loading").hide();
         } else {
+          that.selectComponent("#loading").hide();
           wx.showModal({
             showCancel: false,
             content: res.message,
             success: (res) => { }
           })
         }
-        wx.hideLoading()
+        //wx.hideLoading()
     })
   },
   

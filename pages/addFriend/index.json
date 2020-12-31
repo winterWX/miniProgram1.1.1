@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "friendList": "../../components/friendList/index",
-    "van-search": "vant-weapp/search/index"
+    "van-search": "vant-weapp/search/index",
+    "rwj-loading": "../../components/loading/index"
   },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "我的好友"

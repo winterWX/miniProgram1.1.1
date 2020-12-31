@@ -22,12 +22,13 @@ Page({
     }
   },
   onLogin(data) { //登录
-    wx.showLoading({
-      title: 'loading...',
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
+    this.selectComponent("#loading").show();
     wx.login({
       success: (res) => {
-        wx.hideLoading()
+        this.selectComponent("#loading").hide();
         if (res.code) {
           //发起网络请求
           this.setData({
@@ -53,7 +54,7 @@ Page({
   checkAuthorization() {
     wx.getSetting({
       success: (setingres) => {
-        wx.hideLoading()
+        this.selectComponent("#loading").hide();
         if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
           wx.getUserInfo({
             success: (res) => {
@@ -77,17 +78,19 @@ Page({
   },
   userLogin(data) {
     let that = this;
-    wx.showLoading({
-      title: 'loading...',
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
     const params = {
       code: this.data.code,
       encrypteData: data.encryptedData,
       iv: data.iv
     }
     let url = app.globalData.baseUrl + '/remote/oauth/minipro/login';
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, params).then(res => {
       if (res.data.code === 200) {
+        that.selectComponent("#loading").hide();
         app.globalData.userInfo = res.data.data
         that.setData({
           isLogin: 1
@@ -97,13 +100,14 @@ Page({
           url: '../login/index?url=' + urlBase,
         })
       } else {
+        that.selectComponent("#loading").hide();
         wx.showModal({
           showCancel: false,
           content: res.message,
           success: (res) => { }
         })
       }
-      wx.hideLoading()
+      //wx.hideLoading()
     })
   },
   goToAnswer: function() {
@@ -140,6 +144,7 @@ Page({
     let that = this;
     let token = app.globalData.token || '';
     let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200) {
         let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
@@ -155,6 +160,7 @@ Page({
           reward
         })
       }
+      that.selectComponent("#loading").hide();
     })
   }
 })

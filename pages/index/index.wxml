@@ -67,6 +67,7 @@
          </view>
      </view>
 </view>
+<rwj-loading id="loading"></rwj-loading>
 <collectionOption  wx:if="{{successFlg}}" bind:parentReceive="parentCallBack" ></collectionOption>
 <footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer>
 

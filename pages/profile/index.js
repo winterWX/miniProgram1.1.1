@@ -134,6 +134,7 @@ Page({
   getMyprofileInfo: function () {
     let that = this;
     let url =  app.globalData.baseUrl + "/myprofile/homepage/search";
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then((res) => {
       const { nickName, gender, phoneNumber} = app.globalData.userInfoDetail;
       let sex = app.globalData.userInfoDetail.gender === 1 ? "男" : "女";
@@ -185,7 +186,9 @@ Page({
           email: email || "未绑定",
           id: id,
         };
+        that.selectComponent("#loading").hide();
       } else {
+        that.selectComponent("#loading").hide();
         userInfo = {
           nickName: nickName,
           gender: gender === 1 ? "男" : "女",
@@ -241,6 +244,7 @@ Page({
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {birthday: birthdayStr,id: this.data.userInfo.id,}).then((res) => {
       if (res.data.code == 200) {
         let userInfo = {
@@ -257,6 +261,7 @@ Page({
           complete: showAnimation,
         });
       }
+      that.selectComponent("#loading").hide();
     })
   },
   /* 编辑内容的弹框 */
@@ -274,6 +279,7 @@ Page({
     let that = this;
     let selectedAvatarId = this.data.selectedAvatarId;
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {gender: gender,id: this.data.userInfo.id}).then(res => {
       if (res.data.code == 200) {
         let userInfo = {
@@ -293,13 +299,16 @@ Page({
           showAnimation,
           complete: showAnimation,
         });
+        that.selectComponent("#loading").hide();
       } else {
+        that.selectComponent("#loading").hide();
         that.setData({
           hideFlag: true,
         });
       }
     })
     .catch(() => {
+      that.selectComponent("#loading").hide();
       this.setData({
         hideFlag: true,
       });
@@ -312,11 +321,13 @@ Page({
     let avatar = this.data.avatarObjList.find((item) => item.id === id);
     let that = this;
     let url = app.globalData.baseUrl + "/remote/myProfile/edit";
-    wx.showToast({
-      icon: "loading",
-    });
+    // wx.showToast({
+    //   icon: "loading",
+    // });
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {avatar: id,id: this.data.userInfo.id}).then((res) => {
       if (res.data.code == 200) {
+        that.selectComponent("#loading").hide();
         let userInfo = {
           ...that.data.userInfo,
           avatarUrl: avatar.url,
@@ -339,12 +350,14 @@ Page({
           title: "头像修改成功",
         });
       } else {
+        that.selectComponent("#loading").hide();
         that.setData({
           hideAvatarFlag: true,
         });
       }
     })
     .catch(() => {
+      that.selectComponent("#loading").hide();
       this.setData({
         hideAvatarFlag: true,
       });
@@ -439,6 +452,7 @@ Page({
   rewardIntegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/myprofile/homepage/rewardIntegral";
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
         that.setData({
@@ -448,6 +462,7 @@ Page({
         });
         wx.setStorageSync("received", true);
       }
+      that.selectComponent("#loading").hide();
     })
   },
 });

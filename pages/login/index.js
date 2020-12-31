@@ -8,7 +8,9 @@ Page({
   data: {
     url: '',
     urlTag:'',
-    imagesUrl: app.globalData.imagesUrl
+    imagesUrl: app.globalData.imagesUrl,
+    checkedValue: false,
+    errorShow: false
   },
 
   /**
@@ -28,6 +30,11 @@ Page({
       this.setData({ url });
     }
   },
+  checkboxChange(){
+    this.setData({
+      checkedValue : !this.data.checkedValue,
+    })
+  },
   phoneNumberLogin (data) {
     const parms = {
       encryptedData: data.encryptedData,
@@ -36,12 +43,11 @@ Page({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       invitationCode: app.globalData.invitationCode
     }
-    // wx.showLoading({
-    //   title: 'loading...',
-    // });
     let url = app.globalData.baseUrl + '/remote/register/miniProgram/add';
+    this.selectComponent("#loading").show();
     wxAjax('POST', url, parms).then(res => {
         if (res.data.code === 200) {
+            this.selectComponent("#loading").hide();
             const { data: { data: { token, phoneNumber,integral={},isFriend}}} = res;
             app.globalData.isLogin = 3;  //登录成功
             app.globalData.token = token;
@@ -63,7 +69,7 @@ Page({
               complete: () => {}
             })
         } else if(res.data.code === 999000 || res.data.code === 999888){   //白名单(999000)  , 999888 ---用户注销
-            //wx.hideLoading();
+            this.selectComponent("#loading").hide();
             wx.showModal({
               title: '提示',
               content: res.data.code === 999000 ? '您没有登录权限':( res.data.code === 999888 ? '登录资料错误' :''),
@@ -75,6 +81,7 @@ Page({
               }
             })
         }else {
+            this.selectComponent("#loading").hide();
             wx.showModal({
               showCancel: false,
               content: res.message,
@@ -97,8 +104,19 @@ Page({
     }
   },
   stopLogin () {
+    this.setData({ errorShow : false });
     wx.redirectTo({
       url: '../index/index'
     })
   },
+  userAgreement(){
+    wx.redirectTo({
+      url: '../userAgreement/index'
+    })
+  },
+  privacyAgreement(){
+    wx.redirectTo({
+      url: '../userAgreement/index'
+    })
+  }
 })

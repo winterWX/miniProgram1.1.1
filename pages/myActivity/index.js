@@ -41,7 +41,7 @@ Page({
   },
   getActivityList: function (page) {
     let that = this;
-    wx.showToast({ title: '加载中', icon: 'loading' });
+    //wx.showToast({ title: '加载中', icon: 'loading' });
     this.setData({ loadingFinish: false });
     let url = app.globalData.baseUrl + '/remote/myactivity/list';
     let data = {
@@ -56,8 +56,9 @@ Page({
         }
       ]
     }
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, data).then(res => {
-      wx.hideToast();
+      //wx.hideToast();
         if (res.data.code == 200) {
           let list = that.data.activityList;
           let totalPage = res.data.totalPage;
@@ -66,8 +67,10 @@ Page({
         } else {
           that.setData({ loadingFinish: true });
         }
+        that.selectComponent("#loading").hide();
     })
     .catch(() => {
+      that.selectComponent("#loading").hide();s
       that.setData({ loadingFinish: true, page });
       wx.stopPullDownRefresh();
       wx.hideToast();
@@ -85,8 +88,10 @@ Page({
   getActivityDetail: function (id) {
     let that = this;
     let url = app.globalData.baseUrl + '/remote/myactivity/detail/' + id;
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
+        that.selectComponent("#loading").hide();
         let { status, type, title } = res.data.data;
         let url = '';
         if (type === '2') {
@@ -97,7 +102,6 @@ Page({
         wx.navigateTo({
           url
         })
-    
       }
     });
   },

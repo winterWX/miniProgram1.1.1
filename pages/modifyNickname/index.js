@@ -45,6 +45,7 @@ Page({
       "nickname": this.data.nickName,
       "id": this.data.id
     };
+    this.selectComponent("#loading").show();
     wxAjax('POST', url, data).then(res => {
       if (res.data.code == 200) {
         wx.navigateBack({
@@ -58,8 +59,10 @@ Page({
           }
         });
       }
+      this.selectComponent("#loading").hide();
     })
     .catch(() => {
+      this.selectComponent("#loading").hide();
       wx.showToast({
         titel: '服务繁忙， 请稍后重试。',
         icon: 'loading'

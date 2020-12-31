@@ -33,6 +33,7 @@ Page({
   getRankList: function() {
     let that = this;
     let url = app.globalData.baseUrl + '/remote/leaderboard/friend/board';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       wx.hideToast();
         if (res.data.code == 200) {
@@ -42,6 +43,7 @@ Page({
             friend: friendLeaderBoardVo
           })
         }
+        that.selectComponent("#loading").hide();
     });
   },
   moreFriend:function(){
