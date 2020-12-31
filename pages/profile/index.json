@@ -2,7 +2,8 @@
   "usingComponents": {
     "footer": "../../components/footer/index",
     "van-progress": "vant-weapp/progress/index",
-    "integralAmation": "../../components/integralAmation/index"
+    "integralAmation": "../../components/integralAmation/index",
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "个人信息"
 }

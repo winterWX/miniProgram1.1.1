@@ -1,4 +1,3 @@
-// pages/integralRules/index.js
 Page({
 
   /**

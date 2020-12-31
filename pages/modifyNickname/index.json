@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "rwj-loading": "../../components/loading/index"
+  },
   "navigationBarTitleText": "昵称",
   "navigationBarTextStyle": "black"
 }

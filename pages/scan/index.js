@@ -2,7 +2,7 @@ let app = getApp();
 // 移动动画
 let animation = wx.createAnimation({});
 let timer = null;
-let isScan = false
+let isScan = false;
 Page({
   data: {
     show: true
@@ -86,13 +86,14 @@ Page({
     if (!isScan) {
       if ( (e.detail.type === 'qrcode' || e.detail.type === 'QR_CODE') && e.detail.result) {
         let url = '';
-        wx.showToast({
-          icon: 'loading',
-          duration: 2000
-         })
+        // wx.showToast({
+        //   icon: 'loading',
+        //   duration: 2000
+        //  })
         isScan = true;
         let requestUrl = app.globalData.baseUrl + '/qrcode/scan/hospital?code=' + e.detail.result;
         let method = 'GET';
+        this.selectComponent("#loading").show();
         util.wxAjax(method,requestUrl).then(res=>{
             if(res.data.data) {
               let { integral, bankInfoEntities = [] } = res.data.data;
@@ -110,8 +111,10 @@ Page({
             } else {
               url = '../signFail/index?repeat=false&invalid=true';
             }
+            this.selectComponent("#loading").hide();
             wx.redirectTo({url});
         }).catch( res=>{
+            this.selectComponent("#loading").hide();
             wx.redirectTo({
               url: '../signFail/index',
             })

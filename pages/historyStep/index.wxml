@@ -18,3 +18,4 @@
 		可查看一年内的数据
 	</view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

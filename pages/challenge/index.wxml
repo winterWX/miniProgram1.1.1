@@ -22,3 +22,4 @@
 		<view class="no-data">暂无活动</view>
 	</view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

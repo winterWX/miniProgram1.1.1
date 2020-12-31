@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "rwj-loading": "../../components/loading/index"
+  },
   "navigationBarTitleText": "金会员升级攻略"
 }

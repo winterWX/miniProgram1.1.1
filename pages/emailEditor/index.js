@@ -92,12 +92,14 @@ Page({
     let url =  app.globalData.baseUrl + '/remote/email/send';
     let method = 'POST';
     const data = { "email": this.data.email };
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res=>{
       if (res.data.code == 200) {
         that.setData({ emailEDit:false });
       }
+      that.selectComponent("#loading").hide();
     }).catch(res=>{
-      console.log('.........fail..........');
+      that.selectComponent("#loading").hide();
       wx.showToast({
         titel: '服务繁忙， 请稍后重试。',
         icon: 'loading'
@@ -111,12 +113,14 @@ Page({
     let url =  app.globalData.baseUrl + '/remote/email/bind';
     let method = 'POST';
     const pamars = { code: that.data.codeNum };
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,pamars).then(res =>{
         if (res.data.code == 200) {
-          wx.showToast({
-            titel: '服务繁忙， 请稍后重试。',
-            icon: 'loading'
-          })
+          // wx.showToast({
+          //   titel: '服务繁忙， 请稍后重试。',
+          //   icon: 'loading'
+          // })
+          that.selectComponent("#loading").hide();
           wx.navigateBack({
             url: '../profile/index',
             success: function(res) {
@@ -129,6 +133,7 @@ Page({
           });
         }else{
           that.setData({ showErroe:true })
+          that.selectComponent("#loading").hide();
         }
     }).catch(res=>{
       console.log('.........fail..........');

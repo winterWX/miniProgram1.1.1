@@ -1,4 +1,3 @@
-// pages/signSuccess/index.js
 Page({
 
   /**

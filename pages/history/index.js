@@ -61,6 +61,7 @@ Page({
       currentTime: Date.parse(new Date()) / 1000,
       year: this.data.year
     };
+    this.selectComponent("#loading").show();
     wxAjax('POST', url, data).then(res => {
       if (res.data.code === 200) {        
         // if (this.data.year == new Date().getFullYear()){
@@ -93,14 +94,16 @@ Page({
           year:this.data.year-1,
           isLoad:true
         })
+        this.selectComponent("#loading").hide();
       } else {
+        this.selectComponent("#loading").hide();
         wx.showModal({
           showCancel: false,
           content: res.data.message,
           success: (res) => { }
         })
       }
-      wx.hideLoading()
+      //wx.hideLoading()
     });
   },
   isReceiveFun(){
@@ -125,16 +128,16 @@ Page({
     const index = e.currentTarget.dataset.index;  
     const item = e.currentTarget.dataset.item;
     
-    wx.showLoading({
-      title: 'loading...',
-    })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // })
     const parms = {
       challengeId:  item.id,
       receivePoints: '10'
     }
     let url = app.globalData.baseUrl + '/remote/challenge/makeup';
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, parms).then(res => {
-      wx.hideLoading()
         if (res.data.code === 200) {
           var history = this.data.history
           history[key][i].historyList[index].receiveStatus = 3;
@@ -142,7 +145,9 @@ Page({
           this.setData({ integralData : 10 });
           this.setData({forceNum : true, history: history });
           this.historyList();
+          that.selectComponent("#loading").hide();
         } else {
+          that.selectComponent("#loading").hide();
           wx.showModal({
             showCancel: false,
             content: res.message,
@@ -157,10 +162,11 @@ Page({
     const index = e.currentTarget.dataset.index; 
     const item = e.currentTarget.dataset.item;
     
-    wx.showLoading({
-      title: 'loading...',
-    });
+    // wx.showLoading({
+    //   title: 'loading...',
+    // });
     let url = app.globalData.baseUrl + '/remote/today/receiveIntegral';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if (res.data.code === 200) {
         var history = this.data.history
@@ -168,14 +174,16 @@ Page({
         history[key][i].historyList[index].integral = 10;
         this.setData({forceNum : true, integralData : 10 });
         this.historyList();
+        that.selectComponent("#loading").hide();
       } else {
+        that.selectComponent("#loading").hide();
           wx.showModal({
             showCancel: false,
             content: res.data.message,
             success: (res) => { }
           })
       }
-      wx.hideLoading()
+      //wx.hideLoading()
     });
   }
 })

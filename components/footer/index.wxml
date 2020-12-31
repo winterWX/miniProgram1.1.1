@@ -34,3 +34,4 @@
   bind:close="onClose"
 >
 </van-popup>
+<rwj-loading id="loading"></rwj-loading>

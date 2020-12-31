@@ -48,6 +48,7 @@ Page({
   initPage:function(){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/integral/detail';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200){
         let {integral,expiryTime,detail} = res.data.data;
@@ -64,6 +65,7 @@ Page({
            detailArray : detailArray
         });
      }
+     that.selectComponent("#loading").hide();
     });
   },
   cardDayShow:function(value){

@@ -28,6 +28,7 @@ Page({
     let startTime = parseInt(time2.getTime() / 1000);
     let currentMonth = `${year}年${month > 10 ? month : '0' + month}月`;
     let url = app.globalData.baseUrl + '/remote/health/data/query/history/steps';
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {startTime, endTime}).then(res => {
       if (res.data.code == 200) {
         let stepInfo = that.operateData(res.data.data);
@@ -37,6 +38,7 @@ Page({
           noData: false
         })
       }
+      that.selectComponent("#loading").hide();
     })
   },
   operateData(datas) {

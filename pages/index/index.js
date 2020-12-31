@@ -86,6 +86,7 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
@@ -96,6 +97,7 @@ Page({
              that.stepRunState();
           }
         }
+        that.selectComponent("#loading").hide();
     });
   },
   parentCallBack: function (event){
@@ -146,12 +148,14 @@ Page({
   },
   getUserInfo:function(e) { //获取用户信息
     let that = this;
+    that.selectComponent("#loading").show();
     if (e.detail.userInfo) {
         userLogin.onLogin(function(result){
           that.data.isLogin = result.isLoginState;
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
           app.globalData.userInfoDetail = result.newUserInfo;
+          that.selectComponent("#loading").hide();
         },e.detail,that.data.isLogin,that.data.redirectToUrl)
     }
   },
@@ -176,6 +180,7 @@ Page({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/health/data/query/latestime';
       let method = 'GET';
+      that.selectComponent("#loading").show();
       util.wxAjax(method,url).then(res =>{
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
@@ -192,6 +197,7 @@ Page({
               });
               that.getUploaddata(results);
           }
+          that.selectComponent("#loading").hide();
       })
   },
   //运动数据同步上传
@@ -203,10 +209,12 @@ Page({
           stepsDataModelList: runData
         };
     let method = 'POST';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res =>{
         if (res.data.code === 200) {
             that.stepRunState();   //刷新步数接口
         }
+        that.selectComponent("#loading").hide();
     });
   },
   stepRunState:function(){
@@ -214,14 +222,21 @@ Page({
     let method ='POST';
     let url = app.globalData.baseUrl +'/remote/today/step/enquiry';
     const data = {souce:'string', type:'MINIP'};
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res =>{
         if(res.data.code === 200){
+            that.selectComponent("#loading").hide();
             that.setData({
               stepsNum: res.data.data,
               runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
               rejectRun: false
             });
+        }else{
+          that.selectComponent("#loading").hide();
         }
+    }).catch(err=>{
+      console.log('999999999999999s')
+      that.selectComponent("#loading").hide();
     })
   },
   homePageInit: function () {
@@ -229,6 +244,7 @@ Page({
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/homePageActivitys';
     let { imagesUrl } = this.data;
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
         res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
@@ -249,19 +265,24 @@ Page({
         });
         that.setData({homeAllData: res.data.data});
       }
+      that.selectComponent("#loading").hide();
     })
   },
   userLevel:function(){
     let that = this;
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
-          that.setData({levelNum:res.data.data});
+        that.setData({levelNum:res.data.data});
         if(res.data.data === 3 || res.data.data === 5){
           that.setData({levelNumShow : false});
         }
       }
+      that.selectComponent("#loading").hide();
+    }).catch(err=>{
+        console.log('//////////////////////')
     })
   },
 
@@ -269,6 +290,7 @@ Page({
   getState: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
+    that.selectComponent("#loading").show();
     util.wxAjax ('POST', url, {souce: "string", type: "MINIP"}).then(res => {
       if (res.data.code === 200) {
         let {receiveStatus,isDone} = res.data.data;
@@ -276,6 +298,7 @@ Page({
           that.setData({ forceNum:true });
         }
       }
+      that.selectComponent("#loading").hide();
     });
   },
 

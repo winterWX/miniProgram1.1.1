@@ -50,16 +50,19 @@ Page({
   getHeroList: function(id) {
     let that = this;
     let url = app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id;
-    wx.showToast({ title: '加载中', icon: 'loading' });
+    //wx.showToast({ title: '加载中', icon: 'loading' });
+    that.selectComponent("#loading").show();
     wxAjax('POST', url).then(res => {
-      wx.hideToast();
+      //wx.hideToast();
       if (res.data.code == 200) {
         let { friend, self } = res.data.data;
         that.setData({friend, self})
       }
+      that.selectComponent("#loading").hide();
     })
     .catch(res => {
-      wx.hideToast();
+      //wx.hideToast();
+      that.selectComponent("#loading").hide();
     })
   }
 })

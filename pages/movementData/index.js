@@ -217,6 +217,7 @@ Page({
     let initData = this.initDisplayData(startTime, demension);
     let url = app.globalData.baseUrl + '/remote/health/data/query/histogram';
     let that = this;
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, {
       startTime,
       endTime,
@@ -225,6 +226,7 @@ Page({
       type:'APP'
     }).then(res => {
       if (res.data.code == 200) {
+        that.selectComponent("#loading").hide();
         let { dataList = [], timeData, type, caloriesData, distanceData } = res.data.data;
         if (dataList.length === 0) {
           that.setData({ caloriesData :0,distanceData :0,noData: !dataList.length });
@@ -259,8 +261,10 @@ Page({
         option.series[0].data = Object.values(displayData);
         chart && chart.setOption(option);
       }
+      that.selectComponent("#loading").hide();
     })
     .catch(() => {
+      that.selectComponent("#loading").hide();
       option.xAxis.data = [];
       option.series[0].data = [];
       chart && chart.setOption(option);

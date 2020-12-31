@@ -73,3 +73,53 @@
 button::after{
   border: 0px;
 }
+.checkBoxView{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  margin-top: 320rpx;
+  padding-left: 30rpx;
+}
+.errorShow{
+  margin-top: 200rpx !important;
+}
+.noComfirmBtn{
+  bottom: 120rpx !important;
+}
+.textError{
+    position: fixed;
+    z-index: 200;
+    left: 0rpx;
+    right: 40rpx;
+    bottom: 20rpx;
+    font-size: 28rpx;
+    color: rgba(0 ,0 ,0, 0.85);
+    padding-left: 30rpx;
+}
+.derTextBlock{
+  font-size: 28rpx;
+  color: rgba(0 ,0 ,0, 0.85);
+  margin-left: 20rpx;
+}
+.derText{
+  text-decoration: underline;
+}
+.derText2{
+  text-decoration: underline;
+}
+.cb{
+   transform: scale(0.8,0.8);
+}
+.checkBoxImage image{
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.footerDefalut button:last-child {
+  border-radius: 2px;
+  background-color: #eeeeee;
+  border: solid 1px #eeeeee !important;
+  color: #eeeeee !important;
+  margin: 0rpx;
+  color: #333333 !important;
+}

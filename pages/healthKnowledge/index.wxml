@@ -17,3 +17,4 @@
         <button wx:if="{{isLogin === 1 && isEnds === 3}}" class="btn btn-lg disabled">本期活动已结束</button>
     </view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

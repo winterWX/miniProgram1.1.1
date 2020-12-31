@@ -42,7 +42,9 @@ Page({
   getTransactionid: function(mobile) {
     let that = this;
     let url = app.globalData.baseUrl + '/remote/interrogation/cumc/findinter';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url, {mobile}).then(res => {
+      that.selectComponent("#loading").hide();
       let { membershipid, transationid } = res.data.data;
       let url = `https://www.cuclinic.hk/zh-hant/my_appointment/?cid=${membershipid}&tid=${transationid}&mti=E-booking`
       that.setData({url});

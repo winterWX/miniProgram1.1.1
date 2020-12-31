@@ -4,7 +4,8 @@
       "van-button": "vant-weapp/button/index",
       "integralAmation": "../../components/integralAmation/index",
       "stepAmaition": "../../components/stepAmaition/index",
-      "miniprogress": "../../components/miniprogress/miniprogress"
+      "miniprogress": "../../components/miniprogress/miniprogress",
+      "rwj-loading": "../../components/loading/index"
   },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "乐健康"

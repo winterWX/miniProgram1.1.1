@@ -104,10 +104,10 @@ page {
 }
 .container .header .info .item .tip .icon {
   width: 44rpx;
-  height: 50rpx;
+  height: 44rpx;
   position: absolute;
   right: 100rpx;
-  top: -10rpx;
+  top: -2rpx;
 }
 .container .member-info {
   text-align: center;

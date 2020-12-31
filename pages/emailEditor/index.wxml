@@ -24,3 +24,4 @@
 				<view class="btnSty"><van-button disabled="{{codeNum.length === 0}}" type="primary" size="large" bindtap="bindEmail">完成</van-button></view>
 		</view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

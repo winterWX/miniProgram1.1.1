@@ -38,3 +38,4 @@
     </view>
 </view>
 <integralAmation integral="{{integral}}" wx:if="{{integral !=0 && isSubmit && success}}"/>
+<rwj-loading id="loading"></rwj-loading>

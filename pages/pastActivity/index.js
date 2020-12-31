@@ -49,9 +49,11 @@ Page({
         }
       ]
     };
-    wx.showToast({title: '加载中', icon: 'loading'});
+    //wx.showToast({title: '加载中', icon: 'loading'});
+    that.selectComponent("#loading").show();
     wxAjax('POST', url, data).then(res => {
-      wx.hideToast();
+        //wx.hideToast();
+        that.selectComponent("#loading").hide();
         if (res.data.code == 200) {
           let list = that.data.activityList;
           if (res.data.data.length === 0 && page > 1) {
@@ -68,7 +70,8 @@ Page({
       };
       that.setData({page, loadingFinish: true});
       wx.stopPullDownRefresh();
-      wx.hideToast();
+      //wx.hideToast();
+      that.selectComponent("#loading").hide();
     });
   },
   navigatorDetail: function(e) {

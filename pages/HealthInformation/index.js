@@ -110,9 +110,9 @@ Page({
   //文章列表接口
   searchSend(parase,num) {
     let that = this;
-    wx.showLoading({
-      title: 'loading...'
-    })
+    // wx.showLoading({
+    //   title: 'loading...'
+    // })
     let url = app.globalData.baseUrl + '/remote/article/query/list';
     let method = 'POST';
     const data = {
@@ -120,7 +120,7 @@ Page({
       "pageSize": 10,
       "topic": parase
     };
-
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res=>{
         if(res.data.code === 200){
           //that.collectionQueryCounts();  // 赋值前调用
@@ -133,7 +133,7 @@ Page({
           that.setData({ totalPage: res.data.totalPage, listData : [...that.data.listData,...res.data.data.articles]});
         }
         that.setData({ ipaState : false});
-        wx.hideLoading();
+        that.selectComponent("#loading").hide();
     })
   },
 
@@ -210,10 +210,13 @@ Page({
 
   //查询所有话题
   searchAllTopic: function () {
+    let that = this;
     let url = app.globalData.baseUrl + "/remote/myTopic/searchAllTopic";
     let method = 'GET';
+    that.selectComponent("#loading").show();
     return new Promise((resolve, reject) => {
       util.wxAjax(method,url).then(res =>{
+          that.selectComponent("#loading").hide();
           resolve(res);
       })
     })
@@ -249,17 +252,22 @@ Page({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/myTopic/search';
       let method = 'GET';
+      that.selectComponent("#loading").show();
       util.wxAjax(method, url).then(res=>{
+      that.selectComponent("#loading").hide();
           that.operateMyTag(res);
       });
   },
 
   //查询我的话题
   mytagSearch: function () {
+    let that = this;
     let url =  app.globalData.baseUrl + '/remote/myTopic/search';
     let method = 'GET';
+    that.selectComponent("#loading").show();
     return new Promise((resolve, reject) => {
       util.wxAjax(method,url).then(res =>{
+          that.selectComponent("#loading").hide();
           resolve(res);
       })
     })
@@ -276,8 +284,10 @@ Page({
   //批量更新tag
   refreTagList: function (listNum) {
     let that = this;
+    that.selectComponent("#loading").show();
     util.wxAjax('POST', app.globalData.baseUrl + '/remote/myTopic/batchUpdateMyTopic', { list: listNum }).then(res=>{
         // that.mytagSearch(); //批量编辑成功后刷新顶部导航
+        that.selectComponent("#loading").hide();
         that.getTagList();
         that.closePage(); //关闭编辑页面
     });

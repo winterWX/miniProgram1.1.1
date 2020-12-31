@@ -85,13 +85,11 @@ Component({
       const h2 = new Date(new Date().setHours(23, 59, 59, 999))/1000
     },
     getCurrentList(){  //获取打卡列表
-      // wx.showLoading({
-      //   title: 'loading...',
-      // })
       //Date.parse(new Date()) / 1000 
       let url =  app.globalData.baseUrl + '/remote/challenge/currentList';
       let method = 'POST';
       let data = { "currentTime": Date.parse(new Date()) / 1000 };
+      this.selectComponent("#loading").show();
       util.wxAjax(method,url,data).then(res=>{
           if (res.data.code === 200) {         
             var len = res.data.data.length;
@@ -284,14 +282,16 @@ Component({
             this.setData({
               list: newList
             })
+            this.selectComponent("#loading").hide();
           } else {
+            this.selectComponent("#loading").hide();
             wx.showModal({
               showCancel: false,
               content: res.message,
               success: (res) => { }
             })
           }
-          wx.hideLoading()
+          //wx.hideLoading()
       });
     },   
     receiveIntegral(e){
@@ -304,11 +304,12 @@ Component({
       }
     },
     todayIntegral(item,i){//领取积分      
-        wx.showLoading({
-          title: 'loading...',
-        })
+        // wx.showLoading({
+        //   title: 'loading...',
+        // })
         let url =  app.globalData.baseUrl + '/remote/today/receiveIntegral';
         let method = 'GET';
+        this.selectComponent("#loading").show();
         util.wxAjax(method,url).then(res=>{
               if (res.data.code === 200) {
                 var list=this.data.list
@@ -318,55 +319,30 @@ Component({
                 list:list,
                 integral: list[i].reward
               })
-                this.triggerEvent('todayIntegral')
+              this.selectComponent("#loading").hide();
+              this.triggerEvent('todayIntegral')
               } else {
+                this.selectComponent("#loading").hide();
                 wx.showModal({
                   showCancel: false,
                   content: res.data.message,
                   success: (res) => { }
                 })
               }
-              wx.hideLoading()
+             // wx.hideLoading()
         });       
-        // wx.request({
-        //   method: 'get',
-        //   url: app.globalData.baseUrl + '/remote/today/receiveIntegral',
-        //   header: {
-        //     "Content-Type": "application/json;charset=UTF-8",
-        //     "token": app.globalData.token,
-        //     "native-app": "mini"
-        //   },        
-        //   success: (res) => {
-        //     if (res.data.code === 200) {
-        //       var list=this.data.list
-        //       list[i].receiveStatus=1
-        //       this.data.list[i].iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
-        //      this.setData({
-        //        list:list,
-        //        integral: list[i].reward
-        //      })
-        //       this.triggerEvent('todayIntegral')
-        //     } else {
-        //       wx.showModal({
-        //         showCancel: false,
-        //         content: res.data.message,
-        //         success: (res) => { }
-        //       })
-        //     }
-        //     wx.hideLoading()
-        //   }
-        // })
     },
     yesterdayIntegral(item,i) {  //补领积分      
-      wx.showLoading({
-        title: 'loading...',
-      })
+      // wx.showLoading({
+      //   title: 'loading...',
+      // })
       const parms = {
         challengeId:  item.id +'',
         receivePoints: item.reward +''
       }
       let url =  app.globalData.baseUrl + '/remote/challenge/makeup';
       let method = 'POST';
+      this.selectComponent("#loading").show();
       util.wxAjax(method,url,parms).then(res=>{
           if (res.data.code === 200) {
             var list = this.data.list
@@ -376,45 +352,17 @@ Component({
               list: list,
               integral: list[i].reward
             })
+            this.selectComponent("#loading").hide();
             this.triggerEvent('yesterdayIntegral')
           } else {
+            this.selectComponent("#loading").hide();
             wx.showModal({
               showCancel: false,
               content: res.message,
               success: (res) => { }
             })
           }
-          wx.hideLoading()
       });
-      // wx.request({
-      //   method: 'post',
-      //   url: app.globalData.baseUrl + '/remote/challenge/makeup',
-      //   header: {
-      //     "Content-Type": "application/json;charset=UTF-8",
-      //     "token": app.globalData.token,
-      //     "native-app": "mini"
-      //   },
-      //   data: parms,
-      //   success: (res) => {
-      //     if (res.data.code === 200) {
-      //       var list = this.data.list
-      //       list[i].receiveStatus = 1
-      //       this.data.list[i].iconPath =  app.globalData.imagesUrl + '/images/icon-got-the-points@2x.png'
-      //       this.setData({
-      //         list: list,
-      //         integral: list[i].reward
-      //       })
-      //       this.triggerEvent('yesterdayIntegral')
-      //     } else {
-      //       wx.showModal({
-      //         showCancel: false,
-      //         content: res.message,
-      //         success: (res) => { }
-      //       })
-      //     }
-      //     wx.hideLoading()
-      //   }
-      // }
     },
     gotoHistory(){
       wx.navigateTo({

@@ -65,3 +65,4 @@
     </view>
     <share-box isCanDraw="{{isCanDraw}}" bind:initData="createShareImage" />
 </view>
+<rwj-loading id="loading"></rwj-loading>

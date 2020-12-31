@@ -1,12 +1,20 @@
-<!--pages/login/index.wxml-->
 <view class="container">
   <view class="authorization">
     <view class="auth_image"><image src="{{imagesUrl + '/images/authorization.png'}}" mode="widthFix"/></view>
     <view class="auth_text auth_text_padding">“HASE wellness”申请获取你的手机号码</view>
     <view class="auth_text ">为了你账号的安全和一致性，请先绑定手机号码，再使用相关功能。</view>
+  </view>
+  <view class="checkBoxView">
+      <view class="checkBoxImage" bindtap="checkboxChange">
+          <image  wx-if="{{ checkedValue }}"   src='../../images/group-4@2x.png'></image>
+          <image  wx-if="{{ !checkedValue }}"  src='../../images/rectangle-6-copy@2x.png'></image>
+      </view>
+      <view class='derTextBlock'>我已阅读并同意<text class='derText' bindtap="userAgreement">用户协议</text>、<text class='derText2' bindtap="privacyAgreement">隐私协议</text>。</view>
   </view> 
 </view>
-<view class="footer">
-  <button bindtap="stopLogin">取消</button>
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即绑定</button>
+<view class="footer {{ !checkedValue ? 'footerDefalut': ''}}">
+    <button bindtap="stopLogin">取消</button>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"
+    type="default" disabled="{{ !checkedValue }}">立即绑定</button>
 </view>
+<rwj-loading id="loading"></rwj-loading>

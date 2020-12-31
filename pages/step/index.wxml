@@ -49,3 +49,4 @@
 		</view>
 	</view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

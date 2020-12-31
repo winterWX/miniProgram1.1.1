@@ -6,13 +6,13 @@ const newState = {
 };
 
 function onLogin(result, data, isLogin, redirectToUrl) {
-  //登录
-  wx.showLoading({
-    title: "loading...",
-  });
+  // //登录
+  // wx.showLoading({
+  //   title: "loading...",
+  // });
   wx.login({
     success: (res) => {
-      wx.hideLoading();
+      //wx.hideLoading();
       if (res.code) {
         //发起网络请求
         if (isLogin === 0) {
@@ -36,9 +36,9 @@ function onLogin(result, data, isLogin, redirectToUrl) {
 }
 
 function userLogin(result, data, code, redirectToUrl) {
-  wx.showLoading({
-    title: "loading...",
-  });
+  // wx.showLoading({
+  //   title: "loading...",
+  // });
   const parms = {
     code: code,
     encrypteData: data.encryptedData,
@@ -66,7 +66,7 @@ function userLogin(result, data, code, redirectToUrl) {
         // else {
         //   url = "../login/index?url=" + "../index/index"; //首页授权跳转
         // }
-        wx.redirectTo({ url: url });
+        wx.reLaunch({ url: url });
       } else {
         wx.showModal({
           showCancel: false,
@@ -74,7 +74,7 @@ function userLogin(result, data, code, redirectToUrl) {
           success: (res) => {},
         });
       }
-      wx.hideLoading();
+      //wx.hideLoading();
     },
   });
 }
@@ -83,7 +83,7 @@ function userLogin(result, data, code, redirectToUrl) {
 function checkAuthorization(result, code, redirectToUrl) {
   wx.getSetting({
     success: (setingres) => {
-      wx.hideLoading();
+      //wx.hideLoading();
       if (setingres.authSetting["scope.userInfo"]) {
         //已经授权获取用户信息
         wx.getUserInfo({

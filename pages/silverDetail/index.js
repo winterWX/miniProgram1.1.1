@@ -40,6 +40,7 @@ Page({
   tierMytier:function(){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/mytier';
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if (res.data.code == 200) {
           let sercode = res.data.data.mileStones.length;
@@ -56,6 +57,7 @@ Page({
               secoreNun : (100 / Number(sercode)).toFixed(2)
           })
       }
+      that.selectComponent("#loading").hide();
     })
   },
 
@@ -107,20 +109,20 @@ Page({
 
   receivedFun:function(indexNum){
     let that = this;
-    //let indexNum = e.currentTarget.dataset.index;
     let idCode = that.data.activeData.mileStones[indexNum].id;
     that.setData({indexNum:indexNum});
     let url = app.globalData.baseUrl + '/remote/tier/reward/receive?id='+ idCode;
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then((res) => {
       if (res.data.code == 200) {
           that.tierMytier();
           that.setData({showCarkBlock:true,receiveId:res.data.data});
       }
+      that.selectComponent("#loading").hide();
     });
   },
 
   openCardModial: function(prop) {
-    //let {dataset: { prop }} = e.currentTarget
     this.setData({showModal: true, modalContent: prop});
   },
 

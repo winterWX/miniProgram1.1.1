@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "我的挑战",
   "navigationBarTextStyle": "black",

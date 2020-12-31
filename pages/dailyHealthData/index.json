@@ -3,7 +3,8 @@
     "van-cell": "vant-weapp/cell/index",
     "van-icon": "vant-weapp/icon/index",
     "heightWeight":"../../components/heightWeight",
-    "integralAmation": "../../components/integralAmation/index"
+    "integralAmation": "../../components/integralAmation/index",
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "每日健康数据"
 }

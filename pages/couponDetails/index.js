@@ -70,12 +70,14 @@ Page({
       data.couponMainId = id;
     }
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url, data).then(res =>{
         if (res.data.code == 200 && res.data.data !== null) {
             res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
             res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
             that.setData({couponDetail: res.data.data});
         }
+        that.selectComponent("#loading").hide();
     })
   },
 

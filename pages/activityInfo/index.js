@@ -29,6 +29,7 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/myactivity/detail/' + id;
     let method = 'GET';
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if (res.data.code == 200) {
           let detail = {
@@ -44,6 +45,7 @@ Page({
           let isJoin = detail.isJoinStatus === '2';
           that.setData({ detail, isJoin });
         }
+        that.selectComponent("#loading").hide();
     });
   }
 })

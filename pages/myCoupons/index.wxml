@@ -25,7 +25,9 @@
                         <view class="itemBlockText1">{{item.name}}</view>
                         <view class="itemBlockText2">有效期至{{item.expiryTime}}</view>
                     </view>
-                    <image class="itemBlockTextLast-image" src="https://wellness.hangseng.com/images/miniprogram/images/myCounty/invalid-name@3x.png" />
+                    <view class="itemBlockTextLast">
+                        <image class="itemBlockTextLast-image" src="https://wellness.hangseng.com/images/miniprogram/images/myCounty/invalid-name@3x.png" />
+                    </view>
                 </view>
   </view></view>
   <view wx:if="{{currentTab === '2'}}" class="itemContent">
@@ -37,7 +39,10 @@
                         <view class="itemBlockText1">{{item.name}}</view>
                         <view class="itemBlockText2">有效期至{{item.expiryTime}}</view>
                     </view>
-                    <image class="itemBlockTextLast-image" src="https://wellness.hangseng.com/images/miniprogram/images/myCounty/invalid-name@2x.png" />
+                    <view class="itemBlockTextLast">
+                        <image class="itemBlockTextLast-image" src="https://wellness.hangseng.com/images/miniprogram/images/myCounty/invalid-name@2x.png" />
+                    </view>
                 </view>
   </view></view>
 </view>
+<rwj-loading id="loading"></rwj-loading>

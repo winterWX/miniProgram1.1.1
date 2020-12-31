@@ -34,6 +34,7 @@ Page({
   myCoupons:function(type){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/coupon/list?type='+type;
+    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200){
         const detailArray = res.data.data.map(item=>{
@@ -47,6 +48,7 @@ Page({
        })
        that.setData({detailArray : detailArray});
       }
+      that.selectComponent("#loading").hide();
     })
   },
   immediateUse:function(e){

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-button": "vant-weapp/button/index"
+    "van-button": "vant-weapp/button/index",
+    "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "绑定邮箱",
   "navigationBarTextStyle": "black"

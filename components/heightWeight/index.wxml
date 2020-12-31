@@ -12,4 +12,4 @@
        <van-button  type="primary" size="large" bindtap="saveNum" disabled="{{valData}}">保存</van-button>
     </viwe>
 </viwe>
- 
+<rwj-loading id="loading"></rwj-loading>

@@ -92,7 +92,7 @@
 .itemBlockTextLast-image{
   width: 98rpx;
   height: 98rpx;
-  margin-left: 155rpx;
+  /* //margin-left: 155rpx; */
   color: rgb(155,124,86);
   font-size: 28rpx;
   font-family: PingFangSC-Medium;

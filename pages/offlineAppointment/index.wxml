@@ -19,3 +19,4 @@
     </view>
     <button class="btn" catchtap="copyData">复制链接</button>
 </view>
+<rwj-loading id="loading"></rwj-loading>

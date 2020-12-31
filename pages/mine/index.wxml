@@ -21,7 +21,8 @@
 				</view>
 				<view class="tip">
 					积分
-					<image class="icon" src="{{baseUrl + '/images/mine/fruit-icon.png'}}"></image>
+					<!-- <image class="icon" src="{{baseUrl + '/images/mine/fruit-icon.png'}}"></image> -->
+				  <image class="icon" src="../../images/icon-olive-points.png"></image>
 				</view>
 			</view>
 			<view class="dividing-line"></view>
@@ -160,3 +161,4 @@
   </view> 
 	<footer class="footerContent" active="{{active}}"></footer>
 </view>
+<rwj-loading id="loading"></rwj-loading>
