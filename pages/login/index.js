@@ -109,14 +109,13 @@ Page({
       url: '../index/index'
     })
   },
+
   userAgreement(){
-    wx.redirectTo({
-      url: '../userAgreement/index'
-    })
+    wx.navigateTo({ url: '../userAgreement/index' })
   },
+
   privacyAgreement(){
-    wx.redirectTo({
-      url: '../userAgreement/index'
-    })
+    wx.navigateTo({ url: '../privacyAgreement/index' })
   }
+  
 })

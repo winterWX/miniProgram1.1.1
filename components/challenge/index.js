@@ -291,7 +291,6 @@ Component({
               success: (res) => { }
             })
           }
-          //wx.hideLoading()
       });
     },   
     receiveIntegral(e){
@@ -304,9 +303,6 @@ Component({
       }
     },
     todayIntegral(item,i){//领取积分      
-        // wx.showLoading({
-        //   title: 'loading...',
-        // })
         let url =  app.globalData.baseUrl + '/remote/today/receiveIntegral';
         let method = 'GET';
         this.selectComponent("#loading").show();
@@ -329,13 +325,9 @@ Component({
                   success: (res) => { }
                 })
               }
-             // wx.hideLoading()
         });       
     },
     yesterdayIntegral(item,i) {  //补领积分      
-      // wx.showLoading({
-      //   title: 'loading...',
-      // })
       const parms = {
         challengeId:  item.id +'',
         receivePoints: item.reward +''

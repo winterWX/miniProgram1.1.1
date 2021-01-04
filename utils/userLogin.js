@@ -1,4 +1,5 @@
 const app = getApp();
+
 const newState = {
   loginSuccess: false,
   newUserInfo: null,
@@ -7,12 +8,8 @@ const newState = {
 
 function onLogin(result, data, isLogin, redirectToUrl) {
   // //登录
-  // wx.showLoading({
-  //   title: "loading...",
-  // });
   wx.login({
     success: (res) => {
-      //wx.hideLoading();
       if (res.code) {
         //发起网络请求
         if (isLogin === 0) {
