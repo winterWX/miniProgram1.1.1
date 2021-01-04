@@ -281,8 +281,6 @@ Page({
         }
       }
       that.selectComponent("#loading").hide();
-    }).catch(err=>{
-        console.log('//////////////////////')
     })
   },
 
@@ -297,9 +295,10 @@ Page({
         if(receiveStatus == 1 && isDone == 1){
           that.setData({ forceNum:true });
         }
+      }else{
+        that.selectComponent("#loading").hide();
       }
-      that.selectComponent("#loading").hide();
-    });
+    })
   },
 
   membership:function(){

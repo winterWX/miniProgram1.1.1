@@ -71,7 +71,7 @@ Component({
         this.setData({ requiredLogin: true });
         if (app.globalData.userInfo !== null) {
           this.setData({ isLogin: 1 });
-          wx.navigateTo({
+          wx.reLaunch({
             url: '../login/index?url=' + this.data.menu[this.data.active].url,
           })
         }
@@ -88,7 +88,6 @@ Component({
     checkAuthorization() { //检测是否已经授权      
       wx.getSetting({
         success: (setingres) => {
-          //wx.hideLoading()
           this.selectComponent("#loading").hide();
           if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
             wx.getUserInfo({
@@ -114,9 +113,6 @@ Component({
     },
 
     onLogin(data) {   //登录
-      // wx.showLoading({
-      //   title: 'loading...',
-      // })
       this.selectComponent("#loading").show();     
       wx.login({
         success: (res) => {
@@ -180,8 +176,8 @@ Component({
             this.setData({
               isLogin: 1
             })
-            wx.navigateTo({
-              url: '../login/index?url=' + this.data.menu[this.data.active].url,
+            wx.reLaunch({
+               url: '../login/index?url=' + this.data.menu[this.data.active].url
             })
           } else {
             this.selectComponent("#loading").hide();
@@ -191,10 +187,8 @@ Component({
               success: (res) => {}
             })
           }
-         //wx.hideLoading()
         }
       })
-
     },
   }
 })
