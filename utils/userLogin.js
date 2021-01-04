@@ -36,9 +36,6 @@ function onLogin(result, data, isLogin, redirectToUrl) {
 }
 
 function userLogin(result, data, code, redirectToUrl) {
-  // wx.showLoading({
-  //   title: "loading...",
-  // });
   const parms = {
     code: code,
     encrypteData: data.encryptedData,
@@ -63,9 +60,6 @@ function userLogin(result, data, code, redirectToUrl) {
         if (redirectToUrl !== "") {
            url = "../login/index?pageTag=" + redirectToUrl;
         }
-        // else {
-        //   url = "../login/index?url=" + "../index/index"; //首页授权跳转
-        // }
         wx.reLaunch({ url: url });
       } else {
         wx.showModal({
@@ -74,7 +68,6 @@ function userLogin(result, data, code, redirectToUrl) {
           success: (res) => {},
         });
       }
-      //wx.hideLoading();
     },
   });
 }
@@ -83,7 +76,6 @@ function userLogin(result, data, code, redirectToUrl) {
 function checkAuthorization(result, code, redirectToUrl) {
   wx.getSetting({
     success: (setingres) => {
-      //wx.hideLoading();
       if (setingres.authSetting["scope.userInfo"]) {
         //已经授权获取用户信息
         wx.getUserInfo({
