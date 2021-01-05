@@ -295,6 +295,7 @@ Page({
         if(receiveStatus == 1 && isDone == 1){
           that.setData({ forceNum:true });
         }
+        that.selectComponent("#loading").hide();
       }else{
         that.selectComponent("#loading").hide();
       }
