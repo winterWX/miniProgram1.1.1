@@ -1,4 +1,4 @@
-<view class="main-content {{successFlg ? 'successsSty':''}}"  wx:if="{{!successFlg}}">
+<view class="main-content {{ successFlg ? 'successsSty': ''}}"  wx:if="{{!successFlg }}">
     <view class="topBlock"  wx:if="{{isLogin !== 3}}">
         <view class="topBlock-image"><image src="{{imagesUrl + '/images/index/landing-page-image@3x.png'}}"/></view>
         <view class="topBlock-text">
@@ -66,10 +66,11 @@
             </view>
          </view>
      </view>
-     <rwj-loading id="loading"></rwj-loading>
 </view>
+<rwj-loading id="loading"></rwj-loading>
+<steps-moldal class="stepsMoldal" wx-if="{{!modelShow}}"></steps-moldal>
 <collectionOption  wx:if="{{successFlg}}" bind:parentReceive="parentCallBack" ></collectionOption>
-<footer class="footerContent" active="{{active}}"  wx:if="{{!successFlg}}"></footer> 
+<footer class="footerContent" active="{{active}}"  wx:if="{{ !successFlg }}"></footer> 
 
 
 

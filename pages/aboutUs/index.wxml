@@ -37,18 +37,18 @@
 				<image class="icon" src="{{imagesUrl + '/images/mine/right-direction.png'}}"></image>
 			</view>
 		</view>
-		<view class="item">
+		<!-- <view class="item">
 			<view class="left">
 				<view class="label">版本升级</view>
 			</view>
 			<view class="right">
 				<image class="icon" src="{{imagesUrl + '/images/mine/right-direction.png'}}"></image>
 			</view>
-		</view>
+		</view> -->
 	</view>
 	<view class="bottomSty">
 		<view class="bottomText1" catchtap="navigatePolicy"  data-id ="2">隐私声明</view>
-		<view class="bottomText2">收集个人资料声明</view>
+		<!-- <view class="bottomText2">收集个人资料声明</view> -->
 		<view class="bottomText3"  catchtap="navigatePolicy"  data-id ="3">Cookies政策</view>
 		<view class="bottomText4">@2020 HASE Wellness. All Rights Reserved.</view>
 	</view>

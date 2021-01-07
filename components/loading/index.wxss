@@ -31,10 +31,10 @@
   z-index: 99;
 }
 .loading-container .loading-main .loading-content{
-  width: 250rpx;
-  height: 250rpx;
-  /* border-radius: 20rpx;
-  background-color: rgba(0,0,0,0.5);  */
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 20rpx;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,8 +42,6 @@
 .loading-container .loading-main .loading-content .loading-image{
   width: 208rpx;
   height: 208rpx;
-  /* padding: 40rpx;
-  margin-top: 10rpx; */
 }
 .loading-container .loading-main .loading-content .loading-image image{
   width: 100%;

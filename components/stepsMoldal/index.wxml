@@ -1,0 +1,19 @@
+<view class="model-bleck">
+  <view class="topIimages"><image src='../../images/group-9@2x.png' /></view>
+  <view class="text-block">
+    <view class="text-title">绑定健康应用数据开启健康之旅</view>
+      <view class="title-midden">
+          Placeholder Placeholder Placeholder The data you 
+          share with [insert name  of Wellness Portal] will be governed by 
+          Hang Seng Bank’s [Privacy Terms] and [User Agreement]. You can 
+          revoke this consent at any 
+          time in the settings of your selected mobile device] 
+      </view>
+  </view>
+  <view class="btnAbfort">
+    <button class="btn">立即绑定</button>
+  </view>
+  <view class="buttom-block">
+     <view class="btn_title">暂不授权</view>
+  </view>
+</view>
