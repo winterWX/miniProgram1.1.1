@@ -21,8 +21,8 @@ Page({
     levelNumShow: true,
     isAppData: false,  //是否是APP用户
     imagesUrl: app.globalData.imagesUrl,
-    forceNum: false,  //是否已经领过积分
-    modelShow: false  // 微信步数的弹框
+    forceNum: false, //是否已经领过积分
+    roundData:{} // 弹窗的状态 和 步数
   },
   onLoad: function (options) {
     let that = this;
@@ -30,9 +30,12 @@ Page({
       that.setData({ successFlg: true });
     }
     if(app.globalData.isLogin === 3){
-      that.setData({ isLogin: app.globalData.isLogin });
+      app.lawsRegulations = true;      //表示已经阅读了绑定数据的法律法规 
+      that.setData({ modelShow:true });  // 。。。。同上
+
+      that.setData({ isLogin: app.globalData.isLogin});
       that.getState();
-      that.checkIsAppUser();  //调用数据源，App数据优先；
+      // that.checkIsAppUser();  //调用数据源，App数据优先；
     }
     that.homePageInit();
     that.userLevel();
@@ -83,6 +86,7 @@ Page({
     })
   },
   onShareAppMessage: function () {},
+
   checkIsAppUser:function(){
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
@@ -93,21 +97,37 @@ Page({
           res.data.data = 1
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
           app.healthStep.dataCource = res.data.data;    // 数据源
-          if(!that.data.isAppData){
-             that.getStepRunData();
-          }else{
-             that.stepRunState();
+          if(app.lawsRegulations && !that.data.modelShow){   //同意绑定数据(法律法规弹窗)
+              if(!that.data.isAppData){
+                  console.log('00000000')
+                  that.getStepRunData();
+              }else{
+                  that.stepRunState();
+              }
           }
         }
         that.selectComponent("#loading").hide();
     });
   },
+
   parentCallBack: function (event){
-     let that = this;
+    let that = this;
     if (event.detail.handleSuccess){
       that.setData({ successFlg: false });
     }
   },
+
+  modelShowBlock: function (event){
+  let that = this;
+  if (event.detail.modelShow){
+      //阅读完关闭
+      that.setData({ modelShow: false },
+        ()=>{
+          that.checkIsAppUser();  //调用数据源，App数据优先；
+        });
+   }
+ },
+
   myfindPage:function(){
     wx.navigateTo({
       url: '../../pages/HealthInformation/index',
@@ -194,7 +214,7 @@ Page({
                   return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
-                      steps: item.step
+                      steps: 5000
                   }
               });
               that.getUploaddata(results);
@@ -219,6 +239,7 @@ Page({
         that.selectComponent("#loading").hide();
     });
   },
+  //今日步数
   stepRunState:function(){
     let that = this;
     let method ='POST';
@@ -237,7 +258,6 @@ Page({
           that.selectComponent("#loading").hide();
         }
     }).catch(err=>{
-      console.log('999999999999999s')
       that.selectComponent("#loading").hide();
     })
   },
@@ -339,19 +359,22 @@ Page({
     wx.getSetting({
       success: function (res) {
         if (!res.authSetting['scope.werun']) {
-          wx.showModal({
-            title: '提示',
-            content: '今日步数需要微信步数授权',
-            success: function (res) {
-              if (res.confirm) {
-                wx.openSetting({
-                  success: function (res) {
-                    that.getStepRunData();  //开启后 重新获取微信运动步数；
-                  }
-                })
+            that.setData({
+              modelShow: true
+            })
+            wx.showModal({
+              title: '提示',
+              content: '今日步数需要微信步数授权',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.openSetting({
+                    success: function (res) {
+                      that.getStepRunData();  //开启后 重新获取微信运动步数；
+                    }
+                  })
+                }
               }
-            }
-          })
+            })
         }
       }
     })

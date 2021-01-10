@@ -11,9 +11,6 @@
       </view>
   </view>
   <view class="btnAbfort">
-    <button class="btn">立即绑定</button>
-  </view>
-  <view class="buttom-block">
-     <view class="btn_title">暂不授权</view>
+    <button class="btn" bindtap="onStapeData">同意</button>
   </view>
 </view>
