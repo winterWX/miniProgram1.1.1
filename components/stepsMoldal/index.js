@@ -17,6 +17,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    //立即绑定
+    onStapeData: function(){
+      this.triggerEvent('modelShowBlock', {
+        modelShow: true
+      }, {})
+    }
   }
 })

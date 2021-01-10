@@ -81,6 +81,7 @@ App({
       },
     ]
   },
+  lawsRegulations:false, //绑定数据的时候的法律法规弹窗
   firstInit:{ bootImage: true },
   //健康资讯全局变变量的设置
   healthInforData:{

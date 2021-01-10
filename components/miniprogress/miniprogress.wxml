@@ -1,7 +1,28 @@
+<!-- 
+<view class="main-content">
+
+    <canvas wx:if="{{ !radarImgShowTop }}" id="ringTop" canvas-id="ringTop" class="progress-canvas"></canvas>
+    <image  wx:if="{{ radarImgShowTop }}"  src='{{ radarImg }}' class="progress-canvas"/>
+
+    <canvas wx:if="{{ !radarImgShowBottom }}" id="ring"  canvas-id="ring"  class="progress-canvas progress-bottom" ></canvas>
+    <image  wx:if="{{ radarImgShowBottom }}"   src='{{ radarImg1 }}' class="progress-canvas progress-bottom" />
+
+    <view   class="topText">今日步数</view>
+    <view   class="stepnNums">{{numStep}}</view>
+
+</view> -->
+
+
 
 <view class="main-content">
-    <canvas id="ringTop" canvas-id="ringTop" class="progress-canvas"></canvas>
-    <canvas id="ring"  canvas-id="ring"  class="progress-canvas progress-bottom" ></canvas>
-    <view class="topText">今日步数</view>
-    <view class="stepnNums">{{numStep}}</view>
+
+<canvas wx:if="{{ !radarImg }}" id="ringTop" canvas-id="ringTop" class="progress-canvas"></canvas>
+<image  wx:if="{{ radarImg }}"  src='{{ radarImg }}' class="progress-canvas"/>
+
+<canvas wx:if="{{ !radarImg1 }}" id="ring"  canvas-id="ring"  class="progress-canvas progress-bottom" ></canvas>
+<image  wx:if="{{ radarImg1 }}"   src='{{ radarImgAbfore }}' class="progress-canvas progress-bottom" />
+
+<view   class="topText">今日步数</view>
+<view   class="stepnNums">{{numStep}}</view>
+
 </view>

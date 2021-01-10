@@ -9,6 +9,9 @@
 .progress-bottom{
    position: absolute;
    top:0;
+   left: 0;
+   right: 0;
+   bottom: 0;
 }
 .progress-bottom-image{
   position: absolute;
@@ -30,4 +33,10 @@
   text-align: center;
   font-size: 28rpx;
   color: rgb(102,102,102);
+}
+#ringTop{
+  position: absolute;
+  width: 100%;
+  right: -900px;
+  top: -600px;
 }
