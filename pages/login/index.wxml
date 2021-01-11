@@ -10,8 +10,8 @@
       <view class="checkBoxImage" bindtap="checkboxChange">
           <!-- <image  wx-if="{{ checkedValue }}"   src='../../images/group-4@2x.png'></image>
           <image  wx-if="{{ !checkedValue }}"  src='../../images/rectangle-6-copy@2x.png'></image> -->
-          <image  wx-if="{{ checkedValue }}"   src='../../images/ic-form-select-2@2xll.png'></image>
-          <image  wx-if="{{ !checkedValue }}"  src='../../images/ic-form-default@2xl.png'></image>
+          <image src="{{ checkedValue ? imagesUrl + '/images/lastAdd/ic-form-select-2@2xll.png' : imagesUrl + '/images/lastAdd/ic-form-default@2xl.png'}}" ></image>
+          <!-- <image  wx-if="{{ !checkedValue }}" src="{{imagesUrl + '/images/lastAdd/ic-form-default@2xl.png'}}" ></image> -->
       </view>
       <view class='derTextBlock'>我已阅读并同意<text class='derText' bindtap="userAgreement">用户协议</text>、<text class='derText2' bindtap="privacyAgreement">隐私协议</text>。</view>
 </view> 

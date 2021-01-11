@@ -3,7 +3,7 @@
   <view class="loading-main">
     <view class="loading-content">
       <view class="loading-image">
-        <image src="../../images/loading@2x.png"></image>
+        <image src="{{imagesUrl + '/images/lastAdd/loading@2x.png'}}"></image>
       </view>
       <!-- <view class="loading-text">
         {{loadingText}}

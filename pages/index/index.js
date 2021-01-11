@@ -22,20 +22,26 @@ Page({
     isAppData: false,  //是否是APP用户
     imagesUrl: app.globalData.imagesUrl,
     forceNum: false, //是否已经领过积分
-    roundData:{} // 弹窗的状态 和 步数
+    roundData:{}, // 弹窗的状态 和 步数
+    modelShow: false,
+    lookLevel: false //文章级别
   },
   onLoad: function (options) {
     let that = this;
     if (options.flag === 'true'){   //是 true
       that.setData({ successFlg: true });
     }
-    if(app.globalData.isLogin === 3){
-      app.lawsRegulations = true;      //表示已经阅读了绑定数据的法律法规 
-      that.setData({ modelShow:true });  // 。。。。同上
-
+    if(app.globalData.isLogin === 3 ){
+      if(!app.lawsRegulations){
+          app.lawsRegulations = true;          //表示已经阅读了绑定数据的法律法规 
+          setTimeout(()=>{
+            that.setData({ modelShow: true });    // 。。。。同上
+          },600)  //半圆变成图片再显示
+      }else{
+          that.checkIsAppUser();  //调用数据源，App数据优先；
+      }
       that.setData({ isLogin: app.globalData.isLogin});
       that.getState();
-      // that.checkIsAppUser();  //调用数据源，App数据优先；
     }
     that.homePageInit();
     that.userLevel();
@@ -99,7 +105,6 @@ Page({
           app.healthStep.dataCource = res.data.data;    // 数据源
           if(app.lawsRegulations && !that.data.modelShow){   //同意绑定数据(法律法规弹窗)
               if(!that.data.isAppData){
-                  console.log('00000000')
                   that.getStepRunData();
               }else{
                   that.stepRunState();
@@ -117,14 +122,19 @@ Page({
     }
   },
 
+  closeBlock: function (event){
+    let that = this;
+    if (event.detail.closeBlock){
+      that.setData({ lookLevel: false });
+    }
+  },
+
   modelShowBlock: function (event){
   let that = this;
   if (event.detail.modelShow){
       //阅读完关闭
-      that.setData({ modelShow: false },
-        ()=>{
-          that.checkIsAppUser();  //调用数据源，App数据优先；
-        });
+      that.setData({ modelShow: false });
+      that.checkIsAppUser();  //调用数据源，App数据优先；
    }
  },
 
@@ -214,7 +224,7 @@ Page({
                   return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
-                      steps: 5000
+                      steps: item.steps
                   }
               });
               that.getUploaddata(results);
@@ -290,6 +300,7 @@ Page({
       that.selectComponent("#loading").hide();
     })
   },
+  
   userLevel:function(){
     let that = this;
     let method = 'GET';
@@ -337,10 +348,19 @@ Page({
     }
   },
   listClick(e){
-      let goodsId = e.currentTarget.dataset.id;      
-      wx.navigateTo({                                 
-        url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
-      })
+    let that = this; 
+    const { item } = e.currentTarget.dataset;
+    const levelArray = item.level.split(',');
+    let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
+    if( app.globalData.isLogin === 3){
+      if(levelArray.includes(that.data.levelNum +'')){
+          wx.navigateTo({ url });
+      }else{
+          this.setData({ lookLevel: true});
+      }
+    }else{    
+      wx.navigateTo({ url });
+    }
   },
   listChange(e){
       let {type,id,title} = e.currentTarget.dataset.item;
@@ -359,9 +379,7 @@ Page({
     wx.getSetting({
       success: function (res) {
         if (!res.authSetting['scope.werun']) {
-            that.setData({
-              modelShow: true
-            })
+            that.setData({ modelShow: true })
             wx.showModal({
               title: '提示',
               content: '今日步数需要微信步数授权',

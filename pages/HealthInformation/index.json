@@ -1,7 +1,8 @@
 {
   "usingComponents": {
       "van-button": "vant-weapp/button/index",
-      "rwj-loading": "../../components/loading/index"
+      "rwj-loading": "../../components/loading/index",
+      "article-modal": "../../components/articleModal/index"
   },
   "navigationBarTitleText": "健康头条",
   "navigationBarTextStyle": "black"

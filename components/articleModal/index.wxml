@@ -1,0 +1,12 @@
+<view class="articleBlock">
+  <view style="background: #ffffff;">
+    <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/banner@2x.png'}}" /></view>
+    <view class="model-bleck">
+      <view class="title-midden">基本银会员、基本金会员、尊享银会员、尊享金会员专享内容，升级后享更多权益及优惠！</view>
+      <view class="btnAbfort">
+        <button class="btn" bindtap="lookLevels">查看会员升级攻略</button>
+      </view>
+    </view>
+  </view>
+  <view class="clearBlock" bindtap="closeBlock"><image src="{{imagesUrl + '/images/lastAdd/system-icons-clear@2x.png'}}" /></view>
+</view>

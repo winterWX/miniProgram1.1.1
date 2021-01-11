@@ -1,4 +1,3 @@
-<!--components/integral/index.wxml-->
 <view class="{{show?'mottoBox':'mottoBox hideMottoBox'}}" style="z-index: 1000;">
   <view class="{{!animateCompelte?'MtranslateY action':'MtranslateY lostAimation'}}">
     <view class="showAmation">

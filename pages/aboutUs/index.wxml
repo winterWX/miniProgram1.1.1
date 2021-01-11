@@ -1,6 +1,6 @@
 <view class="container">
   <view class="aboutTop">
-	    <image src='../../images/icon-logo@2x.png'></image>
+	    <image src="{{imagesUrl + '/images/lastAdd/icon-logo@2x.png'}}"></image>
 			<view class="nameText1">恒生Olive</view>
 			<view class="nameText2">版本1.0.0</view>
 	</view>
