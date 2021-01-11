@@ -1,10 +1,11 @@
 {
   "usingComponents": {    
     "footer": "../../components/footer/index",
-    "collectionOption": "../../components/collectionOption/index",
-    "miniprogress": "../../components/miniprogress/miniprogress",
-    "rwj-loading": "../../components/loading/index",
-    "steps-moldal": "../../components/stepsMoldal/index"
+    "collectionOption":  "../../components/collectionOption/index",
+    "miniprogress":  "../../components/miniprogress/miniprogress",
+    "rwj-loading":  "../../components/loading/index",
+    "steps-moldal": "../../components/stepsMoldal/index",
+    "article-modal": "../../components/articleModal/index"
   },
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true  

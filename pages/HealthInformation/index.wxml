@@ -24,7 +24,7 @@
     </view>
     <view class="info-main">
         <view class="info" wx:for="{{listData}}" wx:key="id">
-            <view class="top-block" bindtap="listClick" data-itemid="{{item.id}}">
+            <view class="top-block" bindtap="listClick" data-item="{{item}}">
                 <view class="title">
                     <view class="mainText mainTextHidden">{{item.title}}</view>
                     <view class="timeText">
@@ -77,4 +77,5 @@
         </view>
     </view>
 </view>
+<article-modal class="stepsMoldal" wx-if="{{lookLevel}}"  bind:closeBlock="closeBlock"  levelNum="{{levelNum}}"></article-modal>
 <rwj-loading id="loading"></rwj-loading>

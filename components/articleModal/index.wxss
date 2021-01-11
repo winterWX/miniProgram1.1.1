@@ -1,36 +1,18 @@
 
 .model-bleck{
   background-color: #ffffff;
-  padding:  30rpx;
-  z-index: 99;
-}
-
-.topIimages{
-  margin-bottom: 42rpx;
-}
-
-.text-title {
-    width: 100%;
-    font-family: PingFangSC;
-    font-size: 32rpx;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.25;
-    letter-spacing: normal;
-    text-align: center;
-    color: #333333;
-    margin-bottom: 38rpx;
+  padding: 0rpx 30rpx 30rpx 30rpx;
+  z-index: 100;
 }
 
 .topIimages image{
     width: 100%;
-    height: 284rpx;
+    height: 288rpx;
 }
 
 .title-midden{
-   height: 280rpx;
-   margin-bottom: 42rpx;
+   height: 90rpx;
+   margin: 42rpx 0rpx 56rpx 0rpx;
    font-family: PingFangSC;
    font-size: 28rpx;
    font-weight: normal;
@@ -62,21 +44,6 @@
   margin-bottom: 30rpx;
 }
 
-.btn_title{
-    width: 100%;
-    height: 20px;
-    font-family: PingFangSC;
-    font-size: 28rpx;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #666666;
-    text-decoration: underline;
-}
-
 .buttom-block{
   display: flex;
   align-items: center;
@@ -85,4 +52,16 @@
 
 .btnAbfort button::after {
    border: 1rpx solid #00a865;
+}
+
+.clearBlock {
+  margin-top: 34rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clearBlock image{
+  width: 48rpx;
+  height: 48rpx;
 }

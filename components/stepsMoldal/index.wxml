@@ -1,5 +1,5 @@
 <view class="model-bleck">
-  <view class="topIimages"><image src='../../images/group-9@2x.png' /></view>
+  <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" /></view>
   <view class="text-block">
     <view class="text-title">绑定健康应用数据开启健康之旅</view>
       <view class="title-midden">

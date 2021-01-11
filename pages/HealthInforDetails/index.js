@@ -216,13 +216,10 @@ Page({
       })
     },
   onLogin(data) { //登录
-    // wx.showLoading({
-    //   title: 'loading...',
-    // })
+    let that = this;
     that.selectComponent("#loading").show();
     wx.login({
       success: (res) => {
-        //wx.hideLoading()
         that.selectComponent("#loading").hide();
         if (res.code) {
           //发起网络请求

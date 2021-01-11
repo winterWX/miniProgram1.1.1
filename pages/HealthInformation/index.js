@@ -39,6 +39,8 @@ Page({
     listId: [],
     switchTag: false,
     tagDefault: '热门推荐',
+    levelNum: 0,
+    lookLevel:false,
     //拖拽效果
     current: -1,
     s_v: 10,
@@ -60,6 +62,7 @@ Page({
     that.searchSend(options.inputVal);
     //查询所有话题
     that.getTagList();
+    that.userLevel();
   },
   onShow: function () {
     let that = this;
@@ -101,10 +104,24 @@ Page({
   },
 
   listClick(e){
-     let goodsId = e.currentTarget.dataset.itemid;      
-      wx.navigateTo({                                 
-        url: '../../pages/HealthInforDetails/index?goodsId='+ goodsId      
-      })
+     let that = this; 
+     const { item } = e.currentTarget.dataset;
+     const levelArray = item.level.split(',');
+     if(levelArray.includes(that.data.levelNum +'')){
+        wx.navigateTo({                                 
+          url: '../../pages/HealthInforDetails/index?goodsId='+ item.id      
+        });
+     }else{
+        this.setData({ lookLevel: true});
+     } 
+  },
+ 
+  //关闭弹窗
+  closeBlock: function (event){
+    let that = this;
+    if (event.detail.closeBlock){
+      that.setData({ lookLevel: false });
+    }
   },
 
   //文章列表接口
@@ -333,7 +350,19 @@ Page({
     }
     that.dargLonad();
   },
-
+  // 会员级别
+  userLevel:function(){
+    let that = this;
+    let method = 'GET';
+    let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
+    that.selectComponent("#loading").show();
+    util.wxAjax(method,url).then(res =>{
+      if (res.data.code === 200) {
+        that.setData({levelNum:res.data.data});
+      }
+      that.selectComponent("#loading").hide();
+    })
+  },
   // 隐藏遮罩层
   hideModal: function () {
     var that = this;

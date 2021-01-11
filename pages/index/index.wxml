@@ -1,5 +1,5 @@
 <view class="main-content {{ successFlg ? 'successsSty': ''}}"  wx:if="{{!successFlg }}">
-    <view class="topBlock"  wx:if="{{isLogin !== 3}}">
+    <view  class="topBlock"     wx:if="{{isLogin !== 3}}">
         <view class="topBlock-image"><image src="{{imagesUrl + '/images/index/landing-page-image@3x.png'}}"/></view>
         <view class="topBlock-text">
           <view class="topBlock-text1">从今天起成就健康生活</view>
@@ -7,7 +7,7 @@
           <view class="topBlock-btn"> <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">新用户注册/登录</button></view>
         </view>
     </view>
-    <view class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
+    <view  class="topSetting"   wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
        <view class="imageRight" ><image src="{{imagesUrl + '/images/back@2x.png'}}" /></view>
         <view class="miniprogress">
             <miniprogress  stepNum="{{ stepsNum.todaySteps }}"  modelShow= "{{ modelShow }}" />
@@ -21,15 +21,15 @@
             <view class="topSett-disp" wx:if="{{ forceNum && stepsNum.todaySteps >= 10000}}">恭喜你！今日的每日步数挑战已达标</view>
         </view>    
     </view>
-    <view class="secondeBlock" bindtap="membership" wx:if="{{levelNumShow}}">
+    <view  class="secondeBlock" bindtap="membership" wx:if="{{levelNumShow}}">
         <view class="secondeBlock-image"><image src="{{imagesUrl + '/images/index/banner-1@3x.png'}}"/></view>
         <view class="secondeBlock-text">
           <view class="secondeBlock-text1">升级金银会员获享尊享礼遇</view>
           <view class="secondeBlock-text2">查看金银会员升级攻略</view>
           <view class="secondeBlock-btn"><image src="{{imagesUrl + '/images/index/icon-circle@3x.png'}}" /></view>
         </view>
-     </view>
-     <view class="threesBlock">
+    </view>
+    <view class="threesBlock">
          <view class="threesBlock-title" bindtap="myfindPage">
              <view class="threesBlock-left">
                 <text class="threesBlock-leftBorber">健康头条</text>
@@ -37,7 +37,7 @@
              <view class="threesBlock-right">更多</view>
          </view>
          <view class="threesBlock-item">
-           <view class="threesBlock-itemCher" wx:for="{{homeAllData.article}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}">
+           <view class="threesBlock-itemCher" wx:for="{{homeAllData.article}}" wx:key="index" bindtap="listClick" data-item="{{item}}">
                 <view class="threesBlock-itemText">
                   <view class="threesBlockText1">{{item.title}}</view>
                   <view class="threesBlock-itemTime">{{item.inputtime}}</view>
@@ -48,8 +48,8 @@
                 </view>
            </view>
          </view>
-     </view>
-     <view class="fourBlock">
+    </view>
+    <view class="fourBlock">
          <view class="threesBlock-title" bindtap="challengePage">
              <view class="threesBlock-left">
                 <text class="threesBlock-leftBorber">热门挑战</text>
@@ -65,12 +65,13 @@
                 </view>
             </view>
          </view>
-     </view>
+    </view>
 </view>
 <rwj-loading id="loading"></rwj-loading>
-<steps-moldal class="stepsMoldal" wx-if="{{ modelShow }}" bind:modelShowBlock="modelShowBlock"></steps-moldal>
-<collectionOption  wx:if="{{successFlg}}" bind:parentReceive="parentCallBack" ></collectionOption>
-<footer class="footerContent" active="{{ active }}"  wx:if="{{ !successFlg }}"></footer> 
+<steps-moldal  class="stepsMoldal" wx-if="{{ modelShow }}" bind:modelShowBlock="modelShowBlock"></steps-moldal>
+<article-modal class="stepsMoldal" bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}'></article-modal>
+<collectionOption  wx:if="{{ successFlg }}" bind:parentReceive="parentCallBack" ></collectionOption>
+<footer class="footerContent" active="{{ active }}" wx:if="{{ !successFlg && !modelShow && !lookLevel}}"></footer> 
 
 
 

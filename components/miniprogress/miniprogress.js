@@ -16,6 +16,9 @@ Component({
                     this.createTopDrawRing();
                     this.createQueryFun();
                 }
+                // else{
+                //     this.createTopDrawRing();
+                // }
             }
         }
     },
@@ -32,14 +35,14 @@ Component({
 
     methods: {
         createTopDrawRing:function(){
-            if(!this.data.modelShow){
-                this.setData({radarImg : ''});
-            }
-            const query = this.createSelectorQuery()
+            // if(!this.data.modelShow){
+            //     this.setData({radarImg : ''});
+            // }
+            const query = this.createSelectorQuery();
             query.select('#ringTop').boundingClientRect(res => {
                 if(res !== null)  wx.setStorage({ data: JSON.stringify(res), key: 'ringTopCanves',});
                 let Re = JSON.parse(wx.getStorageSync('ringTopCanves'));  
-                this.topDrawRing('ringTop', Re.width, Re.height)
+                this.topDrawRing('ringTop', Re.width, Re.height);
             }).exec()
         },
 
@@ -56,7 +59,7 @@ Component({
             }).exec()
         },
         topDrawRing: function(canvasId, width, height){
-            var context = wx.createCanvasContext(canvasId, this)
+            var context = wx.createCanvasContext(canvasId, this);
             // 外层圆环
             context.beginPath();
             context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, 2 * Math.PI,true);
@@ -64,10 +67,10 @@ Component({
             context.setLineCap('round');
             context.setStrokeStyle('#ebeeeb');
             context.stroke();
-            if(!this.data.modelShow){
-                this.setData({ radarImg: '' });
-                context.draw();
-            }else{
+            // if(!this.data.modelShow){
+            //     this.setData({ radarImg: '' });
+            //     context.draw();
+            // }else{
                 let that = this;
                 context.draw(
                     true, setTimeout(()=>{
@@ -84,9 +87,9 @@ Component({
                                 console.log(res);
                             }
                         }, that);
-                    },500)
+                    },400)
                 );
-            }
+            // }
         },
 
         drawRing: function (canvasId, width, height,stepNum) {
@@ -140,7 +143,6 @@ Component({
             var context = wx.createCanvasContext(canvasId, this);
             let angle = 0;
             let numStep = stepNum > 0 ? stepNum : 0;
-            console.log('numStep---',numStep);
             angle = Math.ceil(numStep / 100);
             context.beginPath()
             context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
@@ -176,7 +178,7 @@ Component({
                             console.log(res);
                         }
                     }, that);
-                },500)
+                },400)
             );
         }
     }
