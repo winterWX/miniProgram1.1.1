@@ -3,11 +3,8 @@
   <view class="text-block">
     <view class="text-title">绑定健康应用数据开启健康之旅</view>
       <view class="title-midden">
-          Placeholder Placeholder Placeholder The data you 
-          share with [insert name  of Wellness Portal] will be governed by 
-          Hang Seng Bank’s [<text bindtap="privacyAgreement">Privacy Terms</text>] and [<text bindtap="userAgreement">User Agreement</text>]. You can 
-          revoke this consent at any 
-          time in the settings of your selected mobile device] 
+        By clicking ‘OK’ below, you agree to allow Hang Seng Olive to connect with WeChat Health and to use and display your personal data including (without limitation) [your walking distance, accumulated work out span, calories burnt, heart rate and other activity data ] collected on your WeChat Health account.
+        The data you share with Hang Seng Olive will be governed by Hang Seng Bank’s [<text bindtap="privacyAgreement" class="textUnder">Privacy Terms</text>] and [<text bindtap="userAgreement" class="textUnder">User Agreement</text>]. [You can revoke this consent at any time in the settings of your mobile device / Wellness Portal.]
       </view>
   </view>
   <view class="btnAbfort">

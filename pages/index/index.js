@@ -130,13 +130,13 @@ Page({
   },
 
   modelShowBlock: function (event){
-  let that = this;
-  if (event.detail.modelShow){
-      //阅读完关闭
-      that.setData({ modelShow: false });
-      that.checkIsAppUser();  //调用数据源，App数据优先；
-   }
- },
+    let that = this;
+    if (event.detail.modelShow){
+        //阅读完关闭
+        that.setData({ modelShow: false });
+        that.checkIsAppUser();  //调用数据源，App数据优先；
+    }
+  },
 
   myfindPage:function(){
     wx.navigateTo({
@@ -352,14 +352,19 @@ Page({
     const { item } = e.currentTarget.dataset;
     const levelArray = item.level.split(',');
     let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
-    if( app.globalData.isLogin === 3){
+    let flag = true;   //标记所有等级都能看
+    ['1','2','3','4','5'].forEach(item =>{
+      if(!levelArray.includes(item)){ flag = false; }
+    })
+    if(app.globalData.isLogin === 3){
       if(levelArray.includes(that.data.levelNum +'')){
-          wx.navigateTo({ url });
+          wx.navigateTo({ url : url});
       }else{
           this.setData({ lookLevel: true});
-      }
-    }else{    
-      wx.navigateTo({ url });
+      } 
+    }else{
+      // flag === true 是所有等级都能看
+      wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
     }
   },
   listChange(e){
