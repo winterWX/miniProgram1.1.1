@@ -107,13 +107,17 @@ Page({
      let that = this; 
      const { item } = e.currentTarget.dataset;
      const levelArray = item.level.split(',');
-     if(levelArray.includes(that.data.levelNum +'')){
-        wx.navigateTo({                                 
-          url: '../../pages/HealthInforDetails/index?goodsId='+ item.id      
-        });
+     let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
+     if(app.globalData.isLogin === 3){
+        if(levelArray.includes(that.data.levelNum +'')){
+            wx.navigateTo({ url : url});
+        }else{
+            this.setData({ lookLevel: true});
+        } 
      }else{
-        this.setData({ lookLevel: true});
-     } 
+        //铜的时候跳50%页面
+        wx.navigateTo({ url: that.data.levelNum !== 1 ? '../../pages/index/index' : url });
+     }
   },
  
   //关闭弹窗

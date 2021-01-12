@@ -23,6 +23,12 @@ Component({
       this.triggerEvent('modelShowBlock', {
         modelShow: true
       }, {})
+    },
+    userAgreement(){
+      wx.navigateTo({ url: '../../pages/userAgreement/index' });
+    },
+    privacyAgreement(){
+      wx.navigateTo({ url: '../../pages/privacyAgreement/index' });
     }
   }
 })
