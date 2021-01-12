@@ -108,6 +108,10 @@ Page({
      const { item } = e.currentTarget.dataset;
      const levelArray = item.level.split(',');
      let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
+     let flag = true;  //标记所有等级都能看
+     ['1','2','3','4','5'].forEach(item =>{
+        if(!levelArray.includes(item)){ flag = false; }
+     })
      if(app.globalData.isLogin === 3){
         if(levelArray.includes(that.data.levelNum +'')){
             wx.navigateTo({ url : url});
@@ -115,8 +119,8 @@ Page({
             this.setData({ lookLevel: true});
         } 
      }else{
-        //铜的时候跳50%页面
-        wx.navigateTo({ url: that.data.levelNum !== 1 ? '../../pages/index/index' : url });
+        // flag === true 是所有等级都能看
+        wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
      }
   },
  
