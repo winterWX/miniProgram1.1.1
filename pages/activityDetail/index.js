@@ -133,6 +133,7 @@ Page({
     let url = app.globalData.baseUrl + "/remote/myactivity/detail/" + id;
     let method = 'GET';
     that.selectComponent("#loading").show();
+
     Utils.wxAjax(method,url).then(res=>{
       if (res.data.code == 200) {
           let detail = {

@@ -142,14 +142,14 @@ Component({
         imageDrawRing:function(canvasId, width, height,stepNum){
             var context = wx.createCanvasContext(canvasId, this);
             let angle = 0;
-            let numStep = stepNum > 0 ? stepNum : 0;
+            let numStep = (stepNum === undefined || stepNum === 0 ) ? 1 : (stepNum >= 10000 ? 10000 : stepNum);
             angle = Math.ceil(numStep / 100);
             context.beginPath()
             context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
             context.setLineWidth(10)
             context.setLineCap('round')
             context.setStrokeStyle('#00a865')
-            this.setData({ numStep });
+            this.setData({ numStep : stepNum === undefined ? 0 : numStep });
             context.stroke()
             // 指示器
             const xAxis = Math.cos(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
@@ -183,3 +183,8 @@ Component({
         }
     }
 })
+
+
+
+
+

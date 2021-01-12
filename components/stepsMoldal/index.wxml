@@ -5,7 +5,7 @@
       <view class="title-midden">
           Placeholder Placeholder Placeholder The data you 
           share with [insert name  of Wellness Portal] will be governed by 
-          Hang Seng Bank’s [Privacy Terms] and [User Agreement]. You can 
+          Hang Seng Bank’s [<text bindtap="privacyAgreement">Privacy Terms</text>] and [<text bindtap="userAgreement">User Agreement</text>]. You can 
           revoke this consent at any 
           time in the settings of your selected mobile device] 
       </view>

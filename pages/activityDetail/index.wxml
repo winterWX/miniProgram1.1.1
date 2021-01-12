@@ -135,4 +135,4 @@
 	</view>
 </view>
 <integralAmation integral="{{reward}}" wx:if="{{showAnimation}}" style="z-index:4;" />
-<rwj-loading  id="loadings"></rwj-loading>
+<rwj-loading  id="loading"></rwj-loading>
