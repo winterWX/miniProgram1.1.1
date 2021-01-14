@@ -1,4 +1,3 @@
-<!-- pages/answer/index.wxml -->
 <view class="container">
     <view class="header">
         <image class="bg-img" src="{{bannerUrl}}"></image>

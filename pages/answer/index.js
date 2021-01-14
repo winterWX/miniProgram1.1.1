@@ -139,14 +139,10 @@ Page({
   getQuestion: function(id) {
     let that = this;
     let { quesIndex } = that.data;
-    // wx.showLoading({
-    //   title: 'loading...',
-    // })
     let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
     let method = 'GET';
     that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
-      //wx.hideLoading()
       if(res.data.code === 200) {
         that.selectComponent("#loading").hide();
         let { questions, bannerUrl } = res.data.data;

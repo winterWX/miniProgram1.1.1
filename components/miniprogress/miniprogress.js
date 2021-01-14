@@ -16,9 +16,6 @@ Component({
                     this.createTopDrawRing();
                     this.createQueryFun();
                 }
-                // else{
-                //     this.createTopDrawRing();
-                // }
             }
         }
     },
@@ -32,7 +29,11 @@ Component({
     ready: function () {
         this.createTopDrawRing();
     },
-
+    //移除时清空存值
+    detached:function(){
+        wx.clearStorage('ringTopCanves');
+        wx.clearStorage('ringCanves');
+    },
     methods: {
         createTopDrawRing:function(){
             // if(!this.data.modelShow){
@@ -87,7 +88,7 @@ Component({
                                 console.log(res);
                             }
                         }, that);
-                    },400)
+                    },100)
                 );
             // }
         },
@@ -140,6 +141,7 @@ Component({
         },
 
         imageDrawRing:function(canvasId, width, height,stepNum){
+            console.log('modelShow====>>>>>>>>',this.data.modelShow,stepNum);
             var context = wx.createCanvasContext(canvasId, this);
             let angle = 0;
             let numStep = (stepNum === undefined || stepNum === 0 ) ? 1 : (stepNum >= 10000 ? 10000 : stepNum);
@@ -178,7 +180,7 @@ Component({
                             console.log(res);
                         }
                     }, that);
-                },400)
+                },100)
             );
         }
     }

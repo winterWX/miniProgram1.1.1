@@ -5,7 +5,7 @@ const userLogin = require('../../utils/userLogin.js');
 const authorizeRun = require('../../utils/authorizeRun.js');
 Page({
   data: {
-    isLogin: 0, // 0还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
+    isLogin: 0,   //0 还未授权获取用户信息，1已经授权获取用户信息，2已经授权获取电话号码，3是已经登录
     active: 0,
     successFlg: false,
     allowTo: 'allowTo',
@@ -22,7 +22,7 @@ Page({
     isAppData: false,  //是否是APP用户
     imagesUrl: app.globalData.imagesUrl,
     forceNum: false, //是否已经领过积分
-    roundData:{}, // 弹窗的状态 和 步数
+    roundData:{},    //弹窗的状态和步数
     modelShow: false,
     lookLevel: false //文章级别
   },
@@ -33,10 +33,10 @@ Page({
     }
     if(app.globalData.isLogin === 3 ){
       if(!app.lawsRegulations){
-          app.lawsRegulations = true;          //表示已经阅读了绑定数据的法律法规 
+          app.lawsRegulations = true;            //表示已经阅读了绑定数据的法律法规 
           setTimeout(()=>{
             that.setData({ modelShow: true });    // 。。。。同上
-          },600)  //半圆变成图片再显示
+          },800)  //半圆变成图片再显示
       }else{
           that.checkIsAppUser();  //调用数据源，App数据优先；
       }
@@ -143,11 +143,13 @@ Page({
       url: '../../pages/HealthInformation/index',
     })
   },
+
   challengePage:function(){
     wx.navigateTo({
       url: '../../pages/challenge/index',
     })
   },
+  
   navigateToStep: function() {
     let that = this;
     if(that.data.isAppData){

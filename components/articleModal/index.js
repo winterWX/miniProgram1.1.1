@@ -37,7 +37,6 @@ Component({
     },
 
     lookLevels:function(){
-      console.log('this.data.levelNum',this.data.levelNum);
       wx.navigateTo({
         url: this.data.levelNum == 2 || this.data.levelNum == 4 ? '../../pages/goldStrategy/index' : 
         (this.data.levelNum == 3 || this.data.levelNum == 5 ? '../../pages/goldStrategy/index': '../../pages/strategy/index') 

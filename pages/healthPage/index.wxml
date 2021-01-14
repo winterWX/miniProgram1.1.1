@@ -1,6 +1,6 @@
 <view class="pageTopPick-main">  
    <view  class="pageTopPick" wx:if="{{firstInitShow}}">
-         <view class='mask' wx:if="{{flag}}"></view>
+         <view class='mask' wx:if="{{flagMask}}"></view>
          <view class="mask-guidance1"  wx:if='{{guidance1}}'>
             <image src="{{imagesUrl + '/images/pic-guidance.png'}}"></image>
             <view class="picBottom">
@@ -27,8 +27,8 @@
        <view class="imageLeft" bindtap="leftBlokShow"><image src='{{imagesUrl + "/images/icon-guideline.png"}}'></image></view>
        <view class="imageRight" bindtap="stepRunSorce"><view>排行榜</view><image src='{{imagesUrl + "/images/icon-right-arrow-12-x-12.png"}}'></image></view>
          <view class="{{firstInitShow ? 'firstInitShow': 'miniprogress'}}">
-            <miniprogress wx:if="{{!firstInitShow}}" stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}" />
-            <image wx:else class="miniprogressImage"  src="{{imagesUrl + '/images/group@3x.png'}}"/>
+            <miniprogress class="miniprogressImage" stepNum="{{startStatus === true ? 0 : stepsNum.todaySteps}}"  modelShow="{{flagMask}}"/>
+            <!-- <image wx:else class="miniprogressImage"  src="{{imagesUrl + '/images/group@3x.png'}}"/> -->
         </view>
         <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)  isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
