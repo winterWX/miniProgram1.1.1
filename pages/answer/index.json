@@ -1,5 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "健康知识王者赛",
-  "rwj-loading": "../../components/loading/index"
+  "usingComponents": {
+    "rwj-loading": "../../components/loading/index"
+  },
+  "navigationBarTitleText": "健康知识王者赛"
 }

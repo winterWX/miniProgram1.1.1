@@ -185,7 +185,6 @@ Page({
           flg: flg === undefined ? '' : flg
       }
       let params = JSON.stringify(data);
-      console.log('params',params);
       wx.navigateTo({
         url: `../../pages/integralRule/index?params=${params}`
       })

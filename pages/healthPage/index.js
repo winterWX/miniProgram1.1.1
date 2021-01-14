@@ -28,7 +28,7 @@ Page({
      }, 
      leftDire: 750/2 + 120,
      topDire: 240 / 2,
-     flag: false,
+     flagMask: false,
      guidance1: false,
      guidance2: false,
      firstInitShow: true,  //第一次进来显示
@@ -44,7 +44,7 @@ Page({
       that.setData({ showAPPData: app.healthStep.dataCource, optionsFlg : options.id,
                       firstInitShow : app.firstInit.bootImage });
       if(app.firstInit.bootImage){
-          that.setData({ flag: true, guidance1:true });
+          that.setData({ flagMask: true, guidance1:true });
       }else{
           that.linkToPage(options.id);
       }
@@ -96,7 +96,7 @@ Page({
   },
   guidanceTwo: function () {
     let that = this;
-    that.setData({ guidance2: false, flag: false, firstInitShow: false });
+    that.setData({ guidance2: false, flagMask: false, firstInitShow: false });
     app.firstInit.bootImage = false;
     that.linkToPage(that.data.optionsFlg);
   },

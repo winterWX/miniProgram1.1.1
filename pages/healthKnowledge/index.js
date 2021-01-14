@@ -22,18 +22,13 @@ Page({
     }
   },
   onLogin(data) { //登录
-    // wx.showLoading({
-    //   title: 'loading...',
-    // })
     this.selectComponent("#loading").show();
     wx.login({
       success: (res) => {
         this.selectComponent("#loading").hide();
         if (res.code) {
           //发起网络请求
-          this.setData({
-            code: res.code
-          })
+          this.setData({ code: res.code })
           if (this.data.isLogin == 0) {
             this.checkAuthorization()
           } else if (this.data.isLogin == 1) {
@@ -120,7 +115,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { id, goodsId, title } = options;
+    console.log('options',options);
+    let { id, goodsId, title='' } = options;
     let activityId = id || goodsId;
     wx.setNavigationBarTitle({ title });
     this.setData({id: activityId, title});

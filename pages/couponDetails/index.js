@@ -5,7 +5,9 @@ Page({
     couponDetail:{},
     copyCode: false,
     showLink: false,
-    imagesUrl: app.globalData.imagesUrl
+    levelNum: 0,
+    imagesUrl: app.globalData.imagesUrl,
+    thirdUrls:''
   },
 
   /**
@@ -14,6 +16,7 @@ Page({
   onLoad: function (options) {
       let that = this;
       let {id, flag=null, limit=null} = options;
+      that.userLevel();
       that.couponDetail(id, flag, limit);
   },
 
@@ -76,6 +79,7 @@ Page({
             res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
             res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
             that.setData({couponDetail: res.data.data});
+            console.log('res.data.data===',res.data.data);
         }
         that.selectComponent("#loading").hide();
     })
@@ -119,5 +123,21 @@ Page({
          }
        }
      });
-  }
+  },
+  userLevel:function(){
+    let that = this;
+    let method = 'GET';
+    let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
+    that.selectComponent("#loading").show();
+    util.wxAjax(method,url).then(res =>{
+      if (res.data.code === 200) {
+          let level = res.data.data;
+          let golider = 'https://www.qhms.com/promotion/olive2627.aspx';   // 金
+          let solieder = 'https://www.qhms.com/promotion/olive6342.aspx';  // 银
+          let brolider = 'https://www.qhms.com/promotion/olive2026.aspx';  // 铜
+          that.setData({thirdUrls: (level == 3 || level == 5) ? golider : ((level == 2 || level == 4) ? solieder : brolider ) });
+      }
+      that.selectComponent("#loading").hide();
+    })
+  },
 })
