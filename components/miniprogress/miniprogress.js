@@ -3,9 +3,12 @@ Component({
     properties: {
         stepNum: {
             type: Number,
-            value : null,
+            value : 0,
             observer(value) {
-                this.createQueryFun(value);
+                console.log('value',value);
+                if(value){ 
+                    this.createQueryFun(value); 
+                }
             }
         },
         modelShow:{
@@ -15,6 +18,16 @@ Component({
                 if(value === true){
                     this.createTopDrawRing();
                     this.createQueryFun();
+                }
+            }
+        },
+        flagMask:{
+            type: Boolean,
+            value : false,
+            observer(value) {
+                if(value === true){
+                    this.createTopDrawRing();
+                    //this.createQueryFun();
                 }
             }
         }
@@ -36,9 +49,6 @@ Component({
     },
     methods: {
         createTopDrawRing:function(){
-            // if(!this.data.modelShow){
-            //     this.setData({radarImg : ''});
-            // }
             const query = this.createSelectorQuery();
             query.select('#ringTop').boundingClientRect(res => {
                 if(res !== null)  wx.setStorage({ data: JSON.stringify(res), key: 'ringTopCanves',});
@@ -68,33 +78,28 @@ Component({
             context.setLineCap('round');
             context.setStrokeStyle('#ebeeeb');
             context.stroke();
-            // if(!this.data.modelShow){
-            //     this.setData({ radarImg: '' });
-            //     context.draw();
-            // }else{
-                let that = this;
-                context.draw(
-                    true, setTimeout(()=>{
-                        wx.canvasToTempFilePath({
-                            canvasId: canvasId,
-                            success: function(res) {
-                                let tempFilePath = res.tempFilePath;
-                                that.setData({
-                                    radarImg: tempFilePath,
-                                    show: true
-                                });
-                            },
-                            fail: function(res) {
-                                console.log(res);
-                            }
-                        }, that);
-                    },100)
-                );
-            // }
+            let that = this;
+            context.draw(
+                true, setTimeout(()=>{
+                    wx.canvasToTempFilePath({
+                        canvasId: canvasId,
+                        success: function(res) {
+                            let tempFilePath = res.tempFilePath;
+                            that.setData({
+                                radarImg: tempFilePath,
+                                show: true
+                            });
+                        },
+                        fail: function(res) {
+                            console.log(res);
+                        }
+                    }, that);
+                },100)
+            );
         },
 
         drawRing: function (canvasId, width, height,stepNum) {
-            if(this.data.modelShow){
+            if(this.data.modelShow || this.data.flagMask){
                 this.imageDrawRing(canvasId, width, height,stepNum);
             }else{
                 this.setData({ radarImgAbfore :''});
@@ -135,54 +140,59 @@ Component({
                     context.setFillStyle('#00a865')
                     context.fill();
                     context.draw();
-                    console.log('this.data.modelShow',this.data.modelShow);
+                   //console.log('this.data.modelShow',this.data.modelShow);
                 },5);
             }
         },
 
         imageDrawRing:function(canvasId, width, height,stepNum){
-            console.log('modelShow====>>>>>>>>',this.data.modelShow,stepNum);
-            var context = wx.createCanvasContext(canvasId, this);
-            let angle = 0;
-            let numStep = (stepNum === undefined || stepNum === 0 ) ? 1 : (stepNum >= 10000 ? 10000 : stepNum);
-            angle = Math.ceil(numStep / 100);
-            context.beginPath()
-            context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
-            context.setLineWidth(10)
-            context.setLineCap('round')
-            context.setStrokeStyle('#00a865')
-            this.setData({ numStep : stepNum === undefined ? 0 : numStep });
-            context.stroke()
-            // 指示器
-            const xAxis = Math.cos(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
-            const yAxis = Math.sin(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
-            context.beginPath()
-            context.arc(width / 2 + xAxis, 40 + yAxis, 10, 0, 2 * Math.PI,true)
-            context.setFillStyle('#CCFFEB')
-            context.fill()
-            context.beginPath()
-            context.arc(width / 2 + xAxis, 40 + yAxis, 4, 0, 2 * Math.PI,true)
-            context.setFillStyle('#00a865')
-            context.fill();
-            let that = this;
-            context.draw(
-                true, setTimeout(()=>{
-                    wx.canvasToTempFilePath({
-                        canvasId: canvasId,
-                        success: function(res) {
-                            let tempFilePath = res.tempFilePath;
-                            that.setData({
-                                radarImgAbfore: tempFilePath,
-                                show: true
-                            });
-                        },
-                        fail: function(res) {
-                            console.log(res);
-                        }
-                    }, that);
-                },100)
-            );
-        }
+                if(this.data.modelShow && !this.data.flagMask) { 
+                    stepNum = 0;
+                }
+                console.log( 'this.data.modelShow', this.data.modelShow, stepNum);
+                var context = wx.createCanvasContext(canvasId, this);
+                let angle = 0;
+                let numStep = stepNum === 0 ? 1 : stepNum;
+                console.log('numStep--->',numStep);
+                angle = Math.ceil(numStep / 100);
+                context.beginPath();
+                context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)
+                context.setLineWidth(10)
+                context.setLineCap('round');
+                context.setStrokeStyle('#00a865');
+                this.setData({ numStep : stepNum });
+                context.stroke();
+                // 指示器
+                const xAxis = Math.cos(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
+                const yAxis = Math.sin(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
+                context.beginPath();
+                context.arc(width / 2 + xAxis, 40 + yAxis, 10, 0, 2 * Math.PI,true)
+                context.setFillStyle('#CCFFEB');
+                context.fill();
+                context.beginPath();
+                context.arc(width / 2 + xAxis, 40 + yAxis, 4, 0, 2 * Math.PI,true)
+                context.setFillStyle('#00a865');
+                context.fill();
+                let that = this;
+                context.draw(
+                    true, setTimeout(()=>{
+                        wx.canvasToTempFilePath({
+                            canvasId: canvasId,
+                            success: function(res) {
+                                let tempFilePath = res.tempFilePath;
+                                that.setData({
+                                    radarImgAbfore: tempFilePath,
+                                    show: true
+                                });
+                            },
+                            fail: function(res) {
+                                console.log(res);
+                            }
+                        }, that);
+                    },100)
+                );
+            }
+        //}
     }
 })
 

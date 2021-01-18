@@ -40,7 +40,7 @@ Page({
       }else{
           that.checkIsAppUser();  //调用数据源，App数据优先；
       }
-      that.setData({ isLogin: app.globalData.isLogin});
+      that.setData({ isLogin: app.globalData.isLogin });
       that.getState();
     }
     that.homePageInit();
