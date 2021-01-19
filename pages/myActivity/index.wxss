@@ -119,3 +119,14 @@ page {
   color: #333333;
   font-size: 32rpx;
 }
+
+.remain-end{
+  font-size: 24rpx;
+  background-color: #ededed;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 10rpx;
+  padding: 10rpx 30rpx;
+  color: #666666;
+  display: table-cell;
+}
