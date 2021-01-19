@@ -74,17 +74,16 @@ Page({
   },
   getActivityInfo: function(id) {
     let that = this;
-    wx.showToast({ title: '加载中', icon: 'loading' });
+    //wx.showToast({ title: '加载中', icon: 'loading' });
     let url =  app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id;
     let method = 'POST';
     that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
-      wx.hideToast();
+      that.selectComponent("#loading").hide();
       if (res.data.code == 200) {
         let { self } = res.data.data;
         that.setData({self});
       }
-      that.selectComponent("#loading").hide();
     });
   },
   navigateDetail: function() {

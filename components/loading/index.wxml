@@ -2,12 +2,11 @@
   <view class="loading-mask" wx:if="{{maskState}}"></view>
   <view class="loading-main">
     <view class="loading-content">
-      <view class="loading-image">
-        <image src="{{imagesUrl + '/images/lastAdd/loading@2x.png'}}"></image>
-      </view>
-      <!-- <view class="loading-text">
-        {{loadingText}}
-      </view> -->
+        <image src="../../images/Olive loading_104.gif" />
+        <!-- <view class="loading-image">
+          <image src="{{imagesUrl + '/images/lastAdd/loading@2x.png'}}"></image>
+        </view> -->
+        <!-- <view class="loading-text"> {{loadingText}} </view> -->
     </view>
   </view>
 </view>

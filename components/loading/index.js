@@ -29,9 +29,14 @@ Component({
       })
     },
     hide(){
-      this.setData({
-        loadingState: false
-      })
+      let that = this;
+      setTimeout(function(){
+          that.setData({
+            loadingState: false
+          })
+      }, 1200)
     }
   }
 })
+
+

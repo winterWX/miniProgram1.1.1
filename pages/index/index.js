@@ -22,26 +22,26 @@ Page({
     isAppData: false,  //是否是APP用户
     imagesUrl: app.globalData.imagesUrl,
     forceNum: false, //是否已经领过积分
-    roundData:{},    //弹窗的状态和步数
+    roundData:{}, //弹窗的状态和步数
     modelShow: false,
     lookLevel: false //文章级别
   },
   onLoad: function (options) {
     let that = this;
-    if (options.flag === 'true'){   //是 true
+    if (options.flag === 'true'){
       that.setData({ successFlg: true });
     }
     if(app.globalData.isLogin === 3 ){
-      if(!app.lawsRegulations){
+        that.setData({ isLogin: app.globalData.isLogin });
+        that.getState();
+        if(!app.lawsRegulations){
           app.lawsRegulations = true;            //表示已经阅读了绑定数据的法律法规 
           setTimeout(()=>{
             that.setData({ modelShow: true });    // 。。。。同上
           },800)  //半圆变成图片再显示
-      }else{
+        }else{
           that.checkIsAppUser();  //调用数据源，App数据优先；
-      }
-      that.setData({ isLogin: app.globalData.isLogin });
-      that.getState();
+        }
     }
     that.homePageInit();
     that.userLevel();
@@ -349,6 +349,7 @@ Page({
       }
     }
   },
+
   listClick(e){
     let that = this; 
     const { item } = e.currentTarget.dataset;
@@ -369,6 +370,7 @@ Page({
       wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
     }
   },
+
   listChange(e){
       let {type,id,title} = e.currentTarget.dataset.item;
     if(type === '1'){
@@ -381,6 +383,7 @@ Page({
         })
       }
   },
+
   setWerunStep:function(){
     let that = this;
     wx.getSetting({

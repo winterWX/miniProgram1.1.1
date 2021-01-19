@@ -11,7 +11,10 @@
 			<view class="remain-days" wx:if="{{activity.status === 2}}">
 				<image class="time-icon" src="{{ baseUrl  + '/images/challenge/active-left-time.png'}}"></image>
 					<text>剩余{{activity.remainDays}}天</text>
-				</view>
+			</view>
+			<view class="remain-end" wx:if="{{activity.status === 3}}">
+					<text>{{activity.statusName}}</text>
+			</view>
 		</view>
 	</view>
 </view>

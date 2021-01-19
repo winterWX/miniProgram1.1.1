@@ -31,8 +31,8 @@
   z-index: 99;
 }
 .loading-container .loading-main .loading-content{
-  width: 280rpx;
-  height: 280rpx;
+  width: 260rpx;
+  height: 260rpx;
   border-radius: 20rpx;
   background-color: #ffffff;
   display: flex;
@@ -60,4 +60,8 @@ to {transform:rotate(360deg);}
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #fff;
+}
+.loading-content image{
+  width: 100%;
+  height: 100%;
 }
