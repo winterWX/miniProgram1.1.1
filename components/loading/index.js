@@ -15,7 +15,7 @@ Component({
     maskState: false,
     imagesUrl: app.globalData.imagesUrl
   },
- 
+
   /**
    * 组件的方法列表
    */

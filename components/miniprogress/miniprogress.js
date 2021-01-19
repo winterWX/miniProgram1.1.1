@@ -141,7 +141,7 @@ Component({
                     context.fill();
                     context.draw();
                    //console.log('this.data.modelShow',this.data.modelShow);
-                },5);
+                },200);
             }
         },
 
