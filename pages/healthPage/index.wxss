@@ -506,3 +506,65 @@ padding-left: 10rpx;
   margin-bottom: 5rpx;
   font-size: 28rpx;
 }
+
+
+.topImage .topImage_bottom{
+  width: 650rpx;
+  height: 454rpx;
+} 
+.topText .topText_image{
+  width: 328rpx;
+  height: 180rpx;
+}
+.midden_image{
+  text-align: right;
+  padding-right: 58rpx;
+  margin-top: -9rpx;
+}
+.midden_image image{
+  width: 40rpx;
+  height: 142rpx;
+}
+.mask-guidance1{
+  z-index: 12000;
+  position: absolute;
+  top: 40rpx;
+  left: 50rpx;
+}
+.topText{
+  padding: 0rpx 60rpx;
+  text-align: center;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+}
+.topText_btn{
+  margin-top: 25rpx;
+  background-color: #00a865;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-family: PingFangSC;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.topText_tip{
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  color: #929292;
+  margin-top: 20rpx;
+}
+.picBottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  position: absolute;
+  top: 595rpx;
+  left: 2rpx;
+  height: 100rpx;
+  width: 100%;
+}
+.vanBtn{
+  margin-left: 30rpx;
+}

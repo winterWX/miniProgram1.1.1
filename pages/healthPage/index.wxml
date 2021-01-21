@@ -1,8 +1,24 @@
 <view class="pageTopPick-main">  
    <view  class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flagMask}}"></view>
-         <view class="mask-guidance1"  wx:if='{{guidance1}}'>
+         <!-- <view class="mask-guidance1"  wx:if='{{guidance1}}'>
             <image src="{{imagesUrl + '/images/pic-guidance.png'}}"></image>
+            <view class="picBottom">
+               <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
+               <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
+            </view>
+         </view> -->
+         <view class="mask-guidance1"  wx:if='{{guidance1}}'>
+            <!-- <image src="{{imagesUrl + '/images/pic-guidance.png'}}"></image> -->
+            <view class="topImage"> 
+               <image class="topImage_bottom" src="../../images/group-14@2x.png"></image>
+               <view class="topText">
+                  <image class="topText_image" src="../../images/group@2x.png"></image>
+                  <view class="topText_btn">马上领取10积分奖励</view>
+                  <view class="topText_tip">恭喜你! 今日的每日步数挑战已达标</view>
+               </view>
+            </view>
+            <view class="midden_image"><image src="../../images/combined-shape@2x.png" /></view>
             <view class="picBottom">
                <view class="picBottom-top">每日完成<view class="textShow">1万步</view>即可领取<view class="textShow">10积分</view>哦～</view>
                <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
@@ -32,7 +48,7 @@
         </view>
         <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)  isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
-            <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据访问</van-button>
+            <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据</van-button>
             <van-button  wx:if='{{ (stepsNum.isDone === "2" || stepsNum.todaySteps === 0)  && !startStatus}}'>还差{{startStep}}步即可领10积分</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}' class="topSetting-vanBtn"  bindtap="integralBtn">马上领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>已领取</van-button>
