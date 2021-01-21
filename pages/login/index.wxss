@@ -79,7 +79,7 @@ button::after{
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 220rpx;
+  bottom: 215rpx;
 }
 
 .errorShow{

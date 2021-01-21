@@ -205,7 +205,7 @@ Page({
         }else{
           //拒绝授权
           that.setData({ rejectRun: true }); 
-          that.setWerunStep();
+          //that.setWerunStep();
         }
     })
   },
@@ -384,27 +384,27 @@ Page({
       }
   },
 
-  setWerunStep:function(){
-    let that = this;
-    wx.getSetting({
-      success: function (res) {
-        if (!res.authSetting['scope.werun']) {
-            that.setData({ modelShow: true })
-            wx.showModal({
-              title: '提示',
-              content: '今日步数需要微信步数授权',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.openSetting({
-                    success: function (res) {
-                      that.getStepRunData();  //开启后 重新获取微信运动步数；
-                    }
-                  })
-                }
-              }
-            })
-        }
-      }
-    })
-  }
+//   setWerunStep:function(){
+//     let that = this;
+//     wx.getSetting({
+//       success: function (res) {
+//         if (!res.authSetting['scope.werun']) {
+//             that.setData({ modelShow: true })
+//             wx.showModal({
+//               title: '提示',
+//               content: '今日步数需要微信步数授权',
+//               success: function (res) {
+//                 if (res.confirm) {
+//                   wx.openSetting({
+//                     success: function (res) {
+//                       that.getStepRunData();  //开启后 重新获取微信运动步数；
+//                     }
+//                   })
+//                 }
+//               }
+//             })
+//         }
+//       }
+//     })
+//   }
 })

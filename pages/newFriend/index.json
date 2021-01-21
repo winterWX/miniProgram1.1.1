@@ -5,6 +5,6 @@
       "rwj-loading": "../../components/loading/index"
   },
   "enablePullDownRefresh": true,
-  "navigationBarTitleText": "朋友请求",
+  "navigationBarTitleText": "好友请求",
   "navigationBarTextStyle": "black"
 }

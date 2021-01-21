@@ -5,6 +5,6 @@
       "van-button": "vant-weapp/button/index",
       "rwj-loading": "../../components/loading/index"
   },
-  "navigationBarTitleText": "详情",
+  "navigationBarTitleText": "健康头条",
   "navigationBarTextStyle": "black"
 }

@@ -84,9 +84,52 @@ function getAllWeRunData(sessionkey, result) {
    // 微信授权之后看是否是第一次授权
    wxAuthorizedTime().then((data) => {
       if (data.data.code === 100711) {
-         postFirstAuthorizedTime();
+          postFirstAuthorizedTime();
       }
    });
+   setWeRunAuth(sessionkey,result);
+};
+
+function setWeRunAuth(sessionkey,result) {
+     wx.getSetting({
+       success: res => {
+         //第一步，检测是否有授权 - 没有授权
+         if (!res.authSetting['scope.werun']) {
+           //第二步，开始授权，但这里有一个坑点（腾讯的bug），之前授权过但是是拒绝，所以会进入失败
+           wx.authorize({
+             scope: 'scope.werun',
+             success: () => {
+               getWeRunData(sessionkey,result);
+             },
+             fail: () => {
+               //第三步，引导用户，手动引导用户点击按钮，去设置页开启，## Modals是自定义组件
+               wx.showModal({
+                    content: '今日步数需要授权微信运动，是否去设置？',
+                    confirmText: "设置",
+                    showCancel: true,
+                    confirmColor: '#576B95',
+                    success: function (res) {
+                        if(res.confirm){
+                           let { authSetting } = res.detail;
+                           if (authSetting['scope.werun']) {
+                              getWeRunData(sessionkey,result);
+                           } else {
+                              showModalBlock('您没有同意授权微信运动，获取步数失败');
+                           }
+                        }
+                    }
+                })
+             }
+           });
+         } else {
+           //第六步，已经授权直接进入保存逻辑
+           getWeRunData(sessionkey,result);
+         }
+       }
+     });
+}
+ 
+ function getWeRunData(sessionkey,result){
    wx.getWeRunData({
       success(resRun) {
           let url =  app.globalData.baseUrl + '/remote/oauth/mini/getEncryptedData';
@@ -107,33 +150,38 @@ function getAllWeRunData(sessionkey, result) {
          });
       },
       fail: function (e) {
-         console.log('e',e);
-         let errMsgCancel = 'getWeRunData:fail cancel';
+         console.log('Error',e);
          if(e.errMsg.includes('getWeRunData:fail')){
             wx.getSystemInfo({
                success: function(info) {
                   // 如果安卓手机就显示弹窗
                   if(!info.model.includes('iPhone')){
-                     wx.showModal({
-                          content: '您未开通微信运动，请关注"微信运动"公众号后重试',
-                          confirmText: "关闭",
-                          showCancel: false,
-                          confirmColor: '#576B95',
-                          success: function () {
-                             console.log('我是点关闭的时候');
-                          }
-                     })
+                     wx.showModal({
+                          content: '您未开通微信运动，请关注"微信运动"公众号后重试',
+                          confirmText: "关闭",
+                          showCancel: false,
+                          confirmColor: '#576B95',
+                          success: function () { console.log('我是点关闭的时候'); }
+                     })
                   }
-              }
+               }
             })
-         }else if(e.errMsg === errMsgCancel){
-            return;
-         }else{
-            result({authorize:false});  //拒绝授权
          }
       }
    })
-};
+ }
+
+ function showModalBlock(content){
+    wx.showModal({
+        content: content,
+        confirmText: "关闭",
+        showCancel: false,
+        confirmColor: '#576B95',
+        success: function () {
+            console.log('我是点关闭的时候');
+        }
+   })
+}
 
 module.exports = {
    getWxRunData: getWxRunData
