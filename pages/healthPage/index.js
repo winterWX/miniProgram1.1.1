@@ -94,12 +94,14 @@ Page({
     let that = this;
     that.setData({ guidance1: false, guidance2: true });
   },
+
   guidanceTwo: function () {
     let that = this;
     that.setData({ guidance2: false, flagMask: false, firstInitShow: false });
     app.firstInit.bootImage = false;
     that.linkToPage(that.data.optionsFlg);
   },
+  
   linkToPage: function (id) {
     let that = this;
     if (id === "allowTo") {

@@ -28,7 +28,7 @@
     <view class="inputBlock">
         <view class="nick">
           <view class="nickname">恒生尊享码</view>
-          <input class="input-name" value="{{ nickName }}" bindfocus='nameChangeFocus'  bindinput="nameChange" placeholder="请输入尊享码"></input>
+          <input class="input-name" value="{{ nickName }}" bindfocus='nameChangeFocus'  bindinput="nameChange" placeholder="{{ !showCarkBlock ? '请输入尊享码' : ''}}"></input>
           <view class="line {{showTip ? 'lineRed' : ''}}"></view>
           <view class='tip' wx:if="{{showTip && nickName.length !==0}}">
               <image src="{{imagesUrl + '/images/silver/red@3x.png'}}" />
