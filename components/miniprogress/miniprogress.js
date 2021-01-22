@@ -18,8 +18,6 @@ Component({
                 if(value === true){
                     this.createTopDrawRing(true);
                     this.createQueryFun();
-                }else{
-                    this.createTopDrawRing(false);
                 }
             }
         },
@@ -31,10 +29,7 @@ Component({
                 if(value === true){
                     this.createTopDrawRing(true);
                     //this.createQueryFun();
-                }else{
-                    this.createTopDrawRing(false);
                 }
-                
             }
         }
     },
@@ -50,7 +45,7 @@ Component({
             radarImg: '',
             radarImgAbfore: ''
         })
-        this.createTopDrawRing(false);
+        this.createTopDrawRing();
     },
 
     //移除时清空存值
@@ -60,10 +55,7 @@ Component({
     },
 
     methods: {
-        createTopDrawRing:function(showFlg){
-            if(!showFlg){
-                this.setData({ radarImg : '' });   
-            }
+        createTopDrawRing:function(){
             const query = this.createSelectorQuery();
             query.select('#ringTop').boundingClientRect(res => {
                 if(res !== null) {
@@ -72,7 +64,7 @@ Component({
                 } 
                 console.log('==空的时候');
                 let Re = JSON.parse(wx.getStorageSync('ringTopCanves'));  
-                this.topDrawRing('ringTop', Re.width, Re.height,showFlg);
+                this.topDrawRing('ringTop', Re.width, Re.height);
             }).exec()
         },
 
@@ -91,7 +83,7 @@ Component({
             }).exec()
         },
 
-        topDrawRing: function(canvasId, width, height,showFlg){
+        topDrawRing: function(canvasId, width, height){
             var context = wx.createCanvasContext(canvasId, this);
             // 外层圆环
             context.beginPath();
@@ -100,8 +92,7 @@ Component({
             context.setLineCap('round');
             context.setStrokeStyle('#ebeeeb');
             context.stroke();
-            if(showFlg){
-                let that = this;
+            let that = this;
                 context.draw(
                     true, setTimeout(()=>{
                         wx.canvasToTempFilePath({
@@ -119,9 +110,6 @@ Component({
                         }, that);
                     },200)
                 );
-            }else{
-                context.draw();
-            }
         },
 
         drawRing: function (canvasId, width, height,stepNum) {

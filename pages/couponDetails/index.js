@@ -113,7 +113,7 @@ Page({
      let that = this;
      wx.showModal({
        title: '你将被连接到第三方平台',
-       content: '你现在正离开[恒生健康]进入第三方平台,是否继续？',
+       content: '你现在正离开恒生Olive进入第三方平台，是否继续？',
        confirmText: '继续',
        success (res) {
          if (res.confirm) {

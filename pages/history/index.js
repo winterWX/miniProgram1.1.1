@@ -83,7 +83,8 @@ Page({
         const data = res.data.data.monthsList
         for (var i = 0; i < data.length; i++){
           for (var k = 0; k < data[i].historyList.length; k++) {
-            data[i].historyList[k].date = this.formatDate(data[i].historyList[k].createTime)
+            data[i].historyList[k].date = this.formatDate(data[i].historyList[k].createTime);
+            data[i].historyList[k].actualSteps = this.toThousands(data[i].historyList[k].actualSteps);
           }
         }
         
@@ -128,9 +129,6 @@ Page({
     const index = e.currentTarget.dataset.index;  
     const item = e.currentTarget.dataset.item;
     
-    // wx.showLoading({
-    //   title: 'loading...',
-    // })
     const parms = {
       challengeId:  item.id,
       receivePoints: '10'
@@ -185,5 +183,15 @@ Page({
       }
       //wx.hideLoading()
     });
-  }
+  },
+  toThousands(num) {
+    var result = [], counter = 0;
+    num = (num|| 0).toString().split('');
+    for (var i = num.length - 1; i >= 0; i--) {
+    counter++;
+    result.unshift(num[i]);
+    if (!(counter % 3) && i != 0) { result.unshift(','); }
+    }
+    return result.join('');
+    }
 })

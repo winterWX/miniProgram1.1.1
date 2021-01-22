@@ -32,7 +32,7 @@
                      <view class="silverBgImge" wx:if="{{activeData.level === 1}}"><image class="silver-bgImge" src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/newImage/silver-lock@3x.png"/></view>
                      <view class="imageBottom">
                         <view class="imageBottom1" wx:if="{{activeData.level === 2 || activeData.level === 4}}">积分{{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}升级</view>
-                        <view class="imageBottom1" wx:if="{{activeData.level === 1}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级银会员</view>
+                        <view class="imageBottom1" wx:if="{{activeData.level === 1}}">达{{infoLevelObj.nextLevelIntegral}}积分即升级银会员</view>
                      </view>
                </view>
             </swiper-item>
