@@ -124,7 +124,7 @@
       </view>
       <view class="seliverBlockRight">
          <view class="seliverTextRightBlock" bindtap="intergRalDatails">
-            <view class="seliverTextRight">积分详情</view>
+            <view class="seliverTextRight">我的积分</view>
             <view class="seliverTextRightBottom" >积分{{activeData.integralRemainDays}}天后过期</view>
          </view>
          <view class="seliverTextImge">
