@@ -73,7 +73,7 @@
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
-                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换活动</view>
             </view>
             <image src="{{baseUrl+'/images/silver/img@3x.png'}}"/>
         </view>
@@ -164,7 +164,7 @@
             </view> -->
             <view class="bottomBlockGold" catchtap="toPreferentialService"  data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -193,7 +193,7 @@
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
-                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换活动</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img@3x.png'}}"/>
         </view>
@@ -284,7 +284,7 @@
         </view> -->
         <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
             <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -320,7 +320,7 @@
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
-                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换活动</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img@3x.png'}}"/>
         </view>
@@ -408,7 +408,7 @@
             </view> -->
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3"  data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -499,7 +499,7 @@
         </view> -->
         <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3"  data-level="{{activeData.level}}">
             <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -565,7 +565,7 @@
             </view>
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -633,7 +633,7 @@
             <view class="bottomBlockGold">
                 <view class="bottomText">
                 <view class="bottomText1">尊享码升级会员独家礼遇</view>
-                <view class="bottomText2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomText2">健康礼品、现金券积分兑换活动</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/img@3x.png'}}"/>
             </view>
@@ -670,7 +670,7 @@
             </view> -->
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -723,7 +723,7 @@
             <view class="bottomBlockGold">
                 <view class="bottomText">
                 <view class="bottomText1">尊享码升级会员独家礼遇</view>
-                <view class="bottomText2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomText2">健康礼品、现金券积分兑换活动</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/img@3x.png'}}"/>
             </view>

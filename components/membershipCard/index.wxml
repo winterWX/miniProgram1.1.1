@@ -114,8 +114,9 @@
 <view class="seliverBlock" wx:if="{{seliverBlockShow}}">
       <view class="seliverBlockLeft" bindtap="myCoupons">
          <view class="seliverText">
-            <view class="seliverTextLeft">我的优惠</view>
-            <view class="seliverTextLeftBottom">折扣券、现金券</view>
+            <view class="seliverTextLeft">我的优惠券</view>
+            <!-- <view class="seliverTextLeftBottom">折扣券、现金券</view> -->
+            <view class="seliverTextLeftBottom">折扣券</view>
          </view>
          <view class="seliverTextImge">
             <image src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/group-19@3x.png" />

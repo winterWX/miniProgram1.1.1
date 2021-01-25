@@ -17,7 +17,7 @@
     <htmlView  class="textContentText" detail ="{{couponDetail.description}}"/>
   </view>
   <view class="bottomBtn">
-      <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>
+      <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1 && couponDetail.thirdPartyUrl !== ''}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>
       <button wx:if="{{couponDetail.useTime !== 0}}"   class="btnSty">已使用</button>
       <button wx:if="{{couponDetail.isExpiry === 1}}"  class="btnSty">已过期</button>
   </view>
