@@ -59,7 +59,7 @@
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
-                                    <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
+                                    <view class="progressBlockTextone">金会员X5积分升级攻略</view>
                                     <view class="progressBlockText3" bindtap="doubleIntegral"  data-flg="X5">立即查看</view>
                                 </view>
                             </view>
@@ -73,7 +73,7 @@
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
-                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换活动</view>
             </view>
             <image src="{{baseUrl+'/images/silver/img@3x.png'}}"/>
         </view>
@@ -139,7 +139,7 @@
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
-                                    <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
+                                    <view class="progressBlockTextone">金会员X5积分升级攻略</view>
                                     <view class="progressBlockText3" bindtap="doubleIntegral" data-flg="X5">立即查看</view>
                                 </view>
                             </view>
@@ -164,7 +164,7 @@
             </view> -->
             <view class="bottomBlockGold" catchtap="toPreferentialService"  data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -193,7 +193,7 @@
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
-                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换活动</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img@3x.png'}}"/>
         </view>
@@ -284,7 +284,7 @@
         </view> -->
         <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
             <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -303,7 +303,7 @@
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
                     <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">x5倍积分</view>
+                    <view class="glodBottomText2">X5倍Olive积分</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
@@ -320,7 +320,7 @@
         <view class="bottomAfter">
             <view class="bottomTextSecondeBlock">
                 <view class="bottomTextSecondeBlock1">尊享码升级会员独家礼遇</view>
-                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomTextSecondeBlock2">健康礼品、现金券积分兑换活动</view>
             </view>
             <image src="{{baseUrl + '/images/silver/img@3x.png'}}"/>
         </view>
@@ -383,7 +383,7 @@
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
-                                    <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
+                                    <view class="progressBlockTextone">金会员X5积分升级攻略</view>
                                     <view class="progressBlockText3" bindtap="doubleIntegral" data-flg="X5">立即查看</view>
                                 </view>
                             </view>
@@ -408,7 +408,7 @@
             </view> -->
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3"  data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -499,7 +499,7 @@
         </view> -->
         <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3"  data-level="{{activeData.level}}">
             <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
             </view>
             <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -518,7 +518,7 @@
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
                     <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">x5倍积分</view>
+                    <view class="glodBottomText2">X5倍Olive积分</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
@@ -537,8 +537,8 @@
         <view class="bouttomTitlr">会员礼遇</view>
             <view class="bottomBlockGold"  bindtap="doubleIntegral" data-flg="X2">
                 <view class="bottomText">
-                <view class="bottomText1">X2倍积分</view>
-                <view class="bottomText2">银会员享2倍活动积分</view>
+                <view class="bottomText1">X2倍Olive积分</view>
+                <view class="bottomText2">银会员享2倍Olive积分</view>
                 </view>
                 <image src="{{baseUrl + '/images/silver/newImage/x-2-point@3x.png'}}"/>
             </view>
@@ -565,7 +565,7 @@
             </view>
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -621,8 +621,8 @@
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl+'/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
-                                    <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
-                                    <view class="progressBlockText3"   bindtap="doubleIntegral"  data-flg="X5">立即查看</view>
+                                    <view class="progressBlockTextone">金会员X5积分升级攻略</view>
+                                    <view class="progressBlockText3" bindtap="doubleIntegral"  data-flg="X5">立即查看</view>
                                 </view>
                             </view>
                         </swiper-item>
@@ -633,7 +633,7 @@
             <view class="bottomBlockGold">
                 <view class="bottomText">
                 <view class="bottomText1">尊享码升级会员独家礼遇</view>
-                <view class="bottomText2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomText2">健康礼品、现金券积分兑换活动</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/img@3x.png'}}"/>
             </view>
@@ -644,7 +644,7 @@
         <view class="bouttomTitlr">会员礼遇</view>
             <view class="bottomBlockGold" bindtap="doubleIntegral" data-flg="X5">
                 <view class="bottomText">
-                    <view class="bottomText1">X5倍积分</view>
+                    <view class="bottomText1">X5倍Olive积分</view>
                     <view class="bottomText2">金会员享5倍会员活动积分</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/newImage/x-5-point@3x.png'}}"/>
@@ -670,7 +670,7 @@
             </view> -->
             <view class="bottomBlockGold" catchtap="toPreferentialService" data-type="3" data-level="{{activeData.level}}">
                 <view class="bottomText">
-                <view class="bottomText1">医健服务优惠</view>
+                <view class="bottomText1">健康服务优惠</view>
                 <view class="bottomText2">由健康伙伴提供</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/img-hospital22-2@3x.png'}}"/> 
@@ -711,7 +711,7 @@
                             <view class="progressBlockImage">
                                 <image src="{{baseUrl + '/images/silver/newImage/bg-x-5@3x.png'}}"/>
                                 <view class="progressBlockText glodBlock">
-                                    <view class="progressBlockTextone">黃金会员X5积分升级攻略</view>
+                                    <view class="progressBlockTextone">金会员X5积分升级攻略</view>
                                     <view class="progressBlockText3" bindtap="doubleIntegral" data-flg="X5">立即查看</view>
                                 </view>
                             </view>
@@ -723,7 +723,7 @@
             <view class="bottomBlockGold">
                 <view class="bottomText">
                 <view class="bottomText1">尊享码升级会员独家礼遇</view>
-                <view class="bottomText2">健康礼品、现金券积分兑换、免费视像会诊体验</view>
+                <view class="bottomText2">健康礼品、现金券积分兑换活动</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/img@3x.png'}}"/>
             </view>

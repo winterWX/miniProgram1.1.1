@@ -7,19 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    invitData:{},
+    invitData: {},
     //排序
     listData: [],
 		searchValue: '',
 		emptyShow: false,
     topSize: 100,
     baseUrl: app.globalData.imagesUrl,
-    friendArrayData:[],
+    friendArrayData: [],
     avatarObjList: app.globalData.avatarObjList,
     arrayNum: '',
     redTag: 0,
-    redTagShow:false,
-    bottomHight:0
+    redTagShow: false,
+    bottomHight: 0
   },
 
   /**
@@ -47,7 +47,7 @@ Page({
     this.topHeight();
     this.hasAddFriend();
     this.newFriendList();
-    this.setData({searchValue:''});
+    this.setData({ searchValue:'' });
   },
 
   /**
@@ -119,7 +119,7 @@ Page({
     let userInfoData = JSON.stringify(app.globalData.userInfo);
     let { baseUrl } = this.data;
     let shareObj = {
-  　　　　title: "邀请你成为[恒生健康]好友",
+  　　　　title: "邀请你成为恒生Olive好友",
   　　　　path: "/pages/newFriend/index?userInfoData="+ userInfoData,
          imageUrl: `${baseUrl}/images/addFriend/img@3x.png`,
   　　}

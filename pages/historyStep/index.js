@@ -1,4 +1,3 @@
-//logs.js
 import { wxAjax } from "../../utils/util";
 const util = require('../../utils/util.js');
 let app = getApp();

@@ -12,12 +12,12 @@
   <view class="middenCotentBlock">
     <view class="itemCotent">
       <image class="itemCotent-image"  src="{{baseUrl + '/images/integralRule/points@3x.png'}}"/>
-      <view class="itemCotent-title">白银会员x2倍积分</view>
+      <view class="itemCotent-title">银会员X2积分升级攻略</view>
       <view class="itemCotent-content">积分达1500或成为恒生银行客户即可升级白银会员</view>
     </view>
     <view class="itemCotent">
       <image class="itemCotent-image"  src="{{baseUrl + '/images/integralRule/points-2@3x.png'}}"/>
-      <view class="itemCotent-title">黄金会员x5倍积分</view>
+      <view class="itemCotent-title">金会员X5积分升级攻略</view>
       <view class="itemCotent-content">积分达4500或成为恒生保险客户即可升级黄金会员</view>
     </view>
   </view>
