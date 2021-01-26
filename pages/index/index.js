@@ -26,7 +26,8 @@ Page({
     modelShow: false,
     lookLevel: false, //文章级别
     showNumber: 0,   //标记显示 文章弹窗和法律文件弹窗
-    artTextData: {}  //首页文章列数据
+    artTextData: {},  //首页文章列数据
+    moreFlag: false  //更多按钮的标记
   },
   onLoad: function (options) {
     let that = this;
@@ -144,8 +145,12 @@ Page({
     let that = this;
     if (event.detail.artContinueBtn){
         app.firstTimeLook = true;
-        that.setData({ modelShow: false });
-        that.listParams(this.data.artTextData);
+        if(that.data.moreFlag){
+            wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+        }else{
+            that.setData({ modelShow: false });
+            that.listParams(this.data.artTextData);
+        }
     }
   },
 
@@ -157,9 +162,11 @@ Page({
   },
 
   myfindPage:function(){
-    wx.navigateTo({
-      url: '../../pages/HealthInformation/index',
-    })
+    if(!app.firstTimeLook){
+        this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
+    }else{
+        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+    }
   },
 
   challengePage:function(){
@@ -371,7 +378,7 @@ Page({
   listClick(e){
     let that = this;
     that.setData({ artTextData: Object.assign( {}, e) });
-    if(app.firstTimeLook && app.globalData.isLogin == 3){
+    if(!app.firstTimeLook && app.globalData.isLogin == 3){
        that.listParams(e);
     }else{
        that.setData({modelShow: true, showNumber: 2})
