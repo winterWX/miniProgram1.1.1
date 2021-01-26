@@ -144,12 +144,22 @@ Page({
   artContinueBtn: function (event){
     let that = this;
     if (event.detail.artContinueBtn){
-        app.firstTimeLook = true;
-        if(that.data.moreFlag){
-            wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+        if(app.globalData.isLogin !== 3){
+            if(that.data.moreFlag){
+              wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+              that.setData({ modelShow: false });
+            }else{
+              that.setData({ modelShow: false });
+              that.listParams(this.data.artTextData);
+            }
         }else{
-            that.setData({ modelShow: false });
-            that.listParams(this.data.artTextData);
+            app.firstTimeLook = true;
+            if(that.data.moreFlag){
+              wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+              that.setData({ modelShow: false });
+            }else{
+              that.listParams(this.data.artTextData);
+            }
         }
     }
   },
@@ -162,7 +172,7 @@ Page({
   },
 
   myfindPage:function(){
-    if(!app.firstTimeLook){
+    if(!app.firstTimeLook && app.globalData.isLogin !== 3 ){
         this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
     }else{
         wx.navigateTo({ url: '../../pages/HealthInformation/index' });
