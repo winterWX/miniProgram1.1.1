@@ -7,7 +7,9 @@ Page({
     showLink: false,
     levelNum: 0,
     imagesUrl: app.globalData.imagesUrl,
-    thirdUrls:''
+    thirdUrls:'',
+    modelShow:false,
+    showNumber: 0
   },
 
   /**
@@ -108,22 +110,41 @@ Page({
       }
     })
   },
+
+  artContinueBtn: function (event){
+    let that = this;
+    if (event.detail.artContinueBtn){
+        that.setData({ modelShow: false, showLink: true });
+    }
+  },
+
+  artCancelBtn: function (event){
+    let that = this;
+    if (event.detail.artCancelBtn){
+        that.setData({ modelShow: false, showLink: false });
+    }
+  },
+
   
   handleFell:function(){
      let that = this;
-     wx.showModal({
-       title: '你将被连接到第三方平台',
-       content: '你现在正离开恒生Olive进入第三方平台，是否继续？',
-       confirmText: '继续',
-       success (res) {
-         if (res.confirm) {
-           that.setData({showLink :true});
-         } else if (res.cancel) {
-           return;
-         }
-       }
-     });
+     that.setData({ modelShow: true, showNumber: 3 });
+      //  wx.showModal({
+      //    title: '你将被连接到第三方平台',
+      //    content: '你现在正离开恒生Olive进入第三方平台，是否继续？',
+      //    confirmText: '继续',
+      //    success (res) {
+      //      if (res.confirm) {
+      //        that.setData({showLink :true});
+      //      } else if (res.cancel) {
+      //        return;
+      //      }
+      //    }
+      //  });
   },
+
+
+
   userLevel:function(){
     let that = this;
     let method = 'GET';

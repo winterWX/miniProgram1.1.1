@@ -4,7 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    showNumber:{
+        type: Number,
+        value: 0,
+        observer(value) {}
+    }
   },
 
   /**
@@ -31,6 +35,16 @@ Component({
     privacyAgreement(){
       // wx.navigateTo({ url: '../../pages/privacyAgreement/index' });
       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' });
+    },
+    continueBtn(){
+      this.triggerEvent('artContinueBtn', {
+        artContinueBtn: true
+      }, {})
+    },
+    cancelBtn(){
+      this.triggerEvent('artCancelBtn', {
+        artCancelBtn: true
+      }, {})
     }
   }
 })

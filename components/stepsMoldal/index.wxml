@@ -1,13 +1,62 @@
-<view class="model-bleck">
-  <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" /></view>
-  <view class="text-block">
-    <view class="text-title">绑定健康应用数据开启健康之旅</view>
-      <view class="title-midden">
-        By clicking ‘OK’ below, you agree to allow Hang Seng Olive to connect with WeChat Health and to use and display your personal data including (without limitation) [your walking distance, accumulated work out span, calories burnt, heart rate and other activity data ] collected on your WeChat Health account.
-        The data you share with Hang Seng Olive will be governed by Hang Seng Bank’s [<text bindtap="privacyAgreement" class="textUnder">Privacy Terms</text>] and [<text bindtap="userAgreement" class="textUnder">User Agreement</text>]. [You can revoke this consent at any time in the settings of your mobile device / Wellness Portal.]
+
+<view class="blockArcSeconde" wx:if="{{ showNumber == 1 }}">
+    <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" /></view>
+    <view class="model-bleck2">
+      <view class="text-block">
+        <view class="text-title">绑定健康应用数据开启健康之旅</view>
+          <view class="title-midden">
+            By clicking ‘OK’ below, you agree to allow Hang Seng Olive to connect with WeChat Health and to use and display your personal data including (without limitation) [your walking distance, accumulated work out span, calories burnt, heart rate and other activity data ] collected on your WeChat Health account.
+            The data you share with Hang Seng Olive will be governed by Hang Seng Bank’s [<text bindtap="privacyAgreement" class="textUnder">Privacy Terms</text>] and [<text bindtap="userAgreement" class="textUnder">User Agreement</text>]. [You can revoke this consent at any time in the settings of your mobile device / Wellness Portal.]
+          </view>
       </view>
-  </view>
-  <view class="btnAbfort">
-    <button class="btn" bindtap="onStapeData">同意</button>
-  </view>
+      <view class="btnAbfort">
+        <button class="btn" bindtap="onStapeData">同意</button>
+      </view>
+    </view>
+</view>
+
+
+<!-- 第一次登录点击文章时的弹窗 -->
+<view class="blockArcSeconde" wx:if="{{ showNumber == 2 }}">
+   <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
+    <view class="model-bleck">
+      <view class="text-block">
+        <view class="text-title">You are now being re-directed to an external platform</view>
+          <view class="title-midden">
+              you will leave this Hang Seng Olive and move to an external 
+              digital platform operated by [ CUHK Medical Centre Limited]. 
+              All information and services in the external digital platform(s) 
+              are provided by the relevant third-party platform operator and Hang Seng 
+              shall not be liable for their content, nor any loss incurred by you in connection 
+              with such information and services.
+          </view>
+      </view>
+      <view class="btnAbfort">
+          <button class="btn" bindtap="continueBtn">同意</button>
+          <view class="btn_Cancel" bindtap="cancelBtn">取消</view>
+      </view>
+    </view>
+</view>
+
+
+<!-- 优惠券立即使用的跳转 -->
+<view class="blockArcSeconde" wx:if="{{ showNumber == 3 }}">
+   <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
+    <view class="model-bleck">
+      <view class="text-block">
+        <view class="text-title">You are now being re-directed to an external platform</view>
+          <view class="title-midden">
+              you will leave this Hang Seng Olive and move to an external 
+              digital platform operated by [ CUHK Medical Centre Limited]. 
+              All information and services in the external digital platform(s) 
+              are provided by the relevant third-party platform operator and Hang Seng 
+              shall not be liable for their content, nor any loss incurred by you in connection 
+              with such information and services.
+          </view>
+      </view>
+      <view class="btnAbfort">
+          <button class="btn" bindtap="continueBtn">同意</button>
+          <view class="btn_Cancel" bindtap="cancelBtn">取消</view>
+      </view>
+    </view>
 </view>

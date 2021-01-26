@@ -1,7 +1,6 @@
 import { wxAjax } from "../../utils/util";
 let app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -50,10 +49,8 @@ Page({
   getHeroList: function(id) {
     let that = this;
     let url = app.globalData.baseUrl + '/remote/myactivity/friend/rank/' + id;
-    //wx.showToast({ title: '加载中', icon: 'loading' });
     that.selectComponent("#loading").show();
     wxAjax('POST', url).then(res => {
-      //wx.hideToast();
       if (res.data.code == 200) {
         let { friend, self } = res.data.data;
         that.setData({friend, self})
@@ -61,7 +58,6 @@ Page({
       that.selectComponent("#loading").hide();
     })
     .catch(res => {
-      //wx.hideToast();
       that.selectComponent("#loading").hide();
     })
   }
