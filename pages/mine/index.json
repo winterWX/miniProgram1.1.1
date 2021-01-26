@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "footer": "../../components/footer/index",
-    "modalView": "../../components/modal/modal",
     "rwj-loading": "../../components/loading/index"
   },
   "navigationBarTitleText": "我的"

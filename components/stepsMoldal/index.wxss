@@ -1,13 +1,16 @@
 
 .model-bleck{
   background-color: #ffffff;
-  padding:  30rpx;
+  padding:  30rpx 30rpx 80rpx 30rpx;
   z-index: 99;
 }
 
-.topIimages{
-  margin-bottom: 42rpx;
+.model-bleck2{
+  background-color: #ffffff;
+  padding: 30rpx;
+  z-index: 99;
 }
+
 
 .text-title {
     width: 100%;
@@ -38,9 +41,10 @@
    font-style: normal;
    line-height: 1.43;
    letter-spacing: normal;
-   text-align: center;
    color: #666666;
    overflow-y: auto;
+   text-align: left;
+   padding: 0rpx 15rpx;
 }
 
 .btnAbfort{
@@ -89,4 +93,17 @@
 
 .textUnder{
  text-decoration: underline;
+}
+
+.blockArcSeconde{
+  background-color: #ffffff;
+}
+
+.btn_Cancel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
+  text-align: center;
+  color: #666666;
 }

@@ -135,9 +135,6 @@ Page({
   //文章列表接口
   searchSend(parase,num) {
     let that = this;
-    // wx.showLoading({
-    //   title: 'loading...'
-    // })
     let url = app.globalData.baseUrl + '/remote/article/query/list';
     let method = 'POST';
     const data = {

@@ -110,12 +110,20 @@ function setWeRunAuth(sessionkey,result) {
                     confirmColor: '#576B95',
                     success: function (res) {
                         if(res.confirm){
-                           let { authSetting } = res.detail;
-                           if (authSetting['scope.werun']) {
-                              getWeRunData(sessionkey,result);
-                           } else {
-                              showModalBlock('您没有同意授权微信运动，获取步数失败');
-                           }
+                           wx.getSetting({
+                              success: function (res) {
+                                 if (!res.authSetting['scope.werun']) {
+                                       wx.openSetting({
+                                          success: function (res) {
+                                             getWeRunData(sessionkey,result);  //开启后 重新获取微信运动步数；
+                                          },
+                                          fail:()=>{
+                                             showModalBlock('您没有同意授权微信运动，获取步数失败');
+                                          }
+                                       })
+                                 }
+                              }
+                           })
                         }
                     }
                 })

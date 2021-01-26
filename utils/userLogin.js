@@ -11,15 +11,15 @@ function onLogin(result, data, isLogin, redirectToUrl) {
   wx.login({
     success: (res) => {
       if (res.code) {
-        //发起网络请求
-        if (isLogin === 0) {
-          checkAuthorization(result, res.code, redirectToUrl); 
-        } else if (isLogin === 1) {
-          userLogin(result, data, res.code, redirectToUrl);
-        }
-        //标记登录成功
-        newState.loginSuccess = true;
-        result(newState);
+          //发起网络请求
+          if (isLogin === 0) {
+            checkAuthorization(result, res.code, redirectToUrl); 
+          } else if (isLogin === 1) {
+            userLogin(result, data, res.code, redirectToUrl);
+          }
+          //标记登录成功
+          newState.loginSuccess = true;
+          result(newState);
       }
     },
     fail: function (res) {

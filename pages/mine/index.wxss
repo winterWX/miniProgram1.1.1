@@ -106,7 +106,7 @@ page {
   width: 44rpx;
   height: 44rpx;
   position: absolute;
-  right: 100rpx;
+  right: 80rpx;
   top: -2rpx;
 }
 .container .member-info {

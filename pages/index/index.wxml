@@ -7,10 +7,10 @@
           <view class="topBlock-btn"><button open-type="getUserInfo" bindgetuserinfo="getUserInfo">新用户注册/登录</button></view>
         </view>
     </view>
-    <view  class="topSetting" wx:if="{{isLogin === 3}}"  bindtap="navigateToStep">
+    <view  class="topSetting" wx:if="{{isLogin === 3}}" bindtap="navigateToStep">
        <view class="imageRight" ><image src="{{imagesUrl + '/images/back@2x.png'}}" /></view>
         <view class="miniprogress">
-            <miniprogress  stepNum="{{ stepsNum.todaySteps }}"  modelShow="{{ modelShow }}" />
+            <miniprogress stepNum="{{ stepsNum.todaySteps }}" modelShow="{{ modelShow }}" />
         </view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{(runDataText !== 10000 || stepsNum.todaySteps === 0) && !rejectRun}}">只差{{ stepsNum.todaySteps == undefined ? 10000 : runDataText}}步达成今日目标</view>
@@ -39,12 +39,12 @@
          <view class="threesBlock-item">
            <view class="threesBlock-itemCher" wx:for="{{homeAllData.article}}" wx:key="index" bindtap="listClick" data-item="{{item}}">
                 <view class="threesBlock-itemText">
-                  <view class="threesBlockText1">{{item.title}}</view>
-                  <view class="threesBlock-itemTime">{{item.inputtime}}</view>
+                    <view class="threesBlockText1">{{item.title}}</view>
+                    <view class="threesBlock-itemTime">{{item.inputtime}}</view>
                 </view>
                 <view class="threesBlock-itemImage">
-                  <view  class="thumbNone" wx:if="{{item.thumb === ''}}"></view>
-                  <image wx:if="{{item.thumb !== ''}}"   src="{{item.thumb}}" />
+                    <view  class="thumbNone" wx:if="{{item.thumb === ''}}"></view>
+                    <image wx:if="{{item.thumb !== ''}}"   src="{{item.thumb}}" />
                 </view>
            </view>
          </view>
@@ -67,11 +67,21 @@
          </view>
     </view>
 </view>
+
 <rwj-loading id="loading"></rwj-loading>
-<steps-moldal  class="stepsMoldal" wx-if="{{ modelShow }}" bind:modelShowBlock="modelShowBlock"></steps-moldal>
-<article-modal class="stepsMoldal" bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}'></article-modal>
+
+<steps-moldal   class="stepsMoldal"  wx-if="{{ modelShow }}" showNumber="{{ showNumber }}"  
+bind:modelShowBlock="modelShowBlock"
+bind:artContinueBtn="artContinueBtn"
+bind:artCancelBtn="artCancelBtn"
+></steps-moldal>
+
+<article-modal  class="stepsMoldal"  bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}'></article-modal>
+
 <collectionOption  wx:if="{{ successFlg }}" bind:parentReceive="parentCallBack" ></collectionOption>
+
 <footer class="footerContent" active="{{ active }}" wx:if="{{ !successFlg && !modelShow && !lookLevel}}"></footer> 
 
 
 
+  

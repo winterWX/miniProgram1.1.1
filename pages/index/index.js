@@ -24,7 +24,9 @@ Page({
     forceNum: false, //是否已经领过积分
     roundData:{}, //弹窗的状态和步数
     modelShow: false,
-    lookLevel: false //文章级别
+    lookLevel: false, //文章级别
+    showNumber: 0,   //标记显示 文章弹窗和法律文件弹窗
+    artTextData: {}  //首页文章列数据
   },
   onLoad: function (options) {
     let that = this;
@@ -34,10 +36,10 @@ Page({
     if(app.globalData.isLogin === 3 ){
         that.setData({ isLogin: app.globalData.isLogin });
         that.getState();
-        if(!app.lawsRegulations){
-          app.lawsRegulations = true;            //表示已经阅读了绑定数据的法律法规 
+        if(!app.firstTimeLogin){
+          app.firstTimeLogin = true;            // 表示已经阅读了绑定数据的法律法规 
           setTimeout(()=>{
-            that.setData({ modelShow: true });    // 。。。。同上
+            that.setData({ modelShow: true, showNumber: 1 });    // 。。。。同上
           },800)  //半圆变成图片再显示
         }else{
           that.checkIsAppUser();  //调用数据源，App数据优先；
@@ -103,7 +105,7 @@ Page({
           res.data.data = 1
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
           app.healthStep.dataCource = res.data.data;    // 数据源
-          if(app.lawsRegulations && !that.data.modelShow){   //同意绑定数据(法律法规弹窗)
+          if(app.firstTimeLogin && !that.data.modelShow){   //同意绑定数据(法律法规弹窗)
               if(!that.data.isAppData){
                   that.getStepRunData();
               }else{
@@ -135,6 +137,22 @@ Page({
         //阅读完关闭
         that.setData({ modelShow: false });
         that.checkIsAppUser();  //调用数据源，App数据优先；
+    }
+  },
+
+  artContinueBtn: function (event){
+    let that = this;
+    if (event.detail.artContinueBtn){
+        app.firstTimeLook = true;
+        that.setData({ modelShow: false });
+        that.listParams(this.data.artTextData);
+    }
+  },
+
+  artCancelBtn: function (event){
+    let that = this;
+    if (event.detail.artCancelBtn){
+        that.setData({ modelShow: false });
     }
   },
 
@@ -351,24 +369,34 @@ Page({
   },
 
   listClick(e){
-    let that = this; 
-    const { item } = e.currentTarget.dataset;
-    const levelArray = item.level.split(',');
-    let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
-    let flag = true;   //标记所有等级都能看
-    ['1','2','3','4','5'].forEach(item =>{
-      if(!levelArray.includes(item)){ flag = false; }
-    })
-    if(app.globalData.isLogin === 3){
-      if(levelArray.includes(that.data.levelNum +'')){
-          wx.navigateTo({ url : url});
-      }else{
-          this.setData({ lookLevel: true});
-      } 
+    let that = this;
+    that.setData({ artTextData: Object.assign( {}, e) });
+    if(app.firstTimeLook && app.globalData.isLogin == 3){
+       that.listParams(e);
     }else{
-      // flag === true 是所有等级都能看
-      wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
+       that.setData({modelShow: true, showNumber: 2})
     }
+  },
+
+  listParams(e){
+      let that = this;
+      const { item } = e.currentTarget.dataset;
+      const levelArray = item.level.split(',');
+      let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
+      let flag = true;   //标记所有等级都能看
+      ['1','2','3','4','5'].forEach(item =>{
+        if(!levelArray.includes(item)){ flag = false; }
+      })
+      if(app.globalData.isLogin === 3){
+        if(levelArray.includes(that.data.levelNum +'')){
+            wx.navigateTo({ url : url});
+        }else{
+            this.setData({ lookLevel: true});
+        } 
+      }else{
+         // flag === true 是所有等级都能看
+         wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
+      }
   },
 
   listChange(e){

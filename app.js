@@ -81,7 +81,8 @@ App({
       },
     ]
   },
-  lawsRegulations:false, //绑定数据的时候的法律法规弹窗
+  firstTimeLogin: false, //绑定数据的时候的法律法规弹窗 和 首次登录
+  firstTimeLook:false, //第一次登录查看文章时
   firstInit:{ bootImage: true },
   //健康资讯全局变变量的设置
   healthInforData:{

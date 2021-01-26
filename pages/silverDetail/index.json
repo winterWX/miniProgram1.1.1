@@ -2,7 +2,6 @@
   "usingComponents": {
     "membership-card":"../../components/membershipCard",
     "van-button": "vant-weapp/button/index",
-    "modalView": "../../components/modal/modal",
     "htmlView": "../../components/htmlView/htmlView",
     "rwj-loading": "../../components/loading/index"
   },
