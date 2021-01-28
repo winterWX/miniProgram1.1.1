@@ -257,10 +257,10 @@ Page({
           this.setData({appName:'华为运动'});
           break;
         case 'Sensor':
-          this.setData({appName:'计步器'});
+          this.setData({appName:'手机计步器'});
           break;       
         case 'iOS':
-          this.setData({appName:'苹果健康'});
+          this.setData({appName:'Apple健康'});
           break;
         case 'Samsung':
           this.setData({appName:'三星'});

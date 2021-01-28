@@ -2,5 +2,5 @@
   "usingComponents": {
     "van-button": "vant-weapp/button/index"
   },
-  "navigationBarTitleText": "Olive积分规则"
+  "navigationBarTitleText": "积分规则"
 }
