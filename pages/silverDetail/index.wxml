@@ -25,7 +25,7 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view wx:if="{{item.received === 3}}" >未领取</view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -114,7 +114,7 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view wx:if="{{item.received === 3}}" >未领取</view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -226,7 +226,7 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view wx:if="{{item.received === 3}}" >未领取</view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -369,7 +369,7 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view wx:if="{{item.received === 3}}" >未领取</view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -477,7 +477,7 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未达成</view>
+                        <view wx:if="{{item.received === 3}}" >未领取</view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -645,7 +645,7 @@
             <view class="bottomBlockGold" bindtap="doubleIntegral" data-flg="X5">
                 <view class="bottomText">
                     <view class="bottomText1">X5倍Olive积分</view>
-                    <view class="bottomText2">金会员享5倍会员活动积分</view>
+                    <view class="bottomText2">金会员享5倍Olive积分</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/newImage/x-5-point@3x.png'}}"/>
             </view>

@@ -56,7 +56,7 @@
     </view>
   </view>
   <view class="bottomBtn">
-      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，立即升级金会员</view>
+      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，立即升级成为VIP金会员</view>
   </view>
   <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
             <view class="modals-cancel" bindtap="hideModal"></view>

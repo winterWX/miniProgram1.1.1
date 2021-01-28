@@ -53,6 +53,8 @@ Page({
             app.globalData.token = '';
             app.globalData.userInfo = null;
             app.globalData.loginSuccess = false;
+            app.firstTimeLogin = false, //绑定数据的时候的法律法规弹窗 和 首次登录
+            app.firstTimeLook = false, //第一次登录查看文章时
             wx.navigateTo({
               url: '../index/index'
             })

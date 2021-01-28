@@ -42,13 +42,13 @@
                      <view  class="imageTopText3">
                         <view class="imageTopTextLeft3">
                            <image  src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png"/>
-                           <view class="imageRihtText3">金会员</view>
+                           <view class="imageRihtText3">一般金会员</view>
                         </view>
                         <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">立即升级</view>
                      </view>
                      <view class="silverBgImgen silverBgImgen13" wx:if="{{activeData.level === 1 || activeData.level === 2}}"><image  class="silver-bgImgen"  src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/newImage/silver-lock@3x.png"/></view>
                      <view class="imageBottom3">
-                        <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view>
+                        <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级一般金会员</view>
                      </view>
                </view>
             </swiper-item>
@@ -80,13 +80,13 @@
                   <view  class="imageTopText3">
                      <view class="imageTopTextLeft3">
                         <image  src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png"/>
-                        <view class="imageRihtText3">金会员</view>
+                        <view class="imageRihtText3">一般金会员</view>
                      </view>
                      <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">立即升级</view>
                   </view>
                   <view class="silverBgImgen silverBgImgen13" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}"><image  class="silver-bgImgen" src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/newImage/silver-lock@3x.png"/></view>
                   <view class="imageBottom3">
-                     <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view>
+                     <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级一般金会员</view>
                   </view>
                   </view>
                </swiper-item>
@@ -98,7 +98,7 @@
                <view  class="imageTopText3">
                   <view class="imageTopTextLeft3">
                      <image  src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/qingtong-2-copy-5@3x.png"/>
-                     <view class="imageRihtText3">金会员</view>
+                     <view class="imageRihtText3">一般金会员</view>
                   </view>
                   <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">会员续期</view>
                </view>

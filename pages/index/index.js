@@ -147,19 +147,18 @@ Page({
         if(app.globalData.isLogin !== 3){
             if(that.data.moreFlag){
               wx.navigateTo({ url: '../../pages/HealthInformation/index' });
-              that.setData({ modelShow: false });
             }else{
-              that.setData({ modelShow: false });
               that.listParams(this.data.artTextData);
             }
+            that.setData({ modelShow: false });
         }else{
-            app.firstTimeLook = true;
             if(that.data.moreFlag){
               wx.navigateTo({ url: '../../pages/HealthInformation/index' });
-              that.setData({ modelShow: false });
             }else{
               that.listParams(this.data.artTextData);
             }
+            app.firstTimeLook = true;
+            that.setData({ modelShow: false });
         }
     }
   },
@@ -172,10 +171,10 @@ Page({
   },
 
   myfindPage:function(){
-    if(!app.firstTimeLook && app.globalData.isLogin !== 3 ){
-        this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
+    if(app.firstTimeLook){
+      wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }else{
-        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+      this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
     }
   },
 
@@ -388,10 +387,10 @@ Page({
   listClick(e){
     let that = this;
     that.setData({ artTextData: Object.assign( {}, e) });
-    if(!app.firstTimeLook && app.globalData.isLogin == 3){
-       that.listParams(e);
+    if(app.firstTimeLook){
+      that.listParams(e);
     }else{
-       that.setData({modelShow: true, showNumber: 2})
+      that.setData({modelShow: true, showNumber: 2});
     }
   },
 
@@ -418,14 +417,10 @@ Page({
 
   listChange(e){
       let {type,id,title} = e.currentTarget.dataset.item;
-    if(type === '1'){
-        wx.navigateTo({
-          url: '../activityDetail/index?id=' + id + '&title=' + title
-        })
+      if(type === '1'){
+          wx.navigateTo({ url: '../activityDetail/index?id=' + id + '&title=' + title });
       }else{
-        wx.navigateTo({                                 
-          url: '../../pages/healthKnowledge/index?id=' + id
-        })
+          wx.navigateTo({ url: '../../pages/healthKnowledge/index?id=' + id });
       }
   },
 

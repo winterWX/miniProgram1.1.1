@@ -38,10 +38,10 @@
     </view>
 </view>
 
-
 <!-- 优惠券立即使用的跳转 -->
+<!-- ../../image/illustrate-emptyBlock@2x.png" -->
 <view class="blockArcSeconde" wx:if="{{ showNumber == 3 }}">
-   <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
+   <view class="topIimages"><image src="{{ imagesUrl + '/images/illustrate-emptyBlock@2x.png'}}"/></view>
     <view class="model-bleck">
       <view class="text-block">
         <view class="text-title">You are now being re-directed to an external platform</view>
