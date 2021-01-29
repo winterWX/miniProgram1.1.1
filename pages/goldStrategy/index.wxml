@@ -5,9 +5,9 @@
         <view class="leftImageCode-text">
           <view class="text1">积分升级</view>
           <view class="leftImge"><image  src="{{imagesUrl + '/images/strategy/group-18@3xg.png'}}" /></view>
-          <view class="text2">基本金会员</view>
+          <view class="text2">一般金会员</view>
           <view class="text3">达{{tierInfo.nextLevelIntegral}}积分</view>
-          <view class="text4">即升级基本金会员</view>
+          <view class="text4">即升级一般金会员</view>
           <view class="text5" bindtap="activePage"><view class="btnClass">完成任务赚取积分</view></view>
         </view>
       </view>
@@ -77,13 +77,12 @@
                       </view>
                       <view class='msg-box .msg-box2'>
                           <view class="itemBlock">
-                            <view class="iphoneBlock">+（86）4001 2082 82</view>
+                            <view class="iphoneBlock">(852) 2596 6262</view>
                             <!-- <view class="iphoneBlock-image"><image src="{{imagesUrl + '/images/mine/mask@3x.png'}}" /></view> -->
                           </view>
-                          <view class="itemBlock itemBlockBottom">
-                            <view class="iphoneBlock">+（852）28220228</view>
-                            <!-- <view class="iphoneBlock-image"><image src="{{imagesUrl + '/images/mine/mask@3x.png'}}" /></view> -->
-                          </view>
+                          <!-- <view class="itemBlock itemBlockBottom">
+                            <view class="iphoneBlock">Hong Kong - (852) 2596 6262</view>
+                          </view> -->
                     </view>
                 </view>
             </view>

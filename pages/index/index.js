@@ -172,9 +172,9 @@ Page({
 
   myfindPage:function(){
     if(app.firstTimeLook){
-      wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+       wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }else{
-      this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
+       this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
     }
   },
 
@@ -183,7 +183,6 @@ Page({
       url: '../../pages/challenge/index',
     })
   },
-  
   navigateToStep: function() {
     let that = this;
     if(that.data.isAppData){
@@ -352,7 +351,6 @@ Page({
       that.selectComponent("#loading").hide();
     })
   },
-
   //领取状态
   getState: function () {
     let that = this;
@@ -370,7 +368,6 @@ Page({
       }
     })
   },
-
   membership:function(){
     let that = this;
     if(app.globalData.isLogin !== 3){
@@ -383,17 +380,15 @@ Page({
       }
     }
   },
-
   listClick(e){
     let that = this;
     that.setData({ artTextData: Object.assign( {}, e) });
     if(app.firstTimeLook){
-      that.listParams(e);
+       that.listParams(e);
     }else{
-      that.setData({modelShow: true, showNumber: 2});
+       that.setData({modelShow: true, moreFlag : false, showNumber: 2});
     }
   },
-
   listParams(e){
       let that = this;
       const { item } = e.currentTarget.dataset;
@@ -414,7 +409,6 @@ Page({
          wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
       }
   },
-
   listChange(e){
       let {type,id,title} = e.currentTarget.dataset.item;
       if(type === '1'){

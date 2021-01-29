@@ -13,12 +13,12 @@
     <view class="itemCotent">
       <image class="itemCotent-image"  src="{{baseUrl + '/images/integralRule/points@3x.png'}}"/>
       <view class="itemCotent-title">银会员X2积分升级攻略</view>
-      <view class="itemCotent-content">积分达1500或成为恒生银行客户即可升级白银会员</view>
+      <view class="itemCotent-content">积分达1500或成为恒生银行客户即可升级银会员</view>
     </view>
     <view class="itemCotent">
       <image class="itemCotent-image"  src="{{baseUrl + '/images/integralRule/points-2@3x.png'}}"/>
       <view class="itemCotent-title">金会员X5积分升级攻略</view>
-      <view class="itemCotent-content">积分达4500或成为恒生保险客户即可升级黄金会员</view>
+      <view class="itemCotent-content">积分达4500或成为恒生保险客户即可升级金会员</view>
     </view>
   </view>
 </view>
@@ -85,7 +85,7 @@
       type="primary" 
       size="large"
       bindtap="membership">
-      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看永恒白银会员升级攻略' : '查看黄金会员升级攻略'}}
+      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看永恒银会员升级攻略' : '查看金会员升级攻略'}}
     </van-button>
 </view>
 <view class="bottom-textConten" bindtap="moreActiveLink">参加活动赚取积分</view>
