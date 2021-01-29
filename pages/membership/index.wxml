@@ -63,14 +63,14 @@
                 <view class="text1-main"  wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 4 || tierCode.resultCode === 5}}">恭喜你成功升级为</view>
                 <view class="text1-main" wx:if="{{tierCode.resultCode === 2}}">恭喜你成功获得</view>
 
-                <view class="text2-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">金会员</view>
-                <view class="text2-main" wx:if="{{tierCode.resultCode === 4}}">永久银会员</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">VIP金会员</view>
+                <view class="text2-main" wx:if="{{tierCode.resultCode === 4}}">VIP银会员</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode === 2}}">专享礼遇</view>
 
-                <view class="text3-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。
-金会员有效期为一年，过期后将会成为永久银会员。</view>
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">VIP金会员尊享礼遇及优惠详情可于「会员级别」即時查阅。
+                VIP金会员有效期为一年，过期后将会成为VIP银会员。</view>
 
-                <view class="text3-main" wx:if="{{tierCode.resultCode === 4}}">你可永久享用银会员尊享礼遇及优惠，详情可于「会员级别」即時查阅。</view>
+                <view class="text3-main" wx:if="{{tierCode.resultCode === 4}}">你可永久享用VIP银会员尊享礼遇及优惠，详情可于「会员级别」即時查阅。</view>
 
                 <view class="text3-main" wx:if="{{tierCode.resultCode === 2}}">你已成功延长一年VIP金会员有效期，尊享礼遇及优惠详情可于「会员级别」中查阅。</view>
 

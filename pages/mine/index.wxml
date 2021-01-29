@@ -149,13 +149,13 @@
 			</view>
 			<view class='msg-box .msg-box2'>
 				<view class="itemBlock">
-					<view class="iphoneBlock">+（86）4001 2082 82</view>
+					<view class="iphoneBlock">(852) 2596 6262</view>
 					<view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
 				</view>
-				<view class="itemBlock itemBlockBottom">
-					<view class="iphoneBlock">+（852）28220228</view>
+				<!-- <view class="itemBlock itemBlockBottom">
+					<view class="iphoneBlock">Hong Kong - (852) 2596 6262</view>
 					<view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
-				</view>
+				</view> -->
 			</view>
 		</view>
   </view> 
