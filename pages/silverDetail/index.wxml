@@ -1,7 +1,7 @@
 <membership-card  activeData ="{{activeData}}" infoLevel ="{{infoLevel}}" bind:parentLevel="parentCallBack" />
 <view wx:if="{{activeData.level === 1 && LockFlg}}">
     <view class="integralAct-main">
-        <view class="integralActTitle">积分奖赏换领总览</view>
+        <view class="integralActTitle">Olive积分换领</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <view class="rab-item1 "><view class="rabie {{integral >= item.targetIntegral ? 'active-color' : ''}}">{{item.targetIntegral}}</view></view>
@@ -41,7 +41,7 @@
                                 <image src="{{baseUrl + '/images/silver/newImage/group-12@3x.png'}}"/>
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl+'/images/silver/newImage/group-2@t3x.png'}}"/>
-                                    <view class="progressBlockText1">现金券积分兑换 唯尊享码升级会员专享</view>
+                                    <view class="progressBlockText1">优惠券积分兑换 唯尊享码升级会员专享</view>
                                     <view class="progressBlockText2" bindtap="upgradePage" data-level="{{activeData.level}}">立即升级</view>
                                 </view>
                             </view>
@@ -88,7 +88,7 @@
         <!-- <view class="vipBottomBlock" >vvip尊享升级，权益更多</view> -->
     </view>
     <view class="integralAct-main">
-        <view class="integralActTitle">积分奖赏换领总览</view>
+        <view class="integralActTitle">Olive积分换领</view>
         
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
@@ -130,7 +130,7 @@
                                 <image src="{{baseUrl+'/images/silver/newImage/group-12@3x.png'}}"/>
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl+'/images/silver/newImage/group-2@t3x.png'}}"/>
-                                    <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
+                                    <view class="progressBlockText1">优惠券积分兑换 唯尊享码升级会员专享</view>
                                     <view class="progressBlockText2" bindtap="upgradePage" data-level="{{activeData.level}}">立即升级</view>
                                 </view>
                             </view>
@@ -201,7 +201,7 @@
 </view>
 <view wx:if="{{activeData.level === 3 && LockFlg}}">
     <view class="integralAct-main">
-        <view class="integralActTitle">积分奖赏换领总览</view>
+        <view class="integralActTitle">Olive积分换领</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -241,7 +241,7 @@
                                 <image src="{{baseUrl+'/images/silver/newImage/group-12@3x.png'}}"/>
                                 <view class="progressBlockText">
                                     <image src="{{baseUrl + '/images/silver/newImage/group-2@t3x.png'}}"/>
-                                    <view class="progressBlockText1">现金券积分兑换唯尊享码升级会员专享</view>
+                                    <view class="progressBlockText1">优惠券积分兑换 唯尊享码升级会员专享</view>
                                     <view class="progressBlockText2" bindtap="upgradePage" data-level="{{activeData.level}}">立即升级</view>
                                 </view>
                             </view>
@@ -344,7 +344,7 @@
         </view>
     </view>
     <view class="integralAct-main">
-        <view class="integralActTitle">积分奖赏换领总览</view>
+        <view class="integralActTitle">Olive积分换领</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->
@@ -452,7 +452,7 @@
         </view>
     </view>
     <view class="integralAct-main" style="height: 275rpx;">
-        <view class="integralActTitle">积分奖赏换领总览</view>
+        <view class="integralActTitle">Olive积分换领</view>
         <view class="progressSecore">
             <view  class="itemBlock" wx:for="{{activeData.mileStones}}" wx:key="id" style="width:{{secoreNun}}%;">
                 <!-- <view class="rab-item">{{item.targetIntegral}}</view> -->

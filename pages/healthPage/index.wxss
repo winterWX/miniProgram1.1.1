@@ -124,8 +124,21 @@ page{
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 495rpx;
-    left: 54rpx;
+    top: -180rpx;
+    left: 0rpx;
+    background-color: #ffffff;
+    width: 100%;
+    height: 130rpx;
+}
+.guidanceMidden{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -50rpx;
+  right: 80rpx;
+  width: 40rpx !important;
+  height: 50rpx !important;
 }
 .picBottomText-top{
   width: 432rpx;
@@ -566,5 +579,9 @@ padding-left: 10rpx;
   width: 100%;
 }
 .vanBtn{
-  margin-left: 30rpx;
+    margin-left: 30rpx;
+}
+.guidance2-image{
+  width: 690rpx !important;   
+  height: 420rpx !important;
 }

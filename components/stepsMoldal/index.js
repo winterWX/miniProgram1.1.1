@@ -8,7 +8,12 @@ Component({
         type: Number,
         value: 0,
         observer(value) {}
-    }
+    },
+    showFlag:{
+      type: String,
+      value: '',
+      observer(value) {}
+    }    
   },
 
   /**

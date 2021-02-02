@@ -1,6 +1,8 @@
 
 <view class="blockArcSeconde" wx:if="{{ showNumber == 1 }}">
-    <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" /></view>
+    <view class="topIimages">
+      <image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" />
+    </view>
     <view class="model-bleck2">
       <view class="text-block">
         <view class="text-title">绑定健康应用数据开启健康之旅</view>
@@ -38,20 +40,26 @@
     </view>
 </view>
 
-<!-- 优惠券立即使用的跳转 -->
-<!-- ../../image/illustrate-emptyBlock@2x.png" -->
+<!-- 优惠券立即使用的跳转    true == 卓见   false == 中大  -->
 <view class="blockArcSeconde" wx:if="{{ showNumber == 3 }}">
-   <view class="topIimages"><image src="{{ imagesUrl + '/images/illustrate-emptyBlock@2x.png'}}"/></view>
+   <view class="topIimages">
+     <image wx-if="{{showFlag === 'QHMS'}}"  src="{{ imagesUrl + '/images/illustrate-emptyBlock@2x.png'}}"/>
+     <image wx-if="{{showFlag !== 'QHMS'}}"  src="{{ imagesUrl + '/images/icnImage/zd-illustrate-empty@2x.png'}}"/>
+    </view>
     <view class="model-bleck">
       <view class="text-block">
-        <view class="text-title">You are now being re-directed to an external platform</view>
-          <view class="title-midden">
+        <view class="text-title" wx-if="{{showFlag === 'QHMS'}}">You are now being re-directed to an external platform</view>
+        <view class="text-title" wx-if="{{showFlag !== 'QHMS'}}">You are now being re-directed to an external platform</view>
+          <view wx-if="{{showFlag === 'QHMS'}}"  class="title-midden">
               you will leave this Hang Seng Olive and move to an external 
               digital platform operated by [ CUHK Medical Centre Limited]. 
               All information and services in the external digital platform(s) 
               are provided by the relevant third-party platform operator and Hang Seng 
               shall not be liable for their content, nor any loss incurred by you in connection 
               with such information and services.
+          </view>
+          <view wx-if="{{showFlag !== 'QHMS'}}" class="title-midden">
+            you will leave this Hang Seng Olive and move to an external digital platform operated by [ CUHK Medical Centre Limited]. All information and services in the external digital platform(s) are provided by the relevant third-party platform operator and Hang Seng shall not be liable for their content, nor any loss incurred by you in connection with such information and services.
           </view>
       </view>
       <view class="btnAbfort">

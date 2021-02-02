@@ -21,10 +21,15 @@
       <button wx:if="{{couponDetail.useTime !== 0}}"   class="btnSty">已使用</button>
       <button wx:if="{{couponDetail.isExpiry === 1}}"  class="btnSty">已过期</button>
   </view>
-  <view wx:if="{{showLink}}"><web-view src="{{couponDetail.thirdPartyUrl !== '' ? couponDetail.thirdPartyUrl : thirdUrls }}"></web-view></view>
+  <view wx:if="{{showLink}}">
+    <web-view src="{{couponDetail.thirdPartyUrl === 'QHMS' ? thirdUrls : couponDetail.thirdPartyUrl }}"></web-view>
+  </view>
 </view>
 <rwj-loading id="loading"></rwj-loading>
-<steps-moldal  class="stepsMoldal"  wx-if="{{ modelShow }}" showNumber="{{ showNumber }}"
+<steps-moldal  class="stepsMoldal"  
+wx-if="{{ modelShow }}" 
+showNumber="{{ showNumber }}"
+showFlag="{{ couponDetail.thirdPartyUrl}}"
 bind:artContinueBtn="artContinueBtn"
 bind:artCancelBtn="artCancelBtn"
 ></steps-moldal>
