@@ -7,6 +7,7 @@ Component({
             observer(value) {
                 if(value){ 
                     this.createQueryFun(value); 
+                    //this.createQueryFun();
                 }
             }
         },

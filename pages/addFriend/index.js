@@ -119,9 +119,9 @@ Page({
     let userInfoData = JSON.stringify(app.globalData.userInfo);
     let { baseUrl } = this.data;
     let shareObj = {
-  　　　　title: "邀请你成为恒生Olive好友",
+  　　　　title: "邀请您成为恒生Olive好友",
   　　　　path: "/pages/newFriend/index?userInfoData="+ userInfoData,
-         imageUrl: `${baseUrl}/images/addFriend/img@3x.png`,
+         imageUrl: `${baseUrl}/images/icnImage/imgn@2x.png`,
   　　}
   　　// 来自页面内的按钮的转发
   　　if (options.from == "button") {

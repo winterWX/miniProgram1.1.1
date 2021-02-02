@@ -24,8 +24,7 @@
                <van-button class="vanBtn" bindtap="guidanceOne">知道了</van-button>
             </view>
          </view>
-         <view class="mask-guidance2"  wx:if='{{guidance2}}'>
-               <image src="{{imagesUrl + '/images/pic-guidance-2.png'}}"></image>
+         <view class="mask-guidance2" wx:if='{{guidance2}}'>
                <view class="contutionText">
                      <view class="picBottomText-main">
                         <view class="picBottomText">
@@ -37,6 +36,9 @@
                      </view>
                   <van-button class="guidanceTwoBtn vanBtn" bindtap="guidanceTwo">开始记录</van-button>
                </view>
+               <image class="guidanceMidden" src="{{imagesUrl + '/images/icnImage/combined-shape@2x.png'}}"></image>
+               <!-- <image src="{{imagesUrl + '/images/pic-guidance-2.png'}}"></image> -->
+               <image class="guidance2-image" src="{{imagesUrl + '/images/icnImage/pic-guidance-2@2x.png'}}"></image>
          </view>
    </view>
    <view  class="topSetting PageBackColor" style="padding-top:30rpx;">

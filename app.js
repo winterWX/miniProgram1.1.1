@@ -28,55 +28,55 @@ App({
     sessionFail:false,
     avatarObjList: [
       {
-        url: imagesUrl + "/images/icon/icon-defult-touxiang.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-defult-touxiang@2x.png', 
         id: 0,
       },
       {
-        url: imagesUrl + "/images/icon/icon-laoshu.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-laoshu@2x.png',  
         id: 1,
       },
       {
-        url: imagesUrl + "/images/icon/iconNiu.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-niu@2x.png',  
         id: 2,
       },
       {
-        url: imagesUrl + "/images/icon/iconLaohu.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-laohu@2x.png',  
         id: 3,
       },
       {
-        url: imagesUrl + "/images/icon/iconTuzi.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-tuzi@2x.png',  
         id: 4,
       },
       {
-        url: imagesUrl + "/images/icon/iconLong.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-long@2x.png',  
         id: 5,
       },
       {
-        url: imagesUrl + "/images/icon/iconShe.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-she@2x.png', 
         id: 6,
       },
       {
-        url: imagesUrl + "/images/icon/iconMa.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-ma@2x.png', 
         id: 7,
       },
       {
-        url: imagesUrl + "/images/icon/iconYang.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-yang@2x.png', 
         id: 8,
       },
       {
-        url: imagesUrl + "/images/icon/iconHouzi.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-houzi@2x.png',  
         id: 9,
       },
       {
-        url: imagesUrl + "/images/icon/iconJi.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-ji@2x.png', 
         id: 10,
       },
       {
-        url: imagesUrl + "/images/icon/iconGou.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-gou@2x.png', 
         id: 11,
       },
       {
-        url: imagesUrl + "/images/icon/iconZhu.png",
+        url: imagesUrl + '/images/icnImage/icon/icon-zhu@2x.png', 
         id: 12,
       },
     ]
