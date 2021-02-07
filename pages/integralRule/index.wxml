@@ -3,41 +3,41 @@
     <image  src="{{baseUrl + '/images/integralRule/rectangle@3x.png'}}"/>
   </view>
   <view class="topImage-text">
-    <view class="tileText1">等级积分规则</view>
-    <view class="tileText2">升级会员即可享积分翻倍</view>
+    <view class="tileText1">Olive积分</view>
+    <view class="tileText2">升级会员可享多倍Olive积分</view>
   </view>
 </view>
 <view class="middenCotent">
-  <view class="titleContent">部分活动可享</view>
+  <view class="titleContent">完成指定任务获取Olive积分</view>
   <view class="middenCotentBlock">
     <view class="itemCotent">
       <image class="itemCotent-image"  src="{{baseUrl + '/images/integralRule/points@3x.png'}}"/>
-      <view class="itemCotent-title">银会员X2积分升级攻略</view>
-      <view class="itemCotent-content">积分达1500或成为恒生银行客户即可升级银会员</view>
+      <view class="itemCotent-title">银会员X2倍Olive积分</view>
+      <view class="itemCotent-content">Olive积分达1500或成为指定恒生客户 获取VIP银恒生尊享码即时升级</view>
     </view>
     <view class="itemCotent">
       <image class="itemCotent-image"  src="{{baseUrl + '/images/integralRule/points-2@3x.png'}}"/>
-      <view class="itemCotent-title">金会员X5积分升级攻略</view>
-      <view class="itemCotent-content">积分达4500或成为恒生保险客户即可升级金会员</view>
+      <view class="itemCotent-title">金会员X5倍Olive积分</view>
+      <view class="itemCotent-content">Olive积分达4500或成为特选恒生客户获取VIP金恒生尊享码即时升级</view>
     </view>
   </view>
 </view>
 <view  class="bottom-content {{ !showBtn ? 'bottom-contentLink':'' }}">
- <view class="bottomTitle">参与翻倍积分的活动</view>
+ <view class="bottomTitle">经恒生Olive跳转完成以下活动获取更多Olive积分</view>
     <view class="maddin-content">
-      <view class="itemText">1. 在e-shop完成一次消费</view>
-      <view class="itemText">2. 在线预约并成功开立恒生银行户口</view>
-      <view class="itemText">3. 在线预约医疗服务并成功签到</view>
-      <view class="itemText">4. 在线预约并完成一次视像诊疗</view>
+      <view class="itemText">1. 完成一次eShop消费</view>
+      <view class="itemText">2. 网上预约及成功开立恒生银行户口，并於分行成功签到</view>
+      <view class="itemText">3. 网上预约及完成健康服务，并成功於健康伙伴之医务中心签到</view>
+      <view class="itemText">4. 网上预约及完成一次線上健康谘询</view>
     </view>
-    <view class="maddin-BottomContent">
+    <!-- <view class="maddin-BottomContent">
         <view class="titleTop">1. 积分有效期计算简介</view>
         <view class="textContent">
           积分有效期与会籍有效期独立计算。积分有效期由会员注册日起计一年（如会员注册日为2020年1月1日，积分到期日为2020年12月31日），所有积分将于积分到期日后下一个工作天内从新计算而不作另行通知。新积分到期日由现有积分到期日起计算一年（如现有积分到期日为2020年12月31日，新积分到期日即2021年12月31日）。此积分有效期计算方法适用于以下所有会籍。
         </view>
         <view class="textContent">
            <view class="titleTop">2. 铜会员会籍简介</view>
-           <view>i. 铜会籍适用于所有[恒生健康]之客户，会籍为永久。</view>
+           <view>i. 铜会籍适用于所有恒生Olive之客户，会籍为永久。</view>
            <view>ii. 铜会员若于铜会籍有效期内累积满1500并少于4500积分，即可自动升级为一般银会员，会籍有效期由一般银会籍生效日期起计一年(如会员于2020年7月1日升级为一般银会员，一般银会籍到期日为2021年6月30日)。</view>
            <view>iii. 铜会员若于铜会籍有效期内累积满4500积分，即可自动升级为一般金会员，会籍有效期由一般金会籍生效日期起计一年(如会员于2020年10月1日升级为一般金会员，一般金会籍到期日为2021年9月30日)。</view>
            <view>iv. 积分有效期与会籍有效期独立计算，有关积分有效期详情，请参阅</view>
@@ -51,7 +51,7 @@
             <view class="titleTop">3. 银会员会籍简介</view>
             <view class="titleTop">银会员分为(Ａ)一般银会员及(Ｂ)尊享银会员，其会籍详情如下：</view>
             <view>(Ａ)一般银会员</view>
-            <view>i. 一般银会籍适用于透过活动累积满1500并少于4500积分之[恒生健康]客户。一般银会籍有效期为一年 (如会员于2020年７月１升级为一般银会员，一般银会籍到期日为2021年6月30日)。</view>
+            <view>i. 一般银会籍适用于透过活动累积满1500并少于4500积分之恒生Olive客户。一般银会籍有效期为一年 (如会员于2020年７月１升级为一般银会员，一般银会籍到期日为2021年6月30日)。</view>
             <view>ii. 一般银会员若于一般银会籍到期日未能累积满1500积分且没有有效会员尊享码，会籍会由一般银会籍降至铜会籍。</view>
             <view> iii. 一般银会员若于一般银会籍到期日累积满1500并少于4500积分，即可自动延长一般银会籍一年(如现有一般银会籍到期日为2021年6月30日，新一般银会籍到期日即2022年6月30日）。</view>
             <view>iv. 一般银会员若于一般银会籍有效期内累积满4500积分，即可自动升级为一般金会员，会籍有效期由一般金会籍生效日期起计一年(如会员于2020年10月1日升级为一般金会员，一般金会籍到期日为2021年9月30日)。</view>
@@ -66,7 +66,7 @@
             <view class="titleTop">4. 金会员会籍简介</view>
             <view class="titleTop">金会员分为(A)一般金会员及(B)尊享金会员，其会籍详情如下：</view>
             <view style="margin-top:20rpx;">(A)一般金会员</view>
-            <view>i. 一般金会籍适用于透过活动累积满4500积分之[恒生健康]客户。一般金会籍有效期为一年 (如会员于2020年10月1日升级为一般金会员，一般金会籍到期日为2021年9月30日)。</view>
+            <view>i. 一般金会籍适用于透过活动累积满4500积分之恒生Olive客户。一般金会籍有效期为一年 (如会员于2020年10月1日升级为一般金会员，一般金会籍到期日为2021年9月30日)。</view>
             <view>ii. 一般金会员若于一般金会籍到期日未能累积满1500积分且没有有效会员尊享码，会籍会由一般金会籍降级至铜会籍。</view>
             <view>iii. 一般金会员若于一般金会籍到期日累积满1500并少于4500积分，会籍会由一般金会籍降至一般银会籍。</view>
             <view>iv. 一般金会员若于一般金会籍到期日累积满4500积分，即可自动延长一般金会籍一年(如现有一般金会籍到期日为2021年9月30日，新一般金会籍到期日即2022年9月30日）。</view>
@@ -78,14 +78,14 @@
             <view>iii. 尊享金会员若于尊享金会籍到期日累积满4500积分，即可获得一般金会籍一年(如尊享金会籍到期日为2021年9月30日，一般金会籍到期日为2022年9月30日。</view>
             <view>iv. 积分有效期与会籍有效期独立计算，有关积分有效期详情，请参阅(1) 「积分有效期计算简介」。</view>
       </view>
-    </view>
+    </view> -->
 </view>
 <view class="topBlock_btnTom" wx:if="{{!showBtn}}">
   <van-button 
       type="primary" 
       size="large"
       bindtap="membership">
-      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看永恒银会员升级攻略' : '查看金会员升级攻略'}}
+      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看银会员升级攻略' : '查看金会员升级攻略'}}
     </van-button>
 </view>
-<view class="bottom-textConten" bindtap="moreActiveLink">参加活动赚取积分</view>
+<view class="bottom-textConten" bindtap="moreActiveLink">完成任务赚取积分</view>

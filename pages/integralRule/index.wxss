@@ -41,7 +41,8 @@ page{
 }
 
 .titleContent{
-  width: 168rpx;
+  /* width: 168rpx; */
+  width: 100%;
   height: 40rpx;
   font-family: PingFangSC;
   font-size: 28rpx;

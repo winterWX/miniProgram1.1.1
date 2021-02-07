@@ -5,10 +5,23 @@
     </view>
     <view class="model-bleck2">
       <view class="text-block">
-        <view class="text-title">绑定健康应用数据开启健康之旅</view>
+        <view class="text-title text-titleFrist">绑定数据开始恒生Olive健康之旅</view>
+          <view class="text-Frist">新用户授权并绑定健康应用程式後可享100积分</view>
+          <view class="text-FristDer">授权将恒生Olive与健康应用程式绑定以追踪您的数据</view>
           <view class="title-midden">
-            By clicking ‘OK’ below, you agree to allow Hang Seng Olive to connect with WeChat Health and to use and display your personal data including (without limitation) [your walking distance, accumulated work out span, calories burnt, heart rate and other activity data ] collected on your WeChat Health account.
-            The data you share with Hang Seng Olive will be governed by Hang Seng Bank’s [<text bindtap="privacyAgreement" class="textUnder">Privacy Terms</text>] and [<text bindtap="userAgreement" class="textUnder">User Agreement</text>]. [You can revoke this consent at any time in the settings of your mobile device / Wellness Portal.]
+              <view class="padding-text">
+                  点击下方“确定”，表示您同意并允许恒生Olive连接到微信运动
+                  并使用及显示您的个人数据，包括（但不限于）在您的微信运动账号上收集的
+                  您的总步数。
+              </view>
+              <view class="padding-text">
+                您与恒生Olive共享的数据将受恒生银行
+                有限公司（“恒生”）及/或汇丰软件开发(广东)有限公司（“汇丰”）的
+                <text bindtap="privacyAgreement" class="textUnder">隐私政策</text>及
+                <text bindtap="termsUse" class="textUnder">使用条款</text>所制约。点击“确定”，
+                表示您同意恒生及/或汇丰可为<text bindtap="privacyAgreement" class="textUnder">隐私政策</text>及<text bindtap="termsUse" class="textUnder">使用条款</text>所规定之目
+                的使用及披露其目前或之后拥有的关于您的所有个人数据。
+              </view>
           </view>
       </view>
       <view class="btnAbfort">
@@ -23,18 +36,17 @@
    <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
     <view class="model-bleck">
       <view class="text-block">
-        <view class="text-title">You are now being re-directed to an external platform</view>
+        <view class="text-title">下列健康资讯、提示、答题及/或游戏由香港中文大学医院(CUHK Medical Centre Limited)及/或卓健医疗服务有限公司(Quality HealthCare Medical Services Limited)单独提供或核实。</view>
           <view class="title-midden">
-              you will leave this Hang Seng Olive and move to an external 
-              digital platform operated by [ CUHK Medical Centre Limited]. 
-              All information and services in the external digital platform(s) 
-              are provided by the relevant third-party platform operator and Hang Seng 
-              shall not be liable for their content, nor any loss incurred by you in connection 
-              with such information and services.
+            您必须严格遵守恒生Olive(微信小程序)使用条款中规定的所有条款。
+            未经本行事先书面同意, 您不得为商业或公共目的修改、复制、在检索系
+            统中存储、(以任何形式或方式)传输、拷贝、分发、再使用、再发布、反向工程、反编译、使用其
+            创造衍生作品或以任何其他方式使用该等内容和相关材料的任何部分。
           </view>
+          <view class="title-lastText">请点击“确定”以继续。</view>
       </view>
       <view class="btnAbfort">
-          <button class="btn" bindtap="continueBtn">同意</button>
+          <button class="btn" bindtap="continueBtn">确定</button>
           <view class="btn_Cancel" bindtap="cancelBtn">取消</view>
       </view>
     </view>
@@ -48,22 +60,17 @@
     </view>
     <view class="model-bleck">
       <view class="text-block">
-        <view class="text-title" wx-if="{{showFlag === 'QHMS'}}">You are now being re-directed to an external platform</view>
-        <view class="text-title" wx-if="{{showFlag !== 'QHMS'}}">You are now being re-directed to an external platform</view>
+        <view class="text-title" wx-if="{{showFlag === 'QHMS'}}">您现在正跳转至并非由恒生银行有限公司("恒生")及/或汇丰软件开发(广东)有限公司("汇丰")持有或运营的外部平台。</view>
+        <view class="text-title" wx-if="{{showFlag !== 'QHMS'}}">您现在正跳转至并非由恒生银行有限公司("恒生")及/或汇丰软件开发(广东)有限公司("汇丰")持有或运营的外部平台。</view>
           <view wx-if="{{showFlag === 'QHMS'}}"  class="title-midden">
-              you will leave this Hang Seng Olive and move to an external 
-              digital platform operated by [ CUHK Medical Centre Limited]. 
-              All information and services in the external digital platform(s) 
-              are provided by the relevant third-party platform operator and Hang Seng 
-              shall not be liable for their content, nor any loss incurred by you in connection 
-              with such information and services.
+            点击"确定", 您将离开恒生Olive并进入由卓健医疗服务有限公司(Quality HealthCare Medical Services Limited)运营的外部网上平台。外部网上平台的所有信息和服务均由相关第三方平台运营商(非恒生及/或汇丰)提供, 且恒生及/或汇丰对其内容不承担任何责任, 亦不对您因该等信息和服务而遭受的任何损失负责。
           </view>
           <view wx-if="{{showFlag !== 'QHMS'}}" class="title-midden">
-            you will leave this Hang Seng Olive and move to an external digital platform operated by [ CUHK Medical Centre Limited]. All information and services in the external digital platform(s) are provided by the relevant third-party platform operator and Hang Seng shall not be liable for their content, nor any loss incurred by you in connection with such information and services.
+            点击"确定", 您将离开恒生Olive并进入由香港中文大学医院(CUHK Medical Centre Limited)运营的外部网上平台。外部网上平台的所有信息和服务均由相关第三方平台运营商(非恒生及/或汇丰)提供, 且恒生及/或汇丰对其内容不承担任何责任, 亦不对您因该等信息和服务而遭受的任何损失负责。
           </view>
       </view>
       <view class="btnAbfort">
-          <button class="btn" bindtap="continueBtn">同意</button>
+          <button class="btn" bindtap="continueBtn">确定</button>
           <view class="btn_Cancel" bindtap="cancelBtn">取消</view>
       </view>
     </view>

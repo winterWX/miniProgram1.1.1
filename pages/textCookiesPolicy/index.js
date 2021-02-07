@@ -1,10 +1,12 @@
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cookieNoticeShow: false
+    cookieNoticeShow: false,
+    baseUrl: app.globalData.baseUrl
   },
 
   /**
@@ -25,7 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    baseUrl: app.globalData.baseUrl
   },
 
   /**

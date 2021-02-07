@@ -66,7 +66,7 @@
                            </view>
                            <view class="imageTopTextRight" bindtap="upgradeCard" data-card="image2">立即升级</view>
                         </view>
-                        <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员等级于{{levelExpiryTime}}到期</view>
+                        <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员级别于{{levelExpiryTime}}到期</view>
                         <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会籍永久有效</view>
                         <view class="imageBottom">
                            <view class="imageBottom1" wx:if="{{activeData.level === 2 || activeData.level === 4}}">现有积分{{activeData.integral + ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可升级</view>
@@ -102,7 +102,7 @@
                   </view>
                   <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">会员续期</view>
                </view>
-               <view class="silver-bgText3" wx:if="{{activeData.level == 3 || activeData.level == 5}}">会员等级于{{levelExpiryTime}}到期</view>
+               <view class="silver-bgText3" wx:if="{{activeData.level == 3 || activeData.level == 5}}">会员级别于{{levelExpiryTime}}到期</view>
                <view class="imageBottom3">
                   <view class="imageBottom13" wx:if="{{activeData.level === 3}}">现有积分{{activeData.integral + ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view>
                   <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view>
@@ -125,7 +125,7 @@
       <view class="seliverBlockRight">
          <view class="seliverTextRightBlock" bindtap="intergRalDatails">
             <view class="seliverTextRight">我的积分</view>
-            <view class="seliverTextRightBottom" >积分{{activeData.integralRemainDays}}天后过期</view>
+            <view class="seliverTextRightBottom" >积分将于{{activeData.integralRemainDays}}天后过期</view>
          </view>
          <view class="seliverTextImge">
             <image src="https://ifc.wellness.hangseng.com/images/miniprogram/images/silver/group-3@3x.png"/>

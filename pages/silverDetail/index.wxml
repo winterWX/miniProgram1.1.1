@@ -150,7 +150,7 @@
         </view>
     </view>
     <view class="bouttomImage">
-        <view class="bouttomTitlr">可享限时优惠</view>
+        <view class="bouttomTitlr">恒生Olive独家礼遇</view>
             <!-- <view class="insrusBlock">
                 <view class="insrusBlock1">
                     <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
@@ -175,15 +175,15 @@
         <view class="glodBottomBlock">
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
-                    <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">银会员2倍活动积分</view>
+                    <view class="glodBottomText1">X2倍Olive积分</view>
+                    <view class="glodBottomText2">完成指定任务获取Olive积分</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}"/></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员尊享优惠</view>
-                    <view class="glodBottomText2">银会员专享内容</view>
+                    <view class="glodBottomText1">限定会员内容</view>
+                    <view class="glodBottomText2">升级会员尽享足本内容</view>
                     </view>
                     <view class="glodBottomImage"><image  src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
@@ -270,7 +270,7 @@
         </view>
     </view>
     <view class="bouttomImage">
-        <view class="bouttomTitlr">可享限时优惠</view>
+        <view class="bouttomTitlr">恒生Olive独家礼遇</view>
         <!-- <view class="insrusBlock">
             <view class="insrusBlock1">
                 <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
@@ -302,15 +302,15 @@
         <view class="glodBottomBlock">
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
-                    <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">X5倍Olive积分</view>
+                    <view class="glodBottomText1">X5倍Olive积分</view>
+                    <view class="glodBottomText2">完成指定任务获取Olive积分</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}"> 
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员尊享优惠</view>
-                    <view class="glodBottomText2">银会员专享内容</view>
+                    <view class="glodBottomText1">限定会员内容</view>
+                    <view class="glodBottomText2">升级会员尽享足本内容</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
@@ -394,7 +394,7 @@
         </view>
     </view>
     <view class="bouttomImage">
-        <view class="bouttomTitlr">可享限时优惠</view>
+        <view class="bouttomTitlr">恒生Olive独家礼遇</view>
             <!-- <view class="insrusBlock">
                 <view class="insrusBlock1">
                     <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
@@ -419,15 +419,15 @@
         <view class="glodBottomBlock">
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
-                    <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">银会员2倍活动积分</view>
+                    <view class="glodBottomText1">X2倍Olive积分</view>
+                    <view class="glodBottomText2">完成指定任务获取Olive积分</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员尊享优惠</view>
-                    <view class="glodBottomText2">银会员专享内容</view>
+                    <view class="glodBottomText1">限定会员内容</view>
+                    <view class="glodBottomText2">升级会员尽享足本内容</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
@@ -485,7 +485,7 @@
         </view>
     </view>
     <view  class="bouttomImage">
-        <view class="bouttomTitlr">可享限时优惠</view>
+        <view class="bouttomTitlr">恒生Olive独家礼遇</view>
         <!-- <view class="insrusBlock">
             <view class="insrusBlock1">
                 <image src="{{baseUrl + '/images/silver/newImage/group-2@3gx.png'}}"/>
@@ -517,15 +517,15 @@
         <view class="glodBottomBlock">
             <view class="glodBottomItem glodBottomLeft" bindtap="doubleIntegral" data-level="{{activeData.level}}">
                     <view class="glodBottomText">
-                    <view class="glodBottomText1">积分翻倍</view>
-                    <view class="glodBottomText2">X5倍Olive积分</view>
+                    <view class="glodBottomText1">X5倍Olive积分</view>
+                    <view class="glodBottomText2">完成指定任务获取Olive积分</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-8@2x.png'}}" /></view>
             </view>
             <view class="glodBottomItem" bindtap="contentPrivilege" data-level="{{activeData.level}}">
                     <view class="glodBottomText glodBottomPind">
-                    <view class="glodBottomText1">会员尊享优惠</view>
-                    <view class="glodBottomText2">银会员专享内容</view>
+                    <view class="glodBottomText1">限定会员内容</view>
+                    <view class="glodBottomText2">升级会员尽享足本内容</view>
                     </view>
                     <view class="glodBottomImage"><image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" /></view>
             </view>
@@ -544,13 +544,13 @@
             </view>
             <view class="bottomBlockGold" bindtap="contentPrivilege">
                 <view class="bottomText">
-                <view class="bottomText1">尊享银会员视频文章</view>
-                <view class="bottomText2">实时获得专业权威资讯</view>
+                <view class="bottomText1">尊享限定內容</view>
+                <view class="bottomText2">浏览限定健康资讯及视频，更有机会免费参加网上健康讲座</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" />
             </view>
             <view style="margin-top: 40rpx;">
-                <view class="bouttomTitlr">银会员专享限时优惠</view>
+                <view class="bouttomTitlr">恒生Olive独家礼遇</view>
                 <!-- <view class="insrusBlock">
                     <view class="insrusBlock1">
                         <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
@@ -651,12 +651,12 @@
             </view>
             <view class="bottomBlockGold"  bindtap="contentPrivilege">
                 <view class="bottomText">
-                    <view class="bottomText1">畅享所有视频文章</view>
-                    <view class="bottomText2">海量专业视频文章任你挑选</view>
+                    <view class="bottomText1">尊享限定內容</view>
+                    <view class="bottomText2">浏览限定健康资讯及视频，更有机会免费参加网上健康讲座</view>
                 </view>
                 <image src="{{baseUrl + '/images/lastimage/group-2@2x.png'}}" />
             </view>
-            <view class="bouttomTitlr" style="margin-top: 40rpx;">金会员专享限时优惠</view>
+            <view class="bouttomTitlr" style="margin-top: 40rpx;">恒生Olive独家礼遇</view>
             <!-- <view class="insrusBlock">
                 <view class="insrusBlock1">
                     <image src="{{baseUrl+'/images/silver/newImage/group-2@3gx.png'}}"/>
