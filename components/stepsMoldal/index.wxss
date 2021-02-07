@@ -107,3 +107,27 @@
   text-align: center;
   color: #666666;
 }
+
+.text-titleFrist{
+  margin-bottom: 8rpx !important;
+}
+.text-Frist{
+  font-size: 24rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  color: rgb(102,102,102);
+}
+.text-FristDer{
+  text-decoration: underline;
+  text-align: center;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.padding-text{
+ margin-top: 10rpx;
+}
+.title-lastText{
+  padding: 30rpx;
+  font-size: 28rpx;
+  background-color: rgb(51,51,51);
+}

@@ -1,37 +1,31 @@
 <view>
     <view class="content-top">
         <view class="content-image1">
-            <image src="{{baseUrl + '/images/contentInterests/rectangle@3x.png'}}"/>
+            <image src="{{baseUrl + '/images/contentInterests/rectangle@2x.png'}}"/>
         </view>
         <view class="content-image2">
-            <image src="{{baseUrl + '/images/contentInterests//group-9@3x.png'}}"/>
+            <view class="titleTop">限定会员内容</view>
+            <view class="titleBottomTop">升级会员尽享足本内容</view>
         </view>
     </view>
     <view class="content-blockMidden">
        <view class="content-title">
-        <view class="titleCotent">金会员畅享内容特权</view>
-        <view class="titleText">金会员畅享平台内所有文章视频。标有金会员标签为金会员独享，同时金会员亦可浏览其他文章视频，包括带有银会员标签的文章视频</view>
+        <!-- <view class="titleCotent">金会员畅享内容特权</view> -->
+        <view class="titleText">1.会员级别越高，可享健康资讯及视频越多。即时了解<text class="textCode">升级攻略</text>！</view>
+        <view class="titleText titleText2">2.已获取及输入恒生尊享码的恒生客户更可解锁更多限定健康内容，更有机会免费参加网上健康讲座。即时了解如何获取<text class="textCode">恒生尊享码</text>！</view>
        </view>
-       <view class="contentImage">
-          <image  src="{{baseUrl +'/images/contentInterests/invalid-name@3x.png'}}" />
+       <view class="contentImage titleText2">
+          <!-- <image  src="{{baseUrl +'/images/contentInterests/6@2x.png'}}" /> -->
+          <image  src="../../image/invalid-name@2x.png" />
         </view>
     </view>
-    <!-- <view class="content-blockBottom">
-       <view>
-        <view>银会员尊享内容特权</view>
-        <view>银会员尊享平台内标有银会员标签的内容，同时亦可浏览其他普通文章视频。</view>
-       </view>
-       <view>
-          <image src="../../images/contentInterests/invalid-name@3x.png" />
-        </view>
-    </view> -->
-    <view class="content-blockMidden bottomContent">
+    <!-- <view class="content-blockMidden bottomContent">
        <view class="content-title">
         <view class="titleCotent">银会员尊享内容特权</view>
-        <view class="titleText">银会员尊享平台内标有银会员标签的内容，同时亦可浏览其他普通文章视频。</view>
+        <view class="titleText">已获取及输入恒生尊享码的恒生客户更可解锁更多限定健康内容，更有机会免费参加网上健康讲座。即时了解如何获取恒生尊享码！</view>
        </view>
        <view class="contentImage">
-          <image style="height:282rpx;" src="{{baseUrl + '/images/contentInterests/2@2x.png'}}" />
+          <image style="height:282rpx;" src="{{baseUrl + '/images/contentInterests/5@2x.png'}}" />
         </view>
-    </view>
+    </view> -->
 </view>

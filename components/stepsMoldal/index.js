@@ -33,12 +33,10 @@ Component({
         modelShow: true
       }, {})
     },
-    userAgreement(){
-      // wx.navigateTo({ url: '../../pages/userAgreement/index' });
-      wx.navigateTo({ url: '../../pages/textUserAgreements/index' });
+    termsUse(){
+      wx.navigateTo({ url: '../../pages/textTermsUse/index' });
     },
     privacyAgreement(){
-      // wx.navigateTo({ url: '../../pages/privacyAgreement/index' });
       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' });
     },
     continueBtn(){

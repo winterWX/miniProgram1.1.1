@@ -54,11 +54,12 @@
     "pages/textUserAgreements/index",
     "pages/textPrivacyStatement/index",
     "pages/textCookiesPolicy/index",
-    "pages/contentsInterests/index",
     "pages/integralRule/index",
+    "pages/contentsInterests/index",
     "pages/preferential/index",
     "pages/userAgreement/index",
-    "pages/privacyAgreement/index"
+    "pages/privacyAgreement/index",
+    "pages/textTermsUse/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

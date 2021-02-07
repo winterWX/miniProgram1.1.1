@@ -111,12 +111,10 @@ Page({
   },
 
   userAgreement(){
-    // wx.navigateTo({ url: '../userAgreement/index' })
     wx.navigateTo({ url: '../../pages/textUserAgreements/index' });
   },
 
   privacyAgreement(){
-    // wx.navigateTo({ url: '../privacyAgreement/index' })
     wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' });
   }
   
