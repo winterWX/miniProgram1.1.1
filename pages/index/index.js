@@ -121,7 +121,7 @@ Page({
   parentCallBack: function (event){
     let that = this;
     if (event.detail.handleSuccess){
-      that.setData({ successFlg: false });
+        that.setData({ successFlg: false });
     }
   },
 
@@ -416,29 +416,5 @@ Page({
       }else{
           wx.navigateTo({ url: '../../pages/healthKnowledge/index?id=' + id });
       }
-  },
-
-//   setWerunStep:function(){
-//     let that = this;
-//     wx.getSetting({
-//       success: function (res) {
-//         if (!res.authSetting['scope.werun']) {
-//             that.setData({ modelShow: true })
-//             wx.showModal({
-//               title: '提示',
-//               content: '今日步数需要微信步数授权',
-//               success: function (res) {
-//                 if (res.confirm) {
-//                   wx.openSetting({
-//                     success: function (res) {
-//                       that.getStepRunData();  //开启后 重新获取微信运动步数；
-//                     }
-//                   })
-//                 }
-//               }
-//             })
-//         }
-//       }
-//     })
-//   }
+  }
 })

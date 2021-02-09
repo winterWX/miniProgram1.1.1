@@ -63,5 +63,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  
+  backUpgrade:function(){
+    let that = this;
+    if(that.data.level == 1){
+      wx.navigateTo({ url: '../../pages/strategy/index'});
+    }else if(that.data.level == 2 || that.data.level == 4){
+      wx.navigateTo({ url: '../../pages/goldStrategy/index'});
+    }
+  },
+  myPoints:function(){
+    wx.navigateTo({
+      url: '../../pages/integralDetails/index',
+    })
   }
 })
