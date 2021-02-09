@@ -148,7 +148,7 @@
 			</view>
 			<view class='msg-box .msg-box2'>
 				<view class="itemBlock">
-					<view class="iphoneBlock">(852) 2596 6262</view>
+					<view class="iphoneBlock">客户服务热线 - (852) 2596 6262</view>
 					<view class="iphoneBlock-image"><image src="{{baseUrl + '/images/mine/mask@3x.png'}}" /></view>
 				</view>
 				<!-- <view class="itemBlock itemBlockBottom">

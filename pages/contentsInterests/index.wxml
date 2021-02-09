@@ -11,8 +11,8 @@
     <view class="content-blockMidden">
        <view class="content-title">
         <!-- <view class="titleCotent">金会员畅享内容特权</view> -->
-        <view class="titleText">1.会员级别越高，可享健康资讯及视频越多。即时了解<text class="textCode">升级攻略</text>！</view>
-        <view class="titleText titleText2">2.已获取及输入恒生尊享码的恒生客户更可解锁更多限定健康内容，更有机会免费参加网上健康讲座。即时了解如何获取<text class="textCode">恒生尊享码</text>！</view>
+        <view class="titleText">1.会员级别越高，可享健康资讯及视频越多。即时了解<text class="textCode" catchtap="backUpgrade">升级攻略</text>！</view>
+        <view class="titleText titleText2">2.已获取及输入恒生尊享码的恒生客户更可解锁更多限定健康内容，更有机会免费参加网上健康讲座。即时了解如何获取<text class="textCode" catchtap="myPoints">恒生尊享码</text>！</view>
        </view>
        <view class="contentImage titleText2">
           <!-- <image  src="{{baseUrl +'/images/contentInterests/6@2x.png'}}" /> -->

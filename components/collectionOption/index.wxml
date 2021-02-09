@@ -13,7 +13,7 @@
         <view class="miainReBtn">
             <van-button class="save-btn" bindtap="handleFell" data-ptpid="4095-16fd-bc97-4868" type="primary" size="large">立即体验</van-button>
         </view>
-        <view class="share-tips" data-ptpid="ebe9-1656-ad6a-462e">查看更多任务领积分</view>
+        <view class="share-tips" data-ptpid="ebe9-1656-ad6a-462e" bindtap="handleIndexPage">查看更多任务领积分</view>
       </view>
 </view>
 

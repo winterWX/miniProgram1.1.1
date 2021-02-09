@@ -28,6 +28,16 @@ Component({
         handleSuccess: true
       }, {})
     },
+    
+    handleIndexPage(){
+      // wx.navigateTo({
+      //   url: '../../pages/index/index',
+      // })
+      this.triggerEvent('parentReceive', {
+        handleSuccess: true
+      }, {})
+    },
+
     restFilterDatas(){
       var animation = wx.createAnimation({
         duration: 1000,
