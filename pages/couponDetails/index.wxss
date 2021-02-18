@@ -71,6 +71,8 @@
   font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: rgb(51,51,51);
+  height: 230px;
+  overflow-y: auto; 
 }
 .textContent-titl{
   font-size: 28rpx;
@@ -85,6 +87,7 @@
 }
 .textContentText{
   margin-bottom: 20rpx;
+  overflow-y: auto;
 }
 .btnSty{
   height: 90rpx;

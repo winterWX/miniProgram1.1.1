@@ -6,22 +6,21 @@
     <view class="model-bleck2">
       <view class="text-block">
         <view class="text-title text-titleFrist">绑定数据开始恒生Olive健康之旅</view>
-          <view class="text-Frist">新用户授权并绑定健康应用程式後可享100积分</view>
-          <view class="text-FristDer">授权将恒生Olive与健康应用程式绑定以追踪您的数据</view>
           <view class="title-midden">
+              <view class="text-Frist">新用户授权并绑定微信运动后可享<text class="numtext">100积分</text></view>
+              <view class="text-FristDer">授权将恒生Olive与微信运动绑定以追踪您的数据</view>
               <view class="padding-text">
                   点击下方“确定”，表示您同意并允许恒生Olive连接到微信运动
-                  并使用及显示您的个人数据，包括（但不限于）在您的微信运动账号上收集的
-                  您的总步数。
+                  并使用及显示您的个人数据，包括（但不限于）在您的微信运动账号上收集的您的总步数。
               </view>
               <view class="padding-text">
                 您与恒生Olive共享的数据将受恒生银行
                 有限公司（“恒生”）及/或汇丰软件开发(广东)有限公司（“汇丰”）的
-                <text bindtap="privacyAgreement" class="textUnder">隐私政策</text>及
-                <text bindtap="termsUse" class="textUnder">使用条款</text>所制约。点击“确定”，
+                <text bindtap="privacyAgreement" class="textUnder">隐私政策</text>及<text bindtap="termsUse" class="textUnder">使用条款</text>所制约。点击“确定”，
                 表示您同意恒生及/或汇丰可为<text bindtap="privacyAgreement" class="textUnder">隐私政策</text>及<text bindtap="termsUse" class="textUnder">使用条款</text>所规定之目
                 的使用及披露其目前或之后拥有的关于您的所有个人数据。
               </view>
+              <view class="padding-text">您可以随时在您的微信运动的设置中取消您的微信运动与恒生Olive的绑定。</view>
           </view>
       </view>
       <view class="btnAbfort">
