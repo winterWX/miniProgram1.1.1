@@ -1,5 +1,6 @@
 <view class="articleBlock">
   <view style="background: #ffffff;">
+    <view class="backTitle">免责声明</view>
     <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/banner@2x.png'}}" /></view>
     <view class="model-bleck">
       <view class="title-midden">基本银会员、基本金会员、尊享银会员、尊享金会员专享内容，升级后享更多权益及优惠！</view>
