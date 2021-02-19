@@ -1,5 +1,6 @@
 
 <view class="blockArcSeconde" wx:if="{{ showNumber == 1 }}">
+    <view class="backTitle">免责声明</view>
     <view class="topIimages">
       <image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" />
     </view>
@@ -32,6 +33,7 @@
 
 <!-- 第一次登录点击文章时的弹窗 -->
 <view class="blockArcSeconde" wx:if="{{ showNumber == 2 }}">
+   <view class="backTitle">免责声明</view>
    <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
     <view class="model-bleck">
       <view class="text-block">
@@ -53,6 +55,7 @@
 
 <!-- 优惠券立即使用的跳转    true == 卓见   false == 中大  -->
 <view class="blockArcSeconde" wx:if="{{ showNumber == 3 }}">
+   <view class="backTitle">免责声明</view>
    <view class="topIimages">
      <image wx-if="{{showFlag === 'QHMS'}}"  src="{{ imagesUrl + '/images/illustrate-emptyBlock@2x.png'}}"/>
      <image wx-if="{{showFlag !== 'QHMS'}}"  src="{{ imagesUrl + '/images/icnImage/zd-illustrate-empty@2x.png'}}"/>

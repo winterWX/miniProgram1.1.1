@@ -1,7 +1,12 @@
 
+.backTitle{
+  padding: 15rpx 0rpx;
+  text-align: center;
+  font-weight: 600;
+}
 .model-bleck{
   background-color: #ffffff;
-  padding:  30rpx 30rpx 80rpx 30rpx;
+  padding:  5rpx 30rpx 80rpx 30rpx;
   z-index: 99;
 }
 
@@ -23,7 +28,7 @@
     letter-spacing: normal;
     text-align: center;
     color: #333333;
-    margin-bottom: 38rpx;
+    margin-bottom: 15rpx;
 }
 
 .topIimages image{
@@ -33,7 +38,7 @@
 
 .title-midden{
    height: 280rpx;
-   margin-bottom: 42rpx;
+   margin-bottom: 15rpx;
    font-family: PingFangSC;
    font-size: 28rpx;
    font-weight: normal;
@@ -128,7 +133,7 @@
   margin-bottom: 20rpx;
 }
 .title-lastText{
-  padding: 30rpx;
+  padding:0rpx 15rpx 15rpx 0rpx;
   font-size: 28rpx;
   color: rgb(51,51,51);
 }

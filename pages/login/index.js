@@ -111,7 +111,8 @@ Page({
   },
 
   userAgreement(){
-    wx.navigateTo({ url: '../../pages/textUserAgreements/index' });
+    // wx.navigateTo({ url: '../../pages/textUserAgreements/index' });
+    wx.navigateTo({ url: '../../pages/textTermsUse/index' });
   },
 
   privacyAgreement(){

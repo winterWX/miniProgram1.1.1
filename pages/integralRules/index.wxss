@@ -87,15 +87,15 @@ page{
 }
 
 .bottom-content{
-    background-color: #ffffff;
-    padding: 30rpx 30rpx 10rpx 30rpx;
+  background-color: #ffffff;
+  padding: 30rpx 30rpx 10rpx 30rpx;
 }
 .bottom-contentLink{
   margin-bottom: 52rpx;
 }
 
 .bottomTitle{
-    margin-bottom: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .maddin-content{
@@ -142,9 +142,11 @@ page{
 
 .titleTop{
   margin-bottom: 10rpx;
+  color: rgb(51,51,51);
 }
 
 .titleTopLink{
   margin-bottom: 10rpx;
-  text-decoration: underline;
+  color: rgb(51,51,51);
+  /* text-decoration: underline; */
 }

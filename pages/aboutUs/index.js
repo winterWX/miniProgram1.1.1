@@ -54,7 +54,8 @@ Page({
     this.pdfFun(id);
   },
   pdfFun:function(id){
-    let textUrl1 = '../../pages/textUserAgreements/index'; 
+    // let textUrl1 = '../../pages/textUserAgreements/index'; 
+    let textUrl1 = '../../pages/textTermsUse/index';
     let textUrl2 = '../../pages/textPrivacyStatement/index'; 
     let textUrl3 = '../../pages/textCookiesPolicy/index'; 
     wx.navigateTo({ url: id == 1 ? textUrl1: ( id == 2 ? textUrl2 : textUrl3) });

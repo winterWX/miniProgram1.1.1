@@ -1,7 +1,7 @@
 <view class="container">
   <view class="authorization">
     <view class="auth_image"><image src="{{imagesUrl + '/images/authorization.png'}}" mode="widthFix"/></view>
-    <view class="auth_text auth_text_padding">恆生Olive申请存取你的手机号码</view>
+    <view class="auth_text auth_text_padding">恒生Olive申请存取你的手机号码</view>
     <view class="auth_text ">为了你账号的安全和一致性，请先绑定手机号码，再使用相关功能</view>
   </view>
 </view>
@@ -11,7 +11,7 @@
           <image style="visibility:{{ checkedValue ? 'visible' : 'hidden' }}" src="{{ imagesUrl + '/images/lastAdd/ic-form-select-2@2xll.png'}}"></image>
           <image style="visibility:{{ !checkedValue ? 'visible' : 'hidden' }}" src="{{ imagesUrl + '/images/lastAdd/ic-form-default@2xl.png' }}"></image>
       </view>
-      <view class='derTextBlock'>我已阅读并同意<text class='derText' bindtap="userAgreement">用户协议</text>、<text class='derText2' bindtap="privacyAgreement">隐私协议</text>。</view>
+      <view class='derTextBlock'>我已阅读并同意<text class='derText' bindtap="userAgreement">使用条款</text>、<text class='derText2' bindtap="privacyAgreement">隐私政策</text>。</view>
 </view> 
 
 <view class="footer">
