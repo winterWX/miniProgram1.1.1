@@ -1,13 +1,14 @@
-import { formatTime,wxAjax } from "../../utils/util";
 const app = getApp();
+import { formatTime,wxAjax } from "../../utils/util";
 const authorizeRun = require("../../utils/authorizeRun.js");
+const util = require("../../utils/util.js");
 Page({
   data: {
      forceNum: false,
      allowRun: false,
      startStatus: false,
      //anBackShow: false,
-     startStep: 10000,
+     startStep: '10,000',
      showAPPData: 0, 
      stepsNum:{
         todaySteps: 0,	 //今日步数
@@ -143,7 +144,9 @@ Page({
       if (res.data.code === 200) {
         that.setData({ stepsNum: res.data.data });
         if (res.data.data.todaySteps < 10000) {
-          that.setData({ startStep: 10000 - res.data.data.todaySteps });
+          that.setData({ 
+             startStep: util.escapeThousands(10000 - res.data.data.todaySteps)
+          });
         }
         that.setData({ startStatus: false });
       }

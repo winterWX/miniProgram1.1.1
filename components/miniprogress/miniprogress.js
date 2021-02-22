@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js');
 var timer = null;
 Component({
     properties: {
@@ -60,10 +61,8 @@ Component({
             const query = this.createSelectorQuery();
             query.select('#ringTop').boundingClientRect(res => {
                 if(res !== null) {
-                    console.log('不等于空的时候');
                     wx.setStorage({ key: 'ringTopCanves', data: JSON.stringify(res)});
                 } 
-                console.log('==空的时候');
                 let Re = JSON.parse(wx.getStorageSync('ringTopCanves'));  
                 this.topDrawRing('ringTop', Re.width, Re.height);
             }).exec()
@@ -141,7 +140,7 @@ Component({
                     context.setLineWidth(10)
                     context.setLineCap('round')
                     context.setStrokeStyle('#00a865')
-                    this.setData({ numStep:num });
+                    this.setData({ numStep: util.escapeThousands( num ) });
                     context.stroke();
                     // 指示器
                     const xAxis = Math.cos(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)
@@ -174,7 +173,7 @@ Component({
             context.setLineWidth(10)
             context.setLineCap('round');
             context.setStrokeStyle('#00a865');
-            this.setData({ numStep : stepNum });
+            this.setData({ numStep : util.escapeThousands( stepNum )});
             context.stroke();
             // 指示器
             const xAxis = Math.cos(Math.PI * 2 / 360 * (1.8 * (100 - angle))) * (width / 2 - 70)

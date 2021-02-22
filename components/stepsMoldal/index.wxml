@@ -1,9 +1,8 @@
-
 <view class="blockArcSeconde" wx:if="{{ showNumber == 1 }}">
-    <view class="backTitle">免责声明</view>
     <view class="topIimages">
       <image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" />
     </view>
+    <view class="backTitle">免责声明</view>
     <view class="model-bleck2">
       <view class="text-block">
         <view class="text-title text-titleFrist">绑定数据开始恒生Olive健康之旅</view>
@@ -30,11 +29,10 @@
     </view>
 </view>
 
-
 <!-- 第一次登录点击文章时的弹窗 -->
 <view class="blockArcSeconde" wx:if="{{ showNumber == 2 }}">
-   <view class="backTitle">免责声明</view>
    <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
+   <view class="backTitle">免责声明</view>
     <view class="model-bleck">
       <view class="text-block">
         <view class="text-title">下列健康资讯、提示、答题及/或游戏由香港中文大学医院(CUHK Medical Centre Limited)及/或卓健医疗服务有限公司(Quality HealthCare Medical Services Limited)单独提供或核实。</view>
@@ -55,11 +53,11 @@
 
 <!-- 优惠券立即使用的跳转    true == 卓见   false == 中大  -->
 <view class="blockArcSeconde" wx:if="{{ showNumber == 3 }}">
-   <view class="backTitle">免责声明</view>
    <view class="topIimages">
-     <image wx-if="{{showFlag === 'QHMS'}}"  src="{{ imagesUrl + '/images/illustrate-emptyBlock@2x.png'}}"/>
-     <image wx-if="{{showFlag !== 'QHMS'}}"  src="{{ imagesUrl + '/images/icnImage/zd-illustrate-empty@2x.png'}}"/>
+      <image wx-if="{{showFlag === 'QHMS'}}"  src="{{ imagesUrl + '/images/illustrate-emptyBlock@2x.png'}}"/>
+      <image wx-if="{{showFlag !== 'QHMS'}}"  src="{{ imagesUrl + '/images/icnImage/zd-illustrate-empty@2x.png'}}"/>
     </view>
+    <view class="backTitle">免责声明</view>
     <view class="model-bleck">
       <view class="text-block">
         <view class="text-title" wx-if="{{showFlag === 'QHMS'}}">您现在正跳转至并非由恒生银行有限公司("恒生")及/或汇丰软件开发(广东)有限公司("汇丰")持有或运营的外部平台。</view>

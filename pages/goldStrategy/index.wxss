@@ -85,7 +85,7 @@ page{
 }
 .btnClass{
   font-size: 28rpx;
-  width: 66%;
+  width: 75%;
   height: 79rpx;
   line-height: 79rpx;
   border: 1rpx solid rgb(155,124,86);

@@ -1,16 +1,15 @@
 import { formatNumber, formatTime , wxAjax  } from '../../utils/util';
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    integralList:{},
+    integralList: {},
     integral: 0,
     expiryTime: '',
-    detailArray:[],
-    typeList:[
+    detailArray: [],
+    typeList: [
       "每日步数奖赏",
       "每日步数奖赏",
       "每日步数奖赏",
@@ -21,15 +20,17 @@ Page({
       "运动挑战赛",
       "健康资讯",
       "迎新奖赏",
-      "完成医疗服务",
-      "完成视像会诊",
+      "完成健康服务-卓健医疗",
+      "完成视像医疗咨询",
       "eShop购物",
       "完成投保",
-      "健康知识小测试",
-      "网上商城服务",
+      "健康知识考考你",
+      "eShop购物",
       "银行预约",
       "每日连续挑战",
-      "每日连续挑战"
+      "每日连续挑战",
+      "完成健康服务-卓健医疗",
+      "完成健康服务-中大医疗"
     ]
   },
 
@@ -53,11 +54,11 @@ Page({
       if(res.data.code === 200){
         let {integral,expiryTime,detail} = res.data.data;
         const detailArray = detail.map(item=>{
-           return {
+              return {
                  createTime : that.timestampToTime(item.createTime),
                  integral: item.integral,
                  type : that.data.typeList[item.type- 1]
-             }
+              }
          })
          that.setData({
            integral,
@@ -83,7 +84,7 @@ Page({
         const h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
         const m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
         const s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-        // return Y + M + D + ' ' + h + m + s;
-        return M + D + ' ' + h + m + s;
+        return Y + M + D + ' ' + h + m + s;
+        // return M + D + ' ' + h + m + s;
   }
 })

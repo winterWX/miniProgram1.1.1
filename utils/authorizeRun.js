@@ -165,11 +165,11 @@ function setWeRunAuth(sessionkey,result) {
                   // 如果安卓手机就显示弹窗
                   if(!info.model.includes('iPhone')){
                      wx.showModal({
-                          content: '您未开通微信运动，请关注"微信运动"公众号后重试',
-                          confirmText: "关闭",
-                          showCancel: false,
-                          confirmColor: '#576B95',
-                          success: function () { console.log('我是点关闭的时候'); }
+                        content: '您未开通微信运动，请关注"微信运动"公众号后重试',
+                        confirmText: "关闭",
+                        showCancel: false,
+                        confirmColor: '#576B95',
+                        success: function () { console.log('我是点关闭的时候'); }
                      })
                   }
                }
