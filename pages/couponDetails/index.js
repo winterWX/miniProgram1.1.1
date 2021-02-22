@@ -2,14 +2,15 @@ const app = getApp();
 const util = require('../../utils/util');
 Page({
   data: {
-    couponDetail:{},
-    copyCode: false,
-    showLink: false,
-    levelNum: 0,
-    imagesUrl: app.globalData.imagesUrl,
-    thirdUrls:'',
-    modelShow:false,
-    showNumber: 0
+      couponDetail:{},
+      copyCode: false,
+      showLink: false,
+      levelNum: 0,
+      imagesUrl: app.globalData.imagesUrl,
+      thirdUrls:'',
+      modelShow:false,
+      showNumber: 0,
+      backHight:  0 ,  
   },
 
   /**
@@ -20,6 +21,9 @@ Page({
       let {id, flag=null, limit=null} = options;
       that.userLevel();
       that.couponDetail(id, flag, limit);
+      that.setData({
+        backHight: wx.getSystemInfoSync().windowHeight*2 - 750  + 'rpx'
+      })
   },
 
   /**
