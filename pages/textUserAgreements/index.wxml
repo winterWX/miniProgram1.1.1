@@ -1,1 +1,1 @@
-<web-view src="{{ baseUrl + '/rules/User Agreement_SC.html'}}"></web-view>
+<web-view src="{{ baseUrl + '/remote/rules/User Agreement_SC.html'}}"></web-view>

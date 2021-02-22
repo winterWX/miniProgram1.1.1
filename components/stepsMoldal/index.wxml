@@ -65,7 +65,7 @@
         <view class="text-title" wx-if="{{showFlag === 'QHMS'}}">您现在正跳转至并非由恒生银行有限公司("恒生")及/或汇丰软件开发(广东)有限公司("汇丰")持有或运营的外部平台。</view>
         <view class="text-title" wx-if="{{showFlag !== 'QHMS'}}">您现在正跳转至并非由恒生银行有限公司("恒生")及/或汇丰软件开发(广东)有限公司("汇丰")持有或运营的外部平台。</view>
           <view wx-if="{{showFlag === 'QHMS'}}"  class="title-midden">
-            点击"确定", 您将离开恒生Olive并进入由卓健医疗服务有限公司(Quality HealthCare Medical Services Limited)运营的外部网上平台。外部网上平台的所有信息和服务均由相关第三方平台运营商(非恒生及/或汇丰)提供, 且恒生及/或汇丰对其内容不承担任何责任, 亦不对您因该等信息和服务而遭受的任何损失负责。
+            点击"确定", 您将离开恒生Olive并进入由卓健医疗服务有限公司(Quality HealthCare Medical Services Limited)("卓键医疗")运营的外部网上平台。外部网上平台的所有信息和服务均由相关第三方平台运营商(非恒生及/或汇丰)提供, 且恒生及/或汇丰对其内容不承担任何责任, 亦不对您因该等信息和服务而遭受的任何损失负责。
           </view>
           <view wx-if="{{showFlag !== 'QHMS'}}" class="title-midden">
             点击"确定", 您将离开恒生Olive并进入由香港中文大学医院(CUHK Medical Centre Limited)运营的外部网上平台。外部网上平台的所有信息和服务均由相关第三方平台运营商(非恒生及/或汇丰)提供, 且恒生及/或汇丰对其内容不承担任何责任, 亦不对您因该等信息和服务而遭受的任何损失负责。
