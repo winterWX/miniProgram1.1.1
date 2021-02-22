@@ -1,26 +1,26 @@
 let app = getApp();
 const formatTime = (date, flag = false) => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-  let paddingTime = [year, month, day].map(formatNumber);
-  let result = paddingTime.join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
-  if (flag) {
-    let [y, m, d] = paddingTime;
-    result = `${y}年${m}月${d}日 ${[hour, minute, second].map(formatNumber).join(':')}`
-  };
-  return result;
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+    let paddingTime = [year, month, day].map(formatNumber);
+    let result = paddingTime.join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+    if (flag) {
+      let [y, m, d] = paddingTime;
+      result = `${y}年${m}月${d}日 ${[hour, minute, second].map(formatNumber).join(':')}`
+    };
+    return result;
 }
 
 const timestampToTime = date => {
-  // const date = new Date(timestamp * 1000); 
-  const Y = date.getFullYear() + '-';
-  const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
-  return  Y + M + D;
+    // const date = new Date(timestamp * 1000); 
+    const Y = date.getFullYear() + '-';
+    const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
+    return  Y + M + D;
 }
 
 const timestampToTimeHM = (timestamp) =>{
@@ -35,9 +35,23 @@ const timestampToTimeHM = (timestamp) =>{
 }
 
 const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+    n = n.toString()
+    return n[1] ? n : '0' + n
 }
+
+const escapeThousands = int =>{
+    let num = (int || 0).toString(), result = '';
+    while(num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) {
+        result = num + result;
+    }
+    return result;
+}
+
+
 const wxAjax = (method, url, data = {}) => {
   return new Promise((resolve, reject) => {
     let params = {
@@ -81,5 +95,6 @@ module.exports = {
   formatTime: formatTime,
   timestampToTime : timestampToTime,
   timestampToTimeHM : timestampToTimeHM,
+  escapeThousands: escapeThousands,
   wxAjax: wxAjax
 }

@@ -105,7 +105,8 @@
                <view class="silver-bgText3" wx:if="{{activeData.level == 3 || activeData.level == 5}}">会员级别于{{levelExpiryTime}}到期</view>
                <view class="imageBottom3">
                   <view class="imageBottom13" wx:if="{{activeData.level === 3}}">现有积分{{activeData.integral + ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view>
-                  <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view>
+                  <!-- <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view> -->
+                  <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}} 输入VIP金恒生尊享码可续会籍一年</view>
                   <view class="imageBottom2 imageBottomColor">当前等级</view>
                </view>
                </view>

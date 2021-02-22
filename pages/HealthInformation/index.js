@@ -318,23 +318,27 @@ Page({
   myTagItemFun: function (e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
-    let deteleItem = that.data.myTagData;
-    if (deteleItem[index] && deteleItem[index].topic !== that.data.tagDefault) {
-        let obj = { name: deteleItem[index].topic, id: deteleItem[index].id };
-        that.data.deleteTagArray.push(obj);
-        let conceArray = [...that.data.forYouData, ...that.data.deleteTagArray];
-        let curArray = conceArray.reduce((acc, cur) => {
-          !acc.some((v) => v.id === cur.id) && acc.push(cur);
-          return acc;
-        }, []);
-        that.setData({ forYouData: curArray });
-        that.setData({ deleteTagArray: [] });
-        let newArray = deteleItem.filter(
-          (item) => item.id !== that.data.myTagData[index].id
-        );
-        that.setData({ myTagData: newArray });
+    if( index == 0){
+        let deteleItem = that.data.myTagData;
+        if (deteleItem[index] && deteleItem[index].topic !== that.data.tagDefault) {
+            let obj = { name: deteleItem[index].topic, id: deteleItem[index].id };
+            that.data.deleteTagArray.push(obj);
+            let conceArray = [...that.data.forYouData, ...that.data.deleteTagArray];
+            let curArray = conceArray.reduce((acc, cur) => {
+              !acc.some((v) => v.id === cur.id) && acc.push(cur);
+              return acc;
+            }, []);
+            that.setData({ forYouData: curArray });
+            that.setData({ deleteTagArray: [] });
+            let newArray = deteleItem.filter(
+              (item) => item.id !== that.data.myTagData[index].id
+            );
+            that.setData({ myTagData: newArray });
+        }
+        that.dargLonad();
+    }else{
+      return;
     }
-    that.dargLonad();
   },
 
   addTagBbtn: function (e) {
@@ -480,17 +484,21 @@ Page({
   },
 
   movestart: function (e) {
-    x = e.touches[0].clientX;
-    y = e.touches[0].clientY;
-    x1 = e.currentTarget.offsetLeft;
-    y1 = e.currentTarget.offsetTop;
-    lastX = x;
-    lastY = y;
-    this.setData({
-      current: e.target.dataset.index,
-      move_x: x1,
-      move_y: y1,
-    });
+    if (e.currentTarget.dataset.index !== 0) {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
+        x1 = e.currentTarget.offsetLeft;
+        y1 = e.currentTarget.offsetTop;
+        lastX = x;
+        lastY = y;
+        this.setData({
+          current: e.target.dataset.index,
+          move_x: x1,
+          move_y: y1,
+        });
+    }else{
+       return;
+    } 
   },
 
   move: function (e) {
@@ -522,13 +530,19 @@ Page({
         move_x: x2,
         move_y: y2,
       });
+    }else{
+      return;
     }
   },
 
   moveend: function (e) {
-    this.setData({
-      current: -1,
-    });
+    if (e.currentTarget.dataset.index !== 0) {
+        this.setData({
+          current: -1,
+        });
+    }else{
+      return;
+    }
   },
 
   changeArrayData: function (arr, i1, i2) {

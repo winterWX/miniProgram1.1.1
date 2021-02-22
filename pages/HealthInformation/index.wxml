@@ -55,7 +55,7 @@
                             <view class='item_container' wx:for='{{myTagData}}' wx:key="index">
                                 <view class="item {{index==current?'moving':'normal'}}" style="left:{{index==current?move_x:item.left}}px;top:{{index==current?move_y:item.top}}px;width:{{u_w}}px;" catchtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" bindtap="myTagItemFun" data-index="{{index}}">
                                     {{item.topic}}
-                                    <image wx:if="{{editStute && item.topic !=='热门推荐'}}" src='{{baseUrl + "/images/healthInfo/icon-clear.png"}}'></image>
+                                    <image wx:if="{{editStute && item.topic !=='全部话题'}}" src='{{baseUrl + "/images/healthInfo/icon-clear.png"}}'></image>
                                 </view>
                             </view>
                         </view>

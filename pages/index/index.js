@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp();
-const util = require('../../utils/util');
+const util = require('../../utils/util.js');
 const userLogin = require('../../utils/userLogin.js');
 const authorizeRun = require('../../utils/authorizeRun.js');
 Page({
@@ -103,7 +103,6 @@ Page({
     that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
-          res.data.data = 1
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
           app.healthStep.dataCource = res.data.data;    // 数据源
           if(app.firstTimeLogin && !that.data.modelShow){   //同意绑定数据(法律法规弹窗)
@@ -295,8 +294,8 @@ Page({
         if(res.data.code === 200){
             that.selectComponent("#loading").hide();
             that.setData({
-              stepsNum: res.data.data,
-              runDataText: res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps),
+              stepsNum: res.data.data, 
+              runDataText: util.escapeThousands(res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)),
               rejectRun: false
             });
         }else{
