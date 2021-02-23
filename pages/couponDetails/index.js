@@ -2,15 +2,14 @@ const app = getApp();
 const util = require('../../utils/util');
 Page({
   data: {
-      couponDetailObj:{},
+      couponDetailObj: {},
       copyCode: false,
       showLink: false,
       levelNum: 0,
       imagesUrl: app.globalData.imagesUrl,
-      thirdUrls:'',
+      thirdUrls: '',
       modelShow: false,
-      showNumber: 0,
-      backHight:  0 ,  
+      showNumber: 0
   },
 
   /**
@@ -21,9 +20,6 @@ Page({
       let {id, flag = null, limit = null} = options;
       that.couponDetail(id, flag, limit);
       that.userLevel();
-      that.setData({
-        backHight: wx.getSystemInfoSync().windowHeight*2 - 750  + 'rpx'
-      })
   },
 
   /**
@@ -129,7 +125,6 @@ Page({
     }
   },
 
-  
   handleFell:function(){
      let that = this;
      if(that.data.couponDetailObj.thirdPartyUrl === 'QHMS'){
@@ -154,5 +149,6 @@ Page({
       }
       that.selectComponent("#loading").hide();
     })
-  },
+  }
+  
 })

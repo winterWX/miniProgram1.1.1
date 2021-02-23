@@ -12,9 +12,52 @@
     <view class="texteContent3" wx:if="{{couponDetailObj.useTime !== 0}}"><view class="texteContent30">已使用</view></view>
     <view class="texteContent4">有效期至{{couponDetailObj.expiryTime}}</view>
   </view>
-  <view class="textContent" style="height:{{ backHight }};">
+  <view class="textContent">
     <view class="textContent-titl">描述：</view>
-    <htmlView  class="textContentText" detail ="{{couponDetailObj.description}}"/>
+    <!-- <htmlView  class="textContentText" detail ="{{couponDetailObj.description}}"/> -->
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    是个士大夫敢死队风格士大夫敢死队风格是
+    11111111111111111111111111
   </view>
   <view class="bottomBtn">
       <button wx:if="{{couponDetailObj.useTime === 0 && couponDetailObj.isExpiry !== 1 && couponDetailObj.thirdPartyUrl !== ''}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>
