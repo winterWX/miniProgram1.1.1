@@ -21,14 +21,29 @@
     width: 100%;
     font-family: PingFangSC;
     font-size: 32rpx;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-stretch: normal;
     font-style: normal;
     line-height: 1.25;
     letter-spacing: normal;
-    text-align: center;
+    text-align: center; 
     color: #333333;
     margin-bottom: 15rpx;
+}
+
+
+.text-titleBlock{
+  width: 100%;
+  font-family: PingFangSC;
+  font-size: 32rpx;
+  /* font-weight: 500; */
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center; 
+  color: #333333;
+  margin-bottom: 15rpx;
 }
 
 .topIimages image{
@@ -123,14 +138,17 @@
   color: rgb(102,102,102);
 }
 .text-FristDer{
-  /* //text-decoration: underline; */
-  text-align: center;
   font-size: 28rpx;
   margin-bottom: 10rpx;
+  color: #333333;
 }
 .padding-text{
   margin-top: 10rpx;
   margin-bottom: 20rpx;
+}
+.paddingBottom{
+   margin-top: 40rpx;
+   color: rgb(102,102,102);
 }
 .title-lastText{
   padding:0rpx 15rpx 15rpx 0rpx;
@@ -139,4 +157,7 @@
 }
 .numtext{
   color: #00a865;
+}
+.codeFlg{
+  font-weight: 700;
 }

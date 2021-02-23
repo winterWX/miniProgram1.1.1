@@ -16,15 +16,15 @@
 
            <view class="textContent">ii. 持有指定综合户口或保险计划之特选恒生客户可获发VIP金恒生尊享码。一经输入有效VIP金恒生尊享码，可升级为VIP金会员，会籍有效期为一年。(如会员於2021年10月1日升级为VIP金会员，会籍有效期至2022年9月30日)於有效期後，会员级别会自动转为为VIP银会员。</view>
            </view>
+
+          <view class="blockTable">
+              <view class="titleTop">Olive积分奖赏</view>
+              <view class="titleTopImage">
+                <image src="../../image/table.png" />
+              </view>
+          </view>
+
     </view>
-
-
-
-
-
-
-
-
 
            <!-- <view style="margin-top:20rpx;">铜会员快速升级攻略</view>
            <view>• 成为指定恒生客户并输入有效银会员尊享码，可升级为尊享银会员，会籍为永久。</view>

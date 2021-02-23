@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require('../../utils/util');
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ level:options.level });
+    this.userLevel();
+    //this.setData({ level:options.level });
   },
 
   /**
@@ -64,18 +66,30 @@ Page({
   onShareAppMessage: function () {
 
   },
-  
+  userLevel:function(){
+    let that = this;
+    let method = 'GET';
+    let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
+    that.selectComponent("#loading").show();
+    util.wxAjax(method,url).then(res =>{
+      if (res.data.code === 200) {
+          that.setData({ level: res.data.data });
+      }
+      that.selectComponent("#loading").hide();
+    })
+  },
+
   backUpgrade:function(){
     let that = this;
     if(that.data.level == 1){
       wx.navigateTo({ url: '../../pages/strategy/index'});
-    }else if(that.data.level == 2 || that.data.level == 4){
+    }else if(that.data.level == 2 || that.data.level == 4 || that.data.level == 3 || that.data.level == 5){
       wx.navigateTo({ url: '../../pages/goldStrategy/index'});
     }
   },
   myPoints:function(){
     wx.navigateTo({
-      url: '../../pages/integralDetails/index',
+      url: '../../pages/integralRules/index',
     })
   }
 })
