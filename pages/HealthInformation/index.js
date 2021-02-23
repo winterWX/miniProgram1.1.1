@@ -318,7 +318,7 @@ Page({
   myTagItemFun: function (e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
-    if( index == 0){
+    if( index !== 0){
         let deteleItem = that.data.myTagData;
         if (deteleItem[index] && deteleItem[index].topic !== that.data.tagDefault) {
             let obj = { name: deteleItem[index].topic, id: deteleItem[index].id };
