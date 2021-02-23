@@ -25,7 +25,8 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未领取</view>
+                        <!-- <view wx:if="{{item.received === 3}}" >未领取</view> -->
+                        <view wx:if="{{item.received === 3}}" ></view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -114,7 +115,8 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未领取</view>
+                        <!-- <view wx:if="{{item.received === 3}}" >未领取</view> -->
+                        <view wx:if="{{item.received === 3}}" ></view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -226,7 +228,8 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未领取</view>
+                        <!-- <view wx:if="{{item.received === 3}}" >未领取</view> -->
+                        <view wx:if="{{item.received === 3}}" ></view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -369,7 +372,8 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未领取</view>
+                        <!-- <view wx:if="{{item.received === 3}}" >未领取</view> -->
+                        <view wx:if="{{item.received === 3}}" ></view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 
@@ -477,7 +481,8 @@
                     </view>
                     <view class="status">
                         <view wx:if="{{item.received === 1}}" >已领取</view>
-                        <view wx:if="{{item.received === 3}}" >未领取</view>
+                        <!-- <view wx:if="{{item.received === 3}}" >未领取</view> -->
+                        <view wx:if="{{item.received === 3}}" ></view>
                         <view class="textReck" wx:if="{{item.received === 2}}">领取</view>
                     </view>
                 </view> 

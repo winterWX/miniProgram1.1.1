@@ -2,13 +2,13 @@ const app = getApp();
 const util = require('../../utils/util');
 Page({
   data: {
-      couponDetail:{},
+      couponDetailObj:{},
       copyCode: false,
       showLink: false,
       levelNum: 0,
       imagesUrl: app.globalData.imagesUrl,
       thirdUrls:'',
-      modelShow:false,
+      modelShow: false,
       showNumber: 0,
       backHight:  0 ,  
   },
@@ -18,9 +18,9 @@ Page({
    */
   onLoad: function (options) {
       let that = this;
-      let {id, flag=null, limit=null} = options;
-      that.userLevel();
+      let {id, flag = null, limit = null} = options;
       that.couponDetail(id, flag, limit);
+      that.userLevel();
       that.setData({
         backHight: wx.getSystemInfoSync().windowHeight*2 - 750  + 'rpx'
       })
@@ -84,8 +84,8 @@ Page({
         if (res.data.code == 200 && res.data.data !== null) {
             res.data.data.effectiveDateTime = that.cardDayShow(res.data.data.effectiveDateTime);
             res.data.data.expiryTime = that.cardDayShow(res.data.data.expiryTime);
-            that.setData({couponDetail: res.data.data});
-            console.log('res.data.data===',res.data.data);
+            that.setData({couponDetailObj: Object.assign({},res.data.data)});
+            console.log('res.data.data===',that.data.couponDetailObj);
         }
         that.selectComponent("#loading").hide();
     })
@@ -102,7 +102,7 @@ Page({
   texteCopy:function(){
     let that = this;
     wx.setClipboardData({
-      data: that.data.couponDetail.code,
+      data: that.data.couponDetailObj.code,
       success (res) {
         wx.getClipboardData({
           success (res) {
@@ -132,22 +132,12 @@ Page({
   
   handleFell:function(){
      let that = this;
-     that.setData({ modelShow: true, showNumber: 3 });
-      //  wx.showModal({
-      //    title: '你将被连接到第三方平台',
-      //    content: '你现在正离开恒生Olive进入第三方平台，是否继续？',
-      //    confirmText: '继续',
-      //    success (res) {
-      //      if (res.confirm) {
-      //        that.setData({showLink :true});
-      //      } else if (res.cancel) {
-      //        return;
-      //      }
-      //    }
-      //  });
+     if(that.data.couponDetailObj.thirdPartyUrl === 'QHMS'){
+        that.setData({ modelShow: true, showNumber: 3 });
+     }else if(that.data.couponDetailObj.thirdPartyUrl !== 'QHMS' && that.data.couponDetailObj.thirdPartyUrl !== ''){
+        that.setData({ showLink: true });
+     } 
   },
-
-
 
   userLevel:function(){
     let that = this;

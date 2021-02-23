@@ -2,34 +2,34 @@
   <view class="topMainContent">
     <image  class="topMainContentImage" src="{{imagesUrl + '/images/couponDetails/group-3@3x.png'}}" />
     <view class="secondeMainConten">
-        <image class="arultImage" src="{{couponDetail.attachmentUrl}}" />
-        <view class="textBottom">{{couponDetail.name}}</view>
+        <image class="arultImage" src="{{couponDetailObj.attachmentUrl}}" />
+        <view class="textBottom">{{couponDetailObj.name}}</view>
     </view>
     <view class="texteContent1">优惠码</view>
-    <view class="texteContent2">{{couponDetail.code}}</view>
-    <view class="texteContent3" wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1}}"><view class="texteContent30 texteCopy" bindtap="texteCopy">复制</view></view> 
-    <view class="texteContent3" wx:if="{{couponDetail.isExpiry === 1}}"><view class="texteContent30">已过期</view></view> 
-    <view class="texteContent3" wx:if="{{couponDetail.useTime !== 0}}"><view class="texteContent30">已使用</view></view>
-    <view class="texteContent4">有效期至{{couponDetail.expiryTime}}</view>
+    <view class="texteContent2">{{couponDetailObj.code}}</view>
+    <view class="texteContent3" wx:if="{{couponDetailObj.useTime === 0 && couponDetailObj.isExpiry !== 1}}"><view class="texteContent30 texteCopy" bindtap="texteCopy">复制</view></view> 
+    <view class="texteContent3" wx:if="{{couponDetailObj.isExpiry === 1}}"><view class="texteContent30">已过期</view></view> 
+    <view class="texteContent3" wx:if="{{couponDetailObj.useTime !== 0}}"><view class="texteContent30">已使用</view></view>
+    <view class="texteContent4">有效期至{{couponDetailObj.expiryTime}}</view>
   </view>
   <view class="textContent" style="height:{{ backHight }};">
     <view class="textContent-titl">描述：</view>
-    <htmlView  class="textContentText" detail ="{{couponDetail.description}}"/>
+    <htmlView  class="textContentText" detail ="{{couponDetailObj.description}}"/>
   </view>
   <view class="bottomBtn">
-      <button wx:if="{{couponDetail.useTime === 0 && couponDetail.isExpiry !== 1 && couponDetail.thirdPartyUrl !== ''}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>
-      <button wx:if="{{couponDetail.useTime !== 0}}"   class="btnSty">已使用</button>
-      <button wx:if="{{couponDetail.isExpiry === 1}}"  class="btnSty">已过期</button>
+      <button wx:if="{{couponDetailObj.useTime === 0 && couponDetailObj.isExpiry !== 1 && couponDetailObj.thirdPartyUrl !== ''}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>
+      <button wx:if="{{couponDetailObj.useTime !== 0}}"   class="btnSty">已使用</button>
+      <button wx:if="{{couponDetailObj.isExpiry === 1}}"  class="btnSty">已过期</button>
   </view>
   <view wx:if="{{showLink}}">
-    <web-view src="{{couponDetail.thirdPartyUrl === 'QHMS' ? thirdUrls : couponDetail.thirdPartyUrl }}"></web-view>
+    <web-view src="{{couponDetailObj.thirdPartyUrl === 'QHMS' ? thirdUrls : couponDetailObj.thirdPartyUrl }}"></web-view>
   </view>
 </view>
-<rwj-loading id="loading"></rwj-loading>
 <steps-moldal  class="stepsMoldal"  
 wx-if="{{ modelShow }}" 
 showNumber="{{ showNumber }}"
-showFlag="{{ couponDetail.thirdPartyUrl}}"
+showFlag="{{ couponDetailObj.thirdPartyUrl}}"
 bind:artContinueBtn="artContinueBtn"
 bind:artCancelBtn="artCancelBtn"
 ></steps-moldal>
+<rwj-loading id="loading"></rwj-loading>

@@ -73,6 +73,7 @@ Page({
 
   membership : function(){
       let { level, flg } = this.data.paramsData;
+      console.log('level',level);
       if(level == 1 || flg === 'X2'){
           wx.navigateTo({ url: '../../pages/strategy/index'});
       }else if(level == 2 || level == 4 || flg === 'X5'){
