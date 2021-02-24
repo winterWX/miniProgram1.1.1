@@ -391,7 +391,6 @@ Page({
     }else{
       app.globalData.artcleFlg = true;
       that.setData({modelShow: true, moreFlag : false, showNumber: 2});
-      console.log('index=======')
     }
   },
   listParams(e){

@@ -21,7 +21,6 @@ Component({
                 if(value === true  && !app.globalData.artcleFlg){
                     this.createTopDrawRing(true);
                     this.createQueryFun();
-                    console.log('00000000000000000')
                 }
             }
         },
