@@ -20,6 +20,7 @@ Component({
                 if(value === true){
                     this.createTopDrawRing(true);
                     this.createQueryFun();
+                    console.log('1111111111')
                 }
             }
         },
@@ -76,7 +77,7 @@ Component({
             const query = this.createSelectorQuery()
             query.select('#ring').boundingClientRect(res => {
                 if(res !== null) {
-                    wx.setStorage({ data: JSON.stringify(res), key: 'ringCanves',});
+                    wx.setStorage({ key: 'ringCanves', data: JSON.stringify(res)});
                 } 
                 let rings = JSON.parse(wx.getStorageSync('ringCanves'));  
                 this.drawRing('ring', rings.width, rings.height, value);
