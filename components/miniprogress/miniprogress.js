@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js');
+const app = getApp();
 var timer = null;
 Component({
     properties: {
@@ -17,10 +18,10 @@ Component({
             type: Boolean,
             value : false,
             observer(value) {
-                if(value === true){
+                if(value === true  && !app.globalData.artcleFlg){
                     this.createTopDrawRing(true);
                     this.createQueryFun();
-                    console.log('1111111111')
+                    console.log('00000000000000000')
                 }
             }
         },
@@ -127,7 +128,7 @@ Component({
                         num = stepNum;
                         clearInterval(timer);
                     }else{
-                        num += 100;
+                        num += 190;
                         //外层进度圆环
                         if(num >= 10000){
                             angle = 100;

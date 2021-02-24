@@ -16,7 +16,7 @@
        </view>
        <view class="contentImage titleText2">
           <!-- <image  src="{{baseUrl +'/images/contentInterests/6@2x.png'}}" /> -->
-          <image  src="../../image/invalid-name@2x.png" />
+          <image  src="{{baseUrl + '/images/lastAdd/invalid-name@2x.png'}}" />
         </view>
     </view>
     <!-- <view class="content-blockMidden bottomContent">

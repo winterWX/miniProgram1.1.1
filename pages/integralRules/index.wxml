@@ -20,7 +20,8 @@
           <view class="blockTable">
               <view class="titleTop">Olive积分奖赏</view>
               <view class="titleTopImage">
-                <image src="../../image/table.png" />
+                <!-- <image src="../../image/table.png" /> -->
+                <image src="{{baseUrl + '/images/lastAdd/table.png'}}" />
               </view>
           </view>
 
