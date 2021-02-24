@@ -10,7 +10,7 @@
     <view  class="topSetting" wx:if="{{isLogin === 3}}" bindtap="navigateToStep">
        <view class="imageRight" ><image src="{{imagesUrl + '/images/back@2x.png'}}" /></view>
         <view class="miniprogress">
-            <miniprogress stepNum="{{ stepsNum.todaySteps }}" modelShow="{{ modelShow }}" />
+            <miniprogress stepNum="{{ stepsNum.todaySteps }}"  modelShow="{{ modelShow }}" />
         </view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{(runDataText !== '10,000' || stepsNum.todaySteps === 0) && !rejectRun}}">只差{{ stepsNum.todaySteps == undefined ? '10,000' : runDataText}}步达成今日目标</view>

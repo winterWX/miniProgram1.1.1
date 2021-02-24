@@ -24,8 +24,9 @@ App({
     isWeRunSteps:false,
     isWeRunStepsFail:false,
     isReceiveStatus:false,
-    invitationCode:'',  //邀请码
+    invitationCode:'',   //邀请码
     sessionFail:false,
+    artcleFlg:false,  // 文章弹窗时不让显示
     avatarObjList: [
       {
         url: imagesUrl + '/images/icnImage/icon/icon-defult-touxiang@2x.png', 

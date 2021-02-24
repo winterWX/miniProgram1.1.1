@@ -40,6 +40,7 @@ Page({
         if(!app.firstTimeLogin){
           app.firstTimeLogin = true;            // 表示已经阅读了绑定数据的法律法规 
           setTimeout(()=>{
+            app.globalData.artcleFlg = false;
             that.setData({ modelShow: true, showNumber: 1 });    // 。。。。同上
           },800)  //半圆变成图片再显示
         }else{
@@ -173,7 +174,8 @@ Page({
     if(app.firstTimeLook){
        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }else{
-       this.setData({ moreFlag : true, modelShow : true, showNumber: 2});
+      app.globalData.artcleFlg = true;
+      this.setData({ moreFlag : true, modelShow : true, showNumber: 2 });
     }
   },
 
@@ -258,9 +260,11 @@ Page({
                   return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
-                      steps: item.steps
+                      // steps: item.steps
+                      steps: 3233
                   }
               });
+              console.log('results-----------',results);
               that.getUploaddata(results);
           }
           that.selectComponent("#loading").hide();
@@ -385,7 +389,9 @@ Page({
     if(app.firstTimeLook){
        that.listParams(e);
     }else{
-       that.setData({modelShow: true, moreFlag : false, showNumber: 2});
+      app.globalData.artcleFlg = true;
+      that.setData({modelShow: true, moreFlag : false, showNumber: 2});
+      console.log('index=======')
     }
   },
   listParams(e){
