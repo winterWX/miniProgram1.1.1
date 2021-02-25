@@ -15,6 +15,7 @@ App({
       phoneNumber: ''
     },
     runData: null,
+    baseTextUrl:'https://ifc.wellness.hangseng.com',
     baseUrl:'https://ifc.wellness.hangseng.com',
     imagesUrl: 'https://ifc.wellness.hangseng.com/images/miniprogram',
     token: '',

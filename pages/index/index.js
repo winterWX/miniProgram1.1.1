@@ -260,8 +260,7 @@ Page({
                   return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
-                      // steps: item.steps
-                      steps: 3233
+                      steps: item.steps
                   }
               });
               console.log('results-----------',results);
@@ -391,7 +390,6 @@ Page({
     }else{
       app.globalData.artcleFlg = true;
       that.setData({modelShow: true, moreFlag : false, showNumber: 2});
-      console.log('index=======')
     }
   },
   listParams(e){
