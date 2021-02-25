@@ -18,7 +18,7 @@ Component({
             type: Boolean,
             value : false,
             observer(value) {
-                if(value === true  && !app.globalData.artcleFlg){
+                if(value === true && !app.globalData.artcleFlg){
                     this.createTopDrawRing(true);
                     this.createQueryFun();
                 }
@@ -167,7 +167,7 @@ Component({
             var context = wx.createCanvasContext(canvasId, this);
             let angle = 0;
             let numStep = stepNum === 0 ? 1 : stepNum;
-            console.log('numStep--->',numStep);
+
             angle = Math.ceil(numStep / 100);
             context.beginPath();
             context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, (1- angle / 100) * Math.PI,true)

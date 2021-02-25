@@ -6,7 +6,7 @@ Page({
    */
   data: {
     cookieNoticeShow: false,
-    baseUrl: app.globalData.baseUrl
+    baseUrl: app.globalData.baseTextUrl
   },
 
   /**
