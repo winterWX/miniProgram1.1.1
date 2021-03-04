@@ -10,7 +10,11 @@
     <view  class="topSetting" wx:if="{{isLogin === 3}}" bindtap="navigateToStep">
        <view class="imageRight" ><image src="{{imagesUrl + '/images/back@2x.png'}}" /></view>
         <view class="miniprogress">
-            <miniprogress stepNum="{{ stepsNum.todaySteps }}"  modelShow="{{ modelShow }}" />
+            <miniprogress 
+             stepNum="{{ stepsNum.todaySteps }}" 
+             modelShow="{{ modelRound }}"
+             bind:imageFlg="imageFlg"
+            />
         </view>
         <view class="topSetting-text">
             <view class="topSett-disp" wx:if="{{(runDataText !== '10,000' || stepsNum.todaySteps === 0) && !rejectRun}}">只差{{ stepsNum.todaySteps == undefined ? '10,000' : runDataText}}步达成今日目标</view>
@@ -70,10 +74,10 @@
 
 <rwj-loading id="loading"></rwj-loading>
 
-<steps-moldal   class="stepsMoldal"  wx-if="{{ modelShow }}" showNumber="{{ showNumber }}"  
-bind:modelShowBlock="modelShowBlock"
-bind:artContinueBtn="artContinueBtn"
-bind:artCancelBtn="artCancelBtn"
+<steps-moldal class="stepsMoldal"  wx-if="{{ modelShow }}" showNumber="{{ showNumber }}"  
+  bind:modelShowBlock="modelShowBlock"
+  bind:artContinueBtn="artContinueBtn"
+  bind:artCancelBtn="artCancelBtn"
 ></steps-moldal>
 
 <article-modal  class="stepsMoldal"  bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}'></article-modal>
@@ -81,6 +85,9 @@ bind:artCancelBtn="artCancelBtn"
 <collectionOption  wx:if="{{ successFlg }}" bind:parentReceive="parentCallBack" ></collectionOption>
 
 <footer class="footerContent" active="{{ active }}" wx:if="{{ !successFlg && !modelShow && !lookLevel}}"></footer> 
+
+
+
 
 
 

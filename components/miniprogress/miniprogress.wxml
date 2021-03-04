@@ -1,9 +1,9 @@
 <view class="main-content">
-    <canvas  wx:if="{{ !radarImg }}" id="ringTop" canvas-id="ringTop" class="progress-canvas"></canvas>
-    <image   wx:if="{{ radarImg }}" src='{{ radarImg }}' class="progress-canvas"/>
+    <canvas  wx:if="{{ !readyTopImg }}" id="ringTop" canvas-id="ringTop" class="progress-canvas"></canvas>
+    <image   wx:if="{{ readyTopImg }}" src='{{ readyTopImg }}' class="progress-canvas"/>
 
-    <canvas wx:if="{{ !radarImgAbfore }}" id="ring" canvas-id="ring"  class="progress-canvas progress-bottom" ></canvas>
-    <image  wx:if="{{ radarImgAbfore }}" src='{{ radarImgAbfore }}' class="progress-canvas progress-bottom" />
+    <canvas wx:if="{{ !readyBlueImge }}" id="ring" canvas-id="ring"  class="progress-canvas progress-bottom" ></canvas>
+    <image  wx:if="{{ readyBlueImge }}" src='{{ readyBlueImge }}' class="progress-canvas progress-bottom" />
 
     <view   class="topText">今日步数</view>
     <view   class="stepnNums">{{numStep}}</view>

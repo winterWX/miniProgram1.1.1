@@ -7,9 +7,9 @@ Component({
             type: Number,
             value : 0,
             observer(value) {
-                if(value){ 
-                    this.createQueryFun(value); 
-                    //this.createQueryFun();
+                if(value){
+                    this.createBlueRound(value); 
+                    this.setData({ readyBlueImge: ''})
                 }
             }
         },
@@ -18,73 +18,58 @@ Component({
             type: Boolean,
             value : false,
             observer(value) {
-                if(value === true && !app.globalData.artcleFlg){
-                    this.createTopDrawRing(true);
-                    this.createQueryFun();
+                if(!value){
+                   this.setData({ readyBlueImge : '',readyTopImg:'' })
                 }
+                this.createTopDrawRing();
+                this.createBlueRound( this.data.stepNum );
             }
         },
-
-        flagMask:{
-            type: Boolean,
-            value : false,
-            observer(value) {
-                if(value === true){
-                    this.createTopDrawRing(true);
-                    //this.createQueryFun();
-                }
-            }
-        }
     },
 
     data: {
        numStep :0,
-       radarImg:'',
-       radarImgAbfore:''
+       readyTopImg:'',
+       readyBlueImge:''
     },
     
     ready: function () {
-        this.setData({
-            radarImg: '',
-            radarImgAbfore: ''
-        })
+        console.log('stepNum',this.data.stepNum);
         this.createTopDrawRing();
-    },
-
-    //移除时清空存值
-    detached:function(){
-        wx.clearStorage('ringTopCanves');
-        wx.clearStorage('ringCanves');
+        this.createBlueRound(this.data.stepNum);
     },
 
     methods: {
         createTopDrawRing:function(){
             const query = this.createSelectorQuery();
             query.select('#ringTop').boundingClientRect(res => {
-                if(res !== null) {
-                    wx.setStorage({ key: 'ringTopCanves', data: JSON.stringify(res)});
-                } 
-                let Re = JSON.parse(wx.getStorageSync('ringTopCanves'));  
-                this.topDrawRing('ringTop', Re.width, Re.height);
+                this.topDrawRing('ringTop', res.width, res.height);
             }).exec()
         },
-
-        createQueryFun:function(value){
+        createBlueRound:function(stepNum){
             clearInterval(timer);
-            if(value === null){
-                value = 0;
-            }
             const query = this.createSelectorQuery()
-            query.select('#ring').boundingClientRect(res => {
-                if(res !== null) {
-                    wx.setStorage({ key: 'ringCanves', data: JSON.stringify(res)});
-                } 
-                let rings = JSON.parse(wx.getStorageSync('ringCanves'));  
-                this.drawRing('ring', rings.width, rings.height, value);
+            query.select('#ring').boundingClientRect(res => { 
+                this.drawRing('ring', res.width, res.height, stepNum);
             }).exec()
         },
-
         topDrawRing: function(canvasId, width, height){
+            if(this.data.modelShow){
+                this.topImageRing(canvasId, width, height);
+            }else{
+                this.setData({ readyTopImg :''});
+                var context = wx.createCanvasContext(canvasId, this);
+                // 外层圆环
+                context.beginPath();
+                context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, 2 * Math.PI,true);
+                context.setLineWidth(10);
+                context.setLineCap('round');
+                context.setStrokeStyle('#ebeeeb');
+                context.stroke();
+                context.draw();
+            }
+        },
+        topImageRing:function(canvasId, width, height){
             var context = wx.createCanvasContext(canvasId, this);
             // 外层圆环
             context.beginPath();
@@ -100,24 +85,21 @@ Component({
                             canvasId: canvasId,
                             success: function(res) {
                                 let tempFilePath = res.tempFilePath;
-                                that.setData({
-                                    radarImg: tempFilePath,
-                                    show: true
-                                });
+                                that.setData({ readyTopImg: tempFilePath });
+                                that.successImage();
                             },
                             fail: function(res) {
                                 console.log(res);
                             }
                         }, that);
-                    },200)
-                );
+                    },20)
+            );
         },
-
         drawRing: function (canvasId, width, height,stepNum) {
-            if(this.data.modelShow || this.data.flagMask){
+            if(this.data.modelShow){
                 this.imageDrawRing(canvasId, width, height,stepNum);
             }else{
-                this.setData({ radarImgAbfore :''});
+                this.setData({ readyBlueImge :''});
                 clearInterval(timer);
                 var context = wx.createCanvasContext(canvasId, this)
                 let num = 0;
@@ -127,7 +109,7 @@ Component({
                         num = stepNum;
                         clearInterval(timer);
                     }else{
-                        num += 190;
+                        num += 210;
                         //外层进度圆环
                         if(num >= 10000){
                             angle = 100;
@@ -155,18 +137,13 @@ Component({
                     context.setFillStyle('#00a865')
                     context.fill();
                     context.draw();
-                },200);
+                },30);
             }
         },
-
         imageDrawRing:function(canvasId, width, height,stepNum){
-            if(this.data.modelShow && !this.data.flagMask) { 
-                stepNum = 0;
-            }
-            console.log( 'this.data.modelShow', this.data.modelShow, stepNum);
             var context = wx.createCanvasContext(canvasId, this);
             let angle = 0;
-            let numStep = stepNum === 0 ? 1 : stepNum;
+            let numStep = stepNum === 0 ? 1 : (stepNum >= 10000 ? 10000 : stepNum );
 
             angle = Math.ceil(numStep / 100);
             context.beginPath();
@@ -194,17 +171,23 @@ Component({
                         canvasId: canvasId,
                         success: function(res) {
                             let tempFilePath = res.tempFilePath;
-                            that.setData({
-                                radarImgAbfore: tempFilePath,
-                                show: true
-                            });
+                            that.setData({ readyBlueImge: tempFilePath });
+                            that.successImage();
                         },
                         fail: function(res) {
                             console.log(res);
                         }
                     }, that);
-                },200)
+                },50)
             );
+        },
+        successImage:function(){
+            let that = this;
+            if(that.data.readyBlueImge !== '' && that.data.readyTopImg !== ''){
+                that.triggerEvent('imageFlg',{
+                    imageFlg: true
+                },{})
+            }
         }
     }
 })

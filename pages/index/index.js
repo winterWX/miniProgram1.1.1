@@ -27,7 +27,9 @@ Page({
     lookLevel: false, //文章级别
     showNumber: 0,   //标记显示 文章弹窗和法律文件弹窗
     artTextData: {},  //首页文章列数据
-    moreFlag: false  //更多按钮的标记
+    moreFlag: false,  //更多按钮的标记
+    imageFlg :false,
+    modelRound: false
   },
   onLoad: function (options) {
     let that = this;
@@ -35,14 +37,16 @@ Page({
       that.setData({ successFlg: true });
     }
     if(app.globalData.isLogin === 3 ){
-        that.setData({ isLogin: app.globalData.isLogin });
+        that.setData({ isLogin: app.globalData.isLogin, modelRound:true});
         that.getState();
         if(!app.firstTimeLogin){
-          app.firstTimeLogin = true;            // 表示已经阅读了绑定数据的法律法规 
+          app.firstTimeLogin = true; // 表示已经阅读了绑定数据的法律法规 
+          that.setData({ modelRound:true });
           setTimeout(()=>{
-            app.globalData.artcleFlg = false;
-            that.setData({ modelShow: true, showNumber: 1 });    // 。。。。同上
-          },800)  //半圆变成图片再显示
+              if(that.data.imageFlg){
+                that.setData({ modelShow: true, showNumber: 1 });    // 。。。。同上
+              }
+          },1500); //半圆变成图片再显示
         }else{
           that.checkIsAppUser();  //调用数据源，App数据优先；
         }
@@ -57,7 +61,7 @@ Page({
   },
   onPullDownRefresh: function () {
     let that = this;
-    if(app.globalData.isLogin === 3){
+    if(app.globalData.isLogin == 3 && !that.data.modelShow){
         wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
         if(app.globalData.isWeRunSteps){
           that.calloutfun();
@@ -90,11 +94,13 @@ Page({
         that.getUploaddata(resultData);
     })
   },
+
   prograNum:function(){
     wx.navigateTo({
       url: '../healthPage/index?id='+ that.data.allowTo
     })
   },
+
   onShareAppMessage: function () {},
 
   checkIsAppUser:function(){
@@ -136,7 +142,7 @@ Page({
     let that = this;
     if (event.detail.modelShow){
         //阅读完关闭
-        that.setData({ modelShow: false });
+        that.setData({ modelShow: false, modelRound: false});
         that.checkIsAppUser();  //调用数据源，App数据优先；
     }
   },
@@ -150,7 +156,7 @@ Page({
             }else{
               that.listParams(this.data.artTextData);
             }
-            that.setData({ modelShow: false });
+            that.setData({ modelShow: false ,modelRound: false});
         }else{
             if(that.data.moreFlag){
               wx.navigateTo({ url: '../../pages/HealthInformation/index' });
@@ -158,7 +164,7 @@ Page({
               that.listParams(this.data.artTextData);
             }
             app.firstTimeLook = true;
-            that.setData({ modelShow: false });
+            that.setData({ modelShow: false ,modelRound: false});
         }
     }
   },
@@ -166,7 +172,14 @@ Page({
   artCancelBtn: function (event){
     let that = this;
     if (event.detail.artCancelBtn){
-        that.setData({ modelShow: false });
+        that.setData({ modelShow: false ,modelRound: false});
+    }
+  },
+
+  imageFlg: function (event){
+    let that = this;
+    if (event.detail.imageFlg){
+        that.setData({ imageFlg: true });
     }
   },
 
@@ -174,7 +187,7 @@ Page({
     if(app.firstTimeLook){
        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }else{
-      app.globalData.artcleFlg = true;
+      //app.globalData.artcleFlg = true;
       this.setData({ moreFlag : true, modelShow : true, showNumber: 2 });
     }
   },
@@ -235,6 +248,7 @@ Page({
           //授权成功跳转获取步数
           app.globalData.runData = result;
           app.globalData.isWeRunSteps = true; //标志授权成功
+          console.log('result=========',result);
           that.getQueryLatestime(result);
         }else{
           //拒绝授权
@@ -388,7 +402,7 @@ Page({
     if(app.firstTimeLook){
        that.listParams(e);
     }else{
-      app.globalData.artcleFlg = true;
+      //app.globalData.artcleFlg = true;
       that.setData({modelShow: true, moreFlag : false, showNumber: 2});
     }
   },
