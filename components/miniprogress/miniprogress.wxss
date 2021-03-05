@@ -12,6 +12,7 @@
     right: 0;
     bottom: 0; */
 }
+
 .progress-bottom{
    position: absolute;
    top:0;

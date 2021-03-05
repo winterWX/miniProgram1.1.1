@@ -3,13 +3,14 @@ const app = getApp();
 var timer = null;
 Component({
     properties: {
+
         stepNum: {
             type: Number,
             value : 0,
             observer(value) {
                 if(value){
                     this.createBlueRound(value); 
-                    this.setData({ readyBlueImge: ''})
+                    this.setData({ readyBlueImge: ''});
                 }
             }
         },
@@ -19,7 +20,7 @@ Component({
             value : false,
             observer(value) {
                 if(!value){
-                   this.setData({ readyBlueImge : '',readyTopImg:'' })
+                   this.setData({ readyBlueImge : '',readyTopImg: '' })
                 }
                 this.createTopDrawRing();
                 this.createBlueRound( this.data.stepNum );
@@ -29,8 +30,8 @@ Component({
 
     data: {
        numStep :0,
-       readyTopImg:'',
-       readyBlueImge:''
+       readyTopImg: '',
+       readyBlueImge: ''
     },
     
     ready: function () {
@@ -56,9 +57,11 @@ Component({
             if(this.data.modelShow){
                 this.topImageRing(canvasId, width, height);
             }else{
+                console.log('topDrawRing----------canvasId, width, height',canvasId, width, height)
                 this.setData({ readyTopImg :''});
                 var context = wx.createCanvasContext(canvasId, this);
                 // 外层圆环
+                console.log('context',context);
                 context.beginPath();
                 context.arc(width / 2, 40, width / 2 - 70, 1 * Math.PI, 2 * Math.PI,true);
                 context.setLineWidth(10);
@@ -66,6 +69,7 @@ Component({
                 context.setStrokeStyle('#ebeeeb');
                 context.stroke();
                 context.draw();
+                console.log('last---context',context)
             }
         },
         topImageRing:function(canvasId, width, height){
@@ -98,6 +102,7 @@ Component({
             if(this.data.modelShow){
                 this.imageDrawRing(canvasId, width, height,stepNum);
             }else{
+                console.log('bottomDrawRing----------canvasId, width, height',canvasId, width, height)
                 this.setData({ readyBlueImge :''});
                 clearInterval(timer);
                 var context = wx.createCanvasContext(canvasId, this)

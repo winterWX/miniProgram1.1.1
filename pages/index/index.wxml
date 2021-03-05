@@ -23,7 +23,7 @@
                 <view>今日步数已达标,<text class="clickText">立即领取积分</text>！</view>
             </view>
             <view class="topSett-disp" wx:if="{{ forceNum && stepsNum.todaySteps >= 10000}}">恭喜你！今日的每日步数挑战已达标</view>
-        </view>    
+        </view> 
     </view>
     <view  class="secondeBlock" bindtap="membership" wx:if="{{levelNumShow}}">
         <view class="secondeBlock-image"><image src="{{imagesUrl + '/images/index/banner-1@3x.png'}}"/></view>
