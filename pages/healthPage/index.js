@@ -69,16 +69,19 @@ Page({
   onUnload: function () {},
   onPullDownRefresh: function () {
     let that = this;
-    wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
-    if (app.globalData.isWeRunSteps && !that.data.flagMask) {
-      that.calloutfun();
-      setTimeout(function () {
+    if(that.data.firstInitShow || !that.data.hideModal){
+       return;
+    }
+    if (app.globalData.isWeRunSteps) {
+        wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
+        that.calloutfun();
+        setTimeout(function () {
+          wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
+          wx.stopPullDownRefresh(); //停止下拉动作
+        }, 1000);
+    }else{
         wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
         wx.stopPullDownRefresh(); //停止下拉动作
-      }, 1000);
-    }else{
-      wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
-      wx.stopPullDownRefresh(); //停止下拉动作
     }
   },
   //调用微信运动数据
