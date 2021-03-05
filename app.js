@@ -1,4 +1,4 @@
-let imagesUrl = 'https://ifc.wellness.hangseng.com/images/miniprogram';
+let imagesUrl = 'https://ifc.wellness.hangseng.com:8443/images/miniprogram';
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -16,8 +16,8 @@ App({
     },
     runData: null,
     baseTextUrl:'https://ifc.wellness.hangseng.com',
-    baseUrl:'https://ifc.wellness.hangseng.com',
-    imagesUrl: 'https://ifc.wellness.hangseng.com/images/miniprogram',
+    baseUrl:'https://ifc.wellness.hangseng.com:8443',
+    imagesUrl: 'https://ifc.wellness.hangseng.com:8443/images/miniprogram',
     token: '',
     phoneNumber: '',
     isLogin : 0,  //未登录
