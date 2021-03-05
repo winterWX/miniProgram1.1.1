@@ -46,7 +46,7 @@ Page({
               if(that.data.imageFlg){
                 that.setData({ modelShow: true, showNumber: 1 });    // 。。。。同上
               }
-          },1500); //半圆变成图片再显示
+          },1000); //半圆变成图片再显示
         }else{
           that.checkIsAppUser();  //调用数据源，App数据优先；
         }
@@ -154,17 +154,17 @@ Page({
             if(that.data.moreFlag){
               wx.navigateTo({ url: '../../pages/HealthInformation/index' });
             }else{
-              that.listParams(this.data.artTextData);
+              that.listParams(that.data.artTextData);
             }
-            that.setData({ modelShow: false ,modelRound: false});
+            that.setData({ modelShow: false ,modelRound: false, stepNum: that.data.stepsNum.todaySteps});
         }else{
             if(that.data.moreFlag){
               wx.navigateTo({ url: '../../pages/HealthInformation/index' });
             }else{
-              that.listParams(this.data.artTextData);
+              that.listParams(that.data.artTextData);
             }
             app.firstTimeLook = true;
-            that.setData({ modelShow: false ,modelRound: false});
+            that.setData({ modelShow: false, modelRound: false , stepNum: that.data.stepsNum.todaySteps});
         }
     }
   },
@@ -184,11 +184,17 @@ Page({
   },
 
   myfindPage:function(){
+    let that = this;
     if(app.firstTimeLook){
        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }else{
       //app.globalData.artcleFlg = true;
-      this.setData({ moreFlag : true, modelShow : true, showNumber: 2 });
+      that.setData({ modelRound:true });
+      setTimeout(()=>{
+          if(that.data.imageFlg){
+            that.setData({ moreFlag : true, modelShow : true, showNumber: 2 });    // 。。。。同上
+          }
+      },1000); //半圆变成图片再显示
     }
   },
 
@@ -403,7 +409,13 @@ Page({
        that.listParams(e);
     }else{
       //app.globalData.artcleFlg = true;
-      that.setData({modelShow: true, moreFlag : false, showNumber: 2});
+      that.setData({ modelRound:true });
+      setTimeout(()=>{
+          if(that.data.imageFlg){
+            that.setData({ modelShow: true, moreFlag : false, showNumber: 2 });    // 。。。。同上
+          }
+      },1000); //半圆变成图片再显示
+      // that.setData({modelShow: true, moreFlag : false, showNumber: 2});
     }
   },
   listParams(e){

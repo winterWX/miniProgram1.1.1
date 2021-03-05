@@ -34,7 +34,6 @@ Component({
     },
     
     ready: function () {
-        console.log('stepNum',this.data.stepNum);
         this.createTopDrawRing();
         this.createBlueRound(this.data.stepNum);
     },
