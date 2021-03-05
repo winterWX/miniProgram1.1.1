@@ -39,15 +39,23 @@ Page({
      imagesUrl: app.globalData.imagesUrl,
      showModal: false,
      hideModal: true,  //模态框的状态  true-隐藏  false-显示
+     roundShow: false,
+     imageFlg: false
   },
   onLoad:function (options) {
       let that = this;
       that.setData({ showAPPData: app.healthStep.dataCource, optionsFlg : options.id,
                       firstInitShow : app.firstInit.bootImage });
       if(app.firstInit.bootImage){
-          that.setData({ flagMask: true, guidance1:true });
+          that.setData({ roundShow: true });
+          setTimeout(()=>{
+              if(that.data.imageFlg){
+                that.setData({ flagMask: true, guidance1:true });    // 。。。。同上
+              }
+          },1500); //半圆变成图片再显示
       }else{
           that.linkToPage(options.id);
+          that.setData({ roundShow: false });
       }
   },
   onReady: function () {},
@@ -62,13 +70,16 @@ Page({
   onPullDownRefresh: function () {
     let that = this;
     wx.showNavigationBarLoading(); //在当前页面显示导航条加载动画
-    if (app.globalData.isWeRunSteps) {
+    if (app.globalData.isWeRunSteps && !that.data.flagMask) {
       that.calloutfun();
-    }
-    setTimeout(function () {
+      setTimeout(function () {
+        wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
+        wx.stopPullDownRefresh(); //停止下拉动作
+      }, 1000);
+    }else{
       wx.hideNavigationBarLoading(); //在当前页面隐藏导航条加载动画
       wx.stopPullDownRefresh(); //停止下拉动作
-    }, 1000);
+    }
   },
   //调用微信运动数据
   calloutfun: function () {
@@ -101,6 +112,7 @@ Page({
     that.setData({ guidance2: false, flagMask: false, firstInitShow: false });
     app.firstInit.bootImage = false;
     that.linkToPage(that.data.optionsFlg);
+    that.setData({ roundShow : false })
   },
   
   linkToPage: function (id) {
@@ -220,36 +232,6 @@ Page({
       url: "../../pages/rankingList/index",
     });
   },
-  // setWerunStep: function () {
-  //   let that = this;
-  //   wx.getSetting({
-  //     success: function (res) {
-  //       if (!res.authSetting["scope.werun"]) {
-  //         wx.showModal({
-  //           title: "提示",
-  //           content: "今日步数需要微信步数授权",
-  //           success: function (res) {
-  //             if (res.confirm) {
-  //               wx.openSetting({
-  //                 success: function (res) {
-  //                   that.getStepRunData();   //开启后 重新获取微信运动步数;
-  //                   that.healthEveryday();
-  //                 },
-  //               });
-  //             } else {
-  //               //不设置
-  //               if (app.globalData.isWeRunStepsFail) {
-  //                 that.settingDataBtn();
-  //               } else {
-  //                 that.setData({ startStatus: true });
-  //               }
-  //             }
-  //           },
-  //         });
-  //       }
-  //     },
-  //   });
-  // },
   getStepRunData: function () {
     let that = this;
     authorizeRun.getWxRunData(function(result){
@@ -320,15 +302,20 @@ Page({
     },
     leftBlokShow:function () {
       let that = this;
-      that.setData({ hideModal: false })
-      let animation = wx.createAnimation({
-        duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
-        timingFunction: 'ease',//动画的效果 默认值是linear
-      })
-      this.animation = animation
+      that.setData({ roundShow : true });
       setTimeout(function () {
-        that.fadeIn();  //调用显示动画
-      }, 100)
+          if(that.data.imageFlg){
+              that.setData({ hideModal: false })
+              let animation = wx.createAnimation({
+                duration: 100,//动画的持续时间 默认600ms   数值越大，动画越慢   数值越小，动画越快
+                timingFunction: 'ease',//动画的效果 默认值是linear
+              })
+              that.animation = animation
+              setTimeout(function () {
+                that.fadeIn();  //调用显示动画
+              }, 100)
+          }
+      }, 1000);
     },
     // 隐藏遮罩层
     hideModal: function () {
@@ -358,5 +345,11 @@ Page({
       let that =this;
       that.fadeDown();
       that.setData({ hideModal: true })
+    },
+    imageFlg: function (event){
+      let that = this;
+      if (event.detail.imageFlg){
+          that.setData({ imageFlg: true });
+      }
     }
 })
