@@ -82,7 +82,7 @@ page {
 }
 .btnClass{
   font-size: 28rpx;
-  width: 66%;
+  width: 85%;
   height: 79rpx;
   line-height: 79rpx;
   border: 1rpx solid rgb(51,51,51);
@@ -295,4 +295,75 @@ padding-left: 10rpx;
 }
 .msg-box-imageBlock{
   padding-bottom: 30rpx !important;
+}
+
+
+
+/* ----------------------------nwe css no 2 和 3------------------ */
+.top-mainText_new{
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  padding-top: 30rpx;
+}
+.right-mainText_new{
+  position: relative;
+  /* margin-left: 11rpx; */
+}
+.roghtImageCode_new{
+  width: 750rpx;
+  height: 422rpx;
+}
+.roghtImageCode-text_new{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top:-20rpx;
+}
+.text1_new{
+  margin-bottom: 30rpx;
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+}
+.leftImge_new{
+  margin-bottom: 40rpx;
+}
+.rightImge_new{
+  margin-bottom: 40rpx;
+}
+.text2_new{
+  color: rgb(48, 67, 82);
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+}
+.text3_new{
+  color: rgb(51,51,51);
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
+}
+.text4_new{
+  color: rgb(51,51,51);
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+}
+.text5_new{
+  display: flex;
+  justify-content: center;
+}
+.text1_new image{
+   width:96rpx;
+   height: 96rpx;
+}
+.btnClass_new{
+  font-size: 28rpx;
+  width: 85%;
+  height: 79rpx;
+  line-height: 79rpx;
+  border: 1rpx solid rgb(51,51,51);
+  border-radius: 10rpx;
+  color: rgb(51,51,51);
+}
+.titleText{
+  color: rgb(155 ,124 ,86);
+  font-size: 28rpx;
 }

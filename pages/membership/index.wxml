@@ -4,25 +4,25 @@
       <view class="topImage-main">
           <view class="topBlocks1">
             <view class="topBlocksLeft">
-                <view><text>银会员</text>尊享码</view>
+                <view><text class="abfterCode">银会员</text>尊享码</view>
                 <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}"/>
             </view>
             <view class="topBlocksRight">
                 <image src="{{imagesUrl + '/images/silver/silver@3x.png'}}"/>
-                <view>VIP银会员+尊享好礼</view>
+                <view>VIP银会员</view>
             </view>
           </view>
           <view class="topBlocks12">
             <view class="topBlocksLeft">
-                <view><text>金会员</text>尊享码</view>
+                <view><text class="abfterCode">金会员</text>尊享码</view>
                 <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}" />
             </view>
             <view class="topBlocksRight">
-                <image src="{{imagesUrl + '/images/silver/qingtong-2-copy-5@3x.png'}}" />
-                <view>一年VIP金会员+尊享好礼</view>
+                <image src="{{imagesUrl + '/images/lastAdd/qingtong-2-copy-5@3x.png'}}" />
+                <view>VIP金会员</view>
             </view>
           </view>
-          <view class="topBlocksRightText">提供新的尊享码续期一年</view>
+          <view class="topBlocksRightText">提供新的恒生保险尊享码续期一年</view>
       </view>
     </view>
     <view class="inputBlock">
@@ -82,6 +82,6 @@
            </view>
        </view>
     </view>
-    <view class="foot-tip">如何获取尊享码? 欢迎联络我们</view>
+    <view class="foot-tip">可咨询你的恒生客户经理获取尊享码</view>
 </view>
 <rwj-loading id="loading"></rwj-loading>

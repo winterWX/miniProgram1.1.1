@@ -23,6 +23,7 @@ page{
   height: 48rpx;
   line-height: 48rpx;
   margin-bottom: 10rpx;
+  font-size: 28rpx;
 }
 .line {
   height: 2rpx;
@@ -133,7 +134,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0rpx 30rpx;
+  padding: 0rpx 96rpx;
   background-color: #FDF8E7;
   height: 120rpx;
 }
@@ -142,12 +143,12 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0rpx 30rpx;
+  padding: 0rpx 96rpx;
   background-color: #F3F9F4;
   height: 120rpx;
 }
 .topBlocksRightText{
-  margin: 10rpx 0rpx 20rpx 0rpx;
+  margin: 20rpx 0rpx 20rpx 0rpx;
   font-size: 24rpx;
   color:rgb(102,102,102);
 }
@@ -156,13 +157,13 @@ page{
   height: 100%;
 }
 .topBlocksLeft{
-  width: 43%;
+  width: 48%;
   display: flex;
   align-items: center;
   font-size: 28rpx;
 }
 .topBlocksRight{
-  width: 57%;
+  width: 48%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,7 +172,7 @@ page{
 .topBlocksLeft image{
    width: 32rpx;
    height: 32rpx;
-   margin-left: 25rpx;
+   margin-left: 39rpx;
 }
 .topBlocksRight image{
   width: 40rpx;
@@ -181,11 +182,26 @@ page{
 }
 .topImage-main{
   background-color: #ffffff;
-  padding: 0rpx 30rpx;
+  padding: 0rpx 30rpx 5rpx 30rpx;
 }
 .foot-tip {
   position: absolute;
   bottom: 30rpx;
+  font-size: 24rpx;
+  color: #333333;
+  text-align: center;
+  width: 100%;
+}
+.abfterCode{
+ color: rgb(155,124,86);
+ font-size: 28rpx;
+}
+.undeerLine{
+  text-decoration: underline;
+}
+.foot-tipOne{
+  position: absolute;
+  bottom: 70rpx;
   font-size: 24rpx;
   color: #333333;
   text-align: center;
