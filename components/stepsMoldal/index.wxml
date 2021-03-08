@@ -2,7 +2,7 @@
     <view class="topIimages">
       <image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" />
     </view>
-    <view class="backTitle">免责声明</view>
+    <!-- <view class="backTitle">免责声明</view> -->
     <view class="model-bleck2">
       <view class="text-block">
         <view class="text-title text-titleFrist">绑定数据开始恒生Olive健康之旅</view>

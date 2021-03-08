@@ -1,5 +1,6 @@
 <view class="slierMain">
-  <view class="top-mainText">
+  <!-- 新UI  没有 级别 2和 3 -->
+  <!-- <view class="top-mainText">
       <view class="left-mainText">
         <image  class="leftImageCode" src="{{imagesUrl + '/images/strategy/rectangle-rectangle-rectangle-mask@3xg.png'}}" />
         <view class="leftImageCode-text">
@@ -22,13 +23,28 @@
           <view class="text5"  bindtap="textShowMain" data-show="num"><view class="btnClass">了解恒生保险</view></view>
         </view>
       </view>
+  </view> -->
+
+  <view class="top-mainText_new">
+      <view class="right-mainText_new">
+        <image class="roghtImageCode_new" src="{{imagesUrl + '/images/lastAdd/tiers-silver-bg@3x.png'}}" />
+        <view  class="roghtImageCode-text_new">
+          <view class="text1_new"><image  src="{{imagesUrl + '/images/lastAdd/qingtong-2-copy-5@3x.png'}}" /></view>
+          <view class="text2_new">VIP金会员</view>
+          <view class="text3_new">购买恒生保险</view>
+          <view class="text4_new">即升级VIP金会员</view>
+          <view class="text5_new" bindtap="textShowMain" data-show="num"><view class="btnClass_new">了解恒生保险</view></view>
+        </view>
+      </view>
   </view>
+
+
   <view class="bottom-main">
     <view class="bottom-mainOut">
       <view class="listTop">
          <view class="listTop-text">
            <image src="{{imagesUrl + '/images/strategy/qingtong-2-copy-5@3xg.png'}}"/>
-           <view>金会员</view>
+           <view class="titleText">VIP金会员</view>
          </view>
          <view class="blockMain">
           <view class="listItem">
@@ -42,7 +58,7 @@
       <view class="listBottom">
          <view class="listBottom-text">
            <image  src="{{imagesUrl + '/images/strategy/rewards-filled@3xg.png'}}"/>
-           <view>尊享码会员独家礼遇</view>
+           <view class="titleText">尊享码会员独家礼遇</view>
          </view>
          <view class="blockMain">
             <view class="listItemBottom">
@@ -56,7 +72,7 @@
     </view>
   </view>
   <view class="bottomBtn">
-      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，立即升级成为VIP金会员</view>
+      <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，立即升级成为VIP会员</view>
   </view>
   <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
             <view class="modals-cancel" bindtap="hideModal"></view>
