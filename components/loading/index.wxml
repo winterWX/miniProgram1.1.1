@@ -2,7 +2,8 @@
   <view class="loading-mask" wx:if="{{maskState}}"></view>
   <view class="loading-main">
     <view class="loading-content">
-        <image src="{{imagesUrl + '/images/gif/Olive loading_104.gif'}}" />
+        <!-- <image src="{{imagesUrl + '/images/gif/Olive loading_104.gif'}}" /> -->
+        <image src="{{imagesUrl + '/images/lastAdd/oliveloading.gif'}}" /> 
         <!-- <view class="loading-image">
           <image src="{{imagesUrl + '/images/lastAdd/loading@2x.png'}}"></image>
         </view> -->

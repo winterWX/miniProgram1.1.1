@@ -31,10 +31,8 @@
   z-index: 99;
 }
 .loading-container .loading-main .loading-content{
-  width: 260rpx;
-  height: 260rpx;
-  border-radius: 20rpx;
-  background-color: #ffffff;
+  width: 312rpx;
+  height: 312rpx;
   display: flex;
   align-items: center;
   justify-content: center;

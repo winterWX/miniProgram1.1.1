@@ -1,27 +1,23 @@
     <view class="maddin-BottomContent">
         <view class="titleTop">1. Olive积分简介</view>
+        <view class="textContent">Olive积分是会员透过在恒生Olive上完成各种活动而获得的积分奖赏，活动详情可参考下方列表。Olive积分可用作折扣劵兑换，以优惠价格购买或换领本平台合作夥伴提供的健康服务或产品。</view>
+        <view  class="textContent">Olive积分有效期与会籍有效期独立计算。Olive积分有效期由会员注册日起计一年（如会员注册日为2021年1月1日，Olive积分到期日为2021年12月31日），所有Olive积分将於积分到期日清零并於下一日从新累积而不作另行通知。新Olive积分到期日由现有积分到期日起计算一年（如现有积分到期日为2021年12月31日，新Olive积分将於2022年12月31日到期）。此Olive积分有效期计算方法适用於所有会员。</view>
         <view class="textContent">
-          Olive积分是会员透过在恒生Olive上完成各种活动而获得的积分奖赏，活动详情可参考下方列表。Olive积分可用作折扣劵兑换，以优惠价格购买或换领本平台合作夥伴提供的健康服务或产品。
-        </view>
-        <view  class="textContent">
-          Olive积分有效期与会籍有效期独立计算。Olive积分有效期由会员注册日起计一年（如会员注册日为2021年1月1日，Olive积分到期日为2021年12月31日），所有Olive积分将於积分到期日清零并於下一日从新累积而不作另行通知。新Olive积分到期日由现有积分到期日起计算一年（如现有积分到期日为2021年12月31日，新Olive积分将於2022年12月31日到期）。此Olive积分有效期计算方法适用於所有会员。
-        </view>
-        <view class="textContent">
-           <view class="titleTop">2. 会员级别简介</view>
+           <view class="titleTop">2. 会员级别简介及升级攻略</view>
            <view class="textContent">i. 恒生Olive用户一经注册，即成为铜会员。除另有注明外，会籍不设期限。</view>
-           <view class="textContent">ii. 铜会员若累积满1500并少於4500积分，即可即时自动升级为一般银会员，会藉由升级起计一年有效。（如会员於2021年7月1日升级为一般银会员，会藉有效期至2022年6月30日）Olive积分有效期与会籍有效期独立计算，详情请参考1. Olive积分简介。</view>
-           <view class="textContent">iii. 铜会员若累积满4500积分，即可即时自动升级为一般金会员，会藉由升级起计一年有效。（如会员於2021年10月1日升级为一般金会员，会藉有效期至2022年9月30日）Olive积分有效期与会籍有效期独立计算，详情请参考1. Olive积分简介。</view>
-           <view class="titleTopLink">3. 快速会员升级攻略</view>
+           <view class="textContent">ii. 指定恒生客户可获发VIP银恒生尊享码。一经输入有效VIP银恒生尊享码，可升级为VIP银会员。除另有注明外，会籍不设有效期。Olive积分有效期与会籍有效期独立计算，详情请参考<text class="titleTop">1. Olive积分简介。</text></view>
+           <view class="textContent">iii. 持有指定综合户口或保险计划之特选恒生客户可获发VIP金恒生尊享码。一经输入有效VIP金恒生尊享码，可升级为VIP金会员，会籍有效期为一年。(如会员於2021年10月1日升级为VIP金会员，会籍有效期至2022年9月30日)於有效期後，会员级别会自动转为VIP银会员。Olive积分有效期与会籍有效期独立计算，详情请参考<text class="titleTop">1. Olive积分简介。</text></view>
+           <!-- <view class="titleTopLink">3. 快速会员升级攻略</view>
            <view class="textContent">i. 指定恒生客户可获发VIP银恒生尊享码。一经输入有效VIP银恒生尊享码，可升级为VIP银会员。除另有注明外，会籍不设有效期。</view>
 
-           <view class="textContent">ii. 持有指定综合户口或保险计划之特选恒生客户可获发VIP金恒生尊享码。一经输入有效VIP金恒生尊享码，可升级为VIP金会员，会籍有效期为一年。(如会员於2021年10月1日升级为VIP金会员，会籍有效期至2022年9月30日)於有效期後，会员级别会自动转为为VIP银会员。</view>
+           <view class="textContent">ii. 持有指定综合户口或保险计划之特选恒生客户可获发VIP金恒生尊享码。一经输入有效VIP金恒生尊享码，可升级为VIP金会员，会籍有效期为一年。(如会员於2021年10月1日升级为VIP金会员，会籍有效期至2022年9月30日)於有效期後，会员级别会自动转为为VIP银会员。</view> -->
            </view>
 
           <view class="blockTable">
-              <view class="titleTop">Olive积分奖赏</view>
               <view class="titleTopImage">
                 <!-- <image src="../../image/table.png" /> -->
-                <image src="{{baseUrl + '/images/lastAdd/table.png'}}" />
+                <!-- <image src="{{baseUrl + '/images/lastAdd/table.png'}}" /> -->
+                <image src="{{imagesUrl + '/images/lastAdd/2@3x.png'}}" />
               </view>
           </view>
 

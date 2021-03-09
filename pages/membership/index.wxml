@@ -4,25 +4,25 @@
       <view class="topImage-main">
           <view class="topBlocks1">
             <view class="topBlocksLeft">
-                <view><text class="abfterCode">银会员</text>尊享码</view>
+                <view><text class="abfterCode">VIP银会员</text>尊享码</view>
                 <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}"/>
             </view>
             <view class="topBlocksRight">
                 <image src="{{imagesUrl + '/images/silver/silver@3x.png'}}"/>
-                <view>VIP银会员</view>
+                <view>VIP银会员+尊享好礼</view>
             </view>
           </view>
           <view class="topBlocks12">
             <view class="topBlocksLeft">
-                <view><text class="abfterCode">金会员</text>尊享码</view>
+                <view><text class="abfterCode">VIP金会员</text>尊享码</view>
                 <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}" />
             </view>
             <view class="topBlocksRight">
                 <image src="{{imagesUrl + '/images/lastAdd/qingtong-2-copy-5@3x.png'}}" />
-                <view>VIP金会员</view>
+                <view>一年VIP金会员+尊享好礼</view>
             </view>
           </view>
-          <view class="topBlocksRightText">提供新的恒生保险尊享码续期一年</view>
+          <view class="topBlocksRightText">提供新的尊享码续期一年</view>
       </view>
     </view>
     <view class="inputBlock">
@@ -61,7 +61,7 @@
               <image class="imageBottom" src="{{imagesUrl + '/images/silver/rectangle@3x.png'}}" />
               <view class="text-main">
                 <view class="text1-main"  wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 4 || tierCode.resultCode === 5}}">恭喜你成功升级为</view>
-                <view class="text1-main" wx:if="{{tierCode.resultCode === 2}}">恭喜你成功获得</view>
+                <view class="text1-main" wx:if="{{tierCode.resultCode === 2}}">恭喜你成功成为</view>
 
                 <view class="text2-main" wx:if="{{tierCode.resultCode === 1 || tierCode.resultCode === 3 || tierCode.resultCode === 5}}">VIP金会员</view>
                 <view class="text2-main" wx:if="{{tierCode.resultCode === 4}}">VIP银会员</view>
@@ -82,6 +82,6 @@
            </view>
        </view>
     </view>
-    <view class="foot-tip">可咨询你的恒生客户经理获取尊享码</view>
+    <view class="foot-tip">欢迎联系我们</view>
 </view>
 <rwj-loading id="loading"></rwj-loading>
