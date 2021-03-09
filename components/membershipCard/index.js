@@ -24,6 +24,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+      imagesUrl: app.globalData.imagesUrl,
       touch:{
         startX:0,
         startY:0,

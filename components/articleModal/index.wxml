@@ -3,7 +3,10 @@
     <!-- <view class="backTitle">免责声明</view> -->
     <view class="topIimages"><image src="{{ imagesUrl + '/images/lastAdd/banner@2x.png'}}" /></view>
     <view class="model-bleck">
-      <view class="title-midden">基本银会员、基本金会员、尊享银会员、尊享金会员专享内容，升级后享更多权益及优惠！</view>
+      <view class="title-midden">
+        <view class="showTextBttom">限定内容唯以下会员级别尊享：</view>
+        <view class="showText">[VIP金/VIP银]</view>
+      </view>
       <view class="btnAbfort">
         <button class="btn" bindtap="lookLevels">查看会员升级攻略</button>
       </view>

@@ -104,8 +104,8 @@
                         <image src='{{imagesUrl + "/images/healthInfo/close@2x.png"}}'></image>
                       </view>
                       <view class='msg-box'>
-                        恒生尊享码是一组专属特选恒生客户的号码。指定客户可获通知尊属的恒生尊享码。
-                    </view>
+                        恒生尊享码是一组专属特选恒生客户的号码。指定客户可获通知专属的恒生尊享码。已有恒生尊享码，立即升级成为VIP银会员
+                      </view>
                 </view>
                 <view wx:if="{{ !whatHangsheng }}">
                     <view class='msg-box-image' bindtap="closePage">

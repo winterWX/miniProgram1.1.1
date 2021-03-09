@@ -22,8 +22,8 @@ Component({
                 if(!value){
                    this.setData({ readyBlueImge : '',readyTopImg: '' })
                 }
-                this.createTopDrawRing();
                 this.createBlueRound( this.data.stepNum );
+                this.createTopDrawRing();
             }
         },
     },
@@ -57,7 +57,6 @@ Component({
             if(this.data.modelShow){
                 this.topImageRing(canvasId, width, height);
             }else{
-                console.log('topDrawRing----------canvasId, width, height',canvasId, width, height)
                 this.setData({ readyTopImg :''});
                 var context = wx.createCanvasContext(canvasId, this);
                 // 外层圆环
@@ -69,7 +68,6 @@ Component({
                 context.setStrokeStyle('#ebeeeb');
                 context.stroke();
                 context.draw();
-                console.log('last---context',context)
             }
         },
         topImageRing:function(canvasId, width, height){

@@ -39,7 +39,8 @@
 }
 
 .integralAct-main{
-  height: 400rpx;
+  /* height: 400rpx; */
+  height: 280rpx;
   background-color: #ffffff;
   margin-top:20rpx;
   padding: 30rpx;

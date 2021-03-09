@@ -28,8 +28,8 @@
     <view  class="secondeBlock" bindtap="membership" wx:if="{{levelNumShow}}">
         <view class="secondeBlock-image"><image src="{{imagesUrl + '/images/index/banner-1@3x.png'}}"/></view>
         <view class="secondeBlock-text">
-          <view class="secondeBlock-text1">升级金银会员获享尊享礼遇</view>
-          <view class="secondeBlock-text2">查看金银会员升级攻略</view>
+          <view class="secondeBlock-text1">升级VIP金银会员获享尊享礼遇</view>
+          <view class="secondeBlock-text2">查看VIP金银会员升级攻略</view>
           <view class="secondeBlock-btn"><image src="{{imagesUrl + '/images/index/icon-circle@3x.png'}}" /></view>
         </view>
     </view>
