@@ -151,27 +151,42 @@ Page({
     let that = this;
     if (event.detail.artContinueBtn){
         that.setData({ modelShow: false, modelRound: false });
-        if(app.globalData.isLogin !== 3){
-            if(that.data.moreFlag){
-              wx.navigateTo({ url: '../../pages/HealthInformation/index' });
-            }else{
-              that.listParams(that.data.artTextData);
-            }
-        }else{
-            if(that.data.moreFlag){
-              wx.navigateTo({ url: '../../pages/HealthInformation/index' });
-            }else{
-              that.listParams(that.data.artTextData);
-            }
-            app.firstTimeLook = true;
-        }
+        that.selectComponent("#loading").show();
+        //先生成圆环DOM  再跳转
+        setTimeout(()=>{
+          if(that.data.imageFlg){
+              that.selectComponent("#loading").hide();
+              if(app.globalData.isLogin !== 3){
+                if(that.data.moreFlag){
+                  wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+                }else{
+                  that.listParams(that.data.artTextData);
+                }
+              }else{
+                  if(that.data.moreFlag){
+                    wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+                  }else{
+                    that.listParams(that.data.artTextData);
+                  }
+                  app.firstTimeLook = true;
+              }
+          }
+      },1000); 
     }
   },
 
   artCancelBtn: function (event){
     let that = this;
     if (event.detail.artCancelBtn){
-        that.setData({ modelShow: false ,modelRound: false});
+        that.selectComponent("#loading").show();
+        //先生成圆环DOM  再跳转
+        setTimeout(()=>{
+              if(that.data.imageFlg){
+                that.selectComponent("#loading").hide();
+                that.setData({ modelShow: false ,modelRound: false});
+              }
+        },1000);
+        //that.setData({ modelShow: false ,modelRound: false});
     }
   },
 
@@ -364,6 +379,7 @@ Page({
     that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
+        res.data.data = res.data.data === 2 || 3 ? 1 : res.data.data;
         that.setData({levelNum: res.data.data});
         if(res.data.data === 3 || res.data.data === 5){
           that.setData({levelNumShow : false});

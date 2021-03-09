@@ -83,7 +83,7 @@
                         <image src='{{imagesUrl + "/images/mine/close@3x.png"}}'></image>
                       </view>
                       <view class='msg-box'>
-                          恒生尊享码是一组专属于你的号码，成功成为恒生银行或恒生保险客户，即可从电邮/短讯获得此号码，如有查询，可以询问你的客户经理。
+                        恒生尊享码是一组专属特选恒生客户的号码。指定客户可获通知专属的恒生尊享码。已有恒生尊享码，立即升级成为VIP金会员
                     </view>
                 </view>
                 <view wx:if="{{!whatHangsheng}}">

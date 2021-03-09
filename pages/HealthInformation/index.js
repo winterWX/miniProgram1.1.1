@@ -367,6 +367,7 @@ Page({
     that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
+        res.data.data = res.data.data === 2 || 3 ? 1 : res.data.data;
         that.setData({levelNum:res.data.data});
       }
       that.selectComponent("#loading").hide();

@@ -141,6 +141,7 @@ Page({
     that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
+          res.data.data = res.data.data === 2 || 3 ? 1 : res.data.data;
           let level = res.data.data;
           let golider = 'https://www.qhms.com/promotion/olive2627.aspx';   // 金
           let solieder = 'https://www.qhms.com/promotion/olive6342.aspx';  // 银

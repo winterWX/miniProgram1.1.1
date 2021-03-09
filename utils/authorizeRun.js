@@ -145,8 +145,10 @@ function setWeRunAuth(sessionkey,result) {
           const data = { encryptedData: resRun.encryptedData, iv: resRun.iv, sessionkey: sessionkey };
           util.wxAjax(method,url,data).then(resDecrypt =>{
                // 微信授权成功
+               console.log('resDecrypt==',resDecrypt.data.data);
                if (resDecrypt.data.data.length > 0) {
                   let runData = JSON.parse(resDecrypt.data.data);
+                  console.log('runData步数-----',runData)
                   if (runData.stepInfoList.length > 0) {
                      runData.stepInfoList = runData.stepInfoList.reverse()
                      for (var i in runData.stepInfoList) {
