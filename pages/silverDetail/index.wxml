@@ -525,7 +525,7 @@
             <view class="bottomBlockGold"  bindtap="doubleIntegral" data-flg="X2">
                 <view class="bottomText">
                 <view class="bottomText1">X2倍Olive积分</view>
-                <view class="bottomText2">银会员享2倍Olive积分</view>
+                <view class="bottomText2">VIP银会员享2倍Olive积分</view>
                 </view>
                 <image src="{{baseUrl + '/images/silver/newImage/x-2-point@3x.png'}}"/>
             </view>
@@ -622,7 +622,7 @@
             <view class="bottomBlockGold" bindtap="doubleIntegral" data-flg="X5">
                 <view class="bottomText">
                     <view class="bottomText1">X5倍Olive积分</view>
-                    <view class="bottomText2">金会员享5倍Olive积分</view>
+                    <view class="bottomText2">VIP金会员享5倍Olive积分</view>
                 </view>
                 <image src="{{baseUrl+'/images/silver/newImage/x-5-point@3x.png'}}"/>
             </view>

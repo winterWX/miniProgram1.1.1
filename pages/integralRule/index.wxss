@@ -97,6 +97,9 @@ page{
 
 .bottomTitle{
     margin-bottom: 20rpx;
+    font-size: 28rpx;
+    color: #333333;
+    font-family: PingFangSC;
 }
 
 .maddin-content{

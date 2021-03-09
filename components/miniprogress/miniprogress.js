@@ -97,17 +97,16 @@ Component({
             );
         },
         drawRing: function (canvasId, width, height,stepNum) {
+            clearInterval(timer);
             if(this.data.modelShow){
                 this.imageDrawRing(canvasId, width, height,stepNum);
             }else{
-                console.log('bottomDrawRing----------canvasId, width, height',canvasId, width, height)
                 this.setData({ readyBlueImge :''});
-                clearInterval(timer);
                 var context = wx.createCanvasContext(canvasId, this)
                 let num = 0;
                 let angle = 0;
                 timer = setInterval(() => {
-                    if(Math.abs(num - stepNum) < 100){    // 这里的清除订时器的条件需要改一下
+                    if(Math.abs(num - stepNum) <= 210){    
                         num = stepNum;
                         clearInterval(timer);
                     }else{

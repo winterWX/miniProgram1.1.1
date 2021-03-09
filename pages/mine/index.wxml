@@ -42,10 +42,10 @@
 			<image class="lever-icon" wx:if="{{userInfo.level === 1}}" src="{{baseUrl + '/images/mine/copper.png'}}"></image>
 			<image class="lever-icon" wx:if="{{userInfo.level === 2 || userInfo.level === 4}}" src="{{baseUrl + '/images/mine/silver.png'}}"></image>
 			<view class="level gold" wx:if="{{userInfo.level === 3 || userInfo.level === 5}}">
-				VIP金
+				VIP金会员
 			</view>
 			<view class="level silver" wx:if="{{userInfo.level === 2 || userInfo.level === 4}}">
-				VIP银
+				VIP银会员
 			</view>
 			<view class="level copper" wx:if="{{userInfo.level === 1}}">
 				铜会员
