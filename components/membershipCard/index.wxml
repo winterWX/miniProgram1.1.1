@@ -24,16 +24,21 @@
                      <view  class="imageTopText">
                         <view class="imageTopTextLeft">
                            <image  src="{{imagesUrl + '/images/silver/silver@3x.png'}}"/>
-                           <view   class="imageRihtText">银会员</view>
+                           <!-- <view   class="imageRihtText">银会员</view> -->
+                           <view class="imageRihtText">VIP银会员</view>
                         </view>
                         <view class="imageTopTextRight"  bindtap="upgradeCard" data-card="image2">立即升级</view>
                      </view>
-                     <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员级别于{{levelExpiryTime}}到期</view>
+                     <!-- <view class="silver-bgText"  wx:if="{{activeData.level === 2}}">会员级别于{{levelExpiryTime}}到期</view>
                      <view class="silver-bgText"  wx:if="{{activeData.level === 4}}">会籍永久有效</view>
                      <view class="silverBgImge" wx:if="{{activeData.level === 1}}"><image class="silver-bgImge" src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
                      <view class="imageBottom">
                         <view class="imageBottom1" wx:if="{{activeData.level === 2 || activeData.level === 4}}">积分{{activeData.integral}}/{{activeData.tierInfo.nextLevelIntegral}}升级</view>
                         <view class="imageBottom1" wx:if="{{activeData.level === 1}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级银会员</view>
+                     </view> -->
+                     <view class="silverBgImge" wx:if="{{activeData.level === 1}}"><image class="silver-bgImge" src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
+                     <view class="imageBottom">
+                        <view class="imageBottom1" wx:if="{{activeData.level === 1}}">使用VIP银会员尊享码即升级成为VIP银会员</view>
                      </view>
                </view>
             </swiper-item>
@@ -43,13 +48,14 @@
                      <view  class="imageTopText3">
                         <view class="imageTopTextLeft3">
                            <image  src="{{imagesUrl + '/images/silver/qingtong-2-copy-5@3x.png'}}"/>
-                           <view class="imageRihtText3">金会员</view>
+                           <view class="imageRihtText3">VIP金会员</view>
                         </view>
                         <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">立即升级</view>
                      </view>
                      <view class="silverBgImgen silverBgImgen13" wx:if="{{activeData.level === 1 || activeData.level === 2}}"><image  class="silver-bgImgen"  src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
                      <view class="imageBottom3">
-                        <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view>
+                        <!-- <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view> -->
+                        <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">使用VIP金会员尊享码即升级成为VIP金会员</view>
                      </view>
                </view>
             </swiper-item>
@@ -82,13 +88,14 @@
                   <view  class="imageTopText3">
                      <view class="imageTopTextLeft3">
                         <image  src="{{imagesUrl + '/images/silver/qingtong-2-copy-5@3x.png'}}"/>
-                        <view class="imageRihtText3">金会员</view>
+                        <view class="imageRihtText3">VIP金会员</view>
                      </view>
                      <view class="imageTopTextRight3" bindtap="upgradeCard" data-card="image3">立即升级</view>
                   </view>
                   <view class="silverBgImgen silverBgImgen13" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}"><image  class="silver-bgImgen" src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
                   <view class="imageBottom3">
-                     <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view>
+                     <!-- <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view> -->
+                     <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">使用VIP金会员尊享码即升级成为VIP金会员</view>
                   </view>
                   </view>
                </swiper-item>
@@ -109,7 +116,10 @@
                   <view class="imageBottom13" wx:if="{{activeData.level === 3}}">现有积分{{activeData.integral + ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view>
                   <!-- <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}}积分达{{activeData.tierInfo.nextLevelIntegral}}可续会籍一年</view> -->
                   <!-- <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}} 输入VIP金恒生尊享码可续会籍一年</view> -->
-                  <view class="imageBottom13" wx:if="{{activeData.level === 5}}">现有积分{{activeData.integral+ ' '}}/输入VIP金恒生尊享码可续会籍一年</view>
+                  <view class="imageBottom13" wx:if="{{activeData.level === 5}}">
+                     <view>现有积分{{activeData.integral+ ' '}}</view>
+                     <view>输入VIP金恒生尊享码可续会籍一年</view>
+                  </view>
                   <view class="imageBottom2 imageBottomColor">当前等级</view>
                </view>
                </view>

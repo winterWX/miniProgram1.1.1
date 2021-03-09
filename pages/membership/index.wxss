@@ -201,9 +201,13 @@ page{
 }
 .foot-tipOne{
   position: absolute;
-  bottom: 70rpx;
+  bottom: 75rpx;
   font-size: 24rpx;
   color: #333333;
   text-align: center;
   width: 100%;
+}
+
+.textCode {
+   width: 48rpx !important;
 }

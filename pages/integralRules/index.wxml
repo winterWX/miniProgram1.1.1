@@ -17,7 +17,7 @@
               <view class="titleTopImage">
                 <!-- <image src="../../image/table.png" /> -->
                 <!-- <image src="{{baseUrl + '/images/lastAdd/table.png'}}" /> -->
-                <image src="{{imagesUrl + '/images/lastAdd/2@3x.png'}}" />
+                <image src="{{baseUrl + '/images/lastAdd/2@3x.png'}}" />
               </view>
           </view>
 
