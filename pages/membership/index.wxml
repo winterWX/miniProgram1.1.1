@@ -83,7 +83,6 @@
        </view>
     </view>
 
-    <view class="foot-tipOne">如何获取尊享码?</view>
-    <view class="foot-tip">欢迎联系我们</view>
+    <view class="foot-tip">如何获取尊享码? 欢迎联络我们</view>
 </view>
 <rwj-loading id="loading"></rwj-loading>
