@@ -48,7 +48,7 @@
   width: 100%;
   height: 100%;
   color: #ffffff;
-  border: 2rpx solid #00a865;
+  font-size: 32rpx;
 }
 
 .btn{
@@ -64,7 +64,7 @@
 }
 
 .btnAbfort button::after {
-   border: 1rpx solid #00a865;
+   border: none !important;
 }
 
 .clearBlock {

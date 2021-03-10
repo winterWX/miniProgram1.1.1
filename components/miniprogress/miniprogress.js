@@ -3,10 +3,9 @@ const app = getApp();
 var timer = null;
 Component({
     properties: {
-
         stepNum: {
             type: Number,
-            value : 0,
+            value : 1,
             observer(value) {
                 if(value){
                     this.createBlueRound(value); 
@@ -29,7 +28,7 @@ Component({
     },
 
     data: {
-       numStep :0,
+       numStep : 0,
        readyTopImg: '',
        readyBlueImge: ''
     },

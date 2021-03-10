@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // appIsLogin: app.globalData.isLogin,
     isLogin: 0,
     bannerUrl: '',
     title: '',
@@ -73,9 +74,6 @@ Page({
   },
   userLogin(data) {
     let that = this;
-    // wx.showLoading({
-    //   title: 'loading...',
-    // })
     const params = {
       code: this.data.code,
       encrypteData: data.encryptedData,
@@ -102,7 +100,6 @@ Page({
           success: (res) => { }
         })
       }
-      //wx.hideLoading()
     })
   },
   goToAnswer: function() {

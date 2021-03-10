@@ -47,3 +47,8 @@ position: relative;
   top: 50%;
   transform: translateY(-50%); 
 }
+
+.van-tabbar-item__icon image {
+  width: 48rpx !important;
+  height: 48rpx !important;
+}

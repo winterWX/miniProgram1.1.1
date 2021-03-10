@@ -1,7 +1,6 @@
 
 <view>
-<view class="btn-box">
-	<button catchtap="loginOut">登出账号</button>
-</view>
-
+	<view class="btn-box">
+		<button catchtap="loginOut">登出账号</button>
+	</view>
 </view>

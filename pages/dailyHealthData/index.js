@@ -8,9 +8,9 @@ Page({
     health:{
       todaySteps: '--',
       stepRate:'--',
-      totalTime:'--',
-      calories:'--',
-      distance:'--',
+      totalTime: 0,
+      calories: '0.0',
+      distance: '0.0',
       bmi:'--',
       height:'--',  
       weight:'--',
@@ -123,8 +123,8 @@ Page({
         res.data.data.weight = weight == 0 ? '--' : weight;
         res.data.data.height = height == 0 ?  '--' : height;
         res.data.data.bpm = bpm == 0 ?  '--' : bpm;
-        res.data.data.distance = distance == 0 ? '--' : distance.toFixed(1);
-        res.data.data.calories = calories == 0 ? '--' : calories.toFixed(1);
+        res.data.data.distance = distance == 0 ? '0.0' : distance.toFixed(1);
+        res.data.data.calories = calories == 0 ? '0.0' : calories.toFixed(1);
 
         that.setData({health: res.data.data});
         that.appDataText(source);

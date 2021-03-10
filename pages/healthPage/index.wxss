@@ -585,3 +585,13 @@ padding-left: 10rpx;
   width: 690rpx !important;   
   height: 420rpx !important;
 }
+
+.van-button:before{
+   border: none !important;
+   border-radius: 4rpx !important;
+   font-size: 32rpx !important;
+   color: #FFFFFF !important;
+}
+.van-button--normal{
+  font-size: 32rpx !important;
+}

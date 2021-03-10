@@ -1,5 +1,5 @@
 <view class="blockArcSeconde" wx:if="{{ showNumber == 1 }}">
-    <view class="topIimages">
+    <view class="topIimages topIimageFrist">
       <image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" />
     </view>
     <!-- <view class="backTitle">免责声明</view> -->
@@ -7,7 +7,7 @@
       <view class="text-block">
         <view class="text-title text-titleFrist">绑定数据开始恒生Olive健康之旅</view>
           <view class="title-midden">
-              <view class="text-Frist">新用户授权并绑定微信运动后可享<text class="numtext">100积分</text></view>
+              <view class="text-Frist">新用户授权并绑定健康应用程式后可享<text class="numtext">100积分</text></view>
               <view class="text-FristDer">授权将恒生Olive与微信运动绑定以追踪您的数据。</view>
               <view class="padding-text">
                   点击下方“确定”，表示您同意并允许恒生Olive连接到微信运动并使用及显示您的个人数据，包括（但不限于）在您的微信运动账号上收集的您的总步数。
@@ -18,7 +18,7 @@
               <view class="padding-text paddingBottom">您可以随时在您的微信运动的设置中取消您的微信运动与恒生Olive的绑定。</view>
           </view>
       </view>
-      <view class="btnAbfort">
+      <view class="btnAbfort fristBtn">
         <button class="btn" bindtap="onStapeData">同意</button>
       </view>
     </view>

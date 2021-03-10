@@ -1,1 +1,1 @@
-<web-view src="{{ baseUrl + '/remote/rules/Terms of Use Wechat_CHI.html'}}" ></web-view>
+<web-view src="{{ baseUrl + '/remote/rules/Terms_of_Use_Wechat_CHI.html'}}" ></web-view>

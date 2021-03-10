@@ -16,7 +16,7 @@
 
 <view class="footer">
     <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"
-       type="default" disabled="{{ !checkedValue }}" class="{{ checkedValue ? 'footerDefalut': ''}}" >立即绑定</button>
+       type="default" disabled="{{ !checkedValue }}" class="{{ checkedValue ? 'footerDefalut': 'defalutState'}}" >立即绑定</button>
     <view bindtap="stopLogin" class="stopLogin">取消</view>
 </view>
 
