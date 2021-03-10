@@ -22,15 +22,6 @@
     </view>
   </view>
 </view>
-<view  class="bottom-content {{ !showBtn ? 'bottom-contentLink':'' }}">
- <view class="bottomTitle">经恒生Olive跳转完成以下活动获取更多Olive积分</view>
-    <view class="maddin-content">
-      <view class="itemText">1. 完成一次eShop消费。</view>
-      <view class="itemText">2. 网上预约及成功开立恒生银行户口，并于分行成功签到。</view>
-      <view class="itemText">3. 网上预约及完成健康服务，并成功於健康伙伴之医务中心签到。</view>
-      <view class="itemText">4. 网上预约及完成一次线上健康谘询。</view>
-    </view>
-</view>
 
 <!-- <view  class="bottom-content {{ !showBtn ? 'bottom-contentLink':'' }}">
  <view class="bottomTitle">经恒生Olive跳转完成以下活动获取更多Olive积分</view>
