@@ -1,6 +1,7 @@
 <view class="container">
   <view class="aboutTop">
-	    <image src="{{imagesUrl + '/images/lastAdd/icon-logo@2x.png'}}"></image>
+			<!-- <image src="{{imagesUrl + '/images/lastAdd/icon-logo@2x.png'}}"></image> -->
+			<image src="../../images/ic_launcher_APP.png"></image>
 			<view class="nameText1">恒生Olive</view>
 			<view class="nameText2">版本1.0.0</view>
 	</view>
@@ -47,7 +48,7 @@
 		</view> -->
 		<view class="item" catchtap="navigatePolicy"  data-id ="2">
 			<view class="left">
-				<view class="label">私隐政策声明</view>
+				<view class="label">私隐政策</view>
 			</view>
 			<view class="right">
 				<image class="icon" src="{{imagesUrl + '/images/mine/right-direction.png'}}"></image>

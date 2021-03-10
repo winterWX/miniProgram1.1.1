@@ -1,3 +1,17 @@
 .btn-box {
   padding: 20rpx 40rpx 20rpx 40rpx;
 }
+
+.btn-box button{
+    font-size: 32rpx !important;
+    height: 90rpx !important;
+    color: #FFFFFF !important;
+    background-color: #D9D9D9 !important;
+    border-radius: 4rpx !important;
+    line-height: 90rpx !important;
+}
+
+.btn-box button::after {
+   border: none !important;
+   border-radius: 4rpx !important;
+}

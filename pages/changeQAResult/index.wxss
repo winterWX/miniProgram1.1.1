@@ -126,3 +126,18 @@ page {
 .ml5 {
     margin-left: 10rpx;
 }
+
+
+.errorText{
+    text-decoration: line-through;
+}
+
+.footer button{
+   font-size: 32rpx !important;
+   color: #FFFFFF !important;
+   border-radius: 4rpx !important;
+}
+
+.footer button::after{
+    border: none !important;
+ }

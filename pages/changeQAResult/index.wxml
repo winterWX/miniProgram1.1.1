@@ -27,7 +27,7 @@
             <view class="question-item" wx:for="{{questionAnalysis}}" wx:key="id" wx:for-item="question">
                 <view class="question">{{question.question}}</view>
                 <view class="answer">
-                    <view style="display: inline-block;">正确答案：{{question.correctAnswer}} {{question.isCorrect === 2 ?  " (" + question.answer + ")" : ''}}</view>
+                    <view style="display: inline-block;">正确答案：{{question.correctAnswer}}<text wx:if="{{question.isCorrect == 2 && question.answer !== ''}}">(<text class="errorText">{{question.isCorrect === 2 ? question.answer : ''}}</text>)</text></view>
                 </view>
                 <view class="result {{ question.isCorrect === 1 ? 'correct' : 'error'}}">{{question.isCorrect === 1 ? '回答正确' : '回答错误'}}</view>
              </view>
