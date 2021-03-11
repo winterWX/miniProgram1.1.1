@@ -92,14 +92,15 @@ page {
 }
 
 .history-step {
-  height: 50rpx;
-  line-height: 50rpx;
+  /* height: 50rpx;
+  line-height: 50rpx; */
   padding: 40rpx 30rpx;
   display: flex;
   justify-content: space-between;
   color: rgb(51, 51, 51);
   background-color: white;
   align-items: center;
+  font-size: 28rpx;
 }
 
 .history-step .icon {

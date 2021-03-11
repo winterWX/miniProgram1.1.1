@@ -5,7 +5,7 @@
     <view class="model-bleck">
       <view class="title-midden">
         <view class="showTextBttom">限定内容唯以下会员级别尊享：</view>
-        <view class="showText">[VIP金会员/VIP银会员]</view>
+        <view class="showText">{{textShow}}</view>
       </view>
       <view class="btnAbfort">
         <button class="btn" bindtap="lookLevels">查看会员升级攻略</button>

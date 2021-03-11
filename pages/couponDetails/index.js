@@ -143,9 +143,9 @@ Page({
       if (res.data.code === 200) {
           res.data.data = res.data.data === ( 2 || 3 ) ? 1 : res.data.data;
           let level = res.data.data;
-          let golider = 'https://www.qhms.com/promotion/olive2627.aspx';   // 金
-          let solieder = 'https://www.qhms.com/promotion/olive6342.aspx';  // 银
-          let brolider = 'https://www.qhms.com/promotion/olive2026.aspx';  // 铜
+          let golider = 'https://www.qhms.com/promotion/olive2627.aspx?lang=sc';   // 金
+          let solieder = 'https://www.qhms.com/promotion/olive6342.aspx?lang=sc';  // 银
+          let brolider = 'https://www.qhms.com/promotion/olive2026.aspx?lang=sc';  // 铜
           that.setData({thirdUrls: (level == 3 || level == 5) ? golider : ((level == 2 || level == 4) ? solieder : brolider ) });
       }
       that.selectComponent("#loading").hide();

@@ -278,7 +278,9 @@ page {
   line-height: 90rpx;
   margin: 30rpx 30rpx 0 30rpx;
   background-color: #00A865;
-  color: white;
+  color: #ffffff;
+  font-size: 32rpx;
+  border-radius: 4rpx !important;
 }
 
 .reward-dis-btn {
@@ -466,4 +468,8 @@ page {
   width: 200rpx;
   height: 80rpx;
   line-height: 80rpx;
+}
+
+button::after{
+  border: none !important;
 }

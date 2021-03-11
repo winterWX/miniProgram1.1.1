@@ -33,7 +33,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let isLogin = app.globalData.loginSuccess ? 1 : 0;
+    //let isLogin = app.globalData.loginSuccess ? 1 : 0; //old
+    let isLogin = app.globalData.isLogin == 3 ? 1 : 0;
     let { id = "", title = "活动详情", goodsId = "" } = options;
     let activityId = id || goodsId;
     wx.setNavigationBarTitle({
