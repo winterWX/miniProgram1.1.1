@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // appIsLogin: app.globalData.isLogin,
     isLogin: 0,
     bannerUrl: '',
     title: '',
@@ -113,7 +112,7 @@ Page({
    */
   onLoad: function (options) {
     console.log('options',options);
-    let { id, goodsId, title='' } = options;
+    let { id, goodsId, title=''} = options;
     let activityId = id || goodsId;
     wx.setNavigationBarTitle({ title });
     this.setData({id: activityId, title});
@@ -124,8 +123,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let isLogin = app.globalData.loginSuccess ? 1 : 0;
+    let isLogin = app.globalData.isLogin === 3 ? 1 : 0;
     this.setData({isLogin});
+    console.log('isLogin',isLogin);
   },
   goResult: function() {
     let { id, title } = this.data;

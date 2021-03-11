@@ -29,7 +29,8 @@ Page({
     artTextData: {},  //首页文章列数据
     moreFlag: false,  //更多按钮的标记
     imageFlg :false,
-    modelRound: false
+    modelRound: false,
+    levelLookNum: []
   },
   onLoad: function (options) {
     let that = this;
@@ -199,17 +200,21 @@ Page({
 
   myfindPage:function(){
     let that = this;
-    if(app.firstTimeLook){
-       wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+    if(app.globalData.isLogin == 3){
+      if(app.firstTimeLook){
+        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+      }else{
+       that.setData({ modelRound:true });
+       setTimeout(()=>{
+           if(that.data.imageFlg){
+             that.setData({ moreFlag : true, modelShow : true, showNumber: 2 });    // 。。。。同上
+           }
+       },1000); //半圆变成图片再显示
+      }
     }else{
-      //app.globalData.artcleFlg = true;
-      that.setData({ modelRound:true });
-      setTimeout(()=>{
-          if(that.data.imageFlg){
-            that.setData({ moreFlag : true, modelShow : true, showNumber: 2 });    // 。。。。同上
-          }
-      },1000); //半圆变成图片再显示
+      wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }
+
   },
 
   challengePage:function(){
@@ -217,6 +222,7 @@ Page({
       url: '../../pages/challenge/index',
     })
   },
+
   navigateToStep: function() {
     let that = this;
     if(that.data.isAppData){
@@ -423,17 +429,16 @@ Page({
     if(app.firstTimeLook){
        that.listParams(e);
     }else{
-      //app.globalData.artcleFlg = true;
-      that.setData({ modelRound:true });
+      that.setData({ modelRoud: true });
       setTimeout(()=>{
           if(that.data.imageFlg){
-            that.setData({ modelShow: true, moreFlag : false, showNumber: 2 });    // 。。。。同上
+            that.setData({ modelShow: true, moreFlag : false, showNumber: 2 }); 
           }
-      },1000); //半圆变成图片再显示
-      // that.setData({modelShow: true, moreFlag : false, showNumber: 2});
+      },1000); 
     }
   },
   listParams(e){
+      console.log('1111111111')
       let that = this;
       const { item } = e.currentTarget.dataset;
       const levelArray = item.level.split(',');
@@ -446,19 +451,25 @@ Page({
         if(levelArray.includes(that.data.levelNum +'')){
             wx.navigateTo({ url : url});
         }else{
-            this.setData({ lookLevel: true});
+            this.setData({ lookLevel: true , levelLookNum: levelArray});
         } 
       }else{
-         // flag === true 是所有等级都能看
-         wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
+        // flag === true 是所有等级都能看
+        wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
       }
   },
+
   listChange(e){
-      let {type,id,title} = e.currentTarget.dataset.item;
+      let {type, id, title} = e.currentTarget.dataset.item;
       if(type === '1'){
           wx.navigateTo({ url: '../activityDetail/index?id=' + id + '&title=' + title });
       }else{
           wx.navigateTo({ url: '../../pages/healthKnowledge/index?id=' + id });
       }
+      
+
+     Promise.allSettled([])
+
+
   }
 })

@@ -116,7 +116,7 @@ Page({
         if(levelArray.includes(that.data.levelNum +'')){
             wx.navigateTo({ url : url});
         }else{
-            this.setData({ lookLevel: true});
+            this.setData({ lookLevel: true , levelLookNum: levelArray});
         } 
      }else{
         // flag === true 是所有等级都能看

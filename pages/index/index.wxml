@@ -80,7 +80,7 @@
   bind:artCancelBtn="artCancelBtn"
 ></steps-moldal>
 
-<article-modal  class="stepsMoldal"  bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}'></article-modal>
+<article-modal  class="stepsMoldal"  bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}' levelLookNums='{{levelLookNum}}'></article-modal>
 
 <collectionOption  wx:if="{{ successFlg }}" bind:parentReceive="parentCallBack" ></collectionOption>
 

@@ -253,9 +253,6 @@ Page({
   },
   userLogin(data) {
     let that = this;
-    // wx.showLoading({
-    //   title: 'loading...',
-    // })
     let url =  app.globalData.baseUrl + '/remote/oauth/minipro/login';
     let method = 'POST';
     const parms = {
@@ -279,7 +276,6 @@ Page({
             success: (res) => { }
           })
         }
-        //wx.hideLoading()
     })
   },
   
