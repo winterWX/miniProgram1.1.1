@@ -22,10 +22,8 @@ Page({
     }
   },
   onLogin(data) { //登录
-    this.selectComponent("#loading").show();
     wx.login({
       success: (res) => {
-        this.selectComponent("#loading").hide();
         if (res.code) {
           //发起网络请求
           this.setData({ code: res.code })
@@ -49,7 +47,6 @@ Page({
   checkAuthorization() {
     wx.getSetting({
       success: (setingres) => {
-        this.selectComponent("#loading").hide();
         if (setingres.authSetting['scope.userInfo']) { //已经授权获取用户信息             
           wx.getUserInfo({
             success: (res) => {
@@ -79,10 +76,8 @@ Page({
       iv: data.iv
     }
     let url = app.globalData.baseUrl + '/remote/oauth/minipro/login';
-    that.selectComponent("#loading").show();
     wxAjax('POST', url, params).then(res => {
       if (res.data.code === 200) {
-        that.selectComponent("#loading").hide();
         app.globalData.userInfo = res.data.data
         that.setData({
           isLogin: 1
@@ -92,7 +87,6 @@ Page({
           url: '../login/index?url=' + urlBase,
         })
       } else {
-        that.selectComponent("#loading").hide();
         wx.showModal({
           showCancel: false,
           content: res.message,
@@ -137,12 +131,12 @@ Page({
     let that = this;
     let token = app.globalData.token || '';
     let url = app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
-    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200) {
         let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
         let info = content.replace(/<[^>]+>/g,"");
         let participated = quizResult !== null;
+        wx.setNavigationBarTitle({ title });
         that.setData({
           bannerUrl,
           title,
@@ -152,8 +146,8 @@ Page({
           isEnds,
           reward
         })
+        
       }
-      that.selectComponent("#loading").hide();
     })
   }
 })

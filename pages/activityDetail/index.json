@@ -4,5 +4,5 @@
     "htmlView": "../../components/htmlView/htmlView",
     "rwj-loading": "../../components/loading/index"
   },
-  "navigationBarTitleText": "活动详情"
+  "navigationBarTitleText": ""
 }

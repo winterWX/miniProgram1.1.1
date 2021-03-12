@@ -17,7 +17,7 @@
         <view class="topTipBlock" wx:if="{{topTipShow}}">
             <view class="topSan"></view>
             <view class="topTip">
-                <view class="topTipTiele">设定你喜爱的话题。</view>
+                <view class="topTipTiele">设定你喜爱的话题！</view>
                 <image bindtap="topTipImageColse" class="topTipImage" src="{{baseUrl + '/images/healthInfo/icon-close-white@2x.png'}}"></image>
             </view>
         </view>
@@ -49,7 +49,7 @@
                     <view class="searchList-main">
                         <view class="myTagList">
                             <view class="myTagList-title">我关注的话题</view>
-                            <view class="myTagRight">(拖拽标签可排序)</view>
+                            <!-- <view class="myTagRight">(拖拽标签可排序)</view> -->
                         </view>
                         <view class="searchList">
                             <view class='item_container' wx:for='{{myTagData}}' wx:key="index">

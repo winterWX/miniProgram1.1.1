@@ -29,8 +29,8 @@
 <steps-moldal  class="stepsMoldal"  
 wx-if="{{ modelShow }}" 
 showNumber="{{ showNumber }}"
-showFlag="{{ couponDetailObj.thirdPartyUrl}}"
-bind:artContinueBtn="artContinueBtn"
-bind:artCancelBtn="artCancelBtn"
+showFlag="{{couponDetailObj.thirdPartyUrl}}"
+bind:couponContinueBtn="couponContinueBtn"
+bind:couponCancelBtn="couponCancelBtn"
 ></steps-moldal>
 <rwj-loading id="loading"></rwj-loading>

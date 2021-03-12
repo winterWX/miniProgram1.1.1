@@ -2,5 +2,5 @@
   "usingComponents": {
     "rwj-loading": "../../components/loading/index"
   },
-  "navigationBarTitleText": "健康知识王者赛"
+  "navigationBarTitleText": ""
 }

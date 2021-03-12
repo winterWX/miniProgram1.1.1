@@ -34,7 +34,7 @@
         </view>
     </view>
     <view  class="threesBlock">
-         <view class="threesBlock-title" bindtap="myfindPage">
+         <view class="threesBlock-title" bindtap="moreArticle">
              <view class="threesBlock-left">
                 <text class="threesBlock-leftBorber">健康头条</text>
               </view>
@@ -74,13 +74,19 @@
 
 <rwj-loading id="loading"></rwj-loading>
 
-<steps-moldal class="stepsMoldal"  wx-if="{{ modelShow }}" showNumber="{{ showNumber }}"  
+<steps-moldal class="stepsMoldal"  wx-if="{{ modelShow }}" 
+  showNumber="{{ showNumber }}" 
   bind:modelShowBlock="modelShowBlock"
-  bind:artContinueBtn="artContinueBtn"
-  bind:artCancelBtn="artCancelBtn"
+  bind:artContinue="artContinue"
+  bind:artcancel="artcancel"
 ></steps-moldal>
 
-<article-modal  class="stepsMoldal"  bind:closeBlock="closeBlock" wx-if="{{ lookLevel }}" levelNum='{{ levelNum }}' levelLookNums='{{levelLookNum}}'></article-modal>
+<article-modal  class="stepsMoldal"  
+  bind:closeBlock="closeBlock" 
+  wx-if="{{ lookLevel }}" 
+  levelNum='{{ levelNum }}' 
+  levelLookNums='{{levelLookNum}}'
+></article-modal>
 
 <collectionOption  wx:if="{{ successFlg }}" bind:parentReceive="parentCallBack" ></collectionOption>
 
