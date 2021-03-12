@@ -39,14 +39,27 @@ Component({
     privacyAgreement(){
       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' });
     },
-    continueBtn(){
-      this.triggerEvent('artContinueBtn', {
-        artContinueBtn: true
+    artContinue(){
+        console.log('...................');
+        this.triggerEvent('artContinue', {
+          artContinue: app.globalData.isLogin == 3 ?  true : false
+        }, {})
+    },
+    artcancel(){
+      this.triggerEvent('artcancel', {
+        artcancel:  app.globalData.isLogin == 3 ? true : false
       }, {})
     },
-    cancelBtn(){
-      this.triggerEvent('artCancelBtn', {
-        artCancelBtn: true
+
+    couponContinueBtn(){
+      this.triggerEvent('couponContinueBtn', {
+        couponContinueBtn: true 
+      }, {})
+    },
+
+    couponCancelBtn(){
+      this.triggerEvent('couponCancelBtn', {
+        couponCancelBtn: true 
       }, {})
     }
   }

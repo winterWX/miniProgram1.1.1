@@ -3,7 +3,7 @@
     <view class="member-info">
       <image class="header" src="{{avatarObjList[self.avatar] ? avatarObjList[self.avatar].url : (self.avatarUrl ? self.avatarUrl : defaultIcon)}}"></image>
       <view class="order">
-        <view class="nickname">{{self.nickname}}（我自己）</view>
+        <view class="nickname">{{self.nickname}}</view>
         <view class="rank">第{{self.order}}名</view>
       </view>
     </view>

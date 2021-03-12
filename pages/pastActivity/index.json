@@ -2,7 +2,7 @@
   "usingComponents": {
     "rwj-loading": "../../components/loading/index"
   },
-  "navigationBarTitleText": "往期活动",
+  "navigationBarTitleText": "往期挑战",
   "backgroundTextStyle":"dark",
   "onReachBottomDistance":50,
   "enablePullDownRefresh": true

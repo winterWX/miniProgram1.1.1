@@ -148,15 +148,13 @@ Page({
     }
   },
 
-  artContinueBtn: function (event){
+  artContinue: function (event){
     let that = this;
-    if (event.detail.artContinueBtn){
+    if (event.detail.artContinue){
         that.setData({ modelShow: false, modelRound: false });
-        that.selectComponent("#loading").show();
         //先生成圆环DOM  再跳转
         setTimeout(()=>{
           if(that.data.imageFlg){
-              that.selectComponent("#loading").hide();
               if(app.globalData.isLogin !== 3){
                 if(that.data.moreFlag){
                   wx.navigateTo({ url: '../../pages/HealthInformation/index' });
@@ -173,21 +171,23 @@ Page({
               }
           }
       },1000); 
+    }else if(!event.detail.artContinue){
+        that.setData({ modelShow: false });
+        wx.navigateTo({ url: '../../pages/HealthInformation/index' });
     }
   },
 
-  artCancelBtn: function (event){
+  artcancel: function (event){
     let that = this;
-    if (event.detail.artCancelBtn){
-        that.selectComponent("#loading").show();
+    if (event.detail.artcancel){
         //先生成圆环DOM  再跳转
         setTimeout(()=>{
-              if(that.data.imageFlg){
-                that.selectComponent("#loading").hide();
-                that.setData({ modelShow: false ,modelRound: false});
-              }
+            if(that.data.imageFlg){
+              that.setData({ modelShow: false ,modelRound: false});
+            }
         },1000);
-        //that.setData({ modelShow: false ,modelRound: false});
+    }else if (!event.detail.artcancel){
+       that.setData({ modelShow: false });
     }
   },
 
@@ -198,7 +198,7 @@ Page({
     }
   },
 
-  myfindPage:function(){
+  moreArticle:function(){
     let that = this;
     if(app.globalData.isLogin == 3){
       if(app.firstTimeLook){
@@ -212,9 +212,8 @@ Page({
        },1000); //半圆变成图片再显示
       }
     }else{
-      wx.navigateTo({ url: '../../pages/HealthInformation/index' });
+      that.setData({ modelShow : true, showNumber: 2 }); 
     }
-
   },
 
   challengePage:function(){
@@ -255,14 +254,12 @@ Page({
   },
   getUserInfo:function(e) { //获取用户信息
     let that = this;
-    that.selectComponent("#loading").show();
     if (e.detail.userInfo) {
         userLogin.onLogin(function(result){
           that.data.isLogin = result.isLoginState;
           app.globalData.loginSuccess = result.isLoginState;
           app.globalData.userInfo = result.newUserInfo;
           app.globalData.userInfoDetail = result.newUserInfo;
-          that.selectComponent("#loading").hide();
         },e.detail,that.data.isLogin,that.data.redirectToUrl)
     }
   },
@@ -288,7 +285,6 @@ Page({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/health/data/query/latestime';
       let method = 'GET';
-      that.selectComponent("#loading").show();
       util.wxAjax(method,url).then(res =>{
           if (res.data.code === 200) {
               //最后上传时间戳 和 当前时间戳进行比较
@@ -306,7 +302,6 @@ Page({
               console.log('results-----------',results);
               that.getUploaddata(results);
           }
-          that.selectComponent("#loading").hide();
       })
   },
   //运动数据同步上传
@@ -318,12 +313,10 @@ Page({
           stepsDataModelList: runData
         };
     let method = 'POST';
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res =>{
         if (res.data.code === 200) {
             that.stepRunState();   //刷新步数接口
         }
-        that.selectComponent("#loading").hide();
     });
   },
   //今日步数
@@ -332,20 +325,17 @@ Page({
     let method ='POST';
     let url = app.globalData.baseUrl +'/remote/today/step/enquiry';
     const data = {souce:'string', type:'MINIP'};
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res =>{
         if(res.data.code === 200){
-            that.selectComponent("#loading").hide();
             that.setData({
               stepsNum: res.data.data, 
               runDataText: util.escapeThousands(res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)),
               rejectRun: false
             });
-        }else{
-          that.selectComponent("#loading").hide();
         }
     }).catch(err=>{
-      that.selectComponent("#loading").hide();
+      console.log(err)
+      //that.selectComponent("#loading").hide();
     })
   },
   homePageInit: function () {
@@ -414,7 +404,7 @@ Page({
   membership:function(){
     let that = this;
     if(app.globalData.isLogin !== 3){
-        return;
+      return;
     }else{
       if(that.data.levelNum === 1){
           wx.navigateTo({ url: '../../pages/strategy/index'});
@@ -424,39 +414,50 @@ Page({
     }
   },
   listClick(e){
-    let that = this;
-    that.setData({ artTextData: Object.assign( {}, e) });
-    if(app.firstTimeLook){
-       that.listParams(e);
-    }else{
-      that.setData({ modelRoud: true });
-      setTimeout(()=>{
-          if(that.data.imageFlg){
-            that.setData({ modelShow: true, moreFlag : false, showNumber: 2 }); 
+      let that = this;
+      that.setData({ artTextData: Object.assign( {}, e) });
+      if(app.globalData.isLogin == 3){
+          if(app.firstTimeLook){
+              that.listParams(e);
+            }else{
+              that.setData({ modelRoud: true });
+              setTimeout(()=>{
+                  if(that.data.imageFlg){
+                    that.setData({ modelShow: true, moreFlag : false, showNumber: 2 }); 
+                  }
+              },1000); 
           }
-      },1000); 
-    }
+      }else{
+        that.notLoginState();
+      }
   },
   listParams(e){
-      console.log('1111111111')
       let that = this;
       const { item } = e.currentTarget.dataset;
       const levelArray = item.level.split(',');
       let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
-      let flag = true;   //标记所有等级都能看
-      ['1','2','3','4','5'].forEach(item =>{
-        if(!levelArray.includes(item)){ flag = false; }
-      })
-      if(app.globalData.isLogin === 3){
-        if(levelArray.includes(that.data.levelNum +'')){
-            wx.navigateTo({ url : url});
-        }else{
-            this.setData({ lookLevel: true , levelLookNum: levelArray});
-        } 
+      // let flag = true;   //标记所有等级都能看
+      // ['1','2','3','4','5'].forEach(item =>{
+      //   if(!levelArray.includes(item)){ flag = false; }
+      // })
+      if(levelArray.includes(that.data.levelNum +'')){
+          wx.navigateTo({ url : url});
       }else{
-        // flag === true 是所有等级都能看
-        wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
-      }
+          that.setData({ lookLevel: true , levelLookNum: levelArray});
+      } 
+  },
+
+  notLoginState(){
+      let that = this;
+      //const { item } = e.currentTarget.dataset;
+      that.setData({ modelShow : true, showNumber: 2 }); 
+      //const levelArray = item.level.split(',');
+      //let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
+      // let flag = true;   //标记所有等级都能看
+      // ['1','2','3','4','5'].forEach(item =>{
+      //   if(!levelArray.includes(item)){ flag = false; };
+      // })
+      // wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
   },
 
   listChange(e){
@@ -466,10 +467,5 @@ Page({
       }else{
           wx.navigateTo({ url: '../../pages/healthKnowledge/index?id=' + id });
       }
-      
-
-     Promise.allSettled([])
-
-
   }
 })

@@ -35,11 +35,9 @@ Page({
   onLoad: function (options) {
     //let isLogin = app.globalData.loginSuccess ? 1 : 0; //old
     let isLogin = app.globalData.isLogin == 3 ? 1 : 0;
-    let { id = "", title = "活动详情", goodsId = "" } = options;
+    let { id = "", title = "", goodsId = "" } = options;
     let activityId = id || goodsId;
-    wx.setNavigationBarTitle({
-      title: title,
-    });
+
     this.setData({ activityId, isLogin });
     this.getActivityDetail(activityId, goodsId);
     if (isLogin) {
@@ -133,10 +131,9 @@ Page({
     let that = this;
     let url = app.globalData.baseUrl + "/remote/myactivity/detail/" + id;
     let method = 'GET';
-    that.selectComponent("#loading").show();
-
     Utils.wxAjax(method,url).then(res=>{
       if (res.data.code == 200) {
+          wx.setNavigationBarTitle({ title: res.data.data.title });
           let detail = {
             ...res.data.data,
             content: res.data.data.content,
@@ -164,7 +161,6 @@ Page({
             that.joinActivity();
           }
       }
-      that.selectComponent("#loading").hide();
     })
   },
   calcActivityAllReward: function (arr) {

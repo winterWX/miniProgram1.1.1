@@ -1,6 +1,7 @@
 page {
-  color: #ededed;
+  /* color: #ededed; */
   height: 100%;
+  background-color: #ededed;
 }
 
 .container {

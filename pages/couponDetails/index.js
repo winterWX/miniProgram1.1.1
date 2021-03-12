@@ -111,16 +111,16 @@ Page({
     })
   },
 
-  artContinueBtn: function (event){
+  couponContinueBtn: function (event){
     let that = this;
-    if (event.detail.artContinueBtn){
+    if (event.detail.couponContinueBtn){
         that.setData({ modelShow: false, showLink: true });
     }
   },
 
-  artCancelBtn: function (event){
+  couponCancelBtn: function (event){
     let that = this;
-    if (event.detail.artCancelBtn){
+    if (event.detail.couponCancelBtn){
         that.setData({ modelShow: false, showLink: false });
     }
   },
