@@ -52,6 +52,7 @@ Page({
           that.checkIsAppUser();  //调用数据源，App数据优先；
         }
     }
+    //二维码携带参数
     if(options.scene){
        const scene = decodeURIComponent(query.scene);
        let typeNum = parseInt(scene.split('&')[0].split('=')[1]);
@@ -115,7 +116,6 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
     let method = 'GET';
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if (res.data.code === 200) {
           that.setData({ isAppData: res.data.data === 2 ? true : false });   // 2 app 用户，1 mini用户
@@ -128,7 +128,6 @@ Page({
               }
           }
         }
-        that.selectComponent("#loading").hide();
     });
   },
 
@@ -342,7 +341,6 @@ Page({
         }
     }).catch(err=>{
       console.log(err)
-      //that.selectComponent("#loading").hide();
     })
   },
   homePageInit: function () {
@@ -379,7 +377,6 @@ Page({
     let that = this;
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/userlevel';
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
         res.data.data = res.data.data === ( 2 || 3 ) ? 1 : res.data.data;
@@ -388,23 +385,18 @@ Page({
           that.setData({levelNumShow : false});
         }
       }
-      that.selectComponent("#loading").hide();
     })
   },
   //领取状态
   getState: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
-    that.selectComponent("#loading").show();
     util.wxAjax ('POST', url, {souce: "string", type: "MINIP"}).then(res => {
       if (res.data.code === 200) {
         let {receiveStatus,isDone} = res.data.data;
         if(receiveStatus == 1 && isDone == 1){
           that.setData({ forceNum:true });
         }
-        that.selectComponent("#loading").hide();
-      }else{
-        that.selectComponent("#loading").hide();
       }
     })
   },
@@ -427,7 +419,7 @@ Page({
           if(app.firstTimeLook){
               that.listParams(e);
             }else{
-              that.setData({ modelRoud: true });
+              that.setData({ modelRound: true });
               setTimeout(()=>{
                   if(that.data.imageFlg){
                     that.setData({ modelShow: true, moreFlag : false, showNumber: 2 }); 

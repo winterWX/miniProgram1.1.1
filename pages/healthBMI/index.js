@@ -74,12 +74,12 @@ Page({
         let s1 =  (parseFloat(18.50) - parseFloat(numData)) * parseFloat(2.248);
         let BMIleft = parseFloat(15.0) - parseFloat(s1);
         that.setData({ background: '#9B7C56',BMIleft });
-    }else if(parseFloat(18.5) <= parseFloat(numData) && parseFloat(numData) < parseFloat(22.9)){
-        let s1 = (parseFloat(22.9) - parseFloat(numData)) * parseFloat(6.36);
+    }else if(parseFloat(18.5) <= parseFloat(numData) && parseFloat(numData) < parseFloat(23.0)){
+        let s1 = (parseFloat(23.0) - parseFloat(numData)) * parseFloat(6.36);
         let BMIleft = parseFloat(43.0) - parseFloat(s1);
         that.setData({ background: '#34A344',BMIleft });
-    }else if(parseFloat(23) <= parseFloat(numData) && parseFloat(numData) < parseFloat(24.9)){
-        let s1 = (parseFloat(24.9) - parseFloat(numData)) * parseFloat(11.57);
+    }else if(parseFloat(23.0) <= parseFloat(numData) && parseFloat(numData) < parseFloat(25.0)){
+        let s1 = (parseFloat(25.0) - parseFloat(numData)) * parseFloat(11.57);
         let BMIleft = parseFloat(65.0) - parseFloat(s1);
         that.setData({ background: '#EDAE26',BMIleft });
     }else if(parseFloat(25.0) <= parseFloat(numData) &&  parseFloat(numData) < parseFloat(27.5)){
@@ -87,7 +87,7 @@ Page({
         let BMIleft = parseFloat(65.0) + parseFloat(s1);
         that.setData({ background: '#B10D19',BMIleft });
     }else if( parseFloat(numData) >= parseFloat(27.5)){
-        that.setData({ background: '#B10D19',BMIleft : 98});
+        that.setData({ background: '#B10D19',BMIleft : 99});
     }
   }
 })
