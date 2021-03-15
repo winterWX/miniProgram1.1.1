@@ -43,7 +43,7 @@ Page({
           firstTitleCn,
           secondTitleCn,
           thirdTitleCn,
-          descriptionCn: descriptionCn.replace(/<[^>]+>/g,""),
+          descriptionCn: descriptionCn,
           id
         })
       }

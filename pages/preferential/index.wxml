@@ -10,7 +10,8 @@
         </view>
     </view>
     <view class="content">
-        {{descriptionCn}}
+        <rich-text type="'node'" nodes="{{descriptionCn}}"></rich-text>
+        <!-- {{descriptionCn}} -->
     </view>
     </view>
     <view class="footer">
