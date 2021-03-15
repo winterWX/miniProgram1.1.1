@@ -1,7 +1,7 @@
 page{
   background-color: #ededed;
-  height: 1470rpx;
-  width: 100%;
+  /* height: 1470rpx;
+  width: 100%; */
   /* overflow: hidden; */
 }
 .PageBackColor{
@@ -111,8 +111,8 @@ page{
   height: 48rpx;
   border-radius: 4rpx;
   background-color: #00a865;
-  line-height: 48rpx;
-  font-size: 24rpx;
+  line-height: 40rpx;
+  font-size: 28rpx !important;
   text-align: center;
   color: #ffffff;
 }
@@ -285,7 +285,8 @@ margin-right: 34rpx;
 }
 .sendBlock{
   height: 232rpx;
-  margin:  30rpx 30rpx 50rpx 30rpx;
+  /* margin:  30rpx 30rpx 50rpx 30rpx; */
+  margin: 50rpx;
   border-radius: 4rpx;
   box-shadow: 0 2rpx 10rpx 0 rgba(0, 0, 0, 0.05);
   /* //background-color: #ffffff; */
