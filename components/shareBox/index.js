@@ -8,6 +8,13 @@ Component({
       observer(newVal, oldVal) {
         newVal && this.drawPic()
       }
+    },
+    miniQrCode: {
+      type: String,
+      value: '',
+      observer(newVal, oldVal) {
+        //newVal && this.drawPic()
+      }
     }
   },
   data: {
@@ -102,7 +109,7 @@ Component({
             },
             {
               type: 'image',
-              url: app.globalData.imagesUrl + '/images/recommend/shared.jpg',
+              url: this.data.miniQrCode,    //app.globalData.imagesUrl + '/images/recommend/shared.jpg',
               css: {
                 top: '540rpx',
                 left: '0rpx',
