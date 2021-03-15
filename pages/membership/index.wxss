@@ -193,7 +193,7 @@ page{
   width: 100%;
 }
 .abfterCode{
- color: rgb(155,124,86);
+ /* color: rgb(155,124,86); */
  font-size: 28rpx;
 }
 .undeerLine{

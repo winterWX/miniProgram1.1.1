@@ -40,7 +40,6 @@ Page({
     let that = this;
     let url = app.globalData.baseUrl + '/remote/tier/code';
     wxAjax('POST', url, {"membershipCode": that.data.nickName}).then(res=> {
-      that.selectComponent("#loading").show();
       if (res.data.code === 200) {
         that.setData({tierCode: res.data.data});
         that.setData({showCarkBlock: true, nickName : ''});
@@ -53,13 +52,8 @@ Page({
       }else{
         this.setData({showTip:true, errorTip : false, errorTipThree : false, errorSeconeTip:false});
       }
-      that.selectComponent("#loading").hide();
-    }).catch(()=> {
-      that.selectComponent("#loading").hide();
-      wx.showToast({
-        title: '服务繁忙， 请稍后重试。',
-        icon: 'loading'
-      })
+    }).catch((err)=> {
+        console.log(err);
     })
   },
   closeBlock:function(){

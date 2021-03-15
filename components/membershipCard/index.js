@@ -82,18 +82,21 @@ Component({
         this.searchLeve(cardNum + 2);
     },
     upgradeCard:function(e){
-      let that = this;
-      let cardUp = e.target.dataset.card;
-      let cardShow = [1,2,4];
-      if(cardUp === 'image2' && that.data.activeData.level === 1){
-          return;
-      }else if(cardUp === 'image3' && cardShow.includes(that.data.activeData.level)){
-          return;
-      }else{
-        wx.navigateTo({
-          url: '../../pages/membership/index',
-        })
-      }
+      // let that = this;
+      // let cardUp = e.target.dataset.card;
+      // let cardShow = [1,2,4];
+      // if(cardUp === 'image2' && that.data.activeData.level === 1){
+      //     return;
+      // }else if(cardUp === 'image3' && cardShow.includes(that.data.activeData.level)){
+      //     return;
+      // }else{
+      //   wx.navigateTo({
+      //     url: '../../pages/membership/index',
+      //   })
+      // }
+      wx.navigateTo({
+        url: '../../pages/membership/index',
+      })
     },
     searchLeve:function(level){
         this.infoLevel(level);

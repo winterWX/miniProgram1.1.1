@@ -81,7 +81,12 @@ App({
         url: imagesUrl + '/images/icnImage/icon/icon-zhu@2x.png', 
         id: 12,
       },
-    ]
+    ],
+    //二维码参数
+    miniQwx:{
+      type: 0,
+      phoneNumber: null
+    }
   },
   firstTimeLogin: false, //绑定数据的时候的法律法规弹窗 和 首次登录
   firstTimeLook: false, //第一次登录查看文章时

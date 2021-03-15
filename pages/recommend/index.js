@@ -101,11 +101,11 @@ Page({
   //小程序码
   forShareNum: function () {
     let that = this;
-    let infoObj = app.globalData.userInfo;
+    let phoneNumber = app.globalData.userInfo.phoneNumber;
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
     wxAjax('POST', url, { 
       path: 'pages/index/index', 
-      scene: infoObj.phoneNumber,
+      scene:`type=1&phoneNumber=${phoneNumber}`,
       width: 100
     }).then(res => {
       if(res.data.code == 200){
