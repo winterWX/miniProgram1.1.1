@@ -61,8 +61,7 @@ page {
     font-size: 28rpx;
 }
 .container .main .questions .result .item .pass-rate {
-    /* color: #00a865; */
-    color:red;
+    color:#b10d19;
 }
 .container .main .middle-tip {
     text-align: center;
