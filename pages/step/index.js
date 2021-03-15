@@ -266,7 +266,7 @@ Page({
     let {month, days} = this.getDateInfo(t);
     if (type === 'month') {
       for (let i=1;i<=days;i++) {
-        let date = `${i < 10 ? '0' + i : i}日`;
+        let date = `${i}日`;
         results[date] = 0;
         dateMap[date] = `${month < 10 ? '0' + month : month}月${date}`
       }
