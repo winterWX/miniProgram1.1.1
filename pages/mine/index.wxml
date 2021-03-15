@@ -143,7 +143,7 @@
 		<view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
 			<view class='msg-box-image' bindtap="closePage">
 				<view class="topTitle" wx:if="{{titleText}}">关于我们</view>
-				<view class="topTitle" wx:if="{{!titleText}}">联系我们</view>
+				<view class="topTitle" wx:if="{{!titleText}}">联络我们</view>
 				<image src="{{baseUrl + '/images/mine/close@3x.png'}}"></image>
 			</view>
 			<view class='msg-box .msg-box2'>
