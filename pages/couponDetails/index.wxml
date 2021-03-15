@@ -13,7 +13,7 @@
     <view class="texteContent4">有效期至{{couponDetailObj.expiryTime}}</view>
   </view>
   <view class="textContent">
-    <view class="textContent-titl">描述：</view>
+    <view class="textContent-titl">详情：</view>
     <htmlView  class="textContentText" detail ="{{couponDetailObj.description}}"/>
   </view>
   <view class="bottomBtn">
