@@ -52,6 +52,13 @@ Page({
           that.checkIsAppUser();  //调用数据源，App数据优先；
         }
     }
+    if(options.scene){
+       const scene = decodeURIComponent(query.scene);
+       let typeNum = parseInt(scene.split('&')[0].split('=')[1]);
+       let phoneNumberNum = parseInt(scene.split('&')[1].split('=')[1]);
+       app.globalData.miniQwx.type = typeNum;
+       app.globalData.miniQwx.phoneNumber = phoneNumberNum;
+    }
     that.homePageInit();
     that.userLevel();
   },

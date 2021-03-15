@@ -37,11 +37,16 @@ Page({
   },
   phoneNumberLogin (data) {
     const parms = {
-      encryptedData: data.encryptedData,
-      iv: data.iv,
-      openId: app.globalData.userInfo.openId,
-      avatarUrl: app.globalData.userInfo.avatarUrl,
-      invitationCode: app.globalData.invitationCode
+        encryptedData: data.encryptedData,
+        iv: data.iv,
+        openId: app.globalData.userInfo.openId,
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        invitationCode: app.globalData.invitationCode
+    }
+    let {type, phoneNumber} = app.globalData.miniQwx;
+    if(!!phoneNumber){
+        parms.type = '1';  //二位码type
+        parms.phoneNumber = phoneNumber + ''; //二位码type
     }
     let url = app.globalData.baseUrl + '/remote/register/miniProgram/add';
     this.selectComponent("#loading").show();
