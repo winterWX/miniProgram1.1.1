@@ -311,7 +311,7 @@ Page({
                   return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
-                      steps: 10000
+                      steps: item.steps
                   }
               });
               console.log('results-----------',results);
