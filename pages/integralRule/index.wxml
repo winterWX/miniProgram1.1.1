@@ -86,7 +86,7 @@
       type="primary" 
       size="large"
       bindtap="membership">
-      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看银会员升级攻略' : '查看金会员升级攻略'}}
+      {{paramsData.level == 1 || paramsData.flg === 'X2' ? '查看VIP银会员升级攻略' : '查看VIP金会员升级攻略'}}
     </van-button>
 </view>
 <view class="bottom-textConten" bindtap="moreActiveLink">完成挑战赚取积分</view>

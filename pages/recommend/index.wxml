@@ -63,6 +63,6 @@
          <van-button type="primary" size="normal" class="rightBtn" open-type="share">邀请微信好友</van-button>
       </view>
     </view>
-    <share-box isCanDraw="{{isCanDraw}}" bind:initData="createShareImage" />
+    <share-box isCanDraw="{{isCanDraw}}" miniQrCode="{{miniQrCode}}" bind:initData="createShareImage" />
 </view>
 <rwj-loading id="loading"></rwj-loading>

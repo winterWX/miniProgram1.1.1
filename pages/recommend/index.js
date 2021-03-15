@@ -10,7 +10,8 @@ Page({
     userInfoData:{},
     invitData:{},
     recommendFlg: false,
-    imagesUrl: app.globalData.imagesUrl
+    imagesUrl: app.globalData.imagesUrl,
+    miniQrCode: ''
   },
 
   /**
@@ -78,36 +79,38 @@ Page({
   recommendNum: function () {
     var that = this;
     let url = app.globalData.baseUrl + '/remote/invite/invitationcode';
-    that.selectComponent("#loading").show();
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200){
-        that.setData({ invitData: res.data.data }); 
-        //添加邀请码到 userInfo
-        app.globalData.invitationCode = res.data.data.invitationCode;
-        if(res.data.data.invitationList.length > 0){
-            res.data.data.invitationList.forEach( v => {
-                let reg = /^(\d{3})\d{4}(\d{4})$/;
-                v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
-            })
-            res.data.data.personNum = res.data.data.invitationList.length;
-            that.setData({ invitData: res.data.data, recommendFlg: true})
-        }else{
-            that.setData({recommendFlg: false });
-        }
-    }
-    that.selectComponent("#loading").hide();
+          that.setData({ invitData: res.data.data }); 
+          //添加邀请码到 userInfo
+          app.globalData.invitationCode = res.data.data.invitationCode;
+          if(res.data.data.invitationList.length > 0){
+              res.data.data.invitationList.forEach( v => {
+                  let reg = /^(\d{3})\d{4}(\d{4})$/;
+                  v.phoneNumber = v.phoneNumber.replace(reg, "$1****$2");
+              })
+              res.data.data.personNum = res.data.data.invitationList.length;
+              that.setData({ invitData: res.data.data, recommendFlg: true})
+          }else{
+              that.setData({recommendFlg: false });
+          }
+      }
     });
   },
-  
+
   //小程序码
   forShareNum: function () {
-    var that = this;
+    let that = this;
+    let infoObj = app.globalData.userInfo;
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
-    that.selectComponent("#loading").show();
-    wxAjax('POST', url, {path: '',width: 88}).then(res => {
+    wxAjax('POST', url, { 
+      path: 'pages/index/index', 
+      scene: infoObj.phoneNumber,
+      width: 100
+    }).then(res => {
       if(res.data.code == 200){
+          that.setData({ miniQrCode: res.data.data.path});
       }
-     that.selectComponent("#loading").hide();
     })
   },
   
