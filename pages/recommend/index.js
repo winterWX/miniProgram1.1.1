@@ -105,7 +105,7 @@ Page({
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
     wxAjax('POST', url, { 
       path: 'pages/index/index', 
-      scene:`phoneNumber=${infoObj.phoneNumber}`,
+      scene: infoObj.phoneNumber,
       width: 100
     }).then(res => {
       if(res.data.code == 200){

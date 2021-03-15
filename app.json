@@ -56,10 +56,10 @@
     "pages/textCookiesPolicy/index",
     "pages/integralRule/index",
     "pages/contentsInterests/index",
-    "pages/preferential/index",
     "pages/userAgreement/index",
     "pages/privacyAgreement/index",
-    "pages/textTermsUse/index"
+    "pages/textTermsUse/index",
+    "pages/preferential/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
