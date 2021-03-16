@@ -17,7 +17,7 @@
             />
         </view>
         <view class="topSetting-text">
-            <view class="topSett-disp" wx:if="{{!tiply}}">{{stepsTextTip}}</view>
+            <view class="topSett-disp" wx:if="{{!tiply}}">{{getStatus ? '恭喜你！今日的每日步数挑战已达标' : stepsTextTip}}</view>
             <view class="topSett-disp" wx:if="{{tiply}}">今日步数已达标,<text class="clickText">立即领取积分</text>！</view>
             <!-- <view class="topSett-disp" wx:if="{{(runDataText !== '10,000' || stepsNum.todaySteps === 0) && !rejectRun}}">只差{{ stepsNum.todaySteps == undefined ? '10,000' : runDataText}}步达成今日目标</view>
             <view class="topSett-disp" wx:if="{{ rejectRun }}">还剩10000步达成今日挑战</view>

@@ -150,7 +150,7 @@ Page({
   settingDataBtn() {
     let that = this;
     app.healthStep.SynchronousData = true;
-    app.globalData.isWeRunStepsFail = true;   //表示已经点儿开启数据访问按钮
+    app.globalData.isWeRunStepsFail = true;   //表示已经点开启数据访问按钮
     that.getQueryintegral();
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
     let data = { souce: "string", type: "MINIP" };
@@ -172,7 +172,8 @@ Page({
     wxAjax ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
-        that.setData({ forceNum: true }); 
+        that.setData({ forceNum: true });
+        app.healthStep.integralRecord = true; //已成领取 
       }
     })
   },

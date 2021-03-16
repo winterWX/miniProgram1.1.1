@@ -6,7 +6,7 @@
                         <image src="{{imagesUrl + '/images/silver/bg-bronze@3x.png'}}" />
                         <view  class="imageTopText">
                            <view class="imageTopTextLeft">
-                              <image  src="{{imagesUrl + '/images/silver/bronze@3x.png'}}"/>
+                              <image  src="{{imagesUrl + '/images/mine/copper.png'}}"/>
                               <view   class="imageRihtText">铜会员</view>
                            </view>
                            <view class="imageTopTextRight" bindtap="upgradeCard" data-card="stopeClick">立即升级</view>

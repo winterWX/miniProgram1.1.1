@@ -26,7 +26,8 @@ Page({
     completeChange: false,
     allReward: 0,
     showDialog: false,
-    avatarObjList: app.globalData.avatarObjList
+    avatarObjList: app.globalData.avatarObjList,
+    pageTitle:''
   },
 
   /**
@@ -134,6 +135,7 @@ Page({
     Utils.wxAjax(method,url).then(res=>{
       if (res.data.code == 200) {
           wx.setNavigationBarTitle({ title: res.data.data.title });
+          that.setData({ pageTitle: res.data.data.title})
           let detail = {
             ...res.data.data,
             content: res.data.data.content,
@@ -407,9 +409,9 @@ Page({
   },
   // 跳转到挑战结果页面
   navigateActivityResult: function () {
-    let { activityId, completeChange } = this.data;
+    let { activityId, completeChange ,pageTitle} = this.data;
     wx.navigateTo({
-      url: "../activityResult/index?id=" + activityId + "&success=" + completeChange,
+      url: "../activityResult/index?id=" + activityId + "&success=" + completeChange+ "&title=" + pageTitle,
     });
   },
   closeModal: function () {
