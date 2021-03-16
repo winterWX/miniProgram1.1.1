@@ -30,16 +30,26 @@ Page({
     moreFlag: false,  //更多按钮的标记
     imageFlg :false,
     modelRound: false,
-    levelLookNum: []
+    levelLookNum: [],
+    stepsTextTip: '还剩10,000步达成今日挑战',
+    tiply: false
   },
   onLoad: function (options) {
     let that = this;
     if (options.flag === 'true'){
       that.setData({ successFlg: true });
     }
+    //二维码携带参数
+    if(options.scene){
+      const scene = decodeURIComponent(query.scene);
+      let typeNum = parseInt(scene.split('&')[0].split('=')[1]);
+      let phoneNumberNum = parseInt(scene.split('&')[1].split('=')[1]);
+      app.globalData.miniQwx.type = typeNum;
+      app.globalData.miniQwx.phoneNumber = phoneNumberNum;
+    }
     if(app.globalData.isLogin === 3 ){
         that.setData({ isLogin: app.globalData.isLogin });
-        that.getState();
+        //that.getState();
         if(!app.firstTimeLogin){
           app.firstTimeLogin = true; // 表示已经阅读了绑定数据的法律法规 
           that.setData({ modelRound: true });
@@ -52,22 +62,16 @@ Page({
           that.checkIsAppUser();  //调用数据源，App数据优先；
         }
     }
-    //二维码携带参数
-    if(options.scene){
-       const scene = decodeURIComponent(query.scene);
-       let typeNum = parseInt(scene.split('&')[0].split('=')[1]);
-       let phoneNumberNum = parseInt(scene.split('&')[1].split('=')[1]);
-       app.globalData.miniQwx.type = typeNum;
-       app.globalData.miniQwx.phoneNumber = phoneNumberNum;
-    }
     that.homePageInit();
     that.userLevel();
   },
   onShow: function () {
     let that = this;
     that.setData({ active: 0 });
-    that.getState();
+    //that.getState();
+    //that.stepRunState(); //刷新状态
   },
+
   onPullDownRefresh: function () {
     let that = this;
     if(app.globalData.isLogin == 3 && !that.data.modelShow){
@@ -84,6 +88,7 @@ Page({
         wx.stopPullDownRefresh();    //停止下拉动作
     }
   },
+
   //调用微信运动数据
   calloutfun:function(){
       let that = this;
@@ -110,8 +115,6 @@ Page({
     })
   },
 
-  onShareAppMessage: function () {},
-
   checkIsAppUser:function(){
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/health/data/ensure/user';
@@ -124,7 +127,7 @@ Page({
               if(!that.data.isAppData){
                   that.getStepRunData();
               }else{
-                  that.stepRunState();
+                  that.stepRunState();   // 当APP数据时只是获取今日步数数据就行
               }
           }
         }
@@ -240,24 +243,28 @@ Page({
       }
     }
   },
+
   carryAPPData:function(){
       let that = this;
       wx.navigateTo({
         url: '../../pages/healthPage/index?id=' + that.data.carryAPPData
       })
   },
+
   healthSccuss:function(){
       let that = this;
       wx.navigateTo({
         url: '../../pages/healthPage/index?id=' + that.data.allowTo
       })
   },
+
   healthFail:function(){
       let that = this;
       wx.navigateTo({
         url: '../../pages/healthPage/index?id=' + that.data.refusedTo
       })
   },
+
   getUserInfo:function(e) { //获取用户信息
     let that = this;
     if (e.detail.userInfo) {
@@ -269,6 +276,7 @@ Page({
         },e.detail,that.data.isLogin,that.data.redirectToUrl)
     }
   },
+
   //获取运动步数
   getStepRunData: function () {
     let that = this;
@@ -286,6 +294,7 @@ Page({
         }
     })
   },
+
   //最近上传数据时间查询(query- queryLatestime)|移动端
   getQueryLatestime: function (runData) {
       let that = this;
@@ -310,6 +319,7 @@ Page({
           }
       })
   },
+
   //运动数据同步上传
   getUploaddata: function (runData) {
     let that = this;
@@ -325,30 +335,35 @@ Page({
         }
     });
   },
+
   //今日步数
   stepRunState:function(){
     let that = this;
     let method ='POST';
     let url = app.globalData.baseUrl +'/remote/today/step/enquiry';
     const data = {souce:'string', type:'MINIP'};
+    that.selectComponent("#loading").show();
     util.wxAjax(method,url,data).then(res =>{
         if(res.data.code === 200){
+            that.selectComponent("#loading").hide();
+            let todayData = res.data.data;
             that.setData({
-              stepsNum: res.data.data, 
-              runDataText: util.escapeThousands(res.data.data.todaySteps >= 10000 ? 10000 : 10000 - Number(res.data.data.todaySteps)),
-              rejectRun: false
+              stepsNum: todayData, 
+              runDataText: util.escapeThousands(todayData.todaySteps >= 10000 ? 10000 : 10000 - Number(todayData.todaySteps))
+              //rejectRun: false
             });
+            that.stepsTextTipShow(todayData);
         }
     }).catch(err=>{
       console.log(err)
     })
   },
+
   homePageInit: function () {
     let that = this;
     let method = 'GET';
     let url = app.globalData.baseUrl +'/remote/homePage/homePageActivitys';
     let { imagesUrl } = this.data;
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
       if (res.data.code === 200) {
         res.data.data.activity = res.data.data.activity.sort((a, b)=>{return parseInt(a.type) - parseInt(b.type)}).map((item,index) =>{
@@ -369,7 +384,6 @@ Page({
         });
         that.setData({homeAllData: res.data.data});
       }
-      that.selectComponent("#loading").hide();
     })
   },
   
@@ -387,6 +401,7 @@ Page({
       }
     })
   },
+
   //领取状态
   getState: function () {
     let that = this;
@@ -400,6 +415,7 @@ Page({
       }
     })
   },
+
   membership:function(){
     let that = this;
     if(app.globalData.isLogin !== 3){
@@ -412,6 +428,7 @@ Page({
       }
     }
   },
+
   listClick(e){
       let that = this;
       that.setData({ artTextData: Object.assign( {}, e) });
@@ -430,6 +447,7 @@ Page({
         that.notLoginState();
       }
   },
+
   listParams(e){
       let that = this;
       const { item } = e.currentTarget.dataset;
@@ -466,5 +484,17 @@ Page({
       }else{
           wx.navigateTo({ url: '../../pages/healthKnowledge/index?id=' + id });
       }
+  },
+
+  stepsTextTipShow(data){
+    let that = this;
+    let { todaySteps, receiveStatus,isDone } = data;
+    if(0 <= todaySteps && todaySteps < 10000){
+      that.setData({ stepsTextTip: '只差' + util.escapeThousands(10000 - todaySteps) + '步达成今日目标'});
+    }else if(10000 <= todaySteps && receiveStatus !== 1 && isDone !== 1){
+      that.setData({ tiply: true});
+    }else if(10000 <= todaySteps && receiveStatus == 1 && isDone == 1){
+      that.setData({ stepsTextTip: '恭喜你！今日的每日步数挑战已达标'});
+    }
   }
 })
