@@ -9,7 +9,7 @@
         </view>
         <view class="blueBlockText">积分将于{{expiryTime}}到期</view>
     </view>
-    <view class="blueBottomTitle">已获得积分</view>
+    <view class="blueBottomTitle">已获取积分</view>
     <view class="itemContent" wx:for="{{detailArray}}" wx:key="index">
         <view class="blueBlockItem">
            <view class="blueBlockNumItem">{{item.type}}</view>

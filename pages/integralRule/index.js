@@ -82,6 +82,6 @@ Page({
   },
 
   moreActiveLink: function(){
-      wx.reLaunch({ url: '../../pages/challenge/index'});
+      wx.navigateTo({ url: '../../pages/challenge/index'});
   }
 })
