@@ -8,7 +8,7 @@
         <view class="showText">{{textShow}}</view>
       </view>
       <view class="btnAbfort">
-        <button class="btn" bindtap="lookLevels">查看会员升级攻略</button>
+        <button class="btn" bindtap="lookLevels">会员升级攻略</button>
       </view>
     </view>
   </view>

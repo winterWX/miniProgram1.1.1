@@ -101,12 +101,12 @@ Page({
   //小程序码
   forShareNum: function () {
     let that = this;
-    let phoneNumber = app.globalData.userInfo.phoneNumber;
+    let phoneNumber = app.globalData.phoneNumber;
     let url = app.globalData.baseUrl +'/remote/wxQrCode/generateQrCode';
     wxAjax('POST', url, { 
       path: 'pages/index/index', 
       scene:`type=1&phoneNumber=${phoneNumber}`,
-      width: 100
+      width: 430
     }).then(res => {
       if(res.data.code == 200){
           that.setData({ miniQrCode: res.data.data.path});

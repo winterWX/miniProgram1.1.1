@@ -17,7 +17,7 @@
                 <view><text class="abfterCode">VIP金会员</text>尊享码</view>
                 <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}" />
             </view>
-            <view class="topBlocksRight">
+            <view class="topBlocksRight rightSty">
                 <image class="textCode" src="{{imagesUrl + '/images/strategy/qingtong-2-copy-5@3xg.png'}}" />
                 <view>一年VIP金会员+尊享好礼</view>
             </view>

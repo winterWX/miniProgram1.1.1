@@ -7,9 +7,9 @@ page{
 .PageBackColor{
   background-color: #ffffff;
 }
-.pageTopPick-main{
+/* .pageTopPick-main{
   position: relative;
- }
+ } */
  .pageTopPick{
     position: relative;
  }
@@ -285,8 +285,8 @@ margin-right: 34rpx;
 }
 .sendBlock{
   height: 232rpx;
-  /* margin:  30rpx 30rpx 50rpx 30rpx; */
-  margin: 50rpx;
+  margin:  30rpx;
+  /* //margin: 30rpx; */
   border-radius: 4rpx;
   box-shadow: 0 2rpx 10rpx 0 rgba(0, 0, 0, 0.05);
   /* //background-color: #ffffff; */
@@ -299,6 +299,7 @@ padding: 30rpx;
   align-items: center;
 }
 .sendBlock-title{
+  flex: 1;
   width: 192rpx;
   height: 44rpx;
   line-height: 44rpx;
@@ -320,7 +321,7 @@ padding: 30rpx;
   border-style: solid;
   -webkit-transform: matrix(.71,.71,-.71,.71,0,0);
   transform: matrix(.71,.71,-.71,.71,0,0);
-  margin-left: 415rpx;
+  /* margin-left: 415rpx; */
 }
 /* .back image{
   width: 36rpx;

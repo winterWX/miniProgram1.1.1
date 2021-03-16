@@ -32,7 +32,8 @@ Page({
     modelRound: false,
     levelLookNum: [],
     stepsTextTip: '还剩10,000步达成今日挑战',
-    tiply: false
+    tiply: false,
+    getStatus:false //步数达标成功后的领取状态
   },
   onLoad: function (options) {
     let that = this;
@@ -67,7 +68,7 @@ Page({
   },
   onShow: function () {
     let that = this;
-    that.setData({ active: 0 });
+    that.setData({ active: 0 , getStatus: app.healthStep.integralRecord });
     //that.getState();
     //that.stepRunState(); //刷新状态
   },
@@ -285,7 +286,6 @@ Page({
           //授权成功跳转获取步数
           app.globalData.runData = result;
           app.globalData.isWeRunSteps = true; //标志授权成功
-          console.log('result=========',result);
           that.getQueryLatestime(result);
         }else{
           //拒绝授权
@@ -311,10 +311,9 @@ Page({
                   return {
                       startTime: item.timestamp + '',
                       endTime: item.timestamp + '',
-                      steps: item.steps
+                      steps: item.step
                   }
               });
-              console.log('results-----------',results);
               that.getUploaddata(results);
           }
       })

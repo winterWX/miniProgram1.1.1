@@ -2,6 +2,6 @@
   "usingComponents": {
     "rwj-loading":  "../../components/loading/index"
   },
-  "navigationBarTitleText": "会员内容特权",
+  "navigationBarTitleText": "限定会员内容",
   "navigationBarTextStyle": "black"
 }
