@@ -52,13 +52,13 @@ Page({
     speed: 2, //>1,交换的速度
     move_x: "",
     move_y: "",
-    baseUrl: app.globalData.imagesUrl
+    baseUrl: app.globalData.imagesUrl,
+    isLoginState: 0
   },
   onLoad: function (options) {
     let that = this;
     // 控制close按钮，页面初始的时候
-    let topTipShowFlg = app.healthInforData.findMore;
-    that.setData({ topTipShow: topTipShowFlg });
+    that.setData({ topTipShow: app.healthInforData.findMore ,isLoginState : app.globalData.isLogin});
     that.searchSend(options.inputVal);
     //查询所有话题
     that.getTagList();
@@ -70,6 +70,7 @@ Page({
   },
   onHide: function() {
     this.setData({ hideModal: true });
+    console.log('/////////////')
   },
   onPageScroll:function(e){
       let that = this;

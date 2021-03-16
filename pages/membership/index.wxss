@@ -49,9 +49,10 @@ page{
 .btn-finish {
   background-color: rgb(0, 168, 101);
   margin-top: 50rpx;
-  color: white;
+  color: #FFFFFF;
   margin-left: 30rpx;
   margin-right: 30rpx;
+  font-size: 32rpx;
 }
 .textRed{
   color: rgb(177,13,25) !important;
@@ -210,4 +211,12 @@ page{
 
 .textCode {
    width: 48rpx !important;
+}
+
+.inputBlock button::after{
+  border: none !important;
+  border-radius: 4rpx !important;
+}
+.rightSty{
+  margin-left: 10rpx;
 }

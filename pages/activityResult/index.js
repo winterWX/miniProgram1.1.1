@@ -11,17 +11,18 @@ Page({
     defaultIcon: app.globalData.imagesUrl + '/images/icon/icon-defult-touxiang.png',
     self: {},
     success: true,
-    avatarObjList: app.globalData.avatarObjList
+    avatarObjList: app.globalData.avatarObjList,
+    sendTitle:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { id, success } = options;
-    console.log(success)
-    this.setData({id, success: success === 'true'});
+    let { id, success,title } = options;
+    this.setData({id, success: success === 'true',sendTitle:title});
     this.getActivityInfo(id);
+    wx.setNavigationBarTitle({ title: title });
   },
 
   /**

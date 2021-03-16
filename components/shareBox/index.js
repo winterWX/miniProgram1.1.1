@@ -33,6 +33,7 @@ Component({
       })
     },
     drawPic() {
+      console.log('miniQrCode====',this.data.miniQrCode);
       if (this.data.sharePath) { //如果已经绘制过了本地保存有图片不需要重新绘制
         this.setData({
           visible: true
@@ -109,7 +110,7 @@ Component({
             },
             {
               type: 'image',
-              url: this.data.miniQrCode,    //app.globalData.imagesUrl + '/images/recommend/shared.jpg',
+              url: this.data.miniQrCode,  //app.globalData.imagesUrl + '/images/recommend/shared.jpg',
               css: {
                 top: '540rpx',
                 left: '0rpx',
