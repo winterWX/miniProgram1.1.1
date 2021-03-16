@@ -84,7 +84,7 @@ Page({
         for (var i = 0; i < data.length; i++){
           for (var k = 0; k < data[i].historyList.length; k++) {
             data[i].historyList[k].date = this.formatDate(data[i].historyList[k].createTime);
-            data[i].historyList[k].actualSteps = this.toThousands(data[i].historyList[k].actualSteps);
+            // data[i].historyList[k].actualSteps = this.toThousands(data[i].historyList[k].actualSteps);
           }
         }
         
