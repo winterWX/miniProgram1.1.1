@@ -154,7 +154,6 @@ Page({
     that.getQueryintegral();
     let url = app.globalData.baseUrl + "/remote/today/step/enquiry";
     let data = { souce: "string", type: "MINIP" };
-    that.selectComponent("#loading").show();
     wxAjax ('POST', url, data).then(res => {
       if (res.data.code === 200) {
         that.setData({ stepsNum: res.data.data });
@@ -165,19 +164,16 @@ Page({
         }
         that.setData({ startStatus: false });
       }
-      that.selectComponent("#loading").hide();
     });
   },
   integralBtn: function () {
     let that = this;
     let url = app.globalData.baseUrl +'/remote/today/receiveIntegral';
-    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       if(res.data.code === 200){
         that.settingDataBtn();
         that.setData({ forceNum: true }); 
       }
-      that.selectComponent("#loading").hide(); 
     })
   },
   healthEveryday: function () {
@@ -205,13 +201,11 @@ Page({
   getQueryintegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/integral/queryReceivedStatus";
-    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       // 100412--已经领取积分  200--未领取积分
       if (res.data.code === 200) {
         that.getintegral();
       }
-      that.selectComponent("#loading").hide();
     })
   },
   
@@ -219,7 +213,6 @@ Page({
   getintegral: function () {
     let that = this;
     let url = app.globalData.baseUrl + "/remote/integral/stepAuth";
-    that.selectComponent("#loading").show();
     wxAjax ('GET', url).then(res => {
       if (res.data.code === 200) {
         that.setData({
@@ -227,7 +220,6 @@ Page({
           allowRun: true,
         });
       }
-      that.selectComponent("#loading").hide();
     });
   },
   stepRunSorce: function () {

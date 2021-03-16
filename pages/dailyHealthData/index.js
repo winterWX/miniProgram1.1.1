@@ -269,7 +269,7 @@ Page({
           this.setData({appName:'华为运动云'});
           break;
         case 'string':
-            this.setData({appName:'以下数据来自“微信健康”。'});
+            this.setData({appName:'微信健康'});
             break;
         default:
           break;
