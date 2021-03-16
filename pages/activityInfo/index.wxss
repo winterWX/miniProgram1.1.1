@@ -60,7 +60,7 @@ page {
 
 .activity-desc .remain-days {
   font-size: 24rpx;
-  background-color: #ededed;
+  background-color: #F2FAF7;
   height: 30rpx;
   line-height: 30rpx;
   border-radius: 10rpx;
