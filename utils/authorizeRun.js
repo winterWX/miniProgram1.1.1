@@ -145,16 +145,20 @@ function setWeRunAuth(sessionkey,result) {
           const data = { encryptedData: resRun.encryptedData, iv: resRun.iv, sessionkey: sessionkey };
           util.wxAjax(method,url,data).then(resDecrypt =>{
                // 微信授权成功
-               console.log('resDecrypt==',resDecrypt.data.data);
                let stepInfoList = resDecrypt.data.data.stepInfoList;
                   if (stepInfoList.length > 0) {
-                     stepInfoList = stepInfoList.reverse();
-                     for (var i in stepInfoList) {
-                        stepInfoList[i].date = util.formatTime(new Date(stepInfoList[i].timestamp * 1000)).split(' ')[0]
+                     let sendStepData = [];
+                     for (let i= stepInfoList.length-1; i>=0; i--) { 
+                        sendStepData.push(stepInfoList[i]);
                      }
+                     const lastSendData = sendStepData.map(item=>{
+                         return{
+                            ...item,
+                            date: util.formatTime(new Date(item.timestamp * 1000)).split(' ')[0]
+                         }
+                     })
+                     result(lastSendData);
                   }
-                  console.log('runData.stepInfoList====',stepInfoList);
-                  result(stepInfoList)
          });
       },
       fail: function (e) {
