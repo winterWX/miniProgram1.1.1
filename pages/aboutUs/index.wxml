@@ -3,7 +3,7 @@
 			<!-- <image src="{{imagesUrl + '/images/lastAdd/icon-logo@2x.png'}}"></image> -->
 			<image src="../../images/ic_launcher_APP.png"></image>
 			<view class="nameText1">恒生Olive</view>
-			<view class="nameText2">版本1.0.0</view>
+			<view class="nameText2">版本1.1.1</view>
 	</view>
 	<view class="guider-box">
 		<!-- <view class="item" catchtap="navigatePolicy"  data-id ="1">

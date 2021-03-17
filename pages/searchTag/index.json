@@ -1,7 +1,6 @@
 {
   "usingComponents": {
-     "van-search": "vant-weapp/search/index",
-     "rwj-loading": "../../components/loading/index"
+     "van-search": "vant-weapp/search/index"
   },
   "navigationBarTitleText": "搜寻健康头条",
   "navigationBarTextStyle": "black"
