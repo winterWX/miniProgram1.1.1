@@ -14,7 +14,7 @@
                 <image src='{{baseUrl + "/images/healthInfo/icon-filter@2x.png"}}'></image>
             </view>
         </view>
-        <view class="topTipBlock" wx:if="{{topTipShow && isLoginState == 3}}">
+        <view class="topTipBlock" wx:if="{{topTipShow}}">
             <view class="topSan"></view>
             <view class="topTip">
                 <view class="topTipTiele">设定你喜爱的话题！</view>
@@ -43,8 +43,9 @@
     <!-- -------------tagContent modals-------------------------- -->
     <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
         <view class="modals-cancel" bindtap="hideModal"></view>
-        <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+        <view style="height: {{ animationHight }}rpx;" class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
             <view class='msg-box'>
+                <view class="tagCloseBtn"><image bindtap="hideModal" src="{{baseUrl + '/images/mine/close@3x.png'}}" /></view>
                 <view class='aumsg'>
                     <view class="searchList-main">
                         <view class="myTagList">
@@ -55,7 +56,7 @@
                             <view class='item_container' wx:for='{{myTagData}}' wx:key="index">
                                 <view class="item {{index==current?'moving':'normal'}}" style="left:{{index==current?move_x:item.left}}px;top:{{index==current?move_y:item.top}}px;width:{{u_w}}px;" catchtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" bindtap="myTagItemFun" data-index="{{index}}">
                                     {{item.topic}}
-                                    <image wx:if="{{editStute && item.topic !=='全部话题'}}" src='{{baseUrl + "/images/healthInfo/icon-clear.png"}}'></image>
+                                    <image wx:if="{{editStute && item.topic !=='全部话题'}}" src='{{baseUrl + "/images/healthInfo/icon-clear@3x.png"}}'></image>
                                 </view>
                             </view>
                         </view>
@@ -65,7 +66,8 @@
                         <view class="intringData">
                             <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="id" data-index="{{index}}">
                                 <view class="viewBtn">{{item.name}}</view>
-                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/healthInfo/icon-add.png'}}"></image>
+                                <!-- <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/healthInfo/icon-add.png'}}"></image> -->
+                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="../../images/icon-add@3x.png"></image>
                             </view>
                         </view>
                     </view>

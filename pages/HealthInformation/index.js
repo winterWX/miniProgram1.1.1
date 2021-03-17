@@ -53,12 +53,18 @@ Page({
     move_x: "",
     move_y: "",
     baseUrl: app.globalData.imagesUrl,
-    isLoginState: 0
+    animationHight: (wx.getSystemInfoSync().windowHeight - 40) * 2  //弹窗高度
   },
   onLoad: function (options) {
     let that = this;
     // 控制close按钮，页面初始的时候
-    that.setData({ topTipShow: app.healthInforData.findMore ,isLoginState : app.globalData.isLogin});
+    if(app.globalData.isLogin !== 3){
+      app.healthInforData.findMore = false;
+      that.setData({ topTipShow: false });
+    }else if(app.globalData.isLogin == 3 && !app.healthInforData.findMore){
+      app.healthInforData.findMore = false;
+      that.setData({ topTipShow: false });
+    }
     that.searchSend(options.inputVal);
     //查询所有话题
     that.getTagList();
@@ -70,7 +76,17 @@ Page({
   },
   onHide: function() {
     this.setData({ hideModal: true });
-    console.log('/////////////')
+    if(app.globalData.isLogin == 3){
+      app.healthInforData.findMore = false; //页面卸载时设置成false
+      this.setData({ topTipShow: false });
+    }
+  },
+
+  onUnload:function(){
+    if(app.globalData.isLogin == 3){
+      app.healthInforData.findMore = false; //页面卸载时设置成false
+      this.setData({ topTipShow: false });
+    }
   },
   onPageScroll:function(e){
       let that = this;
@@ -427,11 +443,8 @@ Page({
 
   topTipImageColse: function () {
     let that = this;
-    app.healthInforData.findMore = false;
-    let topTipShowFlg = (app.healthInforData.findMore = false);
-    that.setData({
-      topTipShow: topTipShowFlg,
-    });
+    app.healthInforData.findMore = false; 
+    that.setData({ topTipShow: false });
   },
 
   timestampToTime: function (timestamp) {

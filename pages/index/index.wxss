@@ -139,7 +139,7 @@ page{
 }
 .threesBlockText1{
     margin-bottom: 10rpx;
-    font-size: 28rpx;
+    font-size: 32rpx;
     color: rgb(51,51,51);
     font-family: PingFangSC-Medium;
 }

@@ -335,6 +335,7 @@ padding-left: 10rpx;
   color: rgb(48, 67, 82);
   margin-bottom: 30rpx;
   font-size: 32rpx;
+  /* font-weight: 700; */
 }
 .text3_new{
   color: rgb(51,51,51);

@@ -54,4 +54,8 @@ page .container {
   font-size: 32rpx;
   height: 90rpx;
   line-height: 90rpx;
+   border-radius: 4rpx !important;
+}
+.footer .btn::after{
+  border: none !important;
 }

@@ -31,7 +31,8 @@
 		</view>
 		<view class="echart-box" style="position: relative;">
 			<view scroll-x hidden="{{noData}}" class="container">
-				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+				<!-- <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas> -->
+				<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" ></ec-canvas>
 			</view>
 			<view wx:if="{{noData}}" class="noData">
 				暂无数据

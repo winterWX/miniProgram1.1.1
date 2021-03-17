@@ -111,7 +111,7 @@ page {
 .milepost-box .milepost {
   padding: 30rpx 30rpx 0 30rpx;
   background-color: white;
-  height: 300rpx;
+  height: 268rpx;
   position: relative;
 }
 
@@ -129,6 +129,7 @@ page {
 
 .milepost .header .title {
   font-size: 32rpx;
+  font-weight: 700;
 }
 
 .progress-box {
@@ -352,7 +353,7 @@ page {
   font-size: 32rpx;
   height: 44rpx;
   line-height: 44rpx;
-  font-weight: bolder;
+  font-weight: 700;
 }
 
 .member-box {

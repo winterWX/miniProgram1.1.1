@@ -12,7 +12,6 @@ Page({
     let that = this;
     var inputVal = e.detail.replace(/^\s+|\s+$/g, "");
     let url = app.globalData.baseUrl + '/remote/article/filter/query';
-    that.selectComponent("#loading").show();
     wxAjax('POST', url, {
       currentPage: 1,
       pageSize: 10,
@@ -27,7 +26,6 @@ Page({
         })
         that.setData({listData:res.data.data})
       }
-      that.selectComponent("#loading").hide();
     });
   },
   onSearch:function(){},
