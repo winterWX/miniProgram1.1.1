@@ -26,7 +26,7 @@
 </view>
 
 <!-- 第一次登录点击文章时的弹窗 -->
-<view class="blockArcSeconde" wx:if="{{ showNumber == 2 }}">
+<view class="blockArcSeconde" wx:if="{{ showNumber == 2 }}" >
    <view class="topIimages"><image src="{{ imagesUrl + '/images/img-illustrate-empty@2x.png'}}" /></view>
    <view class="backTitle">免责声明</view>
     <view class="model-bleck">
