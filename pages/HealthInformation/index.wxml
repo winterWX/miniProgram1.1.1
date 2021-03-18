@@ -67,7 +67,7 @@
                             <view class="viewBtnBoxint" bindtap="addTagBbtn" wx:for="{{forYouData}}" wx:key="id" data-index="{{index}}">
                                 <view class="viewBtn">{{item.name}}</view>
                                 <!-- <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/healthInfo/icon-add.png'}}"></image> -->
-                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="../../images/icon-add@3x.png"></image>
+                                <image wx:if="{{editStute && item.tag !=='热门推荐'}}" src="{{baseUrl + '/images/lastAdd/icon-add@3x.png'}}"></image>
                             </view>
                         </view>
                     </view>

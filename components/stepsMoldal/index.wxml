@@ -1,5 +1,5 @@
 <view class="blockArcSeconde" wx:if="{{ showNumber == 1 }}">
-    <view class="topIimages topIimageFrist">
+    <view class="topIimageFrist">
       <image src="{{ imagesUrl + '/images/lastAdd/group-9@2x.png'}}" />
     </view>
     <!-- <view class="backTitle">免责声明</view> -->
@@ -21,6 +21,7 @@
       <view class="btnAbfort fristBtn">
         <button class="btn" bindtap="onStapeData">确定</button>
       </view>
+      <!-- <view  class='btnText' bindtap="onStapeDataCanel">暂不授权</view> -->
     </view>
 </view>
 

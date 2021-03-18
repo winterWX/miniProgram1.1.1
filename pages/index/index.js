@@ -157,7 +157,12 @@ Page({
         that.checkIsAppUser();  //调用数据源，App数据优先；
     }
   },
-
+  modelShowBlockCanel: function(event){
+    let that = this;
+    if (event.detail.modelShowCanel){
+      that.setData({ modelShow: false, modelRound: false });
+    }
+  },
   artContinue: function (event){
     let that = this;
     if (event.detail.artContinue){

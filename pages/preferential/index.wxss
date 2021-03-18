@@ -10,7 +10,7 @@ page .container {
 .container .main {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  /* flex: 1; */
 }
 .container .header {
   margin-bottom: 20rpx;
@@ -36,7 +36,7 @@ page .container {
   font-size: 28rpx;
 }
 .container .content {
-  flex: 1;
+  /* flex: 1; */
   padding: 40rpx 30rpx;
   background-color: #fff;
   color: #666;
@@ -44,7 +44,7 @@ page .container {
   overflow-y: auto;
 }
 .container .footer {
-  padding: 40rpx 30rpx 50rpx 30rpx;
+  padding: 50rpx 30rpx;
   left: 0;
   bottom: 0;
   width: 690rpx;

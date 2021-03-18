@@ -79,6 +79,7 @@
 <steps-moldal class="stepsMoldal"  wx-if="{{ modelShow }}" 
   showNumber="{{ showNumber }}" 
   bind:modelShowBlock="modelShowBlock"
+  bind:modelShowBlockCanel="modelShowBlockCanel"
   bind:artContinue="artContinue"
   bind:artcancel="artcancel"
 ></steps-moldal>

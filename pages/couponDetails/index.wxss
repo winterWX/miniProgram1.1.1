@@ -102,10 +102,14 @@
 .bottomBtnColor{
   height: 90rpx;
   line-height: 90rpx;
+  border-radius: 4rpx;
   width: 690rpx;
   background-color: rgb(0,168,101);
   font-size: 32rpx;
   color: rgb(255,255,255);
+}
+.bottomBtnColor::after{
+  border: none !important;
 }
 .stepsMoldal{
   position: fixed;
