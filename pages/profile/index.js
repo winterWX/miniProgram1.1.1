@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    date: '1985-01',
     active: 4,
     integral: 100,
     received: false, // 用户是否领取过积分
@@ -209,6 +210,7 @@ Page({
         userInfo: userInfo,
         selectedAvatarId,
         received,
+        date: isplayDate === "未选择" ? '1985-01' : userInfo.birthday,
         complete: percentage === 100,
       });
     });
