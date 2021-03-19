@@ -54,7 +54,7 @@
 
 .topIimages image{
   width: 100%;
-  height: 220rpx;
+  height: 230rpx;
 }
 
 .title-midden{
@@ -181,4 +181,10 @@
 }
 .codeFlg{
   font-weight: 700;
+}
+.btnText{
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 20rpx;
+  font-size: 32rpx;
 }

@@ -31,7 +31,6 @@ Page({
     let that = this;
     let { level, type } = this.data;
     let url = app.globalData.baseUrl + "/remote/discount/timeLimit";
-    that.selectComponent("#loading").show();
     wxAjax('GET', url, {type}).then((res) => {
       if (res.data.code === 200 && res.data.data) {
         let { imagineLink, firstTitleCn, secondTitleCn, thirdTitleCn, descriptionCn, id } = res.data.data;
@@ -47,7 +46,6 @@ Page({
           id
         })
       }
-      that.selectComponent("#loading").hide();
     });
   },
   goStrategy: function() {

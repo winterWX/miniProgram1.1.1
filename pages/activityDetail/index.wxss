@@ -341,7 +341,9 @@ page {
   z-index: 2;
   height: 100rpx;
 }
-
+.btn-abtableBox button{
+  border-radius: 4rpx !important;
+}
 .hero-list {
   margin: 30rpx;
   padding: 30rpx;

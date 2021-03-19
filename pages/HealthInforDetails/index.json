@@ -2,8 +2,7 @@
   "usingComponents": {
       "htmlView": "../../components/htmlView/htmlView",
       "integralAmation": "../../components/integralAmation/index",
-      "van-button": "vant-weapp/button/index",
-      "rwj-loading": "../../components/loading/index"
+      "van-button": "vant-weapp/button/index"
   },
   "navigationBarTitleText": "健康头条",
   "navigationBarTextStyle": "black"

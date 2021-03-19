@@ -33,6 +33,11 @@ Component({
         modelShow: true
       }, {})
     },
+    onStapeDataCanel:function(){
+      this.triggerEvent('modelShowBlockCanel', {
+        modelShowCanel: true
+      }, {})
+    },
     termsUse(){
       wx.navigateTo({ url: '../../pages/textTermsUse/index' });
     },
@@ -40,7 +45,6 @@ Component({
       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' });
     },
     artContinue(){
-        console.log('...................');
         this.triggerEvent('artContinue', {
           artContinue: app.globalData.isLogin == 3 ?  true : false
         }, {})
