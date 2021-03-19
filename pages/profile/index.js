@@ -54,7 +54,8 @@ Page({
       id: "",
     },
     imagesUrl: app.globalData.imagesUrl,
-    avatarObjList: app.globalData.avatarObjList
+    avatarObjList: app.globalData.avatarObjList,
+    date: '1985-01' //初始日期
   },
 
   /**

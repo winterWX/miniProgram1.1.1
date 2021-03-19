@@ -13,8 +13,9 @@
     <view class="texteContent4">有效期至{{couponDetailObj.expiryTime}}</view>
   </view>
   <view class="textContent">
-    <view class="textContent-titl">描述：</view>
-    <htmlView  class="textContentText" detail ="{{couponDetailObj.description}}"/>
+    <view class="textContent-title">详情：</view>
+    <rich-text class="textContentText" type="'node'" nodes="{{couponDetailObj.description}}"></rich-text>
+    <!-- <htmlView  class="textContentText" detail ="{{couponDetailObj.description}}"/> -->
   </view>
   <view class="bottomBtn">
       <button wx:if="{{couponDetailObj.useTime === 0 && couponDetailObj.isExpiry !== 1 && couponDetailObj.thirdPartyUrl !== ''}}" class="bottomBtnColor" bindtap="handleFell">立即使用</button>

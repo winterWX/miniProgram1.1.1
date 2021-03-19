@@ -134,13 +134,13 @@ Page({
     wxAjax('GET', url).then(res => {
       if(res.data.code === 200) {
         let { bannerUrl, title, content, questionNumber, quizResult, isEnds, reward } = res.data.data;
-        let info = content.replace(/<[^>]+>/g,"");
+        //let info = content.replace(/<[^>]+>/g,"");
         let participated = quizResult !== null;
         wx.setNavigationBarTitle({ title });
         that.setData({
           bannerUrl,
           title,
-          content: info,
+          content: content,
           questionNumber,
           participated,
           isEnds,

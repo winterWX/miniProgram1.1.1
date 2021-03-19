@@ -53,6 +53,7 @@ page{
   margin-left: 30rpx;
   margin-right: 30rpx;
   font-size: 32rpx;
+  border-radius: 4rpx !important;
 }
 .textRed{
   color: rgb(177,13,25) !important;
@@ -149,7 +150,7 @@ page{
   height: 120rpx;
 }
 .topBlocksRightText{
-  margin: 20rpx 0rpx 20rpx 0rpx;
+  margin: 10rpx 0rpx 20rpx 0rpx;
   font-size: 24rpx;
   color:rgb(102,102,102);
 }
@@ -220,3 +221,9 @@ page{
 .rightSty{
   /* margin-left: 8rpx; */
 }
+
+.yearText{
+  width: 90%;
+  flex: 1;
+}
+

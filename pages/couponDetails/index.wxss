@@ -65,6 +65,7 @@
   margin-left: 16rpx;
   font-size: 28rpx;
   color: rgb(155,124,86);
+  font-weight: 700;
 }
 .textContent{
   padding: 50rpx 20rpx;
@@ -74,10 +75,11 @@
   overflow-y: auto; 
   padding-bottom: 120rpx !important;
 }
-.textContent-titl{
+.textContent-title{
   font-size: 28rpx;
   color: rgb(51,51,51);
   margin-bottom: 10rpx;
+  font-weight: 700;
 }
 .bottomBtn{
   padding: 10rpx 30rpx 16rpx 30rpx;

@@ -93,7 +93,6 @@ Page({
       let that = this;
       let url =  app.globalData.baseUrl + '/remote/invite/invitationcode';
       let method = 'GET';
-      that.selectComponent("#loading").show();
       util.wxAjax(method,url).then(res=>{
           if(res.data.code === 200){
             if(res.data.data.invitationList.length > 0){
@@ -108,7 +107,6 @@ Page({
               invitData: res.data.data
             })
         }
-        that.selectComponent("#loading").hide();
       });
   },
     /**
@@ -145,14 +143,12 @@ Page({
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/friend';
     let method = 'GET';
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
         if(res.data.code === 200){
           let friendArrayData = that.arryFriend(res.data.data);
           that.setData({friendArrayData:friendArrayData})
           that.setList(that.formatList(that.data.friendArrayData));
         }
-        that.selectComponent("#loading").hide();
     });
   },
   //新的好友
@@ -160,30 +156,36 @@ Page({
     let that = this;
     let url = app.globalData.baseUrl + '/remote/friend/apply';
     let method = 'GET';
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res=>{
       if(res.data.code === 200){
         let numlength = res.data.data.length;
         that.setData({ redTagShow: numlength > 0 ? true : false});
         that.setData({ redTag: numlength });
       }
-      that.selectComponent("#loading").hide();
     })
   },
   //排序代码
   formatList(list) {
-		let tempArr = [];
-		["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"].forEach(initial => {
+    let tempArr = [];
+    let p = /[a-z]/i; 
+    const listChage = list.map(item=>{
+        return{
+          ...item,
+          initial: !p.test(item.initial) ? '#' : item.initial
+        }
+    });
+
+		["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z","#"].forEach(initial => {
 			let tempObj = {};
 			tempObj.key = initial;
-			tempObj.data = list.filter(item => item.initial == initial).map(item => {
+			tempObj.data = listChage.filter(item => item.initial == initial).map(item => {
 				return {avatar:item.avatar,name:item.nickname,short: item.short}
 			});
 
 			if(tempObj.data && tempObj.data.length > 0) {
 				tempArr.push(tempObj);
-			}
-		})
+      }
+    })
 		return tempArr;
 	},
   onFocusInput(){

@@ -23,4 +23,3 @@
          <friendList bind:click="itemClick" empty-show="{{emptyShow}}" top-size="{{topSize}}" list-data="{{listData}}" bottom-hight="{{bottomHight}}" color="#3F82FD" />
     </view>
 </view>
-<rwj-loading id="loading"></rwj-loading>

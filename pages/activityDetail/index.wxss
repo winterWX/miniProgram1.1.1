@@ -217,7 +217,7 @@ page {
 
 .progress-box .progress .cell:last-child .reward {
   transform: translate(-90%);
-  min-width: 76rpx;
+  min-width: 90rpx;
   text-align: center;
 }
 

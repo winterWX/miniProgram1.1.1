@@ -75,19 +75,19 @@ page{
 .secondeBlock-text{
      position: absolute;
      height: 162rpx;
-     padding: 40rpx 278rpx 50rpx 40rpx;
+     padding: 60rpx 180rpx 50rpx 40rpx;
      top:0
   }
 .secondeBlock-text1{
      color: #333333;
      font-size: 36rpx;
-     margin-bottom: 10rpx;
+     margin-bottom: 16rpx;
      font-weight: 700;
   }
 .secondeBlock-text2{
      font-size: 28rpx;
      color: rgb(51,51,51);
-     margin-bottom: 15rpx;
+     margin-bottom: 30rpx;
   }
 .secondeBlock-btn image{
      height: 30rpx;

@@ -9,10 +9,20 @@
             </view>
             <view class="topBlocksRight">
                 <image src="{{imagesUrl + '/images/silver/silver@3x.png'}}"/>
-                <view>VIP银会员+尊享好礼</view>
+                <view class="yearText">VIP银会员+尊享好礼</view>
             </view>
           </view>
-          <view class="topBlocks12">
+          <view class="topBlocks1">
+            <view class="topBlocksLeft">
+                <view><text class="abfterCode">VIP银会员</text>尊享码</view>
+                <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}"/>
+            </view>
+            <view class="topBlocksRight">
+                <image src="{{imagesUrl + '/images/strategy/qingtong-2-copy-5@3xg.png'}}"/>
+                <view class="yearText">一年VIP金会员+尊享好礼</view>
+            </view>
+          </view>
+          <!-- <view class="topBlocks12">
             <view class="topBlocksLeft">
                 <view><text class="abfterCode">VIP金会员</text>尊享码</view>
                 <image src="{{imagesUrl + '/images/silver/combined-shape@3x.png'}}" />
@@ -21,7 +31,7 @@
                 <image class="textCode" src="{{imagesUrl + '/images/strategy/qingtong-2-copy-5@3xg.png'}}" />
                 <view>一年VIP金会员+尊享好礼</view>
             </view>
-          </view>
+          </view> -->
           <view class="topBlocksRightText">提供新的尊享码续期一年</view>
       </view>
     </view>

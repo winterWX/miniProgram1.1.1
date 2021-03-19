@@ -64,6 +64,10 @@ page {
     /* color: #00a865; */
     color:red;
 }
+.container .main .questions .result .item .pass-blue {
+    color: #00a865; 
+}
+
 .container .main .middle-tip {
     text-align: center;
     padding-bottom: 20rpx;

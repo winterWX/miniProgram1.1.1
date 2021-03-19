@@ -68,7 +68,7 @@
             </view>
           </view>
       </view>
-      <view class="bottomTexts" bindtap="textShowMain" data-show="text">什么是尊享码？</view>
+      <view class="bottomTexts" bindtap="textShowMain" data-show="text">甚么是恒生尊享码？</view>
     </view>
   </view>
   <view class="bottomBtn">
@@ -79,7 +79,7 @@
             <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
                 <view wx:if="{{whatHangsheng}}" class="msg-box-imageBlock">
                     <view class='msg-box-image' bindtap="closePage">
-                        <view class="topTitle">什么是尊享码</view>
+                        <view class="topTitle">甚么是恒生尊享码？</view>
                         <image src='{{imagesUrl + "/images/mine/close@3x.png"}}'></image>
                       </view>
                       <view class='msg-box'>

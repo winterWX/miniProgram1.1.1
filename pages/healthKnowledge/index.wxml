@@ -4,7 +4,8 @@
         <view class="title">{{title}}</view>
         <view class="tip">共{{questionNumber}}题，答对80%将获得{{reward}} Olive积分</view>
         <view class="info">
-            {{content}}
+            <rich-text type="'node'" nodes="{{content}}"></rich-text>
+            <!-- {{content}} -->
         </view>
     </view>
     <view class="footer" hover-class="none" hover-stop-propagation="false">
@@ -14,7 +15,7 @@
         <button wx:if="{{isLogin === 0}}" class="btn btn-lg btn-primary" size="large"
 					open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始</button>
         <button wx:if="{{isLogin === 1 && isEnds === 1}}" class="btn btn-lg disabled">未开始</button>
-        <button wx:if="{{isLogin === 1 && isEnds === 3}}" class="btn btn-lg disabled">活动已结束</button>
+        <button wx:if="{{isLogin === 1 && isEnds === 3}}" class="btn btn-lg disabled">已结束</button>
     </view>
 </view>
 <rwj-loading id="loading"></rwj-loading>

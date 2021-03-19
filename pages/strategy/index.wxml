@@ -82,7 +82,7 @@
               </view>
         </view>
       </view>
-      <view class="bottomTexts" bindtap="textShowMain" data-show="text">什么是尊享码？</view>
+      <view class="bottomTexts" bindtap="textShowMain" data-show="text">甚么是恒生尊享码？</view>
     </view>
   </view>
 
@@ -90,21 +90,16 @@
       <view class="bottomBtnBlue" bindtap="btnNetoPage">已有恒生尊享码，立即升级成为VIP会员</view>
   </view>
 
-
-
-
-
-
   <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
             <view class="modals-cancel" bindtap="hideModal"></view>
             <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
                 <view wx:if="{{whatHangsheng}}" class="msg-box-imageBlock">
                     <view class='msg-box-image' bindtap="closePage">
-                        <view class="topTitle">甚么是恒生尊享码?</view>
+                        <view class="topTitle">甚么是恒生尊享码？</view>
                         <image src='{{imagesUrl + "/images/healthInfo/close@2x.png"}}'></image>
                       </view>
                       <view class='msg-box'>
-                        恒生尊享码是一组专属特选恒生客户的号码。指定客户可获通知专属的恒生尊享码。已有恒生尊享码，立即升级成为VIP银会员
+                        恒生尊享码是一组专属特选恒生客户的号码。指定客户可获通知专属的恒生尊享码。
                       </view>
                 </view>
                 <view wx:if="{{ !whatHangsheng }}">
