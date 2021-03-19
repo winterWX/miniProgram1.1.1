@@ -18,7 +18,7 @@
                 </view>
                 <view class="item">
                     <view class="title">正确率</view>
-                    <view class="num pass-rate">{{rate}}%</view>
+                    <view class="num {{ rate == 100 ? 'pass-blue' : 'pass-rate'}}">{{rate}}%</view>
                 </view>
             </view>
         </view>

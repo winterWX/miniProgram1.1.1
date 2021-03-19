@@ -47,12 +47,13 @@ page{
 }
 
 .btn-finish {
-  background-color: rgb(0, 168, 101);
+  background-color: #d9d9d9 !important;
   margin-top: 50rpx;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   margin-left: 30rpx;
   margin-right: 30rpx;
   font-size: 32rpx;
+  border-radius: 4rpx !important;
 }
 .textRed{
   color: rgb(177,13,25) !important;
@@ -149,7 +150,7 @@ page{
   height: 120rpx;
 }
 .topBlocksRightText{
-  margin: 20rpx 0rpx 20rpx 0rpx;
+  margin: 10rpx 0rpx 20rpx 0rpx;
   font-size: 24rpx;
   color:rgb(102,102,102);
 }
@@ -218,5 +219,11 @@ page{
   border-radius: 4rpx !important;
 }
 .rightSty{
-  margin-left: 10rpx;
+  /* margin-left: 8rpx; */
 }
+
+.yearText{
+  width: 90%;
+  flex: 1;
+}
+

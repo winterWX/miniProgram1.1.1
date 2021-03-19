@@ -54,7 +54,7 @@
         <!-- receiveStatus	领取状态(1:已领,2:未领,3:补领)  isDone	完成状态(1:完成,2:未完成) -->
         <view class="topSetting-btn">
             <van-button  wx:if='{{startStatus}}' class="{{startStatus ? 'topSetting-vanBtn' :''}}" bindtap="settingDataBtn">开启健康数据</van-button>
-            <van-button  wx:if='{{ stepsNum.isDone === "2" && !startStatus}}'>只差{{startStep}}步即可领10积分</van-button>
+            <van-button  wx:if='{{ stepsNum.isDone === "2" && !startStatus}}'>还差{{startStep}}步即可领10积分</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "2" && stepsNum.isDone === "1" }}' class="topSetting-vanBtn"  bindtap="integralBtn">马上领取{{stepsNum.integral}}积分奖励</van-button>
             <van-button  wx:if='{{ stepsNum.receiveStatus === "1" && stepsNum.isDone === "1" }}'>已领取</van-button>
         </view>   
@@ -83,19 +83,23 @@
                   <view class="sendBlockBack" ></view>
                </view>
                <view class="sendBlock-bottom" wx:if="{{showAPPData === 2 && everyDayData.source !=='Sensor'}}">
-                  <view class="sendBlock-Balck" style="padding-left:20rpx" wx:if="{{ everyDayData.source !=='HuaWei' && everyDayData.source !== 'Huawei'}}">
-                     <view class="health-item health-itemOhter"><view class="health-num">{{everyDayData.totalTime}}</view><view class="health-text">分钟</view></view>
-                     <view class="health-bottom">总运动时间</view>
-                  </view>
-                  <view class="sendBlock-Balck" style="padding-left:20rpx">
-                     <view class="health-item"><view class="health-num">{{everyDayData.calories}}</view><view class="health-text">千卡</view></view>
-                     <view class="health-bottom">消耗</view>
-                  </view>
                   <view class="sendBlock-Balck">
                       <view class="health-item"><view class="health-num">{{everyDayData.distance}}</view><view class="health-text">公里</view></view>
                       <view class="health-bottom">距离</view>
                   </view>
+
+                  <view class="sendBlock-Balck" style="padding-left:20rpx">
+                     <view class="health-item"><view class="health-num">{{everyDayData.calories}}</view><view class="health-text">千卡</view></view>
+                     <view class="health-bottom">消耗</view>
+                  </view>
+
+                  <view class="sendBlock-Balck" style="padding-left:20rpx" wx:if="{{ everyDayData.source !=='HuaWei' && everyDayData.source !== 'Huawei'}}">
+                     <view class="health-item health-itemOhter"><view class="health-num">{{everyDayData.totalTime}}</view><view class="health-text">分钟</view></view>
+                     <view class="health-bottom">总运动时间</view>
+                  </view>
+                  
                </view>
+               
                <view  class="sendBlock-bottom" wx:if="{{showAPPData === 2 && everyDayData.source === 'Sensor'}}">
                   <view class="sendBlock-Balck" style="padding-left:20rpx">
                      <view class="health-item"><view class="health-num">{{everyDayData.todaySteps}}</view><view class="health-text">步</view></view>

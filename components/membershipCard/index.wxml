@@ -38,7 +38,7 @@
                      </view> -->
                      <view class="silverBgImge" wx:if="{{activeData.level === 1}}"><image class="silver-bgImge" src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
                      <view class="imageBottom">
-                        <view class="imageBottom1" wx:if="{{activeData.level === 1}}">使用VIP银会员尊享码即升级成为VIP银会员</view>
+                        <view class="imageBottom1 buttomSoreText" wx:if="{{activeData.level === 1}}">使用VIP银会员尊享码即升级成为VIP银会员</view>
                      </view>
                </view>
             </swiper-item>
@@ -55,7 +55,7 @@
                      <view class="silverBgImgen silverBgImgen13" wx:if="{{activeData.level === 1 || activeData.level === 2}}"><image  class="silver-bgImgen"  src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
                      <view class="imageBottom3">
                         <!-- <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view> -->
-                        <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2}}">使用VIP金会员尊享码即升级成为VIP金会员</view>
+                        <view class="imageBottom13 imageBottoFu buttomSoreText" wx:if="{{activeData.level === 1 || activeData.level === 2}}">使用VIP金会员尊享码即升级成为VIP金会员</view>
                      </view>
                </view>
             </swiper-item>
@@ -95,7 +95,7 @@
                   <view class="silverBgImgen silverBgImgen13" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}"><image  class="silver-bgImgen" src="{{imagesUrl + '/images/silver/newImage/silver-lock@3x.png'}}"/></view>
                   <view class="imageBottom3">
                      <!-- <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">达{{infoLevelObj.nextLevelIntegral}}积分或使用恒生尊享码即升级金会员</view> -->
-                     <view class="imageBottom13 imageBottoFu" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">使用VIP金会员尊享码即升级成为VIP金会员</view>
+                     <view class="imageBottom13 imageBottoFu buttomSoreText" wx:if="{{activeData.level === 1 || activeData.level === 2 || activeData.level === 4}}">使用VIP金会员尊享码即升级成为VIP金会员</view>
                   </view>
                   </view>
                </swiper-item>

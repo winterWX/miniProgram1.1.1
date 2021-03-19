@@ -58,7 +58,7 @@ Page({
   },
   backToDetail: function() {
     let { id, title } = this.data;
-    wx.navigateTo({
+    wx.reLaunch({
       url: '../healthKnowledge/index?id=' + id + '&title=' + title,
     })
   }

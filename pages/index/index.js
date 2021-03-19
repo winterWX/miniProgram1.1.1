@@ -89,7 +89,6 @@ Page({
         wx.stopPullDownRefresh();    //停止下拉动作
     }
   },
-
   //调用微信运动数据
   calloutfun:function(){
       let that = this;
