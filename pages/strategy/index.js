@@ -30,7 +30,6 @@ Page({
   initPage: function (param){
     let that = this;
     let url = app.globalData.baseUrl + '/remote/copywriting/findMemberCopy';
-    that.selectComponent("#loading").show();
     wxAjax('POST', url, {
       flag : 2,
       level : 4
@@ -42,7 +41,6 @@ Page({
             tierInfo : res.data.data.tierInfo
         })
       }
-      that.selectComponent("#loading").hide();
     })
   },
   btnNetoPage:function(){

@@ -144,7 +144,7 @@ Page({
   closeBlock: function (event){
     let that = this;
     if (event.detail.closeBlock){
-      that.setData({ lookLevel: false });
+      that.setData({ lookLevel: false});
     }
   },
 
@@ -197,7 +197,7 @@ Page({
         //先生成圆环DOM  再跳转
         setTimeout(()=>{
             if(that.data.imageFlg){
-              that.setData({ modelShow: false ,modelRound: false});
+              that.setData({ modelShow: false, modelRound: false});
             }
         },1000);
     }else if (!event.detail.artcancel){
@@ -456,28 +456,16 @@ Page({
       const { item } = e.currentTarget.dataset;
       const levelArray = item.level.split(',');
       let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
-      // let flag = true;   //标记所有等级都能看
-      // ['1','2','3','4','5'].forEach(item =>{
-      //   if(!levelArray.includes(item)){ flag = false; }
-      // })
       if(levelArray.includes(that.data.levelNum +'')){
           wx.navigateTo({ url : url});
       }else{
-          that.setData({ lookLevel: true , levelLookNum: levelArray});
+          that.setData({ lookLevel: true, levelLookNum: levelArray});
       } 
   },
 
   notLoginState(){
       let that = this;
-      //const { item } = e.currentTarget.dataset;
       that.setData({ modelShow : true, showNumber: 2 }); 
-      //const levelArray = item.level.split(',');
-      //let url = '../../pages/HealthInforDetails/index?goodsId='+ item.id;
-      // let flag = true;   //标记所有等级都能看
-      // ['1','2','3','4','5'].forEach(item =>{
-      //   if(!levelArray.includes(item)){ flag = false; };
-      // })
-      // wx.navigateTo({ url: !flag ? '../../pages/index/index' : url });
   },
 
   listChange(e){

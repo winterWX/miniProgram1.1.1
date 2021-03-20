@@ -1,4 +1,4 @@
-<view class="slierMain">
+<view class="slierMain {{ !hideModal ? 'indexFixed' : ''}}">
   <!-- 新UI  没有 级别 2和 3 -->
   <!-- <view class="top-mainText">
       <view class="left-mainText">
@@ -104,4 +104,3 @@
             </view>
   </view> 
 </view>
-<rwj-loading id="loading"></rwj-loading>

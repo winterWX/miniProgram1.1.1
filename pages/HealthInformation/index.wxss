@@ -574,3 +574,10 @@ page{
   width: 28rpx;
   height: 28rpx;
 }
+.indexFixed{
+  position: fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+}

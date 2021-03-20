@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "rwj-loading": "../../components/loading/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "VIP金会员升级攻略"
 }

@@ -104,10 +104,11 @@ page {
 }
 .bottom-main{
   margin-top: 20rpx;
-  width: 100%;
+  width: 92%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20rpx;
+  margin-bottom: 150rpx;
+  padding: 0 30rpx;
 }
 .bottom-mainOut{
   width: 90%;
@@ -121,6 +122,10 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .bottomBtnBlue{
   width: 89%;
@@ -365,4 +370,11 @@ padding-left: 10rpx;
 .titleText{
   color: rgb(155 ,124 ,86);
   font-size: 28rpx;
+}
+.indexFixed{
+  position: fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
 }

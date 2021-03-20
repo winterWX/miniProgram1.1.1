@@ -1,4 +1,4 @@
-<view class="container_main">
+<view class="container_main {{ lookLevel ? 'indexFixed' : ''}}">
     <!-- 导航栏 -->
     <view class="scrollView">
         <scroll-view scroll-x class="navbar" scroll-with-animation scroll-left="{{scrollLeft}}rpx">

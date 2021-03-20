@@ -238,8 +238,10 @@ page{
   text-align: center;
 }
 .speedBlock{
-height: 400rpx;
-margin:30rpx;
+  height: 400rpx;
+  margin:30rpx;
+  height:auto; 
+  box-shadow: 0 2rpx 10rpx 0 rgba(0, 0, 0, 0.05)
 }
 .headLeBlock{
 height: 186rpx;
@@ -596,4 +598,12 @@ padding-left: 10rpx;
 }
 .van-button--normal{
   font-size: 32rpx !important;
+}
+/* 页面静止 */
+.indexFixed{
+  position: fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
 }
