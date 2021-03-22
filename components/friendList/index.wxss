@@ -129,3 +129,8 @@
     border: 2rpx solid #ffffff;
     border-radius: 50%;
 }
+
+.block__item .info__name{
+  font-size: 28rpx !important;
+  color: #333333 !important;
+}
