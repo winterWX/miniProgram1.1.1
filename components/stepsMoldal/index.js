@@ -44,11 +44,13 @@ Component({
     privacyAgreement(){
       wx.navigateTo({ url: '../../pages/textPrivacyStatement/index' });
     },
+
     artContinue(){
         this.triggerEvent('artContinue', {
           artContinue: app.globalData.isLogin == 3 ?  true : false
         }, {})
     },
+    
     artcancel(){
       this.triggerEvent('artcancel', {
         artcancel:  app.globalData.isLogin == 3 ? true : false

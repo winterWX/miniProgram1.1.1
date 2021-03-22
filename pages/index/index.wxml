@@ -86,7 +86,7 @@
   bind:closeBlock="closeBlock" 
   wx-if="{{ lookLevel }}" 
   levelNum='{{ levelNum }}' 
-  levelLookNums='{{levelLookNum}}'
+  levelLookNum='{{levelLookNum}}'
 ></article-modal>
 
 <collectionOption  wx:if="{{ successFlg }}" bind:parentReceive="parentCallBack" ></collectionOption>

@@ -32,12 +32,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {},
-  
+
+  onUnload: function () {
+    this.backToDetail();
+  },
+
   getQuestion: function(id) {
     let that = this;
     let url =  app.globalData.baseUrl + '/remote/health/quiz/desc?id=' + id;
     let method = 'GET';
-    that.selectComponent("#loading").show();
     util.wxAjax(method,url).then(res =>{
         if(res.data.code === 200) {
           let {quizResult: {correct, wrong, questionAnalysis, rate, status}, bannerUrl, reward} = res.data.data;
@@ -53,7 +56,6 @@ Page({
             integral: reward
           })
         }
-        that.selectComponent("#loading").hide();
     })
   },
   backToDetail: function() {
