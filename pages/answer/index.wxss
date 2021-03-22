@@ -36,6 +36,7 @@ page {
     width: 630rpx;
     min-height: 610rpx;
     border-radius: 10rpx;
+    margin-bottom: 50rpx;
 }
 .container .main  .circle-out {
     width: 130rpx;
@@ -123,13 +124,14 @@ page {
     position: fixed;
     left: 0;
     right: 0;
+    bottom: 20rpx;
 }
 .container .main .answer-box .qa .options .active {
     border: 2rpx solid #00a865;
 }
 
 .container button{
-    border-right: 4rpx !important;
+    border-radius: 4rpx !important;
     color: #FFFFFF;
     font-size: 32rpx;
 }

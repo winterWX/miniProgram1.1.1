@@ -61,8 +61,8 @@ Page({
   onReady: function () {},
   onShow: function () {
     let that = this;
-    that.setData({ firstInitShow: app.firstInit.bootImage });
-    that.linkToPage(that.data.optionsFlg);
+    // that.setData({ firstInitShow: app.firstInit.bootImage });
+    // that.linkToPage(that.data.optionsFlg);
     that.selectComponent('#challengeId').getCurrentList();  //重新刷状态
   },
   onHide: function () {},
@@ -105,12 +105,12 @@ Page({
   },
   onReachBottom: function () {},
   onShareAppMessage: function () {},
-  guidanceOne: function () {
+  guidanceFirstImage: function () {
     let that = this;
     that.setData({ guidance1: false, guidance2: true });
   },
 
-  guidanceTwo: function () {
+  guidanceImage: function () {
     let that = this;
     that.setData({ guidance2: false, flagMask: false, firstInitShow: false });
     app.firstInit.bootImage = false;
@@ -121,15 +121,14 @@ Page({
   linkToPage: function (id) {
     let that = this;
     if (id === "allowTo") {
-      that.settingDataBtn();
-      that.healthEveryday();
-      that.getQueryintegral();
+        that.settingDataBtn();
+        that.healthEveryday();
+        that.getQueryintegral();
     } else if (id === "refusedTo") {
-       //that.setWerunStep();
         that.getStepRunData();
     } else if (id === "carryAPPData") {
-      that.settingDataBtn();
-      that.healthEveryday();
+        that.settingDataBtn();
+        that.healthEveryday();
     }
   },
   healthShow: function () {

@@ -138,4 +138,3 @@
 	</view>
 </view>
 <integralAmation integral="{{integral}}" wx:if="{{showAnimation && isGetReword}}" />
-<rwj-loading id="loading"></rwj-loading>
