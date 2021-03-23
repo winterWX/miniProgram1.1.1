@@ -160,4 +160,3 @@
   </view> 
 	<footer class="footerContent" active="{{active}}"></footer>
 </view>
-<rwj-loading id="loading"></rwj-loading>

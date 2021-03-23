@@ -140,7 +140,6 @@ getMyprofileInfo: function () {
     3: 'gold'
   }
   let url = app.globalData.baseUrl + '/myprofile/homepage/search';
-  that.selectComponent("#loading").show();
   wxAjax('GET', url).then(res => {
     if (res.data.code == 200) {
       let userInfo = res.data.data;
@@ -149,13 +148,10 @@ getMyprofileInfo: function () {
       that.setData({userInfo, avatar, color});
       that.setData({countNum: res.data.data.completedCount === 5 ? 100 + '%' : parseInt((5-res.data.data.completedCount) * (100/5)) + '%'})
     } 
-    that.selectComponent("#loading").hide();
   })
 },
 getActivityList: function () {
   let that = this;
-  // wx.showToast({ title: '加载中', icon: 'loading' });
-  that.selectComponent("#loading").show();
   let url = app.globalData.baseUrl + '/remote/myactivity/list';
   let data = {
     currentPage: 1,
@@ -174,7 +170,6 @@ getActivityList: function () {
       let activityCount = res.data.totalCount;
       that.setData({ activityCount});
     }
-    that.selectComponent("#loading").hide();
   })
 },
 textShowMain:function (e) {

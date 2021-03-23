@@ -4,6 +4,9 @@ page{
   width: 100%; */
   /* overflow: hidden; */
 }
+.defalutState{ 
+  overflow-y: auto;
+}
 .PageBackColor{
   background-color: #ffffff;
 }
