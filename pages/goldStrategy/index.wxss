@@ -384,3 +384,6 @@ padding-left: 10rpx;
   bottom:0;
   right:0;
 }
+.defalutState{
+  overflow-y: auto;
+}

@@ -1,4 +1,4 @@
-<view class="slierMain {{ !hideModal ? 'indexFixed' : ''}}">
+<view class="defalutState {{ !hideModal ? 'indexFixed' : ''}}">
   <!-- 有 2 和 3 的时候 -->
   <!-- <view class="top-mainText">
       <view class="left-mainText">
