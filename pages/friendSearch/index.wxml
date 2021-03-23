@@ -8,6 +8,8 @@
           bind:change="onChange"
           bind:search="onSearch"
           bind:cancel="onCancel"
+          class="searchInput"
+          style="fontSize:"
     />
     <view wx:for="{{showArray}}" class="content-friendList">
         <view class="leftBlock">

@@ -1,7 +1,6 @@
 {
   "usingComponents": {
-    "footer": "../../components/footer/index",
-    "rwj-loading": "../../components/loading/index"
+    "footer": "../../components/footer/index"
   },
   "navigationBarTitleText": "我的"
 }

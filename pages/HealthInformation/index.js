@@ -53,7 +53,8 @@ Page({
     move_x: "",
     move_y: "",
     baseUrl: app.globalData.imagesUrl,
-    animationHight: (wx.getSystemInfoSync().windowHeight - 40) * 2  //弹窗高度
+    animationHight: 0, //弹窗高度
+    conversionVal: 750 / wx.getSystemInfoSync().windowWidth  //1px 换算
   },
   onLoad: function (options) {
     let that = this;
@@ -69,6 +70,7 @@ Page({
     //查询所有话题
     that.getTagList();
     that.userLevel();
+    that.setData({ animationHight: wx.getSystemInfoSync().windowHeight * that.data.conversionVal - 80})
   },
   onShow: function () {
     let that = this;
