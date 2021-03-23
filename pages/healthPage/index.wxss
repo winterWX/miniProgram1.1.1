@@ -602,6 +602,7 @@ padding-left: 10rpx;
 .van-button--normal{
   font-size: 32rpx !important;
 }
+
 /* 页面静止 */
 .indexFixed{
   position: fixed;

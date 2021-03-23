@@ -1,4 +1,4 @@
-<view class="{{ flagMask || !hideModal ? 'indexFixed': 'defalutState'}}">
+<view class="defalutState {{ flagMask || !hideModal ? 'indexFixed': ''}}">
    <view class="pageTopPick-main">
       <view  class="pageTopPick" wx:if="{{firstInitShow}}">
          <view class='mask' wx:if="{{flagMask}}"></view>
